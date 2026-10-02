@@ -1,0 +1,63 @@
+{
+  "expo": {
+    "name": "Atmos X",
+    "slug": "atmos-x",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "atmosx",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "icon": "./assets/images/icon.png",
+      "bundleIdentifier": "com.appbaksho.atmosx",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Atmos X uses your location to find heat zones, nurseries and weather alerts near you.",
+        "NSCameraUsageDescription": "Atmos X uses the camera to photograph trees, roofs and sensors you log, with the time and location sealed in."
+      }
+    },
+    "android": {
+      "package": "com.appbaksho.atmosx",
+      "adaptiveIcon": {
+        "backgroundColor": "#00182E",
+        "foregroundImage": "./assets/images/android-icon-foreground.png"
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "predictiveBackGestureEnabled": false
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#00182E",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 120
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Atmos X uses your location to find heat zones, nurseries and weather alerts near you."
+        }
+      ],
+      "expo-sqlite",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Atmos X uses the camera to photograph trees, roofs and sensors you log, with the time and location sealed in.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "description": "Find heat zones near you with NASA data, plan cooling actions, team up in clans, and get farmer crop alerts."
+  }
+}
