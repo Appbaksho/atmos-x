@@ -1,10 +1,10 @@
 {
  "id": "z-8a3cf10ce627fff-500",
  "name": "Kaderabad Housing 6",
- "score": 71,
- "lst_c": 31.2,
- "air_c": 27.9,
- "feels_c": 32,
+ "score": 91,
+ "lst_c": 42.8,
+ "air_c": 27.7,
+ "feels_c": 31.8,
  "centroid": {
   "lat": 23.755106,
   "lng": 90.358668
@@ -49,11 +49,11 @@
    }
   }
  ],
- "why_text": "Kaderabad Housing 6 is an estimated 31.2°C at the surface, a bit hotter than the area around it at 30.6°C, and the difference is smaller at night. It is hotter mainly because most of the ground is covered by hard surfaces, with very little green cover and many buildings close together. More green cover would help most, and cool roofs and shade would also help.",
+ "why_text": "Kaderabad Housing 6 is hotter than the area around it because most of the ground is hard and sealed, with very little green cover and many buildings packed close together. Its estimated surface temperature is 42.8°C, compared with 41.1°C in the area around it, and the difference is smaller at night. More green cover would help the most, and cooler roofs and shade would also help reduce the heat.",
  "what_if_green": {
   "add_green_pct": 10,
-  "score_after": 67,
-  "lst_drop_c": 0.24
+  "score_after": 84,
+  "lst_drop_c": 0.6
  },
  "history": [
   {
@@ -160,7 +160,7 @@
  "history_kind": "air_temp",
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:37.937Z",
+  "generated_at": "2026-10-04T20:25:00.429Z",
   "sources": [
    {
     "id": "heat-proxy",
@@ -176,7 +176,7 @@
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:24:40.551Z"
    },
    {
     "id": "open-meteo-archive",

@@ -64,8 +64,8 @@
  "why_text": "Sadek Khan Road is estimated at 31°C at the surface, a bit hotter than the area around it at 30.5°C, and the difference is smaller at night. It is hotter mainly because 76% is hard ground, there is no green cover, and the buildings are packed closely together. More green cover would help most, and cool roofs and shade would also bring temperatures down.",
  "what_if_green": {
   "add_green_pct": 10,
-  "score_after": 66,
-  "lst_drop_c": 0.24
+  "score_after": 100,
+  "lst_drop_c": 0.6
  },
  "history": [
   {
@@ -172,7 +172,7 @@
  "history_kind": "air_temp",
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:44.233Z",
+  "generated_at": "2026-10-04T20:22:33.529Z",
   "sources": [
    {
     "id": "heat-proxy",

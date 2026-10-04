@@ -3,10 +3,10 @@
   "timezone": "Asia/Dhaka",
   "utcOffsetSec": 21600,
   "current": {
-   "time": "2026-10-05T01:45",
-   "temp": 27.9,
-   "rh": 81,
-   "wind": 4.7,
+   "time": "2026-10-05T02:15",
+   "temp": 27.7,
+   "rh": 83,
+   "wind": 4.6,
    "code": 0,
    "isDay": false
   },
@@ -1269,5 +1269,5 @@
   ]
  },
  "live": true,
- "at": 1791143294486
+ "at": 1791145480551
 }

@@ -5,7 +5,11 @@ import 'server-only';
  *   est_c = air_c + 9·built + 7·road − 6·green − 8·water + 1.5·min(building_density/40, 1)
  * where the fractions are shares of a hex cell's area, building_density is buildings per hectare,
  * and at night (local 19:00–06:00) every land-cover term is multiplied by 0.4.
- *   score = clamp(0, 100, 50 + 8·(est_c − median est_c of the scan) + 20·(built + road − green))
+ *   score = clamp(0, 100, 10 + 85·(built + road) − 50·green − 60·water + 6·min(density/40, 1)
+ *                          + 4·(est_c − median est_c of the scan))
+ * Sealed surface sets the absolute level (a fully built, treeless block ≈ 90+, a park ≈ 0–20) and
+ * the temperature contrast within the scan separates neighbouring blocks. Scoring always uses the
+ * day's peak air temperature with full land-cover contrast (see scan.ts), like a daytime satellite pass.
  */
 export const HEAT = {
   coef: { built: 9, road: 7, green: -6, water: -8, density: 1.5 },
@@ -13,7 +17,7 @@ export const HEAT = {
   nightFactor: 0.4,
   nightFromHour: 19,
   nightToHour: 6,
-  score: { base: 50, perDegree: 8, landCover: 20 },
+  score: { base: 10, sealed: 85, green: -50, water: -60, density: 6, perDegree: 4 },
   /** Cells sampled on a 6×6 grid over the hex's bounding box (points outside the hex are dropped). */
   samplesPerSide: 6,
   /** Each `natural=tree` node counts as this much canopy (m²). */
@@ -45,7 +49,7 @@ export const HEAT = {
   darkRoofPct: { BD: 64, IN: 60, PK: 60, default: 50 } as Record<string, number>,
   /** Zones: cells at or above this quantile of the scan's scores, clustered by H3 adjacency. */
   hotQuantile: 0.75,
-  nearTie: 3,
+  nearTie: 2,
   maxZones: 12,
   whatIfGreen: 0.1,
 } as const;

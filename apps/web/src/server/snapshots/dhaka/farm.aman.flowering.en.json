@@ -36,7 +36,7 @@
      "id": "open-meteo",
      "name": "Open-Meteo",
      "url": "https://open-meteo.com",
-     "as_of": "2026-10-04T19:48:14.486Z"
+     "as_of": "2026-10-04T20:24:40.551Z"
     }
    ]
   },
@@ -75,7 +75,7 @@
      "id": "open-meteo",
      "name": "Open-Meteo",
      "url": "https://open-meteo.com",
-     "as_of": "2026-10-04T19:48:14.486Z"
+     "as_of": "2026-10-04T20:24:40.551Z"
     }
    ]
   }
@@ -83,13 +83,13 @@
  "region": null,
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:33.588Z",
+  "generated_at": "2026-10-04T20:25:00.297Z",
   "sources": [
    {
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:24:40.551Z"
    },
    {
     "id": "nasa-power",

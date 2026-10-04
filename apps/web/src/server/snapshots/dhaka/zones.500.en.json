@@ -10,257 +10,257 @@
    "lst_date": null,
    "ndvi_date": null
   },
-  "baseline_lst_c": 30.6,
+  "baseline_lst_c": 41.1,
   "method": "osm-proxy"
  },
  "hexes": [
   {
    "h3": "8a3cf10ce0cffff",
-   "score": 68,
-   "lst_c": 31
+   "score": 84,
+   "lst_c": 42.2
   },
   {
    "h3": "8a3cf10ce0c7fff",
-   "score": 71,
-   "lst_c": 31.2
+   "score": 90,
+   "lst_c": 42.6
   },
   {
    "h3": "8a3cf10ce0dffff",
-   "score": 70,
-   "lst_c": 31.2
+   "score": 88,
+   "lst_c": 42.6
   },
   {
    "h3": "8a3cf10ce767fff",
-   "score": 60,
-   "lst_c": 30.5
+   "score": 65,
+   "lst_c": 40.8
   },
   {
    "h3": "8a3cf10ce397fff",
-   "score": 69,
-   "lst_c": 31.1
+   "score": 85,
+   "lst_c": 42.4
   },
   {
    "h3": "8a3cf10ce3b7fff",
-   "score": 65,
-   "lst_c": 30.8
+   "score": 76,
+   "lst_c": 41.7
   },
   {
    "h3": "8a3cf10ce0effff",
-   "score": 67,
-   "lst_c": 30.9
+   "score": 80,
+   "lst_c": 42
   },
   {
    "h3": "8a3cf10ce0e7fff",
-   "score": 60,
-   "lst_c": 30.4
+   "score": 62,
+   "lst_c": 40.7
   },
   {
    "h3": "8a3cf10ce0f7fff",
-   "score": 72,
-   "lst_c": 31.2
+   "score": 92,
+   "lst_c": 42.8
   },
   {
    "h3": "8a3cf10ce0d7fff",
-   "score": 62,
-   "lst_c": 30.6
+   "score": 68,
+   "lst_c": 41.2
   },
   {
    "h3": "8a3cf10ce72ffff",
-   "score": 61,
-   "lst_c": 30.5
+   "score": 64,
+   "lst_c": 40.9
   },
   {
    "h3": "8a3cf10ce777fff",
-   "score": 54,
-   "lst_c": 29.9
+   "score": 50,
+   "lst_c": 39.4
   },
   {
    "h3": "8a3cf10ce747fff",
-   "score": 56,
-   "lst_c": 30
+   "score": 54,
+   "lst_c": 39.5
   },
   {
    "h3": "8a3cf10ce76ffff",
-   "score": 45,
-   "lst_c": 29.3
+   "score": 26,
+   "lst_c": 37.8
   },
   {
    "h3": "8a3cf10ce39ffff",
-   "score": 69,
-   "lst_c": 31.1
+   "score": 85,
+   "lst_c": 42.4
   },
   {
    "h3": "8a3cf10ce387fff",
-   "score": 72,
-   "lst_c": 31.3
+   "score": 93,
+   "lst_c": 43
   },
   {
    "h3": "8a3cf10ce3a7fff",
-   "score": 74,
-   "lst_c": 31.5
+   "score": 97,
+   "lst_c": 43.3
   },
   {
    "h3": "8a3cf10ce05ffff",
-   "score": 51,
-   "lst_c": 29.8
+   "score": 43,
+   "lst_c": 39.1
   },
   {
    "h3": "8a3cf10ce057fff",
-   "score": 68,
-   "lst_c": 31
+   "score": 84,
+   "lst_c": 42.2
   },
   {
    "h3": "8a3cf10ce00ffff",
-   "score": 60,
-   "lst_c": 30.4
+   "score": 62,
+   "lst_c": 40.7
   },
   {
    "h3": "8a3cf10ce01ffff",
-   "score": 66,
-   "lst_c": 30.9
+   "score": 76,
+   "lst_c": 41.8
   },
   {
    "h3": "8a3cf10ce0affff",
-   "score": 62,
-   "lst_c": 30.6
+   "score": 68,
+   "lst_c": 41.2
   },
   {
    "h3": "8a3cf10ce08ffff",
-   "score": 63,
-   "lst_c": 30.6
+   "score": 70,
+   "lst_c": 41.3
   },
   {
    "h3": "8a3cf10ce727fff",
-   "score": 64,
-   "lst_c": 30.7
+   "score": 72,
+   "lst_c": 41.4
   },
   {
    "h3": "8a3cf10ce707fff",
-   "score": 60,
-   "lst_c": 30.3
+   "score": 63,
+   "lst_c": 40.4
   },
   {
    "h3": "8a3cf10ce70ffff",
-   "score": 66,
-   "lst_c": 30.8
+   "score": 79,
+   "lst_c": 41.7
   },
   {
    "h3": "8a3cf10ce757fff",
-   "score": 65,
-   "lst_c": 30.8
+   "score": 76,
+   "lst_c": 41.7
   },
   {
    "h3": "8a3cf10ce75ffff",
-   "score": 63,
-   "lst_c": 30.6
+   "score": 69,
+   "lst_c": 41.1
   },
   {
    "h3": "8a3cf10ce74ffff",
-   "score": 63,
-   "lst_c": 30.6
+   "score": 71,
+   "lst_c": 41.1
   },
   {
    "h3": "8a3cf10ce2b7fff",
-   "score": 51,
-   "lst_c": 29.6
+   "score": 41,
+   "lst_c": 38.7
   },
   {
    "h3": "8a3cf10ce2a7fff",
-   "score": 67,
-   "lst_c": 31
+   "score": 80,
+   "lst_c": 42
   },
   {
    "h3": "8a3cf10ce38ffff",
-   "score": 59,
-   "lst_c": 30.4
+   "score": 61,
+   "lst_c": 40.6
   },
   {
    "h3": "8a3cf10ce3affff",
-   "score": 61,
-   "lst_c": 30.6
+   "score": 67,
+   "lst_c": 41.1
   },
   {
    "h3": "8a3cf10ce317fff",
-   "score": 64,
-   "lst_c": 30.7
+   "score": 72,
+   "lst_c": 41.5
   },
   {
    "h3": "8a3cf10ce04ffff",
-   "score": 54,
-   "lst_c": 29.9
+   "score": 48,
+   "lst_c": 39.4
   },
   {
    "h3": "8a3cf10ce047fff",
-   "score": 50,
-   "lst_c": 29.5
+   "score": 38,
+   "lst_c": 38.4
   },
   {
    "h3": "8a3cf10ce077fff",
-   "score": 63,
-   "lst_c": 30.6
+   "score": 69,
+   "lst_c": 41.1
   },
   {
    "h3": "8a3cf10ce02ffff",
-   "score": 72,
-   "lst_c": 31.3
+   "score": 93,
+   "lst_c": 42.9
   },
   {
    "h3": "8a3cf10ce007fff",
-   "score": 54,
-   "lst_c": 29.8
+   "score": 46,
+   "lst_c": 39.2
   },
   {
    "h3": "8a3cf10ce017fff",
-   "score": 49,
-   "lst_c": 29.5
+   "score": 33,
+   "lst_c": 38.3
   },
   {
    "h3": "8a3cf10ce0a7fff",
-   "score": 58,
-   "lst_c": 30.3
+   "score": 56,
+   "lst_c": 40.4
   },
   {
    "h3": "8a3cf10ce087fff",
-   "score": 56,
-   "lst_c": 30.1
+   "score": 54,
+   "lst_c": 39.8
   },
   {
    "h3": "8a3cf10ce09ffff",
-   "score": 57,
-   "lst_c": 30.1
+   "score": 55,
+   "lst_c": 40
   },
   {
    "h3": "8a3cf10ce737fff",
-   "score": 53,
-   "lst_c": 29.8
+   "score": 46,
+   "lst_c": 39.1
   },
   {
    "h3": "8a3cf10ce717fff",
-   "score": 42,
-   "lst_c": 28.9
+   "score": 20,
+   "lst_c": 36.8
   },
   {
    "h3": "8a3cf10ce71ffff",
-   "score": 67,
-   "lst_c": 30.9
+   "score": 81,
+   "lst_c": 42
   },
   {
    "h3": "8a3cf10ce627fff",
-   "score": 75,
-   "lst_c": 31.5
+   "score": 100,
+   "lst_c": 43.5
   },
   {
    "h3": "8a3cf10ce62ffff",
-   "score": 64,
-   "lst_c": 30.7
+   "score": 72,
+   "lst_c": 41.5
   }
  ],
  "zones": [
   {
    "id": "z-8a3cf10ce02ffff-500",
    "name": "Road 5",
-   "score": 72,
-   "lst_c": 31.3,
+   "score": 93,
+   "lst_c": 42.9,
    "dist_m": 478,
    "rank": 1,
    "near_tie": true,
@@ -275,8 +275,8 @@
   {
    "id": "z-8a3cf10ce627fff-500",
    "name": "Kaderabad Housing 6",
-   "score": 71,
-   "lst_c": 31.2,
+   "score": 91,
+   "lst_c": 42.8,
    "dist_m": 434,
    "rank": 2,
    "near_tie": true,
@@ -290,36 +290,49 @@
    ]
   },
   {
-   "id": "z-8a3cf10ce3b7fff-500",
-   "name": "Sher-E-Bangla Road",
-   "score": 70,
-   "lst_c": 31.1,
-   "dist_m": 141,
+   "id": "z-8a3cf10ce0cffff-500",
+   "name": "Nurzahan Road",
+   "score": 89,
+   "lst_c": 42.6,
+   "dist_m": 118,
    "rank": 3,
    "near_tie": true,
    "centroid": {
-    "lat": 23.759786,
-    "lng": 90.360088
+    "lat": 23.759572,
+    "lng": 90.359981
    },
    "h3": [
     "8a3cf10ce0cffff",
-    "8a3cf10ce0effff",
-    "8a3cf10ce057fff",
     "8a3cf10ce397fff",
     "8a3cf10ce387fff",
     "8a3cf10ce3a7fff",
     "8a3cf10ce39ffff",
-    "8a3cf10ce2a7fff",
     "8a3cf10ce0dffff",
     "8a3cf10ce0c7fff",
     "8a3cf10ce0f7fff"
    ]
+  },
+  {
+   "id": "z-8a3cf10ce057fff-500",
+   "name": "Sher-E-Bangla Road",
+   "score": 84,
+   "lst_c": 42.2,
+   "dist_m": 282,
+   "rank": 4,
+   "near_tie": false,
+   "centroid": {
+    "lat": 23.761474,
+    "lng": 90.358393
+   },
+   "h3": [
+    "8a3cf10ce057fff"
+   ]
   }
  ],
- "my_zone_id": "z-8a3cf10ce3b7fff-500",
+ "my_zone_id": "z-8a3cf10ce0cffff-500",
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:35.921Z",
+  "generated_at": "2026-10-04T20:25:00.403Z",
   "sources": [
    {
     "id": "heat-proxy",
@@ -335,7 +348,7 @@
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:24:40.551Z"
    }
   ]
  }

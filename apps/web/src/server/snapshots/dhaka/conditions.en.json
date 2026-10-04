@@ -1,11 +1,11 @@
 {
  "place": "Lalmatia, Dhaka",
- "time": "2026-10-05T01:45",
- "air_c": 27.9,
- "feels_c": 32,
- "humidity": 81,
- "wind_kmh": 4.7,
- "heat_risk": "xcaution",
+ "time": "2026-10-05T02:15",
+ "air_c": 27.7,
+ "feels_c": 31.8,
+ "humidity": 83,
+ "wind_kmh": 4.6,
+ "heat_risk": "caution",
  "bmd_level": null,
  "normal_c": 31,
  "anomaly_c": 3.4,
@@ -59,13 +59,13 @@
  "warnings": [],
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:33.446Z",
+  "generated_at": "2026-10-04T20:25:00.228Z",
   "sources": [
    {
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:24:40.551Z"
    },
    {
     "id": "open-meteo-archive",

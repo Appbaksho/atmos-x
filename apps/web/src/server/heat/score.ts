@@ -27,7 +27,9 @@ export function estSurfaceC(airC: number, lc: LandCover, night: boolean): number
 
 export function heatScore(estC: number, medianEstC: number, lc: LandCover): number {
   const s = HEAT.score;
-  return Math.round(clamp(0, 100, s.base + s.perDegree * (estC - medianEstC) + s.landCover * (lc.built + lc.road - lc.green)));
+  const cover =
+    s.sealed * (lc.built + lc.road) + s.green * lc.green + s.water * lc.water + s.density * Math.min(lc.density / HEAT.densityRef, 1);
+  return Math.round(clamp(0, 100, s.base + cover + s.perDegree * (estC - medianEstC)));
 }
 
 export type ScoredCell = LandCover & { h3: string; est_c: number; score: number };

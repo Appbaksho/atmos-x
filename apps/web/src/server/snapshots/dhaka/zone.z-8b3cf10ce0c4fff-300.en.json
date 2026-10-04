@@ -1,10 +1,10 @@
 {
  "id": "z-8b3cf10ce0c4fff-300",
  "name": "Zone 1",
- "score": 73,
- "lst_c": 31.5,
- "air_c": 27.9,
- "feels_c": 32,
+ "score": 98,
+ "lst_c": 43.4,
+ "air_c": 27.7,
+ "feels_c": 31.8,
  "centroid": {
   "lat": 23.759672,
   "lng": 90.357886
@@ -48,11 +48,11 @@
    }
   }
  ],
- "why_text": "Zone 1 is estimated at 31.5°C, a bit hotter than the area around it at 30.8°C, and the difference is smaller at night. It is hotter mainly because almost all of it is paved or covered over, with no green cover and many buildings packed close together. The best help would be more green cover, plus shade and cooler roofs.",
+ "why_text": "Zone 1 is estimated at 43.4°C at the surface, hotter than the area around it at 41.5°C, and the difference is smaller at night. It is hotter mainly because most of the ground is covered by hard surfaces, with very little green cover and many buildings packed close together. More green cover would help most, and cool roofs and shade would also reduce the heat.",
  "what_if_green": {
   "add_green_pct": 10,
-  "score_after": 70,
-  "lst_drop_c": 0.24
+  "score_after": 90,
+  "lst_drop_c": 0.6
  },
  "history": [
   {
@@ -159,7 +159,7 @@
  "history_kind": "air_temp",
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:33.727Z",
+  "generated_at": "2026-10-04T20:25:00.377Z",
   "sources": [
    {
     "id": "heat-proxy",
@@ -175,7 +175,7 @@
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:19:22.386Z"
    },
    {
     "id": "open-meteo-archive",

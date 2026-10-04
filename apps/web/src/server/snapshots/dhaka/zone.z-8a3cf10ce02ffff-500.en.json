@@ -1,10 +1,10 @@
 {
  "id": "z-8a3cf10ce02ffff-500",
  "name": "Road 5",
- "score": 72,
- "lst_c": 31.3,
- "air_c": 27.9,
- "feels_c": 32,
+ "score": 93,
+ "lst_c": 42.9,
+ "air_c": 27.7,
+ "feels_c": 31.8,
  "centroid": {
   "lat": 23.762592,
   "lng": 90.356412
@@ -48,11 +48,11 @@
    }
   }
  ],
- "why_text": "Road 5 is estimated at 31.3°C at the surface, a bit hotter than the area around it at 30.6°C. It is hotter mainly because most of it is sealed ground and roads, with no green cover and many buildings; more green cover would help most, and cooler roofs and shade would also help. The difference is smaller at night.",
+ "why_text": "Road 5 is estimated at 42.9°C at the surface, a bit hotter than the area around it at 41.1°C, and the difference is smaller at night. It is hotter mainly because most of it is hard ground and roads, with very little green cover and many buildings. More green cover would help most, and cool roofs or shade would also help.",
  "what_if_green": {
   "add_green_pct": 10,
-  "score_after": 68,
-  "lst_drop_c": 0.24
+  "score_after": 86,
+  "lst_drop_c": 0.6
  },
  "history": [
   {
@@ -159,7 +159,7 @@
  "history_kind": "air_temp",
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:35.928Z",
+  "generated_at": "2026-10-04T20:25:00.413Z",
   "sources": [
    {
     "id": "heat-proxy",
@@ -175,7 +175,7 @@
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:24:40.551Z"
    },
    {
     "id": "open-meteo-archive",

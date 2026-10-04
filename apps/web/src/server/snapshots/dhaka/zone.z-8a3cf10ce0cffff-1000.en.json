@@ -1,10 +1,10 @@
 {
  "id": "z-8a3cf10ce0cffff-1000",
  "name": "Sher-E-Bangla Road",
- "score": 70,
- "lst_c": 31.1,
- "air_c": 27.9,
- "feels_c": 32,
+ "score": 87,
+ "lst_c": 42.4,
+ "air_c": 27.7,
+ "feels_c": 31.8,
  "centroid": {
   "lat": 23.759883,
   "lng": 90.359817
@@ -60,11 +60,11 @@
    }
   }
  ],
- "why_text": "Sher-E-Bangla Road is estimated at 31.1°C at the surface, a bit hotter than the area around it at 30.5°C, and the difference is smaller at night. It is hotter mainly because most of the ground is covered by hard surfaces and roads, with very little green cover and many buildings. More green cover would help most, and cool roofs and shade would also help.",
+ "why_text": "Sher-E-Bangla Road is estimated to have a surface temperature of 42.4°C, which is hotter than the area around it at 40.8°C, and the difference is smaller at night. It is hotter mainly because most of the ground is hard and covered, with very little green cover and many buildings close together. More green cover would help most, and cool roofs and shade would also help.",
  "what_if_green": {
   "add_green_pct": 10,
-  "score_after": 66,
-  "lst_drop_c": 0.24
+  "score_after": 80,
+  "lst_drop_c": 0.6
  },
  "history": [
   {
@@ -171,7 +171,7 @@
  "history_kind": "air_temp",
  "meta": {
   "live": true,
-  "generated_at": "2026-10-04T20:15:42.274Z",
+  "generated_at": "2026-10-04T20:25:00.521Z",
   "sources": [
    {
     "id": "heat-proxy",
@@ -187,7 +187,7 @@
     "id": "open-meteo",
     "name": "Open-Meteo",
     "url": "https://open-meteo.com",
-    "as_of": "2026-10-04T19:48:14.486Z"
+    "as_of": "2026-10-04T20:19:22.386Z"
    },
    {
     "id": "open-meteo-archive",

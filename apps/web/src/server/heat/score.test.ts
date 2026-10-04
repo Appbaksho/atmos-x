@@ -22,9 +22,10 @@ describe('§5.1 estimated surface temperature', () => {
 });
 
 describe('Heat Score', () => {
-  it('is 50 + 8·Δ + 20·(built + road − green), clamped and rounded', () => {
-    expect(heatScore(30, 30, lc(0, 0, 0))).toBe(50);
-    expect(heatScore(32, 30, lc(0.5, 0.2, 0.1))).toBe(Math.round(50 + 16 + 12));
+  it('is 10 + 85·sealed − 50·green − 60·water + 6·density + 4·Δ, clamped and rounded', () => {
+    expect(heatScore(30, 30, lc(0, 0, 0))).toBe(10);
+    // sealed 0.7, green 0.1, density 0 (lc helper), Δ = +2 °C
+    expect(heatScore(32, 30, lc(0.5, 0.2, 0.1))).toBe(Math.round(10 + 85 * 0.7 - 50 * 0.1 + 4 * 2));
     expect(heatScore(60, 30, lc(1, 0, 0))).toBe(100);
     expect(heatScore(10, 30, lc(0, 0, 1))).toBe(0);
   });

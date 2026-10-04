@@ -41,6 +41,9 @@ export type Scan = {
   tmin_c: number | null;
   local_hour: number;
   night: boolean;
+  /** Air temperature the score is computed at: today's daytime peak (tmax), so maps scanned at
+   * night still show the daytime surface-heat pattern a satellite would see. */
+  score_air_c: number;
   median_est_c: number;
   cells: ScanCell[];
   zones: ScanZone[];
@@ -90,12 +93,14 @@ function buildScan(
   res: number,
   coverCells: CellCover[],
   cover: CoverResult | null,
-  wx: { air: number; tmin: number | null; hour: number; at: number },
+  wx: { air: number; peak: number; tmin: number | null; hour: number; at: number },
   method: Scan['method'],
   osmAt: number | null,
 ): Scan {
   const night = isNight(wx.hour);
-  const { cells, median_est_c } = scoreCells(coverCells, wx.air, night);
+  // Score at the daytime peak with full land-cover contrast (night=false): the map shows where
+  // surfaces get hottest by day, independent of the hour the user scans.
+  const { cells, median_est_c } = scoreCells(coverCells, wx.peak, false);
   const clusters = clusterHotCells(cells).slice(0, HEAT.maxZones);
   const ties = nearTies(clusters.map((c) => c.score));
   const zones: ScanZone[] = clusters.map((cl, i) => {
@@ -131,6 +136,7 @@ function buildScan(
     tmin_c: wx.tmin,
     local_hour: wx.hour,
     night,
+    score_air_c: round(wx.peak, 1),
     median_est_c,
     cells: cells as ScanCell[],
     zones,
@@ -154,6 +160,7 @@ async function weatherFor(center: LatLng) {
   const fc = await getForecast(center);
   return {
     air: fc.data.current.temp,
+    peak: Math.max(fc.data.current.temp, fc.data.daily[0]?.tmax ?? fc.data.current.temp),
     tmin: fc.data.daily[0]?.tmin ?? null,
     hour: localHour(fc.data),
     at: fc.at,

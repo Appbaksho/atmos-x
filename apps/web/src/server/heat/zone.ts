@@ -67,7 +67,7 @@ export async function getZoneDetail(id: string, lang: Locale, opts: { explain?: 
   const feels = fc ? heatIndex(fc.data.current.temp, fc.data.current.rh) : scan.air_c;
   const drivers = driversFor(zone, scan, country);
   const causes = causesFor(zone.cover, drivers.dark_roof_pct ?? 0);
-  const wi = whatIfGreen(zone.cover, scan.air_c, scan.median_est_c, scan.night);
+  const wi = whatIfGreen(zone.cover, scan.score_air_c ?? scan.air_c, scan.median_est_c, false);
   const what_if_green = { add_green_pct: Math.round(HEAT.whatIfGreen * 100), score_after: wi.score_after, lst_drop_c: wi.lst_drop_c };
   const name = zoneNames(scan, lang).get(zone.id) ?? zone.id;
   const hist = ar ? summarize(ar.data) : null;
