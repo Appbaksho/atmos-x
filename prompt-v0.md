@@ -5,6 +5,8 @@
 > **Not in v0:** NASA data integration, the FastAPI backend, the Postgres database and server accounts. Those belong to **[prompt-v1.md](prompt-v1.md)** (the full MVP).
 > **Human tasks** (keys, env, phone setup, presentation prep) are listed in **[DEV-CHECKLIST.md](DEV-CHECKLIST.md)**.
 
+> **The Expo app is gone.** Atmos X ships only as the Next.js web app + PWA. The Expo prototype (`apps/mobile`) was removed after the v0 port. Every "port from `apps/mobile/…`" pointer below refers to it: read the original with `git show 9841c47:apps/mobile/<path>`. Most of that logic now lives in TypeScript in `apps/web/src/server/**` and `apps/web/src/lib/data/**`; prefer those as the reference.
+
 ---
 
 ## 0. How to use this file
@@ -137,7 +139,6 @@ atmos-x/
         i18n/             next-intl config + messages/{locale}/{namespace}.json
       public/sw.js offline.html icons/
       scripts/            translate.ts, snapshot.ts
-    mobile/               frozen Expo app (read-only reference)
     api/                  empty placeholder (v1)
   docs/handoff/
   prompt-v0.md  prompt-v1.md  DEV-CHECKLIST.md  AGENTS.md

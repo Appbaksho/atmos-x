@@ -4,10 +4,12 @@
 | Path | State | Notes |
 | --- | --- | --- |
 | `apps/web` | **active (v0)** | Next.js 16 landing + web app + PWA. See `prompt-v0.md`. |
-| `apps/mobile` | **frozen** | Old Expo app. Visual and UX source of truth. Read it, never edit it. Run it: `cd apps/mobile && npm i && npx expo start --web`. |
 | `apps/api` | empty | FastAPI + Postgres, built in v1 (`prompt-v1.md`). |
 
 Plans: `prompt-v0.md` (presentable MVP, current), `prompt-v1.md` (full MVP), `DEV-CHECKLIST.md` (human tasks).
+
+## Removed: the Expo app
+There is no native or Expo app. Atmos X ships only as the Next.js web app + PWA. The old Expo prototype (`apps/mobile`) was removed after the v0 port. Code comments and plans that say "ported from apps/mobile/…" point to it; read the original with `git show 9841c47:apps/mobile/<path>`.
 
 ## Rules
 - Read `apps/web/AGENTS.md`: Next.js 16 differs from your training data. Read `apps/web/node_modules/next/dist/docs/` before using an API. `middleware.ts` is now **`src/proxy.ts`**.

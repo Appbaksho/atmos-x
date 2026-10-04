@@ -71,7 +71,7 @@ Phones only allow the camera, geolocation and "Install app" over **HTTPS**. Pick
 
 ### 1.5 Things the team must provide to the agents
 - [ ] **The landing page design** (Figma link, Claude design link, or images). Paste it into the **V0-9** prompt in place of `<PASTE THE LANDING DESIGN LINK / IMAGES HERE>`.
-- [ ] Team **names, roles and photos** (optional) for the landing page, plus the final **app icon** if it differs from `apps/mobile/assets/images/icon.png`.
+- [ ] Team **names, roles and photos** (optional) for the landing page, plus the final **app icon** if it differs from `apps/web/public/icons/` (generated from the old Expo icon).
 - [ ] **Confirm the 10 languages:** en, bn, ur, hi, ar, es, fr, pt, id, zh. Swap any of them before V0-1 starts.
 - [ ] Someone who reads **Bangla** and someone who reads **Urdu** for a 20-minute spot-check after V0-8.
 

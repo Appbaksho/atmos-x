@@ -5,6 +5,8 @@
 > **Comes after [prompt-v0.md](prompt-v0.md)**, the presentable MVP: Next.js web + PWA + OpenStreetMap + OpenAI, with no backend. Read §0.1 to see what v0 already did.
 > **Human tasks** (accounts, keys, env, VPS) are in **[DEV-CHECKLIST.md](DEV-CHECKLIST.md)**, which is the canonical list. §6 here keeps the env templates the agents need.
 
+> **The Expo app is gone.** Atmos X ships only as the Next.js web app + PWA. The Expo prototype (`apps/mobile`) was removed after the v0 port. Every "port from `apps/mobile/…`" pointer below refers to it: read the original with `git show 9841c47:apps/mobile/<path>`. Most of that logic now lives in TypeScript in `apps/web/src/server/**` and `apps/web/src/lib/data/**`; prefer those as the reference.
+
 ---
 
 ## 0. How to use this file
@@ -27,7 +29,7 @@ Then use this table:
 
 | v1 prompt | Status after v0 | What it means in v1 |
 | --- | --- | --- |
-| P0 restructure | **Done in V0-0** | Only add the parts v0 skipped: `docker-compose.yml` (PostGIS), the `Makefile`, `docs/api-contract.md` (copied from §5), and `apps/api` env templates. |
+| P0 restructure | **Done in V0-0** (and `apps/mobile` has since been deleted) | Only add the parts v0 skipped: `docker-compose.yml` (PostGIS), the `Makefile`, `docs/api-contract.md` (copied from §5), and `apps/api` env templates. |
 | A1 web foundation | **Mostly done in V0-1** | Remaining work: switch `src/lib/data/hooks` internals from `/api/v0` + IndexedDB to the generated FastAPI client (`make gen-client`). Switch the session from local accounts to cookie auth (`/auth/*`). Change the next.config rewrites to `/api/v1/* → API_ORIGIN`. Point the service-worker caching at `/api/v1`. |
 | A2–A5 screen ports | **Done in V0-4 … V0-7** | Don't re-port. Fix only the screens whose data shape changes, and remove v0-only labels ("Heat estimate: OSM", "Simulated device"). |
 | A6 translations | **Done in V0-8** | Re-run `npm run i18n:translate` for new strings only. |
@@ -46,7 +48,7 @@ Once v1 is done, delete `apps/web/src/app/api/v0/**`, `apps/web/src/server/**` (
 | Area | Decision |
 | --- | --- |
 | Frontend | **Next.js rewrite** (App Router, TypeScript strict, Tailwind CSS), one app that holds the **landing page + web app + installable PWA** |
-| Current Expo app | Moved to `apps/mobile/` and **frozen**. It is the **visual and UX source of truth** for the port; it isn't shipped |
+| Expo app | **Removed** after the v0 port. There is no native app; the product is the web app + PWA only. Original code: `git show 9841c47:apps/mobile/<path>` |
 | Backend | **FastAPI (Python)** + **Postgres with PostGIS** (local Docker for now). No Supabase. |
 | Auth | **Email + password** with an httpOnly JWT cookie. **Guest mode** with tightly restricted features. Schema and interfaces leave room for **Google OAuth later** (not built now). |
 | AI | **OpenAI** (tool or function calling, streaming), served from FastAPI |
@@ -135,7 +137,6 @@ atmos-x/
   apps/
     web/            Next.js: landing + app + PWA       (npm, own package.json)
     api/            FastAPI + worker                   (uv, pyproject.toml)
-    mobile/         Frozen Expo app, design reference  (untouched except the move)
   docs/
     handoff/        One note per finished prompt
     api-contract.md Human-readable copy of §5, kept in sync with OpenAPI
@@ -1374,6 +1375,6 @@ secrets. Then: Google OAuth (B2 interface), web push (C7), S3/MinIO storage.
 - **The landing design** isn't in yet. A7 waits for it, and A1 ships a placeholder.
 - **BMD:** heat-wave bands are in §2. Cold-wave and heavy-rain bands, and whether BMD has a machine-readable bulletin, must be verified by C2/C4. We never present our own forecast-based warning as "official BMD".
 - **The Heat Score weights** in C1 are v1 and transparent. Tune them after looking at real Dhaka output.
-- **Expo mobile app** stays frozen. Reviving it later can reuse the same API, because the contract is client-agnostic.
+- **No native app.** The Expo prototype was removed; the web app + PWA is the only client. A native client could still use the same API later, because the contract is client-agnostic.
 - **Costs:** the OpenAI spend for the MVP should stay under about $10 (translations plus Ask testing). Earth Engine noncommercial use is free.
 - **Data licences:** NASA data is open. Credit GMAO, OSM (ODbL), Open-Meteo and ESA WorldCover (CC BY 4.0), and OpenAQ. Lemon/Milk is donationware, so it can't be used commercially without donating.

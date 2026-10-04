@@ -8,7 +8,8 @@ Find the hottest blocks around you, get a concrete cooling plan, team up, and (f
 | --- | --- |
 | `apps/web` | **Next.js 16 landing + web app + installable PWA** (v0, active) |
 | `apps/api` | FastAPI + Postgres backend (v1, not started) |
-| `apps/mobile` | Original Expo app, **frozen** design reference ([its README](apps/mobile/README.md)) |
+
+Atmos X ships only as a web app + installable PWA; there is no native app. The original Expo prototype was removed (it's in git history at commit `9841c47`, under `apps/mobile`).
 
 ## Run v0
 
