@@ -1,0 +1,342 @@
+{
+ "scan": {
+  "center": {
+   "lat": 23.759,
+   "lng": 90.359
+  },
+  "radius_m": 500,
+  "h3_res": 10,
+  "acquired": {
+   "lst_date": null,
+   "ndvi_date": null
+  },
+  "baseline_lst_c": 30.6,
+  "method": "osm-proxy"
+ },
+ "hexes": [
+  {
+   "h3": "8a3cf10ce0cffff",
+   "score": 68,
+   "lst_c": 31
+  },
+  {
+   "h3": "8a3cf10ce0c7fff",
+   "score": 71,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8a3cf10ce0dffff",
+   "score": 70,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8a3cf10ce767fff",
+   "score": 60,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8a3cf10ce397fff",
+   "score": 69,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8a3cf10ce3b7fff",
+   "score": 65,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8a3cf10ce0effff",
+   "score": 67,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8a3cf10ce0e7fff",
+   "score": 60,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8a3cf10ce0f7fff",
+   "score": 72,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8a3cf10ce0d7fff",
+   "score": 62,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce72ffff",
+   "score": 61,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8a3cf10ce777fff",
+   "score": 54,
+   "lst_c": 29.9
+  },
+  {
+   "h3": "8a3cf10ce747fff",
+   "score": 56,
+   "lst_c": 30
+  },
+  {
+   "h3": "8a3cf10ce76ffff",
+   "score": 45,
+   "lst_c": 29.3
+  },
+  {
+   "h3": "8a3cf10ce39ffff",
+   "score": 69,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8a3cf10ce387fff",
+   "score": 72,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8a3cf10ce3a7fff",
+   "score": 74,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8a3cf10ce05ffff",
+   "score": 51,
+   "lst_c": 29.8
+  },
+  {
+   "h3": "8a3cf10ce057fff",
+   "score": 68,
+   "lst_c": 31
+  },
+  {
+   "h3": "8a3cf10ce00ffff",
+   "score": 60,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8a3cf10ce01ffff",
+   "score": 66,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8a3cf10ce0affff",
+   "score": 62,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce08ffff",
+   "score": 63,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce727fff",
+   "score": 64,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8a3cf10ce707fff",
+   "score": 60,
+   "lst_c": 30.3
+  },
+  {
+   "h3": "8a3cf10ce70ffff",
+   "score": 66,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8a3cf10ce757fff",
+   "score": 65,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8a3cf10ce75ffff",
+   "score": 63,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce74ffff",
+   "score": 63,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce2b7fff",
+   "score": 51,
+   "lst_c": 29.6
+  },
+  {
+   "h3": "8a3cf10ce2a7fff",
+   "score": 67,
+   "lst_c": 31
+  },
+  {
+   "h3": "8a3cf10ce38ffff",
+   "score": 59,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8a3cf10ce3affff",
+   "score": 61,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce317fff",
+   "score": 64,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8a3cf10ce04ffff",
+   "score": 54,
+   "lst_c": 29.9
+  },
+  {
+   "h3": "8a3cf10ce047fff",
+   "score": 50,
+   "lst_c": 29.5
+  },
+  {
+   "h3": "8a3cf10ce077fff",
+   "score": 63,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8a3cf10ce02ffff",
+   "score": 72,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8a3cf10ce007fff",
+   "score": 54,
+   "lst_c": 29.8
+  },
+  {
+   "h3": "8a3cf10ce017fff",
+   "score": 49,
+   "lst_c": 29.5
+  },
+  {
+   "h3": "8a3cf10ce0a7fff",
+   "score": 58,
+   "lst_c": 30.3
+  },
+  {
+   "h3": "8a3cf10ce087fff",
+   "score": 56,
+   "lst_c": 30.1
+  },
+  {
+   "h3": "8a3cf10ce09ffff",
+   "score": 57,
+   "lst_c": 30.1
+  },
+  {
+   "h3": "8a3cf10ce737fff",
+   "score": 53,
+   "lst_c": 29.8
+  },
+  {
+   "h3": "8a3cf10ce717fff",
+   "score": 42,
+   "lst_c": 28.9
+  },
+  {
+   "h3": "8a3cf10ce71ffff",
+   "score": 67,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8a3cf10ce627fff",
+   "score": 75,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8a3cf10ce62ffff",
+   "score": 64,
+   "lst_c": 30.7
+  }
+ ],
+ "zones": [
+  {
+   "id": "z-8a3cf10ce02ffff-500",
+   "name": "Road 5",
+   "score": 72,
+   "lst_c": 31.3,
+   "dist_m": 478,
+   "rank": 1,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.762592,
+    "lng": 90.356412
+   },
+   "h3": [
+    "8a3cf10ce02ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce627fff-500",
+   "name": "Kaderabad Housing 6",
+   "score": 71,
+   "lst_c": 31.2,
+   "dist_m": 434,
+   "rank": 2,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.755106,
+    "lng": 90.358668
+   },
+   "h3": [
+    "8a3cf10ce71ffff",
+    "8a3cf10ce627fff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce3b7fff-500",
+   "name": "সাতমসজিদ সড়ক",
+   "score": 70,
+   "lst_c": 31.1,
+   "dist_m": 141,
+   "rank": 3,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.759786,
+    "lng": 90.360088
+   },
+   "h3": [
+    "8a3cf10ce0cffff",
+    "8a3cf10ce0effff",
+    "8a3cf10ce057fff",
+    "8a3cf10ce397fff",
+    "8a3cf10ce387fff",
+    "8a3cf10ce3a7fff",
+    "8a3cf10ce39ffff",
+    "8a3cf10ce2a7fff",
+    "8a3cf10ce0dffff",
+    "8a3cf10ce0c7fff",
+    "8a3cf10ce0f7fff"
+   ]
+  }
+ ],
+ "my_zone_id": "z-8a3cf10ce3b7fff-500",
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:15:35.921Z",
+  "sources": [
+   {
+    "id": "heat-proxy",
+    "name": "Heat estimate: OpenStreetMap land cover + live weather"
+   },
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T19:48:32.094Z"
+   },
+   {
+    "id": "open-meteo",
+    "name": "Open-Meteo",
+    "url": "https://open-meteo.com",
+    "as_of": "2026-10-04T19:48:14.486Z"
+   }
+  ]
+ }
+}

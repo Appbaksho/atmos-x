@@ -1,0 +1,540 @@
+{
+ "nurseries": [
+  {
+   "id": "curated-mohammadpur-krishi",
+   "name": "Mohammadpur Krishi Nursery",
+   "location": {
+    "lat": 23.7655,
+    "lng": 90.3582
+   },
+   "dist_m": 727,
+   "phone": null,
+   "hours": "Open · till 18:00",
+   "osm_url": null,
+   "address": "Dhaka (approximate location)"
+  },
+  {
+   "id": "node/4527791690",
+   "name": "Horticulture Nursery",
+   "location": {
+    "lat": 23.760462,
+    "lng": 90.3722041
+   },
+   "dist_m": 1354,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/4527791690",
+   "address": null
+  },
+  {
+   "id": "node/4368264905",
+   "name": "Flower Shop",
+   "location": {
+    "lat": 23.7628906,
+    "lng": 90.3608597
+   },
+   "dist_m": 472,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/4368264905",
+   "address": "Nurzahan Road, Mohammadpur, Dhaka"
+  },
+  {
+   "id": "curated-dhanmondi-lake",
+   "name": "Dhanmondi Lake Nursery",
+   "location": {
+    "lat": 23.7478,
+    "lng": 90.3748
+   },
+   "dist_m": 2034,
+   "phone": null,
+   "hours": "Closes 17:00",
+   "osm_url": null,
+   "address": "Dhaka (approximate location)"
+  },
+  {
+   "id": "curated-agargaon-market",
+   "name": "Agargaon Nursery Market",
+   "location": {
+    "lat": 23.7778,
+    "lng": 90.3772
+   },
+   "dist_m": 2793,
+   "phone": null,
+   "hours": "Open · till 19:00",
+   "osm_url": null,
+   "address": "Dhaka (approximate location)"
+  },
+  {
+   "id": "way/990833943",
+   "name": "Plant nursery",
+   "location": {
+    "lat": 23.7399275,
+    "lng": 90.3982653
+   },
+   "dist_m": 4524,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/way/990833943",
+   "address": null
+  },
+  {
+   "id": "way/635401752",
+   "name": "BRAC Nursery",
+   "location": {
+    "lat": 23.7716503,
+    "lng": 90.4119902
+   },
+   "dist_m": 5573,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/way/635401752",
+   "address": null
+  },
+  {
+   "id": "way/1537513841",
+   "name": "Maryams Garden",
+   "location": {
+    "lat": 23.764348,
+    "lng": 90.4246418
+   },
+   "dist_m": 6707,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/way/1537513841",
+   "address": null
+  },
+  {
+   "id": "node/11734260553",
+   "name": "Bristy Nursery",
+   "location": {
+    "lat": 23.8245075,
+    "lng": 90.3538511
+   },
+   "dist_m": 7303,
+   "phone": null,
+   "hours": "07:00-07:00",
+   "osm_url": "https://www.openstreetmap.org/node/11734260553",
+   "address": "1"
+  },
+  {
+   "id": "node/11734260554",
+   "name": "Sky Flora",
+   "location": {
+    "lat": 23.8245532,
+    "lng": 90.3538491
+   },
+   "dist_m": 7308,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/11734260554",
+   "address": "1"
+  },
+  {
+   "id": "node/12606133601",
+   "name": "Golap gram",
+   "location": {
+    "lat": 23.8357922,
+    "lng": 90.3095825
+   },
+   "dist_m": 9909,
+   "phone": "01634-176521",
+   "hours": "Mo-Su 08:00-17:00",
+   "osm_url": "https://www.openstreetmap.org/node/12606133601",
+   "address": null
+  },
+  {
+   "id": "node/11445795016",
+   "name": "New Hasna Hena Pushpa Bitan",
+   "location": {
+    "lat": 23.7381679,
+    "lng": 90.3907782
+   },
+   "dist_m": 3978,
+   "phone": null,
+   "hours": "Mo-Su 07:00-24:00",
+   "osm_url": "https://www.openstreetmap.org/node/11445795016",
+   "address": null
+  },
+  {
+   "id": "node/11449082231",
+   "name": "Melody Flowers",
+   "location": {
+    "lat": 23.7380912,
+    "lng": 90.3907193
+   },
+   "dist_m": 3978,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/11449082231",
+   "address": null
+  },
+  {
+   "id": "node/11449829590",
+   "name": "Flower Agent",
+   "location": {
+    "lat": 23.7379889,
+    "lng": 90.3906662
+   },
+   "dist_m": 3981,
+   "phone": null,
+   "hours": "Mo-Su 07:00-20:00",
+   "osm_url": "https://www.openstreetmap.org/node/11449829590",
+   "address": null
+  },
+  {
+   "id": "node/9811387256",
+   "name": "Krishnachura puspo",
+   "location": {
+    "lat": 23.7382838,
+    "lng": 90.3909181
+   },
+   "dist_m": 3982,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811387256",
+   "address": null
+  },
+  {
+   "id": "node/9811401924",
+   "name": "Hasan Pushpo Bitan",
+   "location": {
+    "lat": 23.7382171,
+    "lng": 90.3908882
+   },
+   "dist_m": 3984,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811401924",
+   "address": null
+  },
+  {
+   "id": "node/9811374812",
+   "name": "Melody Flower",
+   "location": {
+    "lat": 23.7381509,
+    "lng": 90.390854
+   },
+   "dist_m": 3986,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811374812",
+   "address": null
+  },
+  {
+   "id": "node/9811388969",
+   "name": "Anonna",
+   "location": {
+    "lat": 23.7380557,
+    "lng": 90.3908017
+   },
+   "dist_m": 3988,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811388969",
+   "address": null
+  },
+  {
+   "id": "node/9811399343",
+   "name": "Sugandha",
+   "location": {
+    "lat": 23.7379784,
+    "lng": 90.3907461
+   },
+   "dist_m": 3988,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811399343",
+   "address": null
+  },
+  {
+   "id": "node/9811470718",
+   "name": "Bhai Bhai flower shop",
+   "location": {
+    "lat": 23.7374689,
+    "lng": 90.3958841
+   },
+   "dist_m": 4453,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811470718",
+   "address": null
+  },
+  {
+   "id": "node/9811467960",
+   "name": "Grameen Fllower shop",
+   "location": {
+    "lat": 23.7374161,
+    "lng": 90.3958717
+   },
+   "dist_m": 4455,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811467960",
+   "address": null
+  },
+  {
+   "id": "node/9811451674",
+   "name": "Bismillah Flower shop",
+   "location": {
+    "lat": 23.7373734,
+    "lng": 90.3958653
+   },
+   "dist_m": 4457,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811451674",
+   "address": null
+  },
+  {
+   "id": "node/9811451197",
+   "name": "Pushpo flower",
+   "location": {
+    "lat": 23.7376818,
+    "lng": 90.3960981
+   },
+   "dist_m": 4458,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811451197",
+   "address": null
+  },
+  {
+   "id": "node/9811472033",
+   "name": "Madhobi Pushpo",
+   "location": {
+    "lat": 23.7377291,
+    "lng": 90.3961257
+   },
+   "dist_m": 4458,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811472033",
+   "address": null
+  },
+  {
+   "id": "node/9811451266",
+   "name": "Madina Flower",
+   "location": {
+    "lat": 23.7377672,
+    "lng": 90.3961601
+   },
+   "dist_m": 4459,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811451266",
+   "address": null
+  },
+  {
+   "id": "node/9811426768",
+   "name": "Nayem pushpo Ghar",
+   "location": {
+    "lat": 23.737257,
+    "lng": 90.395845
+   },
+   "dist_m": 4462,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811426768",
+   "address": null
+  },
+  {
+   "id": "node/9811459491",
+   "name": "Mayerduya Ful Ghar",
+   "location": {
+    "lat": 23.7371806,
+    "lng": 90.3958349
+   },
+   "dist_m": 4466,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811459491",
+   "address": null
+  },
+  {
+   "id": "node/9811451196",
+   "name": "Shahjalal Pushpo Ghar",
+   "location": {
+    "lat": 23.737082,
+    "lng": 90.3958188
+   },
+   "dist_m": 4470,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811451196",
+   "address": null
+  },
+  {
+   "id": "node/3006495792",
+   "name": "শাহবাগ ফুলের মার্কেট",
+   "location": {
+    "lat": 23.7372025,
+    "lng": 90.3959275
+   },
+   "dist_m": 4472,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/3006495792",
+   "address": null
+  },
+  {
+   "id": "node/9811460767",
+   "name": "Bhaibon Fulghar",
+   "location": {
+    "lat": 23.7369743,
+    "lng": 90.3958131
+   },
+   "dist_m": 4476,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811460767",
+   "address": null
+  },
+  {
+   "id": "node/9811467282",
+   "name": "Flower Meusium",
+   "location": {
+    "lat": 23.7368465,
+    "lng": 90.3957892
+   },
+   "dist_m": 4482,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811467282",
+   "address": null
+  },
+  {
+   "id": "node/9811323391",
+   "name": "Adarsho Pushpo",
+   "location": {
+    "lat": 23.7367913,
+    "lng": 90.3957892
+   },
+   "dist_m": 4485,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811323391",
+   "address": null
+  },
+  {
+   "id": "node/6858474312",
+   "name": "ইয়াসিন পুষ্পালয়",
+   "location": {
+    "lat": 23.7379898,
+    "lng": 90.3966504
+   },
+   "dist_m": 4488,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/6858474312",
+   "address": null
+  },
+  {
+   "id": "node/9811469150",
+   "name": "Anindo Pushpo",
+   "location": {
+    "lat": 23.7367135,
+    "lng": 90.3957895
+   },
+   "dist_m": 4490,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811469150",
+   "address": null
+  },
+  {
+   "id": "node/9811371604",
+   "name": "Suborno Fulghar",
+   "location": {
+    "lat": 23.7366604,
+    "lng": 90.3957912
+   },
+   "dist_m": 4494,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811371604",
+   "address": null
+  },
+  {
+   "id": "node/9811416277",
+   "name": "Sobujbangla Fulghar",
+   "location": {
+    "lat": 23.7366129,
+    "lng": 90.3957989
+   },
+   "dist_m": 4497,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811416277",
+   "address": null
+  },
+  {
+   "id": "node/9811401156",
+   "name": "Nowmi pushpoloy",
+   "location": {
+    "lat": 23.7365588,
+    "lng": 90.3958024
+   },
+   "dist_m": 4501,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811401156",
+   "address": null
+  },
+  {
+   "id": "node/9811426767",
+   "name": "Mayerduya pushpo",
+   "location": {
+    "lat": 23.7365134,
+    "lng": 90.3958212
+   },
+   "dist_m": 4505,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/9811426767",
+   "address": null
+  },
+  {
+   "id": "node/11990499641",
+   "name": "Rijia Pushpaloy",
+   "location": {
+    "lat": 23.7997662,
+    "lng": 90.3634629
+   },
+   "dist_m": 4556,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/11990499641",
+   "address": null
+  },
+  {
+   "id": "node/11404864677",
+   "name": "Amore",
+   "location": {
+    "lat": 23.7744189,
+    "lng": 90.4147712
+   },
+   "dist_m": 5929,
+   "phone": null,
+   "hours": null,
+   "osm_url": "https://www.openstreetmap.org/node/11404864677",
+   "address": null
+  }
+ ],
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:15:33.635Z",
+  "sources": [
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T20:09:56.138Z"
+   },
+   {
+    "id": "curated",
+    "name": "Atmos X curated list"
+   }
+  ]
+ }
+}

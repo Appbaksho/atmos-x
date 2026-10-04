@@ -1,0 +1,329 @@
+{
+ "species": [
+  {
+   "id": "neem",
+   "name": "নিম",
+   "local_name": "Neem",
+   "scientific": "Azadirachta indica",
+   "emoji": "🌳",
+   "canopy_m": 10,
+   "cooling": "medium",
+   "water": "low",
+   "price": {
+    "amount": 230,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=900&h=800&q=70"
+  },
+  {
+   "id": "krish",
+   "name": "কৃষ্ণচূড়া",
+   "local_name": "Krishnachura",
+   "scientific": "Delonix regia",
+   "emoji": "🌸",
+   "canopy_m": 14,
+   "cooling": "high",
+   "water": "medium",
+   "price": {
+    "amount": 170,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1523284998774-f6d3960be911?auto=format&fit=crop&w=900&h=800&q=70"
+  },
+  {
+   "id": "arjun",
+   "name": "অর্জুন",
+   "local_name": "Arjun",
+   "scientific": "Terminalia arjuna",
+   "emoji": "🌳",
+   "canopy_m": 12,
+   "cooling": "high",
+   "water": "low",
+   "price": {
+    "amount": 230,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=900&h=800&q=70&crop=focalpoint&fp-x=.2&fp-y=.5&fp-z=1.6"
+  },
+  {
+   "id": "jarul",
+   "name": "জারুল",
+   "local_name": "Jarul",
+   "scientific": "Lagerstroemia speciosa",
+   "emoji": "🌸",
+   "canopy_m": 8,
+   "cooling": "medium",
+   "water": "low",
+   "price": {
+    "amount": 90,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "bokul",
+   "name": "বকুল",
+   "local_name": "Bokul",
+   "scientific": "Mimusops elengi",
+   "emoji": "🌲",
+   "canopy_m": 8,
+   "cooling": "medium",
+   "water": "low",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "kadam",
+   "name": "কদম",
+   "local_name": "Kadam",
+   "scientific": "Neolamarckia cadamba",
+   "emoji": "🌳",
+   "canopy_m": 12,
+   "cooling": "high",
+   "water": "low",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "sonalu",
+   "name": "সোনালু",
+   "local_name": "Sonalu",
+   "scientific": "Cassia fistula",
+   "emoji": "🌸",
+   "canopy_m": 7,
+   "cooling": "low",
+   "water": "low",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "radha",
+   "name": "রাধাচূড়া",
+   "local_name": "Radhachura",
+   "scientific": "Peltophorum pterocarpum",
+   "emoji": "🌸",
+   "canopy_m": 12,
+   "cooling": "high",
+   "water": "low",
+   "price": {
+    "amount": 140,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "rain",
+   "name": "রেইনট্রি",
+   "local_name": "Rain tree",
+   "scientific": "Samanea saman",
+   "emoji": "🌳",
+   "canopy_m": 20,
+   "cooling": "high",
+   "water": "low",
+   "price": {
+    "amount": 90,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "kanchan",
+   "name": "কাঞ্চন",
+   "local_name": "Kanchan",
+   "scientific": "Bauhinia variegata",
+   "emoji": "🌲",
+   "canopy_m": 6,
+   "cooling": "low",
+   "water": "low",
+   "price": {
+    "amount": 150,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "pitraj",
+   "name": "পিতরাজ",
+   "local_name": "Pitraj",
+   "scientific": "Aphanamixis polystachya",
+   "emoji": "🌳",
+   "canopy_m": 9,
+   "cooling": "medium",
+   "water": "low",
+   "price": {
+    "amount": 90,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "chhatim",
+   "name": "ছাতিম",
+   "local_name": "Chhatim",
+   "scientific": "Alstonia scholaris",
+   "emoji": "🌳",
+   "canopy_m": 10,
+   "cooling": "medium",
+   "water": "low",
+   "price": {
+    "amount": 150,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "debdaru",
+   "name": "দেবদারু",
+   "local_name": "Debdaru",
+   "scientific": "Polyalthia longifolia",
+   "emoji": "🌲",
+   "canopy_m": 4,
+   "cooling": "low",
+   "water": "low",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "bot",
+   "name": "বট",
+   "local_name": "Banyan",
+   "scientific": "Ficus benghalensis",
+   "emoji": "🌳",
+   "canopy_m": 25,
+   "cooling": "high",
+   "water": "low",
+   "price": {
+    "amount": 230,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "peepal",
+   "name": "অশ্বত্থ",
+   "local_name": "Peepal",
+   "scientific": "Ficus religiosa",
+   "emoji": "🌳",
+   "canopy_m": 18,
+   "cooling": "high",
+   "water": "low",
+   "price": {
+    "amount": 230,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "jam",
+   "name": "কালোজাম",
+   "local_name": "Jamun",
+   "scientific": "Syzygium cumini",
+   "emoji": "🥭",
+   "canopy_m": 11,
+   "cooling": "medium",
+   "water": "medium",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "aam",
+   "name": "আম",
+   "local_name": "Mango",
+   "scientific": "Mangifera indica",
+   "emoji": "🥭",
+   "canopy_m": 12,
+   "cooling": "high",
+   "water": "medium",
+   "price": {
+    "amount": 190,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "kathal",
+   "name": "কাঁঠাল",
+   "local_name": "Jackfruit",
+   "scientific": "Artocarpus heterophyllus",
+   "emoji": "🥭",
+   "canopy_m": 10,
+   "cooling": "medium",
+   "water": "medium",
+   "price": {
+    "amount": 150,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "tetul",
+   "name": "তেঁতুল",
+   "local_name": "Tamarind",
+   "scientific": "Tamarindus indica",
+   "emoji": "🥭",
+   "canopy_m": 12,
+   "cooling": "high",
+   "water": "medium",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "champa",
+   "name": "চাঁপা",
+   "local_name": "Champa",
+   "scientific": "Magnolia champaca",
+   "emoji": "🌲",
+   "canopy_m": 7,
+   "cooling": "low",
+   "water": "low",
+   "price": {
+    "amount": 200,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1663074898186-21b020623d09?auto=format&fit=crop&w=600&h=500&q=70&crop=focalpoint&fp-x=.5&fp-y=.5&fp-z=1.4"
+  },
+  {
+   "id": "madhabilata",
+   "name": "মাধবীলতা",
+   "local_name": "Madhabilata",
+   "scientific": "Hiptage benghalensis (L.) Kurz",
+   "emoji": "🌿",
+   "canopy_m": 3,
+   "cooling": "low",
+   "water": "medium",
+   "price": {
+    "amount": 120,
+    "currency": "BDT"
+   },
+   "image_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=800&q=70"
+  }
+ ],
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:15:33.609Z",
+  "sources": [
+   {
+    "id": "curated",
+    "name": "Atmos X curated list"
+   }
+  ]
+ }
+}

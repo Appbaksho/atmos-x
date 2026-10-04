@@ -1,0 +1,205 @@
+{
+ "id": "z-8a3cf10ce61ffff-1000",
+ "name": "Sadek Khan Road",
+ "score": 70,
+ "lst_c": 31,
+ "air_c": 27.8,
+ "feels_c": 31.9,
+ "centroid": {
+  "lat": 23.753321,
+  "lng": 90.360165
+ },
+ "h3": [
+  "8a3cf10ce70ffff",
+  "8a3cf10ce757fff",
+  "8a3cf10ce627fff",
+  "8a3cf10ce607fff",
+  "8a3cf10ce60ffff",
+  "8a3cf10ce6e7fff",
+  "8a3cf10ce6c7fff",
+  "8a3cf10ce6d7fff",
+  "8a3cf10ce6f7fff",
+  "8a3cf10ce61ffff",
+  "8a3cf10ce617fff",
+  "8a3cf10ce6a7fff",
+  "8a3cf10ce687fff",
+  "8a3cf10ce71ffff"
+ ],
+ "drivers": {
+  "sealed_pct": 76,
+  "green_pct": 0,
+  "ndvi": null,
+  "dark_roof_pct": 64,
+  "pop_density_km2": 43,
+  "night_lst_c": 30,
+  "estimated": [
+   "dark_roof_pct",
+   "pop_density_km2",
+   "night_lst_c"
+  ]
+ },
+ "causes": [
+  {
+   "code": "cause.sealed_surface",
+   "params": {
+    "pct": 76,
+    "adds_c": 5.2
+   }
+  },
+  {
+   "code": "cause.low_green",
+   "params": {
+    "pct": 0,
+    "adds_c": 1.8
+   }
+  },
+  {
+   "code": "cause.dense_buildings",
+   "params": {
+    "per_ha": 43,
+    "adds_c": 1.5
+   }
+  }
+ ],
+ "why_text": "Sadek Khan Road is estimated at 31°C at the surface, a bit hotter than the area around it at 30.5°C, and the difference is smaller at night. It is hotter mainly because 76% is hard ground, there is no green cover, and the buildings are packed closely together. More green cover would help most, and cool roofs and shade would also bring temperatures down.",
+ "what_if_green": {
+  "add_green_pct": 10,
+  "score_after": 66,
+  "lst_drop_c": 0.24
+ },
+ "history": [
+  {
+   "year": 2006,
+   "day_lst_c": 32.5,
+   "night_lst_c": 23.4
+  },
+  {
+   "year": 2007,
+   "day_lst_c": 32,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2008,
+   "day_lst_c": 32.9,
+   "night_lst_c": 23.6
+  },
+  {
+   "year": 2009,
+   "day_lst_c": 32.9,
+   "night_lst_c": 23.5
+  },
+  {
+   "year": 2010,
+   "day_lst_c": 34,
+   "night_lst_c": 24.7
+  },
+  {
+   "year": 2011,
+   "day_lst_c": 31.8,
+   "night_lst_c": 22.9
+  },
+  {
+   "year": 2012,
+   "day_lst_c": 32.6,
+   "night_lst_c": 23.4
+  },
+  {
+   "year": 2013,
+   "day_lst_c": 31.9,
+   "night_lst_c": 22.9
+  },
+  {
+   "year": 2014,
+   "day_lst_c": 33.1,
+   "night_lst_c": 23.1
+  },
+  {
+   "year": 2015,
+   "day_lst_c": 31.3,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2016,
+   "day_lst_c": 32.4,
+   "night_lst_c": 24
+  },
+  {
+   "year": 2017,
+   "day_lst_c": 30.7,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2018,
+   "day_lst_c": 31.6,
+   "night_lst_c": 22.7
+  },
+  {
+   "year": 2019,
+   "day_lst_c": 32.2,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2020,
+   "day_lst_c": 31.9,
+   "night_lst_c": 22.4
+  },
+  {
+   "year": 2021,
+   "day_lst_c": 34,
+   "night_lst_c": 23.7
+  },
+  {
+   "year": 2022,
+   "day_lst_c": 32.7,
+   "night_lst_c": 23
+  },
+  {
+   "year": 2023,
+   "day_lst_c": 33.3,
+   "night_lst_c": 22.6
+  },
+  {
+   "year": 2024,
+   "day_lst_c": 34.5,
+   "night_lst_c": 23.4
+  },
+  {
+   "year": 2025,
+   "day_lst_c": 34.1,
+   "night_lst_c": 24.4
+  }
+ ],
+ "history_kind": "air_temp",
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:15:44.233Z",
+  "sources": [
+   {
+    "id": "heat-proxy",
+    "name": "Heat estimate: OpenStreetMap land cover + live weather"
+   },
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T20:12:59.784Z"
+   },
+   {
+    "id": "open-meteo",
+    "name": "Open-Meteo",
+    "url": "https://open-meteo.com",
+    "as_of": "2026-10-04T19:48:14.486Z"
+   },
+   {
+    "id": "open-meteo-archive",
+    "name": "Open-Meteo archive (ERA5)",
+    "url": "https://open-meteo.com/en/docs/historical-weather-api",
+    "as_of": "2025-12-31"
+   },
+   {
+    "id": "ai",
+    "name": "AI estimate"
+   }
+  ]
+ }
+}

@@ -9,8 +9,8 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test": "vitest run",
-    "probe": "tsx scripts/probe.ts",
-    "snapshot:dhaka": "tsx scripts/snapshot.ts",
+    "probe": "tsx --conditions react-server --env-file-if-exists=.env.local scripts/probe.ts",
+    "snapshot:dhaka": "tsx --conditions react-server --env-file-if-exists=.env.local scripts/snapshot.ts",
     "i18n:translate": "tsx scripts/translate.ts",
     "i18n:check": "tsx scripts/i18n-check.ts"
   },

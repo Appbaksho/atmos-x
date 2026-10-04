@@ -274,6 +274,8 @@ export type Plan = {
   steps: PlanStep[];
   next_task: { action_type: ActionTypeId; text: string } | null;
   budget: Budget;
+  /** AI care plan for the first two years (v0, estimate) */
+  care_plan?: string | null;
   meta: Meta;
 };
 
@@ -384,6 +386,7 @@ export type VerifyPhotoResult = {
   /** Short description of what the AI saw, in the requested language */
   seen: string;
   reason_code: string;
+  meta?: Meta;
 };
 
 /* ───────────────────────────── Trees ───────────────────────────── */
@@ -417,7 +420,7 @@ export type Tree = {
 };
 
 export type TreeCheckRequest = { image: string; species_id: string; lang: Locale };
-export type TreeCheckResult = { health: TreeHealth; confidence: number; tip: string; seen: string };
+export type TreeCheckResult = { health: TreeHealth; confidence: number; tip: string; seen: string; meta?: Meta };
 
 /* ───────────────────────────── Community ───────────────────────────── */
 
@@ -445,7 +448,17 @@ export type Team = {
   goal_id?: string | null;
   activity?: TeamActivity[];
   emoji?: string;
+  /** v0 additive (V0-3): S17 task board and evidence rows */
+  tasks?: TeamTask[];
+  evidence?: TeamEvidence[];
 };
+
+/** v0 additive (V0-3) */
+export type TeamTask = { id: string; title: string; due: string; assignee: string; status: 'todo' | 'doing' | 'done' };
+/** v0 additive (V0-3) */
+export type TeamEvidence = { source: string; what: string; agrees: boolean };
+/** v0 additive (V0-3): the "Rising" board on S16 */
+export type RisingTeam = { team_id: string; name: string; up: number; note: string };
 
 export type Invite = { code: string; url: string };
 
@@ -462,9 +475,13 @@ export type Org = {
   totals: { points: number; trees: number; members: number; cooling_c: number };
   description?: string | null;
   logo_url?: string | null;
+  /** v0 additive (V0-3): S18 goals across zones */
+  goals?: { zone_name: string; target_c: number; by_date: string; progress_pct: number }[];
+  logo_emoji?: string;
 };
 
-export type LeaderboardSubject = 'user' | 'team';
+/** 'org' added in v0 (V0-3, additive) for the Orgs board on S16 */
+export type LeaderboardSubject = 'user' | 'team' | 'org';
 export type LeaderboardScope = 'area' | 'city' | 'country';
 export type Period = 'week' | 'month' | 'all';
 
@@ -509,7 +526,7 @@ export type StageId = 'seedbed' | 'vegetative' | 'flowering' | 'ripening' | 'har
 
 export type FarmField = { id: string; name: string; crop: CropId; stage: StageId; location: LatLng; area?: number | null; created_at: string };
 
-export type Hazard = 'flood' | 'heat' | 'drought' | 'cold' | 'lightning' | 'rain';
+export type Hazard = 'flood' | 'heat' | 'drought' | 'cold' | 'lightning' | 'rain' | 'storm' | 'disease';
 export type AlertLevel = 'danger' | 'warning' | 'watch' | 'info';
 
 export type FarmAlert = {

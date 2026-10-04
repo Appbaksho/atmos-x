@@ -1,0 +1,23 @@
+{
+ "place": "লালমাটিয়া, ঢাকা",
+ "city": "ঢাকা",
+ "country": "বাংলাদেশ",
+ "country_code": "BD",
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:15:33.607Z",
+  "sources": [
+   {
+    "id": "nominatim",
+    "name": "OpenStreetMap Nominatim",
+    "url": "https://nominatim.org",
+    "as_of": "2026-10-04T20:06:28.549Z"
+   },
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright"
+   }
+  ]
+ }
+}

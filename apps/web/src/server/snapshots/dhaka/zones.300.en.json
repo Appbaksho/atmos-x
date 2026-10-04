@@ -1,0 +1,816 @@
+{
+ "scan": {
+  "center": {
+   "lat": 23.759,
+   "lng": 90.359
+  },
+  "radius_m": 300,
+  "h3_res": 11,
+  "acquired": {
+   "lst_date": null,
+   "ndvi_date": null
+  },
+  "baseline_lst_c": 30.8,
+  "method": "osm-proxy"
+ },
+ "hexes": [
+  {
+   "h3": "8b3cf10ce0cefff",
+   "score": 63,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce0c3fff",
+   "score": 61,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce0ddfff",
+   "score": 54,
+   "lst_c": 30
+  },
+  {
+   "h3": "8b3cf10ce0cafff",
+   "score": 67,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce0c8fff",
+   "score": 74,
+   "lst_c": 31.6
+  },
+  {
+   "h3": "8b3cf10ce0ccfff",
+   "score": 62,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce0c1fff",
+   "score": 63,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce0c0fff",
+   "score": 67,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce0c2fff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce0dcfff",
+   "score": 65,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce0d8fff",
+   "score": 65,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce0d9fff",
+   "score": 59,
+   "lst_c": 30.3
+  },
+  {
+   "h3": "8b3cf10ce764fff",
+   "score": 69,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8b3cf10ce0cbfff",
+   "score": 70,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8b3cf10ce0c9fff",
+   "score": 61,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce0cdfff",
+   "score": 70,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8b3cf10ce0ebfff",
+   "score": 70,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8b3cf10ce0eafff",
+   "score": 61,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce0c5fff",
+   "score": 57,
+   "lst_c": 30.1
+  },
+  {
+   "h3": "8b3cf10ce0c4fff",
+   "score": 73,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8b3cf10ce0c6fff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce0d5fff",
+   "score": 73,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8b3cf10ce0d1fff",
+   "score": 58,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8b3cf10ce0defff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce0dafff",
+   "score": 66,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce0dbfff",
+   "score": 54,
+   "lst_c": 30
+  },
+  {
+   "h3": "8b3cf10ce766fff",
+   "score": 38,
+   "lst_c": 28.7
+  },
+  {
+   "h3": "8b3cf10ce760fff",
+   "score": 70,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8b3cf10ce765fff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce396fff",
+   "score": 50,
+   "lst_c": 29.6
+  },
+  {
+   "h3": "8b3cf10ce394fff",
+   "score": 64,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce3b2fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce3b6fff",
+   "score": 73,
+   "lst_c": 31.4
+  },
+  {
+   "h3": "8b3cf10ce0e9fff",
+   "score": 66,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce0e8fff",
+   "score": 62,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce0eefff",
+   "score": 56,
+   "lst_c": 30.3
+  },
+  {
+   "h3": "8b3cf10ce0e3fff",
+   "score": 60,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8b3cf10ce0e2fff",
+   "score": 62,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce0f1fff",
+   "score": 63,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce0f3fff",
+   "score": 65,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce0d4fff",
+   "score": 66,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce0d0fff",
+   "score": 70,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8b3cf10ce0d3fff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce72dfff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce729fff",
+   "score": 64,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce774fff",
+   "score": 36,
+   "lst_c": 28.7
+  },
+  {
+   "h3": "8b3cf10ce775fff",
+   "score": 17,
+   "lst_c": 27.6
+  },
+  {
+   "h3": "8b3cf10ce762fff",
+   "score": 38,
+   "lst_c": 28.9
+  },
+  {
+   "h3": "8b3cf10ce763fff",
+   "score": 63,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce761fff",
+   "score": 74,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8b3cf10ce392fff",
+   "score": 72,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8b3cf10ce390fff",
+   "score": 72,
+   "lst_c": 31.4
+  },
+  {
+   "h3": "8b3cf10ce395fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce3b3fff",
+   "score": 59,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce3b0fff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce3b4fff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce05afff",
+   "score": 37,
+   "lst_c": 28.8
+  },
+  {
+   "h3": "8b3cf10ce0edfff",
+   "score": 62,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce0ecfff",
+   "score": 60,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce0e1fff",
+   "score": 71,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8b3cf10ce0e0fff",
+   "score": 61,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce0e6fff",
+   "score": 61,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce0f5fff",
+   "score": 55,
+   "lst_c": 30
+  },
+  {
+   "h3": "8b3cf10ce0f0fff",
+   "score": 70,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8b3cf10ce0f2fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce089fff",
+   "score": 60,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce0d6fff",
+   "score": 69,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce0d2fff",
+   "score": 69,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8b3cf10ce72cfff",
+   "score": 62,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce728fff",
+   "score": 60,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce72bfff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce776fff",
+   "score": 59,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8b3cf10ce770fff",
+   "score": 56,
+   "lst_c": 30.3
+  },
+  {
+   "h3": "8b3cf10ce771fff",
+   "score": 63,
+   "lst_c": 30.6
+  },
+  {
+   "h3": "8b3cf10ce744fff",
+   "score": 53,
+   "lst_c": 29.9
+  },
+  {
+   "h3": "8b3cf10ce745fff",
+   "score": 67,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce76efff",
+   "score": 57,
+   "lst_c": 30.2
+  },
+  {
+   "h3": "8b3cf10ce76cfff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce393fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce391fff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce382fff",
+   "score": 74,
+   "lst_c": 31.5
+  },
+  {
+   "h3": "8b3cf10ce386fff",
+   "score": 66,
+   "lst_c": 30.9
+  },
+  {
+   "h3": "8b3cf10ce3b1fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce3b5fff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce05bfff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce058fff",
+   "score": 19,
+   "lst_c": 27.7
+  },
+  {
+   "h3": "8b3cf10ce05efff",
+   "score": 10,
+   "lst_c": 27
+  },
+  {
+   "h3": "8b3cf10ce053fff",
+   "score": 61,
+   "lst_c": 30.5
+  },
+  {
+   "h3": "8b3cf10ce052fff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce0e5fff",
+   "score": 72,
+   "lst_c": 31.4
+  },
+  {
+   "h3": "8b3cf10ce0e4fff",
+   "score": 73,
+   "lst_c": 31.4
+  },
+  {
+   "h3": "8b3cf10ce019fff",
+   "score": 62,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce01bfff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce0f4fff",
+   "score": 70,
+   "lst_c": 31.2
+  },
+  {
+   "h3": "8b3cf10ce0f6fff",
+   "score": 63,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce08dfff",
+   "score": 53,
+   "lst_c": 29.9
+  },
+  {
+   "h3": "8b3cf10ce088fff",
+   "score": 59,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8b3cf10ce08bfff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce725fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce721fff",
+   "score": 49,
+   "lst_c": 29.7
+  },
+  {
+   "h3": "8b3cf10ce72efff",
+   "score": 58,
+   "lst_c": 30.3
+  },
+  {
+   "h3": "8b3cf10ce72afff",
+   "score": 54,
+   "lst_c": 30.1
+  },
+  {
+   "h3": "8b3cf10ce70cfff",
+   "score": 49,
+   "lst_c": 29.4
+  },
+  {
+   "h3": "8b3cf10ce70dfff",
+   "score": 52,
+   "lst_c": 29.7
+  },
+  {
+   "h3": "8b3cf10ce772fff",
+   "score": 55,
+   "lst_c": 29.9
+  },
+  {
+   "h3": "8b3cf10ce773fff",
+   "score": 46,
+   "lst_c": 29.2
+  },
+  {
+   "h3": "8b3cf10ce746fff",
+   "score": 53,
+   "lst_c": 29.7
+  },
+  {
+   "h3": "8b3cf10ce740fff",
+   "score": 60,
+   "lst_c": 30.2
+  },
+  {
+   "h3": "8b3cf10ce76afff",
+   "score": 42,
+   "lst_c": 29
+  },
+  {
+   "h3": "8b3cf10ce768fff",
+   "score": 49,
+   "lst_c": 29.5
+  },
+  {
+   "h3": "8b3cf10ce76dfff",
+   "score": 66,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce39efff",
+   "score": 70,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8b3cf10ce3a2fff",
+   "score": 68,
+   "lst_c": 31.1
+  },
+  {
+   "h3": "8b3cf10ce051fff",
+   "score": 49,
+   "lst_c": 29.5
+  },
+  {
+   "h3": "8b3cf10ce050fff",
+   "score": 70,
+   "lst_c": 31.3
+  },
+  {
+   "h3": "8b3cf10ce056fff",
+   "score": 64,
+   "lst_c": 30.8
+  },
+  {
+   "h3": "8b3cf10ce00bfff",
+   "score": 58,
+   "lst_c": 30.4
+  },
+  {
+   "h3": "8b3cf10ce720fff",
+   "score": 54,
+   "lst_c": 30.1
+  },
+  {
+   "h3": "8b3cf10ce723fff",
+   "score": 62,
+   "lst_c": 30.7
+  },
+  {
+   "h3": "8b3cf10ce754fff",
+   "score": 67,
+   "lst_c": 31
+  },
+  {
+   "h3": "8b3cf10ce755fff",
+   "score": 66,
+   "lst_c": 31
+  }
+ ],
+ "zones": [
+  {
+   "id": "z-8b3cf10ce0c4fff-300",
+   "name": "Zone 1",
+   "score": 73,
+   "lst_c": 31.5,
+   "dist_m": 136,
+   "rank": 1,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.759672,
+    "lng": 90.357886
+   },
+   "h3": [
+    "8b3cf10ce0c4fff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce0e5fff-300",
+   "name": "Road No. 3",
+   "score": 72,
+   "lst_c": 31.4,
+   "dist_m": 233,
+   "rank": 2,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.760737,
+    "lng": 90.357726
+   },
+   "h3": [
+    "8b3cf10ce0e1fff",
+    "8b3cf10ce0e5fff",
+    "8b3cf10ce0e4fff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce396fff-300",
+   "name": "Nurzahan Road",
+   "score": 71,
+   "lst_c": 31.3,
+   "dist_m": 159,
+   "rank": 3,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.759234,
+    "lng": 90.360545
+   },
+   "h3": [
+    "8b3cf10ce0c8fff",
+    "8b3cf10ce0cdfff",
+    "8b3cf10ce0ebfff",
+    "8b3cf10ce3b6fff",
+    "8b3cf10ce3b2fff",
+    "8b3cf10ce0cbfff",
+    "8b3cf10ce764fff",
+    "8b3cf10ce760fff",
+    "8b3cf10ce761fff",
+    "8b3cf10ce392fff",
+    "8b3cf10ce390fff",
+    "8b3cf10ce395fff",
+    "8b3cf10ce382fff",
+    "8b3cf10ce393fff",
+    "8b3cf10ce39efff",
+    "8b3cf10ce76cfff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce0d0fff-300",
+   "name": "Road No 8",
+   "score": 70,
+   "lst_c": 31.2,
+   "dist_m": 197,
+   "rank": 4,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.758176,
+    "lng": 90.357282
+   },
+   "h3": [
+    "8b3cf10ce0d5fff",
+    "8b3cf10ce0d0fff",
+    "8b3cf10ce0d2fff",
+    "8b3cf10ce725fff",
+    "8b3cf10ce0d6fff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce050fff-300",
+   "name": "Road No. 2",
+   "score": 70,
+   "lst_c": 31.3,
+   "dist_m": 282,
+   "rank": 5,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.761474,
+    "lng": 90.358393
+   },
+   "h3": [
+    "8b3cf10ce050fff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce0f0fff-300",
+   "name": "Road No. 6",
+   "score": 69,
+   "lst_c": 31.2,
+   "dist_m": 235,
+   "rank": 6,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.759353,
+    "lng": 90.356725
+   },
+   "h3": [
+    "8b3cf10ce0f0fff",
+    "8b3cf10ce0f4fff",
+    "8b3cf10ce0f2fff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce3a2fff-300",
+   "name": "Nurjahan Road",
+   "score": 68,
+   "lst_c": 31.1,
+   "dist_m": 274,
+   "rank": 7,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.760718,
+    "lng": 90.360934
+   },
+   "h3": [
+    "8b3cf10ce3b1fff",
+    "8b3cf10ce3a2fff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce72bfff-300",
+   "name": "Zone 8",
+   "score": 68,
+   "lst_c": 31.1,
+   "dist_m": 236,
+   "rank": 8,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.756928,
+    "lng": 90.358491
+   },
+   "h3": [
+    "8b3cf10ce72bfff"
+   ]
+  },
+  {
+   "id": "z-8b3cf10ce05bfff-300",
+   "name": "Nurzahan Road 2",
+   "score": 68,
+   "lst_c": 31.1,
+   "dist_m": 262,
+   "rank": 9,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.76112,
+    "lng": 90.360129
+   },
+   "h3": [
+    "8b3cf10ce05bfff"
+   ]
+  }
+ ],
+ "my_zone_id": "z-8b3cf10ce0c4fff-300",
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:15:33.659Z",
+  "sources": [
+   {
+    "id": "heat-proxy",
+    "name": "Heat estimate: OpenStreetMap land cover + live weather"
+   },
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T20:11:05.165Z"
+   },
+   {
+    "id": "open-meteo",
+    "name": "Open-Meteo",
+    "url": "https://open-meteo.com",
+    "as_of": "2026-10-04T19:48:14.486Z"
+   }
+  ]
+ }
+}
