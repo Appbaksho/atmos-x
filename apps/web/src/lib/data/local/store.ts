@@ -49,6 +49,8 @@ export type LocalTeam = {
   emoji: string;
   goal_id: string | null;
   created_at: string;
+  /** A team created on another device, known here only from its invite link preview (v0). */
+  remote?: { members: number; org_name: string | null; inviter: string | null };
 };
 
 export type LocalProfile = { display_name: string | null; home: LatLng | null; avatar_url: string | null };

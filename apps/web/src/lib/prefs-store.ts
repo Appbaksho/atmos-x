@@ -28,20 +28,28 @@ const KEY = 'atmos:prefs:v1';
 type Listener = (p: Prefs) => void;
 const listeners = new Set<Listener>();
 let current: Prefs | null = null;
+/** The first storage read, shared so concurrent callers never race on an empty `current`. */
+let loading: Promise<Prefs> | null = null;
+
+async function load(): Promise<Prefs> {
+  try {
+    const stored = typeof indexedDB === 'undefined' ? undefined : await get<Partial<Prefs>>(KEY);
+    return { ...DEFAULT_PREFS, ...(stored ?? {}) };
+  } catch {
+    return { ...DEFAULT_PREFS };
+  }
+}
 
 export async function getPrefs(): Promise<Prefs> {
   if (current) return current;
-  try {
-    const stored = typeof indexedDB === 'undefined' ? undefined : await get<Partial<Prefs>>(KEY);
-    current = { ...DEFAULT_PREFS, ...(stored ?? {}) };
-  } catch {
-    current = { ...DEFAULT_PREFS };
-  }
-  return current;
+  loading ??= load().then((p) => (current ??= p));
+  return loading;
 }
 
 export async function setPrefs(patch: Partial<Prefs>): Promise<Prefs> {
-  const next = { ...(await getPrefs()), ...patch };
+  await getPrefs();
+  // Read `current` after the await so back-to-back setPrefs calls build on each other.
+  const next = { ...(current as Prefs), ...patch };
   current = next;
   try {
     await set(KEY, next);

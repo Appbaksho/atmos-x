@@ -152,14 +152,17 @@ export async function getTeam(ctx: DataContext, id: string, now: number = Date.n
     code: local.code,
     description: local.description,
     org_id: local.org_id,
-    org_name: org?.name ?? null,
+    org_name: org?.name ?? local.remote?.org_name ?? null,
     owner_id: local.owner_id,
     max_members: local.max_members,
     is_public: local.is_public,
     area: local.area,
     city: local.city,
     country: local.country,
-    members: myRole ? [{ user_id: ctx.userId, display_name: ctx.displayName, role: myRole, points: myPoints }] : [],
+    members: [
+      ...remoteMembers(local),
+      ...(myRole ? [{ user_id: ctx.userId, display_name: ctx.displayName, role: myRole, points: myPoints }] : []),
+    ],
     stats: addStats({ points: 0, trees: 0, actions: 0, cooling_c: 0 }, contrib, local.id),
     goal_id: local.goal_id,
     activity: teamActivity(null, contrib, local.id, now),
@@ -215,11 +218,54 @@ export async function createTeam(ctx: DataContext, input: CreateTeamInput): Prom
   return (await getTeam(ctx, team.id)) as Team;
 }
 
-/** Join a seed team (or one of your own) by invite code. Enforces the 5-member limit. */
-export async function joinByCode(ctx: DataContext, rawCode: string): Promise<Team> {
+/** Preview of a team created on another device, carried in its invite link (`?t=`). */
+export type RemoteInvite = { id: string; name: string; max_members: number; members: number; org_name?: string | null; emoji?: string; inviter?: string | null };
+
+/** Placeholder members standing in for the people who joined on other devices. */
+function remoteMembers(local: LocalTeam): Member[] {
+  if (!local.remote) return [];
+  return Array.from({ length: local.remote.members }, (_, i) => ({
+    user_id: `${local.id}:remote:${i}`,
+    display_name: i === 0 && local.remote?.inviter ? local.remote.inviter : `Member ${i + 1}`,
+    role: i === 0 ? ('owner' as const) : ('member' as const),
+    points: 0,
+  }));
+}
+
+/**
+ * Teams live per device in v0, so a team created elsewhere is unknown here. When the invite link
+ * carries a preview, remember the team locally (no membership) so it can be shown and joined.
+ */
+async function rememberRemoteTeam(ctx: DataContext, code: string, inv: RemoteInvite): Promise<string> {
+  const existing = (await localTeams(ctx)).find((t) => t.code === code);
+  if (existing) return existing.id;
+  const team: LocalTeam = {
+    id: inv.id || newId('t'),
+    name: inv.name.slice(0, 60),
+    code,
+    description: null,
+    org_id: null,
+    owner_id: 'remote',
+    max_members: clampTeamSize(inv.max_members),
+    is_public: true,
+    area: null,
+    city: null,
+    country: null,
+    emoji: inv.emoji ?? '🌳',
+    goal_id: null,
+    created_at: new Date().toISOString(),
+    remote: { members: Math.max(1, Math.min(inv.members, MAX_TEAM_MEMBERS)), org_name: inv.org_name ?? null, inviter: inv.inviter ?? null },
+  };
+  await updateList<LocalTeam>(ctx.ns, COLL.teams, (l) => [team, ...l]);
+  return team.id;
+}
+
+/** Join by invite code: seed teams, teams on this device, or (with an invite preview) a team from another device. Enforces the 5-member limit. */
+export async function joinByCode(ctx: DataContext, rawCode: string, invite?: RemoteInvite | null): Promise<Team> {
   assertAccount(ctx.kind, 'teams');
   const code = normalizeCode(rawCode);
-  const id = seedTeamByCode(code)?.id ?? (await localTeams(ctx)).find((t) => t.code === code)?.id;
+  let id = seedTeamByCode(code)?.id ?? (await localTeams(ctx)).find((t) => t.code === code)?.id;
+  if (!id && invite) id = await rememberRemoteTeam(ctx, code, invite);
   if (!id) throw new DataError('team.invalid_code', 'No team has this invite code', 404);
   const team = await getTeam(ctx, id);
   if (!team) throw new DataError('team.invalid_code', 'No team has this invite code', 404);
@@ -229,9 +275,10 @@ export async function joinByCode(ctx: DataContext, rawCode: string): Promise<Tea
 }
 
 /** Look up a team by code without joining (invite landing page). Works for guests. */
-export async function teamByCode(ctx: DataContext, rawCode: string): Promise<Team | null> {
+export async function teamByCode(ctx: DataContext, rawCode: string, invite?: RemoteInvite | null): Promise<Team | null> {
   const code = normalizeCode(rawCode);
-  const id = seedTeamByCode(code)?.id ?? (await localTeams(ctx)).find((t) => t.code === code)?.id;
+  let id = seedTeamByCode(code)?.id ?? (await localTeams(ctx)).find((t) => t.code === code)?.id;
+  if (!id && invite) id = await rememberRemoteTeam(ctx, code, invite);
   return id ? getTeam(ctx, id) : null;
 }
 

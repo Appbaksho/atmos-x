@@ -26,7 +26,7 @@ import {
   toast,
   useCz,
 } from '@/components/cz';
-import { useJoinByCode, useMe, useSession, useTeamByCode } from '@/lib/data/hooks';
+import { type RemoteInvite, useJoinByCode, useMe, useSession, useTeamByCode } from '@/lib/data/hooks';
 import type { Team } from '@/lib/data/types';
 
 import { decodeInvite, formatCode, type InvitePayload } from './invite-link';
@@ -46,8 +46,9 @@ export function JoinScreen({ code: rawCode, payload, autoJoin }: { code: string;
   const t = useTranslations('community.joinPage');
   const code = formatCode(safeDecode(rawCode));
   const session = useSession();
-  const team = useTeamByCode(code);
   const preview = decodeInvite(payload);
+  const invite = preview ? toRemoteInvite(preview) : null;
+  const team = useTeamByCode(code, invite);
 
   return (
     <Screen gap={16} style={{ paddingBottom: 40 }}>
@@ -71,7 +72,7 @@ export function JoinScreen({ code: rawCode, payload, autoJoin }: { code: string;
       {!session.ready || team.isPending ? (
         <SkeletonCard lines={3} height={200} />
       ) : team.data ? (
-        <Found team={team.data} autoJoin={!!autoJoin} />
+        <Found team={team.data} autoJoin={!!autoJoin} invite={invite} payload={payload ?? null} />
       ) : (
         <NotFound code={code} preview={preview} />
       )}
@@ -125,7 +126,12 @@ function TeamCard({ name, meta, org, by, code }: { name: string; meta: string; o
   );
 }
 
-function Found({ team, autoJoin }: { team: Team; autoJoin: boolean }) {
+/** Invite-link preview → the data layer's RemoteInvite (teams made on another device). */
+function toRemoteInvite(p: InvitePayload): RemoteInvite {
+  return { id: p.i, name: p.n, max_members: p.m, members: p.c, org_name: p.o ?? null, emoji: p.e, inviter: p.by ?? null };
+}
+
+function Found({ team, autoJoin, invite, payload }: { team: Team; autoJoin: boolean; invite: RemoteInvite | null; payload: string | null }) {
   const t = useTranslations('community.joinPage');
   const tc = useTranslations('community');
   const { f } = useCz();
@@ -137,11 +143,11 @@ function Found({ team, autoJoin }: { team: Team; autoJoin: boolean }) {
   const tried = useRef(false);
   const member = team.members.some((m) => m.user_id === me.id);
   const full = freePlaces(team) <= 0;
-  const next = href('join', { code: team.code }, { join: 1 });
+  const next = href('join', { code: team.code }, payload ? { join: 1, t: payload } : { join: 1 });
 
   const doJoin = () => {
     setError(null);
-    join.mutate(team.code, {
+    join.mutate({ code: team.code, invite }, {
       onSuccess: (tm) => {
         toast(tc('joined', { name: tm.name }), { tone: 'success' });
         goReplace('S17', { id: tm.id });

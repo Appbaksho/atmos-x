@@ -14,7 +14,10 @@ import {
   risingTeams,
   teamByCode,
   type CreateTeamInput,
+  type RemoteInvite,
 } from '../local/community';
+
+export type { RemoteInvite } from '../local/community';
 import { currentContext } from '../local/context';
 import { normalizeCode } from '../local/teams-logic';
 import type { Invite, Leaderboard, LeaderboardScope, LeaderboardSubject, Org, Period, RisingTeam, Team } from '../types';
@@ -45,13 +48,14 @@ export function useTeam(id: string | null | undefined) {
 }
 
 /** Invite landing (/join/[code]): look the team up without joining. Works for guests. */
-export function useTeamByCode(code: string | null | undefined) {
+/** Team for an invite code. `invite` (from the link's `?t=` preview) lets a team made on another device resolve. */
+export function useTeamByCode(code: string | null | undefined, invite?: RemoteInvite | null) {
   const ctx = useDataContext();
   const c = code ? normalizeCode(code) : '';
   return useQuery<Team | null>({
     queryKey: qk.teamByCode(ctx.ns, c),
     enabled: ctx.ready && !!c,
-    queryFn: async () => teamByCode(await currentContext(), c),
+    queryFn: async () => teamByCode(await currentContext(), c, invite),
   });
 }
 
@@ -72,8 +76,9 @@ export function useCreateTeam() {
 export function useJoinByCode() {
   const qc = useQueryClient();
   const ctx = useDataContext();
-  return useMutation<Team, Error, string>({
-    mutationFn: async (code) => joinByCode(await currentContext(), code),
+  return useMutation<Team, Error, string | { code: string; invite?: RemoteInvite | null }>({
+    mutationFn: async (arg) =>
+      typeof arg === 'string' ? joinByCode(await currentContext(), arg) : joinByCode(await currentContext(), arg.code, arg.invite),
     onSuccess: () => void invalidate.afterTeams(qc, ctx.ns),
   });
 }

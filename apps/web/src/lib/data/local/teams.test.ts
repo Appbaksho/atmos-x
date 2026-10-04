@@ -61,6 +61,22 @@ describe('team member limit', () => {
       await expect(joinByCode(other, '4K7Q-29')).resolves.toMatchObject({ id: 'hall-rooftop-crew' });
     });
 
+    it('joins a team created on another device from its invite preview, counting its members', async () => {
+      // device A
+      const owner = userCtx({ ns: 'user:p-a', userId: 'p-a' });
+      const made = await createTeam(owner, { name: 'Asad Gate Shade Crew', max_members: 3 });
+      const invite = { id: made.id, name: made.name, max_members: made.max_members, members: made.members.length, inviter: 'Rafi' };
+
+      // device B: unknown without the preview, joinable with it
+      const me = userCtx({ ns: 'user:p-b', userId: 'p-b' });
+      await expect(joinByCode(me, made.code)).rejects.toMatchObject({ code: 'team.invalid_code' });
+      const joined = await joinByCode(me, made.code, invite);
+      expect(joined).toMatchObject({ id: made.id, name: 'Asad Gate Shade Crew', max_members: 3 });
+      expect(joined.members).toHaveLength(2);
+      expect(joined.members[0]).toMatchObject({ display_name: 'Rafi', role: 'owner' });
+      expect((await myTeams(me)).map((t) => t.id)).toEqual([made.id]);
+    });
+
     it('rejects a full team and unknown codes', async () => {
       await expect(joinByCode(userCtx(), 'GM7X-42')).rejects.toMatchObject({ code: 'team.full' });
       await expect(joinByCode(userCtx(), 'ZZZZ-99')).rejects.toMatchObject({ code: 'team.invalid_code' });
