@@ -1,7 +1,8 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { JoinScreen } from '@/components/community/join';
 
-/** Join placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
-export default async function Page({ params }: PageProps<'/[locale]/join/[code]'>) {
-  const { code } = await params;
-  return <Placeholder id="Join" owner="V0-6" param={code} />;
+/** /join/[code] · invite landing (outside the app shell: no tab bar). */
+export default async function Page({ params, searchParams }: PageProps<'/[locale]/join/[code]'>) {
+  const [{ code }, sp] = await Promise.all([params, searchParams]);
+  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? null;
+  return <JoinScreen code={code} payload={one(sp.t)} autoJoin={one(sp.join) === '1'} />;
 }

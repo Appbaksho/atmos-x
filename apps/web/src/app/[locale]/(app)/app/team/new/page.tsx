@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { CreateTeamScreen } from '@/components/community/create-team';
 
-/** S19 placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
+/** S19 · Create a team and invite. */
 export default function Page() {
-  return <Placeholder id="S19" owner="V0-6" />;
+  return <CreateTeamScreen />;
 }

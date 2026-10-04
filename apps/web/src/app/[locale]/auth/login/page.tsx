@@ -1,6 +1,8 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { AuthScreen } from '@/components/auth/auth-screen';
 
-/** Login placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
-export default function Page() {
-  return <Placeholder id="Login" owner="V0-6" />;
+/** /auth/login · local account (v0: lives on this device). */
+export default async function Page({ searchParams }: PageProps<'/[locale]/auth/login'>) {
+  const sp = await searchParams;
+  const next = Array.isArray(sp.next) ? sp.next[0] : sp.next;
+  return <AuthScreen mode="login" next={next ?? null} />;
 }

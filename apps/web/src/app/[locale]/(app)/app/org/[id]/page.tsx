@@ -1,7 +1,7 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { OrgScreen } from '@/components/community/org';
 
-/** S18 placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
+/** S18 · Organization. */
 export default async function Page({ params }: PageProps<'/[locale]/app/org/[id]'>) {
   const { id } = await params;
-  return <Placeholder id="S18" owner="V0-6" param={id} />;
+  return <OrgScreen id={decodeURIComponent(id)} />;
 }

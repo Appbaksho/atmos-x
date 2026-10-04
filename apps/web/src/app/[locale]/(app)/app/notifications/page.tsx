@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { NotificationsScreen } from '@/components/profile/notifications';
 
-/** S21 placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
+/** S21 · Notifications. */
 export default function Page() {
-  return <Placeholder id="S21" owner="V0-6" />;
+  return <NotificationsScreen />;
 }

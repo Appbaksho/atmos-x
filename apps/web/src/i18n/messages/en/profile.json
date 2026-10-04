@@ -1,1 +1,334 @@
-{}
+{
+  "title": "Profile",
+  "notifs": "Notifications",
+  "notifsUnread": "Notifications, {n} unread",
+  "yourPhoto": "Your photo",
+  "guestName": "Guest",
+  "guestSub": "Look around freely. Create a free account to log actions, join a team and track trees.",
+  "guestCta": "Create free account",
+  "guestSignIn": "Sign in",
+  "level": "Level {n} · {name}",
+  "points": "Points",
+  "toNext": "{pts} to Level {n}",
+  "maxLevel": "Top level reached",
+  "provisional": "+{pts} pending verification",
+  "provisionalA11y": "{pts} provisional points from actions waiting for a check",
+  "statRank": "Area rank",
+  "statTrees": "Trees alive",
+  "statActions": "Actions",
+  "badges": "Badges",
+  "badgeA11y": "{name}, {state}",
+  "earned": "earned",
+  "locked": "locked",
+  "clans": "My clans",
+  "clanTeam": "Team · {role}",
+  "clanOrg": "Organization · member",
+  "myMap": "My contribution map",
+  "mapA11y": "Map of the places you contributed",
+  "snapNote": "Snapped to zone centres. Your exact spots stay private.",
+  "sensors": "My air sensors",
+  "sensorsSub": "{count, plural, =0 {Add a simulated sensor} one {{n} sensor · simulated (v0)} other {{n} sensors · simulated (v0)}}",
+  "history": "History",
+  "historyEmpty": "No actions yet. Log your first one to earn points.",
+  "logAction": "Log an action",
+  "historyMeta": "{date} · {where}",
+  "status": {
+    "verified": "verified",
+    "pending": "pending",
+    "rejected": "not counted"
+  },
+  "links": {
+    "title": "More",
+    "about": "Data & science",
+    "settings": "Settings",
+    "notifs": "Notifications"
+  },
+  "trees": {
+    "title": "My trees",
+    "count": "My trees · {n}",
+    "add": "Add tree",
+    "cancel": "Cancel",
+    "empty": "No trees yet",
+    "emptySub": "Trees you plant show up here. Each needs a photo every 15 days.",
+    "guestSub": "Create a free account to track your trees and get 15-day photo reminders.",
+    "feature": "track your trees",
+    "planted": "Planted {date}",
+    "meta": "{species} · planted {date}",
+    "od": "{count, plural, one {Photo overdue {n} day} other {Photo overdue {n} days}}",
+    "today": "Photo due today",
+    "soon": "{count, plural, one {Photo due in {n} day} other {Photo due in {n} days}}",
+    "ok": "{count, plural, one {Next photo in {n} day} other {Next photo in {n} days}}",
+    "dead": "Not alive",
+    "rule": "Each tree needs a photo every 15 days. Due and overdue trees also show on Home.",
+    "submitA11y": "Submit photo · {name}",
+    "addTitle": "Add a tree",
+    "addSub": "For trees you planted before using Atmos X",
+    "nameL": "Tree name",
+    "namePh": "e.g. Shanti",
+    "species": "Species",
+    "date": "Planting date",
+    "where": "Location",
+    "whereNote": "Saved at your current focus: {place}. Exact spots are never shown to others.",
+    "save": "Save tree",
+    "saved": "{name} added",
+    "regNote": "Gets an ID like ATX-26-0006 when saved"
+  },
+  "sp": {
+    "neem": "Neem",
+    "krish": "Krishnachura",
+    "jarul": "Jarul",
+    "arjun": "Arjun",
+    "bokul": "Bokul",
+    "aam": "Mango",
+    "kadam": "Kadam",
+    "sonalu": "Sonalu",
+    "radha": "Radhachura",
+    "rain": "Rain tree",
+    "jam": "Jamun",
+    "kathal": "Jackfruit"
+  },
+  "tree": {
+    "back": "My trees",
+    "photoA11y": "Photo of {name}",
+    "age": "Age",
+    "days": "{count, plural, one {{n} day} other {{n} days}}",
+    "photos": "Photos",
+    "next": "Next check",
+    "health": "Health",
+    "nextT": "Photo needed · {status}",
+    "nextOk": "Next photo · {status}",
+    "what": "Capture these 3 shots",
+    "s1": "Whole tree from 2 steps back",
+    "s1s": "Guard and ground in frame",
+    "s2": "Close-up of the newest leaves",
+    "s2s": "20–30 cm away, in daylight",
+    "s3": "Soil at the base",
+    "s3s": "Shows watering and mulch",
+    "take": "Take guided photo",
+    "pick": "Choose a photo",
+    "busy": "AI is checking leaves, colour and stress…",
+    "busySub": "Comparing with {name}’s last photo",
+    "aiT": "AI health check",
+    "conf": "{n}% confident",
+    "seen": "What the AI saw",
+    "tip": "What {name} needs",
+    "verdict": {
+      "healthy": "Healthy",
+      "stressed": "Keep an eye on it",
+      "dead": "Looks dead"
+    },
+    "verdictSub": {
+      "healthy": "Leaves look good. Keep watering in dry spells.",
+      "stressed": "Some signs of stress. Follow the tip below and re-check in 3 days.",
+      "dead": "If you think the AI is wrong, add another photo in daylight."
+    },
+    "noAi": "Photo saved. The AI check isn’t available right now, so the health stays as before.",
+    "pts": "+{pts} pts · photo check done",
+    "nextOn": "Next photo on {date}, same spot, same angle.",
+    "again": "Add another photo",
+    "hist": "Photo history",
+    "hPlant": "Planted & registered",
+    "hCheck": "Photo check",
+    "hCheckAi": "Photo check · {verdict}",
+    "notFound": "This tree isn’t on this device.",
+    "guest": "Create a free account to add photo checks.",
+    "feature": "add a tree photo check",
+    "remove": "Remove tree",
+    "removeTitle": "Remove {name}?",
+    "removeBody": "Its photos and checks stay in your history.",
+    "removed": "{name} removed",
+    "aiChip": "AI estimate",
+    "healthShort": {
+      "healthy": "Healthy",
+      "stressed": "Stressed",
+      "dead": "Dead"
+    }
+  },
+  "notif": {
+    "title": "Notifications",
+    "readAll": "Mark all read",
+    "filters": {
+      "all": "All",
+      "reminders": "Reminders",
+      "results": "Results",
+      "invites": "Invites",
+      "alerts": "Alerts"
+    },
+    "today": "Today",
+    "earlier": "Earlier",
+    "unread": "{n} unread",
+    "caught": "All caught up",
+    "unreadA11y": "Unread.",
+    "empty": "Nothing here yet",
+    "emptySub": "Tree reminders, verification results and heat warnings show up here.",
+    "filterEmpty": "No notifications of this kind.",
+    "guestSub": "Create a free account to get tree reminders, results and heat warnings.",
+    "feature": "get notifications",
+    "open": "Open",
+    "takePhoto": "Take photo",
+    "seeDetails": "See details",
+    "openPlan": "Open plan",
+    "openHome": "Open Home",
+    "openTeam": "Open team"
+  },
+  "code": {
+    "action": {
+      "plant_tree": "Plant a tree",
+      "plant_shrubs": "Plant shrubs",
+      "rooftop_garden": "Rooftop garden",
+      "cool_roof": "Cool roof",
+      "green_wall": "Green wall",
+      "shade_structure": "Shade structure",
+      "water_tree": "Water a tree",
+      "awareness": "Awareness event"
+    },
+    "level": {
+      "seedling": "Seedling",
+      "sapling": "Sapling",
+      "shade_maker": "Shade maker",
+      "canopy_keeper": "Canopy keeper",
+      "heat_breaker": "Heat breaker",
+      "climate_guardian": "Climate guardian"
+    },
+    "badge": {
+      "first": "First action",
+      "trees10": "10 trees",
+      "trees100": "100 trees",
+      "clan": "Joined a clan",
+      "p1000": "1,000 points",
+      "streak": "25 actions"
+    },
+    "notif": {
+      "verification": {
+        "verified": "+{points} pts · {action} × {qty} verified",
+        "verified_body": "AI saw: {seen}",
+        "pending": "{action} × {qty} is pending · +{points} provisional",
+        "pending_body": "{reason}",
+        "pending_body_none": "A teammate can confirm it."
+      },
+      "goal": {
+        "milestone": "{zone}: {pct}% of your cooling goal"
+      },
+      "tree": {
+        "due": "{count, plural, =0 {{name}: photo due today} one {{name}: photo due in {days} day} other {{name}: photo due in {days} days}}",
+        "overdue": "{count, plural, one {{name}: photo overdue {days} day} other {{name}: photo overdue {days} days}}",
+        "rule": "Each tree needs a photo every {every} days."
+      },
+      "heat": {
+        "warning": "Heat warning in {place} · feels like {feels}"
+      },
+      "team": {
+        "joined": "You joined {team}"
+      }
+    },
+    "reason": {
+      "unavailable": "The AI check wasn’t available. A teammate can confirm it.",
+      "rate_limited": "Too many checks today. A teammate can confirm it.",
+      "no_photo": "No photo was added. A teammate can confirm it.",
+      "teammate_confirmed": "Confirmed by a teammate."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "liveNote": "Changes apply to the whole app right away",
+    "lang": "Language",
+    "units": "Temperature",
+    "unitC": "°C",
+    "unitF": "°F",
+    "area": "Distance & area",
+    "metric": "m · km",
+    "imperial": "ft · mi",
+    "theme": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "mode": "Mode",
+    "city": "City",
+    "farmer": "Farmer",
+    "farmerNote": "Farmer mode swaps Home for field, crop stage and heat alerts.",
+    "askL": "Ask Atmos",
+    "askShow": "Show button",
+    "askHide": "Hide",
+    "askNote": "Floating AI chat on every screen",
+    "radius": "Scan radius",
+    "radiusNote": "How far around you the map looks for hot zones",
+    "radiusGuest": "Guests can scan up to {max}. Create an account for up to 1 km.",
+    "presentation": "Presentation mode",
+    "presentationNote": "Loads Nadia’s demo story in Mohammadpur, Dhaka. Your own data is kept separately.",
+    "presentationOn": "On · showing the demo story",
+    "presentationOff": "Off · showing your data",
+    "reset": "Reset demo",
+    "resetDone": "Demo story reloaded",
+    "resetTitle": "Reset the demo?",
+    "resetBody": "Clears everything done in Presentation mode and reloads Nadia’s story. Your own data isn’t touched.",
+    "account": "Account",
+    "guest": "You’re a guest",
+    "guestNote": "Create a free account to log actions, join teams and track trees. Your settings carry over.",
+    "create": "Create free account",
+    "signIn": "Sign in",
+    "signedIn": "Signed in on this device",
+    "logout": "Log out",
+    "loggedOut": "Logged out. You’re a guest now.",
+    "demoAccount": "Presentation mode uses Nadia’s demo account.",
+    "more": "More",
+    "data": "Data & science",
+    "about": "About Atmos X",
+    "footer": "Atmos X v0 · Heat estimate from OpenStreetMap land cover + Open-Meteo weather · © OpenStreetMap contributors"
+  },
+  "about": {
+    "title": "Data & science",
+    "sub": "Where every number comes from",
+    "opens": "{title}, opens {url}",
+    "credits": "Credits & licences",
+    "version": "Atmos X v0 · presentable MVP",
+    "sections": {
+      "heat": {
+        "title": "Heat estimate: OpenStreetMap + live weather",
+        "body": "In v0 the heat map is an estimate. For each H3 hex we measure buildings, roads, green and water from OpenStreetMap, then add them to the live Open-Meteo air temperature. The Heat Score compares each hex with the median of your scan. It is not satellite data."
+      },
+      "zones": {
+        "title": "How heat zones are found",
+        "body": "The hottest quarter of hexes are grouped into connected zones and ranked by mean score. Zones within 3 points of each other are flagged as near-ties instead of being ranked."
+      },
+      "air": {
+        "title": "Air temperature: Open-Meteo",
+        "body": "Temperature, humidity and the 5-day forecast come from the Open-Meteo forecast. “Feels like” uses the NOAA heat index. Normals and the 20-year history come from the ERA5 archive via Open-Meteo. In Bangladesh, heat levels use BMD thresholds; they are not official warnings."
+      },
+      "aq": {
+        "title": "Air quality: Open-Meteo Air Quality",
+        "body": "PM2.5 comes from the Open-Meteo Air Quality model. We compute the AQI ourselves with the US EPA 2024 PM2.5 breakpoints. Sensors you add in v0 are simulated."
+      },
+      "cooling": {
+        "title": "Cooling estimates",
+        "body": "Each +1 % of tree canopy in a km² lowers daytime surface temperature by roughly 0.1–0.2 °C; cool roofs about 0.04 °C per 1 % of a km². Tree cooling ramps up as trees grow. Projections are ranges, never promises."
+      },
+      "farm": {
+        "title": "Farmer alerts",
+        "body": "Rules run on the Open-Meteo forecast plus NASA POWER 30-day rainfall, following BMD, BRRI and DAE guidance, e.g. heat ≥ 35 °C at rice flowering. Atmos X never gives pesticide doses."
+      },
+      "ai": {
+        "title": "AI: OpenAI",
+        "body": "OpenAI models write the “why is it hot” text, plan details (species, costs, steps), answer Ask Atmos, and check photos. Anything the AI fills in is marked “AI estimate”. Scores, cooling and AQI always come from fixed formulas."
+      },
+      "community": {
+        "title": "Community data",
+        "body": "Your account, actions, photos, trees and teams live only on this device in v0. Other people, teams and leaderboards are a demo community, marked “Demo community”."
+      },
+      "nurseries": {
+        "title": "Nurseries",
+        "body": "Nursery locations come from OpenStreetMap plus a curated Dhaka list. Atmos X never sells plants."
+      }
+    },
+    "credit": {
+      "osm": "Map data © OpenStreetMap contributors, ODbL",
+      "ofm": "Map tiles: OpenFreeMap",
+      "meteo": "Weather and air quality: Open-Meteo, CC BY 4.0",
+      "era5": "Climate archive: Copernicus ERA5 via Open-Meteo",
+      "power": "Rainfall: NASA POWER",
+      "gibs": "Optional land surface temperature overlay: NASA GIBS",
+      "openai": "AI: OpenAI",
+      "photos": "Photos: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
+      "fonts": "Fonts: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
+    }
+  }
+}

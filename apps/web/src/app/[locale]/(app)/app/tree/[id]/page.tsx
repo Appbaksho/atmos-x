@@ -1,7 +1,7 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { TreeScreen } from '@/components/profile/tree';
 
-/** Tree placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
-export default async function Page({ params }: PageProps<'/[locale]/app/tree/[id]'>) {
-  const { id } = await params;
-  return <Placeholder id="Tree" owner="V0-6" param={id} />;
+/** Tree detail: 15-day photo checks with the AI health verdict. `?check=1` opens the camera. */
+export default async function Page({ params, searchParams }: PageProps<'/[locale]/app/tree/[id]'>) {
+  const [{ id }, sp] = await Promise.all([params, searchParams]);
+  return <TreeScreen id={decodeURIComponent(id)} openCheck={sp.check === '1'} />;
 }

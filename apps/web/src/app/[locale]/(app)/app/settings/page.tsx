@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { SettingsScreen } from '@/components/profile/settings';
 
-/** S22 placeholder (V0-1). Owner: V0-6. Replace the body with the ported screen. */
+/** S22 · Settings. */
 export default function Page() {
-  return <Placeholder id="S22" owner="V0-6" />;
+  return <SettingsScreen />;
 }
