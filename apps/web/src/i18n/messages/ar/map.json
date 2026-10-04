@@ -1,1 +1,37 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "خريطة الحرارة",
+  "within": "ضمن",
+  "estimateShort": "OSM + الطقس المباشر",
+  "estimateNote": "تقدير الحرارة: غطاء الأرض في OpenStreetMap + الطقس المباشر. تقارن الدرجات بين المربعات داخل هذا المسح؛ وهي ليست قياسات من القمر الصناعي.",
+  "yourArea": "منطقتك",
+  "mapA11y": "خريطة حرارة {place}",
+  "layersLabel": "طبقة الخريطة",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA حرارة سطح الأرض"
+  },
+  "legendA11y": "مفتاح Heat Score: {bands}",
+  "gibsNote": "NASA درجة حرارة سطح الأرض · شهريًا · ~1 km",
+  "ranked": "الأكثر حرارة ضمن نصف القطر",
+  "count": "{count, plural, one {{n} منطقة} other {{n} مناطق}}",
+  "nearTie": "متقارب جدًا",
+  "tieNote": "الدرجات ضمن ±3 تُعد متقاربة جدًا — اعتبرها بنفس السخونة تقريبًا.",
+  "lstShort": "السطح",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "تفاصيل المنطقة",
+  "radius": "نصف قطر المسح",
+  "scanning": "جارٍ المسح {r}…",
+  "showAll": "عرض الكل {n}",
+  "showLess": "عرض أول 3",
+  "guestRadius": "امسح أكثر من 500 m",
+  "empty": {
+    "title": "لم تُعثر على مناطق حارة هنا",
+    "sub": "جرّب نصف قطر أوسع أو مكانًا آخر."
+  },
+  "attribution": {
+    "osm": "© مساهمو OpenStreetMap"
+  }
+}

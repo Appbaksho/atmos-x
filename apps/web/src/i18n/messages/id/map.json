@@ -1,1 +1,37 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Peta panas",
+  "within": "Radius",
+  "estimateShort": "OSM + cuaca langsung",
+  "estimateNote": "Perkiraan panas: tutupan lahan OpenStreetMap + cuaca langsung. Skor membandingkan blok di dalam pemindaian ini; bukan pengukuran satelit.",
+  "yourArea": "area Anda",
+  "mapA11y": "Peta panas {place}",
+  "layersLabel": "Lapisan peta",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA LST"
+  },
+  "legendA11y": "Legenda Heat Score: {bands}",
+  "gibsNote": "Suhu permukaan darat NASA · bulanan · ~1 km",
+  "ranked": "Paling panas dalam radius Anda",
+  "count": "{count, plural, one {{n} zona} other {{n} zona}}",
+  "nearTie": "Hampir sama",
+  "tieNote": "Skor dalam ±3 ditandai sebagai hampir sama — anggap sama panas.",
+  "lstShort": "Permukaan",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "Detail zona",
+  "radius": "Radius pemindaian",
+  "scanning": "Memindai {r}…",
+  "showAll": "Tampilkan semua {n}",
+  "showLess": "Tampilkan 3 teratas",
+  "guestRadius": "pindai lebih dari 500 m",
+  "empty": {
+    "title": "Tidak ada zona panas ditemukan di sini",
+    "sub": "Coba radius yang lebih luas atau tempat lain."
+  },
+  "attribution": {
+    "osm": "© Kontributor OpenStreetMap"
+  }
+}

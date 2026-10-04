@@ -1,0 +1,218 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "zone": {
+    "unnamed": "Zone {n}"
+  },
+  "warning": {
+    "heatwave_mild": "Vague de chaleur légère attendue : jusqu’à {tmax} °C le {day}, jusqu’à {until}. Selon les seuils du BMD, pas une alerte officielle.",
+    "heatwave_moderate": "Vague de chaleur modérée attendue : jusqu’à {tmax} °C le {day}, jusqu’à {until}. Selon les seuils du BMD, pas une alerte officielle.",
+    "heatwave_severe": "Vague de chaleur sévère attendue : jusqu’à {tmax} °C le {day}, jusqu’à {until}. Selon les seuils du BMD, pas une alerte officielle.",
+    "heatwave_very_severe": "Vague de chaleur très sévère attendue : jusqu’à {tmax} °C le {day}, jusqu’à {until}. Selon les seuils du BMD, pas une alerte officielle.",
+    "heat_danger": "Chaleur dangereuse : ressenti jusqu’à {feels} °C le {day}. Évitez le soleil de midi et buvez souvent de l’eau.",
+    "heat_extreme": "Chaleur extrême : ressenti jusqu’à {feels} °C le {day}. Restez à l’ombre et prenez des nouvelles des voisins âgés."
+  },
+  "bmd": {
+    "mild": "Vague de chaleur légère",
+    "moderate": "Vague de chaleur modérée",
+    "severe": "Vague de chaleur sévère",
+    "very_severe": "Vague de chaleur très sévère",
+    "disclaimer": "Selon les seuils du BMD, pas une alerte officielle"
+  },
+  "heat_risk": {
+    "ok": "Confortable",
+    "caution": "Attention",
+    "xcaution": "Vigilance extrême",
+    "danger": "Danger",
+    "xdanger": "Danger extrême"
+  },
+  "cause": {
+    "sealed_surface": "{pct}% de surface imperméabilisée (toits, dallage, routes) absorbe le soleil : ajoute environ {adds_c} °C",
+    "wide_roads": "Les routes couvrent {pct}% du sol : ajoute environ {adds_c} °C",
+    "low_green": "Seulement {pct}% de verdure : environ {adds_c} °C de refroidissement en moins qu’un quartier plus vert",
+    "dense_buildings": "Des bâtiments denses ({per_ha} par hectare) retiennent la chaleur et coupent le vent : ajoutent environ {adds_c} °C",
+    "dark_roofs": "Environ {pct}% des toits sont sombres (hypothèse) : ajoute environ {adds_c} °C"
+  },
+  "assumption": {
+    "trend": "Tendance : {per_decade} °C par décennie de hausse de la température maximale quotidienne en saison chaude ({from}–{to}, archive Open-Meteo), prolongée jusqu’en 2040.",
+    "hot_season": "Saison chaude utilisée pour la tendance : mois {months}.",
+    "tree_ramp": "Les arbres rafraîchissent en grandissant : 20% de l’effet maximal la 1re année, 50% la 3e, 80% la 5e, 100% à partir de la 8e.",
+    "tree_cooling": "100 arbres matures rafraîchissent cette zone ({area_km2} km²) d’environ {per_100_trees} °C.",
+    "roof_cooling": "1 000 m² de toit frais rafraîchissent cette zone d’environ {per_1000_m2} °C.",
+    "inputs": "Plan dans cette projection : {trees} arbres, {roof_m2} m² de toit frais, {shade} structures d’ombre.",
+    "ranges": "Des fourchettes, pas des promesses : une estimation à partir de la couverture du sol et de coefficients de rafraîchissement publiés."
+  },
+  "feas": {
+    "trees_vs_space": "{trees} arbres nécessaires ; le sol libre et les bords de rue peuvent en accueillir environ {capacity}.",
+    "roofs_vs_space": "{roof_m2} m² de toit frais nécessaires ; environ {capacity_m2} m² de toit semblent utilisables.",
+    "max_cooling": "Avec l’espace disponible, environ {max_c} °C est réaliste.",
+    "spots_unknown": "Impossible de charger les emplacements de plantation, donc l’espace n’a pas été vérifié.",
+    "action_goal": "En moins de 6 mois, c’est un objectif d’action : nous suivons le travail lui-même, car le rafraîchissement prend plus de temps à apparaître.",
+    "trees_take_years": "Les arbres ont besoin d’années pour donner leur ombre complète ; la majeure partie du rafraîchissement arrive après la date cible."
+  },
+  "plan": {
+    "why": {
+      "plant_tree": "{trees} arbres d’ombre donnent le plus grand rafraîchissement à long terme.",
+      "cool_roof": "{roof_m2} m² de toit blanc ou réfléchissant rafraîchissent le quartier dès le premier été.",
+      "shade_structure": "{shade} voiles d’ombrage ou auvents sur les rues et arrêts les plus chauds.",
+      "awareness": "Parlez aux voisins, aux écoles et aux commerces pour que plus de gens participent et prennent soin des arbres."
+    }
+  },
+  "budget": {
+    "trees": "Jeunes plants, protection et plantation",
+    "cool_roof": "Revêtement de toit frais (m²)",
+    "shade": "Structures d’ombre"
+  },
+  "aqi": {
+    "good": "Bon",
+    "moderate": "Modéré",
+    "usg": "Mauvais pour les groupes sensibles",
+    "unhealthy": "Mauvais",
+    "very_unhealthy": "Très mauvais",
+    "hazardous": "Dangereux"
+  },
+  "advice": {
+    "air": {
+      "enjoy_outdoors": "L’air est propre : c’est un bon moment pour sortir.",
+      "ventilate": "Ouvrez les fenêtres pour aérer votre logement.",
+      "sensitive_watch": "Les personnes très sensibles doivent surveiller la toux ou l’essoufflement.",
+      "ventilate_off_peak": "Aérez tôt le matin ou tard le soir.",
+      "sensitive_reduce": "Les enfants, les personnes âgées et toute personne asthmatique ou avec une maladie du cœur doivent réduire les activités extérieures longues ou intenses.",
+      "windows_peak": "Gardez les fenêtres fermées aux heures de pointe.",
+      "mask_sensitive": "Les personnes sensibles doivent porter un masque N95 ou KN95 bien ajusté à l’extérieur.",
+      "reduce_outdoor": "Tout le monde doit réduire les activités extérieures longues ou intenses.",
+      "mask_n95": "Portez un masque N95 ou KN95 bien ajusté à l’extérieur.",
+      "windows_closed": "Gardez les fenêtres et les portes fermées.",
+      "avoid_outdoor": "Évitez l’exercice en extérieur ; faites les activités à l’intérieur.",
+      "purifier": "Utilisez un purificateur d’air ou un ventilateur avec filtre si vous en avez un.",
+      "stay_indoors": "Restez à l’intérieur autant que possible ; demandez de l’aide médicale si vous ne vous sentez pas bien."
+    }
+  },
+  "farm": {
+    "haor_flood": {
+      "title": "Risque de crue éclair dans le haor",
+      "body": "Jusqu’à {local_mm} mm localement et {up_mm} mm en amont dans le Meghalaya sur 3 jours. L’eau des collines peut entrer dans le haor en 24 à 48 h.",
+      "a1": "Récoltez le Boro tout de suite si 80% des grains sont mûrs.",
+      "a2": "Mettez le paddy récolté, les semences et le bétail en hauteur.",
+      "a3": "Vérifiez les digues (bãdh) avec vos voisins et signalez toute rupture au bureau de l’Upazila."
+    },
+    "rice_heat": {
+      "title": "Stress thermique à la floraison",
+      "body": "{days} jour(s) à 35 °C ou plus à partir du {day} (pic à {peak} °C). Le pollen meurt au-dessus de 35 °C, ce qui cause des grains vides (chita).",
+      "a1": "Gardez 5–7 cm d’eau stagnante dans le champ pendant la floraison.",
+      "a2": "Irriguez l’après-midi pour rafraîchir le couvert végétal.",
+      "a3": "Évitez de pulvériser les pesticides entre 10 h et 14 h."
+    },
+    "drought": {
+      "title": "Risque de période sèche / sécheresse",
+      "body": "Seulement {rain30} mm de pluie au cours des 30 derniers jours (NASA POWER) et {rain7} mm prévus cette semaine, alors que les cultures perdent environ {et7} mm par évaporation.",
+      "a1": "Utilisez l’alternance mouillage-séchage (AWD) pour économiser l’eau d’irrigation.",
+      "a2": "Paillez les planches de légumes avec de la paille pour garder l’humidité.",
+      "a3": "Prévoyez un apport d’eau supplémentaire pour l’Aman repiqué si la pluie reste faible."
+    },
+    "storm": {
+      "title": "Risque de tempête / nor’wester",
+      "title_coastal": "Risque de cyclone / onde de tempête",
+      "body": "Des rafales jusqu’à {gust} km/h sont attendues à partir de {day}.",
+      "a1_harvest": "Récoltez les cultures mûres avant l’arrivée de la tempête.",
+      "a1_stake": "Tuteurez les bananiers, papayers et grands légumes.",
+      "a2": "Rangez les semences et les grains récoltés dans des sacs fermés sur des plateformes surélevées.",
+      "a3": "Suivez les signaux du BMD et allez dans un abri cyclonique si l’évacuation est demandée."
+    },
+    "cold": {
+      "title_mild": "Vague de froid légère",
+      "title_moderate": "Vague de froid modérée",
+      "title_severe": "Vague de froid sévère",
+      "body": "La température nocturne descend à {low} °C à partir de {day}.",
+      "a1": "Couvrez les pépinières de Boro avec du polyéthylène transparent la nuit, ouvrez le jour.",
+      "a2": "Gardez 2–3 cm d’eau dans les pépinières et évacuez l’eau froide le matin.",
+      "a3": "Protégez le bétail avec des sacs de jute et une litière sèche."
+    },
+    "late_blight": {
+      "title": "Temps favorable au mildiou tardif",
+      "body": "Temps frais, brumeux et humide pendant {days} jours : idéal pour le mildiou tardif (Phytophthora) sur la pomme de terre et la tomate.",
+      "a1": "Demandez à votre agent agricole local (DAE) quel fongicide préventif utiliser et à quelle dose.",
+      "a2": "Arrêtez l’irrigation tant que le brouillard persiste.",
+      "a3": "Retirez et détruisez immédiatement les plants infectés."
+    },
+    "monsoon": {
+      "title": "Début de mousson probable",
+      "body": "Trois jours de pluie consécutifs ou plus sont attendus vers {day}.",
+      "a1": "Préparez les pépinières d’Aman sur un terrain surélevé.",
+      "a2": "Nettoyez les drains et les canaux.",
+      "a3": "Bon moment pour planter des arbres : la reprise est la meilleure maintenant."
+    },
+    "lightning": {
+      "title": "Risque de foudre",
+      "body": "L’atmosphère est très instable (CAPE jusqu’à {cape} J/kg) et des orages sont probables à partir de {day} {time}.",
+      "body_codes": "Des orages sont prévus à partir de {day}.",
+      "a1": "Quittez les champs ouverts quand des nuages noirs s’accumulent, souvent l’après-midi.",
+      "a2": "Ne vous abritez pas sous un arbre isolé ; accroupissez-vous, pieds joints, si vous êtes dehors.",
+      "a3": "Évitez les étangs, les canaux et les outils métalliques pendant les orages."
+    },
+    "worker_heat": {
+      "title": "Chaleur dangereuse pour le travail aux champs",
+      "body": "Température ressentie jusqu’à {peak} °C à partir de {day}.",
+      "a1": "Travaillez tôt le matin et tard l’après-midi.",
+      "a2": "Buvez de l’eau avec une solution de réhydratation orale toutes les 20 minutes.",
+      "a3": "Reposez-vous à l’ombre ; surveillez les étourdissements et arrêtez le travail si vous vous sentez mal."
+    }
+  },
+  "alert_level": {
+    "danger": "Danger",
+    "warning": "Alerte",
+    "watch": "Surveillance",
+    "info": "Info"
+  },
+  "hazard": {
+    "flood": "Inondation",
+    "heat": "Chaleur",
+    "drought": "Sécheresse",
+    "cold": "Froid",
+    "lightning": "Foudre",
+    "rain": "Pluie",
+    "storm": "Tempête",
+    "disease": "Maladie des cultures"
+  },
+  "verify": {
+    "ok": "Vérifié : la photo correspond à l’action.",
+    "ai_unavailable": "Nous n’avons pas pu vérifier la photo pour le moment. Un membre de l’équipe peut la confirmer.",
+    "not_a_photo": "Cela ne ressemble pas à une photo prise avec l’appareil. Un membre de l’équipe peut la confirmer.",
+    "different_action": "La photo semble montrer une autre action. Un membre de l’équipe peut la confirmer.",
+    "ai_mismatch": "Nous n’avons pas pu voir l’action sur la photo. Un membre de l’équipe peut la confirmer.",
+    "ai_low_confidence": "La photo n’est pas assez nette pour être sûr. Un membre de l’équipe peut la confirmer.",
+    "gps_missing": "Aucune position avec la photo. Un membre de l’équipe peut la confirmer.",
+    "gps_far": "La photo a été prise à plus de 300 m de la zone. Un membre de l’équipe peut la confirmer.",
+    "time_unknown": "Nous n’avons pas pu lire l’heure de la photo. Un membre de l’équipe peut la confirmer.",
+    "time_future": "L’heure de la photo est dans le futur. Un membre de l’équipe peut la confirmer.",
+    "too_old": "La photo date de plus de 24 heures. Un membre de l’équipe peut la confirmer."
+  },
+  "action": {
+    "open_zone": "Ouvrir la zone",
+    "create_goal": "Créer un objectif",
+    "open_air": "Ouvrir la qualité de l’air",
+    "see_alert": "Voir l’alerte",
+    "open_farm": "Ouvrir les alertes agricoles",
+    "open_trees": "Ouvrir mes arbres",
+    "find_nurseries": "Trouver des pépinières"
+  },
+  "ask": {
+    "notice": {
+      "fallback": "Ask Atmos est indisponible pour le moment, donc voici une réponse enregistrée avec les dernières données disponibles.",
+      "cap": "La limite IA d’aujourd’hui pour Atmos X est atteinte, donc voici une réponse enregistrée avec les dernières données disponibles.",
+      "interrupted": "La réponse a été coupée. Veuillez réessayer."
+    },
+    "canned": {
+      "heat_zone": "{zone} est surtout chaud parce que {sealed}% de la surface est imperméabilisée et seulement {green}% est verte. L’air est à {air}°, le ressenti est de {feels}°, et les toits et les routes sont estimés à environ {surface}°. Le pic prévu est {tmax}° : restez à l’ombre de 11:00 à 15:00 et buvez souvent.",
+      "heat_now": "L’air est à {air}° et le ressenti est de {feels}°. Le pic prévu est {tmax}° dans les prochains jours : restez à l’ombre de 11:00 à 15:00, buvez souvent et prenez des nouvelles des voisins âgés.",
+      "heat": "Votre zone est surtout chaude parce que 78% de la surface est imperméabilisée et seulement 6% est verte. L’air est à 34°, le ressenti est de 41°, et les toits et les routes atteignent 52°. Dimanche, le pic est à 36° — restez à l’ombre de 11:00 à 15:00 et buvez souvent.",
+      "air_now": "Le PM2.5 extérieur est de {pm25} μg/m³ (AQI {aqi}, {category}). {advice}",
+      "air": "Le PM2.5 extérieur est de 62 μg/m³ — environ 4 fois le seuil de l’OMS — alors qu’à l’intérieur, il est de 38. Gardez les fenêtres fermées maintenant et ouvrez-les après 22:00, quand la prévision descend près de 40. Portez un N95 bien ajusté dehors.",
+      "farm_none": "Aucune alerte agricole pour votre culture dans les prévisions sur 7 jours. Continuez à vérifier les prévisions avant d’irriguer ou de pulvériser.",
+      "farm": "Oui. Votre riz Aman est en floraison (détecté par satellite le 28 sept.) et dimanche atteindra 36°. Relevez l’eau stagnante à 5 cm ce soir et complétez dimanche à l’aube.",
+      "tree_due": "{name} est dû pour sa photo à 15 jours. Prenez une nouvelle photo pour vérifier sa santé ; en période de forte chaleur, arrosez-le en profondeur le soir et gardez un anneau de paillis au pied.",
+      "tree": "Les jeunes arbres ont besoin d’un arrosage en profondeur deux fois par semaine par temps chaud et sec, d’un anneau de paillis au pied et d’un protecteur. Ajoutez une photo tous les 15 jours pour que nous puissions vérifier leur santé."
+    }
+  }
+}

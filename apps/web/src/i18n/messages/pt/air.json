@@ -1,1 +1,92 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Qualidade do ar",
+  "sub": "{place} · agora {time}",
+  "pm25": "PM2.5",
+  "unit": "μg/m³",
+  "aqi": "AQI {n}",
+  "aqiShort": "AQI",
+  "who": "OMS 15",
+  "vsWho": "{x}× a diretriz de 24 horas da OMS de 15 μg/m³.",
+  "underWho": "Dentro da diretriz de 24 horas da OMS de 15 μg/m³.",
+  "bandA11y": "PM2.5 {pm}, {cat}. Diretriz da OMS de 15 μg/m³.",
+  "ringA11y": "AQI {n}, {cat}",
+  "fcTitle": "Próximos dias",
+  "fcAlert": "{day}: o PM2.5 deve chegar a {pm}. Planeje tarefas e exercícios para as horas mais limpas.",
+  "fcA11y": "Previsão de PM2.5 para os próximos {n} dias, com pico de {pm} em {day}",
+  "today": "Hoje",
+  "planTitle": "Plano de ar limpo",
+  "planSub": "Com base na faixa de AQI de hoje (US EPA 2024)",
+  "sens": "Pessoa sensível em casa",
+  "sensSub": "Criança, idoso ou pessoa com problema cardíaco ou pulmonar · salvo só neste celular",
+  "lead": "Proteção em primeiro lugar. Siga a orientação do seu médico em dias de poluição alta.",
+  "sensors": "Meus sensores",
+  "sensorsSub": "Comparado com a estimativa da área",
+  "simulated": "Dispositivo simulado (v0)",
+  "noSensors": "Ainda sem sensores",
+  "noSensorsSub": "Conecte um sensor de PM2.5 para comparar sua rua com a área.",
+  "offline": "Sem conexão",
+  "vsArea": "{diff} comparado à área",
+  "stations": "Estações próximas",
+  "connect": "Conectar meu sensor",
+  "myDev": "Meus dispositivos",
+  "devSub": "{n, plural, =0 {Nenhum sensor} one {# sensor} other {# sensores}}",
+  "addSensor": "Adicionar sensor",
+  "last": "Última leitura",
+  "never": "Ainda sem leitura",
+  "status": {
+    "online": "Conectado",
+    "offline": "Aguardando"
+  },
+  "remove": "Remover {name}",
+  "removed": "Sensor removido",
+  "simNote": "v0 simula leituras de PM2.5 da área (±8 %), atualizadas a cada 5 minutos. Os envios do dispositivo real chegam na v1.",
+  "guestDevices": "Os sensores são salvos na sua conta neste dispositivo.",
+  "addSensorFeature": "adicionar um sensor",
+  "addTitle": "Adicionar sensor",
+  "addSub": "As leituras ficam privadas por 7 dias",
+  "step1": "1 · Escolha sua montagem",
+  "step2": "2 · Onde fica?",
+  "step3": "3 · Dê um nome",
+  "step4": "4 · Verificação de posição",
+  "nameL": "Nome do sensor",
+  "namePh": "Nó da varanda",
+  "yes": "Sim",
+  "no": "Não",
+  "placeNote": "Ao ar livre, a 1,5–3 m, na sombra, com a entrada voltada para baixo, longe de saídas de cozinha, geradores, saída do ar-condicionado e da beira da rua.",
+  "privNote": "Seu pino fica privado. O mapa público se ajusta à zona e oculta seu nome.",
+  "start": "Iniciar verificação de 7 dias",
+  "startOff": "Responda à verificação de posição primeiro",
+  "saved": "Sensor adicionado",
+  "outd": "Externo",
+  "ind": "Interno",
+  "outNote": "Sensores externos que passam na verificação de 7 dias entram no mapa da área com um selo da comunidade.",
+  "inNote": "Sensores internos nunca ficam públicos — eles alimentam sua orientação sobre dentro e fora.",
+  "q1": "Está na sombra, sem sol direto?",
+  "q2": "Está a pelo menos 2 m de uma saída de cozinha, gerador ou saída do ar-condicionado?",
+  "q3": "A entrada fica voltada para baixo, com fluxo de ar livre?",
+  "builds": {
+    "esp32": {
+      "name": "Nó ESP32 personalizado",
+      "parts": "ESP32 · Plantower PMS5003 · BME280 ou SHT31",
+      "best": "Controle total; seu próprio firmware publica no Atmos X"
+    },
+    "sc": {
+      "name": "Kit Sensor.Community",
+      "parts": "ESP8266 · Nova SDS011 · BME280 · airrohr",
+      "best": "Instalação mais rápida; envia para Sensor.Community e Atmos X ao mesmo tempo"
+    },
+    "purple": {
+      "name": "Unidade PurpleAir",
+      "parts": "2 × PMS5003 · BME280",
+      "best": "Sem montar nada; acesse pela API do PurpleAir · custa mais"
+    },
+    "existing": {
+      "name": "Sensor Sensor.Community já existente",
+      "parts": "Conecte pelo ID do sensor, somente leitura",
+      "best": "Sem novo hardware"
+    }
+  }
+}

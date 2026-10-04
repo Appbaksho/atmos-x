@@ -30,7 +30,10 @@ export type Messages = Record<string, Json>;
 async function loadNamespace(locale: string, ns: string): Promise<Json> {
   try {
     const mod = (await import(`./messages/${locale}/${ns}.json`)) as { default: Json };
-    return mod.default ?? {};
+    // `_meta` ({"machine": true} in machine-translated files, V0-8) is not a message.
+    const data: Json = { ...(mod.default ?? {}) };
+    delete data._meta;
+    return data;
   } catch {
     // Missing file (e.g. server.json before V0-2 lands): treat as empty.
     return {};

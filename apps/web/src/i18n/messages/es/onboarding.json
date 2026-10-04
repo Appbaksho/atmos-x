@@ -1,1 +1,54 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "welcome": {
+    "head": "Encuentra la manzana más caliente. Luego enfríala.",
+    "body": "Mira el calor a tu alrededor con el clima en vivo y OpenStreetMap, entiende por qué hace calor y conviértelo en un plan que puedas llevar a cabo — solo o con tu equipo.",
+    "start": "Empezar",
+    "have": "Ya tengo una cuenta",
+    "demo": "Probar la demo de Dhaka",
+    "roof": "Techo y calle",
+    "park": "Borde del parque",
+    "pillA11y": "Ejemplo: {text} {value}, Heat Score {score}"
+  },
+  "language": {
+    "step": "Paso 1 de 2",
+    "title": "Elige tu idioma",
+    "detected": "Detectado en tu dispositivo: {lang}. Cámbialo cuando quieras en Ajustes.",
+    "sub": "Cámbialo cuando quieras en Ajustes.",
+    "group": "Idioma",
+    "temp": "Temperatura",
+    "area": "Área",
+    "next": "Continuar",
+    "back": "Atrás"
+  },
+  "location": {
+    "step": "Paso 2 de 2",
+    "back": "Atrás",
+    "search": "Busca un lugar",
+    "searchLabel": "Busca una ciudad o barrio",
+    "noResults": "No se encontraron lugares",
+    "title": "Analiza alrededor de este punto",
+    "using": "Usando tu ubicación. Busca arriba para analizar otro lugar.",
+    "picked": "Busca arriba o usa tu ubicación para cambiar el punto.",
+    "demoPinned": "Modo de presentación: el punto está fijo en la demo de Dhaka.",
+    "radius": "Radio de análisis",
+    "cells": "{n} celdas · {r}",
+    "useLoc": "Usar mi ubicación",
+    "scan": "Analizar {r}",
+    "privacy": "Tu ubicación precisa se usa solo para este análisis y se queda en este dispositivo.",
+    "scanning": "Analizando {n} celdas…",
+    "s1t": "Buscando zonas",
+    "s1d": "{n} celdas H3 con resolución {res}",
+    "s2t": "Clima en vivo",
+    "s2d": "Temperatura del aire de Open-Meteo · segundos",
+    "s3t": "Cobertura del suelo de OpenStreetMap",
+    "s3d": "Edificios, calles, áreas verdes y agua",
+    "s4t": "Factores de puntuación",
+    "s4d": "Cobertura verde, superficie impermeable, densidad, agua",
+    "slow": "Esto está tardando un poco — terminaremos el análisis en el mapa.",
+    "demo": "O prueba la demo de Dhaka",
+    "mapA11y": "Mapa con el círculo de análisis alrededor de {place}"
+  }
+}

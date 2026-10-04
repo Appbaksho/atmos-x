@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/vendor-maplibre.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/vendor-maplibre.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -11,7 +13,7 @@
     "test": "vitest run",
     "probe": "tsx --conditions react-server --env-file-if-exists=.env.local scripts/probe.ts",
     "snapshot:dhaka": "tsx --conditions react-server --env-file-if-exists=.env.local scripts/snapshot.ts",
-    "i18n:translate": "tsx scripts/translate.ts",
+    "i18n:translate": "tsx --env-file-if-exists=.env.local scripts/translate.ts",
     "i18n:check": "tsx scripts/i18n-check.ts"
   },
   "dependencies": {

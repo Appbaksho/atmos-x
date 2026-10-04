@@ -1,1 +1,84 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "greet": {
+    "am": "Bonjour",
+    "pm": "Bon après-midi",
+    "eve": "Bonsoir",
+    "amName": "Bonjour, {name}",
+    "pmName": "Bon après-midi, {name}",
+    "eveName": "Bonsoir, {name}"
+  },
+  "airTemp": "Température de l’air",
+  "feels": "Ressenti",
+  "zone": "Votre zone",
+  "score": "Heat Score",
+  "level": {
+    "low": "Faible",
+    "moderate": "Modéré",
+    "elevated": "Assez élevé",
+    "high": "Élevé",
+    "vhigh": "Très élevé"
+  },
+  "why": "Pourquoi il fait chaud",
+  "hottest": "Zones les plus chaudes près de vous",
+  "seeMap": "Voir la carte",
+  "lst": "Toits et routes",
+  "hum": "Humidité",
+  "wind": "Vent",
+  "upd": "Mis à jour",
+  "alerts": "Alertes",
+  "changeLoc": "Changer de lieu",
+  "aboveNormal": "Le maximum d’aujourd’hui {d} au-dessus de la normale",
+  "belowNormal": "Le maximum d’aujourd’hui {d} sous la normale",
+  "nearNormal": "Le maximum d’aujourd’hui est normal pour la date",
+  "bmd": "{level} · selon les seuils de BMD",
+  "warning": "Alerte chaleur",
+  "forecast": "5 prochains jours",
+  "today": "Aujourd’hui",
+  "forecastA11y": "{day} : max {max}, min {min}, ressenti {feels}, {risk}",
+  "estimate": "estimation",
+  "causes": {
+    "sealed_surface": "Surface imperméable {pct}%",
+    "low_green": "Végétation {pct}%",
+    "dense_buildings": "Bâtiments denses {per_ha}/ha",
+    "wide_roads": "Routes {pct}%",
+    "dark_roofs": "Toits sombres {pct}%"
+  },
+  "whatIf": "+ Vert",
+  "whatIfA11y": "Couverture verte ajoutée",
+  "wi0": "Faites glisser pour voir l’effet de la plantation.",
+  "wi": "≈ {t} arbres → {s} · {d}",
+  "setGoal": "Fixer un objectif",
+  "noZone": "Nous n’avons pas encore trouvé de zone chaude autour de vous. Ouvrez la carte pour examiner une zone plus large.",
+  "airq": {
+    "title": "Qualité de l’air",
+    "src": "PM2.5 μg/m³ · {time}"
+  },
+  "due": {
+    "title": "{count, plural, one {{n} arbre a besoin d’une photo} other {{n} arbres ont besoin d’une photo}}",
+    "od": "en retard de {n} jours",
+    "today": "à faire aujourd’hui",
+    "soon": "à faire dans {n} jours",
+    "rule": "Chaque arbre a besoin d’une photo tous les 15 jours pour garder ses points.",
+    "submit": "Envoyer la photo",
+    "mine": "Mes arbres",
+    "guestTitle": "Vous plantez des arbres ?",
+    "guestBody": "Créez un compte gratuit pour suivre chaque arbre et recevoir un rappel photo tous les 15 jours.",
+    "guestCta": "Créer un compte gratuit"
+  },
+  "goal": "Votre objectif",
+  "goalLine": "{d} d’ici {date}",
+  "goalSub": "{who} · {d} modélisé",
+  "next": "Tâche suivante",
+  "logAction": "Noter",
+  "goalCta": {
+    "title": "Fixer un objectif de fraîcheur",
+    "body": "Choisissez un objectif pour {zone} et obtenez un plan étape par étape avec les coûts.",
+    "bodyNoZone": "Choisissez un objectif pour votre quartier et obtenez un plan étape par étape avec les coûts.",
+    "cta": "Fixer un objectif"
+  },
+  "goalFeature": "fixer un objectif de fraîcheur",
+  "treesFeature": "suivre vos arbres"
+}

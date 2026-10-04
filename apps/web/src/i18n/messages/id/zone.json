@@ -1,1 +1,96 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "back": "Kembali",
+  "heroA11y": "Peta {zone}",
+  "sub": "{place} · {d} dari Anda",
+  "distOnly": "{d} dari Anda",
+  "anom": "{d} dibanding rata-rata 20 tahun",
+  "vhigh": "Sangat tinggi",
+  "high": "Tinggi",
+  "observed": "Tingkat panas · sekarang",
+  "air": "Udara",
+  "feels": "Terasa seperti",
+  "roof": "Atap & jalan",
+  "lstNote": "Atap & jalan adalah perkiraan suhu permukaan dari tutupan lahan OpenStreetMap dan suhu udara langsung. Permukaan menjadi lebih panas daripada udara yang Anda rasakan.",
+  "whyTitle": "Mengapa blok ini panas",
+  "aiLabel": "Penjelasan AI",
+  "aiNote": "Ditulis AI hanya dari angka di atas. Bisa keliru; angka berasal dari estimasi panas kami.",
+  "noWhy": "Penyebab ini paling menambah panas di sini:",
+  "whatIfTitle": "Bagaimana jika ditambah ruang hijau?",
+  "years": {
+    "title": "Dari tahun ke tahun",
+    "kind": "Suhu udara, musim panas",
+    "kindLst": "Suhu permukaan, musim panas",
+    "layers": {
+      "day": "Siang",
+      "night": "Malam"
+    },
+    "year": "Tahun",
+    "value": "{year}",
+    "vsAvg": "vs rata-rata 20 thn",
+    "trend": "Tren / dekade",
+    "perDecade": "{d} / dekade",
+    "note": "Rata-rata musim panas dari {kind, select, max {suhu udara maksimum harian} other {suhu udara minimum harian}} dari arsip Open-Meteo (ERA5). Ini adalah suhu udara untuk area ini, bukan suhu permukaan satelit.",
+    "avg": "Rata-rata 20 thn",
+    "chartA11y": "{kind} dari {from} sampai {to}. Rata-rata {avg}. Tren {trend} per dekade.",
+    "empty": "Belum ada riwayat untuk tempat ini."
+  },
+  "drivers": {
+    "label": "Pendorong · penyebab",
+    "title": "Apa yang membuat blok ini panas",
+    "adds": "ditambah oleh tutupan lahan (estimasi)",
+    "addsLbl": "Tambahan tiap penyebab",
+    "addsShort": "Menambah {d}",
+    "estimate": "estimasi",
+    "fixL": "Atasi",
+    "addGoal": "Tambahkan ke target",
+    "perHa": "{n} bangunan / ha",
+    "sealed": "Permukaan tertutup",
+    "green": "Tutupan hijau",
+    "roofs": "Atap gelap",
+    "density": "Kepadatan bangunan",
+    "why": {
+      "sealed": "Beton dan aspal menyerap matahari sepanjang hari dan memantulkan panasnya kembali pada malam hari, jadi blok ini tidak pernah benar-benar sejuk.",
+      "green": "Pohon menyejukkan lewat naungan dan dengan menguapkan air. Tutupan hijau yang lebih sedikit berarti keduanya juga lebih sedikit.",
+      "roofs": "Atap gelap jauh lebih panas daripada atap terang saat siang dan memanaskan ruangan di bawahnya.",
+      "density": "Bangunan yang rapat memerangkap panas dan menghalangi angin, jadi malam tetap hangat."
+    },
+    "fix": {
+      "sealed": "Ganti sebagian perkerasan dengan paving rumput atau lubang pohon",
+      "green": "Tanam pohon jalan di sepanjang jalan utama",
+      "roofs": "Lapisi atap terbesar dengan lapisan atap sejuk",
+      "density": "Pasang kain peneduh di gang tersempit"
+    },
+    "source": "Estimasi panas: tutupan lahan OpenStreetMap + cuaca langsung. Atap gelap adalah porsi yang diasumsikan untuk negara ini."
+  },
+  "setGoal": "Tetapkan target pendinginan",
+  "seeProj": "Lihat proyeksi",
+  "goalFeature": "tetapkan target pendinginan",
+  "proj": {
+    "title": "Proyeksi",
+    "sub": "{zone} · suhu udara rata-rata, musim panas",
+    "subNoZone": "Suhu udara rata-rata, musim panas",
+    "horizon": "Rentang waktu",
+    "doNothing": "Tidak ada tindakan",
+    "withPlan": "Dengan rencana",
+    "goalMark": "Tanggal target",
+    "gap": "Pendinginan dari rencana",
+    "chartA11y": "Tanpa tindakan pada {year}: {a}. Dengan rencana pada {year}: {b}.",
+    "inputs": "Rencana Anda",
+    "trees": "Pohon",
+    "roof": "Atap sejuk",
+    "shade": "Struktur peneduh",
+    "updating": "Memperbarui…",
+    "assumptions": "Asumsi",
+    "rangesNote": "Rentang, bukan janji: tren dari 20 tahun data arsip ditambah koefisien pendinginan yang dipublikasikan.",
+    "start": "Mulai rencana",
+    "empty": "Belum ada proyeksi untuk zona ini."
+  },
+  "notFound": {
+    "title": "Zona ini sudah tidak ada di peta lagi",
+    "body": "ID zona berubah saat area dipindai lagi. Buka peta dan pilih blok itu lagi.",
+    "action": "Buka peta"
+  }
+}

@@ -1,1 +1,100 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "appName": "Atmos X",
+  "back": "Atrás",
+  "close": "Cerrar",
+  "cancel": "Cancelar",
+  "save": "Guardar",
+  "done": "Hecho",
+  "next": "Siguiente",
+  "continue": "Continuar",
+  "retry": "Intentar otra vez",
+  "seeAll": "Ver todo",
+  "loading": "Cargando…",
+  "skipToContent": "Saltar al contenido",
+  "decrease": "Disminuir {label}",
+  "increase": "Aumentar {label}",
+  "heatScore": "Heat Score",
+  "heatScoreA11y": "Heat Score {score}",
+  "askAtmos": "Ask Atmos",
+  "limitReached": "Límite diario alcanzado. Inténtalo más tarde.",
+  "presentationMode": "Modo presentación",
+  "error": {
+    "title": "Algo salió mal",
+    "body": "No pudimos cargar esto. Revisa tu conexión e inténtalo otra vez.",
+    "notAvailable": "Esto aún no está disponible."
+  },
+  "empty": {
+    "title": "Aún no hay nada aquí"
+  },
+  "offline": {
+    "banner": "Estás sin conexión · mostrando datos guardados",
+    "online": "De nuevo en línea"
+  },
+  "install": {
+    "title": "Instala Atmos X",
+    "body": "Agrégalo a tu pantalla de inicio: a pantalla completa, rápido y funciona sin conexión.",
+    "cta": "Instalar",
+    "iosHint": "Toca el botón Compartir y luego “Agregar a pantalla de inicio”.",
+    "dismiss": "Ahora no"
+  },
+  "account": {
+    "title": "Crea una cuenta gratis",
+    "body": "Los invitados pueden mirar. Crea una cuenta gratis para participar.",
+    "feature": "Para {feature}, crea una cuenta gratis.",
+    "perks": {
+      "actions": "Registra acciones y gana puntos",
+      "teams": "Crea un equipo o únete a uno",
+      "goals": "Fija una meta de enfriamiento",
+      "trees": "Da seguimiento a tus árboles cada 15 días",
+      "notifs": "Recibe recordatorios y alertas de calor"
+    },
+    "create": "Crear cuenta gratis",
+    "signIn": "Ya tengo una cuenta",
+    "notNow": "Ahora no",
+    "note": "Tu cuenta vive en este dispositivo. Tus ajustes de invitado se conservan."
+  },
+  "sources": {
+    "label": "Fuentes",
+    "cached": "en caché",
+    "live": "en vivo",
+    "ai": "Estimación de IA",
+    "demo": "Comunidad de prueba"
+  },
+  "risk": {
+    "ok": "Normal",
+    "caution": "Precaución",
+    "xcaution": "Precaución extrema",
+    "danger": "Peligro",
+    "xdanger": "Peligro extremo"
+  },
+  "aqi": {
+    "good": "Buena",
+    "moderate": "Moderada",
+    "usg": "Insalubre para grupos sensibles",
+    "unhealthy": "Insalubre",
+    "very_unhealthy": "Muy insalubre",
+    "hazardous": "Peligrosa"
+  },
+  "location": {
+    "denied": "Se denegó el permiso de ubicación. Busca una ciudad en su lugar.",
+    "unavailable": "No pudimos obtener tu ubicación. Busca una ciudad en su lugar.",
+    "demo": "Mohammadpur, Dhaka"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "Esta página no existe o se ha movido.",
+    "home": "Ir al inicio"
+  },
+  "placeholder": {
+    "title": "{id} · pronto",
+    "body": "Esta pantalla la está construyendo {owner}."
+  },
+  "landingPlaceholder": {
+    "pitch": "Encuentra los bloques más calientes cerca de ti y enfríalos: árboles, techos fríos y sombra, con tus vecinos.",
+    "open": "Abrir la app",
+    "install": "Instalar"
+  }
+}

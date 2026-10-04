@@ -1,1 +1,16 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "main": "Utama",
+  "home": "Beranda",
+  "map": "Peta",
+  "plan": "Rencana",
+  "community": "Komunitas",
+  "profile": "Profil",
+  "fields": "Lahan",
+  "air": "Kualitas udara",
+  "notifications": "Notifikasi",
+  "settings": "Setelan",
+  "about": "Tentang"
+}

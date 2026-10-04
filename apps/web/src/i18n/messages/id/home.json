@@ -1,1 +1,84 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "greet": {
+    "am": "Selamat pagi",
+    "pm": "Selamat siang",
+    "eve": "Selamat malam",
+    "amName": "Selamat pagi, {name}",
+    "pmName": "Selamat siang, {name}",
+    "eveName": "Selamat malam, {name}"
+  },
+  "airTemp": "Suhu udara",
+  "feels": "Terasa seperti",
+  "zone": "Zona Anda",
+  "score": "Heat Score",
+  "level": {
+    "low": "Rendah",
+    "moderate": "Sedang",
+    "elevated": "Meningkat",
+    "high": "Tinggi",
+    "vhigh": "Sangat tinggi"
+  },
+  "why": "Mengapa panas",
+  "hottest": "Zona terpanas di dekat Anda",
+  "seeMap": "Lihat peta",
+  "lst": "Atap & jalan",
+  "hum": "Kelembapan",
+  "wind": "Angin",
+  "upd": "Diperbarui",
+  "alerts": "Notifikasi",
+  "changeLoc": "Ubah lokasi",
+  "aboveNormal": "Suhu tinggi hari ini {d} di atas normal",
+  "belowNormal": "Suhu tinggi hari ini {d} di bawah normal",
+  "nearNormal": "Suhu tinggi hari ini normal untuk tanggal ini",
+  "bmd": "{level} · berdasarkan ambang BMD",
+  "warning": "Peringatan panas",
+  "forecast": "5 hari ke depan",
+  "today": "Hari ini",
+  "forecastA11y": "{day}: tinggi {max}, rendah {min}, terasa seperti {feels}, {risk}",
+  "estimate": "perkiraan",
+  "causes": {
+    "sealed_surface": "Permukaan tertutup {pct}%",
+    "low_green": "Ruang hijau {pct}%",
+    "dense_buildings": "Bangunan padat {per_ha}/ha",
+    "wide_roads": "Jalan {pct}%",
+    "dark_roofs": "Atap gelap {pct}%"
+  },
+  "whatIf": "+ Hijau",
+  "whatIfA11y": "Tutupan hijau ditambah",
+  "wi0": "Seret untuk melihat dampak penanaman.",
+  "wi": "≈ {t} pohon → {s} · {d}",
+  "setGoal": "Tetapkan target",
+  "noZone": "Kami belum menemukan zona panas di sekitar Anda. Buka peta untuk memindai area yang lebih luas.",
+  "airq": {
+    "title": "Kualitas udara",
+    "src": "PM2.5 μg/m³ · {time}"
+  },
+  "due": {
+    "title": "{count, plural, one {{n} pohon perlu foto} other {{n} pohon perlu foto}}",
+    "od": "terlambat {n} hari",
+    "today": "jatuh tempo hari ini",
+    "soon": "jatuh tempo dalam {n} hari",
+    "rule": "Setiap pohon perlu foto setiap 15 hari untuk menjaga poinnya.",
+    "submit": "Kirim foto",
+    "mine": "Pohon saya",
+    "guestTitle": "Menanam pohon?",
+    "guestBody": "Buat akun gratis untuk melacak setiap pohon dan mendapat pengingat foto setiap 15 hari.",
+    "guestCta": "Buat akun gratis"
+  },
+  "goal": "Target Anda",
+  "goalLine": "{d} pada {date}",
+  "goalSub": "{who} · {d} dimodelkan",
+  "next": "Tugas berikutnya",
+  "logAction": "Catat",
+  "goalCta": {
+    "title": "Tetapkan target pendinginan",
+    "body": "Pilih target untuk {zone} dan dapatkan rencana langkah demi langkah dengan biaya.",
+    "bodyNoZone": "Pilih target untuk blok Anda dan dapatkan rencana langkah demi langkah dengan biaya.",
+    "cta": "Tetapkan target"
+  },
+  "goalFeature": "tetapkan target pendinginan",
+  "treesFeature": "lacak pohon Anda"
+}

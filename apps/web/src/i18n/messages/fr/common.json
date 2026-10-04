@@ -1,1 +1,100 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "appName": "Atmos X",
+  "back": "Retour",
+  "close": "Fermer",
+  "cancel": "Annuler",
+  "save": "Enregistrer",
+  "done": "Terminé",
+  "next": "Suivant",
+  "continue": "Continuer",
+  "retry": "Réessayer",
+  "seeAll": "Tout voir",
+  "loading": "Chargement…",
+  "skipToContent": "Aller au contenu",
+  "decrease": "Diminuer {label}",
+  "increase": "Augmenter {label}",
+  "heatScore": "Heat Score",
+  "heatScoreA11y": "Heat Score {score}",
+  "askAtmos": "Ask Atmos",
+  "limitReached": "Limite quotidienne atteinte. Réessayez plus tard.",
+  "presentationMode": "Mode présentation",
+  "error": {
+    "title": "Une erreur s’est produite",
+    "body": "Nous n’avons pas pu charger ce contenu. Vérifiez votre connexion et réessayez.",
+    "notAvailable": "Ce n’est pas encore disponible."
+  },
+  "empty": {
+    "title": "Rien ici pour le moment"
+  },
+  "offline": {
+    "banner": "Vous êtes hors ligne · données enregistrées affichées",
+    "online": "De retour en ligne"
+  },
+  "install": {
+    "title": "Installer Atmos X",
+    "body": "Ajoutez-le à votre écran d’accueil : plein écran, rapide et fonctionne hors ligne.",
+    "cta": "Installer",
+    "iosHint": "Touchez le bouton Partager, puis « Ajouter à l’écran d’accueil ».",
+    "dismiss": "Pas maintenant"
+  },
+  "account": {
+    "title": "Créer un compte gratuit",
+    "body": "Les invités peuvent regarder. Créez un compte gratuit pour participer.",
+    "feature": "Pour {feature}, créez un compte gratuit.",
+    "perks": {
+      "actions": "Enregistrez vos actions et gagnez des points",
+      "teams": "Créez ou rejoignez une équipe",
+      "goals": "Fixez un objectif de fraîcheur",
+      "trees": "Suivez vos arbres tous les 15 jours",
+      "notifs": "Recevez des rappels et des alertes chaleur"
+    },
+    "create": "Créer un compte gratuit",
+    "signIn": "J’ai déjà un compte",
+    "notNow": "Pas maintenant",
+    "note": "Votre compte reste sur cet appareil. Vos réglages invité sont conservés."
+  },
+  "sources": {
+    "label": "Sources",
+    "cached": "en cache",
+    "live": "en direct",
+    "ai": "Estimation IA",
+    "demo": "Communauté de démo"
+  },
+  "risk": {
+    "ok": "Normal",
+    "caution": "Prudence",
+    "xcaution": "Prudence extrême",
+    "danger": "Danger",
+    "xdanger": "Danger extrême"
+  },
+  "aqi": {
+    "good": "Bon",
+    "moderate": "Modéré",
+    "usg": "Mauvais pour les groupes sensibles",
+    "unhealthy": "Mauvais",
+    "very_unhealthy": "Très mauvais",
+    "hazardous": "Dangereux"
+  },
+  "location": {
+    "denied": "La permission de localisation a été refusée. Recherchez une ville à la place.",
+    "unavailable": "Impossible d’obtenir votre position. Recherchez une ville à la place.",
+    "demo": "Mohammadpur, Dhaka"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "Cette page n’existe pas ou a été déplacée.",
+    "home": "Retour à l’accueil"
+  },
+  "placeholder": {
+    "title": "{id} · bientôt disponible",
+    "body": "Cet écran est en cours de création par {owner}."
+  },
+  "landingPlaceholder": {
+    "pitch": "Trouvez les zones les plus chaudes autour de vous et rafraîchissez-les : des arbres, des toits frais et de l’ombre, avec vos voisins.",
+    "open": "Ouvrir l’application",
+    "install": "Installer"
+  }
+}

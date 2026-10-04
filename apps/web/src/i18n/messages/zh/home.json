@@ -1,1 +1,84 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "greet": {
+    "am": "早上好",
+    "pm": "下午好",
+    "eve": "晚上好",
+    "amName": "早上好，{name}",
+    "pmName": "下午好，{name}",
+    "eveName": "晚上好，{name}"
+  },
+  "airTemp": "气温",
+  "feels": "体感温度",
+  "zone": "你的区域",
+  "score": "Heat Score",
+  "level": {
+    "low": "低",
+    "moderate": "中等",
+    "elevated": "偏高",
+    "high": "高",
+    "vhigh": "很高"
+  },
+  "why": "为什么这么热",
+  "hottest": "你附近最热区域",
+  "seeMap": "查看地图",
+  "lst": "屋顶和道路",
+  "hum": "湿度",
+  "wind": "风速",
+  "upd": "已更新",
+  "alerts": "通知",
+  "changeLoc": "更改位置",
+  "aboveNormal": "今天最高气温比常年高 {d}。",
+  "belowNormal": "今天最高气温比常年低 {d}。",
+  "nearNormal": "今天最高气温属正常水平。",
+  "bmd": "{level} · 基于 BMD 阈值",
+  "warning": "高温预警",
+  "forecast": "未来 5 天",
+  "today": "今天",
+  "forecastA11y": "{day}：最高 {max}，最低 {min}，体感 {feels}，{risk}",
+  "estimate": "估算",
+  "causes": {
+    "sealed_surface": "硬化地面 {pct}%",
+    "low_green": "绿地 {pct}%",
+    "dense_buildings": "密集建筑 {per_ha}/ha",
+    "wide_roads": "道路 {pct}%",
+    "dark_roofs": "深色屋顶 {pct}%"
+  },
+  "whatIf": "+ 增绿",
+  "whatIfA11y": "新增绿化覆盖",
+  "wi0": "拖动看看种植会怎样。",
+  "wi": "≈ {t} 棵树 → {s} · {d}",
+  "setGoal": "设目标",
+  "noZone": "我们还没找到你附近的热区。打开地图查看更多区域。",
+  "airq": {
+    "title": "空气质量",
+    "src": "PM2.5 μg/m³ · {time}"
+  },
+  "due": {
+    "title": "{count, plural, other {{n} 棵树需要照片}}",
+    "od": "逾期 {n} 天",
+    "today": "今天到期",
+    "soon": "{n} 天内到期",
+    "rule": "每棵树每 15 天要传一张照片，才能保住积分。",
+    "submit": "上传照片",
+    "mine": "我的树",
+    "guestTitle": "要种树吗？",
+    "guestBody": "创建免费账号，跟踪每棵树，并每 15 天收到一次照片提醒。",
+    "guestCta": "创建免费账号"
+  },
+  "goal": "你的目标",
+  "goalLine": "在 {date} 前达到 {d}",
+  "goalSub": "{who} · 已建模 {d}",
+  "next": "下一项任务",
+  "logAction": "记录",
+  "goalCta": {
+    "title": "设置降温目标",
+    "body": "为 {zone} 选择一个目标，获取包含费用的分步方案。",
+    "bodyNoZone": "为你的街区选择一个目标，获取包含费用的分步方案。",
+    "cta": "设目标"
+  },
+  "goalFeature": "设置降温目标",
+  "treesFeature": "跟踪你的树"
+}

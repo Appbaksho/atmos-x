@@ -1,1 +1,92 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "空气质量",
+  "sub": "{place} · 现在 {time}",
+  "pm25": "PM2.5",
+  "unit": "μg/m³",
+  "aqi": "AQI {n}",
+  "aqiShort": "AQI",
+  "who": "世卫组织 15",
+  "vsWho": "比世卫组织 24 小时指南 15 μg/m³ 高 {x}×。",
+  "underWho": "在世卫组织 24 小时指南 15 μg/m³ 以内。",
+  "bandA11y": "PM2.5 {pm}，{cat}。世卫组织指南 15 μg/m³。",
+  "ringA11y": "AQI {n}，{cat}",
+  "fcTitle": "未来几天",
+  "fcAlert": "{day}：PM2.5 预计将达到 {pm}。请把办事和锻炼安排在更清洁的时段。",
+  "fcA11y": "未来 {n} 天的 PM2.5 预测，{day} 将达到 {pm} 的峰值",
+  "today": "今天",
+  "planTitle": "清洁空气计划",
+  "planSub": "依据今天的 AQI 档位（美国 EPA 2024）",
+  "sens": "家里有人对空气敏感",
+  "sensSub": "儿童、老人，或有心肺疾病 · 仅保存在这台手机上",
+  "lead": "先做好防护。空气差时请遵医嘱。",
+  "sensors": "我的传感器",
+  "sensorsSub": "与区域估算相比",
+  "simulated": "模拟设备（v0）",
+  "noSensors": "还没有传感器",
+  "noSensorsSub": "连接一个 PM2.5 传感器，把你街道的数据与区域数据对比。",
+  "offline": "离线",
+  "vsArea": "{diff} 对比区域",
+  "stations": "附近站点",
+  "connect": "连接我的传感器",
+  "myDev": "我的设备",
+  "devSub": "{n, plural, =0 {没有传感器} one {# 个传感器} other {# 个传感器}}",
+  "addSensor": "添加传感器",
+  "last": "上次读数",
+  "never": "还没有读数",
+  "status": {
+    "online": "在线",
+    "offline": "等待中"
+  },
+  "remove": "移除 {name}",
+  "removed": "传感器已移除",
+  "simNote": "v0 会模拟区域 PM2.5 读数（±8 %），每 5 分钟刷新一次。v1 将支持真实设备上传。",
+  "guestDevices": "传感器会保存在这台设备上的你的账户中。",
+  "addSensorFeature": "添加传感器",
+  "addTitle": "添加传感器",
+  "addSub": "读数会保密 7 天",
+  "step1": "1 · 选择你的方案",
+  "step2": "2 · 它放在哪里？",
+  "step3": "3 · 给它命名",
+  "step4": "4 · 安装检查",
+  "nameL": "传感器名称",
+  "namePh": "阳台节点",
+  "yes": "是",
+  "no": "否",
+  "placeNote": "户外，离地 1.5–3 m，放在阴凉处，进气口朝下，远离厨房排风口、发电机、空调出风口和路边。",
+  "privNote": "你的定位点会保密。公开地图只显示到区域，并隐藏你的名字。",
+  "start": "开始 7 天检查",
+  "startOff": "先回答安装检查",
+  "saved": "传感器已添加",
+  "outd": "户外",
+  "ind": "室内",
+  "outNote": "通过 7 天检查的户外传感器会带上社区标记，加入区域地图。",
+  "inNote": "室内传感器不会公开——它们只用于给你室内与室外建议。",
+  "q1": "它是否避开了直射阳光？",
+  "q2": "它离厨房排风口、发电机或空调出风口是否至少 2 m？",
+  "q3": "进气口是否朝下，并且空气流通？",
+  "builds": {
+    "esp32": {
+      "name": "ESP32 自定义节点",
+      "parts": "ESP32 · Plantower PMS5003 · BME280 或 SHT31",
+      "best": "完全可控；你自己的固件会向 Atmos X 上传数据"
+    },
+    "sc": {
+      "name": "Sensor.Community 套件",
+      "parts": "ESP8266 · Nova SDS011 · BME280 · airrohr",
+      "best": "安装最快；同时发送到 Sensor.Community 和 Atmos X"
+    },
+    "purple": {
+      "name": "PurpleAir 设备",
+      "parts": "2 × PMS5003 · BME280",
+      "best": "无需组装；通过 PurpleAir API 读取 · 价格更高"
+    },
+    "existing": {
+      "name": "已有的 Sensor.Community 传感器",
+      "parts": "通过传感器 ID 连接，仅可读取",
+      "best": "无需新硬件"
+    }
+  }
+}

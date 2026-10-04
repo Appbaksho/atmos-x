@@ -1,1 +1,54 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "welcome": {
+    "head": "Cari blok terpanas. Lalu dinginkan.",
+    "body": "Lihat panas di sekitar Anda dari cuaca langsung dan OpenStreetMap, pelajari mengapa panas, lalu ubah menjadi rencana yang bisa Anda lakukan — sendiri atau bersama tim Anda.",
+    "start": "Mulai",
+    "have": "Saya sudah punya akun",
+    "demo": "Coba demo Dhaka",
+    "roof": "Atap & jalan",
+    "park": "Tepi taman",
+    "pillA11y": "Contoh: {text} {value}, Heat Score {score}"
+  },
+  "language": {
+    "step": "Langkah 1 dari 2",
+    "title": "Pilih bahasa Anda",
+    "detected": "Terdeteksi dari perangkat Anda: {lang}. Ubah kapan saja di Pengaturan.",
+    "sub": "Ubah kapan saja di Pengaturan.",
+    "group": "Bahasa",
+    "temp": "Suhu",
+    "area": "Area",
+    "next": "Lanjut",
+    "back": "Kembali"
+  },
+  "location": {
+    "step": "Langkah 2 dari 2",
+    "back": "Kembali",
+    "search": "Cari tempat",
+    "searchLabel": "Cari kota atau lingkungan",
+    "noResults": "Tidak ada tempat ditemukan",
+    "title": "Pindai area di sekitar titik ini",
+    "using": "Menggunakan lokasi Anda. Cari di atas untuk memindai tempat lain.",
+    "picked": "Cari di atas atau gunakan lokasi Anda untuk mengubah titik.",
+    "demoPinned": "Mode presentasi: titik dikunci ke demo Dhaka.",
+    "radius": "Radius pemindaian",
+    "cells": "{n} sel · {r}",
+    "useLoc": "Gunakan lokasi saya",
+    "scan": "Pindai {r}",
+    "privacy": "Lokasi tepat Anda hanya digunakan untuk pemindaian ini dan tetap di perangkat ini.",
+    "scanning": "Memindai {n} sel…",
+    "s1t": "Mencari zona",
+    "s1d": "{n} sel H3 pada resolusi {res}",
+    "s2t": "Cuaca langsung",
+    "s2d": "Suhu udara Open-Meteo · detik",
+    "s3t": "Tutupan lahan OpenStreetMap",
+    "s3d": "Bangunan, jalan, area hijau, dan air",
+    "s4t": "Faktor skor",
+    "s4d": "Tutupan hijau, permukaan kedap, kepadatan, air",
+    "slow": "Ini butuh waktu — kami akan menyelesaikan pemindaian di peta.",
+    "demo": "Atau coba demo Dhaka",
+    "mapA11y": "Peta dengan lingkaran pemindaian di sekitar {place}"
+  }
+}

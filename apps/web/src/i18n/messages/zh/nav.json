@@ -1,1 +1,16 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "main": "主菜单",
+  "home": "首页",
+  "map": "地图",
+  "plan": "计划",
+  "community": "社区",
+  "profile": "我的",
+  "fields": "农田",
+  "air": "空气质量",
+  "notifications": "通知",
+  "settings": "设置",
+  "about": "关于"
+}

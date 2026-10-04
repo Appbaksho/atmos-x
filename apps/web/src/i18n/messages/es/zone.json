@@ -1,1 +1,96 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "back": "Atrás",
+  "heroA11y": "Mapa de {zone}",
+  "sub": "{place} · a {d} de ti",
+  "distOnly": "A {d} de ti",
+  "anom": "{d} frente al promedio de 20 años",
+  "vhigh": "Muy alto",
+  "high": "Alto",
+  "observed": "Nivel de calor · ahora",
+  "air": "Aire",
+  "feels": "Sensación térmica",
+  "roof": "Techo y calle",
+  "lstNote": "Techo y calle es una estimación de la temperatura de la superficie con la cobertura del suelo de OpenStreetMap y la temperatura del aire en vivo. Las superficies se calientan más que el aire que sientes.",
+  "whyTitle": "Por qué este bloque es tan caliente",
+  "aiLabel": "Explicación de IA",
+  "aiNote": "Escrito por IA solo con los números de arriba. Puede estar mal; los números vienen de nuestra estimación de calor.",
+  "noWhy": "Estas causas aportan más calor aquí:",
+  "whatIfTitle": "¿Y si agregamos verde?",
+  "years": {
+    "title": "A lo largo de los años",
+    "kind": "Temperatura del aire, temporada de calor",
+    "kindLst": "Temperatura de la superficie, temporada de calor",
+    "layers": {
+      "day": "Día",
+      "night": "Noche"
+    },
+    "year": "Año",
+    "value": "{year}",
+    "vsAvg": "vs promedio de 20 años",
+    "trend": "Tendencia / década",
+    "perDecade": "{d} / década",
+    "note": "Promedio de la temporada de calor de la temperatura diaria {kind, select, max {máxima} other {mínima}} del aire del archivo de Open-Meteo (ERA5). Es temperatura del aire del área, no temperatura de la superficie por satélite.",
+    "avg": "Promedio de 20 años",
+    "chartA11y": "{kind} de {from} a {to}. Promedio {avg}. Tendencia {trend} por década.",
+    "empty": "Todavía no hay historial disponible para este lugar."
+  },
+  "drivers": {
+    "label": "Factores · causas",
+    "title": "Qué calienta este bloque",
+    "adds": "añadido por la cobertura del suelo (estimación)",
+    "addsLbl": "Lo que suma cada causa",
+    "addsShort": "Suma {d}",
+    "estimate": "estimación",
+    "fixL": "Solución",
+    "addGoal": "Añadir al objetivo",
+    "perHa": "{n} edificios / ha",
+    "sealed": "Superficie dura",
+    "green": "Cobertura verde",
+    "roofs": "Techos oscuros",
+    "density": "Densidad de edificios",
+    "why": {
+      "sealed": "El concreto y el asfalto absorben el sol todo el día y devuelven el calor por la noche, así que el bloque nunca se enfría del todo.",
+      "green": "Los árboles enfrían con sombra y al evaporar agua. Menos cobertura verde significa menos de ambas.",
+      "roofs": "Los techos oscuros se calientan mucho más que los claros al mediodía y calientan las habitaciones de debajo.",
+      "density": "Los edificios muy juntos atrapan el calor y bloquean el viento, así que las noches siguen cálidas."
+    },
+    "fix": {
+      "sealed": "Cambiar parte del pavimento por adoquines con césped o alcorques",
+      "green": "Plantar árboles de calle a lo largo de las vías principales",
+      "roofs": "Recubrimiento de techo fresco en los techos más grandes",
+      "density": "Toldos de sombra sobre los callejones más estrechos"
+    },
+    "source": "Estimación de calor: cobertura del suelo de OpenStreetMap + tiempo en vivo. Los techos oscuros son una proporción asumida para el país."
+  },
+  "setGoal": "Fijar meta de enfriamiento",
+  "seeProj": "Ver proyección",
+  "goalFeature": "establecer una meta de enfriamiento",
+  "proj": {
+    "title": "Proyección",
+    "sub": "{zone} · temperatura media del aire, temporada de calor",
+    "subNoZone": "Temperatura media del aire, temporada de calor",
+    "horizon": "Horizonte",
+    "doNothing": "No hacer nada",
+    "withPlan": "Con plan",
+    "goalMark": "Fecha objetivo",
+    "gap": "Enfriamiento del plan",
+    "chartA11y": "No hacer nada en {year}: {a}. Con plan en {year}: {b}.",
+    "inputs": "Tu plan",
+    "trees": "Árboles",
+    "roof": "Techo fresco",
+    "shade": "Estructuras de sombra",
+    "updating": "Actualizando…",
+    "assumptions": "Supuestos",
+    "rangesNote": "Rangos, no promesas: tendencia de 20 años de datos de archivo más coeficientes de enfriamiento publicados.",
+    "start": "Iniciar el plan",
+    "empty": "Todavía no hay proyección disponible para esta zona."
+  },
+  "notFound": {
+    "title": "Esta zona ya no está en el mapa",
+    "body": "Los ID de las zonas cambian cuando un área se escanea de nuevo. Abre el mapa y elige otra vez el bloque.",
+    "action": "Abrir el mapa"
+  }
+}

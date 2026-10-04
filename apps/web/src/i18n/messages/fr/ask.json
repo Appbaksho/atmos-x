@@ -1,1 +1,77 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "sub": "Réponses à partir des données Atmos X, avec sources",
+  "hello": "Posez des questions sur la chaleur, la météo, l’air, vos arbres ou vos cultures. Je n’utilise que les données Atmos X et je le dis quand je ne les ai pas.",
+  "ph": "Tapez une question…",
+  "busy": "Vérification des données Atmos X…",
+  "official": "Officiel :",
+  "local": "Alerte Atmos X :",
+  "photoTag": "Photo jointe",
+  "photoAlt": "Votre photo",
+  "photoQ": "Que voyez-vous sur cette photo ?",
+  "attach": "Joindre photo",
+  "removePhoto": "Retirer photo",
+  "send": "Envoyer",
+  "stop": "Arrêter",
+  "newChat": "Nouveau chat",
+  "helpful": "Utile",
+  "thanks": "Merci ✓",
+  "limit": "{n} sur {max} messages utilisés aujourd’hui · pas de conseil médical ni de dose de pesticide",
+  "limitGuest": "{n} sur {max} messages en mode invité aujourd’hui · pas de conseil médical ni de dose de pesticide",
+  "outOfMessages": "Vous avez utilisé vos messages du jour. Revenez demain.",
+  "error": "Impossible de joindre Atmos X. Vérifiez votre connexion et réessayez.",
+  "retry": "Réessayer",
+  "sugg": {
+    "heat": [
+      "Pourquoi ma zone est-elle si chaude ?",
+      "Est-il sûr de courir à 18 h ?"
+    ],
+    "air": [
+      "Dois-je ouvrir les fenêtres maintenant ?",
+      "Quel masque marche pour PM2.5 ?"
+    ],
+    "farm": [
+      "Dois-je irriguer avant dimanche ?",
+      "Quand mon riz sera-t-il prêt ?"
+    ],
+    "tree": [
+      "Pourquoi les feuilles de {name} s’enroulent-elles ?",
+      "Quel arbre dois-je planter ensuite ?"
+    ]
+  },
+  "myTree": "Mon arbre",
+  "screen": {
+    "S01": "Bienvenue",
+    "S02": "Bienvenue",
+    "S03": "Bienvenue",
+    "S04": "Accueil",
+    "S05": "Carte de chaleur",
+    "S06": "Détail de la zone",
+    "S07": "Projection",
+    "S08": "Assistant d’objectif",
+    "S09": "Faisabilité",
+    "S10": "Plan",
+    "S11": "Détail de l’espèce",
+    "S12": "Carte des pépinières",
+    "S13": "Budget",
+    "S14": "Enregistrer l’action",
+    "S15": "Détail de la contribution",
+    "S16": "Centre communautaire",
+    "S17": "Tableau de bord de l’équipe",
+    "S18": "Page de l’organisation",
+    "S19": "Créer et inviter",
+    "S20": "Profil",
+    "S21": "Notifications",
+    "S22": "Paramètres",
+    "S26": "Qualité de l’air",
+    "S27": "Mes appareils",
+    "S28": "Ajouter un capteur",
+    "S29": "Ask Atmos",
+    "F01": "Accueil des agriculteurs",
+    "F02": "Détail de l’alerte",
+    "F03": "Mes champs",
+    "tree": "Mon arbre"
+  }
+}

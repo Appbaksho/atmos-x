@@ -1,1 +1,92 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Qualité de l’air",
+  "sub": "{place} · maintenant {time}",
+  "pm25": "PM2.5",
+  "unit": "μg/m³",
+  "aqi": "AQI {n}",
+  "aqiShort": "AQI",
+  "who": "OMS 15",
+  "vsWho": "{x}× la directive OMS de 15 μg/m³ sur 24 h.",
+  "underWho": "Dans la directive OMS de 15 μg/m³ sur 24 h.",
+  "bandA11y": "PM2.5 {pm}, {cat}. Directive OMS 15 μg/m³.",
+  "ringA11y": "AQI {n}, {cat}",
+  "fcTitle": "Prochains jours",
+  "fcAlert": "{day} : le PM2.5 devrait atteindre {pm}. Prévoyez vos sorties et l’exercice aux heures les plus propres.",
+  "fcA11y": "Prévision de PM2.5 pour les {n} prochains jours, avec un pic à {pm} le {day}",
+  "today": "Aujourd’hui",
+  "planTitle": "Plan air propre",
+  "planSub": "Selon la bande AQI d’aujourd’hui (US EPA 2024)",
+  "sens": "Une personne sensible à la maison",
+  "sensSub": "Enfant, personne âgée, problème cardiaque ou pulmonaire · enregistré seulement sur ce téléphone",
+  "lead": "La protection d’abord. Suivez l’avis de votre médecin les jours très élevés.",
+  "sensors": "Mes capteurs",
+  "sensorsSub": "Comparés à l’estimation de la zone",
+  "simulated": "Appareil simulé (v0)",
+  "noSensors": "Pas encore de capteur",
+  "noSensorsSub": "Connectez un capteur PM2.5 pour comparer votre rue à la zone.",
+  "offline": "Hors ligne",
+  "vsArea": "{diff} par rapport à la zone",
+  "stations": "Stations proches",
+  "connect": "Connecter mon capteur",
+  "myDev": "Mes appareils",
+  "devSub": "{n, plural, =0 {Aucun capteur} one {# capteur} other {# capteurs}}",
+  "addSensor": "Ajouter un capteur",
+  "last": "Dernière mesure",
+  "never": "Aucune mesure pour l’instant",
+  "status": {
+    "online": "En ligne",
+    "offline": "En attente"
+  },
+  "remove": "Retirer {name}",
+  "removed": "Capteur retiré",
+  "simNote": "La v0 simule des mesures à partir du PM2.5 de la zone (±8 %), actualisées toutes les 5 minutes. Les envois du vrai appareil arriveront en v1.",
+  "guestDevices": "Les capteurs sont enregistrés sur votre compte sur cet appareil.",
+  "addSensorFeature": "ajouter un capteur",
+  "addTitle": "Ajouter un capteur",
+  "addSub": "Les mesures restent privées pendant 7 jours",
+  "step1": "1 · Choisissez votre modèle",
+  "step2": "2 · Où est-il ?",
+  "step3": "3 · Donnez-lui un nom",
+  "step4": "4 · Vérification du placement",
+  "nameL": "Nom du capteur",
+  "namePh": "Nœud balcon",
+  "yes": "Oui",
+  "no": "Non",
+  "placeNote": "À l’extérieur, à 1,5–3 m, à l’ombre, entrée vers le bas, loin des bouches de cuisine, des générateurs, de la sortie de clim et du bord de route.",
+  "privNote": "Votre position reste privée. La carte publique se limite à la zone et cache votre nom.",
+  "start": "Commencer la vérification sur 7 jours",
+  "startOff": "Répondez d’abord à la vérification du placement",
+  "saved": "Capteur ajouté",
+  "outd": "Extérieur",
+  "ind": "Intérieur",
+  "outNote": "Les capteurs extérieurs qui passent la vérification de 7 jours rejoignent la carte de la zone avec un badge communautaire.",
+  "inNote": "Les capteurs intérieurs ne sont jamais publics — ils servent à vos conseils intérieur vs extérieur.",
+  "q1": "Est-il à l’ombre du soleil direct ?",
+  "q2": "Est-il à au moins 2 m d’une bouche de cuisine, d’un générateur ou de la sortie de clim ?",
+  "q3": "L’entrée est-elle vers le bas avec un flux d’air libre ?",
+  "builds": {
+    "esp32": {
+      "name": "Nœud personnalisé ESP32",
+      "parts": "ESP32 · Plantower PMS5003 · BME280 ou SHT31",
+      "best": "Contrôle total ; votre propre firmware envoie à Atmos X"
+    },
+    "sc": {
+      "name": "Kit Sensor.Community",
+      "parts": "ESP8266 · Nova SDS011 · BME280 · airrohr",
+      "best": "Installation la plus rapide ; envoie vers Sensor.Community et Atmos X à la fois"
+    },
+    "purple": {
+      "name": "Unité PurpleAir",
+      "parts": "2 × PMS5003 · BME280",
+      "best": "Pas de montage ; lecture via l’API PurpleAir · coûte plus"
+    },
+    "existing": {
+      "name": "Capteur Sensor.Community déjà existant",
+      "parts": "Lier par ID de capteur, lecture seule",
+      "best": "Pas de nouveau matériel"
+    }
+  }
+}

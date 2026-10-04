@@ -1,1 +1,100 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "appName": "Atmos X",
+  "back": "Kembali",
+  "close": "Tutup",
+  "cancel": "Batal",
+  "save": "Simpan",
+  "done": "Selesai",
+  "next": "Berikutnya",
+  "continue": "Lanjutkan",
+  "retry": "Coba lagi",
+  "seeAll": "Lihat semua",
+  "loading": "Memuat…",
+  "skipToContent": "Lewati ke konten",
+  "decrease": "Kurangi {label}",
+  "increase": "Tambah {label}",
+  "heatScore": "Heat Score",
+  "heatScoreA11y": "Heat Score {score}",
+  "askAtmos": "Ask Atmos",
+  "limitReached": "Batas harian tercapai. Coba lagi nanti.",
+  "presentationMode": "Mode presentasi",
+  "error": {
+    "title": "Ada yang salah",
+    "body": "Kami tidak dapat memuat ini. Periksa koneksi Anda dan coba lagi.",
+    "notAvailable": "Ini belum tersedia."
+  },
+  "empty": {
+    "title": "Belum ada apa-apa di sini"
+  },
+  "offline": {
+    "banner": "Anda offline · menampilkan data tersimpan",
+    "online": "Sudah online"
+  },
+  "install": {
+    "title": "Pasang Atmos X",
+    "body": "Tambahkan ke layar utama: layar penuh, cepat, dan bisa digunakan offline.",
+    "cta": "Pasang",
+    "iosHint": "Ketuk tombol Bagikan, lalu “Tambahkan ke Layar Utama”.",
+    "dismiss": "Nanti saja"
+  },
+  "account": {
+    "title": "Buat akun gratis",
+    "body": "Tamu bisa melihat-lihat. Buat akun gratis untuk ikut berpartisipasi.",
+    "feature": "Untuk {feature}, buat akun gratis.",
+    "perks": {
+      "actions": "Catat aksi dan kumpulkan poin",
+      "teams": "Buat atau bergabung dengan tim",
+      "goals": "Tetapkan target penyejukan",
+      "trees": "Pantau pohon Anda setiap 15 hari",
+      "notifs": "Dapatkan pengingat dan peringatan panas"
+    },
+    "create": "Buat akun gratis",
+    "signIn": "Saya sudah punya akun",
+    "notNow": "Nanti saja",
+    "note": "Akun Anda tersimpan di perangkat ini. Pengaturan tamu Anda tetap terbawa."
+  },
+  "sources": {
+    "label": "Sumber",
+    "cached": "tersimpan",
+    "live": "langsung",
+    "ai": "Perkiraan AI",
+    "demo": "Komunitas demo"
+  },
+  "risk": {
+    "ok": "Normal",
+    "caution": "Waspada",
+    "xcaution": "Waspada ekstrem",
+    "danger": "Bahaya",
+    "xdanger": "Bahaya ekstrem"
+  },
+  "aqi": {
+    "good": "Baik",
+    "moderate": "Sedang",
+    "usg": "Tidak sehat untuk kelompok sensitif",
+    "unhealthy": "Tidak sehat",
+    "very_unhealthy": "Sangat tidak sehat",
+    "hazardous": "Berbahaya"
+  },
+  "location": {
+    "denied": "Izin lokasi ditolak. Cari kota saja.",
+    "unavailable": "Tidak dapat mendapatkan lokasi Anda. Cari kota saja.",
+    "demo": "Mohammadpur, Dhaka"
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Halaman ini tidak ada atau sudah pindah.",
+    "home": "Kembali ke beranda"
+  },
+  "placeholder": {
+    "title": "{id} · segera hadir",
+    "body": "Layar ini sedang dibuat oleh {owner}."
+  },
+  "landingPlaceholder": {
+    "pitch": "Temukan blok terpanas di sekitar Anda dan dinginkan: pohon, atap sejuk, dan naungan, bersama tetangga Anda.",
+    "open": "Buka aplikasi",
+    "install": "Pasang"
+  }
+}

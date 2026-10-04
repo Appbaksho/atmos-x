@@ -1,1 +1,37 @@
-{}
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Carte de chaleur",
+  "within": "Rayon",
+  "estimateShort": "OSM + météo en direct",
+  "estimateNote": "Estimation de chaleur : couverture du sol OpenStreetMap + météo en direct. Les scores comparent les blocs de cette analyse ; ce ne sont pas des mesures satellite.",
+  "yourArea": "votre zone",
+  "mapA11y": "Carte de chaleur de {place}",
+  "layersLabel": "Calque",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA LST"
+  },
+  "legendA11y": "Légende Heat Score : {bands}",
+  "gibsNote": "Température de surface terrestre NASA · mensuelle · ~1 km",
+  "ranked": "Les plus chaudes dans votre rayon",
+  "count": "{count, plural, one {{n} zone} other {{n} zones}}",
+  "nearTie": "Égalité proche",
+  "tieNote": "Les scores à ±3 sont signalés comme quasi égaux — considérez-les comme aussi chauds.",
+  "lstShort": "Surface",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "Détails de la zone",
+  "radius": "Rayon d’analyse",
+  "scanning": "Analyse de {r}…",
+  "showAll": "Afficher les {n}",
+  "showLess": "Afficher les 3 premières",
+  "guestRadius": "analyse de plus de 500 m",
+  "empty": {
+    "title": "Aucune zone chaude trouvée ici",
+    "sub": "Essayez un rayon plus large ou un autre endroit."
+  },
+  "attribution": {
+    "osm": "© contributeurs OpenStreetMap"
+  }
+}
