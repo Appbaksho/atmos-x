@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { requireAccount } from '@/components/cz/account';
 import { toast } from '@/components/cz/toast';
 import { DataError, isGuestRestricted, RateLimitedError } from '@/lib/data/errors';
+import { getDataContext, subscribeDataContext } from '@/lib/data/local/context';
 
 export function makeQueryClient(handlers: { onGuest: () => void; onRateLimited: () => void }) {
   const handle = (error: unknown, meta?: Record<string, unknown>) => {
@@ -50,5 +51,15 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
       onRateLimited: () => toast(limitText, { tone: 'warn' }),
     }),
   );
+  // When the data context switches (guest → account → Presentation mode), local data moves to another
+  // namespace and may finish seeding after the first reads: refetch everything once it settles.
+  useEffect(() => {
+    let last = getDataContext();
+    return subscribeDataContext(() => {
+      const next = getDataContext();
+      if (next.ready && (next.ns !== last.ns || next.ready !== last.ready)) void client.invalidateQueries();
+      last = next;
+    });
+  }, [client]);
   return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
 }
