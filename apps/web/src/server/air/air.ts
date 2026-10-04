@@ -3,6 +3,7 @@ import 'server-only';
 import type { Air, LatLng } from '@/lib/data/types';
 
 import { cached, TTL } from '../cache';
+import { env } from '../env';
 import { fetchJSON } from '../http';
 import { makeMeta, SRC, src } from '../meta';
 import { snapshot } from '../snapshots';
@@ -21,7 +22,7 @@ export async function fetchAir(p: LatLng) {
   try {
     const r = await cached(`air:${lat},${lng}`, TTL.air, () =>
       fetchJSON<Raw>(
-        `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lng}&current=pm2_5,pm10&hourly=pm2_5,pm10&forecast_days=5&timezone=auto`,
+        `${env.upstream.air}?latitude=${lat}&longitude=${lng}&current=pm2_5,pm10&hourly=pm2_5,pm10&forecast_days=5&timezone=auto`,
       ),
     );
     return { data: r.value, live: r.fresh, at: r.at };

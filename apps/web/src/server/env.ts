@@ -43,6 +43,23 @@ export const env = {
           'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
         ];
   },
+  /**
+   * Upstream base URLs. Point them at a dead host to rehearse the offline safety net
+   * (snapshots / caches): OPEN_METEO_BASE_URL replaces the host of all four Open-Meteo APIs
+   * (e.g. http://127.0.0.1:9), or override each one with its own variable.
+   */
+  get upstream(): { forecast: string; archive: string; air: string; geocoding: string; nominatim: string; nasaPower: string } {
+    const om = (process.env.OPEN_METEO_BASE_URL || '').trim().replace(/\/+$/, '');
+    const pick = (own: string | undefined, path: string, host: string) => (own || '').trim() || (om ? `${om}${path}` : `${host}${path}`);
+    return {
+      forecast: pick(process.env.OPEN_METEO_FORECAST_URL, '/v1/forecast', 'https://api.open-meteo.com'),
+      archive: pick(process.env.OPEN_METEO_ARCHIVE_URL, '/v1/archive', 'https://archive-api.open-meteo.com'),
+      air: pick(process.env.OPEN_METEO_AIR_URL, '/v1/air-quality', 'https://air-quality-api.open-meteo.com'),
+      geocoding: pick(process.env.OPEN_METEO_GEOCODING_URL, '/v1/search', 'https://geocoding-api.open-meteo.com'),
+      nominatim: (process.env.NOMINATIM_URL || '').trim() || 'https://nominatim.openstreetmap.org/reverse',
+      nasaPower: (process.env.NASA_POWER_URL || '').trim() || 'https://power.larc.nasa.gov/api/temporal',
+    };
+  },
   get demo(): { lat: number; lng: number } {
     return { lat: num(process.env.NEXT_PUBLIC_DEMO_LAT, 23.759), lng: num(process.env.NEXT_PUBLIC_DEMO_LNG, 90.359) };
   },

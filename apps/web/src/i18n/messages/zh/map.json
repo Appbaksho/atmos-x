@@ -4,6 +4,7 @@
   },
   "title": "热力图",
   "within": "范围",
+  "withinR": "在 {r} 内",
   "estimateShort": "OSM + 实时天气",
   "estimateNote": "热量估算：OpenStreetMap 地表覆盖 + 实时天气。分数只比较本次扫描内的街区；不是卫星测量。",
   "yourArea": "你的区域",

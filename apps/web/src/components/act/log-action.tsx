@@ -42,11 +42,21 @@ import type { ActionTypeId } from '@/lib/data/types';
 
 import { ACTION_ICON, ACTION_ORDER, qtyText } from './action-meta';
 import { useReasonText } from './reason';
-import { iso } from '@/components/plan/bidi';
 
 const IDS = new Set<string>(ACTION_ORDER);
 
-export function LogActionScreen({ initialType, initialSpecies, goalId }: { initialType?: string | null; initialSpecies?: string | null; goalId?: string | null }) {
+export function LogActionScreen({
+  initialType,
+  initialSpecies,
+  goalId,
+  teamId: initialTeam,
+}: {
+  initialType?: string | null;
+  initialSpecies?: string | null;
+  goalId?: string | null;
+  /** `?team=<id>` (team page "Log an action"): credit that team when I'm a member */
+  teamId?: string | null;
+}) {
   const t = useTranslations('act.log');
   const ta = useTranslations('act');
   const tu = useTranslations('act.unit');
@@ -63,7 +73,7 @@ export function LogActionScreen({ initialType, initialSpecies, goalId }: { initi
   const [sp, setSp] = useState<string | null>(initialSpecies ?? null);
   const [qty, setQty] = useState(type === 'plant_tree' ? 3 : 1);
   const [nickname, setNickname] = useState('');
-  const [credit, setCredit] = useState<string>('auto');
+  const [credit, setCredit] = useState<string>(initialTeam || 'auto');
   const [useGoal, setUseGoal] = useState(true);
   const [note, setNote] = useState('');
   const [result, setResult] = useState<LogActionResult | null>(null);
@@ -73,7 +83,10 @@ export function LogActionScreen({ initialType, initialSpecies, goalId }: { initi
   const spList = species.data?.species ?? [];
   const spId = sp ?? spList[0]?.id ?? null;
   const myTeams = teams.data ?? [];
-  const teamId = credit === 'auto' ? (goal?.team_id && myTeams.some((x) => x.id === goal.team_id) ? goal.team_id : null) : credit === 'me' ? null : credit;
+  const isMine = (id: string | null | undefined) => !!id && myTeams.some((x) => x.id === id);
+  const goalTeam = goal?.team_id && isMine(goal.team_id) ? goal.team_id : null;
+  // A preselected team (?team=) only counts once it's one of my teams; otherwise fall back to auto.
+  const teamId = credit === 'me' ? null : credit !== 'auto' && isMine(credit) ? credit : goalTeam;
   const meta = ACTION_BY_ID[type];
   const score = scoreAction(type, qty);
 
@@ -220,7 +233,7 @@ export function LogActionScreen({ initialType, initialSpecies, goalId }: { initi
                 {t('species')}
               </Txt>
               <HScroll gap={6} style={{ marginInline: -16, paddingInline: 16 }} label={t('speciesPick')}>
-                {[...spList.map((s) => ({ id: s.id, label: f.lang !== 'en' && s.local_name ? s.local_name : s.name })), { id: 'unknown', label: t('speciesOther') }].map((o) => {
+                {[...spList.map((s) => ({ id: s.id, label: s.name })), { id: 'unknown', label: t('speciesOther') }].map((o) => {
                   const on = spId === o.id;
                   return (
                     <Tap
@@ -280,7 +293,7 @@ export function LogActionScreen({ initialType, initialSpecies, goalId }: { initi
                   {t('cGoal', { zone: goal.zone_name })}
                 </Txt>
                 <Txt size={12} dim>
-                  {t('cGoalSub', { target: iso(f.dC(goal.target_c)), date: f.date(goal.by_date, { month: 'short', year: 'numeric' }) })}
+                  {t('cGoalSub', { target: f.dC(goal.target_c), date: f.date(goal.by_date, { month: 'short', year: 'numeric' }) })}
                 </Txt>
               </View>
             </Tap>
@@ -433,7 +446,7 @@ function Result({ result, photo, onAnother }: { result: LogActionResult; photo: 
         {trees.length ? (
           <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
             <Icon d={I.tree} size={16} sw={2} />
-            <Txt size={13}>{t('treesAdded', { n: trees.length })}</Txt>
+            <Txt size={13}>{t('treesAdded', { count: trees.length, n: f.loc(trees.length) })}</Txt>
           </View>
         ) : null}
         {milestones.map((m) => (

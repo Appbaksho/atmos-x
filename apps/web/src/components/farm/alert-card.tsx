@@ -41,7 +41,7 @@ export function AlertTag({ alert }: { alert: FarmAlert }) {
 
 /** F01: today's alert, ending in one action. */
 export function AlertSummaryCard({ alert, fieldId, more, meta }: { alert: FarmAlert; fieldId?: string | null; more: number; meta?: Meta }) {
-  const { c } = useCz();
+  const { c, f } = useCz();
   const t = useTranslations('farm');
   const ts = useTServer();
   const win = useWindowText();
@@ -80,9 +80,9 @@ export function AlertSummaryCard({ alert, fieldId, more, meta }: { alert: FarmAl
         ) : null}
         <CzButton label={t('home.whatToDo')} icon="arrow" size="md" href={alertHref(alert, fieldId)} />
         {more > 0 ? (
-          <Tap role="link" label={t('home.more', { n: more })} href={href('F03')} style={{ alignSelf: 'center', minHeight: 36, justifyContent: 'center' }}>
+          <Tap role="link" label={t('home.more', { count: more, n: f.loc(more) })} href={href('F03')} style={{ alignSelf: 'center', minHeight: 36, justifyContent: 'center' }}>
             <Txt size={12.5} w={600} color={c.leaf} num>
-              {t('home.more', { n: more })}
+              {t('home.more', { count: more, n: f.loc(more) })}
             </Txt>
           </Tap>
         ) : null}

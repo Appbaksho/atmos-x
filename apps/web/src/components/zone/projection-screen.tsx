@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
 import { useDebounced } from '@/components/cz/hooks';
-import { ErrorState, SkeletonCard, SourceChips } from '@/components/cz/states';
+import { SkeletonCard, SourceChips } from '@/components/cz/states';
 import { B } from '@/components/cz/tokens';
 import { Card, CzButton, CzSlider, Screen, ScreenHeader, Seg, Spinner, Txt, View } from '@/components/cz/ui';
 import { useTServer } from '@/i18n/server-text';
@@ -17,6 +17,8 @@ import { useActiveGoal, usePlan, useProjection, useZone, type ProjectionInput } 
 import type { Projection } from '@/lib/data/types';
 import { useCz } from '@/lib/prefs';
 import { href } from '@/lib/routes';
+
+import { ZoneError } from './zone-not-found';
 
 const CW = 346;
 const CH = 220;
@@ -140,7 +142,8 @@ export function ProjectionScreen({ id }: { id: string }) {
     const acts = plan.data.actions;
     const qty = (a: string) => acts.filter((x) => x.action_type === a).reduce((s, x) => s + x.qty, 0);
     setSeeded(true);
-    setInput({ trees: qty('plant_tree'), roof_m2: qty('cool_roof'), shade: qty('shade_structure') });
+    // PlanAction.qty is in the action's unit: cool_roof counts 10 m² units (plan text says "2,920 m²" for 292).
+    setInput({ trees: qty('plant_tree'), roof_m2: qty('cool_roof') * 10, shade: qty('shade_structure') });
   }
   const debounced = useDebounced(input, 400);
   const proj = useProjection(id, debounced);
@@ -162,7 +165,7 @@ export function ProjectionScreen({ id }: { id: string }) {
 
       {!p ? (
         proj.error ? (
-          <ErrorState error={proj.error} onRetry={() => void proj.refetch()} />
+          <ZoneError error={proj.error} onRetry={() => void proj.refetch()} />
         ) : (
           <SkeletonCard lines={6} />
         )

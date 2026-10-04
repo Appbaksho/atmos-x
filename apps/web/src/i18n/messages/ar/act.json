@@ -49,13 +49,13 @@
     "awareness": "توعية"
   },
   "unit": {
-    "tree": "{n, plural, zero {0 شجرة} one {# شجرة} two {# شجرتان} few {# أشجار} many {# شجرة} other {# شجرة}}",
-    "plants_10": "{n, plural, zero {0 × 10 نباتات} one {# × 10 نباتات} two {# × 10 نباتات} few {# × 10 نباتات} many {# × 10 نباتات} other {# × 10 نباتات}}",
+    "tree": "{count, plural, one {{n} شجرة} other {{n} أشجار}}",
+    "plants_10": "{count, plural, one {{n} × 10 نباتات} other {{n} × 10 نباتات}}",
     "m2_10": "{m2} م²",
     "m2_5": "{m2} م²",
-    "structure": "{n, plural, zero {0 منشأة} one {# منشأة} two {# منشأتان} few {# منشآت} many {# منشأة} other {# منشأة}}",
-    "session": "{n, plural, zero {0 جلسة رعاية} one {# جلسة رعاية} two {# جلستان رعاية} few {# جلسات رعاية} many {# جلسة رعاية} other {# جلسة رعاية}}",
-    "event": "{n, plural, zero {0 فعالية} one {# فعالية} two {# فعاليتان} few {# فعاليات} many {# فعالية} other {# فعالية}}"
+    "structure": "{count, plural, one {{n} هيكل} other {{n} هياكل}}",
+    "session": "{count, plural, one {{n} جلسة رعاية} other {{n} جلسات رعاية}}",
+    "event": "{count, plural, one {{n} فعالية} other {{n} فعاليات}}"
   },
   "log": {
     "title": "سجّل نشاطًا",
@@ -95,7 +95,7 @@
     "confidence": "الثقة {pct}",
     "earned": "نقاط مكتسبة",
     "provisional": "نقاط مؤقتة",
-    "treesAdded": "{n, plural, zero {0 شجرة أُضيفت إلى أشجاري} one {# شجرة أُضيفت إلى أشجاري} two {# شجرتان أُضيفتا إلى أشجاري} few {# أشجار أُضيفت إلى أشجاري} many {# شجرة أُضيفت إلى أشجاري} other {# شجرة أُضيفت إلى أشجاري}}",
+    "treesAdded": "{count, plural, one {{n} شجرة أُضيفت إلى أشجاري} other {{n} أشجار أُضيفت إلى أشجاري}}",
     "milestone": "تم بلوغ مرحلة الهدف: {pct}",
     "seeContribution": "عرض المساهمة",
     "logAnother": "سجّل أخرى",

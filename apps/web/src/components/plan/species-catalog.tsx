@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { Card, ErrorState, FilterChip, GhostButton, HScroll, Icon, SkeletonText, SourceChips, Tap, Txt, View, href, useCz } from '@/components/cz';
 import { useSpecies } from '@/lib/data/hooks';
 import type { LatLng, SpeciesSummary } from '@/lib/data/types';
-import { iso } from './bidi';
 
 const FILTERS = ['all', 'high', 'lowWater', 'cheap'] as const;
 type Filter = (typeof FILTERS)[number];
@@ -54,7 +53,7 @@ export function SpeciesCatalog({ point }: { point: LatLng | null }) {
           </HScroll>
           <View>
             {rows.map((s, k) => {
-              const name = f.lang !== 'en' && s.local_name ? s.local_name : s.name;
+              const name = s.name;
               return (
                 <Tap
                   key={s.id}
@@ -86,7 +85,7 @@ export function SpeciesCatalog({ point }: { point: LatLng | null }) {
                     {s.price ? (
                       <>
                         <Txt size={14} w={600} num lines={1}>
-                          {iso(f.money(s.price))}
+                          {f.money(s.price)}
                         </Txt>
                         <Txt size={10.5} dim lines={1}>
                           {t('perSapling')}

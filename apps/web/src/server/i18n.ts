@@ -1,9 +1,16 @@
 import 'server-only';
 
 import type { I18nText, Locale } from '@/lib/data/types';
+import ar from '@/i18n/messages/ar/server.json';
 import bn from '@/i18n/messages/bn/server.json';
 import en from '@/i18n/messages/en/server.json';
+import es from '@/i18n/messages/es/server.json';
+import fr from '@/i18n/messages/fr/server.json';
+import hi from '@/i18n/messages/hi/server.json';
+import id from '@/i18n/messages/id/server.json';
+import pt from '@/i18n/messages/pt/server.json';
 import ur from '@/i18n/messages/ur/server.json';
+import zh from '@/i18n/messages/zh/server.json';
 
 /**
  * Server-side rendering of `server` namespace strings, for the few places where the server must
@@ -12,12 +19,25 @@ import ur from '@/i18n/messages/ur/server.json';
  */
 
 type Tree = { [k: string]: Tree | string };
-const MESSAGES: Partial<Record<Locale, Tree>> = { en: en as Tree, bn: bn as Tree, ur: ur as Tree };
+// All 10 locales (V0-8 machine-translated the other 7); `_meta` is never looked up as a code.
+const MESSAGES: Record<Locale, Tree> = {
+  en: en as Tree,
+  bn: bn as Tree,
+  ur: ur as Tree,
+  hi: hi as unknown as Tree,
+  ar: ar as unknown as Tree,
+  es: es as unknown as Tree,
+  fr: fr as unknown as Tree,
+  pt: pt as unknown as Tree,
+  id: id as unknown as Tree,
+  zh: zh as unknown as Tree,
+};
 
 export const INTL_LOCALE: Record<Locale, string> = {
   en: 'en-GB',
   bn: 'bn-BD',
-  ur: 'ur-PK',
+  // Urdu digits (۰–۹), as the app's own formatter uses.
+  ur: 'ur-PK-u-nu-arabext',
   hi: 'hi-IN',
   ar: 'ar-EG',
   es: 'es-ES',

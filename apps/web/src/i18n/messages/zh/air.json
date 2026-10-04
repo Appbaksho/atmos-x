@@ -32,7 +32,7 @@
   "stations": "附近站点",
   "connect": "连接我的传感器",
   "myDev": "我的设备",
-  "devSub": "{n, plural, =0 {没有传感器} one {# 个传感器} other {# 个传感器}}",
+  "devSub": "{count, plural, =0 {没有传感器} one {{n} 个传感器} other {{n} 个传感器}}",
   "addSensor": "添加传感器",
   "last": "上次读数",
   "never": "还没有读数",

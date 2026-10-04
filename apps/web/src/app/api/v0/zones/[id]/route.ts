@@ -12,6 +12,6 @@ export const GET = handler<{ params: Promise<{ id: string }> }>(async (req, ctx)
   const { id } = await ctx.params;
   const q = parseQuery(req, Q);
   const d = await getZoneDetail(id, q.lang);
-  if (!d) return apiError(404, 'zone_not_found', `No zone ${id}. Scan again to get fresh zone ids.`);
+  if (!d) return apiError(404, 'zone.not_found', `No zone ${id}. Scan again to get fresh zone ids.`);
   return json(d, { cache: CACHE.pub(600) });
 });

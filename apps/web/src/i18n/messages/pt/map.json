@@ -4,6 +4,7 @@
   },
   "title": "Mapa de calor",
   "within": "Dentro de",
+  "withinR": "Em {r}",
   "estimateShort": "OSM + clima ao vivo",
   "estimateNote": "Estimativa de calor: cobertura do solo do OpenStreetMap + clima ao vivo. As pontuações comparam quarteirões dentro desta varredura; não são medições de satélite.",
   "yourArea": "sua área",

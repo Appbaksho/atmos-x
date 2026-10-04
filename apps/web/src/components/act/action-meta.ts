@@ -42,5 +42,6 @@ export function qtyText(tu: (k: string, p?: Record<string, string | number>) => 
   const unit = unitCode.replace(/^unit\./, '');
   if (unit === 'm2_10') return tu('m2_10', { m2: loc(qty * 10) });
   if (unit === 'm2_5') return tu('m2_5', { m2: loc(qty * 5) });
-  return tu(unit, { n: qty });
+  // `count` selects the plural form; `n` is the display number in the locale's digits.
+  return tu(unit, { count: qty, n: loc(qty) });
 }

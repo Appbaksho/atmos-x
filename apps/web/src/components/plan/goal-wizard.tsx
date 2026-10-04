@@ -37,7 +37,6 @@ import { DEMO_POINT, GUEST_MAX_RADIUS_M, isGuestRestricted, useCreateGoal, useGo
 import type { LatLng } from '@/lib/data/types';
 
 import { TARGETS, TIMELINES, addMonths, capacity, roofCoolingC, shadeCoolingC, treeCoolingC, zoneArea } from './use-goal-plan';
-import { iso } from './bidi';
 
 export function distM(a: LatLng, b: LatLng): number {
   const R0 = 6371000;
@@ -48,9 +47,34 @@ export function distM(a: LatLng, b: LatLng): number {
   return 2 * R0 * Math.asin(Math.sqrt(h));
 }
 
-export function GoalWizard({ zoneId }: { zoneId: string | null }) {
+/** The S06 driver the user tapped "Add to goal" on (`?focus=`). */
+export type GoalFocus = 'sealed' | 'green' | 'roofs' | 'density';
+
+export function GoalWizard({ zoneId, focus = null }: { zoneId: string | null; focus?: GoalFocus | null }) {
   if (!zoneId) return <ZonePicker />;
-  return <Wizard zoneId={zoneId} key={zoneId} />;
+  return <Wizard zoneId={zoneId} focus={focus} key={zoneId} />;
+}
+
+/** "Starting with: Green cover · Plant street trees along the main roads" (from S06 drivers). */
+function FocusCard({ focus }: { focus: GoalFocus }) {
+  const t = useTranslations('plan');
+  const td = useTranslations('zone.drivers');
+  const { c } = useCz();
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: R.md, backgroundColor: c.limeSoft }}>
+      <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: B.lime, alignItems: 'center', justifyContent: 'center' }}>
+        <Icon d={I.trend} size={17} sw={2.2} color={B.limeInk} />
+      </View>
+      <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
+        <Txt size={11.5} dim>
+          {t('focusLabel')} · {td(focus)}
+        </Txt>
+        <Txt size={13.5} w={600}>
+          {td(`fix.${focus}`)}
+        </Txt>
+      </View>
+    </View>
+  );
 }
 
 function ZonePicker() {
@@ -103,7 +127,7 @@ function ZonePicker() {
   );
 }
 
-function Wizard({ zoneId }: { zoneId: string }) {
+function Wizard({ zoneId, focus: driver }: { zoneId: string; focus: GoalFocus | null }) {
   const t = useTranslations('plan');
   const { c, f } = useCz();
   const session = useSession();
@@ -210,6 +234,8 @@ function Wizard({ zoneId }: { zoneId: string }) {
         </Txt>
       </Tap>
 
+      {driver ? <FocusCard focus={driver} /> : null}
+
       {existing ? (
         <Card>
           <Label>{t('existing')}</Label>
@@ -222,7 +248,7 @@ function Wizard({ zoneId }: { zoneId: string }) {
                 {existing.zone_name}
               </Txt>
               <Txt size={12} dim>
-                {t('existingGoal', { target: iso(f.dC(existing.target_c)), date: f.date(existing.by_date, { month: 'short', year: 'numeric' }) })}
+                {t('existingGoal', { target: f.dC(existing.target_c), date: f.date(existing.by_date, { month: 'short', year: 'numeric' }) })}
               </Txt>
             </View>
             <GhostButton label={t('openPlan')} height={40} href={href('S10')} />
@@ -273,11 +299,11 @@ function Wizard({ zoneId }: { zoneId: string }) {
                 role="radio"
                 selected={on}
                 haptic
-                label={iso(f.dC(v)) + (rec ? `, ${t('rec')}` : '')}
+                label={f.dC(v) + (rec ? `, ${t('rec')}` : '')}
                 onPress={() => setPick(i)}
                 style={{ flex: 1, minWidth: 0, height: 56, borderRadius: R.md, backgroundColor: on ? B.lime : c.soft, alignItems: 'center', justifyContent: 'center', gap: 2, paddingHorizontal: 2 }}>
                 <Txt size={14} w={600} num lines={1} color={on ? B.limeInk : c.ink}>
-                  {iso(f.dC(v))}
+                  {f.dC(v)}
                 </Txt>
                 {rec ? (
                   <Txt size={9.5} w={600} lines={1} color={on ? B.limeInk : c.ink} style={{ letterSpacing: 0.3, textTransform: 'uppercase' }}>
@@ -289,7 +315,7 @@ function Wizard({ zoneId }: { zoneId: string }) {
           })}
         </View>
         <Txt size={12} dim>
-          {iso(f.dC(TARGETS[recIdx])) + ' ' + (maxC == null ? t('recNoteUnknown') : t('recNote'))}
+          {f.dC(TARGETS[recIdx]) + ' ' + (maxC == null ? t('recNoteUnknown') : t('recNote'))}
         </Txt>
         <Divider />
         <Label>{t('timeline')}</Label>

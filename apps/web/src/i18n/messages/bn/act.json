@@ -47,7 +47,7 @@
     "confidence": "বিশ্বাসযোগ্যতা {pct}",
     "earned": "পয়েন্ট অর্জিত",
     "provisional": "অস্থায়ী পয়েন্ট",
-    "treesAdded": "{n, plural, one {# গাছ My trees-এ যোগ হয়েছে} other {# গাছ My trees-এ যোগ হয়েছে}}",
+    "treesAdded": "{count, plural, one {{n}টি গাছ আমার গাছে যোগ হয়েছে} other {{n}টি গাছ আমার গাছে যোগ হয়েছে}}",
     "milestone": "লক্ষ্যের মাইলফলক পূরণ: {pct}",
     "seeContribution": "অবদান দেখুন",
     "logAnother": "আরেকটি নথিভুক্ত করুন",
@@ -167,13 +167,13 @@
     "awareness": "সচেতনতামূলক আয়োজন"
   },
   "unit": {
-    "tree": "{n, plural, one {# গাছ} other {# গাছ}}",
-    "plants_10": "{n, plural, one {# × ১০টি চারা} other {# × ১০টি চারা}}",
+    "tree": "{count, plural, one {{n}টি গাছ} other {{n}টি গাছ}}",
+    "plants_10": "{count, plural, one {{n} × ১০টি চারা} other {{n} × ১০টি চারা}}",
     "m2_10": "{m2} ম²",
     "m2_5": "{m2} ম²",
-    "structure": "{n, plural, one {# কাঠামো} other {# কাঠামো}}",
-    "session": "{n, plural, one {# যত্ন সেশন} other {# যত্ন সেশন}}",
-    "event": "{n, plural, one {# আয়োজন} other {# আয়োজন}}"
+    "structure": "{count, plural, one {{n}টি কাঠামো} other {{n}টি কাঠামো}}",
+    "session": "{count, plural, one {{n}টি যত্ন সেশন} other {{n}টি যত্ন সেশন}}",
+    "event": "{count, plural, one {{n}টি অনুষ্ঠান} other {{n}টি অনুষ্ঠান}}"
   },
   "reason": {
     "ok": "যাচাই হয়েছে: ছবিটি কাজটির সঙ্গে মেলে।",

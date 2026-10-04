@@ -37,7 +37,6 @@ import { useTServer } from '@/i18n/server-text';
 import { PlantingMap } from './planting-map';
 import { SpeciesCatalog } from './species-catalog';
 import { useGoalPlan } from './use-goal-plan';
-import { iso } from './bidi';
 
 export function PlanScreen() {
   const t = useTranslations('plan');
@@ -74,7 +73,7 @@ export function PlanScreen() {
     );
   }
 
-  const sub = `${goal.zone_name} · ${iso(f.dC(goal.target_c))} · ${f.date(goal.by_date)}`;
+  const sub = `${goal.zone_name} · ${f.dC(goal.target_c)} · ${f.date(goal.by_date)}`;
   if (bindError) {
     return (
       <Screen tab>
@@ -139,8 +138,8 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
       {header}
 
       <View style={{ flexDirection: 'row', gap: 8 }}>
-        <StatCard label={t('modeled')} value={modeled ? iso(f.dC(-modeled, 1)) : '—'} color={c.leaf} />
-        <StatCard label={t('budget') + (f.rtl ? ' ←' : ' →')} value={iso(f.money(plan.budget.total))} href={href('S13')} />
+        <StatCard label={t('modeled')} value={modeled ? f.dC(-modeled, 1) : '—'} color={c.leaf} />
+        <StatCard label={t('budget') + (f.rtl ? ' ←' : ' →')} value={f.money(plan.budget.total)} href={href('S13')} />
         <StatCard label={t('progress')} value={f.pct(goal.progress_pct, 0)} />
       </View>
 
@@ -148,7 +147,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
           <Txt label>{t('progress')}</Txt>
           <Txt size={12} dim num>
-            {t('progressOf', { pct: f.pct(goal.progress_pct, 0), target: iso(f.dC(goal.target_c)) })}
+            {t('progressOf', { pct: f.pct(goal.progress_pct, 0), target: f.dC(goal.target_c) })}
           </Txt>
         </View>
         <Bar pct={goal.progress_pct} color={B.lime} label={t('progress')} />
@@ -178,7 +177,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
             <Tap
               key={a.action_type}
               href={actionHref(a)}
-              label={`${f.loc(i + 1)}. ${ta(`type.${a.action_type}`)}, ${iso(f.dC(-a.cooling_c, 2))}`}
+              label={`${f.loc(i + 1)}. ${ta(`type.${a.action_type}`)}, ${f.dC(-a.cooling_c, 2)}`}
               style={{ backgroundColor: c.card, borderRadius: 22, padding: 14, gap: 10 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
                 <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
@@ -193,11 +192,11 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
                   </Txt>
                 </View>
                 <Txt size={15} w={600} num color={c.leaf} lines={1}>
-                  {a.cooling_c > 0 ? iso(f.dC(-a.cooling_c, 2)) : '—'}
+                  {a.cooling_c > 0 ? f.dC(-a.cooling_c, 2) : '—'}
                 </Txt>
               </View>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-                {a.cost.amount > 0 ? <Chip text={iso(f.money(a.cost))} /> : null}
+                {a.cost.amount > 0 ? <Chip text={f.money(a.cost)} /> : null}
                 {eff ? <Chip text={t('effectIn', { time: t(eff) })} /> : null}
                 {a.water_l_week > 0 ? <Chip text={t('water', { l: f.num(a.water_l_week) })} /> : null}
                 <Chip text={t(`effort.${a.effort}`)} />
@@ -325,9 +324,9 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
 }
 
 function SpeciesCard({ s }: { s: SpeciesSummary }) {
-  const { c, f } = useCz();
+  const { c } = useCz();
   const t = useTranslations('plan');
-  const name = f.lang !== 'en' && s.local_name ? s.local_name : s.name;
+  const name = s.name;
   return (
     <Tap href={href('S11', { id: s.id })} label={name} role="link" style={{ width: 150, backgroundColor: c.card, borderRadius: 22, paddingTop: 8, paddingHorizontal: 8, paddingBottom: 12, gap: 8 }}>
       {s.image_url ? (

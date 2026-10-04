@@ -25,7 +25,8 @@ export function BandBar({ pm, label }: { pm: number; label: string }) {
         ))}
       </View>
       <View aria-hidden style={{ position: 'absolute', top: 10, width: 4, height: 22, borderRadius: 2, marginStart: -2, start: `${px(pm)}%`, backgroundColor: c.ink }} />
-      <View aria-hidden style={{ position: 'absolute', top: 0, width: 60, marginStart: -30, alignItems: 'center', start: `${px(WHO)}%` }}>
+      {/* Zero-width anchor at the WHO value: the label centres on it and may extend both ways (no clipping in ar/ur). */}
+      <View aria-hidden style={{ position: 'absolute', top: 0, width: 0, alignItems: 'center', start: `${px(WHO)}%` }}>
         <span style={{ fontSize: 10, fontWeight: 700, lineHeight: '13px', color: c.leaf, whiteSpace: 'nowrap' }}>{t('who')}</span>
       </View>
     </View>

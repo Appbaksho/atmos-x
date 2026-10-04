@@ -31,7 +31,6 @@ import type { ActionLog } from '@/lib/data/types';
 
 import { ACTION_ICON, qtyText } from './action-meta';
 import { useReasonText } from './reason';
-import { iso } from '@/components/plan/bidi';
 
 export function ContributionScreen({ id }: { id: string }) {
   const t = useTranslations('act.contribution');
@@ -192,7 +191,7 @@ function Body({ log }: { log: ActionLog }) {
         {coolC > 0 ? (
           <>
             <Txt size={28} w={700} num color={c.leaf} style={{ letterSpacing: -0.5 }}>
-              {iso(f.dC(-coolC, coolC < 0.01 ? 4 : 3))}
+              {f.dC(-coolC, coolC < 0.01 ? 4 : 3)}
             </Txt>
             <Txt size={12} dim>
               {t('coolingSub', { zone: zoneName ?? '—' })}

@@ -14,8 +14,9 @@ import { SkeletonText, ErrorState, EmptyState, SourceChips } from '@/components/
 import { B, R, SHADOW, TAB_CLEARANCE, heatColor } from '@/components/cz/tokens';
 import { Card, GlassPill, I, Icon, LightStatusBar, Screen, Seg, Spinner, Tap, Txt, View } from '@/components/cz/ui';
 import { MyFields } from '@/components/farm/my-fields';
-import { useLocation } from '@/lib/location';
+import { usePrefetchZone } from '@/lib/data/hooks';
 import type { ZoneSummary, ZonesScan } from '@/lib/data/types';
+import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { goPath, href } from '@/lib/routes';
 
@@ -95,6 +96,8 @@ export function HeatMapScreen() {
   const animateKey = fresh ? `${data.meta.generated_at}|${data.scan.radius_m}` : null;
   const center = scan.point ?? data?.scan.center ?? null;
   const ties = zones.some((z) => z.near_tie);
+  // Demo script: Map → hottest zone. Warm its detail (AI "why") while the user looks at the map.
+  usePrefetchZone(fresh ? (zones[0]?.id ?? null) : null);
 
   const markers = useMemo<MapMarker[]>(
     () =>
@@ -114,7 +117,7 @@ export function HeatMapScreen() {
     if (z) goPath(href('S06', { id: z.id }));
   };
 
-  const sub = `${t('within')} ${rl(radius)} · ${t('estimateShort')}`;
+  const sub = `${t('withinR', { r: rl(radius) })} · ${t('estimateShort')}`;
   const place = placeName ?? t('yourArea');
 
   /* ── shared pieces ── */

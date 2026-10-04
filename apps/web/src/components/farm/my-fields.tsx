@@ -123,7 +123,7 @@ export function MyFields({ onSelect }: { onSelect?: (field: FarmField) => void }
   };
 
   const totalArea = fields.reduce((a, x) => a + (x.area ?? 0), 0);
-  const sub = totalArea > 0 ? t('fields.subArea', { n: fields.length, area: f.dec(totalArea, 1) }) : t('fields.sub', { n: fields.length });
+  const sub = totalArea > 0 ? t('fields.subArea', { count: fields.length, n: f.loc(fields.length), area: f.dec(totalArea, 1) }) : t('fields.sub', { count: fields.length, n: f.loc(fields.length) });
 
   return (
     <Screen tab>

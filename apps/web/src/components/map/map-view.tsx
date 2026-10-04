@@ -13,6 +13,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { B } from '@/components/cz/tokens';
+import { configureMaplibre } from '@/lib/maplibre';
 import { useCz } from '@/lib/prefs';
 import type { HexCell, LatLng, ZoneSummary } from '@/lib/data/types';
 
@@ -25,19 +26,6 @@ const GIBS_LST_TILE_URL =
 
 const HEX_OPACITY = 0.55;
 const EMPTY = { type: 'FeatureCollection' as const, features: [] };
-
-/**
- * MapLibre v6 loads its worker from `maplibre-gl-worker.mjs` next to the main module
- * (import.meta.url), which a bundler can't follow. Point it at the same version on a CDN; MapLibre
- * wraps cross-origin URLs in a same-origin blob module worker.
- */
-let workerConfigured = false;
-function configureWorker() {
-  if (workerConfigured) return;
-  workerConfigured = true;
-  const v = maplibregl.getVersion();
-  maplibregl.setWorkerUrl(`https://cdn.jsdelivr.net/npm/maplibre-gl@${v}/dist/maplibre-gl-worker.mjs`);
-}
 
 export type MapMarker = {
   id: string;
@@ -155,7 +143,7 @@ export default function MapView(props: MapViewProps) {
     let alive = true;
     let map: MlMap | null = null;
     (async () => {
-      configureWorker();
+      configureMaplibre(maplibregl);
       const s0 = snap.current;
       const st = await loadStyle(s0.dark);
       if (!alive || !box.current) return;

@@ -159,5 +159,6 @@
     "unavailable": "Map unavailable",
     "label": "Planting spots map for {zone}"
   },
-  "loadingPlan": "Building your plan…"
+  "loadingPlan": "Building your plan…",
+  "focusLabel": "Starting with"
 }

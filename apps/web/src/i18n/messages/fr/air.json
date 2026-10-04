@@ -32,7 +32,7 @@
   "stations": "Stations proches",
   "connect": "Connecter mon capteur",
   "myDev": "Mes appareils",
-  "devSub": "{n, plural, =0 {Aucun capteur} one {# capteur} other {# capteurs}}",
+  "devSub": "{count, plural, =0 {Aucun capteur} one {{n} capteur} other {{n} capteurs}}",
   "addSensor": "Ajouter un capteur",
   "last": "Dernière mesure",
   "never": "Aucune mesure pour l’instant",

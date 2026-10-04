@@ -67,7 +67,7 @@
   "offline": "অফলাইন",
   "vsArea": "এলাকার তুলনায় {diff}",
   "stations": "কাছের স্টেশন",
-  "devSub": "{n, plural, =0 {কোনো সেন্সর নেই} one {#টি সেন্সর} other {#টি সেন্সর}}",
+  "devSub": "{count, plural, =0 {কোনো সেন্সর নেই} one {{n}টি সেন্সর} other {{n}টি সেন্সর}}",
   "never": "এখনও কোনো রিডিং নেই",
   "status": {
     "online": "অনলাইনে",

@@ -62,8 +62,8 @@ export function Hero({
       : Math.abs(cond.anomaly_c) < 0.5
         ? t('nearNormal')
         : cond.anomaly_c > 0
-          ? t('aboveNormal', { d: f.dC(cond.anomaly_c, 1).replace(/^[+−]/, '') })
-          : t('belowNormal', { d: f.dC(cond.anomaly_c, 1).replace(/^[+−]/, '') });
+          ? t('aboveNormal', { d: f.dAbs(cond.anomaly_c, 1) })
+          : t('belowNormal', { d: f.dAbs(cond.anomaly_c, 1) });
 
   return (
     <Photo
@@ -103,13 +103,14 @@ export function Hero({
 
         <View style={{ flex: 1 }} />
 
+        {/* Urdu (Nastaliq) digits descend below the line box; the margin keeps them off the pills. */}
         <View style={{ gap: 10 }}>
           <Txt size={15} color="rgba(255,255,255,0.9)">
             {greet}
           </Txt>
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
             {cond ? (
-              <Txt size={92} num color={B.white} as="h1" style={{ lineHeight: 96, letterSpacing: -2.8 }}>
+              <Txt size={92} num color={B.white} as="h1" style={{ lineHeight: 96, letterSpacing: -2.8, ...(f.lang === 'ur' ? { marginBottom: 16 } : null) }}>
                 {f.deg(cond.air_c)}
               </Txt>
             ) : (

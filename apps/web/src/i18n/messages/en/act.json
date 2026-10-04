@@ -46,13 +46,13 @@
     "awareness": "Awareness"
   },
   "unit": {
-    "tree": "{n, plural, one {# tree} other {# trees}}",
-    "plants_10": "{n, plural, one {# × 10 plants} other {# × 10 plants}}",
+    "tree": "{count, plural, one {{n} tree} other {{n} trees}}",
+    "plants_10": "{count, plural, one {{n} × 10 plants} other {{n} × 10 plants}}",
     "m2_10": "{m2} m²",
     "m2_5": "{m2} m²",
-    "structure": "{n, plural, one {# structure} other {# structures}}",
-    "session": "{n, plural, one {# care session} other {# care sessions}}",
-    "event": "{n, plural, one {# event} other {# events}}"
+    "structure": "{count, plural, one {{n} structure} other {{n} structures}}",
+    "session": "{count, plural, one {{n} care session} other {{n} care sessions}}",
+    "event": "{count, plural, one {{n} event} other {{n} events}}"
   },
   "log": {
     "title": "Log an action",
@@ -92,7 +92,7 @@
     "confidence": "Confidence {pct}",
     "earned": "points earned",
     "provisional": "provisional points",
-    "treesAdded": "{n, plural, one {# tree added to My trees} other {# trees added to My trees}}",
+    "treesAdded": "{count, plural, one {{n} tree added to My trees} other {{n} trees added to My trees}}",
     "milestone": "Goal milestone reached: {pct}",
     "seeContribution": "See contribution",
     "logAnother": "Log another",

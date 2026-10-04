@@ -11,7 +11,6 @@ import { useTServer } from '@/i18n/server-text';
 
 import { PlantingMap } from './planting-map';
 import { monthsUntil, useGoalPlan } from './use-goal-plan';
-import { iso } from './bidi';
 
 /** Rough hours of work: planting a tree ≈ 1.5 h, coating 15 m² ≈ 1 h, one shade structure ≈ 8 h. */
 export function workHours(n: { trees: number; roof_m2: number; shade: number }) {
@@ -22,7 +21,7 @@ export function Feasibility({ id }: { id: string }) {
   const t = useTranslations('plan');
   const { f } = useCz();
   const { goal, goals, plan, binding, bindError, retryBind } = useGoalPlan(id);
-  const sub = goal ? `${goal.zone_name} · ${iso(f.dC(goal.target_c))} · ${f.date(goal.by_date)}` : undefined;
+  const sub = goal ? `${goal.zone_name} · ${f.dC(goal.target_c)} · ${f.date(goal.by_date)}` : undefined;
   const head = <ScreenHeader title={t('feasTitle')} sub={sub} />;
 
   if (goals.isLoading || binding || (goal && plan.isLoading)) {

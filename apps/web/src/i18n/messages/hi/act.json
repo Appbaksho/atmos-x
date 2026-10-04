@@ -49,13 +49,13 @@
     "awareness": "जागरूकता"
   },
   "unit": {
-    "tree": "{n, plural, one {# पेड़} other {# पेड़}}",
-    "plants_10": "{n, plural, one {# × 10 पौधे} other {# × 10 पौधे}}",
+    "tree": "{count, plural, one {{n} पेड़} other {{n} पेड़}}",
+    "plants_10": "{count, plural, one {{n} × 10 पौधे} other {{n} × 10 पौधे}}",
     "m2_10": "{m2} m²",
     "m2_5": "{m2} m²",
-    "structure": "{n, plural, one {# संरचना} other {# संरचनाएँ}}",
-    "session": "{n, plural, one {# देखभाल सत्र} other {# देखभाल सत्र}}",
-    "event": "{n, plural, one {# कार्यक्रम} other {# कार्यक्रम}}"
+    "structure": "{count, plural, one {{n} संरचना} other {{n} संरचनाएँ}}",
+    "session": "{count, plural, one {{n} देखभाल सत्र} other {{n} देखभाल सत्र}}",
+    "event": "{count, plural, one {{n} कार्यक्रम} other {{n} कार्यक्रम}}"
   },
   "log": {
     "title": "कार्रवाई दर्ज करें",
@@ -95,7 +95,7 @@
     "confidence": "विश्वास {pct}",
     "earned": "अर्जित अंक",
     "provisional": "अस्थायी अंक",
-    "treesAdded": "{n, plural, one {# पेड़ My trees में जोड़ा गया} other {# पेड़ My trees में जोड़े गए}}",
+    "treesAdded": "{count, plural, one {{n} पेड़ मेरे पेड़ों में जोड़ा गया} other {{n} पेड़ मेरे पेड़ों में जोड़े गए}}",
     "milestone": "लक्ष्य का माइलस्टोन पूरा: {pct}",
     "seeContribution": "योगदान देखें",
     "logAnother": "एक और दर्ज करें",

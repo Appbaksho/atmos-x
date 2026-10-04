@@ -37,6 +37,7 @@ import { TI } from '../farm/farm-data';
 
 export function DevicesScreen() {
   const t = useTranslations('air');
+  const { f } = useCz();
   const { focus } = useLocation();
   const session = useSession();
   const air = useAir(focus ?? null);
@@ -48,7 +49,7 @@ export function DevicesScreen() {
     <Screen>
       <ScreenHeader
         title={t('myDev')}
-        sub={q.data ? t('devSub', { n: list.length }) : undefined}
+        sub={q.data ? t('devSub', { count: list.length, n: f.loc(list.length) }) : undefined}
         right={<IconBtn d={I.plus} label={t('addSensor')} tone="lime" iconSize={20} href={add} onPress={session.isGuest ? () => requireAccount(t('addSensorFeature')) : undefined} />}
       />
       {q.isPending ? (
@@ -132,7 +133,7 @@ function DeviceCard({ sensor, areaPm }: { sensor: Sensor; areaPm: number | null 
           )}
         </View>
         <View style={{ flex: 1, minWidth: 0, borderRadius: 14, padding: 10, gap: 2, backgroundColor: c.soft }}>
-          <Txt size={10.5} dim lines={1}>
+          <Txt size={10.5} dim lines={2}>
             {t('sensorsSub')}
           </Txt>
           <Txt size={15} w={600} num lines={1}>

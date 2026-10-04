@@ -3,6 +3,7 @@ import 'server-only';
 import type { GeoSearchResponse, LatLng, Locale, Place, ReverseGeocode } from '@/lib/data/types';
 
 import { cached, TTL } from '../cache';
+import { env } from '../env';
 import { fetchJSON, spaced } from '../http';
 import { makeMeta, SRC, src } from '../meta';
 import { snapshot } from '../snapshots';
@@ -26,7 +27,7 @@ export async function reverseGeocode(p: LatLng, lang: Locale): Promise<{ data: R
   try {
     const r = await cached(key, TTL.geo, () =>
       nominatimQueue(async () => {
-        const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${p.lat}&lon=${p.lng}&zoom=16&addressdetails=1&accept-language=${lang},en`;
+        const url = `${env.upstream.nominatim}?format=jsonv2&lat=${p.lat}&lon=${p.lng}&zoom=16&addressdetails=1&accept-language=${lang},en`;
         const j = await fetchJSON<NominatimReverse>(url, { timeoutMs: 6000 });
         const a = j.address ?? {};
         const local = a.suburb || a.city_district || a.quarter || a.neighbourhood || a.village || a.town || j.name || '';
@@ -82,7 +83,7 @@ export async function searchPlaces(q: string, lang: Locale): Promise<GeoSearchRe
   const query = q.trim().slice(0, 80);
   const key = `geosearch:${lang}:${query.toLowerCase()}`;
   const r = await cached(key, TTL.geo, async () => {
-    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=8&language=${lang}&format=json`;
+    const url = `${env.upstream.geocoding}?name=${encodeURIComponent(query)}&count=8&language=${lang}&format=json`;
     const j = await fetchJSON<OmGeocode>(url, { timeoutMs: 6000 });
     return (j.results ?? []).map(
       (x): Place => ({

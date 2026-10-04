@@ -1,6 +1,7 @@
 {
   "title": "Heat map",
   "within": "Within",
+  "withinR": "Within {r}",
   "estimateShort": "OSM + live weather",
   "estimateNote": "Heat estimate: OpenStreetMap land cover + live weather. Scores compare blocks inside this scan; they are not satellite measurements.",
   "yourArea": "your area",

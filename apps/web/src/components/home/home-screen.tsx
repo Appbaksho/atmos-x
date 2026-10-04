@@ -5,12 +5,13 @@
  * the goal card. Farmer mode renders <FarmHome/> (V0-7) instead.
  */
 import { useTranslations } from 'next-intl';
+import { useEffect } from 'react';
 
 import { ErrorState } from '@/components/cz/states';
 import { LightStatusBar, Screen } from '@/components/cz/ui';
 import { FarmHome } from '@/components/farm/farm-home';
 import { useScan } from '@/components/map/use-scan';
-import { useAir, useConditions, useGoals, useMe, useSession, useTrees, useUnreadCount, useZone } from '@/lib/data/hooks';
+import { useAir, useConditions, useGoals, useMe, usePrefetchZone, useSession, useTrees, useUnreadCount, useZone } from '@/lib/data/hooks';
 import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { href } from '@/lib/routes';
@@ -43,6 +44,14 @@ export function HomeScreen() {
   const name = me.role === 'guest' ? null : me.display_name.split(' ')[0] || null;
   const mySummary = scan.data?.zones.find((z) => z.id === myZoneId) ?? null;
   const zoneLoading = scan.isLoading || (!!myZoneId && zone.isLoading) || !session.ready;
+  // Demo script: Home → Map → hottest zone. Warm the hottest zone's detail and the map code.
+  usePrefetchZone(scan.data?.zones[0]?.id ?? null);
+  useEffect(() => {
+    const warm = () => void import('@/components/map/map-view').catch(() => undefined);
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number };
+    if (w.requestIdleCallback) w.requestIdleCallback(warm, { timeout: 4000 });
+    else setTimeout(warm, 2500);
+  }, []);
 
   return (
     <Screen tab bleed gap={18}>

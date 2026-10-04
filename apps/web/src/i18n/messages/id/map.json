@@ -4,6 +4,7 @@
   },
   "title": "Peta panas",
   "within": "Radius",
+  "withinR": "Dalam {r}",
   "estimateShort": "OSM + cuaca langsung",
   "estimateNote": "Perkiraan panas: tutupan lahan OpenStreetMap + cuaca langsung. Skor membandingkan blok di dalam pemindaian ini; bukan pengukuran satelit.",
   "yourArea": "area Anda",

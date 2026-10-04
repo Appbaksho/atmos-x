@@ -84,5 +84,10 @@
     "rangesNote": "Ranges, not promises: trend from 20 years of archive data plus published cooling coefficients.",
     "start": "Start the plan",
     "empty": "No projection available for this zone yet."
+  },
+  "notFound": {
+    "title": "This zone isn't on the map any more",
+    "body": "Zone ids change when an area is scanned again. Open the map and pick the block again.",
+    "action": "Open the map"
   }
 }

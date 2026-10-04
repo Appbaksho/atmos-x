@@ -13,6 +13,6 @@ export const GET = handler<{ params: Promise<{ id: string }> }>(async (req, ctx)
   const q = parseQuery(req, Q);
   const p = q.lat != null && q.lng != null ? { lat: q.lat, lng: q.lng } : null;
   const s = await getSpecies(id, p, q.lang);
-  if (!s) return apiError(404, 'species_not_found', `No species ${id}${id.startsWith('ai-') && !p ? ' (AI species need lat & lng)' : ''}.`);
+  if (!s) return apiError(404, 'species.not_found', `No species ${id}${id.startsWith('ai-') && !p ? ' (AI species need lat & lng)' : ''}.`);
   return json(s, { cache: CACHE.pub(86_400) });
 });

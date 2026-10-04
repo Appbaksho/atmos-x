@@ -1,6 +1,7 @@
 'use client';
 /** Heat now, zones, zone detail, projection, planting spots (server-backed). */
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 import { bindDemoGoalZone } from '../local/goals';
 import { guardScanRadius } from '../local/guest';
@@ -100,4 +101,35 @@ export function usePlantingSpots(id: string | null | undefined) {
     ...cachePolicy(ctx),
     queryFn: ({ signal }) => getJSON<PlantingSpots>(routePath(V0_ROUTES.plantingSpots.path, { id: id! }), undefined, signal),
   });
+}
+
+/**
+ * Warm the cache for the screen the demo goes to next (V0-10): zone detail (AI "why" text) and,
+ * optionally, its planting spots (Overpass). Same query keys as useZone / usePlantingSpots, so the
+ * next screen renders straight from cache. Runs after the current screen has settled.
+ */
+export function usePrefetchZone(id: string | null | undefined, opts: { spots?: boolean } = {}) {
+  const ctx = useDataContext();
+  const qc = useQueryClient();
+  const spots = !!opts.spots;
+  useEffect(() => {
+    if (!ctx.ready || !id) return;
+    const timer = setTimeout(() => {
+      void qc.prefetchQuery({
+        queryKey: qk.zone(id, ctx.lang),
+        queryFn: ({ signal }) => getJSON<ZoneDetail>(routePath(V0_ROUTES.zone.path, { id }), { lang: ctx.lang }, signal),
+        ...cachePolicy(ctx),
+      });
+      if (spots) {
+        void qc.prefetchQuery({
+          queryKey: qk.plantingSpots(id),
+          queryFn: ({ signal }) => getJSON<PlantingSpots>(routePath(V0_ROUTES.plantingSpots.path, { id }), undefined, signal),
+          staleTime: 60 * 60 * 1000,
+          ...cachePolicy(ctx),
+        });
+      }
+    }, 600);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- ctx fields listed explicitly
+  }, [id, ctx.ready, ctx.lang, ctx.presentation, spots, qc]);
 }

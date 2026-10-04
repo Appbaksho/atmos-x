@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { B, I, Icon, Spinner, Txt, useCz, View } from '@/components/cz';
 import type { FarmField, LatLng } from '@/lib/data/types';
+import { configureMaplibre } from '@/lib/maplibre';
 
 const STYLE = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 'https://tiles.openfreemap.org/styles/liberty';
 const STYLE_DARK = process.env.NEXT_PUBLIC_MAP_STYLE_URL_DARK || '';
@@ -28,7 +29,6 @@ const OSM_RASTER = {
   layers: [{ id: 'osm', type: 'raster' as const, source: 'osm' }],
 };
 
-let workerSet = false;
 
 export type FieldMapProps = {
   fields: FarmField[];
@@ -113,12 +113,7 @@ export function FieldMap({ fields, selectedId, onSelect, pin, onPin, center, hei
         if (!lib) return setFailed(true);
         if (cancelled || !box.current) return;
         ml.current = lib;
-        // maplibre-gl v6 resolves its module worker next to its own chunk, which 404s under Turbopack
-        // (same fix as V0-4's map-view: a version-matched CDN worker, overridable by env).
-        if (!workerSet) {
-          workerSet = true;
-          lib.setWorkerUrl(process.env.NEXT_PUBLIC_MAPLIBRE_WORKER_URL || `https://cdn.jsdelivr.net/npm/maplibre-gl@${lib.getVersion()}/dist/maplibre-gl-worker.mjs`);
-        }
+        configureMaplibre(lib);
         const style = raw.dark && STYLE_DARK ? STYLE_DARK : STYLE;
         let m: MlMap;
         try {

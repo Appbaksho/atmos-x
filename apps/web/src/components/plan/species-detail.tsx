@@ -34,7 +34,6 @@ import { useNurseries, useSpeciesDetail } from '@/lib/data/hooks';
 import type { Species } from '@/lib/data/types';
 
 import { treeCoolingC, useGoalPlan } from './use-goal-plan';
-import { iso } from './bidi';
 
 const BLANK = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 
@@ -82,7 +81,7 @@ function Body({
   const t = useTranslations('plan');
   const { c, f } = useCz();
   const nurseries = useNurseries(point);
-  const name = f.lang !== 'en' && sp.local_name ? sp.local_name : sp.name;
+  const name = sp.name;
 
   // Per-tree cooling: from the plan's tree action when there is one (zone-specific), else a 0.1 km² block.
   const treeAct = planData?.actions.find((a) => a.action_type === 'plant_tree');
@@ -96,7 +95,7 @@ function Body({
     [t('facts.water'), t(`waterNeed.${sp.water}`)],
     [t('facts.growth'), sp.growth],
     [t('facts.season'), sp.planting_season],
-    ...(sp.price ? ([[t('facts.price'), iso(f.money(sp.price))]] as [string, string][]) : []),
+    ...(sp.price ? ([[t('facts.price'), f.money(sp.price)]] as [string, string][]) : []),
   ];
   const near = [...(nurseries.data?.nurseries ?? [])].sort((a, b) => a.dist_m - b.dist_m).slice(0, 2);
 
@@ -115,19 +114,12 @@ function Body({
             </Txt>
           </View>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-            {f.lang !== 'en' || !sp.local_name ? (
-              <GlassPill style={{ minHeight: 30 }}>
-                <Txt size={12} w={600} color={B.white}>
-                  {sp.name}
-                </Txt>
-              </GlassPill>
-            ) : (
-              <GlassPill style={{ minHeight: 30 }}>
-                <Txt size={12} w={600} color={B.white}>
-                  {sp.local_name}
-                </Txt>
-              </GlassPill>
-            )}
+            {/* The API's `name` is already in the user's language; `local_name` is the other common name. */}
+            <GlassPill style={{ minHeight: 30 }}>
+              <Txt size={12} w={600} color={B.white}>
+                {sp.local_name || sp.name}
+              </Txt>
+            </GlassPill>
             {sp.emoji ? (
               <GlassPill style={{ minHeight: 30 }}>
                 <span aria-hidden>{sp.emoji}</span>
@@ -154,7 +146,7 @@ function Body({
         <Label>{t('coolingContribution')}</Label>
         <View style={{ gap: 2 }}>
           <Txt size={30} w={700} num color={c.leaf} lines={1} style={{ lineHeight: '34px', letterSpacing: -0.6 }}>
-            {iso(f.dC(-perTree, 4))}
+            {f.dC(-perTree, 4)}
           </Txt>
           <Txt size={12.5} dim>
             {treeAct ? t('perTree') : t('perTreeNoGoal')}
@@ -167,7 +159,7 @@ function Body({
                 {t('share', { n: f.loc(inPlan) })}
               </Txt>
               <Txt size={12.5} w={600} num>
-                {iso(f.dC(-share, 2))}
+                {f.dC(-share, 2)}
               </Txt>
             </View>
             <Bar pct={(share / Math.abs(goalTarget)) * 100} color={B.lime} />
@@ -204,7 +196,7 @@ function Body({
           <Label>{t('priceWhere')}</Label>
           {sp.price ? (
             <Txt size={15} w={600} num>
-              {iso(f.money(sp.price))}
+              {f.money(sp.price)}
             </Txt>
           ) : null}
         </View>

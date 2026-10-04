@@ -15,16 +15,20 @@ import { OfflineIndicator } from './offline';
 import { AskProvider } from './ask-slot';
 import { Sidebar, TabBar } from './tab-bar';
 
+const demoParam = () => new URLSearchParams(window.location.search).get('demo') === '1';
+
 function useOnboardingGate() {
   const { prefs, ready, setPrefs } = useCz();
   const path = usePathname();
 
+  // `?demo=1` = Presentation mode with Nadia's story, so onboarding is skipped too (like "Try the
+  // Dhaka demo" on S01). The redirect below also checks the param, so it can't race this write.
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('demo') === '1') setPrefs({ presentation: true });
+    if (demoParam()) setPrefs({ presentation: true, onboarded: true });
   }, [setPrefs]);
 
   useEffect(() => {
-    if (ready && !prefs.onboarded && path === '/app') goReplace('S01');
+    if (ready && !prefs.onboarded && path === '/app' && !demoParam()) goReplace('S01');
   }, [ready, prefs.onboarded, path]);
 }
 

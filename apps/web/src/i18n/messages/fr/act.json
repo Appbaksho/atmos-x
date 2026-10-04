@@ -49,13 +49,13 @@
     "awareness": "Sensibilisation"
   },
   "unit": {
-    "tree": "{n, plural, one {# arbre} other {# arbres}}",
-    "plants_10": "{n, plural, one {# × 10 plantes} other {# × 10 plantes}}",
+    "tree": "{count, plural, one {{n} arbre} other {{n} arbres}}",
+    "plants_10": "{count, plural, one {{n} × 10 plants} other {{n} × 10 plants}}",
     "m2_10": "{m2} m²",
     "m2_5": "{m2} m²",
-    "structure": "{n, plural, one {# structure} other {# structures}}",
-    "session": "{n, plural, one {# séance de soin} other {# séances de soin}}",
-    "event": "{n, plural, one {# événement} other {# événements}}"
+    "structure": "{count, plural, one {{n} structure} other {{n} structures}}",
+    "session": "{count, plural, one {{n} séance de soin} other {{n} séances de soin}}",
+    "event": "{count, plural, one {{n} événement} other {{n} événements}}"
   },
   "log": {
     "title": "Enregistrer une action",
@@ -95,7 +95,7 @@
     "confidence": "Confiance {pct}",
     "earned": "points gagnés",
     "provisional": "points provisoires",
-    "treesAdded": "{n, plural, one {# arbre ajouté à Mes arbres} other {# arbres ajoutés à Mes arbres}}",
+    "treesAdded": "{count, plural, one {{n} arbre ajouté à Mes arbres} other {{n} arbres ajoutés à Mes arbres}}",
     "milestone": "Étape d’objectif atteinte : {pct}",
     "seeContribution": "Voir la contribution",
     "logAnother": "En enregistrer une autre",

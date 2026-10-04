@@ -62,6 +62,6 @@ export function compact(n: number): string {
 /** Cooling as a negative °C delta ("−0.073 °C"); zero shows without a sign. */
 export function coolingText(dC: (c: number, dp?: number) => string, cooling: number): string {
   const v = Math.abs(cooling);
-  if (v < 0.0005) return dC(0, 2).replace(/^[+−-]/, '');
+  if (v < 0.0005) return dC(0, 2).replace(/^(\u2068?)[+−-]/, '$1');
   return dC(-v, v < 0.1 ? 3 : 2);
 }

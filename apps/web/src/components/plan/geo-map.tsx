@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { B, Spinner, Txt, View, useCz, type StyleProp } from '@/components/cz';
 import type { LatLng } from '@/lib/data/types';
+import { configureMaplibre } from '@/lib/maplibre';
 
 export type ML = typeof import('maplibre-gl');
 export type MLMap = import('maplibre-gl').Map;
@@ -22,22 +23,6 @@ export type MapReady = { map: MLMap; ml: ML };
 
 const LIGHT_STYLE = process.env.NEXT_PUBLIC_MAP_STYLE_URL || 'https://tiles.openfreemap.org/styles/liberty';
 const DARK_STYLE = process.env.NEXT_PUBLIC_MAP_STYLE_URL_DARK || 'https://tiles.openfreemap.org/styles/dark';
-
-/**
- * maplibre-gl v6 resolves its module worker relative to its own file (`import.meta.url`), which
- * Turbopack rewrites to a chunk URL, so the default worker 404s. The worker also imports a sibling
- * shared chunk, so it can't be emitted as one asset. Until the Integrator vendors both files under
- * /public (then set NEXT_PUBLIC_MAPLIBRE_WORKER_URL), load the version-matched worker from unpkg.
- * Only set when nobody else (e.g. V0-4's map) has set one.
- */
-function ensureWorker(ml: ML) {
-  try {
-    if (ml.getWorkerUrl()) return;
-    ml.setWorkerUrl(process.env.NEXT_PUBLIC_MAPLIBRE_WORKER_URL || `https://unpkg.com/maplibre-gl@${ml.getVersion()}/dist/maplibre-gl-worker.mjs`);
-  } catch {
-    // older API: keep the default
-  }
-}
 
 export function GeoMap({
   center,
@@ -89,7 +74,7 @@ function MapCanvas({ dark, center, zoom, onReady, interactive }: { dark: boolean
       try {
         const ml: ML = await import('maplibre-gl');
         if (cancelled || !el.current) return;
-        ensureWorker(ml);
+        configureMaplibre(ml);
         map = new ml.Map({
           container: el.current,
           style: dark ? DARK_STYLE : LIGHT_STYLE,

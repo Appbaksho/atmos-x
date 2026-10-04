@@ -49,13 +49,13 @@
     "awareness": "宣传"
   },
   "unit": {
-    "tree": "{n, plural, one {#棵树} other {#棵树}}",
-    "plants_10": "{n, plural, one {# × 10 株植物} other {# × 10 株植物}}",
+    "tree": "{count, plural, one {{n}棵树} other {{n}棵树}}",
+    "plants_10": "{count, plural, one {{n}×10株植物} other {{n}×10株植物}}",
     "m2_10": "{m2} m²",
     "m2_5": "{m2} m²",
-    "structure": "{n, plural, one {#个设施} other {#个设施}}",
-    "session": "{n, plural, one {#次养护} other {#次养护}}",
-    "event": "{n, plural, one {#场活动} other {#场活动}}"
+    "structure": "{count, plural, one {{n}个结构} other {{n}个结构}}",
+    "session": "{count, plural, one {{n}个养护场次} other {{n}个养护场次}}",
+    "event": "{count, plural, one {{n}个活动} other {{n}个活动}}"
   },
   "log": {
     "title": "记录行动",
@@ -95,7 +95,7 @@
     "confidence": "置信度 {pct}",
     "earned": "已获得积分",
     "provisional": "临时积分",
-    "treesAdded": "{n, plural, one {已将 #棵树加入我的树木} other {已将 #棵树加入我的树木}}",
+    "treesAdded": "{count, plural, one {{n}棵树已加入“我的树木”} other {{n}棵树已加入“我的树木”}}",
     "milestone": "已达成目标里程碑：{pct}",
     "seeContribution": "查看贡献",
     "logAnother": "再记一条",

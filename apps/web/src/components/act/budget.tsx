@@ -9,7 +9,6 @@ import { useTeam } from '@/lib/data/hooks';
 import type { Goal, Money, Plan } from '@/lib/data/types';
 import { useTServer } from '@/i18n/server-text';
 import { initials } from '@/lib/format';
-import { iso } from '@/components/plan/bidi';
 
 export function BudgetScreen() {
   const t = useTranslations('act.budget');
@@ -60,14 +59,14 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
   const anyEstimate = b.lines.some((l) => l.estimate);
 
   const tiles: [string, string][] = [
-    n > 1 ? [t('perMember'), iso(f.money(m(b.total.amount / n)))] : [t('carePerYear'), iso(f.money(b.care_per_year))],
-    [t('perDeg'), cooling > 0 ? iso(f.money(m(Math.round(b.total.amount / cooling / (f.unit === 'F' ? 1.8 : 1) / 100) * 100))) : '—'],
+    n > 1 ? [t('perMember'), f.money(m(b.total.amount / n))] : [t('carePerYear'), f.money(b.care_per_year)],
+    [t('perDeg'), cooling > 0 ? f.money(m(Math.round(b.total.amount / cooling / (f.unit === 'F' ? 1.8 : 1) / 100) * 100)) : '—'],
     [t('water'), t('waterVal', { l: f.num(b.water_l_week) })],
   ];
 
   return (
     <Screen>
-      <ScreenHeader title={t('title')} sub={t('sub', { target: iso(f.dC(goal.target_c)), zone: goal.zone_name })} />
+      <ScreenHeader title={t('title')} sub={t('sub', { target: f.dC(goal.target_c), zone: goal.zone_name })} />
 
       <Card tone="navy" pad={20} gap={16} style={{ borderRadius: R.xxl }}>
         <View style={{ gap: 4 }}>
@@ -75,7 +74,7 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
             {t('total')}
           </Txt>
           <Txt size={44} num color={B.white} lines={1} style={{ lineHeight: '48px', letterSpacing: -0.9 }}>
-            {iso(f.money(b.total))}
+            {f.money(b.total)}
           </Txt>
         </View>
         <View style={{ flexDirection: 'row', gap: 8 }}>
@@ -96,7 +95,7 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
             <Txt size={13} color={B.white} style={{ flex: 1 }}>
               {t('outcome') + ' '}
               <Txt as="span" size={13} w={600} color={B.lime}>
-                {iso(f.dC(-cooling))}
+                {f.dC(-cooling)}
               </Txt>
               {' ' + t('byGoal', { date: f.date(goal.by_date, { month: 'short', year: 'numeric' }) })}
             </Txt>
@@ -112,12 +111,12 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
                 {ts(l.label)}
               </Txt>
               <Txt size={11.5} dim num>
-                {t('unitCost', { qty: f.num(l.qty), cost: iso(f.money(l.unit_cost)) })}
+                {t('unitCost', { qty: f.num(l.qty), cost: f.money(l.unit_cost) })}
               </Txt>
             </View>
             {l.estimate ? <Tag label={tp('estimate')} size="xs" bg={c.limeSoft} /> : null}
             <Txt size={13.5} w={600} num lines={1}>
-              {iso(f.money(l.total))}
+              {f.money(l.total)}
             </Txt>
           </View>
         ))}
@@ -126,7 +125,7 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
             {t('carePerYear')}
           </Txt>
           <Txt size={13.5} w={600} num>
-            {iso(f.money(b.care_per_year))}
+            {f.money(b.care_per_year)}
           </Txt>
         </View>
       </Card>
@@ -137,10 +136,10 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
             <Label>{t('split', { n: f.loc(n) })}</Label>
             <View style={{ flexDirection: 'row', gap: 6 }}>
               {members.slice(0, 6).map((mb, k) => (
-                <View key={mb.user_id} label={`${mb.display_name}: ${iso(f.money(m(b.total.amount / n)))}`} role="img" style={{ flex: 1, minWidth: 0, alignItems: 'center', gap: 4 }}>
+                <View key={mb.user_id} label={`${mb.display_name}: ${f.money(m(b.total.amount / n))}`} role="img" style={{ flex: 1, minWidth: 0, alignItems: 'center', gap: 4 }}>
                   <Avatar ini={initials(mb.display_name)} bg={AVATARS[k % AVATARS.length][0]} fg={AVATARS[k % AVATARS.length][1]} size={40} src={mb.avatar_url} />
                   <Txt size={10.5} dim num lines={1}>
-                    {iso(f.money(m(b.total.amount / n)))}
+                    {f.money(m(b.total.amount / n))}
                   </Txt>
                 </View>
               ))}
@@ -149,7 +148,7 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
         ) : (
           <>
             <Label>{t('splitSolo')}</Label>
-            <Txt size={13}>{t('splitSoloSub', { each: iso(f.money(m(b.total.amount / 5))) })}</Txt>
+            <Txt size={13}>{t('splitSoloSub', { each: f.money(m(b.total.amount / 5)) })}</Txt>
           </>
         )}
       </Card>

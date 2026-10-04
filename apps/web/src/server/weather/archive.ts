@@ -3,6 +3,7 @@ import 'server-only';
 import type { HistoryPoint, LatLng } from '@/lib/data/types';
 
 import { cached, TTL } from '../cache';
+import { env } from '../env';
 import { fetchJSON } from '../http';
 import { snapshot } from '../snapshots';
 import { cellKey, mean, round } from '../util';
@@ -37,7 +38,7 @@ export async function getArchive(p: LatLng): Promise<Sourced<ArchiveRaw>> {
   try {
     const r = await cached(`archive:${lat},${lng}:${start}`, TTL.archive, async () => {
       const url =
-        `https://archive-api.open-meteo.com/v1/archive?latitude=${lat}&longitude=${lng}` +
+        `${env.upstream.archive}?latitude=${lat}&longitude=${lng}` +
         `&start_date=${start}&end_date=${end}&daily=temperature_2m_max,temperature_2m_min&timezone=auto`;
       const j = await fetchJSON<{ daily: { time: string[]; temperature_2m_max: (number | null)[]; temperature_2m_min: (number | null)[] } }>(url, {
         timeoutMs: 15_000,

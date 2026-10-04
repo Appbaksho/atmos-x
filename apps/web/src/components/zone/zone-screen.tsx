@@ -9,13 +9,13 @@ import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
 
 import { requireAccount } from '@/components/cz/account';
-import { ErrorState, SkeletonCard, SourceChips } from '@/components/cz/states';
+import { SkeletonCard, SourceChips } from '@/components/cz/states';
 import { B, heatColor, heatFg } from '@/components/cz/tokens';
 import { Card, CzButton, GhostButton, IconBtn, Label, LightStatusBar, Screen, StatTile, Tag, Txt, View } from '@/components/cz/ui';
 import { CauseChips, WhatIf, scoreLevel } from '@/components/home/score-card';
 import { distM } from '@/components/map/geo';
 import { MapAttribution, MapView } from '@/components/map/map-view-lazy';
-import { useSession, useZone } from '@/lib/data/hooks';
+import { usePrefetchZone, useSession, useZone } from '@/lib/data/hooks';
 import type { HexCell, ZoneDetail } from '@/lib/data/types';
 import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
@@ -23,6 +23,7 @@ import { goBack, href } from '@/lib/routes';
 
 import { DriversCard } from './drivers-card';
 import { HistoryCard } from './history-card';
+import { ZoneError } from './zone-not-found';
 
 function Hero({ zone }: { zone: ZoneDetail | undefined }) {
   const { f } = useCz();
@@ -86,6 +87,8 @@ export function ZoneScreen({ id }: { id: string }) {
   const { f } = useCz();
   const t = useTranslations('zone');
   const q = useZone(id);
+  // Next in the demo: goal wizard / plan need this zone's planting spots (Overpass, slow when cold).
+  usePrefetchZone(q.data ? id : null, { spots: true });
   const session = useSession();
   const zone = q.data;
 
@@ -96,7 +99,7 @@ export function ZoneScreen({ id }: { id: string }) {
 
       {!zone ? (
         q.error ? (
-          <ErrorState error={q.error} onRetry={() => void q.refetch()} style={{ marginHorizontal: 16 }} />
+          <ZoneError error={q.error} onRetry={() => void q.refetch()} style={{ marginHorizontal: 16 }} />
         ) : (
           <View aria-busy style={{ gap: 14 }}>
             <SkeletonCard lines={2} style={{ marginHorizontal: 16 }} />

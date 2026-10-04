@@ -42,7 +42,7 @@ export function useSpeciesName() {
     (id: string): string => {
       if (t.has(id)) return t(id);
       const s = list?.find((x) => x.id === id);
-      return s?.local_name || s?.name || humanize(id);
+      return s?.name || s?.local_name || humanize(id);
     },
     [t, list],
   );

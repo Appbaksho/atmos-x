@@ -3,6 +3,8 @@
 import { useQuery } from '@tanstack/react-query';
 
 import type { Goal, LatLng, NurseriesResponse, Plan, PlanRequest, Species, SpeciesSummary, Meta } from '../types';
+import { DataError } from '../errors';
+import { getKV } from '../local/kv';
 import { V0_ROUTES } from '../types';
 import { cachePolicy, useDataContext } from './context';
 import { getJSON, postJSON, routePath, shouldRetry } from './http';
@@ -23,14 +25,32 @@ export function usePlan(goal: Goal | null | undefined, zone?: PlanRequest['zone'
     retry: shouldRetry,
     staleTime: 6 * 60 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) => {
+    queryFn: async ({ signal }) => {
       const g = goal!;
       const body: PlanRequest = {
         goal: { id: g.id, zone_id: g.zone_id, zone_name: g.zone_name, zone_centroid: g.zone_centroid, target_c: g.target_c, by_date: g.by_date },
         zone: zone ?? null,
         lang: ctx.lang,
       };
-      return postJSON<Plan>(V0_ROUTES.plan.path, body, signal);
+      // POST responses can't sit in the service-worker cache, so the last good plan per goal is
+      // kept on the device and served when the network is gone (offline demo safety net).
+      const key = `${ctx.ns}:plan-cache:${g.id}|${sig}|${ctx.lang}`;
+      try {
+        const plan = await postJSON<Plan>(V0_ROUTES.plan.path, body, signal);
+        void getKV()
+          .then((kv) => kv.set(key, plan))
+          .catch(() => undefined);
+        return plan;
+      } catch (e) {
+        const offline = e instanceof DataError && (e.code === 'network.error' || e.status >= 500);
+        if (offline) {
+          const kept = await getKV()
+            .then((kv) => kv.get<Plan>(key))
+            .catch(() => undefined);
+          if (kept) return { ...kept, meta: { ...kept.meta, live: false } };
+        }
+        throw e;
+      }
     },
   });
 }

@@ -47,7 +47,7 @@
     "confidence": "اعتماد {pct}",
     "earned": "کمائے گئے پوائنٹس",
     "provisional": "عارضی پوائنٹس",
-    "treesAdded": "{n, plural, one {# درخت میرے درختوں میں شامل ہوا} other {# درخت میرے درختوں میں شامل ہوئے}}",
+    "treesAdded": "{count, plural, one {{n} درخت میرے درختوں میں شامل کیا گیا} other {{n} درخت میرے درختوں میں شامل کیے گئے}}",
     "milestone": "ہدف کا سنگِ میل پورا ہوا: {pct}",
     "seeContribution": "حصہ دیکھیں",
     "logAnother": "ایک اور درج کریں",
@@ -167,13 +167,13 @@
     "awareness": "آگاہی تقریب"
   },
   "unit": {
-    "tree": "{n, plural, one {# درخت} other {# درخت}}",
-    "plants_10": "{n, plural, one {# × ۱۰ پودے} other {# × ۱۰ پودے}}",
+    "tree": "{count, plural, one {{n} درخت} other {{n} درخت}}",
+    "plants_10": "{count, plural, one {{n} × ۱۰ پودے} other {{n} × ۱۰ پودے}}",
     "m2_10": "{m2} m²",
     "m2_5": "{m2} m²",
-    "structure": "{n, plural, one {# ڈھانچہ} other {# ڈھانچے}}",
-    "session": "{n, plural, one {# دیکھ بھال سیشن} other {# دیکھ بھال سیشنز}}",
-    "event": "{n, plural, one {# تقریب} other {# تقریبات}}"
+    "structure": "{count, plural, one {{n} ڈھانچہ} other {{n} ڈھانچے}}",
+    "session": "{count, plural, one {{n} دیکھ بھال سیشن} other {{n} دیکھ بھال سیشن}}",
+    "event": "{count, plural, one {{n} تقریب} other {{n} تقریبات}}"
   },
   "reason": {
     "ok": "تصدیق شدہ: تصویر عمل سے ملتی ہے۔",

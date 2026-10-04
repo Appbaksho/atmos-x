@@ -3,6 +3,7 @@ import 'server-only';
 import type { LatLng } from '@/lib/data/types';
 
 import { cached, HOUR } from '../cache';
+import { env } from '../env';
 import { fetchJSON } from '../http';
 import { round } from '../util';
 
@@ -10,7 +11,6 @@ import { round } from '../util';
  * NASA POWER daily point data (keyless), exactly the input farmer.ts uses: past-30-day rainfall.
  * Port of fetchPowerDaily from apps/mobile/src/lib/nasa.ts. Returns null on failure.
  */
-const POWER = 'https://power.larc.nasa.gov/api/temporal';
 const DAY = 24 * HOUR;
 const ymd = (d: Date) => d.toISOString().slice(0, 10).replace(/-/g, '');
 
@@ -24,7 +24,7 @@ export async function fetchPowerDaily(p: LatLng, days = 30): Promise<PowerDaily 
   try {
     const r = await cached(`power:${lat},${lon}:${days}:${ymd(end)}`, 6 * HOUR, async () => {
       const url =
-        `${POWER}/daily/point?parameters=T2M_MAX,T2M,PRECTOTCORR,RH2M&community=AG` +
+        `${env.upstream.nasaPower}/daily/point?parameters=T2M_MAX,T2M,PRECTOTCORR,RH2M&community=AG` +
         `&longitude=${lon}&latitude=${lat}&start=${ymd(start)}&end=${ymd(end)}&format=JSON`;
       const j = await fetchJSON<{ properties: { parameter: Record<'T2M_MAX' | 'T2M' | 'PRECTOTCORR' | 'RH2M', Record<string, number>> } }>(url, {
         timeoutMs: 12_000,

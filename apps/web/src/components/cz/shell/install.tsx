@@ -97,8 +97,9 @@ export function InstallBanner() {
   const tc = useTranslations('common');
   const ins = useInstall();
   const path = usePathname();
-  // Only on the five tab roots, so it never covers a stacked screen's header.
-  if (!mounted || !ready || !prefs.onboarded || !ins.available || ins.dismissed || !isTabRoot(path, prefs.farmer_mode)) return null;
+  // Only on the tab roots, so it never covers a stacked screen's header. Not on the Map either:
+  // its legend, layer switch and the desktop zone panel sit right where the banner would float.
+  if (!mounted || !ready || !prefs.onboarded || !ins.available || ins.dismissed || !isTabRoot(path, prefs.farmer_mode) || path === '/app/map') return null;
   return (
     <div className="cz-install" role="region" aria-label={t('title')} style={{ position: 'fixed', zIndex: 80, top: 'calc(env(safe-area-inset-top, 0px) + 10px)', display: 'flex', justifyContent: 'center', pointerEvents: 'none' }}>
       <View style={[{ pointerEvents: 'auto', width: '100%', maxWidth: 480, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: 20, backgroundColor: c.card, borderWidth: 1, borderColor: c.line }, SHADOW.card]}>

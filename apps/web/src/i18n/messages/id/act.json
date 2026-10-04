@@ -49,13 +49,13 @@
     "awareness": "Edukasi"
   },
   "unit": {
-    "tree": "{n, plural, one {# pohon} other {# pohon}}",
-    "plants_10": "{n, plural, one {# × 10 tanaman} other {# × 10 tanaman}}",
+    "tree": "{count, plural, one {{n} pohon} other {{n} pohon}}",
+    "plants_10": "{count, plural, one {{n} × 10 tanaman} other {{n} × 10 tanaman}}",
     "m2_10": "{m2} m²",
     "m2_5": "{m2} m²",
-    "structure": "{n, plural, one {# struktur} other {# struktur}}",
-    "session": "{n, plural, one {# sesi perawatan} other {# sesi perawatan}}",
-    "event": "{n, plural, one {# acara} other {# acara}}"
+    "structure": "{count, plural, one {{n} struktur} other {{n} struktur}}",
+    "session": "{count, plural, one {{n} sesi perawatan} other {{n} sesi perawatan}}",
+    "event": "{count, plural, one {{n} acara} other {{n} acara}}"
   },
   "log": {
     "title": "Catat aksi",
@@ -95,7 +95,7 @@
     "confidence": "Tingkat yakin {pct}",
     "earned": "poin diperoleh",
     "provisional": "poin sementara",
-    "treesAdded": "{n, plural, one {# pohon ditambahkan ke Pohon saya} other {# pohon ditambahkan ke Pohon saya}}",
+    "treesAdded": "{count, plural, one {{n} pohon ditambahkan ke Pohon saya} other {{n} pohon ditambahkan ke Pohon saya}}",
     "milestone": "Tonggak target tercapai: {pct}",
     "seeContribution": "Lihat kontribusi",
     "logAnother": "Catat lagi",

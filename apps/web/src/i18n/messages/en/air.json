@@ -29,7 +29,7 @@
   "stations": "Nearby stations",
   "connect": "Connect my sensor",
   "myDev": "My devices",
-  "devSub": "{n, plural, =0 {No sensors} one {# sensor} other {# sensors}}",
+  "devSub": "{count, plural, =0 {No sensors} one {{n} sensor} other {{n} sensors}}",
   "addSensor": "Add sensor",
   "last": "Last reading",
   "never": "No reading yet",

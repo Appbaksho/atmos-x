@@ -90,7 +90,7 @@ export function AlertScreen({ id, fieldId }: { id: string; fieldId?: string }) {
           {ts(alert.title)}
         </Txt>
         <View style={{ flexDirection: 'row', gap: 8 }}>
-          <NavyTile label={t('alert.lead')} value={lead === 0 ? t('alert.leadNow') : t('alert.leadDays', { n: lead })} />
+          <NavyTile label={t('alert.lead')} value={lead === 0 ? t('alert.leadNow') : t('alert.leadDays', { count: lead, n: f.loc(lead) })} />
           <NavyTile label={t('alert.when')} value={win(alert.window)} />
         </View>
       </View>

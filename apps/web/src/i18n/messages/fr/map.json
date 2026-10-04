@@ -4,6 +4,7 @@
   },
   "title": "Carte de chaleur",
   "within": "Rayon",
+  "withinR": "Dans un rayon de {r}",
   "estimateShort": "OSM + météo en direct",
   "estimateNote": "Estimation de chaleur : couverture du sol OpenStreetMap + météo en direct. Les scores comparent les blocs de cette analyse ; ce ne sont pas des mesures satellite.",
   "yourArea": "votre zone",

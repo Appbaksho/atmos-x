@@ -3,6 +3,7 @@ import 'server-only';
 import type { LatLng } from '@/lib/data/types';
 
 import { cached, TTL } from '../cache';
+import { env } from '../env';
 import { fetchJSON } from '../http';
 import { snapshot } from '../snapshots';
 import { cellKey, round } from '../util';
@@ -91,7 +92,7 @@ export function parseForecast(j: OmForecast): Forecast {
 
 export function forecastUrl(lat: number, lng: number): string {
   return (
-    `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}` +
+    `${env.upstream.forecast}?latitude=${lat}&longitude=${lng}` +
     `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code,is_day` +
     `&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_gusts_10m_max,wind_speed_10m_max,et0_fao_evapotranspiration,weather_code` +
     `&hourly=temperature_2m,relative_humidity_2m,cape,precipitation_probability` +

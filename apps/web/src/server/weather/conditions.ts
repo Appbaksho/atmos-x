@@ -86,7 +86,9 @@ export async function getConditions(p: LatLng, lang: Locale): Promise<Conditions
   const normal = arR ? normalFor(arR.data, today) : null;
   const sources: Source[] = [src(SRC.openMeteo, fcR.at)];
   if (arR) sources.push(src(SRC.archive, arR.data.end));
-  if (bd) sources.push(SRC.bmd);
+  const bmdToday = bd ? bmdLevel(tmaxToday) : null;
+  // The "BMD thresholds" chip only when a BMD heat-wave level actually applies today.
+  if (bmdToday) sources.push(SRC.bmd);
   return {
     place,
     time: fc.current.time,
@@ -95,7 +97,7 @@ export async function getConditions(p: LatLng, lang: Locale): Promise<Conditions
     humidity: rh,
     wind_kmh: round(fc.current.wind, 1),
     heat_risk: heatRisk(feels),
-    bmd_level: bd ? bmdLevel(tmaxToday) : null,
+    bmd_level: bmdToday,
     normal_c: normal,
     anomaly_c: normal != null ? round(tmaxToday - normal, 1) : null,
     forecast: days,

@@ -23,7 +23,7 @@ export const GET = handler<{ params: Promise<{ id: string }> }>(async (req, ctx)
   if (!found) {
     const snap = snapshot<Projection>(`projection.${id}`, null);
     if (snap) return json({ ...snap, meta: { ...snap.meta, live: false } }, { cache: CACHE.pub(60) });
-    return apiError(404, 'zone_not_found', `No zone ${id}.`);
+    return apiError(404, 'zone.not_found', `No zone ${id}.`);
   }
   const area = found.zone.h3.reduce((a, h) => a + cellArea(h, 'km2'), 0);
   return json(await getProjection(found.zone.centroid, area, q), { cache: CACHE.pub(3600) });

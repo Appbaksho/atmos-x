@@ -4,9 +4,14 @@
  * - /_next/static, icons, fonts: cache first (immutable, content-hashed).
  * - GET /api/v0/{conditions,air,zones,farm/alerts,nurseries,species}: stale-while-revalidate.
  * - POST requests and /api/v0/ask: network only (never cached).
- * Registered only in production builds (src/components/cz/shell/sw-register.tsx).
+ * - /maplibre/<version>/ (self-hosted MapLibre worker): cache first.
+ * Registered only in production builds (src/components/cz/shell/sw-register.tsx) as
+ * `/sw.js?v=<build stamp>`: cache names carry the stamp, and `activate` deletes every cache from
+ * older builds, so a redeploy replaces the old caches cleanly. Bump RULES when caching rules change.
  */
-const VERSION = 'atmos-v0-1';
+const RULES = 'v0-2';
+const BUILD = new URL(self.location.href).searchParams.get('v') || 'dev';
+const VERSION = `atmos-${RULES}-${BUILD}`;
 const SHELL_CACHE = `${VERSION}-shell`;
 const STATIC_CACHE = `${VERSION}-static`;
 const API_CACHE = `${VERSION}-api`;
@@ -28,7 +33,7 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((k) => !k.startsWith(VERSION)).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => !k.startsWith(`${VERSION}-`)).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
 });
@@ -94,7 +99,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/icons/') || url.pathname.startsWith('/brand/') || /\.(woff2?|ttf|png|jpg|jpeg|webp|svg)$/.test(url.pathname)) {
+  if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/maplibre/') || url.pathname.startsWith('/icons/') || url.pathname.startsWith('/brand/') || /\.(woff2?|ttf|png|jpg|jpeg|webp|svg)$/.test(url.pathname)) {
     event.respondWith(cacheFirst(request, STATIC_CACHE));
   }
 });
