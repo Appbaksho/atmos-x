@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { AirScreen } from '@/components/air/air-screen';
 
-/** S26 placeholder (V0-1). Owner: V0-7. Replace the body with the ported screen. */
+/** S26 · Air quality (V0-7). */
 export default function Page() {
-  return <Placeholder id="S26" owner="V0-7" />;
+  return <AirScreen />;
 }

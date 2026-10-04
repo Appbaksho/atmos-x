@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { MyFields } from '@/components/farm/my-fields';
 
-/** F03 placeholder (V0-1). Owner: V0-7. Replace the body with the ported screen. */
+/** F03 · My fields (V0-7). `?add=1` opens the add-field form. */
 export default function Page() {
-  return <Placeholder id="F03" owner="V0-7" />;
+  return <MyFields />;
 }

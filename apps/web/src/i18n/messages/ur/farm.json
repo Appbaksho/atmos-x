@@ -1,1 +1,46 @@
-{}
+{
+  "crop": {
+    "boro": "بورو چاول",
+    "aman": "امن چاول",
+    "potato": "آلو",
+    "wheat": "گندم",
+    "jute": "پٹ سن"
+  },
+  "stage": {
+    "seedbed": "نرسری",
+    "flowering": "پھول",
+    "ripening": "پکنا",
+    "harvest": "کٹائی"
+  },
+  "home": {
+    "airNow": "ابھی ہوا",
+    "growth": "نشوونما کا مرحلہ",
+    "today": "آج یہ کریں",
+    "whatToDo": "کیوں اور کیسے",
+    "forecast": "۵ دن کی پیش گوئی",
+    "log": "لاگ",
+    "notifications": "اطلاعات"
+  },
+  "alert": {
+    "lead": "پیشگی وقت",
+    "oneToday": "آج کا ایک کام",
+    "done": "کر لیا"
+  },
+  "fields": {
+    "myFields": "میرے کھیت",
+    "addBtn": "کھیت شامل",
+    "addTitle": "نیا کھیت شامل کریں",
+    "fName": "کھیت کا نام",
+    "newField": "نیا کھیت",
+    "area": "رقبہ",
+    "acresW": "ایکڑ",
+    "save": "کھیت محفوظ کریں",
+    "cancel": "منسوخ",
+    "weather": "کھیت کا موسم",
+    "feelsL": "محسوس",
+    "hum": "نمی",
+    "windL": "ہوا",
+    "rain48": "۴۸ گھنٹے بارش",
+    "today": "آج"
+  }
+}

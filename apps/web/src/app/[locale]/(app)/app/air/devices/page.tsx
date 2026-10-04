@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { DevicesScreen } from '@/components/air/devices-screen';
 
-/** S27 placeholder (V0-1). Owner: V0-7. Replace the body with the ported screen. */
+/** S27 · My devices (V0-7). */
 export default function Page() {
-  return <Placeholder id="S27" owner="V0-7" />;
+  return <DevicesScreen />;
 }

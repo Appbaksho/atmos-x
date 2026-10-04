@@ -1,1 +1,49 @@
-{}
+{
+  "crop": {
+    "boro": "বোরো ধান",
+    "aman": "আমন ধান",
+    "potato": "আলু",
+    "wheat": "গম",
+    "jute": "পাট",
+    "vegetables": "সবজি"
+  },
+  "stage": {
+    "seedbed": "বীজতলা",
+    "vegetative": "অঙ্গজ বৃদ্ধি",
+    "flowering": "ফুল",
+    "ripening": "পাকা",
+    "harvest": "ফসল তোলা"
+  },
+  "home": {
+    "airNow": "এখন বাতাস",
+    "growth": "বৃদ্ধির ধাপ",
+    "today": "আজ এটা করুন",
+    "whatToDo": "কেন ও কীভাবে",
+    "forecast": "৫ দিনের পূর্বাভাস",
+    "log": "লগ",
+    "notifications": "বিজ্ঞপ্তি"
+  },
+  "alert": {
+    "lead": "আগাম সময়",
+    "oneToday": "আজকের একটি কাজ",
+    "done": "করেছি"
+  },
+  "fields": {
+    "myFields": "আমার জমি",
+    "addBtn": "জমি যোগ",
+    "addTitle": "নতুন জমি যোগ করুন",
+    "fName": "জমির নাম",
+    "newField": "নতুন জমি",
+    "area": "আয়তন",
+    "acresW": "একর",
+    "save": "জমি সংরক্ষণ করুন",
+    "cancel": "বাতিল",
+    "weather": "জমির আবহাওয়া",
+    "feelsL": "অনুভূত",
+    "hum": "আর্দ্রতা",
+    "windL": "বাতাস",
+    "rain48": "৪৮ ঘণ্টায় বৃষ্টি",
+    "mm": "মিমি",
+    "today": "আজ"
+  }
+}
