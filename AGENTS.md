@@ -1,41 +1,23 @@
-This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
+# Atmos X: monorepo rules (humans + agents)
 
-## Expo has changed — do not trust your training data
+## Apps
+| Path | State | Notes |
+| --- | --- | --- |
+| `apps/web` | **active (v0)** | Next.js 16 landing + web app + PWA. See `prompt-v0.md`. |
+| `apps/mobile` | **frozen** | Old Expo app. Visual and UX source of truth. Read it, never edit it. Run it: `cd apps/mobile && npm i && npx expo start --web`. |
+| `apps/api` | empty | FastAPI + Postgres, built in v1 (`prompt-v1.md`). |
 
-Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:
-
-1. Read the major version of the `expo` package in `package.json`.
-2. Fetch the matching versioned docs: `https://docs.expo.dev/versions/v<major>.0.0/`
-3. For anything else, fetch https://docs.expo.dev/llms.txt — an index of all Expo docs with corrections to common LLM misconceptions. Follow its links to the specific page you need; never answer from memory.
-
-## Commands
-
-Use `bunx` instead of `npx` if the project uses bun (`bun.lock` present).
-
-```bash
-npx expo install <package>  # ALWAYS use instead of npm/yarn/pnpm/bun add — resolves SDK-compatible versions
-npx expo start              # start the dev server
-npx expo lint               # lint
-npx tsc --noEmit            # typecheck
-npx expo-doctor             # diagnose dependency and config issues
-npx expo install --fix      # fix incompatible package versions
-```
-
-Run lint and typecheck before declaring any task done.
-
-## Navigation & Routing
-
-- Use **Expo Router** for all navigation. Routes live in `src/app/` — every file there is a screen, `_layout.tsx` files define navigators. Keep non-route code (components, hooks, utils) outside `src/app/`.
-- Import `Link`, `router`, and `useLocalSearchParams` from `expo-router`.
-- Docs: https://docs.expo.dev/router/introduction.md
-
-## Building with EAS
-
-Use EAS to build, sign, and submit the app in the cloud (`eas build`, `eas submit`) and to ship over-the-air updates (`eas update`) — no local Xcode or Android Studio required. Run EAS CLI as `bunx eas-cli <command>` in Bun projects, or `npx eas-cli@latest <command>` otherwise; substitute that for bare `eas` in docs examples.
-Docs: https://docs.expo.dev/eas/index.md
+Plans: `prompt-v0.md` (presentable MVP, current), `prompt-v1.md` (full MVP), `DEV-CHECKLIST.md` (human tasks).
 
 ## Rules
+- Read `apps/web/AGENTS.md`: Next.js 16 differs from your training data. Read `apps/web/node_modules/next/dist/docs/` before using an API. `middleware.ts` is now **`src/proxy.ts`**.
+- Screens get data **only** through `apps/web/src/lib/data/hooks`. The contract types are in `apps/web/src/lib/data/types.ts` (snake_case, mirrors prompt-v1 §5). No demo numbers inside screens.
+- The OpenAI key is **server-only** (`src/server/**`, `src/app/api/v0/**`). Never use `NEXT_PUBLIC_` for secrets. Never print `.env.local`.
+- No hard-coded user-facing strings. Use next-intl messages in `src/i18n/messages/{locale}/{namespace}.json`.
+- Every screen has loading, error, empty and guest-restricted states, plus dark mode, RTL (ur, ar), 360 px and 1280 px layouts.
+- Stay inside the folders your prompt owns. Don't run `npm install`; ask the Integrator to add a dependency.
+- Agents working in parallel in the same tree: **don't run `next build` or `next dev`** (the Integrator does). Use `npm run typecheck`, `npm run lint` and `npm test`, and only fix errors in your own files.
+- Finish with a handoff note: `docs/handoff/v0-<id>.md`.
 
-- If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
-- Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
-- Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
+## Commands (apps/web)
+`npm run dev` · `npm run build` · `npm run lint` · `npm run typecheck` · `npm test` · `npm run probe` · `npm run snapshot:dhaka` · `npm run i18n:translate` · `npm run i18n:check`
