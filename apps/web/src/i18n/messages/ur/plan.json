@@ -1,1 +1,48 @@
-{}
+{
+  "goalTitle": "ٹھنڈک کا ہدف",
+  "zoneSet": "زون",
+  "existing": "اس زون میں پہلے سے",
+  "space": "دستیاب جگہ",
+  "target": "ہدف",
+  "rec": "تجویز کردہ",
+  "timeline": "مدت",
+  "tls": {
+    "m3": "۳ ماہ",
+    "y1": "۱ سال",
+    "y2": "۲ سال",
+    "y5": "۵ سال"
+  },
+  "goalDate": "ہدف کی تاریخ",
+  "checkFeas": "قابلِ عمل جانچیں",
+  "feasTitle": "قابلِ عمل",
+  "verdict": "فیصلہ",
+  "milestones": "سنگِ میل",
+  "seePlan": "منصوبہ دیکھیں",
+  "startTeam": "ٹیم بنائیں",
+  "whereTitle": "کہاں لگائیں",
+  "solo": "اکیلے",
+  "team": "ٹیم · {from}–{to}",
+  "org": "ادارہ",
+  "planTitle": "آپ کا منصوبہ",
+  "modeled": "ماڈل شدہ",
+  "budget": "بجٹ",
+  "species": "تجویز کردہ انواع",
+  "nurseries": "نرسریاں",
+  "logFirst": "پہلا کام لاگ کریں",
+  "seeBudget": "بجٹ دیکھیں",
+  "coolingContribution": "ٹھنڈک میں حصہ",
+  "care": "دیکھ بھال",
+  "priceWhere": "قیمت اور کہاں",
+  "findN": "نرسریاں دیکھیں",
+  "editMap": "قابلِ عمل جانچیں",
+  "legend": {
+    "roadside": "سڑک کنارہ",
+    "ground": "کھلی جگہ"
+  },
+  "filters": {
+    "all": "سب"
+  },
+  "perSapling": "فی پودا",
+  "showLess": "کم دکھائیں",
+  "showAll": "تمام {n} دیکھیں"
+}

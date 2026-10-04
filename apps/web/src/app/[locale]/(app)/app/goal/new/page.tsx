@@ -1,6 +1,7 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { GoalWizard } from '@/components/plan/goal-wizard';
 
-/** S08 placeholder (V0-1). Owner: V0-5. Replace the body with the ported screen. */
-export default function Page() {
-  return <Placeholder id="S08" owner="V0-5" />;
+/** S08 · Cooling goal wizard. `?zone=<zone id>` preselects the zone (from S06 / S04). */
+export default async function Page({ searchParams }: PageProps<'/[locale]/app/goal/new'>) {
+  const { zone } = await searchParams;
+  return <GoalWizard zoneId={typeof zone === 'string' && zone ? zone : null} />;
 }

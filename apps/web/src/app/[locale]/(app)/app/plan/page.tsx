@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { PlanScreen } from '@/components/plan/plan-screen';
 
-/** S10 placeholder (V0-1). Owner: V0-5. Replace the body with the ported screen. */
+/** S10 · Your plan (tab root). */
 export default function Page() {
-  return <Placeholder id="S10" owner="V0-5" tab />;
+  return <PlanScreen />;
 }

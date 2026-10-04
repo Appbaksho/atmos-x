@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { BudgetScreen } from '@/components/act/budget';
 
-/** S13 placeholder (V0-1). Owner: V0-5. Replace the body with the ported screen. */
+/** S13 · Budget for the active goal. */
 export default function Page() {
-  return <Placeholder id="S13" owner="V0-5" />;
+  return <BudgetScreen />;
 }

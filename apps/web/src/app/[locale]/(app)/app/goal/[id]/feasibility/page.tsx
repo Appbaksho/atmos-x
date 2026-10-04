@@ -1,7 +1,7 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { Feasibility } from '@/components/plan/feasibility';
 
-/** S09 placeholder (V0-1). Owner: V0-5. Replace the body with the ported screen. */
+/** S09 · Feasibility of a (local) goal. */
 export default async function Page({ params }: PageProps<'/[locale]/app/goal/[id]/feasibility'>) {
   const { id } = await params;
-  return <Placeholder id="S09" owner="V0-5" param={id} />;
+  return <Feasibility id={id} />;
 }

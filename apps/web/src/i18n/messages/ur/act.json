@@ -1,1 +1,31 @@
-{}
+{
+  "short": {
+    "plant_tree": "درخت",
+    "cool_roof": "چھت کوٹ",
+    "green_wall": "بیل",
+    "water_tree": "پانی"
+  },
+  "log": {
+    "action": "کام",
+    "species": "نوع",
+    "qty": "تعداد",
+    "credit": "کریڈٹ کسے ملے",
+    "submit": "تصدیق کے لیے بھیجیں",
+    "cMe": "صرف میں"
+  },
+  "budget": {
+    "title": "بجٹ",
+    "total": "تخمینی کل",
+    "logAct": "کام لاگ کریں"
+  },
+  "nurseries": {
+    "title": "نرسریاں"
+  },
+  "contribution": {
+    "title": "حصہ",
+    "verified": "تصدیق شدہ",
+    "survival": "بقا کی تصاویر",
+    "backPlan": "منصوبے پر واپس",
+    "seeTeam": "ٹیم دیکھیں"
+  }
+}
