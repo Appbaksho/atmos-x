@@ -1,0 +1,97 @@
+{
+  "appName": "Atmos X",
+  "back": "Back",
+  "close": "Close",
+  "cancel": "Cancel",
+  "save": "Save",
+  "done": "Done",
+  "next": "Next",
+  "continue": "Continue",
+  "retry": "Try again",
+  "seeAll": "See all",
+  "loading": "Loading…",
+  "skipToContent": "Skip to content",
+  "decrease": "Decrease {label}",
+  "increase": "Increase {label}",
+  "heatScore": "Heat Score",
+  "heatScoreA11y": "Heat Score {score}",
+  "askAtmos": "Ask Atmos",
+  "limitReached": "Daily limit reached. Try again later.",
+  "presentationMode": "Presentation mode",
+  "error": {
+    "title": "Something went wrong",
+    "body": "We couldn’t load this. Check your connection and try again.",
+    "notAvailable": "This isn’t available yet."
+  },
+  "empty": {
+    "title": "Nothing here yet"
+  },
+  "offline": {
+    "banner": "You’re offline · showing saved data",
+    "online": "Back online"
+  },
+  "install": {
+    "title": "Install Atmos X",
+    "body": "Add it to your home screen: full screen, fast, and works offline.",
+    "cta": "Install",
+    "iosHint": "Tap the Share button, then “Add to Home Screen”.",
+    "dismiss": "Not now"
+  },
+  "account": {
+    "title": "Create a free account",
+    "body": "Guests can look around. Create a free account to take part.",
+    "feature": "To {feature}, create a free account.",
+    "perks": {
+      "actions": "Log actions and earn points",
+      "teams": "Create or join a team",
+      "goals": "Set a cooling goal",
+      "trees": "Track your trees every 15 days",
+      "notifs": "Get reminders and heat warnings"
+    },
+    "create": "Create free account",
+    "signIn": "I already have an account",
+    "notNow": "Not now",
+    "note": "Your account lives on this device. Your guest settings carry over."
+  },
+  "sources": {
+    "label": "Sources",
+    "cached": "cached",
+    "live": "live",
+    "ai": "AI estimate",
+    "demo": "Demo community"
+  },
+  "risk": {
+    "ok": "Normal",
+    "caution": "Caution",
+    "xcaution": "Extreme caution",
+    "danger": "Danger",
+    "xdanger": "Extreme danger"
+  },
+  "aqi": {
+    "good": "Good",
+    "moderate": "Moderate",
+    "usg": "Unhealthy for sensitive groups",
+    "unhealthy": "Unhealthy",
+    "very_unhealthy": "Very unhealthy",
+    "hazardous": "Hazardous"
+  },
+  "location": {
+    "denied": "Location permission was denied. Search for a city instead.",
+    "unavailable": "Couldn’t get your location. Search for a city instead.",
+    "demo": "Mohammadpur, Dhaka"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page doesn’t exist or has moved.",
+    "home": "Go home"
+  },
+  "placeholder": {
+    "title": "{id} · coming soon",
+    "body": "This screen is being built by {owner}."
+  },
+  "landingPlaceholder": {
+    "pitch": "Find the hottest blocks around you and cool them down: trees, cool roofs and shade, with your neighbours.",
+    "open": "Open the app",
+    "install": "Install"
+  }
+}

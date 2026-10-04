@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#00182E" />
+    <title>Offline · Atmos X</title>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+        padding: 24px; background: #00182e; color: #eaf1f8; text-align: center;
+        font: 15px/1.5 system-ui, -apple-system, "Segoe UI", "Noto Sans Bengali", "Noto Nastaliq Urdu", sans-serif;
+      }
+      img { width: min(280px, 70vw); height: auto; }
+      h1 { font-size: 20px; font-weight: 600; }
+      p { color: #a3b2c4; max-width: 340px; }
+      .bn { font-size: 14px; }
+      button {
+        height: 52px; padding: 0 28px; border: 0; border-radius: 30px; background: #acec00; color: #131313;
+        font: 600 16px system-ui, sans-serif; cursor: pointer; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.12);
+      }
+      button:active { background: #c0ff14; transform: scale(0.97); }
+    </style>
+  </head>
+  <body>
+    <img src="/brand/atmosx-logo.png" alt="Atmos X" width="1415" height="397" />
+    <h1>You’re offline</h1>
+    <p>Atmos X needs a connection for this page. Pages you opened before still work.</p>
+    <p class="bn" lang="bn">আপনি অফলাইনে আছেন। আগে খোলা পেজগুলো এখনো কাজ করবে।</p>
+    <button type="button" onclick="location.reload()">Try again</button>
+  </body>
+</html>
