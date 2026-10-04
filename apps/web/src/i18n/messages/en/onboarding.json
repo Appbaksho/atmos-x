@@ -1,1 +1,51 @@
-{}
+{
+  "welcome": {
+    "head": "Find the hottest block. Then cool it.",
+    "body": "See the heat around you from live weather and OpenStreetMap, learn why it’s hot, and turn it into a plan you can act on — alone or with your team.",
+    "start": "Get started",
+    "have": "I already have an account",
+    "demo": "Try the Dhaka demo",
+    "roof": "Roof & road",
+    "park": "Park edge",
+    "pillA11y": "Example: {text} {value}, Heat Score {score}"
+  },
+  "language": {
+    "step": "Step 1 of 2",
+    "title": "Choose your language",
+    "detected": "Detected from your device: {lang}. Change it anytime in Settings.",
+    "sub": "Change it anytime in Settings.",
+    "group": "Language",
+    "temp": "Temperature",
+    "area": "Area",
+    "next": "Continue",
+    "back": "Back"
+  },
+  "location": {
+    "step": "Step 2 of 2",
+    "back": "Back",
+    "search": "Search a place",
+    "searchLabel": "Search for a city or neighbourhood",
+    "noResults": "No places found",
+    "title": "Scan around this point",
+    "using": "Using your location. Search above to scan somewhere else.",
+    "picked": "Search above or use your location to change the point.",
+    "demoPinned": "Presentation mode: the point is fixed to the Dhaka demo.",
+    "radius": "Scan radius",
+    "cells": "{n} cells · {r}",
+    "useLoc": "Use my location",
+    "scan": "Scan {r}",
+    "privacy": "Your precise location is used for this scan only and stays on this device.",
+    "scanning": "Scanning {n} cells…",
+    "s1t": "Finding zones",
+    "s1d": "{n} H3 cells at resolution {res}",
+    "s2t": "Live weather",
+    "s2d": "Open-Meteo air temperature · seconds",
+    "s3t": "OpenStreetMap land cover",
+    "s3d": "Buildings, roads, green and water",
+    "s4t": "Scoring drivers",
+    "s4d": "Green cover, sealed surface, density, water",
+    "slow": "This is taking a while — we’ll finish the scan on the map.",
+    "demo": "Or try the Dhaka demo",
+    "mapA11y": "Map with the scan circle around {place}"
+  }
+}

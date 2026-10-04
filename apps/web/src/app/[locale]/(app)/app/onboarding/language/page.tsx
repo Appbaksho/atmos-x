@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { LanguageScreen } from '@/components/onboarding/language';
 
-/** S02 placeholder (V0-1). Owner: V0-4. Replace the body with the ported screen. */
+/** S02 Language & units. Owner: V0-4. */
 export default function Page() {
-  return <Placeholder id="S02" owner="V0-4" />;
+  return <LanguageScreen />;
 }

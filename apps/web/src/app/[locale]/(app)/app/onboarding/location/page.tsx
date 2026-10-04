@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { LocationScreen } from '@/components/onboarding/location';
 
-/** S03 placeholder (V0-1). Owner: V0-4. Replace the body with the ported screen. */
+/** S03 Location & radius. Owner: V0-4. */
 export default function Page() {
-  return <Placeholder id="S03" owner="V0-4" />;
+  return <LocationScreen />;
 }

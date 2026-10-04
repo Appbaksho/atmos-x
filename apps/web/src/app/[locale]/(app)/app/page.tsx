@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { HomeTab } from '@/components/home/home-screen';
 
-/** S04 placeholder (V0-1). Owner: V0-4. Replace the body with the ported screen. */
+/** S04 Home (or F01 Farmer home in farmer mode). Owner: V0-4. */
 export default function Page() {
-  return <Placeholder id="S04" owner="V0-4" tab />;
+  return <HomeTab />;
 }

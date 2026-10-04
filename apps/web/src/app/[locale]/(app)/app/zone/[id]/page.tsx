@@ -1,7 +1,7 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { ZoneScreen } from '@/components/zone/zone-screen';
 
-/** S06 placeholder (V0-1). Owner: V0-4. Replace the body with the ported screen. */
+/** S06 Zone detail. Owner: V0-4. */
 export default async function Page({ params }: PageProps<'/[locale]/app/zone/[id]'>) {
   const { id } = await params;
-  return <Placeholder id="S06" owner="V0-4" param={id} />;
+  return <ZoneScreen id={decodeURIComponent(id)} />;
 }

@@ -1,6 +1,6 @@
-import { Placeholder } from '@/components/cz/placeholder';
+import { WelcomeScreen } from '@/components/onboarding/welcome';
 
-/** S01 placeholder (V0-1). Owner: V0-4. Replace the body with the ported screen. */
+/** S01 Welcome. Owner: V0-4. */
 export default function Page() {
-  return <Placeholder id="S01" owner="V0-4" />;
+  return <WelcomeScreen />;
 }

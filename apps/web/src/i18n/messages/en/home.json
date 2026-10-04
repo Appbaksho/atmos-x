@@ -1,1 +1,81 @@
-{}
+{
+  "greet": {
+    "am": "Good morning",
+    "pm": "Good afternoon",
+    "eve": "Good evening",
+    "amName": "Good morning, {name}",
+    "pmName": "Good afternoon, {name}",
+    "eveName": "Good evening, {name}"
+  },
+  "airTemp": "Air temperature",
+  "feels": "Feels like",
+  "zone": "Your zone",
+  "score": "Heat Score",
+  "level": {
+    "low": "Low",
+    "moderate": "Moderate",
+    "elevated": "Elevated",
+    "high": "High",
+    "vhigh": "Very high"
+  },
+  "why": "Why is it hot",
+  "hottest": "Hottest zones near you",
+  "seeMap": "See map",
+  "lst": "Roof & road",
+  "hum": "Humidity",
+  "wind": "Wind",
+  "upd": "Updated",
+  "alerts": "Notifications",
+  "changeLoc": "Change location",
+  "aboveNormal": "{d} above normal",
+  "belowNormal": "{d} below normal",
+  "nearNormal": "Normal for the date",
+  "bmd": "{level} · based on BMD thresholds",
+  "warning": "Heat warning",
+  "forecast": "Next 5 days",
+  "today": "Today",
+  "forecastA11y": "{day}: high {max}, low {min}, feels like {feels}, {risk}",
+  "estimate": "estimate",
+  "causes": {
+    "sealed_surface": "Sealed {pct}%",
+    "low_green": "Green {pct}%",
+    "dense_buildings": "Dense {per_ha}/ha",
+    "wide_roads": "Roads {pct}%",
+    "dark_roofs": "Dark roofs {pct}%"
+  },
+  "whatIf": "+ Green",
+  "whatIfA11y": "Added green cover",
+  "wi0": "Drag to see what planting does.",
+  "wi": "≈ {t} trees → {s} · {d}",
+  "setGoal": "Set goal",
+  "noZone": "We couldn’t find a hot zone around you yet. Open the map to scan a wider area.",
+  "airq": {
+    "title": "Air quality",
+    "src": "PM2.5 μg/m³ · {time}"
+  },
+  "due": {
+    "title": "{count, plural, one {{n} tree needs a photo} other {{n} trees need a photo}}",
+    "od": "overdue {n} days",
+    "today": "due today",
+    "soon": "due in {n} days",
+    "rule": "Each tree needs a photo every 15 days to keep its points.",
+    "submit": "Submit photo",
+    "mine": "My trees",
+    "guestTitle": "Planting trees?",
+    "guestBody": "Create a free account to track each tree and get a photo reminder every 15 days.",
+    "guestCta": "Create free account"
+  },
+  "goal": "Your goal",
+  "goalLine": "{d} by {date}",
+  "goalSub": "{who} · {d} modeled",
+  "next": "Next task",
+  "logAction": "Log",
+  "goalCta": {
+    "title": "Set a cooling goal",
+    "body": "Pick a target for {zone} and get a step-by-step plan with costs.",
+    "bodyNoZone": "Pick a target for your block and get a step-by-step plan with costs.",
+    "cta": "Set a goal"
+  },
+  "goalFeature": "set a cooling goal",
+  "treesFeature": "track your trees"
+}
