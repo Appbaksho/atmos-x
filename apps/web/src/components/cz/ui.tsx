@@ -1147,6 +1147,10 @@ export function Photo({
         alt={label ?? ''}
         loading={priority ? 'eager' : 'lazy'}
         decoding="async"
+        // Images that finish loading before hydration never fire onLoad: check `complete` on mount.
+        ref={(img) => {
+          if (img?.complete && img.naturalWidth > 0 && !loaded) setLoaded(true);
+        }}
         onLoad={() => setLoaded(true)}
         style={{ ...rn(absoluteFill), width: '100%', height: '100%', objectFit: 'cover', opacity: loaded ? 1 : 0, transition: 'opacity 250ms ease' }}
       />
