@@ -50,7 +50,7 @@ The key is already in the **root `.env`**. The V0-0 agent moves it to `apps/web/
 - [ ] After V0-0, check that `apps/web/.env.local` contains `OPENAI_API_KEY` and that the root `.env` is gone (or still gitignored).
 
 ### 1.3 OpenStreetMap services (no keys, but follow the rules)
-- [ ] Set `OSM_USER_AGENT` in `apps/web/.env.local` to `AtmosX/0.1 (<a real team email>)`. Nominatim's usage policy requires a contact address, and it allows at most 1 request per second.
+- [ ] **Set `OSM_USER_AGENT` in `apps/web/.env.local` to `"AtmosX/0.1 (<a real team email>)"`.** It currently holds a placeholder that Nominatim rejects (403), so place names fall back to a generic agent. Nominatim's usage policy requires a contact address, and it allows at most 1 request per second.
 - [ ] Nothing to sign up for:
   - **Open-Meteo** (forecast, archive, air quality, geocoding). Free for non-commercial use; credit "Open-Meteo, CC BY 4.0".
   - **OpenFreeMap** tiles.
@@ -90,6 +90,7 @@ Phones only allow the camera, geolocation and "Install app" over **HTTPS**. Pick
 - [ ] Note the final URL here: `______________________`
 
 ### 2.2 Morning of the presentation
+- [ ] `cd apps/web && npm run i18n:translate && npm run i18n:check` if any English text changed since the last run (it only translates new or changed keys and costs cents).
 - [ ] `git pull` and `npm ci && npm run build`.
 - [ ] Run **`npm run snapshot:dhaka`** to refresh the offline safety-net data, and commit it if it changed.
 - [ ] `npm run probe`: every endpoint should report OK with `live: true`.

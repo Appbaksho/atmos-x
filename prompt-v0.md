@@ -277,11 +277,12 @@ Blocked actions open the **"Create a free account"** sheet. The guest's prefs ca
 3. **Fractions per cell.** Sample a 6×6 point grid inside each cell. Use an R-tree index of feature bounding boxes, then `booleanPointInPolygon`. The result is `built_frac`, `road_frac`, `green_frac` and `water_frac`, plus `building_density` = number of buildings per hectare.
 4. **Estimated surface temperature** (documented in code; the coefficients are config):
    `est_c = air_c + 9·built_frac + 7·road_frac − 6·green_frac − 8·water_frac + 1.5·min(building_density/40, 1)`.
-   Here `air_c` is the current Open-Meteo 2 m temperature. At night (local hour 19–06), multiply the land-cover terms by 0.4.
+   For scoring, `air_c` is **today's daytime peak** (Open-Meteo tmax), with full land-cover contrast at any hour, like a daytime satellite pass.
 5. **Heat Score:**
-   `score = clamp(0, 100, 50 + 8·(est_c − median_est_c_of_scan) + 20·(built_frac + road_frac − green_frac))`, rounded.
+   `score = clamp(0, 100, 10 + 85·(built+road) − 50·green − 60·water + 6·min(density/40, 1) + 4·(est_c − median_est_c_of_scan))`, rounded.
+   Sealed surface sets the absolute level. Dense Dhaka blocks are about 80 % sealed and score in the 80s–90s; parks score 0–20. Temperature contrast then separates neighbouring blocks.
    Also set the drivers: `sealed_pct = built+road`, `green_pct`, `dark_roof_pct` (an assumed constant per country, flagged "estimate"), `pop_proxy` = building density.
-6. **Zones.** Connected components (H3 neighbours) of cells in the scan's top quartile, ranked by mean score. Mark `near_tie` when neighbouring ranks differ by ≤ 3.
+6. **Zones.** Connected components (H3 neighbours) of cells in the scan's top quartile, ranked by mean score. Mark `near_tie` when neighbouring ranks differ by ≤ 2.
    - **Name:** the nearest named OSM `place=neighbourhood|suburb|quarter` or the largest named road in the cluster. If there's none, use "Zone N".
    - **ID:** `z-<h3 cell of the cluster centroid>-<radius bucket>`. Detail must work **statelessly**: recompute or load the scan from the cache using the cell's centre.
    - The user's own zone is the cluster containing the centre cell, or the nearest one.
