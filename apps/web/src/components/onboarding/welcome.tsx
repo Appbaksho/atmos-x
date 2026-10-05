@@ -36,8 +36,8 @@ export function WelcomeScreen() {
   const { f, prefs, lang, setPrefs } = useCz();
   const t = useTranslations('onboarding.welcome');
   const demo = () => {
-    setPrefs({ presentation: true, onboarded: true });
-    goReplace('S04');
+    // Navigate only once `onboarded` is set, or the onboarding gate bounces /app back to S01.
+    void setPrefs({ presentation: true, onboarded: true }).then(() => goReplace('S04'));
   };
   return (
     <main id="main" className="cz-view" style={{ minHeight: '100dvh', backgroundColor: B.photoBg }}>
