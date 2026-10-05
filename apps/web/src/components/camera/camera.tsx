@@ -16,7 +16,7 @@ import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslations } from 'next-intl';
 
-import { B, CzButton, I, Icon, IconBtn, R, Spinner, Tap, Txt, View, useCz, useLocation, useMounted } from '@/components/cz';
+import { B, CzButton, I, Icon, IconBtn, lockBodyScroll, R, Spinner, Tap, Txt, View, useCz, useLocation, useMounted } from '@/components/cz';
 
 import { type CameraCapture, type CameraIssue, type Fix, captureVideoFrame, cameraIssueFrom, fileToCapture, formatFix, formatStampTime, liveCameraSupport } from './capture';
 
@@ -79,8 +79,7 @@ function CameraModal({
   /* Body scroll lock, Escape, focus restore. */
   useEffect(() => {
     const prevFocus = document.activeElement as HTMLElement | null;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const unlockScroll = lockBodyScroll();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
@@ -89,7 +88,7 @@ function CameraModal({
     return () => {
       cancelAnimationFrame(id);
       document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prevOverflow;
+      unlockScroll();
       prevFocus?.focus?.();
     };
   }, [onClose]);
