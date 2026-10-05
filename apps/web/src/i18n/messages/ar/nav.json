@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "main": "الرئيسي",
+  "home": "الرئيسية",
+  "map": "الخريطة",
+  "plan": "الخطة",
+  "community": "المجتمع",
+  "profile": "الملف",
+  "fields": "الحقول",
+  "air": "جودة الهواء",
+  "notifications": "الإشعارات",
+  "settings": "الإعدادات",
+  "about": "حول"
+}

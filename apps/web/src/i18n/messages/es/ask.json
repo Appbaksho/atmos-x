@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "sub": "Respuestas con datos de Atmos X y fuentes",
+  "hello": "Pregúntame sobre calor, clima, aire, tus árboles o cultivos. Solo uso datos de Atmos X y te lo digo cuando no los tengo.",
+  "ph": "Escribe una pregunta…",
+  "busy": "Revisando datos de Atmos X…",
+  "official": "Oficial:",
+  "local": "Alerta de Atmos X:",
+  "photoTag": "Foto adjunta",
+  "photoAlt": "Tu foto",
+  "photoQ": "¿Qué ves en esta foto?",
+  "attach": "Adjuntar foto",
+  "removePhoto": "Quitar foto",
+  "send": "Enviar",
+  "stop": "Detener",
+  "newChat": "Nuevo chat",
+  "helpful": "Útil",
+  "thanks": "Gracias ✓",
+  "limit": "Has usado {n} de {max} mensajes hoy · sin consejos médicos ni sobre dosis de pesticidas",
+  "limitGuest": "Has usado {n} de {max} mensajes de invitado hoy · sin consejos médicos ni sobre dosis de pesticidas",
+  "outOfMessages": "Ya usaste los mensajes de hoy. Vuelve mañana.",
+  "error": "No pude conectar con Atmos X. Revisa tu conexión e inténtalo de nuevo.",
+  "retry": "Intentar otra vez",
+  "sugg": {
+    "heat": [
+      "¿Por qué mi zona está tan caliente?",
+      "¿Es seguro correr a las 6 pm?"
+    ],
+    "air": [
+      "¿Debo abrir las ventanas ahora?",
+      "¿Qué mascarilla funciona para PM2.5?"
+    ],
+    "farm": [
+      "¿Debo regar antes del domingo?",
+      "¿Cuándo estará lista mi cosecha de arroz?"
+    ],
+    "tree": [
+      "¿Por qué se enrollan las hojas de {name}?",
+      "¿Qué árbol debo plantar después?"
+    ]
+  },
+  "myTree": "Mi árbol",
+  "screen": {
+    "S01": "Bienvenido",
+    "S02": "Bienvenido",
+    "S03": "Bienvenido",
+    "S04": "Inicio",
+    "S05": "Mapa de calor",
+    "S06": "Detalle de zona",
+    "S07": "Proyección",
+    "S08": "Asistente de meta",
+    "S09": "Factibilidad",
+    "S10": "Plan",
+    "S11": "Detalle de especie",
+    "S12": "Mapa de viveros",
+    "S13": "Presupuesto",
+    "S14": "Registrar acción",
+    "S15": "Detalle de aporte",
+    "S16": "Centro comunitario",
+    "S17": "Panel del equipo",
+    "S18": "Página de la organización",
+    "S19": "Crear e invitar",
+    "S20": "Perfil",
+    "S21": "Notificaciones",
+    "S22": "Ajustes",
+    "S26": "Calidad del aire",
+    "S27": "Mis dispositivos",
+    "S28": "Agregar sensor",
+    "S29": "Ask Atmos",
+    "F01": "Inicio del agricultor",
+    "F02": "Detalle de alerta",
+    "F03": "Mis parcelas",
+    "tree": "Mi árbol"
+  }
+}

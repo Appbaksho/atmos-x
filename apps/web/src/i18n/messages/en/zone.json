@@ -1,0 +1,93 @@
+{
+  "back": "Back",
+  "heroA11y": "Map of {zone}",
+  "sub": "{place} · {d} from you",
+  "distOnly": "{d} from you",
+  "anom": "{d} vs 20-year average",
+  "vhigh": "Very high",
+  "high": "High",
+  "observed": "Heat level · now",
+  "air": "Air",
+  "feels": "Feels like",
+  "roof": "Roof & road",
+  "lstNote": "Roof & road is an estimate of surface temperature from OpenStreetMap land cover and the live air temperature. Surfaces get hotter than the air you feel.",
+  "whyTitle": "Why this block is hot",
+  "aiLabel": "AI explanation",
+  "aiNote": "Written by AI from the numbers above only. It can be wrong; the numbers come from our heat estimate.",
+  "noWhy": "These causes add the most heat here:",
+  "whatIfTitle": "What if we add green?",
+  "years": {
+    "title": "Over the years",
+    "kind": "Air temperature, hot season",
+    "kindLst": "Surface temperature, hot season",
+    "layers": {
+      "day": "Day",
+      "night": "Night"
+    },
+    "year": "Year",
+    "value": "{year}",
+    "vsAvg": "vs 20-yr avg",
+    "trend": "Trend / decade",
+    "perDecade": "{d} / decade",
+    "note": "Hot-season mean of daily {kind, select, max {maximum} other {minimum}} air temperature from the Open-Meteo archive (ERA5). This is air temperature for the area, not satellite surface temperature.",
+    "avg": "20-yr avg",
+    "chartA11y": "{kind} from {from} to {to}. Average {avg}. Trend {trend} per decade.",
+    "empty": "No history available for this place yet."
+  },
+  "drivers": {
+    "label": "Drivers · causes",
+    "title": "What makes this block hot",
+    "adds": "added by land cover (estimate)",
+    "addsLbl": "What each cause adds",
+    "addsShort": "Adds {d}",
+    "estimate": "estimate",
+    "fixL": "Fix",
+    "addGoal": "Add to goal",
+    "perHa": "{n} buildings / ha",
+    "sealed": "Sealed surface",
+    "green": "Green cover",
+    "roofs": "Dark roofs",
+    "density": "Building density",
+    "why": {
+      "sealed": "Concrete and asphalt soak up sun all day and give the heat back at night, so the block never fully cools.",
+      "green": "Trees cool by shade and by evaporating water. Less green cover means less of both.",
+      "roofs": "Dark roofs get far hotter than light ones at noon and heat the rooms under them.",
+      "density": "Tightly packed buildings trap heat and block the wind, so nights stay warm."
+    },
+    "fix": {
+      "sealed": "Swap some paving for grass pavers or tree pits",
+      "green": "Plant street trees along the main roads",
+      "roofs": "Cool-roof coating on the largest roofs",
+      "density": "Shade sails over the narrowest lanes"
+    },
+    "source": "Heat estimate: OpenStreetMap land cover + live weather. Dark roofs are an assumed share for the country."
+  },
+  "setGoal": "Set a cooling goal",
+  "seeProj": "See projection",
+  "goalFeature": "set a cooling goal",
+  "proj": {
+    "title": "Projection",
+    "sub": "{zone} · mean air temperature, hot season",
+    "subNoZone": "Mean air temperature, hot season",
+    "horizon": "Horizon",
+    "doNothing": "Do nothing",
+    "withPlan": "With plan",
+    "goalMark": "Goal date",
+    "gap": "Cooling from the plan",
+    "chartA11y": "Do nothing in {year}: {a}. With plan in {year}: {b}.",
+    "inputs": "Your plan",
+    "trees": "Trees",
+    "roof": "Cool roof",
+    "shade": "Shade structures",
+    "updating": "Updating…",
+    "assumptions": "Assumptions",
+    "rangesNote": "Ranges, not promises: trend from 20 years of archive data plus published cooling coefficients.",
+    "start": "Start the plan",
+    "empty": "No projection available for this zone yet."
+  },
+  "notFound": {
+    "title": "This zone isn't on the map any more",
+    "body": "Zone ids change when an area is scanned again. Open the map and pick the block again.",
+    "action": "Open the map"
+  }
+}

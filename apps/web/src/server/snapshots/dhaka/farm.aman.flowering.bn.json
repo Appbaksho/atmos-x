@@ -1,0 +1,101 @@
+{
+ "alerts": [
+  {
+   "id": "lightning-2026-10-06",
+   "hazard": "lightning",
+   "level": "warning",
+   "emoji": "⚡",
+   "title": {
+    "code": "farm.lightning.title"
+   },
+   "body": {
+    "code": "farm.lightning.body",
+    "params": {
+     "cape": 2230,
+     "day": "মঙ্গল ৬ অক্টো",
+     "time": "14:00"
+    }
+   },
+   "actions": [
+    {
+     "code": "farm.lightning.a1"
+    },
+    {
+     "code": "farm.lightning.a2"
+    },
+    {
+     "code": "farm.lightning.a3"
+    }
+   ],
+   "window": {
+    "from": "2026-10-06",
+    "to": "2026-10-07"
+   },
+   "sources": [
+    {
+     "id": "open-meteo",
+     "name": "Open-Meteo",
+     "url": "https://open-meteo.com",
+     "as_of": "2026-10-04T20:24:40.551Z"
+    }
+   ]
+  },
+  {
+   "id": "worker_heat-2026-10-05",
+   "hazard": "heat",
+   "level": "warning",
+   "emoji": "🥵",
+   "title": {
+    "code": "farm.worker_heat.title"
+   },
+   "body": {
+    "code": "farm.worker_heat.body",
+    "params": {
+     "peak": 43,
+     "day": "সোম ৫ অক্টো"
+    }
+   },
+   "actions": [
+    {
+     "code": "farm.worker_heat.a1"
+    },
+    {
+     "code": "farm.worker_heat.a2"
+    },
+    {
+     "code": "farm.worker_heat.a3"
+    }
+   ],
+   "window": {
+    "from": "2026-10-05",
+    "to": "2026-10-05"
+   },
+   "sources": [
+    {
+     "id": "open-meteo",
+     "name": "Open-Meteo",
+     "url": "https://open-meteo.com",
+     "as_of": "2026-10-04T20:24:40.551Z"
+    }
+   ]
+  }
+ ],
+ "region": null,
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:25:00.318Z",
+  "sources": [
+   {
+    "id": "open-meteo",
+    "name": "Open-Meteo",
+    "url": "https://open-meteo.com",
+    "as_of": "2026-10-04T20:24:40.551Z"
+   },
+   {
+    "id": "nasa-power",
+    "name": "NASA POWER",
+    "url": "https://power.larc.nasa.gov"
+   }
+  ]
+ }
+}

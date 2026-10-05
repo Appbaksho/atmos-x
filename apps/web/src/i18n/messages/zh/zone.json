@@ -1,0 +1,96 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "back": "返回",
+  "heroA11y": "{zone}地图",
+  "sub": "{place} · 距你 {d}",
+  "distOnly": "距你 {d}",
+  "anom": "较20年均值 {d}",
+  "vhigh": "很高",
+  "high": "高",
+  "observed": "热度 · 现在",
+  "air": "空气",
+  "feels": "体感",
+  "roof": "屋顶与道路",
+  "lstNote": "屋顶与道路是根据 OpenStreetMap 地表覆盖和实时空气温度估算的地表温度。地表会比你感受到的空气更热。",
+  "whyTitle": "这个街区为什么热",
+  "aiLabel": "AI 解释",
+  "aiNote": "仅根据上面的数据由 AI 写出。可能有误；这些数字来自我们的热度估算。",
+  "noWhy": "这些原因让这里最热：",
+  "whatIfTitle": "如果增加绿化呢？",
+  "years": {
+    "title": "多年变化",
+    "kind": "空气温度，热季",
+    "kindLst": "地表温度，热季",
+    "layers": {
+      "day": "白天",
+      "night": "夜间"
+    },
+    "year": "年份",
+    "value": "{year}",
+    "vsAvg": "较20年均值",
+    "trend": "趋势／每10年",
+    "perDecade": "{d}／每10年",
+    "note": "热季每日{kind, select, max {最高} other {最低}}空气温度的平均值，来自 Open-Meteo 档案（ERA5）。这是该区域的空气温度，不是卫星地表温度。",
+    "avg": "20年均值",
+    "chartA11y": "{from}到{to}的{kind}。平均值{avg}。趋势为每10年{trend}。",
+    "empty": "这个地方目前还没有历史数据。"
+  },
+  "drivers": {
+    "label": "驱动因素 · 原因",
+    "title": "这个街区为什么热",
+    "adds": "地表覆盖带来的增加（估算）",
+    "addsLbl": "各原因增加多少",
+    "addsShort": "增加 {d}",
+    "estimate": "估算",
+    "fixL": "改进",
+    "addGoal": "加入目标",
+    "perHa": "{n} 栋/公顷",
+    "sealed": "硬化地面",
+    "green": "绿化覆盖",
+    "roofs": "深色屋顶",
+    "density": "建筑密度",
+    "why": {
+      "sealed": "混凝土和沥青整天吸收太阳热量，夜里再把热量放出来，所以这个街区一直凉不下来。",
+      "green": "树木靠遮阴和蒸发水分降温。绿化越少，这两种降温都越少。",
+      "roofs": "深色屋顶在正午会比浅色屋顶热得多，也会把下面的房间烤热。",
+      "density": "建筑挤得太密会困住热量，也挡住风，所以夜里还是很热。"
+    },
+    "fix": {
+      "sealed": "把部分铺装换成草坪砖或树坑",
+      "green": "在主路两侧种行道树",
+      "roofs": "给最大的屋顶刷隔热涂层",
+      "density": "在最窄的巷道上方加遮阳篷"
+    },
+    "source": "热度估算：OpenStreetMap 地表覆盖 + 实时天气。深色屋顶为按国家假设的占比。"
+  },
+  "setGoal": "设定降温目标",
+  "seeProj": "查看预测",
+  "goalFeature": "设定降温目标",
+  "proj": {
+    "title": "预测",
+    "sub": "{zone} · 热季平均空气温度",
+    "subNoZone": "热季平均空气温度",
+    "horizon": "时间范围",
+    "doNothing": "不采取行动",
+    "withPlan": "按计划",
+    "goalMark": "目标日期",
+    "gap": "计划带来的降温",
+    "chartA11y": "{year}年不采取行动：{a}。按计划：{b}。",
+    "inputs": "你的计划",
+    "trees": "树木",
+    "roof": "隔热屋顶",
+    "shade": "遮阳设施",
+    "updating": "更新中…",
+    "assumptions": "假设",
+    "rangesNote": "这是范围，不是承诺：基于20年历史数据趋势和已发表的降温系数。",
+    "start": "开始计划",
+    "empty": "这个区域目前还没有预测。"
+  },
+  "notFound": {
+    "title": "这个区域已不在地图上",
+    "body": "当区域重新扫描时，区域 ID 会变化。打开地图，再选一次这个街区。",
+    "action": "打开地图"
+  }
+}

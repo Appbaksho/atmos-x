@@ -1,0 +1,1235 @@
+{
+ "scan": {
+  "center": {
+   "lat": 23.759,
+   "lng": 90.359
+  },
+  "radius_m": 1000,
+  "h3_res": 10,
+  "acquired": {
+   "lst_date": null,
+   "ndvi_date": null
+  },
+  "baseline_lst_c": 40.8,
+  "method": "osm-proxy"
+ },
+ "hexes": [
+  {
+   "h3": "8a3cf10ce0cffff",
+   "score": 85,
+   "lst_c": 42.2
+  },
+  {
+   "h3": "8a3cf10ce0c7fff",
+   "score": 92,
+   "lst_c": 42.6
+  },
+  {
+   "h3": "8a3cf10ce0dffff",
+   "score": 89,
+   "lst_c": 42.6
+  },
+  {
+   "h3": "8a3cf10ce767fff",
+   "score": 67,
+   "lst_c": 40.8
+  },
+  {
+   "h3": "8a3cf10ce397fff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10ce3b7fff",
+   "score": 77,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce0effff",
+   "score": 82,
+   "lst_c": 42
+  },
+  {
+   "h3": "8a3cf10ce0e7fff",
+   "score": 64,
+   "lst_c": 40.7
+  },
+  {
+   "h3": "8a3cf10ce0f7fff",
+   "score": 93,
+   "lst_c": 42.8
+  },
+  {
+   "h3": "8a3cf10ce0d7fff",
+   "score": 69,
+   "lst_c": 41.2
+  },
+  {
+   "h3": "8a3cf10ce72ffff",
+   "score": 65,
+   "lst_c": 40.9
+  },
+  {
+   "h3": "8a3cf10ce777fff",
+   "score": 51,
+   "lst_c": 39.4
+  },
+  {
+   "h3": "8a3cf10ce747fff",
+   "score": 56,
+   "lst_c": 39.5
+  },
+  {
+   "h3": "8a3cf10ce76ffff",
+   "score": 27,
+   "lst_c": 37.8
+  },
+  {
+   "h3": "8a3cf10ce39ffff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10ce387fff",
+   "score": 95,
+   "lst_c": 43
+  },
+  {
+   "h3": "8a3cf10ce3a7fff",
+   "score": 99,
+   "lst_c": 43.3
+  },
+  {
+   "h3": "8a3cf10ce05ffff",
+   "score": 45,
+   "lst_c": 39.1
+  },
+  {
+   "h3": "8a3cf10ce057fff",
+   "score": 85,
+   "lst_c": 42.2
+  },
+  {
+   "h3": "8a3cf10ce00ffff",
+   "score": 64,
+   "lst_c": 40.7
+  },
+  {
+   "h3": "8a3cf10ce01ffff",
+   "score": 78,
+   "lst_c": 41.8
+  },
+  {
+   "h3": "8a3cf10ce0affff",
+   "score": 69,
+   "lst_c": 41.2
+  },
+  {
+   "h3": "8a3cf10ce08ffff",
+   "score": 72,
+   "lst_c": 41.3
+  },
+  {
+   "h3": "8a3cf10ce727fff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce707fff",
+   "score": 64,
+   "lst_c": 40.4
+  },
+  {
+   "h3": "8a3cf10ce70ffff",
+   "score": 80,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce757fff",
+   "score": 77,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce75ffff",
+   "score": 70,
+   "lst_c": 41.1
+  },
+  {
+   "h3": "8a3cf10ce74ffff",
+   "score": 73,
+   "lst_c": 41.1
+  },
+  {
+   "h3": "8a3cf10ce2b7fff",
+   "score": 42,
+   "lst_c": 38.7
+  },
+  {
+   "h3": "8a3cf10ce2a7fff",
+   "score": 82,
+   "lst_c": 42
+  },
+  {
+   "h3": "8a3cf10ce38ffff",
+   "score": 62,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce3affff",
+   "score": 68,
+   "lst_c": 41.1
+  },
+  {
+   "h3": "8a3cf10ce317fff",
+   "score": 73,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ce04ffff",
+   "score": 49,
+   "lst_c": 39.4
+  },
+  {
+   "h3": "8a3cf10ce047fff",
+   "score": 39,
+   "lst_c": 38.4
+  },
+  {
+   "h3": "8a3cf10ce077fff",
+   "score": 71,
+   "lst_c": 41.1
+  },
+  {
+   "h3": "8a3cf10ce02ffff",
+   "score": 94,
+   "lst_c": 42.9
+  },
+  {
+   "h3": "8a3cf10ce007fff",
+   "score": 48,
+   "lst_c": 39.2
+  },
+  {
+   "h3": "8a3cf10ce017fff",
+   "score": 35,
+   "lst_c": 38.3
+  },
+  {
+   "h3": "8a3cf10ce0a7fff",
+   "score": 58,
+   "lst_c": 40.4
+  },
+  {
+   "h3": "8a3cf10ce087fff",
+   "score": 56,
+   "lst_c": 39.8
+  },
+  {
+   "h3": "8a3cf10ce09ffff",
+   "score": 56,
+   "lst_c": 40
+  },
+  {
+   "h3": "8a3cf10ce737fff",
+   "score": 48,
+   "lst_c": 39.1
+  },
+  {
+   "h3": "8a3cf10ce717fff",
+   "score": 22,
+   "lst_c": 36.8
+  },
+  {
+   "h3": "8a3cf10ce71ffff",
+   "score": 82,
+   "lst_c": 42
+  },
+  {
+   "h3": "8a3cf10ce627fff",
+   "score": 100,
+   "lst_c": 43.5
+  },
+  {
+   "h3": "8a3cf10ce62ffff",
+   "score": 73,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ce677fff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce667fff",
+   "score": 42,
+   "lst_c": 38.6
+  },
+  {
+   "h3": "8a3cf10ce297fff",
+   "score": 50,
+   "lst_c": 39.6
+  },
+  {
+   "h3": "8a3cf10ce287fff",
+   "score": 54,
+   "lst_c": 39.7
+  },
+  {
+   "h3": "8a3cf10ce2affff",
+   "score": 0,
+   "lst_c": 34.9
+  },
+  {
+   "h3": "8a3cf10ce217fff",
+   "score": 65,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ce237fff",
+   "score": 83,
+   "lst_c": 42.1
+  },
+  {
+   "h3": "8a3cf10ce31ffff",
+   "score": 85,
+   "lst_c": 42.1
+  },
+  {
+   "h3": "8a3cf10ce307fff",
+   "score": 72,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ce337fff",
+   "score": 82,
+   "lst_c": 42.1
+  },
+  {
+   "h3": "8a3cf10ce06ffff",
+   "score": 77,
+   "lst_c": 41.6
+  },
+  {
+   "h3": "8a3cf10ce067fff",
+   "score": 68,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce15ffff",
+   "score": 63,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce157fff",
+   "score": 68,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ce027fff",
+   "score": 82,
+   "lst_c": 42
+  },
+  {
+   "h3": "8a3cf10ce037fff",
+   "score": 42,
+   "lst_c": 38.9
+  },
+  {
+   "h3": "8a3cf10ce18ffff",
+   "score": 64,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce19ffff",
+   "score": 16,
+   "lst_c": 37
+  },
+  {
+   "h3": "8a3cf10ce0b7fff",
+   "score": 44,
+   "lst_c": 39.1
+  },
+  {
+   "h3": "8a3cf10ce097fff",
+   "score": 31,
+   "lst_c": 38.2
+  },
+  {
+   "h3": "8a3cf10ce46ffff",
+   "score": 64,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce44ffff",
+   "score": 28,
+   "lst_c": 38
+  },
+  {
+   "h3": "8a3cf10ce7a7fff",
+   "score": 0,
+   "lst_c": 34.6
+  },
+  {
+   "h3": "8a3cf10ce7affff",
+   "score": 44,
+   "lst_c": 39
+  },
+  {
+   "h3": "8a3cf10ce637fff",
+   "score": 74,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce607fff",
+   "score": 83,
+   "lst_c": 41.9
+  },
+  {
+   "h3": "8a3cf10ce60ffff",
+   "score": 75,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ce657fff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce647fff",
+   "score": 0,
+   "lst_c": 34.7
+  },
+  {
+   "h3": "8a3cf10ce66ffff",
+   "score": 30,
+   "lst_c": 37.8
+  },
+  {
+   "h3": "8a3cf10ce29ffff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce28ffff",
+   "score": 78,
+   "lst_c": 41.8
+  },
+  {
+   "h3": "8a3cf10ce2f7fff",
+   "score": 23,
+   "lst_c": 37.4
+  },
+  {
+   "h3": "8a3cf10ce21ffff",
+   "score": 63,
+   "lst_c": 40.5
+  },
+  {
+   "h3": "8a3cf10ce207fff",
+   "score": 81,
+   "lst_c": 41.8
+  },
+  {
+   "h3": "8a3cf10ce227fff",
+   "score": 86,
+   "lst_c": 42.3
+  },
+  {
+   "h3": "8a3cf10ce30ffff",
+   "score": 16,
+   "lst_c": 36.4
+  },
+  {
+   "h3": "8a3cf10ce32ffff",
+   "score": 83,
+   "lst_c": 42
+  },
+  {
+   "h3": "8a3cf10ce327fff",
+   "score": 61,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10cea9ffff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10cea97fff",
+   "score": 83,
+   "lst_c": 41.8
+  },
+  {
+   "h3": "8a3cf10ce14ffff",
+   "score": 47,
+   "lst_c": 39.1
+  },
+  {
+   "h3": "8a3cf10ce147fff",
+   "score": 69,
+   "lst_c": 40.9
+  },
+  {
+   "h3": "8a3cf10ce177fff",
+   "score": 60,
+   "lst_c": 40.4
+  },
+  {
+   "h3": "8a3cf10ce10ffff",
+   "score": 77,
+   "lst_c": 41.6
+  },
+  {
+   "h3": "8a3cf10ce11ffff",
+   "score": 49,
+   "lst_c": 39.6
+  },
+  {
+   "h3": "8a3cf10ce1affff",
+   "score": 74,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ce187fff",
+   "score": 64,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce197fff",
+   "score": 48,
+   "lst_c": 39.4
+  },
+  {
+   "h3": "8a3cf10ce56ffff",
+   "score": 61,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce54ffff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10ce467fff",
+   "score": 94,
+   "lst_c": 42.8
+  },
+  {
+   "h3": "8a3cf10ce447fff",
+   "score": 65,
+   "lst_c": 40.8
+  },
+  {
+   "h3": "8a3cf10ce45ffff",
+   "score": 29,
+   "lst_c": 37.9
+  },
+  {
+   "h3": "8a3cf10ce7b7fff",
+   "score": 0,
+   "lst_c": 35
+  },
+  {
+   "h3": "8a3cf10ce787fff",
+   "score": 0,
+   "lst_c": 33.4
+  },
+  {
+   "h3": "8a3cf10ce78ffff",
+   "score": 64,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce617fff",
+   "score": 90,
+   "lst_c": 42.7
+  },
+  {
+   "h3": "8a3cf10ce61ffff",
+   "score": 75,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce6e7fff",
+   "score": 79,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce6effff",
+   "score": 70,
+   "lst_c": 41.3
+  },
+  {
+   "h3": "8a3cf10ce65ffff",
+   "score": 0,
+   "lst_c": 34.3
+  },
+  {
+   "h3": "8a3cf10ce64ffff",
+   "score": 29,
+   "lst_c": 37.4
+  },
+  {
+   "h3": "8a3cf10ca937fff",
+   "score": 18,
+   "lst_c": 36.8
+  },
+  {
+   "h3": "8a3cf10ca927fff",
+   "score": 69,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ce2d7fff",
+   "score": 57,
+   "lst_c": 40.2
+  },
+  {
+   "h3": "8a3cf10ce2c7fff",
+   "score": 1,
+   "lst_c": 35.6
+  },
+  {
+   "h3": "8a3cf10ce2e7fff",
+   "score": 38,
+   "lst_c": 38.4
+  },
+  {
+   "h3": "8a3cf10ce20ffff",
+   "score": 64,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce22ffff",
+   "score": 52,
+   "lst_c": 39.7
+  },
+  {
+   "h3": "8a3cf10ce357fff",
+   "score": 37,
+   "lst_c": 38.4
+  },
+  {
+   "h3": "8a3cf10ce377fff",
+   "score": 68,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ceadffff",
+   "score": 69,
+   "lst_c": 41.1
+  },
+  {
+   "h3": "8a3cf10cead7fff",
+   "score": 40,
+   "lst_c": 38.6
+  },
+  {
+   "h3": "8a3cf10cea8ffff",
+   "score": 68,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10cea87fff",
+   "score": 75,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ceab7fff",
+   "score": 77,
+   "lst_c": 41.2
+  },
+  {
+   "h3": "8a3cf10ce16ffff",
+   "score": 76,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce167fff",
+   "score": 99,
+   "lst_c": 43.3
+  },
+  {
+   "h3": "8a3cf10ce8dffff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce12ffff",
+   "score": 71,
+   "lst_c": 41.2
+  },
+  {
+   "h3": "8a3cf10ce107fff",
+   "score": 71,
+   "lst_c": 41.3
+  },
+  {
+   "h3": "8a3cf10ce117fff",
+   "score": 41,
+   "lst_c": 38.8
+  },
+  {
+   "h3": "8a3cf10ce1a7fff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce1b7fff",
+   "score": 15,
+   "lst_c": 36.5
+  },
+  {
+   "h3": "8a3cf10ceccffff",
+   "score": 0,
+   "lst_c": 33.6
+  },
+  {
+   "h3": "8a3cf10ce567fff",
+   "score": 69,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ce547fff",
+   "score": 73,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce55ffff",
+   "score": 77,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce477fff",
+   "score": 77,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ce457fff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10ce4effff",
+   "score": 34,
+   "lst_c": 38.6
+  },
+  {
+   "h3": "8a3cf10ce4cffff",
+   "score": 26,
+   "lst_c": 37.6
+  },
+  {
+   "h3": "8a3cf10ce797fff",
+   "score": 0,
+   "lst_c": 33.9
+  },
+  {
+   "h3": "8a3cf10ce79ffff",
+   "score": 0,
+   "lst_c": 33.8
+  },
+  {
+   "h3": "8a3cf10ce6a7fff",
+   "score": 95,
+   "lst_c": 43
+  },
+  {
+   "h3": "8a3cf10ce6affff",
+   "score": 71,
+   "lst_c": 41.3
+  },
+  {
+   "h3": "8a3cf10ce6f7fff",
+   "score": 90,
+   "lst_c": 42.6
+  },
+  {
+   "h3": "8a3cf10ce6c7fff",
+   "score": 85,
+   "lst_c": 42.2
+  },
+  {
+   "h3": "8a3cf10ce6cffff",
+   "score": 68,
+   "lst_c": 41.1
+  },
+  {
+   "h3": "8a3cf10ca9b7fff",
+   "score": 21,
+   "lst_c": 37.2
+  },
+  {
+   "h3": "8a3cf10ca9a7fff",
+   "score": 47,
+   "lst_c": 39.1
+  },
+  {
+   "h3": "8a3cf10ca917fff",
+   "score": 63,
+   "lst_c": 40.4
+  },
+  {
+   "h3": "8a3cf10ca907fff",
+   "score": 67,
+   "lst_c": 40.5
+  },
+  {
+   "h3": "8a3cf10ca92ffff",
+   "score": 75,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ce2dffff",
+   "score": 31,
+   "lst_c": 38
+  },
+  {
+   "h3": "8a3cf10ce2effff",
+   "score": 71,
+   "lst_c": 40.6
+  },
+  {
+   "h3": "8a3cf10ce257fff",
+   "score": 20,
+   "lst_c": 37.2
+  },
+  {
+   "h3": "8a3cf10ce277fff",
+   "score": 80,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ce35ffff",
+   "score": 0,
+   "lst_c": 34.1
+  },
+  {
+   "h3": "8a3cf10ce347fff",
+   "score": 0,
+   "lst_c": 34.4
+  },
+  {
+   "h3": "8a3cf10ce367fff",
+   "score": 9,
+   "lst_c": 36.1
+  },
+  {
+   "h3": "8a3cf10ceac7fff",
+   "score": 57,
+   "lst_c": 40
+  },
+  {
+   "h3": "8a3cf10ceaf7fff",
+   "score": 76,
+   "lst_c": 41.5
+  },
+  {
+   "h3": "8a3cf10ceaaffff",
+   "score": 24,
+   "lst_c": 37.8
+  },
+  {
+   "h3": "8a3cf10ceaa7fff",
+   "score": 69,
+   "lst_c": 40.8
+  },
+  {
+   "h3": "8a3cf10ceb9ffff",
+   "score": 63,
+   "lst_c": 40.4
+  },
+  {
+   "h3": "8a3cf10ceb97fff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10ce8cffff",
+   "score": 86,
+   "lst_c": 42.4
+  },
+  {
+   "h3": "8a3cf10ce8d7fff",
+   "score": 68,
+   "lst_c": 40.8
+  },
+  {
+   "h3": "8a3cf10ce127fff",
+   "score": 34,
+   "lst_c": 38.3
+  },
+  {
+   "h3": "8a3cf10ce137fff",
+   "score": 77,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10cec4ffff",
+   "score": 68,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10cec5ffff",
+   "score": 28,
+   "lst_c": 37.8
+  },
+  {
+   "h3": "8a3cf10ceceffff",
+   "score": 0,
+   "lst_c": 35.5
+  },
+  {
+   "h3": "8a3cf10cecdffff",
+   "score": 3,
+   "lst_c": 35.9
+  },
+  {
+   "h3": "8a3cf10ce577fff",
+   "score": 73,
+   "lst_c": 41.3
+  },
+  {
+   "h3": "8a3cf10ce557fff",
+   "score": 70,
+   "lst_c": 41
+  },
+  {
+   "h3": "8a3cf10ce42ffff",
+   "score": 37,
+   "lst_c": 38.5
+  },
+  {
+   "h3": "8a3cf10ce40ffff",
+   "score": 33,
+   "lst_c": 38.1
+  },
+  {
+   "h3": "8a3cf10ce4e7fff",
+   "score": 33,
+   "lst_c": 38.1
+  },
+  {
+   "h3": "8a3cf10ce4c7fff",
+   "score": 39,
+   "lst_c": 38.9
+  },
+  {
+   "h3": "8a3cf10ddb67fff",
+   "score": 5,
+   "lst_c": 35.7
+  },
+  {
+   "h3": "8a3cf10ddb6ffff",
+   "score": 0,
+   "lst_c": 33.7
+  },
+  {
+   "h3": "8a3cf10ce6b7fff",
+   "score": 0,
+   "lst_c": 35.2
+  },
+  {
+   "h3": "8a3cf10ce687fff",
+   "score": 85,
+   "lst_c": 42.2
+  },
+  {
+   "h3": "8a3cf10ce68ffff",
+   "score": 56,
+   "lst_c": 40.2
+  },
+  {
+   "h3": "8a3cf10ce6d7fff",
+   "score": 94,
+   "lst_c": 42.9
+  },
+  {
+   "h3": "8a3cf10ca987fff",
+   "score": 16,
+   "lst_c": 36.8
+  },
+  {
+   "h3": "8a3cf10ca9affff",
+   "score": 47,
+   "lst_c": 39.2
+  },
+  {
+   "h3": "8a3cf10ca91ffff",
+   "score": 43,
+   "lst_c": 38.8
+  },
+  {
+   "h3": "8a3cf10cea17fff",
+   "score": 77,
+   "lst_c": 41.7
+  },
+  {
+   "h3": "8a3cf10ceb8ffff",
+   "score": 78,
+   "lst_c": 41.4
+  },
+  {
+   "h3": "8a3cf10ceb87fff",
+   "score": 90,
+   "lst_c": 42.7
+  }
+ ],
+ "zones": [
+  {
+   "id": "z-8a3cf10ce0cffff-1000",
+   "name": "সাতমসজিদ সড়ক",
+   "score": 87,
+   "lst_c": 42.4,
+   "dist_m": 129,
+   "rank": 1,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.759883,
+    "lng": 90.359817
+   },
+   "h3": [
+    "8a3cf10ce0cffff",
+    "8a3cf10ce0effff",
+    "8a3cf10ce057fff",
+    "8a3cf10ce3b7fff",
+    "8a3cf10ce3a7fff",
+    "8a3cf10ce387fff",
+    "8a3cf10ce39ffff",
+    "8a3cf10ce2a7fff",
+    "8a3cf10ce397fff",
+    "8a3cf10ce0dffff",
+    "8a3cf10ce0c7fff",
+    "8a3cf10ce0f7fff",
+    "8a3cf10ce01ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce637fff-1000",
+   "name": "Kaderabad Housing 1",
+   "score": 87,
+   "lst_c": 42.3,
+   "dist_m": 552,
+   "rank": 2,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.754033,
+    "lng": 90.359111
+   },
+   "h3": [
+    "8a3cf10ce70ffff",
+    "8a3cf10ce757fff",
+    "8a3cf10ce627fff",
+    "8a3cf10ce607fff",
+    "8a3cf10ce617fff",
+    "8a3cf10ce6a7fff",
+    "8a3cf10ce687fff",
+    "8a3cf10ce71ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce6f7fff-1000",
+   "name": "Sadek Khan Road",
+   "score": 87,
+   "lst_c": 42.4,
+   "dist_m": 849,
+   "rank": 3,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.751831,
+    "lng": 90.361877
+   },
+   "h3": [
+    "8a3cf10ce6e7fff",
+    "8a3cf10ce6c7fff",
+    "8a3cf10ce6d7fff",
+    "8a3cf10ce6f7fff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ceb87fff-1000",
+   "name": "Haji Chino Mia Road, Tikkapara",
+   "score": 86,
+   "lst_c": 42.3,
+   "dist_m": 922,
+   "rank": 4,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.767156,
+    "lng": 90.35739
+   },
+   "h3": [
+    "8a3cf10ce167fff",
+    "8a3cf10ce8cffff",
+    "8a3cf10ceb97fff",
+    "8a3cf10ceb87fff",
+    "8a3cf10ceb8ffff",
+    "8a3cf10cea17fff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce477fff-1000",
+   "name": "জোন ৫",
+   "score": 84,
+   "lst_c": 42.2,
+   "dist_m": 727,
+   "rank": 5,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.755918,
+    "lng": 90.352699
+   },
+   "h3": [
+    "8a3cf10ce54ffff",
+    "8a3cf10ce467fff",
+    "8a3cf10ce477fff",
+    "8a3cf10ce457fff",
+    "8a3cf10ce55ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce237fff-1000",
+   "name": "Sher Shah Suri Road",
+   "score": 84,
+   "lst_c": 42.1,
+   "dist_m": 618,
+   "rank": 6,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.761831,
+    "lng": 90.364231
+   },
+   "h3": [
+    "8a3cf10ce237fff",
+    "8a3cf10ce31ffff",
+    "8a3cf10ce227fff",
+    "8a3cf10ce207fff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce027fff-1000",
+   "name": "Road 6",
+   "score": 84,
+   "lst_c": 42.2,
+   "dist_m": 581,
+   "rank": 7,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.762978,
+    "lng": 90.355297
+   },
+   "h3": [
+    "8a3cf10ce02ffff",
+    "8a3cf10ce027fff",
+    "8a3cf10ce10ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce32ffff-1000",
+   "name": "Tajmahal Road",
+   "score": 83,
+   "lst_c": 42,
+   "dist_m": 757,
+   "rank": 8,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.764506,
+    "lng": 90.363377
+   },
+   "h3": [
+    "8a3cf10ce32ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10cea9ffff-1000",
+   "name": "Tajmahal Road 2",
+   "score": 81,
+   "lst_c": 41.8,
+   "dist_m": 608,
+   "rank": 9,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.764395,
+    "lng": 90.359949
+   },
+   "h3": [
+    "8a3cf10ce337fff",
+    "8a3cf10cea9ffff",
+    "8a3cf10cea97fff",
+    "8a3cf10ceab7fff",
+    "8a3cf10ce06ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce277fff-1000",
+   "name": "স্যার সৈয়দ রোড",
+   "score": 80,
+   "lst_c": 41.7,
+   "dist_m": 923,
+   "rank": 10,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.762269,
+    "lng": 90.367338
+   },
+   "h3": [
+    "8a3cf10ce277fff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce28ffff-1000",
+   "name": "Zakir Hossain Road",
+   "score": 78,
+   "lst_c": 41.8,
+   "dist_m": 690,
+   "rank": 11,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.758078,
+    "lng": 90.3657
+   },
+   "h3": [
+    "8a3cf10ce28ffff"
+   ]
+  },
+  {
+   "id": "z-8a3cf10ce137fff-1000",
+   "name": "জোন ১২",
+   "score": 77,
+   "lst_c": 41.7,
+   "dist_m": 914,
+   "rank": 12,
+   "near_tie": true,
+   "centroid": {
+    "lat": 23.763791,
+    "lng": 90.3517
+   },
+   "h3": [
+    "8a3cf10ce137fff"
+   ]
+  }
+ ],
+ "my_zone_id": "z-8a3cf10ce0cffff-1000",
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:25:00.512Z",
+  "sources": [
+   {
+    "id": "heat-proxy",
+    "name": "Heat estimate: OpenStreetMap land cover + live weather"
+   },
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T20:12:59.784Z"
+   },
+   {
+    "id": "open-meteo",
+    "name": "Open-Meteo",
+    "url": "https://open-meteo.com",
+    "as_of": "2026-10-04T20:19:22.386Z"
+   }
+  ]
+ }
+}

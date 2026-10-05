@@ -1,0 +1,337 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Perfil",
+  "notifs": "Notificaciones",
+  "notifsUnread": "Notificaciones, {n} sin leer",
+  "yourPhoto": "Tu foto",
+  "guestName": "Invitado",
+  "guestSub": "Explora libremente. Crea una cuenta gratis para registrar acciones, unirte a un equipo y seguir tus árboles.",
+  "guestCta": "Crear cuenta gratis",
+  "guestSignIn": "Iniciar sesión",
+  "level": "Nivel {n} · {name}",
+  "points": "Puntos",
+  "toNext": "Te faltan {pts} para el Nivel {n}",
+  "maxLevel": "Nivel máximo alcanzado",
+  "provisional": "+{pts} pendientes de verificación",
+  "provisionalA11y": "{pts} puntos provisionales de acciones que esperan revisión",
+  "statRank": "Puesto en la zona",
+  "statTrees": "Árboles vivos",
+  "statActions": "Acciones",
+  "badges": "Insignias",
+  "badgeA11y": "{name}, {state}",
+  "earned": "ganada",
+  "locked": "bloqueada",
+  "clans": "Mis clanes",
+  "clanTeam": "Equipo · {role}",
+  "clanOrg": "Organización · miembro",
+  "myMap": "Mi mapa de aportes",
+  "mapA11y": "Mapa de los lugares en los que aportaste",
+  "snapNote": "Ajustado al centro de la zona. Tus puntos exactos siguen privados.",
+  "sensors": "Mis sensores de aire",
+  "sensorsSub": "{count, plural, =0 {Añade un sensor simulado} one {{n} sensor · simulado (v0)} other {{n} sensores · simulados (v0)}}",
+  "history": "Historial",
+  "historyEmpty": "Todavía no hay acciones. Registra la primera para ganar puntos.",
+  "logAction": "Registrar acción",
+  "historyMeta": "{date} · {where}",
+  "status": {
+    "verified": "verificado",
+    "pending": "pendiente",
+    "rejected": "no cuenta"
+  },
+  "links": {
+    "title": "Más",
+    "about": "Datos y ciencia",
+    "settings": "Ajustes",
+    "notifs": "Notificaciones"
+  },
+  "trees": {
+    "title": "Mis árboles",
+    "count": "Mis árboles · {n}",
+    "add": "Añadir árbol",
+    "cancel": "Cancelar",
+    "empty": "Aún no hay árboles",
+    "emptySub": "Los árboles que plantes aparecerán aquí. Cada uno necesita una foto cada 15 días.",
+    "guestSub": "Crea una cuenta gratis para seguir tus árboles y recibir recordatorios de foto cada 15 días.",
+    "feature": "seguir tus árboles",
+    "planted": "Plantado el {date}",
+    "meta": "{species} · plantado el {date}",
+    "od": "{count, plural, one {Foto vencida hace {n} día} other {Foto vencida hace {n} días}}",
+    "today": "Foto para hoy",
+    "soon": "{count, plural, one {Foto en {n} día} other {Foto en {n} días}}",
+    "ok": "{count, plural, one {Próxima foto en {n} día} other {Próxima foto en {n} días}}",
+    "dead": "No está vivo",
+    "rule": "Cada árbol necesita una foto cada 15 días. Los que vencen hoy o están atrasados también aparecen en Inicio.",
+    "submitA11y": "Enviar foto · {name}",
+    "addTitle": "Añadir un árbol",
+    "addSub": "Para árboles que plantaste antes de usar Atmos X",
+    "nameL": "Nombre del árbol",
+    "namePh": "p. ej., Shanti",
+    "species": "Especie",
+    "date": "Fecha de plantación",
+    "where": "Ubicación",
+    "whereNote": "Guardado en tu ubicación actual: {place}. Las ubicaciones exactas nunca se muestran a otras personas.",
+    "save": "Guardar árbol",
+    "saved": "{name} añadido",
+    "regNote": "Recibe un ID como ATX-26-0006 al guardarse"
+  },
+  "sp": {
+    "neem": "Neem",
+    "krish": "Flamboyán",
+    "jarul": "Crespón",
+    "arjun": "Arjun",
+    "bokul": "Bakul",
+    "aam": "Mango",
+    "kadam": "Kadam",
+    "sonalu": "Lluvia de oro",
+    "radha": "Flamboyán amarillo",
+    "rain": "Árbol de lluvia",
+    "jam": "Jambolán",
+    "kathal": "Yaca"
+  },
+  "tree": {
+    "back": "Mis árboles",
+    "photoA11y": "Foto de {name}",
+    "age": "Edad",
+    "days": "{count, plural, one {{n} día} other {{n} días}}",
+    "photos": "Fotos",
+    "next": "Próxima revisión",
+    "health": "Salud",
+    "nextT": "Foto necesaria · {status}",
+    "nextOk": "Próxima foto · {status}",
+    "what": "Toma estas 3 fotos",
+    "s1": "Árbol completo desde 2 pasos atrás",
+    "s1s": "Tronco y suelo en cuadro",
+    "s2": "Primer plano de las hojas más nuevas",
+    "s2s": "A 20–30 cm, con luz de día",
+    "s3": "Suelo en la base",
+    "s3s": "Muestra el riego y el acolchado",
+    "take": "Tomar foto guiada",
+    "pick": "Elegir una foto",
+    "busy": "La IA está revisando hojas, color y estrés…",
+    "busySub": "Comparando con la última foto de {name}",
+    "aiT": "Revisión de salud con IA",
+    "conf": "Con {n}% de confianza",
+    "seen": "Lo que vio la IA",
+    "tip": "Lo que necesita {name}",
+    "verdict": {
+      "healthy": "Sano",
+      "stressed": "Vigílalo",
+      "dead": "Parece muerto"
+    },
+    "verdictSub": {
+      "healthy": "Las hojas se ven bien. Sigue regando en los periodos secos.",
+      "stressed": "Hay señales de estrés. Sigue el consejo de abajo y revisa de nuevo en 3 días.",
+      "dead": "Si crees que la IA se equivoca, añade otra foto con luz de día."
+    },
+    "noAi": "Foto guardada. La revisión con IA no está disponible ahora, así que la salud se mantiene igual.",
+    "pts": "+{pts} pts · revisión de foto hecha",
+    "nextOn": "La próxima foto el {date}, en el mismo lugar y con el mismo ángulo.",
+    "again": "Añadir otra foto",
+    "hist": "Historial de fotos",
+    "hPlant": "Plantado y registrado",
+    "hCheck": "Revisión de foto",
+    "hCheckAi": "Revisión de foto · {verdict}",
+    "notFound": "Este árbol no está en este dispositivo.",
+    "guest": "Crea una cuenta gratis para añadir revisiones de foto.",
+    "feature": "añadir una revisión de foto del árbol",
+    "remove": "Eliminar árbol",
+    "removeTitle": "¿Eliminar {name}?",
+    "removeBody": "Sus fotos y revisiones quedan en tu historial.",
+    "removed": "{name} eliminado",
+    "aiChip": "Estimación de IA",
+    "healthShort": {
+      "healthy": "Sano",
+      "stressed": "Estresado",
+      "dead": "Muerto"
+    }
+  },
+  "notif": {
+    "title": "Notificaciones",
+    "readAll": "Marcar todo como leído",
+    "filters": {
+      "all": "Todos",
+      "reminders": "Recordatorios",
+      "results": "Resultados",
+      "invites": "Invitaciones",
+      "alerts": "Alertas"
+    },
+    "today": "Hoy",
+    "earlier": "Antes",
+    "unread": "{n} sin leer",
+    "caught": "Ya estás al día",
+    "unreadA11y": "Sin leer.",
+    "empty": "Todavía no hay nada",
+    "emptySub": "Aquí aparecen recordatorios de árboles, resultados de verificación y alertas de calor.",
+    "filterEmpty": "No hay notificaciones de este tipo.",
+    "guestSub": "Crea una cuenta gratis para recibir recordatorios de árboles, resultados y alertas de calor.",
+    "feature": "recibir notificaciones",
+    "open": "Abrir",
+    "takePhoto": "Tomar foto",
+    "seeDetails": "Ver detalles",
+    "openPlan": "Abrir plan",
+    "openHome": "Abrir inicio",
+    "openTeam": "Abrir equipo"
+  },
+  "code": {
+    "action": {
+      "plant_tree": "Plantar un árbol",
+      "plant_shrubs": "Plantar arbustos",
+      "rooftop_garden": "Huerto en la azotea",
+      "cool_roof": "Techo frío",
+      "green_wall": "Muro verde",
+      "shade_structure": "Estructura de sombra",
+      "water_tree": "Regar un árbol",
+      "awareness": "Evento de concienciación"
+    },
+    "level": {
+      "seedling": "Brote",
+      "sapling": "Arbolito",
+      "shade_maker": "Creador de sombra",
+      "canopy_keeper": "Guardián de la copa",
+      "heat_breaker": "Corta calor",
+      "climate_guardian": "Guardián del clima"
+    },
+    "badge": {
+      "first": "Primera acción",
+      "trees10": "10 árboles",
+      "trees100": "100 árboles",
+      "clan": "Se unió a un clan",
+      "p1000": "1,000 puntos",
+      "streak": "25 acciones"
+    },
+    "notif": {
+      "verification": {
+        "verified": "+{points} pts · {action} × {qty} confirmado",
+        "verified_body": "La IA vio: {seen}",
+        "pending": "{action} × {qty} está pendiente · +{points} provisional",
+        "pending_body": "{reason}",
+        "pending_body_none": "Un compañero de equipo puede confirmarlo."
+      },
+      "goal": {
+        "milestone": "{zone}: {pct}% de tu meta de enfriamiento"
+      },
+      "tree": {
+        "due": "{count, plural, =0 {{name}: foto vence hoy} one {{name}: foto vence en {days} día} other {{name}: foto vence en {days} días}}",
+        "overdue": "{count, plural, one {{name}: foto vencida hace {days} día} other {{name}: foto vencida hace {days} días}}",
+        "rule": "Cada árbol necesita una foto cada {every} días."
+      },
+      "heat": {
+        "warning": "Alerta de calor en {place} · sensación térmica de {feels}"
+      },
+      "team": {
+        "joined": "Te uniste a {team}"
+      }
+    },
+    "reason": {
+      "unavailable": "La verificación de IA no estuvo disponible. Un compañero de equipo puede confirmarlo.",
+      "rate_limited": "Demasiadas verificaciones hoy. Un compañero de equipo puede confirmarlo.",
+      "no_photo": "No se agregó ninguna foto. Un compañero de equipo puede confirmarlo.",
+      "teammate_confirmed": "Confirmado por un compañero de equipo."
+    }
+  },
+  "settings": {
+    "title": "Ajustes",
+    "liveNote": "Los cambios se aplican de inmediato en toda la app",
+    "lang": "Idioma",
+    "units": "Temperatura",
+    "unitC": "°C",
+    "unitF": "°F",
+    "area": "Distancia y área",
+    "metric": "m · km",
+    "imperial": "ft · mi",
+    "theme": "Tema",
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema",
+    "mode": "Modo",
+    "city": "Ciudad",
+    "farmer": "Agricultor",
+    "farmerNote": "El modo agricultor cambia Inicio por campo, etapa del cultivo y alertas de calor.",
+    "askL": "Ask Atmos",
+    "askShow": "Mostrar botón",
+    "askHide": "Ocultar",
+    "askNote": "Chat de IA flotante en todas las pantallas",
+    "radius": "Radio de búsqueda",
+    "radiusNote": "Qué tan lejos busca el mapa zonas calientes a tu alrededor",
+    "radiusGuest": "Los invitados pueden explorar hasta {max}. Crea una cuenta para hasta 1 km.",
+    "presentation": "Modo presentación",
+    "presentationNote": "Carga la historia demo de Nadia en Mohammadpur, Dhaka. Tus propios datos se guardan aparte.",
+    "presentationOn": "Activado · mostrando la historia demo",
+    "presentationOff": "Desactivado · mostrando tus datos",
+    "reset": "Restablecer demo",
+    "resetDone": "Historia demo recargada",
+    "resetTitle": "¿Restablecer la demo?",
+    "resetBody": "Borra todo lo hecho en Modo presentación y recarga la historia de Nadia. Tus propios datos no se tocan.",
+    "account": "Cuenta",
+    "guest": "Eres invitado",
+    "guestNote": "Crea una cuenta gratis para registrar acciones, unirte a equipos y seguir árboles. Tus ajustes se conservan.",
+    "create": "Crear cuenta gratis",
+    "signIn": "Iniciar sesión",
+    "signedIn": "Sesión iniciada en este dispositivo",
+    "logout": "Cerrar sesión",
+    "loggedOut": "Sesión cerrada. Ahora eres invitado.",
+    "demoAccount": "El modo presentación usa la cuenta demo de Nadia.",
+    "more": "Más",
+    "data": "Datos y ciencia",
+    "about": "Acerca de Atmos X",
+    "footer": "Atmos X v0 · estimación de calor a partir de la cobertura del suelo de OpenStreetMap + el clima de Open-Meteo · © colaboradores de OpenStreetMap"
+  },
+  "about": {
+    "title": "Datos y ciencia",
+    "sub": "De dónde sale cada número",
+    "opens": "{title}, abre {url}",
+    "credits": "Créditos y licencias",
+    "version": "Atmos X v0 · MVP presentable",
+    "sections": {
+      "heat": {
+        "title": "Estimación de calor: OpenStreetMap + clima en vivo",
+        "body": "En v0 el mapa de calor es una estimación. Para cada hexágono H3 medimos edificios, calles, áreas verdes y agua con OpenStreetMap, luego los sumamos a la temperatura del aire en vivo de Open-Meteo. El Heat Score compara cada hexágono con la mediana de tu exploración. No usa datos satelitales."
+      },
+      "zones": {
+        "title": "Cómo se encuentran las zonas de calor",
+        "body": "El cuarto más caliente de los hexágonos se agrupa en zonas conectadas y se ordena por el puntaje medio. Las zonas a 3 puntos o menos entre sí se marcan como empates cercanos, en lugar de ordenarse."
+      },
+      "air": {
+        "title": "Temperatura del aire: Open-Meteo",
+        "body": "La temperatura, la humedad y el pronóstico de 5 días vienen del pronóstico de Open-Meteo. “Sensación térmica” usa el índice de calor de NOAA. Los normales y el historial de 20 años vienen del archivo ERA5 vía Open-Meteo. En Bangladesh, los niveles de calor usan los umbrales de BMD; no son alertas oficiales."
+      },
+      "aq": {
+        "title": "Calidad del aire: Open-Meteo Air Quality",
+        "body": "El PM2.5 viene del modelo Open-Meteo Air Quality. Calculamos el AQI nosotros con los puntos de corte PM2.5 de la EPA de EE. UU. 2024. Los sensores que agregas en v0 son simulados."
+      },
+      "cooling": {
+        "title": "Estimaciones de enfriamiento",
+        "body": "Cada +1 % de cobertura de árboles en un km² baja la temperatura superficial diurna en aproximadamente 0.1–0.2 °C; los techos fríos, alrededor de 0.04 °C por cada 1 % de un km². El enfriamiento de los árboles aumenta a medida que crecen. Las proyecciones son rangos, nunca promesas."
+      },
+      "farm": {
+        "title": "Alertas para agricultores",
+        "body": "Las reglas usan el pronóstico de Open-Meteo más la lluvia de 30 días de NASA POWER, siguiendo la guía de BMD, BRRI y DAE; por ejemplo, calor ≥ 35 °C en la floración del arroz. Atmos X nunca da dosis de pesticidas."
+      },
+      "ai": {
+        "title": "IA: OpenAI",
+        "body": "Los modelos de OpenAI escriben el texto de “por qué hace calor”, planifican detalles (especies, costos, pasos), responden Ask Atmos y revisan fotos. Todo lo que complete la IA se marca “estimación de IA”. Las puntuaciones, el enfriamiento y el AQI siempre salen de fórmulas fijas."
+      },
+      "community": {
+        "title": "Datos de la comunidad",
+        "body": "Tu cuenta, acciones, fotos, árboles y equipos viven solo en este dispositivo en v0. Las demás personas, equipos y tablas de posiciones son una comunidad de demostración, marcada “Comunidad de demostración”."
+      },
+      "nurseries": {
+        "title": "Viveros",
+        "body": "Las ubicaciones de los viveros vienen de OpenStreetMap más una lista curada de Dhaka. Atmos X nunca vende plantas."
+      }
+    },
+    "credit": {
+      "osm": "Datos del mapa © colaboradores de OpenStreetMap, ODbL",
+      "ofm": "Teselas del mapa: OpenFreeMap",
+      "meteo": "Tiempo y calidad del aire: Open-Meteo, CC BY 4.0",
+      "era5": "Archivo climático: Copernicus ERA5 vía Open-Meteo",
+      "power": "Lluvia: NASA POWER",
+      "gibs": "Capa opcional de temperatura de la superficie terrestre: NASA GIBS",
+      "openai": "IA: OpenAI",
+      "photos": "Fotos: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
+      "fonts": "Fuentes: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Heat map",
+  "within": "Within",
+  "withinR": "Within {r}",
+  "estimateShort": "OSM + live weather",
+  "estimateNote": "Heat estimate: OpenStreetMap land cover + live weather. Scores compare blocks inside this scan; they are not satellite measurements.",
+  "yourArea": "your area",
+  "mapA11y": "Heat map of {place}",
+  "layersLabel": "Map layer",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA LST"
+  },
+  "legendA11y": "Heat Score legend: {bands}",
+  "gibsNote": "NASA land surface temperature · monthly · ~1 km",
+  "ranked": "Hottest in your radius",
+  "count": "{count, plural, one {{n} zone} other {{n} zones}}",
+  "nearTie": "Near-tie",
+  "tieNote": "Scores within ±3 are flagged as near-ties — treat them as equally hot.",
+  "lstShort": "Surface",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "Zone details",
+  "radius": "Scan radius",
+  "scanning": "Scanning {r}…",
+  "showAll": "Show all {n}",
+  "showLess": "Show top 3",
+  "guestRadius": "scan more than 500 m",
+  "empty": {
+    "title": "No hot zones found here",
+    "sub": "Try a wider radius or another place."
+  },
+  "attribution": {
+    "osm": "© OpenStreetMap contributors"
+  }
+}

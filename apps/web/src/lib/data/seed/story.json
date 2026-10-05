@@ -1,0 +1,579 @@
+{
+ "_note": "Nadia Rahman's Presentation-mode story (ported from apps/mobile/src/lib/cz/demo.ts). *_days_ago are relative to the moment the demo namespace is loaded, so \"1 tree due\" stays true on presentation day.",
+ "user": {
+  "id": "u-nadia",
+  "display_name": "Nadia Rahman",
+  "email": "nadia.demo@atmosx.app",
+  "first_name": {
+   "en": "Nadia",
+   "bn": "নাদিয়া",
+   "ur": "نادیہ"
+  }
+ },
+ "profile": {
+  "home": {
+   "lat": 23.759,
+   "lng": 90.359
+  },
+  "radius_m": 500
+ },
+ "goal": {
+  "id": "g-asad-gate",
+  "zone_id": "demo:asad-gate",
+  "zone_name": "Asad Gate block",
+  "zone_centroid": {
+   "lat": 23.7604,
+   "lng": 90.36
+  },
+  "zone_area_km2": 0.12,
+  "target_c": -1.5,
+  "by_date": "2027-10-02",
+  "progress_pct": 38,
+  "modeled_c": -0.57,
+  "team_id": "hall-rooftop-crew",
+  "org_id": "du-green-society",
+  "created_days_ago": 17
+ },
+ "trees": [
+  {
+   "id": "ATX-26-0001",
+   "species_id": "neem",
+   "nickname": "Shanti",
+   "planted_days_ago": 3,
+   "last_check_days_ago": null,
+   "location": {
+    "lat": 23.76045,
+    "lng": 90.35985
+   },
+   "health": "healthy",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70"
+  },
+  {
+   "id": "ATX-26-0002",
+   "species_id": "neem",
+   "nickname": "Megh",
+   "planted_days_ago": 3,
+   "last_check_days_ago": null,
+   "location": {
+    "lat": 23.76052,
+    "lng": 90.36003
+   },
+   "health": "healthy",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70"
+  },
+  {
+   "id": "ATX-26-0003",
+   "species_id": "neem",
+   "nickname": "Chhaya",
+   "planted_days_ago": 3,
+   "last_check_days_ago": null,
+   "location": {
+    "lat": 23.7606,
+    "lng": 90.36021
+   },
+   "health": "healthy",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70"
+  },
+  {
+   "id": "ATX-26-0005",
+   "species_id": "jarul",
+   "nickname": "Beguni",
+   "planted_days_ago": 48,
+   "last_check_days_ago": 14,
+   "location": {
+    "lat": 23.7612,
+    "lng": 90.3611
+   },
+   "health": "healthy",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70"
+  }
+ ],
+ "checks": [
+  {
+   "id": "c-0001",
+   "tree_id": "ATX-26-0005",
+   "days_ago": 33,
+   "health": "healthy",
+   "note": null,
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "points": 5
+  },
+  {
+   "id": "c-0002",
+   "tree_id": "ATX-26-0005",
+   "days_ago": 14,
+   "health": "healthy",
+   "note": "New leaves after the rain",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "points": 5
+  }
+ ],
+ "actions": [
+  {
+   "id": "a-0001",
+   "days_ago": 3,
+   "action_type": "plant_tree",
+   "quantity": 3,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": "g-asad-gate",
+   "zone_label": "Asad Gate block",
+   "note": "3 Neem at Asad Gate",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Three young neem saplings with tree guards",
+    "reason_code": "ok"
+   },
+   "points": 150,
+   "cooling_c": 0.0018,
+   "trees": 3
+  },
+  {
+   "id": "a-0002",
+   "days_ago": 10,
+   "action_type": "cool_roof",
+   "quantity": 12,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": "g-asad-gate",
+   "zone_label": "Asad Gate block",
+   "note": "120 m² of hostel roof coated white",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "A freshly whitewashed concrete roof",
+    "reason_code": "ok"
+   },
+   "points": 360,
+   "cooling_c": 0.0048,
+   "trees": 0
+  },
+  {
+   "id": "a-0003",
+   "days_ago": 31,
+   "action_type": "rooftop_garden",
+   "quantity": 20,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "Hall roof garden beds",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Raised planter beds on a roof",
+    "reason_code": "ok"
+   },
+   "points": 800,
+   "cooling_c": 0.006,
+   "trees": 0
+  },
+  {
+   "id": "a-0004",
+   "days_ago": 20,
+   "action_type": "shade_structure",
+   "quantity": 4,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "Shade cloth over the hall gate",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Green shade cloth stretched over a gate",
+    "reason_code": "ok"
+   },
+   "points": 100,
+   "cooling_c": 0.0008,
+   "trees": 0
+  },
+  {
+   "id": "a-0005",
+   "days_ago": 40,
+   "action_type": "green_wall",
+   "quantity": 10,
+   "status": "verified",
+   "team_id": null,
+   "goal_id": null,
+   "zone_label": "Hostel courtyard",
+   "note": "Creepers on the west wall",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7612,
+   "lng": 90.3611,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 200,
+   "cooling_c": 0.0015,
+   "trees": 0
+  },
+  {
+   "id": "a-0006",
+   "days_ago": 48,
+   "action_type": "plant_tree",
+   "quantity": 1,
+   "status": "verified",
+   "team_id": null,
+   "goal_id": null,
+   "zone_label": "Hostel courtyard",
+   "note": "Jarul in the courtyard",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7612,
+   "lng": 90.3611,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "A young jarul sapling",
+    "reason_code": "ok"
+   },
+   "points": 50,
+   "cooling_c": 0.0006,
+   "trees": 1
+  },
+  {
+   "id": "a-0007",
+   "days_ago": 55,
+   "action_type": "plant_shrubs",
+   "quantity": 10,
+   "status": "verified",
+   "team_id": null,
+   "goal_id": null,
+   "zone_label": "Hostel courtyard",
+   "note": "Balcony pots",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7612,
+   "lng": 90.3611,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 120,
+   "cooling_c": 0.001,
+   "trees": 0
+  },
+  {
+   "id": "a-0008",
+   "days_ago": 45,
+   "action_type": "awareness",
+   "quantity": 2,
+   "status": "verified",
+   "team_id": null,
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "Heat safety talk at the hall",
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 60,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0009",
+   "days_ago": 25,
+   "action_type": "awareness",
+   "quantity": 2,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "Roof survey with neighbours",
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 60,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0010",
+   "days_ago": 6,
+   "action_type": "awareness",
+   "quantity": 2,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "School talk, Mohammadpur",
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 60,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0011",
+   "days_ago": 2,
+   "action_type": "water_tree",
+   "quantity": 10,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "Watered the 3 neem",
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 50,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0012",
+   "days_ago": 9,
+   "action_type": "water_tree",
+   "quantity": 10,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": null,
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 50,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0013",
+   "days_ago": 16,
+   "action_type": "water_tree",
+   "quantity": 10,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": null,
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 50,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0014",
+   "days_ago": 23,
+   "action_type": "water_tree",
+   "quantity": 8,
+   "status": "verified",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": null,
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 40,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0015",
+   "days_ago": 60,
+   "action_type": "awareness",
+   "quantity": 6,
+   "status": "verified",
+   "team_id": null,
+   "goal_id": null,
+   "zone_label": "Asad Gate block",
+   "note": "Ward meeting series",
+   "photo_url": null,
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "verified",
+    "confidence": 0.9,
+    "seen": "Matches the logged action",
+    "reason_code": "ok"
+   },
+   "points": 180,
+   "cooling_c": 0,
+   "trees": 0
+  },
+  {
+   "id": "a-0016",
+   "days_ago": 1,
+   "action_type": "shade_structure",
+   "quantity": 1,
+   "status": "pending",
+   "team_id": "hall-rooftop-crew",
+   "goal_id": "g-asad-gate",
+   "zone_label": "Asad Gate block",
+   "note": "Bus-stop canopy (half built)",
+   "photo_url": "https://images.unsplash.com/photo-1683994857980-280afa59a3f8?auto=format&fit=crop&w=900&h=1200&q=70",
+   "lat": 23.7604,
+   "lng": 90.36,
+   "verification": {
+    "status": "pending",
+    "confidence": 0.48,
+    "seen": "A shade frame, partly built",
+    "reason_code": "low_confidence"
+   },
+   "points": 25,
+   "cooling_c": 0.0002,
+   "trees": 0
+  }
+ ],
+ "memberships": [
+  {
+   "team_id": "hall-rooftop-crew",
+   "role": "owner",
+   "joined_days_ago": 21
+  }
+ ],
+ "fields": [
+  {
+   "id": "f-north-plot",
+   "name": "North plot",
+   "crop": "boro",
+   "stage": "flowering",
+   "location": {
+    "lat": 23.7712,
+    "lng": 90.342
+   },
+   "area": 1.2,
+   "created_days_ago": 40
+  }
+ ],
+ "sensors": [
+  {
+   "id": "s-balcony-node",
+   "name": "Balcony node",
+   "model": "Sensor.Community kit (simulated)",
+   "location": {
+    "lat": 23.75915,
+    "lng": 90.35912
+   },
+   "created_days_ago": 12
+  }
+ ],
+ "notifications": [
+  {
+   "id": "n-0001",
+   "kind": "verification",
+   "title": {
+    "code": "notif.verification.verified",
+    "params": {
+     "action": "plant_tree",
+     "qty": 3,
+     "points": 150
+    }
+   },
+   "body": {
+    "code": "notif.verification.verified_body",
+    "params": {
+     "seen": "Three young neem saplings with tree guards"
+    }
+   },
+   "screen": "S15",
+   "params": {
+    "id": "a-0001"
+   },
+   "read": false,
+   "days_ago": 3
+  },
+  {
+   "id": "n-0002",
+   "kind": "goal_progress",
+   "title": {
+    "code": "notif.goal.milestone",
+    "params": {
+     "pct": 25,
+     "zone": "Asad Gate block"
+    }
+   },
+   "body": null,
+   "screen": "S10",
+   "params": {
+    "goal_id": "g-asad-gate"
+   },
+   "read": true,
+   "days_ago": 9
+  },
+  {
+   "id": "n-0003",
+   "kind": "verification",
+   "title": {
+    "code": "notif.verification.pending",
+    "params": {
+     "action": "shade_structure",
+     "qty": 1,
+     "points": 25
+    }
+   },
+   "body": {
+    "code": "notif.verification.pending_body"
+   },
+   "screen": "S15",
+   "params": {
+    "id": "a-0016"
+   },
+   "read": false,
+   "days_ago": 1
+  }
+ ]
+}

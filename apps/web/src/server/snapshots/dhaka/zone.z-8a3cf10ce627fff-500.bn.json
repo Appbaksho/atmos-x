@@ -1,0 +1,193 @@
+{
+ "id": "z-8a3cf10ce627fff-500",
+ "name": "Kaderabad Housing 6",
+ "score": 91,
+ "lst_c": 42.8,
+ "air_c": 27.7,
+ "feels_c": 31.8,
+ "centroid": {
+  "lat": 23.755106,
+  "lng": 90.358668
+ },
+ "h3": [
+  "8a3cf10ce71ffff",
+  "8a3cf10ce627fff"
+ ],
+ "drivers": {
+  "sealed_pct": 82,
+  "green_pct": 2,
+  "ndvi": null,
+  "dark_roof_pct": 64,
+  "pop_density_km2": 39.1,
+  "night_lst_c": 30.2,
+  "estimated": [
+   "dark_roof_pct",
+   "pop_density_km2",
+   "night_lst_c"
+  ]
+ },
+ "causes": [
+  {
+   "code": "cause.sealed_surface",
+   "params": {
+    "pct": 82,
+    "adds_c": 5.8
+   }
+  },
+  {
+   "code": "cause.low_green",
+   "params": {
+    "pct": 2,
+    "adds_c": 1.7
+   }
+  },
+  {
+   "code": "cause.dense_buildings",
+   "params": {
+    "per_ha": 39,
+    "adds_c": 1.5
+   }
+  }
+ ],
+ "why_text": "Kaderabad Housing 6-এ আনুমানিক ভূমির তাপমাত্রা ৪২.৮°সে., আর এর আশপাশের এলাকার আনুমানিক তাপমাত্রা ৪১.১°সে.; এখানে পাকা ও শক্ত জমি ৮২% এবং সবুজ আচ্ছাদন মাত্র ২% হওয়ায় জায়গাটি বেশি গরম।  \nঘনভাবে ৩৯টি ভবন প্রতি হেক্টরে থাকা আর বেশি গাঢ় ছাদও তাপ ধরে রাখে।  \nসবুজ আচ্ছাদন বাড়ানো, ছাদ ঠান্ডা রাখা, আর ছায়া বাড়ালে সবচেয়ে বেশি উপকার হবে; রাতের বেলা এই তাপের পার্থক্য কিছুটা কম থাকে।",
+ "what_if_green": {
+  "add_green_pct": 10,
+  "score_after": 84,
+  "lst_drop_c": 0.6
+ },
+ "history": [
+  {
+   "year": 2006,
+   "day_lst_c": 32.5,
+   "night_lst_c": 23.4
+  },
+  {
+   "year": 2007,
+   "day_lst_c": 32,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2008,
+   "day_lst_c": 32.9,
+   "night_lst_c": 23.6
+  },
+  {
+   "year": 2009,
+   "day_lst_c": 32.9,
+   "night_lst_c": 23.5
+  },
+  {
+   "year": 2010,
+   "day_lst_c": 34,
+   "night_lst_c": 24.7
+  },
+  {
+   "year": 2011,
+   "day_lst_c": 31.8,
+   "night_lst_c": 22.9
+  },
+  {
+   "year": 2012,
+   "day_lst_c": 32.6,
+   "night_lst_c": 23.4
+  },
+  {
+   "year": 2013,
+   "day_lst_c": 31.9,
+   "night_lst_c": 22.9
+  },
+  {
+   "year": 2014,
+   "day_lst_c": 33.1,
+   "night_lst_c": 23.1
+  },
+  {
+   "year": 2015,
+   "day_lst_c": 31.3,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2016,
+   "day_lst_c": 32.4,
+   "night_lst_c": 24
+  },
+  {
+   "year": 2017,
+   "day_lst_c": 30.7,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2018,
+   "day_lst_c": 31.6,
+   "night_lst_c": 22.7
+  },
+  {
+   "year": 2019,
+   "day_lst_c": 32.2,
+   "night_lst_c": 22.8
+  },
+  {
+   "year": 2020,
+   "day_lst_c": 31.9,
+   "night_lst_c": 22.4
+  },
+  {
+   "year": 2021,
+   "day_lst_c": 34,
+   "night_lst_c": 23.7
+  },
+  {
+   "year": 2022,
+   "day_lst_c": 32.7,
+   "night_lst_c": 23
+  },
+  {
+   "year": 2023,
+   "day_lst_c": 33.3,
+   "night_lst_c": 22.6
+  },
+  {
+   "year": 2024,
+   "day_lst_c": 34.5,
+   "night_lst_c": 23.4
+  },
+  {
+   "year": 2025,
+   "day_lst_c": 34.1,
+   "night_lst_c": 24.4
+  }
+ ],
+ "history_kind": "air_temp",
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:25:00.438Z",
+  "sources": [
+   {
+    "id": "heat-proxy",
+    "name": "Heat estimate: OpenStreetMap land cover + live weather"
+   },
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T19:48:32.094Z"
+   },
+   {
+    "id": "open-meteo",
+    "name": "Open-Meteo",
+    "url": "https://open-meteo.com",
+    "as_of": "2026-10-04T20:24:40.551Z"
+   },
+   {
+    "id": "open-meteo-archive",
+    "name": "Open-Meteo archive (ERA5)",
+    "url": "https://open-meteo.com/en/docs/historical-weather-api",
+    "as_of": "2025-12-31"
+   },
+   {
+    "id": "ai",
+    "name": "AI estimate"
+   }
+  ]
+ }
+}

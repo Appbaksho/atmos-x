@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "appName": "Atmos X",
+  "back": "返回",
+  "close": "关闭",
+  "cancel": "取消",
+  "save": "保存",
+  "done": "完成",
+  "next": "下一步",
+  "continue": "继续",
+  "retry": "重试",
+  "seeAll": "查看全部",
+  "loading": "加载中…",
+  "skipToContent": "跳到内容",
+  "decrease": "降低{label}",
+  "increase": "提高{label}",
+  "heatScore": "Heat Score",
+  "heatScoreA11y": "Heat Score {score}",
+  "askAtmos": "Ask Atmos",
+  "limitReached": "已达到每日上限。请稍后再试。",
+  "presentationMode": "演示模式",
+  "error": {
+    "title": "出错了",
+    "body": "无法加载。请检查你的网络连接，然后重试。",
+    "notAvailable": "这项功能还不可用。"
+  },
+  "empty": {
+    "title": "这里还没有内容"
+  },
+  "offline": {
+    "banner": "你已离线 · 显示已保存的数据",
+    "online": "已重新联网"
+  },
+  "install": {
+    "title": "安装 Atmos X",
+    "body": "把它添加到主屏幕：全屏、快速、可离线使用。",
+    "cta": "安装",
+    "iosHint": "点分享按钮，然后点“添加到主屏幕”。",
+    "dismiss": "暂不"
+  },
+  "account": {
+    "title": "创建免费账户",
+    "body": "访客可以先看看。创建免费账户即可参与。",
+    "feature": "要使用{feature}，请创建免费账户。",
+    "perks": {
+      "actions": "记录行动并赚取积分",
+      "teams": "创建或加入团队",
+      "goals": "设定降温目标",
+      "trees": "每15天查看一次你的树木",
+      "notifs": "接收提醒和高温警报"
+    },
+    "create": "创建免费账户",
+    "signIn": "我已有账户",
+    "notNow": "暂不",
+    "note": "你的账户保存在这台设备上。你之前的访客设置会保留。"
+  },
+  "sources": {
+    "label": "来源",
+    "cached": "已缓存",
+    "live": "实时",
+    "ai": "AI 估算",
+    "demo": "演示社区"
+  },
+  "risk": {
+    "ok": "正常",
+    "caution": "注意",
+    "xcaution": "极度注意",
+    "danger": "危险",
+    "xdanger": "极度危险"
+  },
+  "aqi": {
+    "good": "良好",
+    "moderate": "中等",
+    "usg": "对敏感人群不健康",
+    "unhealthy": "不健康",
+    "very_unhealthy": "非常不健康",
+    "hazardous": "有害"
+  },
+  "location": {
+    "denied": "定位权限被拒绝。请改为搜索城市。",
+    "unavailable": "无法获取你的位置。请改为搜索城市。",
+    "demo": "穆罕默德普尔，达卡"
+  },
+  "notFound": {
+    "title": "页面未找到",
+    "body": "这个页面不存在，或者已被移动。",
+    "home": "返回首页"
+  },
+  "placeholder": {
+    "title": "{id} · 即将推出",
+    "body": "这个页面正在由 {owner} 制作。"
+  },
+  "landingPlaceholder": {
+    "pitch": "找到你周围最热的街区，然后把它们降下来：和邻居一起种树、做凉屋顶、搭遮荫。",
+    "open": "打开应用",
+    "install": "安装"
+  }
+}

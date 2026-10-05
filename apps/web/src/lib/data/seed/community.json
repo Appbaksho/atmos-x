@@ -1,0 +1,3330 @@
+{
+ "_note": "Demo community for v0 (fictional people and teams, Mohammadpur · Dhaka). Ported from apps/mobile/src/screens/community/data.ts. Board rows for Hall Rooftop Crew and DU Green Society are BASE values without Nadia's contributions, which are merged live (from her story, or from the local store in Presentation mode).",
+ "area": "Mohammadpur",
+ "city": "Dhaka",
+ "country": "Bangladesh",
+ "teams": [
+  {
+   "id": "hall-rooftop-crew",
+   "name": "Hall Rooftop Crew",
+   "code": "4K7Q-29",
+   "emoji": "🏠",
+   "description": "Cooling the Asad Gate block: white roofs, neem and shade over the hall gate.",
+   "org_id": "du-green-society",
+   "owner_id": "u-nadia",
+   "max_members": 5,
+   "is_public": true,
+   "area": "Mohammadpur",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "goal_id": "g-asad-gate",
+   "members": [
+    {
+     "user_id": "u-nadia",
+     "display_name": "Nadia Rahman",
+     "role": "owner",
+     "points": 2340
+    },
+    {
+     "user_id": "u-rafi",
+     "display_name": "Rafi Ahmed",
+     "role": "admin",
+     "points": 3980
+    },
+    {
+     "user_id": "u-tania",
+     "display_name": "Tania Sultana",
+     "role": "member",
+     "points": 3410
+    },
+    {
+     "user_id": "u-imran",
+     "display_name": "Imran Hossain",
+     "role": "member",
+     "points": 2960
+    }
+   ],
+   "base": {
+    "points": 8100,
+    "trees": 9,
+    "actions": 41,
+    "cooling_c": 0.059258
+   },
+   "activity": [
+    {
+     "id": "ta-1",
+     "user_name": "Rafi Ahmed",
+     "action_type": "cool_roof",
+     "quantity": 8,
+     "points": 240,
+     "days_ago": 1
+    },
+    {
+     "id": "ta-2",
+     "user_name": "Tania Sultana",
+     "action_type": "water_tree",
+     "quantity": 6,
+     "points": 30,
+     "days_ago": 2
+    },
+    {
+     "id": "ta-3",
+     "user_name": "Imran Hossain",
+     "action_type": "shade_structure",
+     "quantity": 2,
+     "points": 50,
+     "days_ago": 4
+    },
+    {
+     "id": "ta-4",
+     "user_name": "Rafi Ahmed",
+     "action_type": "plant_tree",
+     "quantity": 2,
+     "points": 100,
+     "days_ago": 7
+    },
+    {
+     "id": "ta-5",
+     "user_name": "Tania Sultana",
+     "action_type": "rooftop_garden",
+     "quantity": 10,
+     "points": 400,
+     "days_ago": 12
+    }
+   ],
+   "tasks": [
+    {
+     "id": "k-1",
+     "title": "Coat 120 m² of hostel roof",
+     "due": "Sat 5 Oct",
+     "assignee": "NR",
+     "status": "todo"
+    },
+    {
+     "id": "k-2",
+     "title": "Buy 12 tree guards",
+     "due": "Mon 7 Oct",
+     "assignee": "RA",
+     "status": "todo"
+    },
+    {
+     "id": "k-3",
+     "title": "Ask hall office for roof key",
+     "due": "This week",
+     "assignee": "TS",
+     "status": "todo"
+    },
+    {
+     "id": "k-4",
+     "title": "Book coating supplier",
+     "due": "In progress · 2 quotes",
+     "assignee": "IH",
+     "status": "doing"
+    },
+    {
+     "id": "k-5",
+     "title": "Water the 3 Neem",
+     "due": "Twice a week",
+     "assignee": "TS",
+     "status": "doing"
+    },
+    {
+     "id": "k-6",
+     "title": "Plant 3 Neem at Asad Gate",
+     "due": "Done 2 Oct · verified",
+     "assignee": "NR",
+     "status": "done"
+    },
+    {
+     "id": "k-7",
+     "title": "Survey roofs",
+     "due": "Done 21 Sep",
+     "assignee": "RA",
+     "status": "done"
+    },
+    {
+     "id": "k-8",
+     "title": "Set goal",
+     "due": "Done 18 Sep",
+     "assignee": "NR",
+     "status": "done"
+    }
+   ],
+   "evidence": [
+    {
+     "source": "Satellite · Landsat 9 LST (v1)",
+     "what": "Roof surface −1.8 °C vs Sep 2025",
+     "agrees": true
+    },
+    {
+     "source": "Ground · 2 sensors",
+     "what": "Air −0.3 °C · short record",
+     "agrees": false
+    }
+   ],
+   "period_points": {
+    "week": 920,
+    "month": 2480,
+    "all": 8100
+   }
+  },
+  {
+   "id": "green-mohammadpur",
+   "name": "Green Mohammadpur",
+   "code": "GM7X-42",
+   "emoji": "🌳",
+   "description": "Street trees along Mohammadpur's main roads.",
+   "org_id": null,
+   "owner_id": "u-sumaiya",
+   "max_members": 5,
+   "is_public": true,
+   "area": "Mohammadpur",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "goal_id": null,
+   "members": [
+    {
+     "user_id": "u-sumaiya",
+     "display_name": "Sumaiya Akter",
+     "role": "owner",
+     "points": 2620
+    },
+    {
+     "user_id": "u-arif",
+     "display_name": "Arif Chowdhury",
+     "role": "member",
+     "points": 2555
+    },
+    {
+     "user_id": "u-farhana",
+     "display_name": "Farhana Yasmin",
+     "role": "member",
+     "points": 2480
+    },
+    {
+     "user_id": "u-jahid",
+     "display_name": "Jahid Hasan",
+     "role": "member",
+     "points": 2395
+    },
+    {
+     "user_id": "u-sadia",
+     "display_name": "Sadia Islam",
+     "role": "member",
+     "points": 2210
+    }
+   ],
+   "base": {
+    "points": 21400,
+    "trees": 225,
+    "actions": 306,
+    "cooling_c": 0.156558
+   },
+   "activity": [
+    {
+     "id": "ga-1",
+     "user_name": "Arif Chowdhury",
+     "action_type": "plant_tree",
+     "quantity": 4,
+     "points": 200,
+     "days_ago": 1
+    },
+    {
+     "id": "ga-2",
+     "user_name": "Sumaiya Akter",
+     "action_type": "water_tree",
+     "quantity": 12,
+     "points": 60,
+     "days_ago": 3
+    }
+   ],
+   "tasks": [],
+   "evidence": [],
+   "period_points": {
+    "week": 2063,
+    "month": 6379,
+    "all": 21400
+   }
+  },
+  {
+   "id": "lalmatia-roof-club",
+   "name": "Lalmatia Roof Club",
+   "code": "R7CB-58",
+   "emoji": "🏡",
+   "description": "Rooftop gardens and white roofs in Lalmatia.",
+   "org_id": null,
+   "owner_id": "u-mitu",
+   "max_members": 5,
+   "is_public": true,
+   "area": "Lalmatia",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "goal_id": null,
+   "members": [
+    {
+     "user_id": "u-mitu",
+     "display_name": "Mitu Khatun",
+     "role": "owner",
+     "points": 2710
+    },
+    {
+     "user_id": "u-tanvir",
+     "display_name": "Tanvir Alam",
+     "role": "member",
+     "points": 1990
+    },
+    {
+     "user_id": "u-nusrat",
+     "display_name": "Nusrat Jahan",
+     "role": "member",
+     "points": 1760
+    }
+   ],
+   "base": {
+    "points": 12800,
+    "trees": 135,
+    "actions": 183,
+    "cooling_c": 0.093642
+   },
+   "activity": [
+    {
+     "id": "la-1",
+     "user_name": "Mitu Khatun",
+     "action_type": "cool_roof",
+     "quantity": 6,
+     "points": 180,
+     "days_ago": 2
+    }
+   ],
+   "tasks": [],
+   "evidence": [],
+   "period_points": {
+    "week": 1180,
+    "month": 3359,
+    "all": 12800
+   }
+  },
+  {
+   "id": "nilkhet-shade-team",
+   "name": "Nilkhet Shade Team",
+   "code": "NK4S-73",
+   "emoji": "🌿",
+   "description": "Shade over the Nilkhet crossing.",
+   "org_id": "du-green-society",
+   "owner_id": "u-kamal",
+   "max_members": 5,
+   "is_public": true,
+   "area": "Nilkhet",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "goal_id": null,
+   "members": [
+    {
+     "user_id": "u-kamal",
+     "display_name": "Kamal Uddin",
+     "role": "owner",
+     "points": 1420
+    },
+    {
+     "user_id": "u-rumana",
+     "display_name": "Rumana Begum",
+     "role": "member",
+     "points": 980
+    },
+    {
+     "user_id": "u-sabbir",
+     "display_name": "Sabbir Biswas",
+     "role": "member",
+     "points": 120
+    }
+   ],
+   "base": {
+    "points": 5110,
+    "trees": 54,
+    "actions": 73,
+    "cooling_c": 0.037384
+   },
+   "activity": [],
+   "tasks": [],
+   "evidence": [],
+   "period_points": {
+    "week": 313,
+    "month": 1140,
+    "all": 5110
+   }
+  },
+  {
+   "id": "curzon-lawn-keepers",
+   "name": "Curzon Lawn Keepers",
+   "code": "CZ8K-35",
+   "emoji": "🌱",
+   "description": "Keeping the Curzon Hall lawn edge green.",
+   "org_id": "du-green-society",
+   "owner_id": "u-joya",
+   "max_members": 5,
+   "is_public": true,
+   "area": "Shahbag",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "goal_id": null,
+   "members": [
+    {
+     "user_id": "u-joya",
+     "display_name": "Joya Das",
+     "role": "owner",
+     "points": 7740
+    },
+    {
+     "user_id": "u-moumita",
+     "display_name": "Moumita Roy",
+     "role": "member",
+     "points": 6950
+    }
+   ],
+   "base": {
+    "points": 2640,
+    "trees": 28,
+    "actions": 38,
+    "cooling_c": 0.019314
+   },
+   "activity": [],
+   "tasks": [],
+   "evidence": [],
+   "period_points": {
+    "week": 234,
+    "month": 587,
+    "all": 2640
+   }
+  },
+  {
+   "id": "fuller-road-climbers",
+   "name": "Fuller Road Climbers",
+   "code": "FR9C-64",
+   "emoji": "🌿",
+   "description": "Creepers on Fuller Road walls.",
+   "org_id": "du-green-society",
+   "owner_id": "u-rezaul",
+   "max_members": 5,
+   "is_public": true,
+   "area": "Nilkhet",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "goal_id": null,
+   "members": [
+    {
+     "user_id": "u-rezaul",
+     "display_name": "Rezaul Karim",
+     "role": "owner",
+     "points": 7310
+    }
+   ],
+   "base": {
+    "points": 850,
+    "trees": 9,
+    "actions": 12,
+    "cooling_c": 0.006218
+   },
+   "activity": [],
+   "tasks": [],
+   "evidence": [],
+   "period_points": {
+    "week": 93,
+    "month": 179,
+    "all": 850
+   }
+  }
+ ],
+ "orgs": [
+  {
+   "id": "du-green-society",
+   "name": "DU Green Society",
+   "kind": "school",
+   "city": "Dhaka",
+   "country": "Bangladesh",
+   "verified": true,
+   "description": "University of Dhaka · since 2025",
+   "since": "2025",
+   "logo_emoji": "🎓",
+   "team_ids": [
+    "hall-rooftop-crew",
+    "nilkhet-shade-team",
+    "curzon-lawn-keepers",
+    "fuller-road-climbers"
+   ],
+   "goals": [
+    {
+     "zone_name": "Asad Gate block",
+     "target_c": -1.5,
+     "by_date": "2027-10-01",
+     "progress_pct": 38
+    },
+    {
+     "zone_name": "Nilkhet crossing",
+     "target_c": -1,
+     "by_date": "2027-06-01",
+     "progress_pct": 61
+    },
+    {
+     "zone_name": "Curzon Hall lawn edge",
+     "target_c": -0.5,
+     "by_date": "2026-12-01",
+     "progress_pct": 90
+    }
+   ],
+   "period_points": {
+    "week": 1640,
+    "month": 4680,
+    "all": 16700
+   }
+  }
+ ],
+ "rising": [
+  {
+   "team_id": "hall-rooftop-crew",
+   "name": "Hall Rooftop Crew",
+   "up": 5,
+   "note": "3 Neem verified · 1,200 m² roof booked"
+  },
+  {
+   "team_id": "geneva-camp-gardeners",
+   "name": "Geneva Camp Gardeners",
+   "up": 4,
+   "note": "40 climbers planted"
+  },
+  {
+   "team_id": "lalmatia-roof-club",
+   "name": "Lalmatia Roof Club",
+   "up": 3,
+   "note": "First satellite check passed"
+  }
+ ],
+ "boards": {
+  "user": {
+   "area": {
+    "week": {
+     "rows": [
+      {
+       "id": "u-mitu",
+       "name": "Mitu Khatun",
+       "points": 286,
+       "trees": 3,
+       "cooling_c": 0.002092
+      },
+      {
+       "id": "u-arif",
+       "name": "Arif Chowdhury",
+       "points": 271,
+       "trees": 3,
+       "cooling_c": 0.001983
+      },
+      {
+       "id": "u-imran",
+       "name": "Imran Hossain",
+       "points": 228,
+       "trees": 2,
+       "cooling_c": 0.001668
+      },
+      {
+       "id": "u-tania",
+       "name": "Tania Sultana",
+       "points": 209,
+       "trees": 2,
+       "cooling_c": 0.001529
+      },
+      {
+       "id": "u-rafi",
+       "name": "Rafi Ahmed",
+       "points": 207,
+       "trees": 2,
+       "cooling_c": 0.001514
+      },
+      {
+       "id": "u-sumaiya",
+       "name": "Sumaiya Akter",
+       "points": 174,
+       "trees": 2,
+       "cooling_c": 0.001273
+      },
+      {
+       "id": "u-sadia",
+       "name": "Sadia Islam",
+       "points": 174,
+       "trees": 2,
+       "cooling_c": 0.001273
+      },
+      {
+       "id": "u-jahid",
+       "name": "Jahid Hasan",
+       "points": 168,
+       "trees": 2,
+       "cooling_c": 0.001229
+      },
+      {
+       "id": "u-tanvir",
+       "name": "Tanvir Alam",
+       "points": 167,
+       "trees": 2,
+       "cooling_c": 0.001222
+      },
+      {
+       "id": "u-farhana",
+       "name": "Farhana Yasmin",
+       "points": 132,
+       "trees": 1,
+       "cooling_c": 0.000966
+      },
+      {
+       "id": "u-kamal",
+       "name": "Kamal Uddin",
+       "points": 115,
+       "trees": 1,
+       "cooling_c": 0.000841
+      },
+      {
+       "id": "u-rumana",
+       "name": "Rumana Begum",
+       "points": 107,
+       "trees": 1,
+       "cooling_c": 0.000783
+      },
+      {
+       "id": "u-nusrat",
+       "name": "Nusrat Jahan",
+       "points": 97,
+       "trees": 1,
+       "cooling_c": 0.00071
+      },
+      {
+       "id": "u-sabbir",
+       "name": "Sabbir Biswas",
+       "points": 12,
+       "trees": 0,
+       "cooling_c": 0.000088
+      }
+     ],
+     "tail": []
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "u-rafi",
+       "name": "Rafi Ahmed",
+       "points": 1177,
+       "trees": 12,
+       "cooling_c": 0.008611
+      },
+      {
+       "id": "u-tania",
+       "name": "Tania Sultana",
+       "points": 1048,
+       "trees": 11,
+       "cooling_c": 0.007667
+      },
+      {
+       "id": "u-farhana",
+       "name": "Farhana Yasmin",
+       "points": 692,
+       "trees": 7,
+       "cooling_c": 0.005063
+      },
+      {
+       "id": "u-mitu",
+       "name": "Mitu Khatun",
+       "points": 682,
+       "trees": 7,
+       "cooling_c": 0.004989
+      },
+      {
+       "id": "u-sadia",
+       "name": "Sadia Islam",
+       "points": 675,
+       "trees": 7,
+       "cooling_c": 0.004938
+      },
+      {
+       "id": "u-imran",
+       "name": "Imran Hossain",
+       "points": 654,
+       "trees": 7,
+       "cooling_c": 0.004785
+      },
+      {
+       "id": "u-arif",
+       "name": "Arif Chowdhury",
+       "points": 642,
+       "trees": 7,
+       "cooling_c": 0.004697
+      },
+      {
+       "id": "u-jahid",
+       "name": "Jahid Hasan",
+       "points": 579,
+       "trees": 6,
+       "cooling_c": 0.004236
+      },
+      {
+       "id": "u-sumaiya",
+       "name": "Sumaiya Akter",
+       "points": 547,
+       "trees": 6,
+       "cooling_c": 0.004002
+      },
+      {
+       "id": "u-tanvir",
+       "name": "Tanvir Alam",
+       "points": 513,
+       "trees": 5,
+       "cooling_c": 0.003753
+      },
+      {
+       "id": "u-kamal",
+       "name": "Kamal Uddin",
+       "points": 436,
+       "trees": 5,
+       "cooling_c": 0.00319
+      },
+      {
+       "id": "u-nusrat",
+       "name": "Nusrat Jahan",
+       "points": 396,
+       "trees": 4,
+       "cooling_c": 0.002897
+      },
+      {
+       "id": "u-rumana",
+       "name": "Rumana Begum",
+       "points": 256,
+       "trees": 3,
+       "cooling_c": 0.001873
+      },
+      {
+       "id": "u-sabbir",
+       "name": "Sabbir Biswas",
+       "points": 37,
+       "trees": 0,
+       "cooling_c": 0.000271
+      }
+     ],
+     "tail": []
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "u-rafi",
+       "name": "Rafi Ahmed",
+       "points": 3980,
+       "trees": 42,
+       "cooling_c": 0.029117
+      },
+      {
+       "id": "u-tania",
+       "name": "Tania Sultana",
+       "points": 3410,
+       "trees": 36,
+       "cooling_c": 0.024947
+      },
+      {
+       "id": "u-imran",
+       "name": "Imran Hossain",
+       "points": 2960,
+       "trees": 31,
+       "cooling_c": 0.021655
+      },
+      {
+       "id": "u-mitu",
+       "name": "Mitu Khatun",
+       "points": 2710,
+       "trees": 29,
+       "cooling_c": 0.019826
+      },
+      {
+       "id": "u-sumaiya",
+       "name": "Sumaiya Akter",
+       "points": 2620,
+       "trees": 28,
+       "cooling_c": 0.019167
+      },
+      {
+       "id": "u-arif",
+       "name": "Arif Chowdhury",
+       "points": 2555,
+       "trees": 27,
+       "cooling_c": 0.018692
+      },
+      {
+       "id": "u-farhana",
+       "name": "Farhana Yasmin",
+       "points": 2480,
+       "trees": 26,
+       "cooling_c": 0.018143
+      },
+      {
+       "id": "u-jahid",
+       "name": "Jahid Hasan",
+       "points": 2395,
+       "trees": 25,
+       "cooling_c": 0.017521
+      },
+      {
+       "id": "u-sadia",
+       "name": "Sadia Islam",
+       "points": 2210,
+       "trees": 23,
+       "cooling_c": 0.016168
+      },
+      {
+       "id": "u-tanvir",
+       "name": "Tanvir Alam",
+       "points": 1990,
+       "trees": 21,
+       "cooling_c": 0.014558
+      },
+      {
+       "id": "u-nusrat",
+       "name": "Nusrat Jahan",
+       "points": 1760,
+       "trees": 19,
+       "cooling_c": 0.012876
+      },
+      {
+       "id": "u-kamal",
+       "name": "Kamal Uddin",
+       "points": 1420,
+       "trees": 15,
+       "cooling_c": 0.010388
+      },
+      {
+       "id": "u-rumana",
+       "name": "Rumana Begum",
+       "points": 980,
+       "trees": 10,
+       "cooling_c": 0.007169
+      },
+      {
+       "id": "u-sabbir",
+       "name": "Sabbir Biswas",
+       "points": 120,
+       "trees": 1,
+       "cooling_c": 0.000878
+      }
+     ],
+     "tail": []
+    }
+   },
+   "city": {
+    "week": {
+     "rows": [
+      {
+       "id": "u-shirin",
+       "name": "Shirin Akhter",
+       "points": 1137,
+       "trees": 12,
+       "cooling_c": 0.008318
+      },
+      {
+       "id": "u-mahbub",
+       "name": "Mahbub Alam",
+       "points": 1109,
+       "trees": 12,
+       "cooling_c": 0.008113
+      },
+      {
+       "id": "u-zahid",
+       "name": "Zahid Karim",
+       "points": 1022,
+       "trees": 11,
+       "cooling_c": 0.007477
+      },
+      {
+       "id": "u-ashraf",
+       "name": "Ashraful Islam",
+       "points": 902,
+       "trees": 9,
+       "cooling_c": 0.006599
+      },
+      {
+       "id": "u-lubna",
+       "name": "Lubna Haque",
+       "points": 874,
+       "trees": 9,
+       "cooling_c": 0.006394
+      },
+      {
+       "id": "u-joya",
+       "name": "Joya Das",
+       "points": 722,
+       "trees": 8,
+       "cooling_c": 0.005282
+      },
+      {
+       "id": "u-moumita",
+       "name": "Moumita Roy",
+       "points": 549,
+       "trees": 6,
+       "cooling_c": 0.004016
+      },
+      {
+       "id": "u-rezaul",
+       "name": "Rezaul Karim",
+       "points": 411,
+       "trees": 4,
+       "cooling_c": 0.003007
+      },
+      {
+       "id": "u-mitu",
+       "name": "Mitu Khatun",
+       "points": 286,
+       "trees": 3,
+       "cooling_c": 0.002092
+      },
+      {
+       "id": "u-arif",
+       "name": "Arif Chowdhury",
+       "points": 271,
+       "trees": 3,
+       "cooling_c": 0.001983
+      },
+      {
+       "id": "u-imran",
+       "name": "Imran Hossain",
+       "points": 228,
+       "trees": 2,
+       "cooling_c": 0.001668
+      },
+      {
+       "id": "u-tania",
+       "name": "Tania Sultana",
+       "points": 209,
+       "trees": 2,
+       "cooling_c": 0.001529
+      }
+     ],
+     "tail": [
+      [
+       209,
+       13
+      ],
+      [
+       187,
+       142
+      ],
+      [
+       75,
+       1068
+      ],
+      [
+       0,
+       2200
+      ]
+     ]
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "u-mahbub",
+       "name": "Mahbub Alam",
+       "points": 3472,
+       "trees": 37,
+       "cooling_c": 0.0254
+      },
+      {
+       "id": "u-zahid",
+       "name": "Zahid Karim",
+       "points": 2756,
+       "trees": 29,
+       "cooling_c": 0.020162
+      },
+      {
+       "id": "u-lubna",
+       "name": "Lubna Haque",
+       "points": 2726,
+       "trees": 29,
+       "cooling_c": 0.019943
+      },
+      {
+       "id": "u-shirin",
+       "name": "Shirin Akhter",
+       "points": 2526,
+       "trees": 27,
+       "cooling_c": 0.01848
+      },
+      {
+       "id": "u-ashraf",
+       "name": "Ashraful Islam",
+       "points": 2259,
+       "trees": 24,
+       "cooling_c": 0.016526
+      },
+      {
+       "id": "u-joya",
+       "name": "Joya Das",
+       "points": 1884,
+       "trees": 20,
+       "cooling_c": 0.013783
+      },
+      {
+       "id": "u-rezaul",
+       "name": "Rezaul Karim",
+       "points": 1876,
+       "trees": 20,
+       "cooling_c": 0.013724
+      },
+      {
+       "id": "u-moumita",
+       "name": "Moumita Roy",
+       "points": 1876,
+       "trees": 20,
+       "cooling_c": 0.013724
+      },
+      {
+       "id": "u-rafi",
+       "name": "Rafi Ahmed",
+       "points": 1177,
+       "trees": 12,
+       "cooling_c": 0.008611
+      },
+      {
+       "id": "u-tania",
+       "name": "Tania Sultana",
+       "points": 1048,
+       "trees": 11,
+       "cooling_c": 0.007667
+      },
+      {
+       "id": "u-farhana",
+       "name": "Farhana Yasmin",
+       "points": 692,
+       "trees": 7,
+       "cooling_c": 0.005063
+      },
+      {
+       "id": "u-mitu",
+       "name": "Mitu Khatun",
+       "points": 682,
+       "trees": 7,
+       "cooling_c": 0.004989
+      }
+     ],
+     "tail": [
+      [
+       682,
+       13
+      ],
+      [
+       655,
+       142
+      ],
+      [
+       262,
+       1068
+      ],
+      [
+       0,
+       2200
+      ]
+     ]
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "u-mahbub",
+       "name": "Mahbub Alam",
+       "points": 11800,
+       "trees": 124,
+       "cooling_c": 0.086326
+      },
+      {
+       "id": "u-shirin",
+       "name": "Shirin Akhter",
+       "points": 10450,
+       "trees": 110,
+       "cooling_c": 0.07645
+      },
+      {
+       "id": "u-zahid",
+       "name": "Zahid Karim",
+       "points": 9620,
+       "trees": 101,
+       "cooling_c": 0.070378
+      },
+      {
+       "id": "u-lubna",
+       "name": "Lubna Haque",
+       "points": 8890,
+       "trees": 94,
+       "cooling_c": 0.065037
+      },
+      {
+       "id": "u-ashraf",
+       "name": "Ashraful Islam",
+       "points": 8200,
+       "trees": 86,
+       "cooling_c": 0.059989
+      },
+      {
+       "id": "u-joya",
+       "name": "Joya Das",
+       "points": 7740,
+       "trees": 81,
+       "cooling_c": 0.056624
+      },
+      {
+       "id": "u-rezaul",
+       "name": "Rezaul Karim",
+       "points": 7310,
+       "trees": 77,
+       "cooling_c": 0.053478
+      },
+      {
+       "id": "u-moumita",
+       "name": "Moumita Roy",
+       "points": 6950,
+       "trees": 73,
+       "cooling_c": 0.050845
+      },
+      {
+       "id": "u-rafi",
+       "name": "Rafi Ahmed",
+       "points": 3980,
+       "trees": 42,
+       "cooling_c": 0.029117
+      },
+      {
+       "id": "u-tania",
+       "name": "Tania Sultana",
+       "points": 3410,
+       "trees": 36,
+       "cooling_c": 0.024947
+      },
+      {
+       "id": "u-imran",
+       "name": "Imran Hossain",
+       "points": 2960,
+       "trees": 31,
+       "cooling_c": 0.021655
+      },
+      {
+       "id": "u-mitu",
+       "name": "Mitu Khatun",
+       "points": 2710,
+       "trees": 29,
+       "cooling_c": 0.019826
+      }
+     ],
+     "tail": [
+      [
+       2710,
+       13
+      ],
+      [
+       2340,
+       142
+      ],
+      [
+       936,
+       1068
+      ],
+      [
+       0,
+       2200
+      ]
+     ]
+    }
+   },
+   "country": {
+    "week": {
+     "rows": [
+      {
+       "id": "u-habib",
+       "name": "Habibur Rahman",
+       "points": 2750,
+       "trees": 29,
+       "cooling_c": 0.020118
+      },
+      {
+       "id": "u-parvin",
+       "name": "Parvin Sultana",
+       "points": 2661,
+       "trees": 28,
+       "cooling_c": 0.019467
+      },
+      {
+       "id": "u-anwar",
+       "name": "Anwar Hossain",
+       "points": 2376,
+       "trees": 25,
+       "cooling_c": 0.017382
+      },
+      {
+       "id": "u-rokeya",
+       "name": "Rokeya Khatun",
+       "points": 2152,
+       "trees": 23,
+       "cooling_c": 0.015744
+      },
+      {
+       "id": "u-kabir",
+       "name": "Kabir Ahmed",
+       "points": 1920,
+       "trees": 20,
+       "cooling_c": 0.014046
+      },
+      {
+       "id": "u-shafiq",
+       "name": "Shafiqul Islam",
+       "points": 1789,
+       "trees": 19,
+       "cooling_c": 0.013088
+      },
+      {
+       "id": "u-nasrin",
+       "name": "Nasrin Akter",
+       "points": 1497,
+       "trees": 16,
+       "cooling_c": 0.010952
+      },
+      {
+       "id": "u-shirin",
+       "name": "Shirin Akhter",
+       "points": 1137,
+       "trees": 12,
+       "cooling_c": 0.008318
+      },
+      {
+       "id": "u-mahbub",
+       "name": "Mahbub Alam",
+       "points": 1109,
+       "trees": 12,
+       "cooling_c": 0.008113
+      },
+      {
+       "id": "u-moni",
+       "name": "Moni Chakma",
+       "points": 1089,
+       "trees": 11,
+       "cooling_c": 0.007967
+      },
+      {
+       "id": "u-zahid",
+       "name": "Zahid Karim",
+       "points": 1022,
+       "trees": 11,
+       "cooling_c": 0.007477
+      },
+      {
+       "id": "u-ashraf",
+       "name": "Ashraful Islam",
+       "points": 902,
+       "trees": 9,
+       "cooling_c": 0.006599
+      }
+     ],
+     "tail": [
+      [
+       902,
+       13
+      ],
+      [
+       187,
+       1204
+      ],
+      [
+       75,
+       4712
+      ],
+      [
+       0,
+       9000
+      ]
+     ]
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "u-habib",
+       "name": "Habibur Rahman",
+       "points": 7893,
+       "trees": 83,
+       "cooling_c": 0.057744
+      },
+      {
+       "id": "u-anwar",
+       "name": "Anwar Hossain",
+       "points": 7770,
+       "trees": 82,
+       "cooling_c": 0.056844
+      },
+      {
+       "id": "u-parvin",
+       "name": "Parvin Sultana",
+       "points": 7752,
+       "trees": 82,
+       "cooling_c": 0.056712
+      },
+      {
+       "id": "u-rokeya",
+       "name": "Rokeya Khatun",
+       "points": 5782,
+       "trees": 61,
+       "cooling_c": 0.0423
+      },
+      {
+       "id": "u-kabir",
+       "name": "Kabir Ahmed",
+       "points": 5614,
+       "trees": 59,
+       "cooling_c": 0.041071
+      },
+      {
+       "id": "u-moni",
+       "name": "Moni Chakma",
+       "points": 4795,
+       "trees": 50,
+       "cooling_c": 0.035079
+      },
+      {
+       "id": "u-shafiq",
+       "name": "Shafiqul Islam",
+       "points": 4693,
+       "trees": 49,
+       "cooling_c": 0.034333
+      },
+      {
+       "id": "u-nasrin",
+       "name": "Nasrin Akter",
+       "points": 4344,
+       "trees": 46,
+       "cooling_c": 0.03178
+      },
+      {
+       "id": "u-mahbub",
+       "name": "Mahbub Alam",
+       "points": 3472,
+       "trees": 37,
+       "cooling_c": 0.0254
+      },
+      {
+       "id": "u-zahid",
+       "name": "Zahid Karim",
+       "points": 2756,
+       "trees": 29,
+       "cooling_c": 0.020162
+      },
+      {
+       "id": "u-lubna",
+       "name": "Lubna Haque",
+       "points": 2726,
+       "trees": 29,
+       "cooling_c": 0.019943
+      },
+      {
+       "id": "u-shirin",
+       "name": "Shirin Akhter",
+       "points": 2526,
+       "trees": 27,
+       "cooling_c": 0.01848
+      }
+     ],
+     "tail": [
+      [
+       2526,
+       13
+      ],
+      [
+       655,
+       1204
+      ],
+      [
+       262,
+       4712
+      ],
+      [
+       0,
+       9000
+      ]
+     ]
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "u-habib",
+       "name": "Habibur Rahman",
+       "points": 31200,
+       "trees": 328,
+       "cooling_c": 0.228253
+      },
+      {
+       "id": "u-parvin",
+       "name": "Parvin Sultana",
+       "points": 28700,
+       "trees": 302,
+       "cooling_c": 0.209963
+      },
+      {
+       "id": "u-anwar",
+       "name": "Anwar Hossain",
+       "points": 25100,
+       "trees": 264,
+       "cooling_c": 0.183626
+      },
+      {
+       "id": "u-rokeya",
+       "name": "Rokeya Khatun",
+       "points": 23400,
+       "trees": 246,
+       "cooling_c": 0.171189
+      },
+      {
+       "id": "u-shafiq",
+       "name": "Shafiqul Islam",
+       "points": 21800,
+       "trees": 229,
+       "cooling_c": 0.159484
+      },
+      {
+       "id": "u-nasrin",
+       "name": "Nasrin Akter",
+       "points": 19900,
+       "trees": 209,
+       "cooling_c": 0.145584
+      },
+      {
+       "id": "u-kabir",
+       "name": "Kabir Ahmed",
+       "points": 18300,
+       "trees": 193,
+       "cooling_c": 0.133879
+      },
+      {
+       "id": "u-moni",
+       "name": "Moni Chakma",
+       "points": 17100,
+       "trees": 180,
+       "cooling_c": 0.1251
+      },
+      {
+       "id": "u-mahbub",
+       "name": "Mahbub Alam",
+       "points": 11800,
+       "trees": 124,
+       "cooling_c": 0.086326
+      },
+      {
+       "id": "u-shirin",
+       "name": "Shirin Akhter",
+       "points": 10450,
+       "trees": 110,
+       "cooling_c": 0.07645
+      },
+      {
+       "id": "u-zahid",
+       "name": "Zahid Karim",
+       "points": 9620,
+       "trees": 101,
+       "cooling_c": 0.070378
+      },
+      {
+       "id": "u-lubna",
+       "name": "Lubna Haque",
+       "points": 8890,
+       "trees": 94,
+       "cooling_c": 0.065037
+      }
+     ],
+     "tail": [
+      [
+       8890,
+       13
+      ],
+      [
+       2340,
+       1204
+      ],
+      [
+       936,
+       4712
+      ],
+      [
+       0,
+       9000
+      ]
+     ]
+    }
+   }
+  },
+  "team": {
+   "area": {
+    "week": {
+     "rows": [
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 2063,
+       "trees": 22,
+       "cooling_c": 0.015092
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 1625,
+       "trees": 17,
+       "cooling_c": 0.011888
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 1238,
+       "trees": 13,
+       "cooling_c": 0.009057
+      },
+      {
+       "id": "lalmatia-roof-club",
+       "name": "Lalmatia Roof Club",
+       "emoji": "🏡",
+       "points": 1180,
+       "trees": 12,
+       "cooling_c": 0.008633
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 1039,
+       "trees": 11,
+       "cooling_c": 0.007601
+      },
+      {
+       "id": "hall-rooftop-crew",
+       "name": "Hall Rooftop Crew",
+       "emoji": "🏠",
+       "points": 920,
+       "trees": 10,
+       "cooling_c": 0.006731
+      },
+      {
+       "id": "shyamoli-shade",
+       "name": "Shyamoli Shade Collective",
+       "emoji": "🌲",
+       "points": 914,
+       "trees": 10,
+       "cooling_c": 0.006687
+      },
+      {
+       "id": "town-hall-traders",
+       "name": "Town Hall Market Traders",
+       "emoji": "🏪",
+       "points": 839,
+       "trees": 9,
+       "cooling_c": 0.006138
+      },
+      {
+       "id": "tajmahal-tree-team",
+       "name": "Tajmahal Road Tree Team",
+       "emoji": "🌳",
+       "points": 802,
+       "trees": 8,
+       "cooling_c": 0.005867
+      },
+      {
+       "id": "iqbal-road-gardeners",
+       "name": "Iqbal Road Gardeners",
+       "emoji": "🌱",
+       "points": 560,
+       "trees": 6,
+       "cooling_c": 0.004097
+      },
+      {
+       "id": "kaderabad-kids",
+       "name": "Kaderabad Kids Club",
+       "emoji": "🎒",
+       "points": 450,
+       "trees": 5,
+       "cooling_c": 0.003292
+      }
+     ],
+     "tail": []
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 6379,
+       "trees": 67,
+       "cooling_c": 0.046667
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 5117,
+       "trees": 54,
+       "cooling_c": 0.037435
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 4453,
+       "trees": 47,
+       "cooling_c": 0.032577
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 3783,
+       "trees": 40,
+       "cooling_c": 0.027676
+      },
+      {
+       "id": "lalmatia-roof-club",
+       "name": "Lalmatia Roof Club",
+       "emoji": "🏡",
+       "points": 3359,
+       "trees": 35,
+       "cooling_c": 0.024574
+      },
+      {
+       "id": "tajmahal-tree-team",
+       "name": "Tajmahal Road Tree Team",
+       "emoji": "🌳",
+       "points": 3314,
+       "trees": 35,
+       "cooling_c": 0.024245
+      },
+      {
+       "id": "shyamoli-shade",
+       "name": "Shyamoli Shade Collective",
+       "emoji": "🌲",
+       "points": 3156,
+       "trees": 33,
+       "cooling_c": 0.023089
+      },
+      {
+       "id": "town-hall-traders",
+       "name": "Town Hall Market Traders",
+       "emoji": "🏪",
+       "points": 2806,
+       "trees": 30,
+       "cooling_c": 0.020528
+      },
+      {
+       "id": "hall-rooftop-crew",
+       "name": "Hall Rooftop Crew",
+       "emoji": "🏠",
+       "points": 2480,
+       "trees": 26,
+       "cooling_c": 0.018143
+      },
+      {
+       "id": "iqbal-road-gardeners",
+       "name": "Iqbal Road Gardeners",
+       "emoji": "🌱",
+       "points": 1963,
+       "trees": 21,
+       "cooling_c": 0.014361
+      },
+      {
+       "id": "kaderabad-kids",
+       "name": "Kaderabad Kids Club",
+       "emoji": "🎒",
+       "points": 1312,
+       "trees": 14,
+       "cooling_c": 0.009598
+      }
+     ],
+     "tail": []
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 21400,
+       "trees": 225,
+       "cooling_c": 0.156558
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 18900,
+       "trees": 199,
+       "cooling_c": 0.138268
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 15200,
+       "trees": 160,
+       "cooling_c": 0.1112
+      },
+      {
+       "id": "lalmatia-roof-club",
+       "name": "Lalmatia Roof Club",
+       "emoji": "🏡",
+       "points": 12800,
+       "trees": 135,
+       "cooling_c": 0.093642
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 11900,
+       "trees": 125,
+       "cooling_c": 0.087058
+      },
+      {
+       "id": "shyamoli-shade",
+       "name": "Shyamoli Shade Collective",
+       "emoji": "🌲",
+       "points": 11250,
+       "trees": 118,
+       "cooling_c": 0.082303
+      },
+      {
+       "id": "tajmahal-tree-team",
+       "name": "Tajmahal Road Tree Team",
+       "emoji": "🌳",
+       "points": 10700,
+       "trees": 113,
+       "cooling_c": 0.078279
+      },
+      {
+       "id": "town-hall-traders",
+       "name": "Town Hall Market Traders",
+       "emoji": "🏪",
+       "points": 10100,
+       "trees": 106,
+       "cooling_c": 0.073889
+      },
+      {
+       "id": "hall-rooftop-crew",
+       "name": "Hall Rooftop Crew",
+       "emoji": "🏠",
+       "points": 8100,
+       "trees": 85,
+       "cooling_c": 0.059258
+      },
+      {
+       "id": "iqbal-road-gardeners",
+       "name": "Iqbal Road Gardeners",
+       "emoji": "🌱",
+       "points": 7400,
+       "trees": 78,
+       "cooling_c": 0.054137
+      },
+      {
+       "id": "kaderabad-kids",
+       "name": "Kaderabad Kids Club",
+       "emoji": "🎒",
+       "points": 5200,
+       "trees": 55,
+       "cooling_c": 0.038042
+      }
+     ],
+     "tail": []
+    }
+   },
+   "city": {
+    "week": {
+     "rows": [
+      {
+       "id": "dhanmondi-lake-keepers",
+       "name": "Dhanmondi Lake Keepers",
+       "emoji": "💧",
+       "points": 4640,
+       "trees": 49,
+       "cooling_c": 0.033945
+      },
+      {
+       "id": "gulshan-canopy",
+       "name": "Gulshan Canopy Club",
+       "emoji": "🌲",
+       "points": 2973,
+       "trees": 31,
+       "cooling_c": 0.02175
+      },
+      {
+       "id": "old-dhaka-shade",
+       "name": "Old Dhaka Shade Makers",
+       "emoji": "⛱️",
+       "points": 2896,
+       "trees": 30,
+       "cooling_c": 0.021187
+      },
+      {
+       "id": "uttara-sector-7",
+       "name": "Uttara Sector 7 Greens",
+       "emoji": "🌳",
+       "points": 2808,
+       "trees": 30,
+       "cooling_c": 0.020543
+      },
+      {
+       "id": "mirpur-roof-rebels",
+       "name": "Mirpur Roof Rebels",
+       "emoji": "⬜",
+       "points": 2734,
+       "trees": 29,
+       "cooling_c": 0.020001
+      },
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 2063,
+       "trees": 22,
+       "cooling_c": 0.015092
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 1625,
+       "trees": 17,
+       "cooling_c": 0.011888
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 1238,
+       "trees": 13,
+       "cooling_c": 0.009057
+      },
+      {
+       "id": "lalmatia-roof-club",
+       "name": "Lalmatia Roof Club",
+       "emoji": "🏡",
+       "points": 1180,
+       "trees": 12,
+       "cooling_c": 0.008633
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 1039,
+       "trees": 11,
+       "cooling_c": 0.007601
+      },
+      {
+       "id": "hall-rooftop-crew",
+       "name": "Hall Rooftop Crew",
+       "emoji": "🏠",
+       "points": 920,
+       "trees": 10,
+       "cooling_c": 0.006731
+      },
+      {
+       "id": "shyamoli-shade",
+       "name": "Shyamoli Shade Collective",
+       "emoji": "🌲",
+       "points": 914,
+       "trees": 10,
+       "cooling_c": 0.006687
+      }
+     ],
+     "tail": [
+      [
+       914,
+       13
+      ],
+      [
+       786,
+       61
+      ],
+      [
+       314,
+       115
+      ],
+      [
+       0,
+       180
+      ]
+     ]
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "uttara-sector-7",
+       "name": "Uttara Sector 7 Greens",
+       "emoji": "🌳",
+       "points": 12302,
+       "trees": 129,
+       "cooling_c": 0.089999
+      },
+      {
+       "id": "dhanmondi-lake-keepers",
+       "name": "Dhanmondi Lake Keepers",
+       "emoji": "💧",
+       "points": 11911,
+       "trees": 125,
+       "cooling_c": 0.087138
+      },
+      {
+       "id": "mirpur-roof-rebels",
+       "name": "Mirpur Roof Rebels",
+       "emoji": "⬜",
+       "points": 8328,
+       "trees": 88,
+       "cooling_c": 0.060926
+      },
+      {
+       "id": "old-dhaka-shade",
+       "name": "Old Dhaka Shade Makers",
+       "emoji": "⛱️",
+       "points": 6711,
+       "trees": 71,
+       "cooling_c": 0.049096
+      },
+      {
+       "id": "gulshan-canopy",
+       "name": "Gulshan Canopy Club",
+       "emoji": "🌲",
+       "points": 6468,
+       "trees": 68,
+       "cooling_c": 0.047319
+      },
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 6379,
+       "trees": 67,
+       "cooling_c": 0.046667
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 5117,
+       "trees": 54,
+       "cooling_c": 0.037435
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 4453,
+       "trees": 47,
+       "cooling_c": 0.032577
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 3783,
+       "trees": 40,
+       "cooling_c": 0.027676
+      },
+      {
+       "id": "lalmatia-roof-club",
+       "name": "Lalmatia Roof Club",
+       "emoji": "🏡",
+       "points": 3359,
+       "trees": 35,
+       "cooling_c": 0.024574
+      },
+      {
+       "id": "tajmahal-tree-team",
+       "name": "Tajmahal Road Tree Team",
+       "emoji": "🌳",
+       "points": 3314,
+       "trees": 35,
+       "cooling_c": 0.024245
+      },
+      {
+       "id": "shyamoli-shade",
+       "name": "Shyamoli Shade Collective",
+       "emoji": "🌲",
+       "points": 3156,
+       "trees": 33,
+       "cooling_c": 0.023089
+      }
+     ],
+     "tail": [
+      [
+       3156,
+       13
+      ],
+      [
+       2750,
+       61
+      ],
+      [
+       1100,
+       115
+      ],
+      [
+       0,
+       180
+      ]
+     ]
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "dhanmondi-lake-keepers",
+       "name": "Dhanmondi Lake Keepers",
+       "emoji": "💧",
+       "points": 48200,
+       "trees": 507,
+       "cooling_c": 0.352621
+      },
+      {
+       "id": "uttara-sector-7",
+       "name": "Uttara Sector 7 Greens",
+       "emoji": "🌳",
+       "points": 41900,
+       "trees": 441,
+       "cooling_c": 0.306532
+      },
+      {
+       "id": "mirpur-roof-rebels",
+       "name": "Mirpur Roof Rebels",
+       "emoji": "⬜",
+       "points": 36500,
+       "trees": 384,
+       "cooling_c": 0.267026
+      },
+      {
+       "id": "old-dhaka-shade",
+       "name": "Old Dhaka Shade Makers",
+       "emoji": "⛱️",
+       "points": 31800,
+       "trees": 335,
+       "cooling_c": 0.232642
+      },
+      {
+       "id": "gulshan-canopy",
+       "name": "Gulshan Canopy Club",
+       "emoji": "🌲",
+       "points": 27400,
+       "trees": 288,
+       "cooling_c": 0.200453
+      },
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 21400,
+       "trees": 225,
+       "cooling_c": 0.156558
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 18900,
+       "trees": 199,
+       "cooling_c": 0.138268
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 15200,
+       "trees": 160,
+       "cooling_c": 0.1112
+      },
+      {
+       "id": "lalmatia-roof-club",
+       "name": "Lalmatia Roof Club",
+       "emoji": "🏡",
+       "points": 12800,
+       "trees": 135,
+       "cooling_c": 0.093642
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 11900,
+       "trees": 125,
+       "cooling_c": 0.087058
+      },
+      {
+       "id": "shyamoli-shade",
+       "name": "Shyamoli Shade Collective",
+       "emoji": "🌲",
+       "points": 11250,
+       "trees": 118,
+       "cooling_c": 0.082303
+      },
+      {
+       "id": "tajmahal-tree-team",
+       "name": "Tajmahal Road Tree Team",
+       "emoji": "🌳",
+       "points": 10700,
+       "trees": 113,
+       "cooling_c": 0.078279
+      }
+     ],
+     "tail": [
+      [
+       10700,
+       13
+      ],
+      [
+       9820,
+       61
+      ],
+      [
+       3928,
+       115
+      ],
+      [
+       0,
+       180
+      ]
+     ]
+    }
+   },
+   "country": {
+    "week": {
+     "rows": [
+      {
+       "id": "khulna-mangrove-friends",
+       "name": "Khulna Mangrove Friends",
+       "emoji": "🌴",
+       "points": 8767,
+       "trees": 92,
+       "cooling_c": 0.064138
+      },
+      {
+       "id": "rajshahi-mango-shade",
+       "name": "Rajshahi Mango Shade",
+       "emoji": "🥭",
+       "points": 6764,
+       "trees": 71,
+       "cooling_c": 0.049484
+      },
+      {
+       "id": "ctg-hill-greeners",
+       "name": "Chattogram Hill Greeners",
+       "emoji": "⛰️",
+       "points": 6290,
+       "trees": 66,
+       "cooling_c": 0.046016
+      },
+      {
+       "id": "sylhet-tea-garden-youth",
+       "name": "Sylhet Tea Garden Youth",
+       "emoji": "🍃",
+       "points": 5751,
+       "trees": 61,
+       "cooling_c": 0.042073
+      },
+      {
+       "id": "dhanmondi-lake-keepers",
+       "name": "Dhanmondi Lake Keepers",
+       "emoji": "💧",
+       "points": 4640,
+       "trees": 49,
+       "cooling_c": 0.033945
+      },
+      {
+       "id": "gulshan-canopy",
+       "name": "Gulshan Canopy Club",
+       "emoji": "🌲",
+       "points": 2973,
+       "trees": 31,
+       "cooling_c": 0.02175
+      },
+      {
+       "id": "old-dhaka-shade",
+       "name": "Old Dhaka Shade Makers",
+       "emoji": "⛱️",
+       "points": 2896,
+       "trees": 30,
+       "cooling_c": 0.021187
+      },
+      {
+       "id": "uttara-sector-7",
+       "name": "Uttara Sector 7 Greens",
+       "emoji": "🌳",
+       "points": 2808,
+       "trees": 30,
+       "cooling_c": 0.020543
+      },
+      {
+       "id": "mirpur-roof-rebels",
+       "name": "Mirpur Roof Rebels",
+       "emoji": "⬜",
+       "points": 2734,
+       "trees": 29,
+       "cooling_c": 0.020001
+      },
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 2063,
+       "trees": 22,
+       "cooling_c": 0.015092
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 1625,
+       "trees": 17,
+       "cooling_c": 0.011888
+      },
+      {
+       "id": "housing-greeners",
+       "name": "Mohammadpur Housing Greeners",
+       "emoji": "🌿",
+       "points": 1238,
+       "trees": 13,
+       "cooling_c": 0.009057
+      }
+     ],
+     "tail": [
+      [
+       1238,
+       13
+      ],
+      [
+       786,
+       488
+      ],
+      [
+       314,
+       898
+      ],
+      [
+       0,
+       1400
+      ]
+     ]
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "khulna-mangrove-friends",
+       "name": "Khulna Mangrove Friends",
+       "emoji": "🌴",
+       "points": 22643,
+       "trees": 238,
+       "cooling_c": 0.165651
+      },
+      {
+       "id": "ctg-hill-greeners",
+       "name": "Chattogram Hill Greeners",
+       "emoji": "⛰️",
+       "points": 21020,
+       "trees": 221,
+       "cooling_c": 0.153778
+      },
+      {
+       "id": "rajshahi-mango-shade",
+       "name": "Rajshahi Mango Shade",
+       "emoji": "🥭",
+       "points": 20545,
+       "trees": 216,
+       "cooling_c": 0.150303
+      },
+      {
+       "id": "sylhet-tea-garden-youth",
+       "name": "Sylhet Tea Garden Youth",
+       "emoji": "🍃",
+       "points": 18490,
+       "trees": 195,
+       "cooling_c": 0.135269
+      },
+      {
+       "id": "uttara-sector-7",
+       "name": "Uttara Sector 7 Greens",
+       "emoji": "🌳",
+       "points": 12302,
+       "trees": 129,
+       "cooling_c": 0.089999
+      },
+      {
+       "id": "dhanmondi-lake-keepers",
+       "name": "Dhanmondi Lake Keepers",
+       "emoji": "💧",
+       "points": 11911,
+       "trees": 125,
+       "cooling_c": 0.087138
+      },
+      {
+       "id": "mirpur-roof-rebels",
+       "name": "Mirpur Roof Rebels",
+       "emoji": "⬜",
+       "points": 8328,
+       "trees": 88,
+       "cooling_c": 0.060926
+      },
+      {
+       "id": "old-dhaka-shade",
+       "name": "Old Dhaka Shade Makers",
+       "emoji": "⛱️",
+       "points": 6711,
+       "trees": 71,
+       "cooling_c": 0.049096
+      },
+      {
+       "id": "gulshan-canopy",
+       "name": "Gulshan Canopy Club",
+       "emoji": "🌲",
+       "points": 6468,
+       "trees": 68,
+       "cooling_c": 0.047319
+      },
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 6379,
+       "trees": 67,
+       "cooling_c": 0.046667
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 5117,
+       "trees": 54,
+       "cooling_c": 0.037435
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 4453,
+       "trees": 47,
+       "cooling_c": 0.032577
+      }
+     ],
+     "tail": [
+      [
+       4453,
+       13
+      ],
+      [
+       2750,
+       488
+      ],
+      [
+       1100,
+       898
+      ],
+      [
+       0,
+       1400
+      ]
+     ]
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "ctg-hill-greeners",
+       "name": "Chattogram Hill Greeners",
+       "emoji": "⛰️",
+       "points": 96400,
+       "trees": 1015,
+       "cooling_c": 0.705242
+      },
+      {
+       "id": "khulna-mangrove-friends",
+       "name": "Khulna Mangrove Friends",
+       "emoji": "🌴",
+       "points": 88100,
+       "trees": 927,
+       "cooling_c": 0.644521
+      },
+      {
+       "id": "rajshahi-mango-shade",
+       "name": "Rajshahi Mango Shade",
+       "emoji": "🥭",
+       "points": 74300,
+       "trees": 782,
+       "cooling_c": 0.543563
+      },
+      {
+       "id": "sylhet-tea-garden-youth",
+       "name": "Sylhet Tea Garden Youth",
+       "emoji": "🍃",
+       "points": 69900,
+       "trees": 736,
+       "cooling_c": 0.511374
+      },
+      {
+       "id": "dhanmondi-lake-keepers",
+       "name": "Dhanmondi Lake Keepers",
+       "emoji": "💧",
+       "points": 48200,
+       "trees": 507,
+       "cooling_c": 0.352621
+      },
+      {
+       "id": "uttara-sector-7",
+       "name": "Uttara Sector 7 Greens",
+       "emoji": "🌳",
+       "points": 41900,
+       "trees": 441,
+       "cooling_c": 0.306532
+      },
+      {
+       "id": "mirpur-roof-rebels",
+       "name": "Mirpur Roof Rebels",
+       "emoji": "⬜",
+       "points": 36500,
+       "trees": 384,
+       "cooling_c": 0.267026
+      },
+      {
+       "id": "old-dhaka-shade",
+       "name": "Old Dhaka Shade Makers",
+       "emoji": "⛱️",
+       "points": 31800,
+       "trees": 335,
+       "cooling_c": 0.232642
+      },
+      {
+       "id": "gulshan-canopy",
+       "name": "Gulshan Canopy Club",
+       "emoji": "🌲",
+       "points": 27400,
+       "trees": 288,
+       "cooling_c": 0.200453
+      },
+      {
+       "id": "green-mohammadpur",
+       "name": "Green Mohammadpur",
+       "emoji": "🌳",
+       "points": 21400,
+       "trees": 225,
+       "cooling_c": 0.156558
+      },
+      {
+       "id": "ring-road-shade-squad",
+       "name": "Ring Road Shade Squad",
+       "emoji": "⛱️",
+       "points": 18900,
+       "trees": 199,
+       "cooling_c": 0.138268
+      },
+      {
+       "id": "geneva-camp-gardeners",
+       "name": "Geneva Camp Gardeners",
+       "emoji": "🪴",
+       "points": 15200,
+       "trees": 160,
+       "cooling_c": 0.1112
+      }
+     ],
+     "tail": [
+      [
+       15200,
+       13
+      ],
+      [
+       9820,
+       488
+      ],
+      [
+       3928,
+       898
+      ],
+      [
+       0,
+       1400
+      ]
+     ]
+    }
+   }
+  },
+  "org": {
+   "area": {
+    "week": {
+     "rows": [
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 4564,
+       "trees": 48,
+       "cooling_c": 0.033389
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 3498,
+       "trees": 37,
+       "cooling_c": 0.025591
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 3120,
+       "trees": 33,
+       "cooling_c": 0.022825
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 2709,
+       "trees": 29,
+       "cooling_c": 0.019818
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 2441,
+       "trees": 26,
+       "cooling_c": 0.017858
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 1640,
+       "trees": 17,
+       "cooling_c": 0.011998
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 1513,
+       "trees": 16,
+       "cooling_c": 0.011069
+      },
+      {
+       "id": "dhaka-green-schools",
+       "name": "Dhaka Green Schools",
+       "emoji": "🎓",
+       "points": 785,
+       "trees": 8,
+       "cooling_c": 0.005743
+      }
+     ],
+     "tail": []
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 14170,
+       "trees": 149,
+       "cooling_c": 0.103665
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 13889,
+       "trees": 146,
+       "cooling_c": 0.101609
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 10413,
+       "trees": 110,
+       "cooling_c": 0.076179
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 7440,
+       "trees": 78,
+       "cooling_c": 0.054429
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 6296,
+       "trees": 66,
+       "cooling_c": 0.04606
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 5868,
+       "trees": 62,
+       "cooling_c": 0.042929
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 4680,
+       "trees": 49,
+       "cooling_c": 0.034238
+      },
+      {
+       "id": "dhaka-green-schools",
+       "name": "Dhaka Green Schools",
+       "emoji": "🎓",
+       "points": 2627,
+       "trees": 28,
+       "cooling_c": 0.019219
+      }
+     ],
+     "tail": []
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 64200,
+       "trees": 676,
+       "cooling_c": 0.469674
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 51800,
+       "trees": 545,
+       "cooling_c": 0.378958
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 44100,
+       "trees": 464,
+       "cooling_c": 0.322626
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 30900,
+       "trees": 325,
+       "cooling_c": 0.226058
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 26000,
+       "trees": 274,
+       "cooling_c": 0.190211
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 21000,
+       "trees": 221,
+       "cooling_c": 0.153632
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 16700,
+       "trees": 176,
+       "cooling_c": 0.122174
+      },
+      {
+       "id": "dhaka-green-schools",
+       "name": "Dhaka Green Schools",
+       "emoji": "🎓",
+       "points": 9000,
+       "trees": 95,
+       "cooling_c": 0.065842
+      }
+     ],
+     "tail": []
+    }
+   },
+   "city": {
+    "week": {
+     "rows": [
+      {
+       "id": "dncc",
+       "name": "Dhaka North City Corporation",
+       "emoji": "🏛️",
+       "points": 20920,
+       "trees": 220,
+       "cooling_c": 0.153046
+      },
+      {
+       "id": "dscc",
+       "name": "Dhaka South City Corporation",
+       "emoji": "🏛️",
+       "points": 18296,
+       "trees": 193,
+       "cooling_c": 0.13385
+      },
+      {
+       "id": "buet-green",
+       "name": "BUET Green Club",
+       "emoji": "🎓",
+       "points": 9270,
+       "trees": 98,
+       "cooling_c": 0.067817
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 4564,
+       "trees": 48,
+       "cooling_c": 0.033389
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 3498,
+       "trees": 37,
+       "cooling_c": 0.025591
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 3120,
+       "trees": 33,
+       "cooling_c": 0.022825
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 2709,
+       "trees": 29,
+       "cooling_c": 0.019818
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 2441,
+       "trees": 26,
+       "cooling_c": 0.017858
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 1640,
+       "trees": 17,
+       "cooling_c": 0.011998
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 1513,
+       "trees": 16,
+       "cooling_c": 0.011069
+      },
+      {
+       "id": "dhaka-green-schools",
+       "name": "Dhaka Green Schools",
+       "emoji": "🎓",
+       "points": 785,
+       "trees": 8,
+       "cooling_c": 0.005743
+      }
+     ],
+     "tail": [
+      [
+       785,
+       12
+      ],
+      [
+       589,
+       40
+      ],
+      [
+       0,
+       60
+      ]
+     ]
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "dncc",
+       "name": "Dhaka North City Corporation",
+       "emoji": "🏛️",
+       "points": 53760,
+       "trees": 566,
+       "cooling_c": 0.393297
+      },
+      {
+       "id": "dscc",
+       "name": "Dhaka South City Corporation",
+       "emoji": "🏛️",
+       "points": 52027,
+       "trees": 548,
+       "cooling_c": 0.380619
+      },
+      {
+       "id": "buet-green",
+       "name": "BUET Green Club",
+       "emoji": "🎓",
+       "points": 27071,
+       "trees": 285,
+       "cooling_c": 0.198046
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 14170,
+       "trees": 149,
+       "cooling_c": 0.103665
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 13889,
+       "trees": 146,
+       "cooling_c": 0.101609
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 10413,
+       "trees": 110,
+       "cooling_c": 0.076179
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 7440,
+       "trees": 78,
+       "cooling_c": 0.054429
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 6296,
+       "trees": 66,
+       "cooling_c": 0.04606
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 5868,
+       "trees": 62,
+       "cooling_c": 0.042929
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 4680,
+       "trees": 49,
+       "cooling_c": 0.034238
+      },
+      {
+       "id": "dhaka-green-schools",
+       "name": "Dhaka Green Schools",
+       "emoji": "🎓",
+       "points": 2627,
+       "trees": 28,
+       "cooling_c": 0.019219
+      }
+     ],
+     "tail": [
+      [
+       2627,
+       12
+      ],
+      [
+       2063,
+       40
+      ],
+      [
+       0,
+       60
+      ]
+     ]
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "dncc",
+       "name": "Dhaka North City Corporation",
+       "emoji": "🏛️",
+       "points": 212000,
+       "trees": 2232,
+       "cooling_c": 1.550947
+      },
+      {
+       "id": "dscc",
+       "name": "Dhaka South City Corporation",
+       "emoji": "🏛️",
+       "points": 188000,
+       "trees": 1979,
+       "cooling_c": 1.375368
+      },
+      {
+       "id": "buet-green",
+       "name": "BUET Green Club",
+       "emoji": "🎓",
+       "points": 97000,
+       "trees": 1021,
+       "cooling_c": 0.709632
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 64200,
+       "trees": 676,
+       "cooling_c": 0.469674
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 51800,
+       "trees": 545,
+       "cooling_c": 0.378958
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 44100,
+       "trees": 464,
+       "cooling_c": 0.322626
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 30900,
+       "trees": 325,
+       "cooling_c": 0.226058
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 26000,
+       "trees": 274,
+       "cooling_c": 0.190211
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 21000,
+       "trees": 221,
+       "cooling_c": 0.153632
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 16700,
+       "trees": 176,
+       "cooling_c": 0.122174
+      },
+      {
+       "id": "dhaka-green-schools",
+       "name": "Dhaka Green Schools",
+       "emoji": "🎓",
+       "points": 9000,
+       "trees": 95,
+       "cooling_c": 0.065842
+      }
+     ],
+     "tail": [
+      [
+       9000,
+       12
+      ],
+      [
+       7368,
+       40
+      ],
+      [
+       0,
+       60
+      ]
+     ]
+    }
+   },
+   "country": {
+    "week": {
+     "rows": [
+      {
+       "id": "bd-forest-youth",
+       "name": "Bangladesh Forest Youth",
+       "emoji": "🤝",
+       "points": 55287,
+       "trees": 582,
+       "cooling_c": 0.404468
+      },
+      {
+       "id": "cleanchattogram",
+       "name": "Clean Chattogram",
+       "emoji": "🤝",
+       "points": 28231,
+       "trees": 297,
+       "cooling_c": 0.206532
+      },
+      {
+       "id": "dncc",
+       "name": "Dhaka North City Corporation",
+       "emoji": "🏛️",
+       "points": 20920,
+       "trees": 220,
+       "cooling_c": 0.153046
+      },
+      {
+       "id": "dscc",
+       "name": "Dhaka South City Corporation",
+       "emoji": "🏛️",
+       "points": 18296,
+       "trees": 193,
+       "cooling_c": 0.13385
+      },
+      {
+       "id": "buet-green",
+       "name": "BUET Green Club",
+       "emoji": "🎓",
+       "points": 9270,
+       "trees": 98,
+       "cooling_c": 0.067817
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 4564,
+       "trees": 48,
+       "cooling_c": 0.033389
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 3498,
+       "trees": 37,
+       "cooling_c": 0.025591
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 3120,
+       "trees": 33,
+       "cooling_c": 0.022825
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 2709,
+       "trees": 29,
+       "cooling_c": 0.019818
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 2441,
+       "trees": 26,
+       "cooling_c": 0.017858
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 1640,
+       "trees": 17,
+       "cooling_c": 0.011998
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 1513,
+       "trees": 16,
+       "cooling_c": 0.011069
+      }
+     ],
+     "tail": [
+      [
+       1513,
+       13
+      ],
+      [
+       1474,
+       96
+      ],
+      [
+       589,
+       170
+      ],
+      [
+       0,
+       260
+      ]
+     ]
+    },
+    "month": {
+     "rows": [
+      {
+       "id": "bd-forest-youth",
+       "name": "Bangladesh Forest Youth",
+       "emoji": "🤝",
+       "points": 144232,
+       "trees": 1518,
+       "cooling_c": 1.055171
+      },
+      {
+       "id": "cleanchattogram",
+       "name": "Clean Chattogram",
+       "emoji": "🤝",
+       "points": 125873,
+       "trees": 1325,
+       "cooling_c": 0.92086
+      },
+      {
+       "id": "dncc",
+       "name": "Dhaka North City Corporation",
+       "emoji": "🏛️",
+       "points": 53760,
+       "trees": 566,
+       "cooling_c": 0.393297
+      },
+      {
+       "id": "dscc",
+       "name": "Dhaka South City Corporation",
+       "emoji": "🏛️",
+       "points": 52027,
+       "trees": 548,
+       "cooling_c": 0.380619
+      },
+      {
+       "id": "buet-green",
+       "name": "BUET Green Club",
+       "emoji": "🎓",
+       "points": 27071,
+       "trees": 285,
+       "cooling_c": 0.198046
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 14170,
+       "trees": 149,
+       "cooling_c": 0.103665
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 13889,
+       "trees": 146,
+       "cooling_c": 0.101609
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 10413,
+       "trees": 110,
+       "cooling_c": 0.076179
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 7440,
+       "trees": 78,
+       "cooling_c": 0.054429
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 6296,
+       "trees": 66,
+       "cooling_c": 0.04606
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 5868,
+       "trees": 62,
+       "cooling_c": 0.042929
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 4680,
+       "trees": 49,
+       "cooling_c": 0.034238
+      }
+     ],
+     "tail": [
+      [
+       4680,
+       13
+      ],
+      [
+       2063,
+       170
+      ],
+      [
+       0,
+       260
+      ]
+     ]
+    },
+    "all": {
+     "rows": [
+      {
+       "id": "bd-forest-youth",
+       "name": "Bangladesh Forest Youth",
+       "emoji": "🤝",
+       "points": 640000,
+       "trees": 6737,
+       "cooling_c": 4.682105
+      },
+      {
+       "id": "cleanchattogram",
+       "name": "Clean Chattogram",
+       "emoji": "🤝",
+       "points": 402000,
+       "trees": 4232,
+       "cooling_c": 2.940947
+      },
+      {
+       "id": "dncc",
+       "name": "Dhaka North City Corporation",
+       "emoji": "🏛️",
+       "points": 212000,
+       "trees": 2232,
+       "cooling_c": 1.550947
+      },
+      {
+       "id": "dscc",
+       "name": "Dhaka South City Corporation",
+       "emoji": "🏛️",
+       "points": 188000,
+       "trees": 1979,
+       "cooling_c": 1.375368
+      },
+      {
+       "id": "buet-green",
+       "name": "BUET Green Club",
+       "emoji": "🎓",
+       "points": 97000,
+       "trees": 1021,
+       "cooling_c": 0.709632
+      },
+      {
+       "id": "brac-eco-club",
+       "name": "BRAC University Eco Club",
+       "emoji": "🎓",
+       "points": 64200,
+       "trees": 676,
+       "cooling_c": 0.469674
+      },
+      {
+       "id": "dncc-ward-33",
+       "name": "DNCC Ward 33",
+       "emoji": "🏛️",
+       "points": 51800,
+       "trees": 545,
+       "cooling_c": 0.378958
+      },
+      {
+       "id": "bidyanondo-green",
+       "name": "Bidyanondo Green",
+       "emoji": "🤝",
+       "points": 44100,
+       "trees": 464,
+       "cooling_c": 0.322626
+      },
+      {
+       "id": "shishu-park-friends",
+       "name": "Shishu Park Friends",
+       "emoji": "🤝",
+       "points": 30900,
+       "trees": 325,
+       "cooling_c": 0.226058
+      },
+      {
+       "id": "mohammadpur-youth-forum",
+       "name": "Mohammadpur Youth Forum",
+       "emoji": "🤝",
+       "points": 26000,
+       "trees": 274,
+       "cooling_c": 0.190211
+      },
+      {
+       "id": "lalmatia-welfare",
+       "name": "Lalmatia Residents Welfare",
+       "emoji": "🤝",
+       "points": 21000,
+       "trees": 221,
+       "cooling_c": 0.153632
+      },
+      {
+       "id": "du-green-society",
+       "name": "DU Green Society",
+       "emoji": "🎓",
+       "points": 16700,
+       "trees": 176,
+       "cooling_c": 0.122174
+      }
+     ],
+     "tail": [
+      [
+       16700,
+       13
+      ],
+      [
+       7368,
+       170
+      ],
+      [
+       0,
+       260
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

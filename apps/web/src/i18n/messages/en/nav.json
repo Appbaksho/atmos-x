@@ -1,0 +1,13 @@
+{
+  "main": "Main",
+  "home": "Home",
+  "map": "Map",
+  "plan": "Plan",
+  "community": "Community",
+  "profile": "Profile",
+  "fields": "Fields",
+  "air": "Air quality",
+  "notifications": "Notifications",
+  "settings": "Settings",
+  "about": "About"
+}

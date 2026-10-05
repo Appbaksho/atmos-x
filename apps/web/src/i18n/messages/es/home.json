@@ -1,0 +1,84 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "greet": {
+    "am": "Buenos días",
+    "pm": "Buenas tardes",
+    "eve": "Buenas noches",
+    "amName": "Buenos días, {name}",
+    "pmName": "Buenas tardes, {name}",
+    "eveName": "Buenas noches, {name}"
+  },
+  "airTemp": "Temperatura del aire",
+  "feels": "Sensación térmica",
+  "zone": "Tu zona",
+  "score": "Heat Score",
+  "level": {
+    "low": "Bajo",
+    "moderate": "Moderado",
+    "elevated": "Elevado",
+    "high": "Alto",
+    "vhigh": "Muy alto"
+  },
+  "why": "Por qué hace calor",
+  "hottest": "Zonas más calientes cerca de ti",
+  "seeMap": "Ver mapa",
+  "lst": "Techo y calle",
+  "hum": "Humedad",
+  "wind": "Viento",
+  "upd": "Actualizado",
+  "alerts": "Alertas",
+  "changeLoc": "Cambiar ubicación",
+  "aboveNormal": "La máxima de hoy está {d}° por encima de lo normal",
+  "belowNormal": "La máxima de hoy está {d}° por debajo de lo normal",
+  "nearNormal": "La máxima de hoy es normal para esta fecha",
+  "bmd": "{level} · según los umbrales de BMD",
+  "warning": "Alerta de calor",
+  "forecast": "Próximos 5 días",
+  "today": "Hoy",
+  "forecastA11y": "{day}: máxima {max}, mínima {min}, sensación térmica {feels}, {risk}",
+  "estimate": "estimado",
+  "causes": {
+    "sealed_surface": "Superficie sellada {pct}%",
+    "low_green": "Verde {pct}%",
+    "dense_buildings": "Edificios densos {per_ha}/ha",
+    "wide_roads": "Calles anchas {pct}%",
+    "dark_roofs": "Techos oscuros {pct}%"
+  },
+  "whatIf": "+ Verde",
+  "whatIfA11y": "Se añadió cobertura verde",
+  "wi0": "Arrastra para ver qué pasa al plantar.",
+  "wi": "≈ {t} árboles → {s} · {d}",
+  "setGoal": "Fijar meta",
+  "noZone": "Aún no encontramos una zona caliente cerca de ti. Abre el mapa para explorar un área más amplia.",
+  "airq": {
+    "title": "Calidad del aire",
+    "src": "PM2.5 μg/m³ · {time}"
+  },
+  "due": {
+    "title": "{count, plural, one {{n} árbol necesita una foto} other {{n} árboles necesitan una foto}}",
+    "od": "atrasado {n} días",
+    "today": "vence hoy",
+    "soon": "vence en {n} días",
+    "rule": "Cada árbol necesita una foto cada 15 días para conservar sus puntos.",
+    "submit": "Enviar foto",
+    "mine": "Mis árboles",
+    "guestTitle": "¿Plantando árboles?",
+    "guestBody": "Crea una cuenta gratis para seguir cada árbol y recibir un recordatorio de foto cada 15 días.",
+    "guestCta": "Crear cuenta gratis"
+  },
+  "goal": "Tu meta",
+  "goalLine": "{d} para {date}",
+  "goalSub": "{who} · {d} estimado",
+  "next": "Siguiente tarea",
+  "logAction": "Registrar",
+  "goalCta": {
+    "title": "Fija una meta de enfriamiento",
+    "body": "Elige un objetivo para {zone} y recibe un plan paso a paso con costos.",
+    "bodyNoZone": "Elige un objetivo para tu zona y recibe un plan paso a paso con costos.",
+    "cta": "Fijar una meta"
+  },
+  "goalFeature": "fijar una meta de enfriamiento",
+  "treesFeature": "seguir tus árboles"
+}

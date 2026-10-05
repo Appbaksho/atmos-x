@@ -1,0 +1,337 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "个人资料",
+  "notifs": "通知",
+  "notifsUnread": "通知，{n} 条未读",
+  "yourPhoto": "你的照片",
+  "guestName": "访客",
+  "guestSub": "你可以自由浏览。创建免费账号，才能记录行动、加入团队并跟踪树木。",
+  "guestCta": "创建免费账号",
+  "guestSignIn": "登录",
+  "level": "等级 {n} · {name}",
+  "points": "积分",
+  "toNext": "距 {n} 级还差 {pts} 分",
+  "maxLevel": "已达最高等级",
+  "provisional": "+{pts} 待验证",
+  "provisionalA11y": "来自等待检查的行动的 {pts} 个临时积分",
+  "statRank": "地区排名",
+  "statTrees": "存活树木",
+  "statActions": "行动",
+  "badges": "徽章",
+  "badgeA11y": "{name}，{state}",
+  "earned": "已获得",
+  "locked": "已锁定",
+  "clans": "我的团队",
+  "clanTeam": "团队 · {role}",
+  "clanOrg": "组织 · 成员",
+  "myMap": "我的贡献地图",
+  "mapA11y": "你做出贡献的地点地图",
+  "snapNote": "已吸附到区域中心。你的精确位置会保密。",
+  "sensors": "我的空气传感器",
+  "sensorsSub": "{count, plural, =0 {添加一个模拟传感器} one {{n} 个传感器 · 模拟版（v0）} other {{n} 个传感器 · 模拟版（v0）}}",
+  "history": "历史记录",
+  "historyEmpty": "还没有行动。先记录一次，赚取积分。",
+  "logAction": "记录行动",
+  "historyMeta": "{date} · {where}",
+  "status": {
+    "verified": "已验证",
+    "pending": "待处理",
+    "rejected": "不计入"
+  },
+  "links": {
+    "title": "更多",
+    "about": "数据与科学",
+    "settings": "设置",
+    "notifs": "通知"
+  },
+  "trees": {
+    "title": "我的树木",
+    "count": "我的树木 · {n}",
+    "add": "添加树",
+    "cancel": "取消",
+    "empty": "还没有树",
+    "emptySub": "你种的树会显示在这里。每棵都需要每 15 天拍一张照片。",
+    "guestSub": "创建免费账号，才能跟踪你的树木，并收到 15 天拍照提醒。",
+    "feature": "跟踪你的树木",
+    "planted": "种植于 {date}",
+    "meta": "{species} · 种植于 {date}",
+    "od": "{count, plural, one {照片已超时 {n} 天} other {照片已超时 {n} 天}}",
+    "today": "今日需拍照",
+    "soon": "{count, plural, one {还有 {n} 天需拍照} other {还有 {n} 天需拍照}}",
+    "ok": "{count, plural, one {下次拍照还有 {n} 天} other {下次拍照还有 {n} 天}}",
+    "dead": "未存活",
+    "rule": "每棵树都需要每 15 天拍一张照片。到期和逾期的树也会显示在首页。",
+    "submitA11y": "提交照片 · {name}",
+    "addTitle": "添加一棵树",
+    "addSub": "适用于你在使用 Atmos X 前种下的树",
+    "nameL": "树名",
+    "namePh": "例如 Shanti",
+    "species": "树种",
+    "date": "种植日期",
+    "where": "位置",
+    "whereNote": "已保存在你当前聚焦的位置：{place}。精确地点不会向他人显示。",
+    "save": "保存树木",
+    "saved": "已添加 {name}",
+    "regNote": "保存后会得到一个像 ATX-26-0006 的编号"
+  },
+  "sp": {
+    "neem": "印楝",
+    "krish": "凤凰木",
+    "jarul": "大花紫薇",
+    "arjun": "阿朱那树",
+    "bokul": "波库尔",
+    "aam": "芒果",
+    "kadam": "卡达姆",
+    "sonalu": "金链花",
+    "radha": "红凤凰木",
+    "rain": "雨树",
+    "jam": "黑果蒲桃",
+    "kathal": "菠萝蜜"
+  },
+  "tree": {
+    "back": "我的树木",
+    "photoA11y": "{name} 的照片",
+    "age": "树龄",
+    "days": "{count, plural, one {{n} 天} other {{n} 天}}",
+    "photos": "照片",
+    "next": "下次检查",
+    "health": "健康状况",
+    "nextT": "需拍照 · {status}",
+    "nextOk": "下次拍照 · {status}",
+    "what": "拍这 3 张照片",
+    "s1": "从 2 步外拍整棵树",
+    "s1s": "树干和地面都入镜",
+    "s2": "新叶特写",
+    "s2s": "距离 20–30 cm，在日光下",
+    "s3": "根部土壤",
+    "s3s": "能看出浇水和覆盖物",
+    "take": "按引导拍照",
+    "pick": "选择照片",
+    "busy": "AI 正在检查叶片、颜色和受压情况……",
+    "busySub": "正在与 {name} 的上一张照片比对",
+    "aiT": "AI 健康检查",
+    "conf": "置信度 {n}%",
+    "seen": "AI 看到的内容",
+    "tip": "给 {name} 的建议",
+    "verdict": {
+      "healthy": "健康",
+      "stressed": "留意观察",
+      "dead": "看起来已死"
+    },
+    "verdictSub": {
+      "healthy": "叶片看起来不错。干旱时继续浇水。",
+      "stressed": "有一些受压迹象。按下面的建议处理，3 天后再检查。",
+      "dead": "如果你觉得 AI 判断错了，请在白天再拍一张照片。"
+    },
+    "noAi": "照片已保存。AI 检查现在不可用，所以健康状况保持不变。",
+    "pts": "+{pts} 分 · 照片检查已完成",
+    "nextOn": "{date} 再拍下一张，保持同一位置、同一角度。",
+    "again": "再拍一张",
+    "hist": "照片记录",
+    "hPlant": "已种下并登记",
+    "hCheck": "照片检查",
+    "hCheckAi": "照片检查 · {verdict}",
+    "notFound": "此设备上没有这棵树。",
+    "guest": "创建免费账号，才能添加照片检查。",
+    "feature": "添加树木照片检查",
+    "remove": "删除树",
+    "removeTitle": "删除 {name}？",
+    "removeBody": "它的照片和检查会保留在你的记录中。",
+    "removed": "已删除 {name}",
+    "aiChip": "AI 估计",
+    "healthShort": {
+      "healthy": "健康",
+      "stressed": "受压",
+      "dead": "死亡"
+    }
+  },
+  "notif": {
+    "title": "通知",
+    "readAll": "全部标为已读",
+    "filters": {
+      "all": "全部",
+      "reminders": "提醒",
+      "results": "结果",
+      "invites": "邀请",
+      "alerts": "警报"
+    },
+    "today": "今天",
+    "earlier": "更早",
+    "unread": "{n} 条未读",
+    "caught": "都已查看",
+    "unreadA11y": "未读。",
+    "empty": "这里还没有内容",
+    "emptySub": "树木提醒、审核结果和高温警报会显示在这里。",
+    "filterEmpty": "没有此类通知。",
+    "guestSub": "创建免费账号，才能收到树木提醒、结果和高温警报。",
+    "feature": "接收通知",
+    "open": "打开",
+    "takePhoto": "拍照",
+    "seeDetails": "查看详情",
+    "openPlan": "打开计划",
+    "openHome": "打开首页",
+    "openTeam": "打开团队"
+  },
+  "code": {
+    "action": {
+      "plant_tree": "种一棵树",
+      "plant_shrubs": "种灌木",
+      "rooftop_garden": "屋顶花园",
+      "cool_roof": "降温屋顶",
+      "green_wall": "绿墙",
+      "shade_structure": "遮阴设施",
+      "water_tree": "给树浇水",
+      "awareness": "宣传活动"
+    },
+    "level": {
+      "seedling": "幼苗",
+      "sapling": "树苗",
+      "shade_maker": "造荫者",
+      "canopy_keeper": "树冠守护者",
+      "heat_breaker": "降温者",
+      "climate_guardian": "气候守护者"
+    },
+    "badge": {
+      "first": "首次行动",
+      "trees10": "10 棵树",
+      "trees100": "100 棵树",
+      "clan": "加入了团队",
+      "p1000": "1,000 分",
+      "streak": "25 次行动"
+    },
+    "notif": {
+      "verification": {
+        "verified": "+{points} 分 · {action} × {qty} 已验证",
+        "verified_body": "AI 看到了：{seen}",
+        "pending": "{action} × {qty} 待审核 · +{points} 预估",
+        "pending_body": "{reason}",
+        "pending_body_none": "队友可以确认。"
+      },
+      "goal": {
+        "milestone": "{zone}：已达到你降温目标的 {pct}%"
+      },
+      "tree": {
+        "due": "{count, plural, =0 {{name}：今天该上传照片} one {{name}：照片还有 {days} 天到期} other {{name}：照片还有 {days} 天到期}}",
+        "overdue": "{count, plural, one {{name}：照片逾期 {days} 天} other {{name}：照片逾期 {days} 天}}",
+        "rule": "每棵树每 {every} 天需要一张照片。"
+      },
+      "heat": {
+        "warning": "{place} 高温预警 · 体感 {feels}"
+      },
+      "team": {
+        "joined": "你已加入 {team}"
+      }
+    },
+    "reason": {
+      "unavailable": "AI 检查不可用。队友可以确认。",
+      "rate_limited": "今天检查次数太多。队友可以确认。",
+      "no_photo": "未添加照片。队友可以确认。",
+      "teammate_confirmed": "已由队友确认。"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "liveNote": "更改会立即应用到整个应用",
+    "lang": "语言",
+    "units": "温度",
+    "unitC": "°C",
+    "unitF": "°F",
+    "area": "距离与面积",
+    "metric": "m · km",
+    "imperial": "ft · mi",
+    "theme": "主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "mode": "模式",
+    "city": "城市",
+    "farmer": "农民",
+    "farmerNote": "农民模式会把首页改成农田、作物阶段和高温预警。",
+    "askL": "Ask Atmos",
+    "askShow": "显示按钮",
+    "askHide": "隐藏",
+    "askNote": "每个页面都有悬浮 AI 聊天",
+    "radius": "扫描半径",
+    "radiusNote": "地图会在你周围多大范围内寻找热区",
+    "radiusGuest": "访客最多可扫描到 {max}。创建账号后可到 1 km。",
+    "presentation": "演示模式",
+    "presentationNote": "加载 Nadia 在达卡 Mohammadpur 的演示故事。你的数据会单独保存。",
+    "presentationOn": "开 · 显示演示故事",
+    "presentationOff": "关 · 显示你的数据",
+    "reset": "重置演示",
+    "resetDone": "演示故事已重新加载",
+    "resetTitle": "重置演示吗？",
+    "resetBody": "会清除演示模式下的所有操作，并重新加载 Nadia 的故事。你的数据不会受影响。",
+    "account": "账号",
+    "guest": "你是访客",
+    "guestNote": "创建免费账号，可记录行动、加入团队并追踪树木。你的设置会同步保留。",
+    "create": "创建免费账号",
+    "signIn": "登录",
+    "signedIn": "已在此设备登录",
+    "logout": "退出登录",
+    "loggedOut": "已退出登录。你现在是访客。",
+    "demoAccount": "演示模式使用 Nadia 的演示账号。",
+    "more": "更多",
+    "data": "数据与科学",
+    "about": "关于 Atmos X",
+    "footer": "Atmos X v0 · 基于 OpenStreetMap 地表覆盖 + Open-Meteo 天气的热度估算 · © OpenStreetMap contributors"
+  },
+  "about": {
+    "title": "数据与科学",
+    "sub": "每个数字的来源",
+    "opens": "{title}，打开 {url}",
+    "credits": "致谢与许可",
+    "version": "Atmos X v0 · 可展示的 MVP",
+    "sections": {
+      "heat": {
+        "title": "热度估算：OpenStreetMap + 实时天气",
+        "body": "在 v0 中，热力图只是估算。对每个 H3 六边形，我们从 OpenStreetMap 统计建筑、道路、绿地和水体，再加上 Open-Meteo 的实时气温。Heat Score 会把每个六边形与你扫描范围的中位数比较。它不是卫星数据。"
+      },
+      "zones": {
+        "title": "热区如何找出",
+        "body": "最热的四分之一六边形会分组为连通热区，并按平均分排序。分数相差 3 分以内的热区会标记为接近并列，而不是排序。"
+      },
+      "air": {
+        "title": "气温：Open-Meteo",
+        "body": "温度、湿度和 5 天预报来自 Open-Meteo 预报。“体感”使用 NOAA 热指数。常年值和 20 年历史数据通过 Open-Meteo 调用 ERA5 档案。在孟加拉国，热级别使用 BMD 阈值；这不是官方预警。"
+      },
+      "aq": {
+        "title": "空气质量：Open-Meteo Air Quality",
+        "body": "PM2.5 来自 Open-Meteo Air Quality 模型。我们自己用美国 EPA 2024 年 PM2.5 阈值计算 AQI。你在 v0 添加的传感器是模拟的。"
+      },
+      "cooling": {
+        "title": "降温预估",
+        "body": "每增加 1% 的树冠覆盖，1 km² 内白天表面温度大约降低 0.1–0.2 °C；冷屋顶在 1 km² 内每增加 1%，大约降低 0.04 °C。树木长大后，降温效果会增强。预测只是范围，从不是承诺。"
+      },
+      "farm": {
+        "title": "农民提醒",
+        "body": "这些规则基于 Open-Meteo 预报和 NASA POWER 30天降雨量，并遵循 BMD、BRRI 和 DAE 指南，例如水稻开花期气温 ≥ 35 °C。Atmos X 从不给出农药用量。"
+      },
+      "ai": {
+        "title": "AI：OpenAI",
+        "body": "OpenAI 模型会撰写“为什么这么热”的说明、规划详情（树种、费用、步骤），回答 Ask Atmos，并检查照片。AI 填写的内容都会标记为“AI estimate”。评分、降温和 AQI 始终来自固定公式。"
+      },
+      "community": {
+        "title": "社区数据",
+        "body": "你的账号、操作、照片、树和队伍只保存在这台设备上，v0 版本如此。其他人、队伍和排行榜是演示社区，并标记为“Demo community”。"
+      },
+      "nurseries": {
+        "title": "苗圃",
+        "body": "苗圃位置来自 OpenStreetMap 和一份整理过的达卡名单。Atmos X 从不卖植物。"
+      }
+    },
+    "credit": {
+      "osm": "地图数据 © OpenStreetMap 贡献者，ODbL",
+      "ofm": "地图切片：OpenFreeMap",
+      "meteo": "天气和空气质量：Open-Meteo，CC BY 4.0",
+      "era5": "气候档案：Copernicus ERA5，经由 Open-Meteo",
+      "power": "降雨量：NASA POWER",
+      "gibs": "可选的地表温度覆盖层：NASA GIBS",
+      "openai": "AI：OpenAI",
+      "photos": "照片：Unsplash（Zac Gudakov，Mahmud Ahsan，OWN FILTERS，Sehajpal Singh，Erwan Hesry，Kabiur Rahman Riyad）",
+      "fonts": "字体：Lemon/Milk，Poppins，Noto Sans Bengali，Noto Nastaliq Urdu"
+    }
+  }
+}

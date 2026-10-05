@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "main": "Principal",
+  "home": "Inicio",
+  "map": "Mapa",
+  "plan": "Plan",
+  "community": "Comunidad",
+  "profile": "Perfil",
+  "fields": "Campos",
+  "air": "Calidad del aire",
+  "notifications": "Notificaciones",
+  "settings": "Ajustes",
+  "about": "Acerca de"
+}

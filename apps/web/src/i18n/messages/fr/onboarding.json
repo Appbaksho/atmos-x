@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "welcome": {
+    "head": "Trouvez l’îlot le plus chaud. Puis rafraîchissez-le.",
+    "body": "Voyez la chaleur autour de vous grâce à la météo en direct et à OpenStreetMap, comprenez pourquoi il fait chaud, et transformez cela en plan d’action — seul ou avec votre équipe.",
+    "start": "Commencer",
+    "have": "J’ai déjà un compte",
+    "demo": "Essayer la démo de Dhaka",
+    "roof": "Toit et route",
+    "park": "Bord du parc",
+    "pillA11y": "Exemple : {text} {value}, Heat Score {score}"
+  },
+  "language": {
+    "step": "Étape 1 sur 2",
+    "title": "Choisissez votre langue",
+    "detected": "Détectée depuis votre appareil : {lang}. Changez-la à tout moment dans les Paramètres.",
+    "sub": "Changez-la à tout moment dans les Paramètres.",
+    "group": "Langue",
+    "temp": "Température",
+    "area": "Zone",
+    "next": "Continuer",
+    "back": "Retour"
+  },
+  "location": {
+    "step": "Étape 2 sur 2",
+    "back": "Retour",
+    "search": "Rechercher un lieu",
+    "searchLabel": "Recherchez une ville ou un quartier",
+    "noResults": "Aucun lieu trouvé",
+    "title": "Scanner autour de ce point",
+    "using": "Vous utilisez votre position. Recherchez plus haut pour scanner ailleurs.",
+    "picked": "Recherchez plus haut ou utilisez votre position pour changer le point.",
+    "demoPinned": "Mode présentation : le point est fixé sur la démo de Dhaka.",
+    "radius": "Rayon de scan",
+    "cells": "{n} cellules · {r}",
+    "useLoc": "Utiliser ma position",
+    "scan": "Scanner {r}",
+    "privacy": "Votre position précise est utilisée seulement pour ce scan et reste sur cet appareil.",
+    "scanning": "Scan de {n} cellules…",
+    "s1t": "Repérage des zones",
+    "s1d": "{n} cellules H3 à la résolution {res}",
+    "s2t": "Météo en direct",
+    "s2d": "Température de l’air Open-Meteo · secondes",
+    "s3t": "Occupation du sol OpenStreetMap",
+    "s3d": "Bâtiments, routes, végétation et eau",
+    "s4t": "Facteurs du score",
+    "s4d": "Couverture végétale, surface imperméable, densité, eau",
+    "slow": "Cela prend du temps — nous finirons le scan sur la carte.",
+    "demo": "Ou essayez la démo de Dhaka",
+    "mapA11y": "Carte avec le cercle de scan autour de {place}"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "welcome": {
+    "head": "Encontre o quarteirão mais quente. Depois, resfrie-o.",
+    "body": "Veja o calor ao seu redor com o clima ao vivo e OpenStreetMap, entenda por que está quente e transforme isso em um plano que você pode executar — sozinho ou com sua equipe.",
+    "start": "Começar",
+    "have": "Já tenho uma conta",
+    "demo": "Experimentar a demo de Dhaka",
+    "roof": "Telhado e rua",
+    "park": "Borda do parque",
+    "pillA11y": "Exemplo: {text} {value}, Heat Score {score}"
+  },
+  "language": {
+    "step": "Etapa 1 de 2",
+    "title": "Escolha seu idioma",
+    "detected": "Detectado no seu dispositivo: {lang}. Altere a qualquer momento em Configurações.",
+    "sub": "Altere a qualquer momento em Configurações.",
+    "group": "Idioma",
+    "temp": "Temperatura",
+    "area": "Área",
+    "next": "Continuar",
+    "back": "Voltar"
+  },
+  "location": {
+    "step": "Etapa 2 de 2",
+    "back": "Voltar",
+    "search": "Buscar um local",
+    "searchLabel": "Buscar uma cidade ou bairro",
+    "noResults": "Nenhum local encontrado",
+    "title": "Escanear ao redor deste ponto",
+    "using": "Usando sua localização. Busque acima para escanear outro lugar.",
+    "picked": "Busque acima ou use sua localização para mudar o ponto.",
+    "demoPinned": "Modo de apresentação: o ponto está fixo na demo de Dhaka.",
+    "radius": "Raio da busca",
+    "cells": "{n} células · {r}",
+    "useLoc": "Usar minha localização",
+    "scan": "Escanear {r}",
+    "privacy": "Sua localização exata é usada só nesta busca e fica neste dispositivo.",
+    "scanning": "Analisando {n} células…",
+    "s1t": "Encontrando zonas",
+    "s1d": "{n} células H3 na resolução {res}",
+    "s2t": "Tempo ao vivo",
+    "s2d": "Temperatura do ar do Open-Meteo · segundos",
+    "s3t": "Cobertura do solo do OpenStreetMap",
+    "s3d": "Prédios, ruas, áreas verdes e água",
+    "s4t": "Fatores da pontuação",
+    "s4d": "Cobertura verde, superfície impermeável, densidade, água",
+    "slow": "Está demorando um pouco — vamos terminar a busca no mapa.",
+    "demo": "Ou experimente a demo de Dhaka",
+    "mapA11y": "Mapa com o círculo de busca ao redor de {place}"
+  }
+}

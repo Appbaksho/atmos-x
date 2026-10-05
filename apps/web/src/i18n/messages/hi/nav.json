@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "main": "मुख्य",
+  "home": "होम",
+  "map": "मैप",
+  "plan": "योजना",
+  "community": "समुदाय",
+  "profile": "प्रोफ़ाइल",
+  "fields": "खेत",
+  "air": "हवा की गुणवत्ता",
+  "notifications": "सूचनाएँ",
+  "settings": "सेटिंग्स",
+  "about": "जानकारी"
+}

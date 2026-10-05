@@ -1,0 +1,356 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357815,
+       23.759887
+      ],
+      [
+       90.358088,
+       23.759907
+      ],
+      [
+       90.358116,
+       23.759756
+      ],
+      [
+       90.357835,
+       23.759725
+      ],
+      [
+       90.357815,
+       23.759887
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-507925030",
+    "kind": "roof",
+    "area_m2": 497,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357979,
+       23.759584
+      ],
+      [
+       90.357963,
+       23.759709
+      ],
+      [
+       90.358147,
+       23.759728
+      ],
+      [
+       90.358162,
+       23.759603
+      ],
+      [
+       90.357979,
+       23.759584
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-447032819",
+    "kind": "roof",
+    "area_m2": 263,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357665,
+       23.759862
+      ],
+      [
+       90.357673,
+       23.759724
+      ],
+      [
+       90.357809,
+       23.759727
+      ],
+      [
+       90.357797,
+       23.759879
+      ],
+      [
+       90.357665,
+       23.759862
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-298823360",
+    "kind": "roof",
+    "area_m2": 221,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357725,
+       23.759701
+      ],
+      [
+       90.357802,
+       23.759709
+      ],
+      [
+       90.357821,
+       23.759555
+      ],
+      [
+       90.357744,
+       23.759547
+      ],
+      [
+       90.357725,
+       23.759701
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-507925043",
+    "kind": "roof",
+    "area_m2": 136,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357891,
+       23.759496
+      ],
+      [
+       90.357979,
+       23.759503
+      ],
+      [
+       90.35799,
+       23.759388
+      ],
+      [
+       90.357902,
+       23.759381
+      ],
+      [
+       90.357891,
+       23.759496
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-507920784",
+    "kind": "roof",
+    "area_m2": 115,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357609,
+       23.759682
+      ],
+      [
+       90.357708,
+       23.759692
+      ],
+      [
+       90.357719,
+       23.759601
+      ],
+      [
+       90.35762,
+       23.759591
+      ],
+      [
+       90.357609,
+       23.759682
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-507925033",
+    "kind": "roof",
+    "area_m2": 103,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357852,
+       23.759647
+      ],
+      [
+       90.357961,
+       23.759658
+      ],
+      [
+       90.357969,
+       23.759587
+      ],
+      [
+       90.357861,
+       23.759576
+      ],
+      [
+       90.357852,
+       23.759647
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-507925039",
+    "kind": "roof",
+    "area_m2": 88,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       90.357828,
+       23.759712
+      ],
+      [
+       90.357954,
+       23.759725
+      ],
+      [
+       90.357961,
+       23.759669
+      ],
+      [
+       90.357835,
+       23.759656
+      ],
+      [
+       90.357828,
+       23.759712
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "r-507925041",
+    "kind": "roof",
+    "area_m2": 81,
+    "suitability": 0.7,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.357935,
+     23.759538
+    ]
+   },
+   "properties": {
+    "id": "p-1379841368-0",
+    "kind": "roadside",
+    "area_m2": 4,
+    "suitability": 0.6,
+    "name": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.35769,
+     23.759518
+    ]
+   },
+   "properties": {
+    "id": "p-1379841368-1",
+    "kind": "roadside",
+    "area_m2": 4,
+    "suitability": 0.6,
+    "name": null
+   }
+  }
+ ],
+ "totals": {
+  "ground_m2": 0,
+  "roof_m2": 1505,
+  "roadside_m": 50
+ },
+ "meta": {
+  "live": true,
+  "generated_at": "2026-10-04T20:25:00.398Z",
+  "sources": [
+   {
+    "id": "osm",
+    "name": "OpenStreetMap",
+    "url": "https://www.openstreetmap.org/copyright",
+    "as_of": "2026-10-04T20:11:10.360Z"
+   },
+   {
+    "id": "atmos-model",
+    "name": "Atmos X cooling model (estimate)"
+   }
+  ]
+ }
+}

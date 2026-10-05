@@ -1,0 +1,215 @@
+{
+  "zone": {
+    "unnamed": "Zone {n}"
+  },
+  "warning": {
+    "heatwave_mild": "Mild heat wave expected: up to {tmax} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "heatwave_moderate": "Moderate heat wave expected: up to {tmax} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "heatwave_severe": "Severe heat wave expected: up to {tmax} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "heatwave_very_severe": "Very severe heat wave expected: up to {tmax} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "heat_danger": "Dangerous heat: feels like up to {feels} °C on {day}. Avoid the midday sun and drink water often.",
+    "heat_extreme": "Extreme heat: feels like up to {feels} °C on {day}. Stay in the shade and check on older neighbours."
+  },
+  "bmd": {
+    "mild": "Mild heat wave",
+    "moderate": "Moderate heat wave",
+    "severe": "Severe heat wave",
+    "very_severe": "Very severe heat wave",
+    "disclaimer": "Based on BMD thresholds, not an official warning"
+  },
+  "heat_risk": {
+    "ok": "Comfortable",
+    "caution": "Caution",
+    "xcaution": "Extreme caution",
+    "danger": "Danger",
+    "xdanger": "Extreme danger"
+  },
+  "cause": {
+    "sealed_surface": "{pct}% sealed surface (roofs, paving, roads) soaks up sun: adds about {adds_c} °C",
+    "wide_roads": "Roads cover {pct}% of the ground: adds about {adds_c} °C",
+    "low_green": "Only {pct}% green cover: about {adds_c} °C less cooling than a greener block",
+    "dense_buildings": "Dense buildings ({per_ha} per hectare) trap heat and block wind: adds about {adds_c} °C",
+    "dark_roofs": "About {pct}% of roofs are dark (assumed): adds about {adds_c} °C"
+  },
+  "assumption": {
+    "trend": "Trend: {per_decade} °C per decade in hot-season daily maximum air temperature ({from}–{to}, Open-Meteo archive), extended to 2040.",
+    "hot_season": "Hot season used for the trend: months {months}.",
+    "tree_ramp": "Trees cool as they grow: 20% of full effect in year 1, 50% in year 3, 80% in year 5, 100% from year 8.",
+    "tree_cooling": "100 mature trees cool this zone ({area_km2} km²) by about {per_100_trees} °C.",
+    "roof_cooling": "1,000 m² of cool roof cools this zone by about {per_1000_m2} °C.",
+    "inputs": "Plan in this projection: {trees} trees, {roof_m2} m² of cool roof, {shade} shade structures.",
+    "ranges": "Ranges, not promises: an estimate from land cover and published cooling coefficients."
+  },
+  "feas": {
+    "trees_vs_space": "{trees} trees needed; the open ground and street edges fit about {capacity}.",
+    "roofs_vs_space": "{roof_m2} m² of cool roof needed; about {capacity_m2} m² of roof looks usable.",
+    "max_cooling": "With the space available, about {max_c} °C is realistic.",
+    "spots_unknown": "We could not load planting spots, so space was not checked.",
+    "action_goal": "Under 6 months this is an action goal: we track the work itself, because cooling takes longer to show.",
+    "trees_take_years": "Trees need years to reach full shade; most cooling comes after the goal date."
+  },
+  "plan": {
+    "why": {
+      "plant_tree": "{trees} shade trees give the biggest long-term cooling.",
+      "cool_roof": "{roof_m2} m² of white or reflective roof cools the block in the first summer.",
+      "shade_structure": "{shade} shade sails or canopies over the hottest lanes and stops.",
+      "awareness": "Talk to neighbours, schools and shops so more people join and care for the trees."
+    }
+  },
+  "budget": {
+    "trees": "Saplings with guard and planting",
+    "cool_roof": "Cool roof coating (m²)",
+    "shade": "Shade structures"
+  },
+  "aqi": {
+    "good": "Good",
+    "moderate": "Moderate",
+    "usg": "Unhealthy for sensitive groups",
+    "unhealthy": "Unhealthy",
+    "very_unhealthy": "Very unhealthy",
+    "hazardous": "Hazardous"
+  },
+  "advice": {
+    "air": {
+      "enjoy_outdoors": "Air is clean: a good time to be outside.",
+      "ventilate": "Open the windows to air out your home.",
+      "sensitive_watch": "Very sensitive people should watch for coughing or shortness of breath.",
+      "ventilate_off_peak": "Air out your home in the early morning or late evening.",
+      "sensitive_reduce": "Children, older people and anyone with asthma or heart disease should cut long or hard outdoor activity.",
+      "windows_peak": "Keep windows closed during rush hours.",
+      "mask_sensitive": "Sensitive people should wear a well-fitted N95 or KN95 mask outside.",
+      "reduce_outdoor": "Everyone should cut long or hard outdoor activity.",
+      "mask_n95": "Wear a well-fitted N95 or KN95 mask outside.",
+      "windows_closed": "Keep windows and doors closed.",
+      "avoid_outdoor": "Avoid outdoor exercise; move activities indoors.",
+      "purifier": "Run an air purifier or fan with a filter if you have one.",
+      "stay_indoors": "Stay indoors as much as possible; seek medical help if you feel unwell."
+    }
+  },
+  "farm": {
+    "haor_flood": {
+      "title": "Haor flash flood risk",
+      "body": "Up to {local_mm} mm locally and {up_mm} mm upstream in Meghalaya over 3 days. Hill water can enter the haor within 24–48 h.",
+      "a1": "Harvest Boro immediately if 80% of grains are mature.",
+      "a2": "Move harvested paddy, seed and livestock to high ground.",
+      "a3": "Check embankments (bãdh) with your neighbours and report breaches to the Upazila office."
+    },
+    "rice_heat": {
+      "title": "Heat stress at flowering",
+      "body": "{days} day(s) at or above 35 °C from {day} (peak {peak} °C). Pollen dies above 35 °C, causing empty grains (chita).",
+      "a1": "Keep 5–7 cm of standing water in the field during flowering.",
+      "a2": "Irrigate in the afternoon to cool the canopy.",
+      "a3": "Avoid spraying pesticides between 10 am and 2 pm."
+    },
+    "drought": {
+      "title": "Dry spell / drought risk",
+      "body": "Only {rain30} mm of rain in the past 30 days (NASA POWER) and {rain7} mm forecast this week, while crops lose ~{et7} mm to evaporation.",
+      "a1": "Use alternate wetting and drying (AWD) to stretch irrigation water.",
+      "a2": "Mulch vegetable beds with straw to keep moisture.",
+      "a3": "Plan supplementary irrigation for transplanted Aman if rain stays low."
+    },
+    "storm": {
+      "title": "Storm / nor’wester risk",
+      "title_coastal": "Cyclone / storm surge risk",
+      "body": "Wind gusts up to {gust} km/h expected from {day}.",
+      "a1_harvest": "Harvest mature crops before the storm arrives.",
+      "a1_stake": "Stake banana, papaya and tall vegetables.",
+      "a2": "Store seed and harvested grain in sealed bags on raised platforms.",
+      "a3": "Follow BMD signals and move to a cyclone shelter if told to evacuate."
+    },
+    "cold": {
+      "title_mild": "Mild cold wave",
+      "title_moderate": "Moderate cold wave",
+      "title_severe": "Severe cold wave",
+      "body": "Night temperature down to {low} °C from {day}.",
+      "a1": "Cover Boro seedbeds with clear polythene at night, open during the day.",
+      "a2": "Keep 2–3 cm water in seedbeds and drain cold water in the morning.",
+      "a3": "Protect livestock with jute sacks and dry bedding."
+    },
+    "late_blight": {
+      "title": "Late blight weather",
+      "body": "Cool, foggy and humid conditions for {days} days: ideal for late blight (Phytophthora) on potato and tomato.",
+      "a1": "Ask your local agriculture officer (DAE) which preventive fungicide to use and how much.",
+      "a2": "Stop irrigation while fog persists.",
+      "a3": "Remove and destroy infected plants immediately."
+    },
+    "monsoon": {
+      "title": "Monsoon onset likely",
+      "body": "Three or more consecutive rainy days expected around {day}.",
+      "a1": "Prepare Aman seedbeds on raised land.",
+      "a2": "Clear field drains and canals.",
+      "a3": "Good time to plant trees: survival is highest now."
+    },
+    "lightning": {
+      "title": "Lightning risk",
+      "body": "Atmosphere is highly unstable (CAPE up to {cape} J/kg) with thunderstorms likely from {day} {time}.",
+      "body_codes": "Thunderstorms are forecast from {day}.",
+      "a1": "Leave open fields when dark clouds gather, usually in the afternoon.",
+      "a2": "Do not shelter under isolated trees; crouch low with feet together if caught outside.",
+      "a3": "Avoid ponds, canals and metal tools during storms."
+    },
+    "worker_heat": {
+      "title": "Dangerous heat for field work",
+      "body": "Feels-like temperature up to {peak} °C from {day}.",
+      "a1": "Work early morning and late afternoon.",
+      "a2": "Drink water with ORS every 20 minutes.",
+      "a3": "Rest in shade; watch for dizziness and stop work if unwell."
+    }
+  },
+  "alert_level": {
+    "danger": "Danger",
+    "warning": "Warning",
+    "watch": "Watch",
+    "info": "Info"
+  },
+  "hazard": {
+    "flood": "Flood",
+    "heat": "Heat",
+    "drought": "Drought",
+    "cold": "Cold",
+    "lightning": "Lightning",
+    "rain": "Rain",
+    "storm": "Storm",
+    "disease": "Crop disease"
+  },
+  "verify": {
+    "ok": "Verified: the photo matches the action.",
+    "ai_unavailable": "We couldn’t check the photo right now. A teammate can confirm it.",
+    "not_a_photo": "This doesn’t look like a camera photo. A teammate can confirm it.",
+    "different_action": "The photo seems to show a different action. A teammate can confirm it.",
+    "ai_mismatch": "We couldn’t see the action in the photo. A teammate can confirm it.",
+    "ai_low_confidence": "The photo isn’t clear enough to be sure. A teammate can confirm it.",
+    "gps_missing": "No location with the photo. A teammate can confirm it.",
+    "gps_far": "The photo was taken more than 300 m from the zone. A teammate can confirm it.",
+    "time_unknown": "We couldn’t read when the photo was taken. A teammate can confirm it.",
+    "time_future": "The photo time is in the future. A teammate can confirm it.",
+    "too_old": "The photo is more than 24 hours old. A teammate can confirm it."
+  },
+  "action": {
+    "open_zone": "Open zone",
+    "create_goal": "Create goal",
+    "open_air": "Open air quality",
+    "see_alert": "See alert",
+    "open_farm": "Open farm alerts",
+    "open_trees": "Open my trees",
+    "find_nurseries": "Find nurseries"
+  },
+  "ask": {
+    "notice": {
+      "fallback": "AI is unavailable right now, so this is a saved answer using the latest data we have.",
+      "cap": "Today’s AI limit for Atmos X is used up, so this is a saved answer using the latest data we have.",
+      "interrupted": "The answer was cut off. Please try again."
+    },
+    "canned": {
+      "heat_zone": "{zone} is hot mainly because {sealed}% of the surface is sealed and only {green}% is green. Air is {air}°, feels like {feels}°, and roofs and roads are estimated at about {surface}°. The forecast peaks at {tmax}°: stay in shade from 11:00 to 15:00 and drink water often.",
+      "heat_now": "Air is {air}° and feels like {feels}°. The forecast peaks at {tmax}° in the next days: stay in shade from 11:00 to 15:00, drink water often and check on older neighbours.",
+      "heat": "Your zone is hot mainly because 78% of the surface is sealed and only 6% is green. Air is 34°, feels like 41°, and roofs and roads hit 52°. Sunday peaks at 36° — stay in shade 11:00–15:00 and drink water often.",
+      "air_now": "Outdoor PM2.5 is {pm25} μg/m³ (AQI {aqi}, {category}). {advice}",
+      "air": "Outdoor PM2.5 is 62 μg/m³ — about 4× the WHO line — while indoors is 38. Keep windows shut now and open them after 10 pm, when the forecast drops near 40. Wear a well-fitted N95 outside.",
+      "farm_none": "No farm alerts for your crop in the 7-day forecast. Keep checking the forecast before irrigating or spraying.",
+      "farm": "Yes. Your Aman rice is flowering (satellite-detected 28 Sep) and Sunday reaches 36°. Raise standing water to 5 cm this evening and top up Sunday at dawn.",
+      "tree_due": "{name} is due for its 15-day photo. Take a new photo so we can check its health; in hot spells water it deeply in the evening and keep a mulch ring around the base.",
+      "tree": "Young trees need deep watering twice a week in hot, dry weather, a mulch ring around the base and a guard. Add a photo every 15 days so we can check their health."
+    }
+  }
+}

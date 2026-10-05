@@ -1,0 +1,505 @@
+@import "tailwindcss";
+
+/* Dark mode follows the `.dark` class next-themes puts on <html> (and /dev/kit scopes). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ───────────── Theme palette (port of apps/mobile/src/constants/cz.ts LIGHT / DARK) ───────────── */
+:root,
+.light {
+  --cz-bg: #f2f4f7;
+  --cz-card: #ffffff;
+  --cz-soft: #e6eaf0;
+  --cz-ink: #00182e;
+  --cz-ink2: #56657a;
+  --cz-line: rgba(0, 24, 46, 0.1);
+  --cz-leaf: #013ff6;
+  --cz-solid: #00182e;
+  --cz-on-solid: #ffffff;
+  --cz-lime-soft: #eef9cc;
+  --cz-accent: #013ff6;
+  color-scheme: light;
+}
+
+.dark {
+  --cz-bg: #00182e;
+  --cz-card: #0b2742;
+  --cz-soft: #13334f;
+  --cz-ink: #eaf1f8;
+  --cz-ink2: #a3b2c4;
+  --cz-line: rgba(234, 241, 230, 0.12);
+  --cz-leaf: #7c9cff;
+  --cz-solid: #acec00;
+  --cz-on-solid: #00182e;
+  --cz-lime-soft: rgba(172, 236, 0, 0.16);
+  --cz-accent: #acec00;
+  color-scheme: dark;
+}
+
+/* ───────────── Fonts per locale (variables come from next/font on <html>) ───────────── */
+:root {
+  --cz-font-body: var(--font-poppins), system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Lemon/Milk is Latin-only: other scripts use the body face at 600 (as on mobile). */
+  --cz-font-display: var(--font-lemon), var(--font-poppins), system-ui, sans-serif;
+  --cz-display-weight: 400;
+}
+[lang="bn"] {
+  --cz-font-body: var(--font-noto-bn), var(--font-poppins), sans-serif;
+  --cz-font-display: var(--cz-font-body);
+  --cz-display-weight: 600;
+}
+[lang="ur"] {
+  --cz-font-body: var(--font-noto-ur), var(--font-poppins), var(--font-noto-ar), sans-serif;
+  --cz-font-display: var(--cz-font-body);
+  --cz-display-weight: 600;
+}
+[lang="ar"] {
+  --cz-font-body: var(--font-noto-ar), var(--font-poppins), sans-serif;
+  --cz-font-display: var(--cz-font-body);
+  --cz-display-weight: 600;
+}
+[lang="hi"] {
+  --cz-font-body: var(--font-noto-hi), var(--font-poppins), sans-serif;
+  --cz-font-display: var(--cz-font-body);
+  --cz-display-weight: 600;
+}
+[lang="zh"] {
+  --cz-font-body: var(--font-poppins), var(--font-noto-sc), "PingFang SC", "Microsoft YaHei", sans-serif;
+  --cz-font-display: var(--cz-font-body);
+  --cz-display-weight: 600;
+}
+
+/* ───────────── Tailwind theme ───────────── */
+@theme {
+  /* Fixed brand colours (B in tokens.ts) */
+  --color-navy: #00182e;
+  --color-navy2: #0b2a4a;
+  --color-photo-bg: #0e2c48;
+  --color-photo-bg2: #163a5c;
+  --color-lime: #acec00;
+  --color-lime-hover: #c0ff14;
+  --color-lime-ink: #131313;
+  --color-blue: #013ff6;
+  --color-red: #e5533d;
+  --color-deep-red: #a3242b;
+  --color-orange: #f29a38;
+  --color-orange-ink: #c26a10;
+  --color-yellow: #f2d04b;
+  --color-green: #4caf50;
+  --color-scrim: rgba(0, 16, 32, 0.45);
+  --color-glass: rgba(255, 255, 255, 0.18);
+  --color-glass-line: rgba(255, 255, 255, 0.3);
+  --color-glass-dark: rgba(0, 24, 46, 0.45);
+
+  /* Radii (R in tokens.ts) */
+  --radius-cz-sm: 12px;
+  --radius-cz-md: 16px;
+  --radius-cz-lg: 20px;
+  --radius-cz-xl: 24px;
+  --radius-cz-xxl: 28px;
+
+  /* Shadows (SHADOW in tokens.ts) */
+  --shadow-cz-card: 0px 10px 15px rgba(0, 24, 46, 0.16);
+  --shadow-cz-button: 5px 5px 5px rgba(0, 0, 0, 0.12);
+  --shadow-cz-fab: 0px 10px 12px rgba(0, 24, 46, 0.4);
+  --shadow-cz-sheet: 0px -10px 15px rgba(0, 16, 32, 0.25);
+}
+
+@theme inline {
+  /* Theme palette (switches with .dark) */
+  --color-bg: var(--cz-bg);
+  --color-card: var(--cz-card);
+  --color-soft: var(--cz-soft);
+  --color-ink: var(--cz-ink);
+  --color-ink2: var(--cz-ink2);
+  --color-line: var(--cz-line);
+  --color-leaf: var(--cz-leaf);
+  --color-solid: var(--cz-solid);
+  --color-on-solid: var(--cz-on-solid);
+  --color-lime-soft: var(--cz-lime-soft);
+  --color-accent: var(--cz-accent);
+  --font-body: var(--cz-font-body);
+  --font-display: var(--cz-font-display);
+}
+
+@layer base {
+  /* ───────────── Base ───────────── */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--cz-bg);
+    color: var(--cz-ink);
+    font-family: var(--cz-font-body);
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--cz-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Kit classes live in the components layer so Tailwind utilities (and inline styles) override them. */
+@layer components {
+  /* react-native-web View defaults */
+  .cz-view {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-basis: auto;
+    flex-shrink: 0;
+    position: relative;
+    min-height: 0;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* react-native-web Text defaults */
+  .cz-txt {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    margin: 0;
+  }
+
+  /* Pressables: reset native button/link chrome, keep RN Pressable feedback */
+  .cz-tap {
+    appearance: none;
+    background: none;
+    border: 0 solid transparent;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+    transition:
+      opacity 0.12s ease,
+      transform 0.12s ease,
+      background-color 0.12s ease;
+  }
+  .cz-tap:active:not(:disabled):not([aria-disabled="true"]) {
+    opacity: 0.82;
+    transform: scale(0.98);
+  }
+  .cz-tap:disabled,
+  .cz-tap[aria-disabled="true"] {
+    opacity: 0.45;
+    cursor: default;
+  }
+  .cz-btn:active:not(:disabled):not([aria-disabled="true"]) {
+    opacity: 1;
+    transform: scale(0.97);
+  }
+  .cz-btn-lime:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: #c0ff14 !important;
+  }
+  .cz-btn-navy:active:not(:disabled):not([aria-disabled="true"]) {
+    background-color: #0b2a4a !important;
+  }
+  @media (hover: hover) {
+    .cz-btn-lime:hover:not(:disabled):not([aria-disabled="true"]) {
+      background-color: #c0ff14 !important;
+    }
+    .cz-btn-navy:hover:not(:disabled):not([aria-disabled="true"]) {
+      background-color: #0b2a4a !important;
+    }
+  }
+
+  /* Inputs */
+  .cz-input {
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  .cz-input::placeholder {
+    color: var(--cz-ink2);
+    opacity: 1;
+  }
+  .cz-input:focus-visible,
+  .cz-input:focus {
+    border-color: var(--cz-accent) !important;
+  }
+
+  /* Slider (CzSlider): leaf fill + soft track, accent thumb; --fill set inline */
+  .cz-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    touch-action: pan-y;
+  }
+  .cz-slider::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--cz-leaf) var(--fill), var(--cz-soft) var(--fill));
+  }
+  [dir="rtl"] .cz-slider::-webkit-slider-runnable-track {
+    background: linear-gradient(to left, var(--cz-leaf) var(--fill), var(--cz-soft) var(--fill));
+  }
+  .cz-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    margin-top: -10px;
+    border-radius: 50%;
+    background: var(--cz-accent);
+    border: 3px solid var(--cz-card);
+    box-shadow: 0 2px 6px rgba(0, 24, 46, 0.3);
+  }
+  .cz-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--cz-soft);
+  }
+  .cz-slider::-moz-range-progress {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--cz-leaf);
+  }
+  .cz-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--cz-accent);
+    border: 3px solid var(--cz-card);
+    box-shadow: 0 2px 6px rgba(0, 24, 46, 0.3);
+  }
+  .cz-slider:disabled {
+    opacity: 0.45;
+  }
+
+  /* Screen: bottom clearance for the floating tab bar / Ask button (TAB_CLEARANCE / STACK_CLEARANCE) */
+  .cz-screen {
+    width: 100%;
+    min-height: 100dvh;
+  }
+  .cz-screen-tab {
+    padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px));
+  }
+  .cz-screen-stack {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  }
+  @media (min-width: 1024px) {
+    .cz-screen-tab {
+      padding-bottom: 96px;
+    }
+    .cz-screen-narrow {
+      max-width: 760px;
+      margin-inline: auto;
+    }
+  }
+
+  /* Ask Atmos floating button (above the tab bar on tab roots) */
+  .cz-ask-fab {
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  }
+  .cz-ask-fab-tab {
+    bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+  @media (min-width: 1024px) {
+    .cz-ask-fab,
+    .cz-ask-fab-tab {
+      bottom: 24px;
+    }
+  }
+
+  /* Install banner: full width on phones, over the content column next to the sidebar on desktop */
+  .cz-install {
+    inset-inline: 12px;
+  }
+  @media (min-width: 1024px) {
+    .cz-install {
+      inset-inline-start: calc(248px + 12px);
+    }
+  }
+
+  /* App shell: room for the desktop sidebar */
+  @media (min-width: 1024px) {
+    .cz-shell-main {
+      padding-inline-start: 248px;
+    }
+  }
+
+  /* Horizontal scroller */
+  .cz-hscroll {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .cz-hscroll::-webkit-scrollbar {
+    display: none;
+  }
+  .cz-hscroll > * {
+    flex-shrink: 0;
+  }
+
+  /* Skeleton shimmer */
+  .cz-skeleton {
+    position: relative;
+    overflow: hidden;
+  }
+  .cz-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    animation: cz-shimmer 1.4s ease-in-out infinite;
+  }
+  .dark .cz-skeleton::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
+  }
+  @keyframes cz-shimmer {
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Spinner */
+  .cz-spin {
+    animation: cz-rotate 0.8s linear infinite;
+  }
+  @keyframes cz-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Bottom sheet / drawer / dialog */
+  .cz-sheet-root {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .cz-sheet-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 16, 32, 0.45);
+    animation: cz-fade 0.2s ease;
+  }
+  .cz-sheet-panel {
+    position: relative;
+    width: 100%;
+    height: var(--cz-sheet-h, auto);
+    max-height: 92dvh;
+    border-start-start-radius: 28px;
+    border-start-end-radius: 28px;
+    outline: none;
+    overflow: hidden;
+    animation: cz-sheet-up 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  @media (min-width: 1024px) {
+    .cz-sheet-center {
+      justify-content: center;
+      align-items: center;
+    }
+    .cz-sheet-center .cz-sheet-panel {
+      width: min(480px, calc(100vw - 48px));
+      height: auto;
+      max-height: min(720px, 90dvh);
+      border-radius: 28px;
+      animation: cz-pop 0.2s ease;
+    }
+    .cz-sheet-center .cz-sheet-handle,
+    .cz-sheet-right .cz-sheet-handle {
+      display: none;
+    }
+    .cz-sheet-right {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+    .cz-sheet-right .cz-sheet-panel {
+      width: 420px;
+      height: 100dvh;
+      max-height: 100dvh;
+      border-radius: 0;
+      border-start-start-radius: 28px;
+      border-end-start-radius: 28px;
+      animation: cz-drawer-in 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    [dir="rtl"].cz-sheet-right .cz-sheet-panel {
+      animation-name: cz-drawer-in-rtl;
+    }
+    .cz-sheet-bottom .cz-sheet-panel {
+      width: min(760px, 100%);
+      margin-inline: auto;
+    }
+  }
+  @keyframes cz-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes cz-sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes cz-pop {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+  @keyframes cz-drawer-in {
+    from {
+      transform: translateX(100%);
+    }
+  }
+  @keyframes cz-drawer-in-rtl {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Toasts */
+  .cz-toaster {
+    position: fixed;
+    z-index: 100;
+    inset-inline: 16px;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+  .cz-toast {
+    max-width: 480px;
+    pointer-events: auto;
+    animation: cz-toast-in 0.2s ease;
+  }
+  @keyframes cz-toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .cz-tap:active:not(:disabled) {
+    transform: none;
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Kualitas udara",
+  "sub": "{place} · sekarang {time}",
+  "pm25": "PM2.5",
+  "unit": "μg/m³",
+  "aqi": "AQI {n}",
+  "aqiShort": "AQI",
+  "who": "WHO 15",
+  "vsWho": "{x}× pedoman WHO 24 jam sebesar 15 μg/m³.",
+  "underWho": "Masih dalam pedoman WHO 24 jam sebesar 15 μg/m³.",
+  "bandA11y": "PM2.5 {pm}, {cat}. Pedoman WHO 15 μg/m³.",
+  "ringA11y": "AQI {n}, {cat}",
+  "fcTitle": "Beberapa hari ke depan",
+  "fcAlert": "{day}: PM2.5 diperkirakan mencapai {pm}. Atur urusan dan olahraga pada jam yang lebih bersih.",
+  "fcA11y": "Ramalan PM2.5 untuk {n} hari ke depan, puncaknya {pm} pada {day}",
+  "today": "Hari ini",
+  "planTitle": "Rencana udara bersih",
+  "planSub": "Berdasarkan kategori AQI hari ini (US EPA 2024)",
+  "sens": "Ada orang sensitif di rumah",
+  "sensSub": "Anak, lansia, atau kondisi jantung atau paru · disimpan hanya di ponsel ini",
+  "lead": "Utamakan perlindungan. Ikuti saran dokter pada hari bernilai tinggi.",
+  "sensors": "Sensor saya",
+  "sensorsSub": "Dibanding perkiraan area",
+  "simulated": "Perangkat simulasi (v0)",
+  "noSensors": "Belum ada sensor",
+  "noSensorsSub": "Hubungkan sensor PM2.5 untuk membandingkan jalan Anda dengan area.",
+  "offline": "Luring",
+  "vsArea": "{diff} vs area",
+  "stations": "Stasiun terdekat",
+  "connect": "Hubungkan sensor saya",
+  "myDev": "Perangkat saya",
+  "devSub": "{count, plural, =0 {Tidak ada sensor} one {{n} sensor} other {{n} sensor}}",
+  "addSensor": "Tambah sensor",
+  "last": "Pembacaan terakhir",
+  "never": "Belum ada pembacaan",
+  "status": {
+    "online": "Online",
+    "offline": "Menunggu"
+  },
+  "remove": "Hapus {name}",
+  "removed": "Sensor dihapus",
+  "simNote": "v0 mensimulasikan pembacaan PM2.5 area (±8 %), diperbarui setiap 5 menit. Unggahan dari perangkat nyata ada di v1.",
+  "guestDevices": "Sensor disimpan ke akun Anda di perangkat ini.",
+  "addSensorFeature": "tambahkan sensor",
+  "addTitle": "Tambah sensor",
+  "addSub": "Pembacaan tetap privat selama 7 hari",
+  "step1": "1 · Pilih jenis rakitan",
+  "step2": "2 · Di mana lokasinya?",
+  "step3": "3 · Beri nama",
+  "step4": "4 · Cek penempatan",
+  "nameL": "Nama sensor",
+  "namePh": "Node balkon",
+  "yes": "Ya",
+  "no": "Tidak",
+  "placeNote": "Di luar pada ketinggian 1,5–3 m, teduh, lubang masuk menghadap ke bawah, jauh dari ventilasi dapur, generator, hembusan AC, dan tepi jalan.",
+  "privNote": "Pin Anda tetap privat. Peta publik menyesuaikan ke zona dan menyembunyikan nama Anda.",
+  "start": "Mulai cek 7 hari",
+  "startOff": "Jawab cek penempatan dulu",
+  "saved": "Sensor ditambahkan",
+  "outd": "Luar ruang",
+  "ind": "Dalam ruang",
+  "outNote": "Sensor luar ruang yang lolos cek 7 hari masuk ke peta area dengan lencana komunitas.",
+  "inNote": "Sensor dalam ruang tidak pernah dipublikasikan — mereka mendukung saran dalam vs luar ruang Anda.",
+  "q1": "Apakah teduh dari matahari langsung?",
+  "q2": "Apakah setidaknya 2 m dari ventilasi dapur, generator, atau hembusan AC?",
+  "q3": "Apakah lubang masuk menghadap ke bawah dengan aliran udara bebas?",
+  "builds": {
+    "esp32": {
+      "name": "Node kustom ESP32",
+      "parts": "ESP32 · Plantower PMS5003 · BME280 atau SHT31",
+      "best": "Kontrol penuh; firmware Anda sendiri mengirim ke Atmos X"
+    },
+    "sc": {
+      "name": "Kit Sensor.Community",
+      "parts": "ESP8266 · Nova SDS011 · BME280 · airrohr",
+      "best": "Pemasangan tercepat; mengirim ke Sensor.Community dan Atmos X sekaligus"
+    },
+    "purple": {
+      "name": "Unit PurpleAir",
+      "parts": "2 × PMS5003 · BME280",
+      "best": "Tidak perlu merakit; baca lewat API PurpleAir · biayanya lebih mahal"
+    },
+    "existing": {
+      "name": "Sensor Sensor.Community yang sudah ada",
+      "parts": "Tautkan lewat ID sensor, hanya baca",
+      "best": "Tidak perlu perangkat baru"
+    }
+  }
+}

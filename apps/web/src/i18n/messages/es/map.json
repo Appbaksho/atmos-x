@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "Mapa de calor",
+  "within": "Dentro de",
+  "withinR": "Dentro de {r}",
+  "estimateShort": "OSM + clima en vivo",
+  "estimateNote": "Estimación de calor: cobertura del suelo de OpenStreetMap + clima en vivo. Las puntuaciones comparan bloques dentro de este escaneo; no son mediciones de satélite.",
+  "yourArea": "tu zona",
+  "mapA11y": "Mapa de calor de {place}",
+  "layersLabel": "Capa del mapa",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA LST"
+  },
+  "legendA11y": "Leyenda de Heat Score: {bands}",
+  "gibsNote": "Temperatura de la superficie terrestre de NASA · mensual · ~1 km",
+  "ranked": "Lo más caliente en tu radio",
+  "count": "{count, plural, one {{n} zona} other {{n} zonas}}",
+  "nearTie": "Empate cercano",
+  "tieNote": "Las puntuaciones dentro de ±3 se marcan como empates cercanos — trátalas como igual de calientes.",
+  "lstShort": "Superficie",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "Detalles de la zona",
+  "radius": "Radio de escaneo",
+  "scanning": "Escaneando {r}…",
+  "showAll": "Mostrar todo {n}",
+  "showLess": "Mostrar las 3 principales",
+  "guestRadius": "escanear más de 500 m",
+  "empty": {
+    "title": "No se encontraron zonas calientes aquí",
+    "sub": "Prueba con un radio mayor o con otro lugar."
+  },
+  "attribution": {
+    "osm": "© Colaboradores de OpenStreetMap"
+  }
+}

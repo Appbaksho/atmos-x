@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "हीट मैप",
+  "within": "दायरा",
+  "withinR": "{r} के भीतर",
+  "estimateShort": "OSM + लाइव मौसम",
+  "estimateNote": "हीट का अनुमान: OpenStreetMap का भूमि आवरण + लाइव मौसम। स्कोर इस स्कैन के भीतर के ब्लॉकों की तुलना करते हैं; ये सैटेलाइट माप नहीं हैं।",
+  "yourArea": "आपका क्षेत्र",
+  "mapA11y": "{place} का हीट मैप",
+  "layersLabel": "मैप लेयर",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA LST"
+  },
+  "legendA11y": "Heat Score लेजेंड: {bands}",
+  "gibsNote": "NASA भूमि सतह तापमान · मासिक · ~1 km",
+  "ranked": "आपकी सीमा में सबसे गर्म",
+  "count": "{count, plural, one {{n} ज़ोन} other {{n} ज़ोन}}",
+  "nearTie": "करीब बराबर",
+  "tieNote": "±3 के भीतर के स्कोर को करीब-बराबर माना गया है — उन्हें बराबर गर्म समझें।",
+  "lstShort": "सतह",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "ज़ोन विवरण",
+  "radius": "स्कैन त्रिज्या",
+  "scanning": "स्कैन हो रहा है {r}…",
+  "showAll": "सभी {n} दिखाएँ",
+  "showLess": "शीर्ष 3 दिखाएँ",
+  "guestRadius": "500 m से ज़्यादा स्कैन करें",
+  "empty": {
+    "title": "यहाँ कोई गर्म ज़ोन नहीं मिला",
+    "sub": "बड़ा दायरा या कोई और जगह आज़माएँ।"
+  },
+  "attribution": {
+    "osm": "© OpenStreetMap योगदानकर्ता"
+  }
+}

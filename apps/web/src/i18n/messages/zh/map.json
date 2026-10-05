@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "title": "热力图",
+  "within": "范围",
+  "withinR": "在 {r} 内",
+  "estimateShort": "OSM + 实时天气",
+  "estimateNote": "热量估算：OpenStreetMap 地表覆盖 + 实时天气。分数只比较本次扫描内的街区；不是卫星测量。",
+  "yourArea": "你的区域",
+  "mapA11y": "{place} 的热力图",
+  "layersLabel": "地图图层",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA LST"
+  },
+  "legendA11y": "Heat Score 图例：{bands}",
+  "gibsNote": "NASA 地表温度 · 每月 · 约 1 km",
+  "ranked": "你范围内最热",
+  "count": "{count, plural, one {{n} 个区域} other {{n} 个区域}}",
+  "nearTie": "接近持平",
+  "tieNote": "相差在 ±3 以内的分数会标为接近持平——可视为同样热。",
+  "lstShort": "地表",
+  "scoreA11y": "Heat Score {score}",
+  "openZone": "区域详情",
+  "radius": "扫描半径",
+  "scanning": "正在扫描 {r}…",
+  "showAll": "显示全部 {n}",
+  "showLess": "只显示前三个",
+  "guestRadius": "扫描超过 500 m",
+  "empty": {
+    "title": "这里没有发现高温区域",
+    "sub": "试试扩大半径，或换个地方。"
+  },
+  "attribution": {
+    "osm": "© OpenStreetMap 贡献者"
+  }
+}

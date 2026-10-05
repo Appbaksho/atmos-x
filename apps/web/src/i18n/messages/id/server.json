@@ -1,0 +1,218 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "zone": {
+    "unnamed": "Zona {n}"
+  },
+  "warning": {
+    "heatwave_mild": "Gelombang panas ringan diperkirakan: hingga {tmax} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "heatwave_moderate": "Gelombang panas sedang diperkirakan: hingga {tmax} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "heatwave_severe": "Gelombang panas parah diperkirakan: hingga {tmax} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "heatwave_very_severe": "Gelombang panas sangat parah diperkirakan: hingga {tmax} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "heat_danger": "Panas berbahaya: terasa hingga {feels} °C pada {day}. Hindari matahari tengah hari dan minum air sering-sering.",
+    "heat_extreme": "Panas ekstrem: terasa hingga {feels} °C pada {day}. Tetap di tempat teduh dan periksa tetangga yang lebih tua."
+  },
+  "bmd": {
+    "mild": "Gelombang panas ringan",
+    "moderate": "Gelombang panas sedang",
+    "severe": "Gelombang panas parah",
+    "very_severe": "Gelombang panas sangat parah",
+    "disclaimer": "Berdasarkan ambang BMD, bukan peringatan resmi"
+  },
+  "heat_risk": {
+    "ok": "Nyaman",
+    "caution": "Waspada",
+    "xcaution": "Waspada ekstrem",
+    "danger": "Bahaya",
+    "xdanger": "Bahaya ekstrem"
+  },
+  "cause": {
+    "sealed_surface": "{pct}% permukaan tertutup (atap, paving, jalan) menyerap matahari: menambah sekitar {adds_c} °C",
+    "wide_roads": "Jalan menutup {pct}% permukaan tanah: menambah sekitar {adds_c} °C",
+    "low_green": "Hanya {pct}% tutupan hijau: sekitar {adds_c} °C lebih sedikit pendinginan daripada blok yang lebih hijau",
+    "dense_buildings": "Bangunan padat ({per_ha} per hektare) memerangkap panas dan menghalangi angin: menambah sekitar {adds_c} °C",
+    "dark_roofs": "Sekitar {pct}% atap berwarna gelap (diasumsikan): menambah sekitar {adds_c} °C"
+  },
+  "assumption": {
+    "trend": "Tren: {per_decade} °C per dekade pada suhu maksimum harian musim panas ({from}–{to}, arsip Open-Meteo), diperpanjang sampai 2040.",
+    "hot_season": "Musim panas yang dipakai untuk tren: bulan {months}.",
+    "tree_ramp": "Pohon mendingin saat tumbuh: 20% dari efek penuh pada tahun 1, 50% pada tahun 3, 80% pada tahun 5, 100% mulai tahun 8.",
+    "tree_cooling": "100 pohon dewasa mendinginkan zona ini ({area_km2} km²) sekitar {per_100_trees} °C.",
+    "roof_cooling": "1,000 m² atap sejuk mendinginkan zona ini sekitar {per_1000_m2} °C.",
+    "inputs": "Rencana pada proyeksi ini: {trees} pohon, {roof_m2} m² atap sejuk, {shade} struktur peneduh.",
+    "ranges": "Ini hanya kisaran, bukan janji: perkiraan dari tutupan lahan dan koefisien pendinginan yang diterbitkan."
+  },
+  "feas": {
+    "trees_vs_space": "{trees} pohon dibutuhkan; lahan terbuka dan tepi jalan muat sekitar {capacity}.",
+    "roofs_vs_space": "{roof_m2} m² atap sejuk dibutuhkan; sekitar {capacity_m2} m² atap tampak bisa dipakai.",
+    "max_cooling": "Dengan ruang yang ada, sekitar {max_c} °C adalah nilai yang realistis.",
+    "spots_unknown": "Kami tidak bisa memuat lokasi tanam, jadi ruang tidak diperiksa.",
+    "action_goal": "Di bawah 6 bulan, ini adalah target aksi: kami melacak pekerjaannya, karena pendinginan butuh waktu lebih lama untuk terlihat.",
+    "trees_take_years": "Pohon butuh beberapa tahun untuk mencapai naungan penuh; sebagian besar pendinginan baru muncul setelah tanggal target."
+  },
+  "plan": {
+    "why": {
+      "plant_tree": "{trees} pohon peneduh memberi pendinginan jangka panjang terbesar.",
+      "cool_roof": "{roof_m2} m² atap putih atau reflektif mendinginkan blok pada musim panas pertama.",
+      "shade_structure": "{shade} kain peneduh atau kanopi di gang dan persimpangan terpanas.",
+      "awareness": "Berbicaralah dengan tetangga, sekolah, dan toko agar lebih banyak orang ikut serta dan merawat pohon."
+    }
+  },
+  "budget": {
+    "trees": "Bibit dengan pelindung dan penanaman",
+    "cool_roof": "Lapisan atap sejuk (m²)",
+    "shade": "Struktur peneduh"
+  },
+  "aqi": {
+    "good": "Baik",
+    "moderate": "Sedang",
+    "usg": "Tidak sehat bagi kelompok sensitif",
+    "unhealthy": "Tidak sehat",
+    "very_unhealthy": "Sangat tidak sehat",
+    "hazardous": "Berbahaya"
+  },
+  "advice": {
+    "air": {
+      "enjoy_outdoors": "Udara bersih: waktu yang baik untuk berada di luar.",
+      "ventilate": "Buka jendela untuk menganginkan rumah Anda.",
+      "sensitive_watch": "Orang yang sangat sensitif perlu mewaspadai batuk atau sesak napas.",
+      "ventilate_off_peak": "Anginkan rumah Anda pada pagi hari atau malam hari.",
+      "sensitive_reduce": "Anak-anak, orang tua, dan siapa pun dengan asma atau penyakit jantung harus mengurangi aktivitas luar yang lama atau berat.",
+      "windows_peak": "Tutup jendela saat jam sibuk.",
+      "mask_sensitive": "Orang yang sensitif harus memakai masker N95 atau KN95 yang pas saat di luar.",
+      "reduce_outdoor": "Semua orang harus mengurangi aktivitas luar yang lama atau berat.",
+      "mask_n95": "Pakai masker N95 atau KN95 yang pas saat di luar.",
+      "windows_closed": "Tutup jendela dan pintu.",
+      "avoid_outdoor": "Hindari olahraga di luar; pindahkan kegiatan ke dalam ruangan.",
+      "purifier": "Nyalakan pembersih udara atau kipas dengan filter jika Anda punya.",
+      "stay_indoors": "Tetap di dalam ruangan semampunya; cari bantuan medis jika Anda merasa tidak enak badan."
+    }
+  },
+  "farm": {
+    "haor_flood": {
+      "title": "Risiko banjir bandang kilat Haor",
+      "body": "Hingga {local_mm} mm secara lokal dan {up_mm} mm di hulu di Meghalaya selama 3 hari. Air dari pegunungan dapat masuk ke Haor dalam 24–48 jam.",
+      "a1": "Panen Boro segera jika 80% gabah sudah matang.",
+      "a2": "Pindahkan padi yang sudah dipanen, benih, dan ternak ke tempat tinggi.",
+      "a3": "Periksa tanggul (bãdh) bersama tetangga Anda dan laporkan jebolnya ke kantor Upazila."
+    },
+    "rice_heat": {
+      "title": "Tekanan panas saat berbunga",
+      "body": "{days} hari pada atau di atas 35 °C dari {day} (puncak {peak} °C). Serbuk sari mati di atas 35 °C, menyebabkan gabah kosong (chita).",
+      "a1": "Jaga genangan air 5–7 cm di sawah selama berbunga.",
+      "a2": "Irigasi pada sore hari untuk mendinginkan tajuk.",
+      "a3": "Hindari menyemprot pestisida antara pukul 10.00 dan 14.00."
+    },
+    "drought": {
+      "title": "Risiko musim kering / kekeringan",
+      "body": "Hanya {rain30} mm hujan dalam 30 hari terakhir (NASA POWER) dan prakiraan {rain7} mm minggu ini, sementara tanaman kehilangan ~{et7} mm karena penguapan.",
+      "a1": "Gunakan penggenangan dan pengeringan bergantian (AWD) untuk menghemat air irigasi.",
+      "a2": "Tutup bedengan sayur dengan jerami untuk menjaga kelembapan.",
+      "a3": "Rencanakan irigasi tambahan untuk Aman pindah tanam jika hujan tetap sedikit."
+    },
+    "storm": {
+      "title": "Risiko badai / nor’wester",
+      "title_coastal": "Risiko siklon / gelombang badai",
+      "body": "Hembusan angin hingga {gust} km/jam diperkirakan mulai {day}.",
+      "a1_harvest": "Panen tanaman matang sebelum badai datang.",
+      "a1_stake": "Pasang ajir pada pisang, pepaya, dan sayuran tinggi.",
+      "a2": "Simpan benih dan gabah panen dalam karung tertutup di tempat yang ditinggikan.",
+      "a3": "Ikuti sinyal BMD dan pindah ke tempat perlindungan siklon jika diminta evakuasi."
+    },
+    "cold": {
+      "title_mild": "Gelombang dingin ringan",
+      "title_moderate": "Gelombang dingin sedang",
+      "title_severe": "Gelombang dingin berat",
+      "body": "Suhu malam turun hingga {low} °C mulai {day}.",
+      "a1": "Tutup persemaian Boro dengan polietena bening pada malam hari, buka pada siang hari.",
+      "a2": "Jaga air 2–3 cm di persemaian dan buang air dingin pada pagi hari.",
+      "a3": "Lindungi ternak dengan karung goni dan alas tidur yang kering."
+    },
+    "late_blight": {
+      "title": "Cuaca hawar daun akhir",
+      "body": "Cuaca sejuk, berkabut, dan lembap selama {days} hari: kondisi ideal untuk hawar daun akhir (Phytophthora) pada kentang dan tomat.",
+      "a1": "Tanya petugas pertanian setempat (DAE) fungisida pencegah apa yang dipakai dan berapa dosisnya.",
+      "a2": "Hentikan irigasi selama kabut masih ada.",
+      "a3": "Segera cabut dan musnahkan tanaman yang terinfeksi."
+    },
+    "monsoon": {
+      "title": "Awal musim hujan kemungkinan terjadi",
+      "body": "Tiga hari hujan berturut-turut atau lebih diperkirakan sekitar {day}.",
+      "a1": "Siapkan persemaian Aman di lahan yang ditinggikan.",
+      "a2": "Bersihkan saluran dan kanal sawah.",
+      "a3": "Waktu yang baik untuk menanam pohon: tingkat hidup paling tinggi sekarang."
+    },
+    "lightning": {
+      "title": "Risiko petir",
+      "body": "Atmosfer sangat tidak stabil (CAPE hingga {cape} J/kg), dengan badai petir kemungkinan mulai {day} {time}.",
+      "body_codes": "Badai petir diperkirakan mulai {day}.",
+      "a1": "Tinggalkan lahan terbuka saat awan gelap berkumpul, biasanya pada sore hari.",
+      "a2": "Jangan berteduh di bawah pohon tunggal; jongkok rendah dengan kaki rapat jika terjebak di luar.",
+      "a3": "Hindari kolam, kanal, dan alat logam saat badai."
+    },
+    "worker_heat": {
+      "title": "Panas berbahaya untuk kerja lapangan",
+      "body": "Suhu terasa hingga {peak} °C mulai {day}.",
+      "a1": "Bekerjalah pagi lebih awal dan sore akhir.",
+      "a2": "Minum air dengan ORS setiap 20 menit.",
+      "a3": "Istirahat di tempat teduh; waspadai pusing dan hentikan kerja jika tidak enak badan."
+    }
+  },
+  "alert_level": {
+    "danger": "Bahaya",
+    "warning": "Peringatan",
+    "watch": "Pantau",
+    "info": "Info"
+  },
+  "hazard": {
+    "flood": "Banjir",
+    "heat": "Panas",
+    "drought": "Kekeringan",
+    "cold": "Dingin",
+    "lightning": "Petir",
+    "rain": "Hujan",
+    "storm": "Badai",
+    "disease": "Penyakit tanaman"
+  },
+  "verify": {
+    "ok": "Terverifikasi: foto cocok dengan aksinya.",
+    "ai_unavailable": "Kami belum bisa memeriksa foto sekarang. Rekan tim bisa mengonfirmasinya.",
+    "not_a_photo": "Ini sepertinya bukan foto kamera. Rekan tim bisa mengonfirmasinya.",
+    "different_action": "Foto ini tampaknya menunjukkan aksi yang berbeda. Rekan tim bisa mengonfirmasinya.",
+    "ai_mismatch": "Kami tidak bisa melihat aksinya di foto. Rekan tim bisa mengonfirmasinya.",
+    "ai_low_confidence": "Foto kurang jelas untuk dipastikan. Rekan tim bisa mengonfirmasinya.",
+    "gps_missing": "Tidak ada lokasi pada foto. Rekan tim bisa mengonfirmasinya.",
+    "gps_far": "Foto diambil lebih dari 300 m dari zona. Rekan tim bisa mengonfirmasinya.",
+    "time_unknown": "Kami tidak bisa membaca kapan foto diambil. Rekan tim bisa mengonfirmasinya.",
+    "time_future": "Waktu foto ada di masa depan. Rekan tim bisa mengonfirmasinya.",
+    "too_old": "Foto ini berusia lebih dari 24 jam. Rekan tim bisa mengonfirmasinya."
+  },
+  "action": {
+    "open_zone": "Buka zona",
+    "create_goal": "Buat target",
+    "open_air": "Buka kualitas udara",
+    "see_alert": "Lihat peringatan",
+    "open_farm": "Buka peringatan pertanian",
+    "open_trees": "Buka pohon saya",
+    "find_nurseries": "Cari pembibitan"
+  },
+  "ask": {
+    "notice": {
+      "fallback": "AI tidak tersedia saat ini, jadi ini jawaban tersimpan berdasarkan data terbaru yang kami punya.",
+      "cap": "Batas AI hari ini untuk Atmos X sudah habis, jadi ini jawaban tersimpan berdasarkan data terbaru yang kami punya.",
+      "interrupted": "Jawabannya terpotong. Silakan coba lagi."
+    },
+    "canned": {
+      "heat_zone": "{zone} panas terutama karena {sealed}% permukaannya tertutup rapat dan hanya {green}% yang hijau. Udara {air}°, terasa {feels}°, dan atap serta jalan diperkirakan sekitar {surface}°. Puncak prakiraan {tmax}°: tetap di tempat teduh pukul 11.00–15.00 dan sering minum air.",
+      "heat_now": "Udara {air}° dan terasa {feels}°. Puncak prakiraan {tmax}° dalam beberapa hari ke depan: tetap di tempat teduh pukul 11.00–15.00, sering minum air, dan periksa tetangga lanjut usia.",
+      "heat": "Zona Anda panas terutama karena 78% permukaannya tertutup rapat dan hanya 6% yang hijau. Udara 34°, terasa 41°, dan atap serta jalan mencapai 52°. Minggu mencapai 36° — tetap di tempat teduh pukul 11.00–15.00 dan sering minum air.",
+      "air_now": "PM2.5 luar ruang {pm25} μg/m³ (AQI {aqi}, {category}). {advice}",
+      "air": "PM2.5 luar ruang 62 μg/m³ — sekitar 4× batas WHO — sementara di dalam 38. Sekarang tutup jendela dan buka lagi setelah pukul 22.00, saat prakiraan turun mendekati 40. Pakai N95 yang pas di luar.",
+      "farm_none": "Tidak ada peringatan untuk tanaman Anda dalam prakiraan 7 hari. Tetap periksa prakiraan sebelum menyiram atau menyemprot.",
+      "farm": "Ya. Padi Aman Anda sedang berbunga (terdeteksi satelit 28 Sep) dan pada Minggu mencapai 36°. Naikkan genangan air menjadi 5 cm malam ini dan tambahkan lagi pada Minggu saat fajar.",
+      "tree_due": "{name} sudah waktunya foto 15 hari. Ambil foto baru agar kami bisa memeriksa kesehatannya; saat cuaca panas, siram dalam-dalam pada sore hari dan jaga cincin mulsa di sekitar pangkal.",
+      "tree": "Pohon muda perlu disiram dalam dua kali seminggu saat cuaca panas dan kering, diberi cincin mulsa di sekitar pangkal, dan dipasang pelindung. Tambahkan foto setiap 15 hari agar kami bisa memeriksa kesehatannya."
+    }
+  }
+}

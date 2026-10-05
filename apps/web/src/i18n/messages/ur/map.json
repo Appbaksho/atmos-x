@@ -1,0 +1,35 @@
+{
+  "title": "ہیٹ نقشہ",
+  "within": "دائرہ",
+  "withinR": "دائرہ {r}",
+  "ranked": "آپ کے دائرے میں گرم ترین",
+  "nearTie": "تقریباً برابر",
+  "tieNote": "±۳ کے اندر اسکور تقریباً برابر ہیں — انہیں یکساں گرم سمجھیں۔",
+  "openZone": "زون کی تفصیل",
+  "estimateShort": "OSM + لائیو موسم",
+  "estimateNote": "حرارت کا اندازہ: OpenStreetMap زمینی احاطہ + لائیو موسم۔ اسکورز اس اسکین کے اندر بلاکس کا موازنہ کرتے ہیں؛ یہ سیٹلائٹ پیمائش نہیں ہیں۔",
+  "yourArea": "آپ کا علاقہ",
+  "mapA11y": "{place} کا ہیٹ میپ",
+  "layersLabel": "نقشہ پرت",
+  "layers": {
+    "heat": "Heat Score",
+    "lst": "NASA سطحی درجۂ حرارت"
+  },
+  "legendA11y": "Heat Score کی علامات: {bands}",
+  "gibsNote": "NASA زمینی سطح کا درجۂ حرارت · ماہانہ · تقریباً ۱ km",
+  "count": "{count, plural, one {{n} علاقہ} other {{n} علاقے}}",
+  "lstShort": "سطح",
+  "scoreA11y": "Heat Score {score}",
+  "radius": "اسکین رداس",
+  "scanning": "{r} تک اسکین کر رہے ہیں…",
+  "showAll": "تمام {n} دکھائیں",
+  "showLess": "اوپر کے ۳ دکھائیں",
+  "guestRadius": "۵۰۰ m سے زیادہ اسکین کریں",
+  "empty": {
+    "title": "یہاں کوئی گرم زون نہیں ملا",
+    "sub": "بڑا دائرہ آزمائیں یا کوئی اور جگہ۔"
+  },
+  "attribution": {
+    "osm": "© OpenStreetMap کے معاونین"
+  }
+}

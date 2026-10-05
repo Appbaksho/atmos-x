@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "sub": "Jawaban dari data Atmos X, dengan sumber",
+  "hello": "Tanya tentang panas, cuaca, udara, pohon Anda, atau tanaman. Saya hanya memakai data Atmos X dan akan bilang saat saya tidak punya datanya.",
+  "ph": "Ketik pertanyaan…",
+  "busy": "Memeriksa data Atmos X…",
+  "official": "Resmi:",
+  "local": "Peringatan Atmos X:",
+  "photoTag": "Foto dilampirkan",
+  "photoAlt": "Foto Anda",
+  "photoQ": "Apa yang Anda lihat di foto ini?",
+  "attach": "Lampirkan foto",
+  "removePhoto": "Hapus foto",
+  "send": "Kirim",
+  "stop": "Berhenti",
+  "newChat": "Obrolan baru",
+  "helpful": "Bermanfaat",
+  "thanks": "Terima kasih ✓",
+  "limit": "{n} dari {max} pesan hari ini · tanpa saran medis atau dosis pestisida",
+  "limitGuest": "{n} dari {max} pesan tamu hari ini · tanpa saran medis atau dosis pestisida",
+  "outOfMessages": "Anda sudah memakai pesan hari ini. Coba lagi besok.",
+  "error": "Tidak bisa terhubung ke Atmos X. Periksa koneksi Anda dan coba lagi.",
+  "retry": "Coba lagi",
+  "sugg": {
+    "heat": [
+      "Mengapa zona saya sangat panas?",
+      "Aman lari sore jam 6?"
+    ],
+    "air": [
+      "Perlukah saya buka jendela sekarang?",
+      "Masker mana yang cocok untuk PM2.5?"
+    ],
+    "farm": [
+      "Perlukah saya mengairi sebelum Minggu?",
+      "Kapan padi saya siap panen?"
+    ],
+    "tree": [
+      "Mengapa daun {name} menggulung?",
+      "Pohon apa yang harus saya tanam berikutnya?"
+    ]
+  },
+  "myTree": "pohon saya",
+  "screen": {
+    "S01": "Selamat datang",
+    "S02": "Selamat datang",
+    "S03": "Selamat datang",
+    "S04": "Beranda",
+    "S05": "Peta panas",
+    "S06": "Detail zona",
+    "S07": "Proyeksi",
+    "S08": "Panduan tujuan",
+    "S09": "Kelayakan",
+    "S10": "Rencana",
+    "S11": "Detail jenis",
+    "S12": "Peta pembibitan",
+    "S13": "Anggaran",
+    "S14": "Catat aksi",
+    "S15": "Detail kontribusi",
+    "S16": "Pusat komunitas",
+    "S17": "Dasbor tim",
+    "S18": "Halaman organisasi",
+    "S19": "Buat & undang",
+    "S20": "Profil",
+    "S21": "Notifikasi",
+    "S22": "Pengaturan",
+    "S26": "Kualitas udara",
+    "S27": "Perangkat saya",
+    "S28": "Tambah sensor",
+    "S29": "Ask Atmos",
+    "F01": "Beranda petani",
+    "F02": "Detail peringatan",
+    "F03": "Lahan saya",
+    "tree": "Pohon saya"
+  }
+}

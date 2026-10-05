@@ -1,0 +1,16 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "main": "Principal",
+  "home": "Accueil",
+  "map": "Carte",
+  "plan": "Plan",
+  "community": "Communauté",
+  "profile": "Profil",
+  "fields": "Champs",
+  "air": "Qualité de l’air",
+  "notifications": "Notifications",
+  "settings": "Réglages",
+  "about": "À propos"
+}

@@ -1,0 +1,218 @@
+{
+  "_meta": {
+    "machine": true
+  },
+  "zone": {
+    "unnamed": "区域 {n}"
+  },
+  "warning": {
+    "heatwave_mild": "预计有轻度热浪：{day}最高可达 {tmax} °C，持续到 {until}。依据 BMD 阈值，不是官方预警。",
+    "heatwave_moderate": "预计有中度热浪：{day}最高可达 {tmax} °C，持续到 {until}。依据 BMD 阈值，不是官方预警。",
+    "heatwave_severe": "预计有严重热浪：{day}最高可达 {tmax} °C，持续到 {until}。依据 BMD 阈值，不是官方预警。",
+    "heatwave_very_severe": "预计有极严重热浪：{day}最高可达 {tmax} °C，持续到 {until}。依据 BMD 阈值，不是官方预警。",
+    "heat_danger": "危险高温：{day}体感最高可达 {feels} °C。避免中午暴晒，并经常喝水。",
+    "heat_extreme": "极端高温：{day}体感最高可达 {feels} °C。待在阴凉处，并查看附近年长邻居。"
+  },
+  "bmd": {
+    "mild": "轻度热浪",
+    "moderate": "中度热浪",
+    "severe": "严重热浪",
+    "very_severe": "极严重热浪",
+    "disclaimer": "依据 BMD 阈值，不是官方预警"
+  },
+  "heat_risk": {
+    "ok": "舒适",
+    "caution": "注意",
+    "xcaution": "高度注意",
+    "danger": "危险",
+    "xdanger": "极端危险"
+  },
+  "cause": {
+    "sealed_surface": "{pct}% 封闭地表（屋顶、铺装、道路）吸收阳光：大约增加 {adds_c} °C",
+    "wide_roads": "道路覆盖了 {pct}% 的地面：大约增加 {adds_c} °C",
+    "low_green": "只有 {pct}% 绿化覆盖：比更绿的街区少约 {adds_c} °C 的降温效果",
+    "dense_buildings": "建筑密集（每公顷 {per_ha} 栋）会困住热量并挡风：大约增加 {adds_c} °C",
+    "dark_roofs": "约 {pct}% 的屋顶是深色的（假定）：大约增加 {adds_c} °C"
+  },
+  "assumption": {
+    "trend": "趋势：热季日最高气温每10年升高 {per_decade} °C（{from}–{to}，Open-Meteo 归档），并外推到 2040 年。",
+    "hot_season": "用于趋势的热季月份：{months}。",
+    "tree_ramp": "树木长大后降温会增强：第1年达到全部效果的20%，第3年50%，第5年80%，第8年起100%。",
+    "tree_cooling": "100 棵成年树可让该区域（{area_km2} km²）降温约 {per_100_trees} °C。",
+    "roof_cooling": "1,000 m² 的凉屋顶可让该区域降温约 {per_1000_m2} °C。",
+    "inputs": "本预测中的方案：{trees} 棵树，{roof_m2} m² 凉屋顶，{shade} 个遮阳设施。",
+    "ranges": "这是范围，不是承诺：根据土地覆盖和公开的降温系数估算。"
+  },
+  "feas": {
+    "trees_vs_space": "需要 {trees} 棵树；可用的空地和路边大约能放下 {capacity}。",
+    "roofs_vs_space": "需要 {roof_m2} m² 凉屋顶；大约有 {capacity_m2} m² 屋顶可用。",
+    "max_cooling": "按现有空间，约 {max_c} °C 比较现实。",
+    "spots_unknown": "无法加载种植点，因此未检查空间。",
+    "action_goal": "6 个月内，这算行动目标：我们跟踪工作本身，因为降温需要更久才看得见。",
+    "trees_take_years": "树木需要多年才能长出完整树荫；大部分降温会在目标日期之后出现。"
+  },
+  "plan": {
+    "why": {
+      "plant_tree": "{trees} 棵遮荫树能带来最大的长期降温。",
+      "cool_roof": "{roof_m2} m² 白色或反光屋顶能在第一个夏天就降温。",
+      "shade_structure": "{shade} 个遮阳帆或遮阳棚可覆盖最热的小巷和路段。",
+      "awareness": "和邻居、学校和商铺沟通，让更多人参与并照看树木。"
+    }
+  },
+  "budget": {
+    "trees": "树苗、树护和种植",
+    "cool_roof": "凉屋顶涂层（m²）",
+    "shade": "遮阳设施"
+  },
+  "aqi": {
+    "good": "良好",
+    "moderate": "中等",
+    "usg": "对敏感人群不健康",
+    "unhealthy": "不健康",
+    "very_unhealthy": "非常不健康",
+    "hazardous": "危险"
+  },
+  "advice": {
+    "air": {
+      "enjoy_outdoors": "空气干净：很适合外出。",
+      "ventilate": "打开窗户通风。",
+      "sensitive_watch": "很敏感的人要留意咳嗽或呼吸短促。",
+      "ventilate_off_peak": "在清晨或傍晚通风。",
+      "sensitive_reduce": "儿童、老人，以及有哮喘或心脏病的人，应减少长时间或剧烈的户外活动。",
+      "windows_peak": "高峰时段关闭窗户。",
+      "mask_sensitive": "敏感人群在室外应佩戴贴合良好的 N95 或 KN95 口罩。",
+      "reduce_outdoor": "所有人都应减少长时间或剧烈的户外活动。",
+      "mask_n95": "在室外佩戴贴合良好的 N95 或 KN95 口罩。",
+      "windows_closed": "保持门窗关闭。",
+      "avoid_outdoor": "避免户外运动；把活动移到室内。",
+      "purifier": "如果有空气净化器或带滤网的风扇，就打开。",
+      "stay_indoors": "尽量待在室内；如感到不适，请就医。"
+    }
+  },
+  "farm": {
+    "haor_flood": {
+      "title": "Haor 突发洪水风险",
+      "body": "3 天内，当地最高 {local_mm} mm，上游梅加拉亚最高 {up_mm} mm。山洪可能在 24–48 小时内进入 Haor。",
+      "a1": "如果 80% 的稻谷已成熟，立即抢收 Boro。",
+      "a2": "把收好的稻谷、种子和牲畜转移到高地。",
+      "a3": "和邻居一起检查堤坝（bãdh），并向 Upazila 办公室报告决口。"
+    },
+    "rice_heat": {
+      "title": "开花期热害风险",
+      "body": "{days} 天出现或超过 35 °C，从 {day} 开始（峰值 {peak} °C）。花粉在 35 °C 以上会死亡，导致空粒（chita）。",
+      "a1": "开花期保持田间 5–7 cm 积水。",
+      "a2": "下午灌溉，降低冠层温度。",
+      "a3": "避免在上午 10 点到下午 2 点喷洒农药。"
+    },
+    "drought": {
+      "title": "干旱期／干旱风险",
+      "body": "过去 30 天只有 {rain30} mm 降雨（NASA POWER），本周还预报 {rain7} mm，而作物会因蒸发损失约 {et7} mm。",
+      "a1": "用间歇灌溉法（AWD）节约灌溉水。",
+      "a2": "给蔬菜畦铺上稻草覆盖，保住水分。",
+      "a3": "如果雨量仍低，为移栽的 Aman 计划补灌。"
+    },
+    "storm": {
+      "title": "风暴／西北风暴风险",
+      "title_coastal": "沿海气旋／风暴潮风险",
+      "body": "预计从 {day} 起阵风可达 {gust} km/h。",
+      "a1_harvest": "风暴来前收割成熟作物。",
+      "a1_stake": "给香蕉、木瓜和高秆蔬菜立支柱。",
+      "a2": "把种子和收获的谷物装入密封袋，放在垫高的平台上。",
+      "a3": "关注 BMD 信号，如果要求撤离，就去气旋避难所。"
+    },
+    "cold": {
+      "title_mild": "轻度寒潮",
+      "title_moderate": "中度寒潮",
+      "title_severe": "严重寒潮",
+      "body": "从 {day} 起，夜间最低温将降至 {low} °C。",
+      "a1": "Boro 育秧床夜间盖透明塑料膜，白天打开。",
+      "a2": "育秧床保持 2–3 cm 水层，早晨排掉冷水。",
+      "a3": "用麻袋和干垫料保护牲畜。"
+    },
+    "late_blight": {
+      "title": "晚疫病天气",
+      "body": "连续 {days} 天都会凉爽、多雾、潮湿：这是马铃薯和番茄晚疫病（Phytophthora）的理想条件。",
+      "a1": "向当地农业官员（DAE）咨询应使用哪种预防性杀菌剂以及用量。",
+      "a2": "雾持续时停止灌溉。",
+      "a3": "立即清除并销毁受感染植株。"
+    },
+    "monsoon": {
+      "title": "季风可能开始",
+      "body": "约在 {day} 前后，预计会有连续三天或以上降雨。",
+      "a1": "在高地准备 Aman 育秧床。",
+      "a2": "清理田间排水沟和水渠。",
+      "a3": "现在最适合种树：成活率最高。"
+    },
+    "lightning": {
+      "title": "雷电风险",
+      "body": "大气非常不稳定（CAPE 最高 {cape} J/kg），预计从 {day} {time} 开始有雷暴。",
+      "body_codes": "预计从 {day} 起有雷暴。",
+      "a1": "乌云聚集时，尤其是下午，离开开阔地。",
+      "a2": "不要躲在孤立的树下；若在户外被困，双脚并拢蹲低。",
+      "a3": "雷暴时避开池塘、水渠和金属工具。"
+    },
+    "worker_heat": {
+      "title": "田间作业高温危险",
+      "body": "从 {day} 起，体感温度最高可达 {peak} °C。",
+      "a1": "清晨和傍晚作业。",
+      "a2": "每 20 分钟喝一次含 ORS 的水。",
+      "a3": "在阴凉处休息；留意头晕，不舒服就停止作业。"
+    }
+  },
+  "alert_level": {
+    "danger": "危险",
+    "warning": "警告",
+    "watch": "关注",
+    "info": "信息"
+  },
+  "hazard": {
+    "flood": "洪水",
+    "heat": "高温",
+    "drought": "干旱",
+    "cold": "寒冷",
+    "lightning": "雷电",
+    "rain": "降雨",
+    "storm": "风暴",
+    "disease": "作物病害"
+  },
+  "verify": {
+    "ok": "已验证：照片与行动一致。",
+    "ai_unavailable": "我们现在无法检查这张照片。队友可以确认。",
+    "not_a_photo": "这看起来不像相机照片。队友可以确认。",
+    "different_action": "这张照片看起来显示的是别的行动。队友可以确认。",
+    "ai_mismatch": "我们在照片里看不到这个行动。队友可以确认。",
+    "ai_low_confidence": "这张照片不够清楚，无法确定。队友可以确认。",
+    "gps_missing": "照片没有位置。队友可以确认。",
+    "gps_far": "照片拍摄地点距离区域超过 300 m。队友可以确认。",
+    "time_unknown": "我们无法读取照片拍摄时间。队友可以确认。",
+    "time_future": "照片时间在未来。队友可以确认。",
+    "too_old": "这张照片超过 24 小时了。队友可以确认。"
+  },
+  "action": {
+    "open_zone": "查看区域",
+    "create_goal": "创建目标",
+    "open_air": "查看空气质量",
+    "see_alert": "查看警报",
+    "open_farm": "查看农场预警",
+    "open_trees": "查看我的树",
+    "find_nurseries": "查找苗圃"
+  },
+  "ask": {
+    "notice": {
+      "fallback": "Ask Atmos 现在不可用，所以这是基于我们现有最新数据的保存答案。",
+      "cap": "Atmos X 今天的 AI 使用次数已用完，所以这是基于我们现有最新数据的保存答案。",
+      "interrupted": "答案被截断了。请重试。"
+    },
+    "canned": {
+      "heat_zone": "{zone} 之所以热，主要因为 {sealed}% 的地表是硬化地面，只有 {green}% 是绿色植被。空气温度 {air}°，体感 {feels}°，屋顶和道路估计约 {surface}°。预报最高 {tmax}°：请在 11:00 到 15:00 待在阴凉处，并经常喝水。",
+      "heat_now": "目前空气温度 {air}°，体感 {feels}°。未来几天预报最高 {tmax}°：请在 11:00 到 15:00 待在阴凉处，经常喝水，并关照年长邻居。",
+      "heat": "你的区域之所以热，主要因为 78% 的地表是硬化地面，只有 6% 是绿色植被。空气温度 34°，体感 41°，屋顶和道路达到 52°。周日最高 36°——请在 11:00–15:00 待在阴凉处，并经常喝水。",
+      "air_now": "户外 PM2.5 为 {pm25} μg/m³（AQI {aqi}，{category}）。{advice}",
+      "air": "户外 PM2.5 为 62 μg/m³——约为世卫组织标准的 4 倍——而室内为 38。现在请关窗，晚上 10 点后、预报降到接近 40 时再打开。室外请佩戴贴合的 N95。",
+      "farm_none": "未来7天预报里，你的作物没有农事预警。灌溉或喷药前，请继续查看预报。",
+      "farm": "是。你的Aman水稻正在开花（卫星监测到9月28日），周日最高36°。今晚把田间水位提到5厘米，周日黎明再补水。",
+      "tree_due": "{name}该拍15天照片了。请拍一张新照片，我们好查看它的健康；高温时，晚上深浇一次，并在树基部留一圈覆盖物。",
+      "tree": "幼树在炎热干燥天气里每周要深浇两次，树基部要有一圈覆盖物和护树架。每15天上传一张照片，我们好查看它们的健康。"
+    }
+  }
+}
