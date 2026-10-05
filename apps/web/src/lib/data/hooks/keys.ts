@@ -32,6 +32,7 @@ export const qk = {
   /** Air is fetched from the server but merged with this namespace's sensors. */
   air: (ns: string, p: LatLng) => ['atmos', 'local', ns, 'air', ...pt(p)] as const,
   farmAlerts: (p: LatLng, crop: string, stage: string, lang: Locale) => ['atmos', 'server', 'farm-alerts', ...pt(p), crop, stage, lang] as const,
+  googleAuth: () => ['atmos', 'server', 'google-auth'] as const,
 
   /* local (per namespace) */
   local: (ns: string) => ['atmos', 'local', ns] as const,

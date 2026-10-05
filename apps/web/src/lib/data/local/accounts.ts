@@ -10,13 +10,19 @@ import { newId } from './ids';
 
 export type PasswordHash = { algo: 'PBKDF2-SHA256'; iterations: number; salt: string; hash: string };
 
+/** A sign-in provider linked to the account (v1: auth_identities). */
+export type Identity = { provider: 'google'; subject: string };
+
 export type LocalAccount = {
   id: string;
   email: string;
   display_name: string;
   lang: Locale;
   created_at: string;
-  password: PasswordHash;
+  /** Absent on accounts created with Google */
+  password?: PasswordHash;
+  identities?: Identity[];
+  avatar_url?: string | null;
 };
 
 export type PublicAccount = Omit<LocalAccount, 'password'>;
@@ -58,7 +64,15 @@ export async function verifyPassword(password: string, rec: PasswordHash): Promi
 
 const normEmail = (e: string) => e.trim().toLowerCase();
 const isEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-const toPublic = (a: LocalAccount): PublicAccount => ({ id: a.id, email: a.email, display_name: a.display_name, lang: a.lang, created_at: a.created_at });
+const toPublic = (a: LocalAccount): PublicAccount => ({
+  id: a.id,
+  email: a.email,
+  display_name: a.display_name,
+  lang: a.lang,
+  created_at: a.created_at,
+  identities: a.identities ?? [],
+  avatar_url: a.avatar_url ?? null,
+});
 
 export async function listAccounts(): Promise<PublicAccount[]> {
   const all = (await (await getKV()).get<LocalAccount[]>(ACCOUNTS)) ?? [];
@@ -90,10 +104,45 @@ export async function loginAccount(emailIn: string, password: string): Promise<P
   const email = normEmail(emailIn);
   const all = (await (await getKV()).get<LocalAccount[]>(ACCOUNTS)) ?? [];
   const acc = all.find((a) => a.email === email);
-  if (!acc || !(await verifyPassword(password, acc.password))) {
+  if (acc && !acc.password) throw new DataError('auth.use_google', 'This account signs in with Google', 401);
+  if (!acc?.password || !(await verifyPassword(password, acc.password))) {
     throw new DataError('auth.invalid_credentials', 'Email or password is wrong', 401);
   }
   return toPublic(acc);
+}
+
+/**
+ * Sign in with a Google identity the server verified: the account already linked to this Google
+ * subject, else the account with the same (Google-verified) email, which gets linked, else a new
+ * account without a password.
+ */
+export async function signInWithGoogle(g: { subject: string; email: string; display_name: string; avatar_url: string | null; lang: Locale }): Promise<{ account: PublicAccount; created: boolean }> {
+  const email = normEmail(g.email);
+  if (!g.subject || !isEmail(email)) throw new DataError('auth.google_failed', 'Google did not return a usable identity', 400);
+  const google: Identity = { provider: 'google', subject: g.subject };
+  return withLock(ACCOUNTS, async () => {
+    const kv = await getKV();
+    const all = (await kv.get<LocalAccount[]>(ACCOUNTS)) ?? [];
+    const linked = all.find((a) => a.identities?.some((i) => i.provider === 'google' && i.subject === g.subject));
+    if (linked) return { account: toPublic(linked), created: false };
+    const same = all.find((a) => a.email === email);
+    if (same) {
+      const next: LocalAccount = { ...same, identities: [...(same.identities ?? []), google], avatar_url: same.avatar_url ?? g.avatar_url };
+      await kv.set(ACCOUNTS, all.map((a) => (a.id === same.id ? next : a)));
+      return { account: toPublic(next), created: false };
+    }
+    const acc: LocalAccount = {
+      id: newId('p'),
+      email,
+      display_name: g.display_name.trim() || email.split('@')[0],
+      lang: g.lang,
+      created_at: new Date().toISOString(),
+      identities: [google],
+      avatar_url: g.avatar_url,
+    };
+    await kv.set(ACCOUNTS, [...all, acc]);
+    return { account: toPublic(acc), created: true };
+  });
 }
 
 export async function updateAccount(id: string, patch: Partial<Pick<LocalAccount, 'display_name' | 'lang'>>): Promise<void> {

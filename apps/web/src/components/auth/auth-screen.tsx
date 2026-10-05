@@ -2,14 +2,15 @@
 /**
  * /auth/login and /auth/register (outside the app shell). v0 accounts live on this device (§4.5):
  * PBKDF2-hashed password, login switches local profiles, guest prefs carry over on register.
- * "Continue with Google" is shown disabled ("coming soon").
+ * "Continue with Google" works when the server has GOOGLE_OAUTH_CLIENT_ID + _SECRET; otherwise it
+ * is shown disabled ("coming soon").
  */
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { B, Card, CzButton, Field, GhostButton, I, Icon, Note, R, Screen, ScreenHeader, Seg, Tap, Txt, View, goBack, toast, useCz } from '@/components/cz';
+import { B, Card, CzButton, Field, GhostButton, I, Icon, Note, R, Screen, ScreenHeader, Seg, Spinner, Tap, Txt, View, goBack, toast, useCz } from '@/components/cz';
 import { useRouter } from '@/i18n/navigation';
-import { DataError, useAccounts, useAuth, useSession } from '@/lib/data/hooks';
+import { DataError, useAccounts, useAuth, useGoogleSignIn, useSession } from '@/lib/data/hooks';
 import type { Locale } from '@/lib/data/types';
 import { href } from '@/lib/routes';
 
@@ -42,7 +43,6 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
   const [show, setShow] = useState(false);
   const [err, setErr] = useState<Err>(null);
   const up = mode === 'register';
-  const busy = register.isPending || upgrade.isPending || login.isPending;
 
   const errText = (e: unknown): Err => {
     if (e instanceof DataError && t.has(`err.${e.code}`)) {
@@ -51,6 +51,17 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
     }
     return { msg: t('err.generic') };
   };
+
+  const done = (welcome: string) => {
+    toast(welcome, { tone: 'success' });
+    router.replace(next);
+  };
+  const google = useGoogleSignIn({
+    lang: lang as Locale,
+    onSuccess: ({ user, created }) => done(t(created ? 'welcome' : 'welcomeBack', { name: user.display_name })),
+    onError: (e) => setErr(errText(e)),
+  });
+  const busy = register.isPending || upgrade.isPending || login.isPending || google.isPending;
 
   const switchMode = (m: AuthMode) => {
     setErr(null);
@@ -63,10 +74,6 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
     if (!EMAIL_RE.test(email.trim())) return setErr({ field: 'email', msg: t('err.email') });
     if (password.length < 8) return setErr({ field: 'password', msg: t('err.password') });
     setErr(null);
-    const done = (welcome: string) => {
-      toast(welcome, { tone: 'success' });
-      router.replace(next);
-    };
     if (up) {
       const input = { display_name: name.trim(), email: email.trim(), password, lang: lang as Locale };
       const m = session.isGuest ? upgrade : register;
@@ -210,19 +217,31 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
       </View>
 
       <Tap
-        label={`${t('google')} (${t('soon')})`}
-        disabled
-        style={{ height: 52, borderRadius: R.pill, borderWidth: 1.5, borderColor: c.line, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, opacity: 0.6 }}>
-        <GoogleG />
+        label={google.available || google.configLoading ? t('google') : `${t('google')} (${t('soon')})`}
+        disabled={!google.ready || busy}
+        haptic
+        onPress={() => {
+          setErr(null);
+          google.start();
+        }}
+        style={{ height: 52, borderRadius: R.pill, borderWidth: 1.5, borderColor: c.line, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, opacity: google.ready ? 1 : 0.6 }}>
+        {google.isPending ? <Spinner /> : <GoogleG />}
         <Txt size={14} w={600}>
-          {t('google')}
+          {google.isPending ? t('googleBusy') : t('google')}
         </Txt>
-        <View style={{ height: 22, paddingHorizontal: 8, borderRadius: R.pill, backgroundColor: c.soft, justifyContent: 'center' }}>
-          <Txt size={10.5} w={700} dim>
-            {t('soon')}
-          </Txt>
-        </View>
+        {!google.available && !google.configLoading ? (
+          <View style={{ height: 22, paddingHorizontal: 8, borderRadius: R.pill, backgroundColor: c.soft, justifyContent: 'center' }}>
+            <Txt size={10.5} w={700} dim>
+              {t('soon')}
+            </Txt>
+          </View>
+        ) : null}
       </Tap>
+      {google.available ? (
+        <Txt size={11.5} dim center>
+          {t('googleNote')}
+        </Txt>
+      ) : null}
 
       <GhostButton label={t('guest')} height={46} onPress={guest} disabled={continueAsGuest.isPending} />
       <Txt size={11.5} dim center>

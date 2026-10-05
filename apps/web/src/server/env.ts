@@ -19,6 +19,10 @@ export const env = {
   get modelCheap(): string {
     return process.env.OPENAI_MODEL_CHEAP || 'gpt-5.4-mini';
   },
+  /** Google sign-in (OAuth web client). Both must be set, or "Continue with Google" stays disabled. */
+  get google(): { clientId: string | null; clientSecret: string | null } {
+    return { clientId: (process.env.GOOGLE_OAUTH_CLIENT_ID || '').trim() || null, clientSecret: (process.env.GOOGLE_OAUTH_CLIENT_SECRET || '').trim() || null };
+  },
   get aiDailyCap(): number {
     return num(process.env.AI_DAILY_REQUEST_CAP, 1500);
   },
@@ -48,7 +52,7 @@ export const env = {
    * (snapshots / caches): OPEN_METEO_BASE_URL replaces the host of all four Open-Meteo APIs
    * (e.g. http://127.0.0.1:9), or override each one with its own variable.
    */
-  get upstream(): { forecast: string; archive: string; air: string; geocoding: string; nominatim: string; nasaPower: string } {
+  get upstream(): { forecast: string; archive: string; air: string; geocoding: string; nominatim: string; nasaPower: string; googleToken: string } {
     const om = (process.env.OPEN_METEO_BASE_URL || '').trim().replace(/\/+$/, '');
     const pick = (own: string | undefined, path: string, host: string) => (own || '').trim() || (om ? `${om}${path}` : `${host}${path}`);
     return {
@@ -58,6 +62,7 @@ export const env = {
       geocoding: pick(process.env.OPEN_METEO_GEOCODING_URL, '/v1/search', 'https://geocoding-api.open-meteo.com'),
       nominatim: (process.env.NOMINATIM_URL || '').trim() || 'https://nominatim.openstreetmap.org/reverse',
       nasaPower: (process.env.NASA_POWER_URL || '').trim() || 'https://power.larc.nasa.gov/api/temporal',
+      googleToken: (process.env.GOOGLE_OAUTH_TOKEN_URL || '').trim() || 'https://oauth2.googleapis.com/token',
     };
   },
   get demo(): { lat: number; lng: number } {

@@ -231,7 +231,7 @@ The login and register UI is the real v1 UI, but in v0 **the account lives on th
 - Register stores name, email and language. The password is hashed with WebCrypto PBKDF2 and stored only locally.
 - Login switches between local profiles.
 - Log out returns to guest.
-- "Continue with Google" is shown, disabled, marked "coming soon".
+- "Continue with Google" works when `GOOGLE_OAUTH_CLIENT_ID` + `_SECRET` are set (DEV-CHECKLIST §1.6): Google's popup returns a one-time code, `POST /api/v0/auth/google` exchanges it server-side for the verified identity, and the account is created (or matched by Google subject, then email) on the device. Without the keys it's shown disabled, marked "coming soon".
 
 **Guest mode** is the default on first visit, and it is **restricted exactly as in v1**:
 - Guests **can:** view everything read-only, scan up to 500 m, see air and farmer alerts without saving fields, and send **5 Ask messages/day**.

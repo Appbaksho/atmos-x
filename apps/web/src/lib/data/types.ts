@@ -603,6 +603,16 @@ export type AskEvent =
   | { type: 'done'; message_id: string; remaining_today: number }
   | { type: 'error'; code: string; message: string };
 
+/* ───────────────────────────── Google sign-in (v0) ───────────────────────────── */
+
+/**
+ * "Continue with Google" in v0: the server trades Google's one-time code for the verified identity,
+ * and the client keeps the account on the device. Mirrors v1's auth_identities (provider + subject).
+ */
+export type GoogleAuthConfig = { enabled: boolean; client_id: string | null; meta: Meta };
+export type GoogleAuthRequest = { code: string };
+export type GoogleIdentity = { provider: 'google'; subject: string; email: string; display_name: string; avatar_url: string | null; meta: Meta };
+
 /* ───────────────────────────── v0 route table ───────────────────────────── */
 
 /** Every v0 server endpoint (Next.js route handlers under src/app/api/v0). Query params are strings. */
@@ -623,4 +633,6 @@ export const V0_ROUTES = {
   verifyPhoto: { method: 'POST', path: '/api/v0/verify-photo' }, // VerifyPhotoRequest → VerifyPhotoResult
   treeCheck: { method: 'POST', path: '/api/v0/tree-check' }, // TreeCheckRequest → TreeCheckResult
   ask: { method: 'POST', path: '/api/v0/ask' }, // AskRequest → text/event-stream of AskEvent
+  googleAuth: { method: 'GET', path: '/api/v0/auth/google' }, // → GoogleAuthConfig
+  googleAuthExchange: { method: 'POST', path: '/api/v0/auth/google' }, // GoogleAuthRequest → GoogleIdentity
 } as const;

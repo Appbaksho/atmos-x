@@ -75,6 +75,15 @@ Phones only allow the camera, geolocation and "Install app" over **HTTPS**. Pick
 - [ ] **Confirm the 10 languages:** en, bn, ur, hi, ar, es, fr, pt, id, zh. Swap any of them before V0-1 starts.
 - [ ] Someone who reads **Bangla** and someone who reads **Urdu** for a 20-minute spot-check after V0-8.
 
+### 1.6 "Continue with Google" (optional, about 15 min)
+Without these keys the button stays disabled ("coming soon") and everything else works.
+- [ ] console.cloud.google.com → pick or create the project → *Google Auth Platform* (OAuth consent screen): External, app name "Atmos X", support email, logo. Scopes: only `openid`, `email`, `profile` (no Google review needed).
+- [ ] While the app is in **Testing**, only the listed **test users** can sign in. Add the presenters' Google accounts, or press **Publish app**.
+- [ ] *Clients → Create client → Web application*. Under **Authorized JavaScript origins**, add every address the app is opened from: `http://localhost:3000`, the VPS domain (`https://…`), and the current tunnel URL. A quick tunnel's URL changes every run, so add the new one each time (or use the VPS). No redirect URI is needed (popup flow).
+- [ ] Put `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` in `apps/web/.env.local` (and on the server), then restart `npm start`. The secret is server-only; never put it in a `NEXT_PUBLIC_` variable.
+- [ ] Test: `/auth/login` → Continue with Google → pick an account → you land on Home signed in.
+- If the popup says **"Access blocked: Authorization Error · no registered origin · Error 401: invalid_client"**, the address in the browser bar isn't an Authorized JavaScript origin. Add it exactly (scheme + host + port, no trailing slash, e.g. `http://localhost:3000`), save, and wait a few minutes for Google to apply it.
+
 ---
 
 ## 2. Presentation prep (v0)
