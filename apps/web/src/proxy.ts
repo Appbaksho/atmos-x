@@ -5,6 +5,8 @@
  *    so route handlers see it immediately.
  * 2. Runs next-intl locale routing for pages only; never for /api, /_next, sw.js, the manifest,
  *    icons or any static file.
+ * 3. Opens CORS on /api to every origin: answers preflights itself and stamps the headers on all
+ *    API responses. No Allow-Credentials (invalid with `*`), so cross-origin calls carry no cookies.
  */
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
@@ -15,6 +17,18 @@ const intl = createMiddleware(routing);
 
 const DEVICE_COOKIE = 'atmos_device';
 const ONE_YEAR_S = 60 * 60 * 24 * 365;
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+  'Access-Control-Max-Age': '86400',
+};
+
+function withCors(response: NextResponse): NextResponse {
+  for (const [key, value] of Object.entries(CORS_HEADERS)) response.headers.set(key, value);
+  return response;
+}
 
 function skipsI18n(pathname: string): boolean {
   return (
@@ -30,12 +44,15 @@ function skipsI18n(pathname: string): boolean {
 }
 
 export default function proxy(request: NextRequest) {
+  const isApi = request.nextUrl.pathname.startsWith('/api');
+  if (isApi && request.method === 'OPTIONS') return withCors(new NextResponse(null, { status: 204 }));
+
   const existing = request.cookies.get(DEVICE_COOKIE)?.value;
   const deviceId = existing ?? crypto.randomUUID();
   let response: NextResponse;
 
   if (skipsI18n(request.nextUrl.pathname)) {
-    if (existing) return NextResponse.next();
+    if (existing) return isApi ? withCors(NextResponse.next()) : NextResponse.next();
     const headers = new Headers(request.headers);
     const cookie = headers.get('cookie');
     headers.set('cookie', `${cookie ? `${cookie}; ` : ''}${DEVICE_COOKIE}=${deviceId}`);
@@ -54,7 +71,7 @@ export default function proxy(request: NextRequest) {
       secure: request.nextUrl.protocol === 'https:' || request.headers.get('x-forwarded-proto') === 'https',
     });
   }
-  return response;
+  return isApi ? withCors(response) : response;
 }
 
 export const config = {
