@@ -11,6 +11,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 process.env.ATMOS_BUILD_ID ||= new Date().toISOString().replace(/\D/g, '').slice(0, 14);
 
 const nextConfig: NextConfig = {
+  // Self-contained server for the Docker image (apps/web/Dockerfile).
+  output: 'standalone',
   env: { NEXT_PUBLIC_BUILD_ID: process.env.ATMOS_BUILD_ID },
   async headers() {
     return [
