@@ -1,0 +1,31 @@
+# Production stack: `docker compose up -d --build` (see docs/deploy.md).
+# Reads .env next to this file for build args and runtime secrets; that file is never committed.
+services:
+  web:
+    build:
+      context: ./apps/web
+      args:
+        ATMOS_BUILD_ID: ${ATMOS_BUILD_ID:-}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-}
+        NEXT_PUBLIC_MAP_STYLE_URL: ${NEXT_PUBLIC_MAP_STYLE_URL:-}
+        NEXT_PUBLIC_MAP_STYLE_URL_DARK: ${NEXT_PUBLIC_MAP_STYLE_URL_DARK:-}
+        NEXT_PUBLIC_DEMO_LAT: ${NEXT_PUBLIC_DEMO_LAT:-}
+        NEXT_PUBLIC_DEMO_LNG: ${NEXT_PUBLIC_DEMO_LNG:-}
+    restart: unless-stopped
+    env_file:
+      - path: ./.env
+        required: false
+    # Host nginx terminates TLS and proxies atmosx.baksho.app here.
+    ports:
+      - "127.0.0.1:${WEB_PORT:-3160}:3000"
+    volumes:
+      - atmos-cache:/data
+    mem_limit: 1g
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  atmos-cache:
