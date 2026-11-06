@@ -42,7 +42,8 @@ export type CzState = {
   /** True once prefs were read from IndexedDB (before that, DEFAULT_PREFS are shown) */
   ready: boolean;
   setPref: <K extends keyof Prefs>(k: K, v: Prefs[K]) => void;
-  setPrefs: (patch: Partial<Prefs>) => void;
+  /** Resolves once the patch is stored and `prefs` has it; await it before navigating on a pref the shell reads (e.g. onboarded) */
+  setPrefs: (patch: Partial<Prefs>) => Promise<void>;
   /** Theme palette as CSS variables (+ resolved `dark`) */
   c: Palette;
   /** Raw hex palette for the resolved theme (MapLibre, canvas) */
@@ -127,10 +128,11 @@ export function PrefsProvider({ children }: { children: React.ReactNode }) {
   }, [ready, prefs.theme, theme, setTheme]);
 
   const setPrefs = useCallback(
-    (patch: Partial<Prefs>) => {
+    async (patch: Partial<Prefs>) => {
       if (patch.theme) setTheme(patch.theme);
-      storeSetPrefs(patch);
+      const stored = storeSetPrefs(patch);
       if (patch.lang) switchLocale(patch.lang);
+      await stored;
     },
     [setTheme, switchLocale],
   );

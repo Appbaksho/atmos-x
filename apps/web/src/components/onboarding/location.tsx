@@ -124,8 +124,8 @@ export function LocationScreen() {
   const coords = `${f.loc(Math.abs(loc.focus.lat).toFixed(4))}° ${loc.focus.lat >= 0 ? 'N' : 'S'}, ${f.loc(Math.abs(loc.focus.lng).toFixed(4))}° ${loc.focus.lng >= 0 ? 'E' : 'W'}`;
 
   const finish = () => {
-    setPrefs({ onboarded: true, radius_m: radius });
-    goReplace('S04');
+    // Navigate only once `onboarded` is set, or the onboarding gate bounces /app back to S01.
+    void setPrefs({ onboarded: true, radius_m: radius }).then(() => goReplace('S04'));
   };
 
   // Steps 0–2 advance on a timer; the last one waits for the real scan (max ~14 s, then the map finishes it).
@@ -224,10 +224,7 @@ export function LocationScreen() {
               <Tap
                 role="link"
                 label={t('demo')}
-                onPress={() => {
-                  setPrefs({ presentation: true, onboarded: true });
-                  goReplace('S04');
-                }}
+                onPress={() => void setPrefs({ presentation: true, onboarded: true }).then(() => goReplace('S04'))}
                 style={{ alignSelf: 'center', minHeight: 36, justifyContent: 'center' }}>
                 <Txt size={13} w={600} color={c.leaf}>
                   {t('demo')}

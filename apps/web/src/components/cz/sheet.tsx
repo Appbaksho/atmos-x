@@ -11,7 +11,7 @@ import { createPortal } from 'react-dom';
 
 import { useCz } from '@/lib/prefs';
 
-import { useMounted } from './hooks';
+import { lockBodyScroll, useMounted } from './hooks';
 import { I } from './icons';
 import { rn, type StyleProp } from './style';
 import { SHADOW } from './tokens';
@@ -49,8 +49,7 @@ export function BottomSheet({ open, onClose, title, sub, leading, children, foot
   useEffect(() => {
     if (!open) return;
     const prevFocus = document.activeElement as HTMLElement | null;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+    const unlockScroll = lockBodyScroll();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'Tab' && panel.current) {
@@ -75,7 +74,7 @@ export function BottomSheet({ open, onClose, title, sub, leading, children, foot
     return () => {
       cancelAnimationFrame(id);
       document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prevOverflow;
+      unlockScroll();
       prevFocus?.focus?.();
     };
   }, [open, onClose]);

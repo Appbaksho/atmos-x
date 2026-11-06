@@ -4,6 +4,26 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from '
 
 const noop = () => () => {};
 
+let scrollLocks = 0;
+let overflowBeforeLock = '';
+
+/**
+ * Lock page scrolling under an overlay; returns the release function. Ref-counted, so stacked
+ * overlays (the Ask sheet + its camera) can close in any order without leaving the page locked.
+ */
+export function lockBodyScroll(): () => void {
+  if (scrollLocks++ === 0) {
+    overflowBeforeLock = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  }
+  let released = false;
+  return () => {
+    if (released) return;
+    released = true;
+    if (--scrollLocks === 0) document.body.style.overflow = overflowBeforeLock;
+  };
+}
+
 /** True after hydration (false during SSR and the hydration render). */
 export function useMounted(): boolean {
   return useSyncExternalStore(
