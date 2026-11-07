@@ -208,6 +208,11 @@ async def test_partner_prices_stay_within_the_band(client, db, seeded):
     assert bad.status_code == 400 and bad.json()["code"] == "partner.price_band"
     ok = await client.post("/api/v1/partner/products", json={**body, "points_price": 210})
     assert ok.status_code == 200 and ok.json()["points_price"] == 210
+    assert ok.json()["price_band"] == [150, 250] and ok.json()["active"] is True
+    mine = (await client.get("/api/v1/partner/products")).json()
+    assert mine["products"][0]["declared_value_bdt"] == 100
+    off = await client.patch(f"/api/v1/partner/products/{ok.json()['id']}", json={"active": False})
+    assert off.json()["active"] is False
     report = await client.get("/api/v1/partner/report")
     assert report.status_code == 200 and report.content[:4] == b"%PDF"
 

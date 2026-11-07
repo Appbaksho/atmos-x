@@ -206,7 +206,7 @@ async def partner_products(db: DB, user: FullUser) -> dict:
     lo_hi = {"points_per_bdt": settings.points_per_bdt, "tolerance": settings.points_price_tolerance}
     return {
         "partner": ST.partner_out(p),
-        "products": [await ST.product_out(db, x, user) for x in rows],
+        "products": [await ST.product_out(db, x, user, owner=True) for x in rows],
         "price_rule": lo_hi,
     }
 
@@ -215,14 +215,14 @@ async def partner_products(db: DB, user: FullUser) -> dict:
 async def partner_product_add(body: ProductIn, db: DB, user: FullUser) -> dict:
     p = await ST.my_partner(db, user)
     pr = await ST.upsert_product(db, p, body.model_dump())
-    return await ST.product_out(db, pr, user)
+    return await ST.product_out(db, pr, user, owner=True)
 
 
 @router.patch("/partner/products/{product_id}", operation_id="partner_product_patch")
 async def partner_product_patch(product_id: uuid.UUID, body: ProductPatch, db: DB, user: FullUser) -> dict:
     p = await ST.my_partner(db, user)
     pr = await ST.upsert_product(db, p, body.model_dump(exclude_unset=True), product_id)
-    return await ST.product_out(db, pr, user)
+    return await ST.product_out(db, pr, user, owner=True)
 
 
 @router.get("/partner/redemptions", operation_id="partner_redemptions")

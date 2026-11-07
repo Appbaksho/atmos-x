@@ -74,7 +74,9 @@ def partner_out(p: Partner, n_products: int = 0) -> dict:
     }
 
 
-async def product_out(db: AsyncSession, pr: Product, viewer: User | None, spendable: int | None = None) -> dict:
+async def product_out(
+    db: AsyncSession, pr: Product, viewer: User | None, spendable: int | None = None, *, owner: bool = False
+) -> dict:
     partner = await db.get(Partner, pr.partner_id)
     outlets = (await db.execute(select(PartnerOutlet).where(PartnerOutlet.partner_id == pr.partner_id))).scalars().all()
     return {
@@ -102,7 +104,15 @@ async def product_out(db: AsyncSession, pr: Product, viewer: User | None, spenda
         ],
         "can_afford": spendable is not None and spendable >= pr.points_price,
         "is_demo": pr.is_demo,
-    }
+    } | (
+        {
+            "declared_value_bdt": pr.declared_value_bdt,
+            "active": pr.active,
+            "price_band": list(price_band(pr.declared_value_bdt)),
+        }
+        if owner
+        else {}
+    )
 
 
 async def partners(db: AsyncSession, viewer: User | None) -> list[dict]:
