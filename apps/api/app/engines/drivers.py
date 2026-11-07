@@ -168,23 +168,20 @@ def why(
         else:
             out.append({"code": "why.typical", "params": {}})
     top = sorted((c for c in contribs if c["driver"] != "water" and c["adds_c"] >= 0.1), key=lambda c: -c["adds_c"])[:2]
-    if len(top) == 2:
+    if top:
+        a = top[0]
         out.append(
             {
-                "code": f"why.two.{top[0]['driver']}.{top[1]['driver']}",
-                "params": {
-                    "a_pct": round(top[0]["value"] * 100),
-                    "a_c": round(top[0]["adds_c"], 1),
-                    "b_pct": round(top[1]["value"] * 100),
-                    "b_c": round(top[1]["adds_c"], 1),
-                },
+                "code": f"why.one.{a['driver']}",
+                "params": {"pct": round(a["value"] * 100), "adds_c": round(a["adds_c"], 1)},
             }
         )
-    elif len(top) == 1:
+    if len(top) == 2:
+        b = top[1]
         out.append(
             {
-                "code": f"why.one.{top[0]['driver']}",
-                "params": {"pct": round(top[0]["value"] * 100), "adds_c": round(top[0]["adds_c"], 1)},
+                "code": f"why.also.{b['driver']}",
+                "params": {"pct": round(b["value"] * 100), "adds_c": round(b["adds_c"], 1)},
             }
         )
     if what_if_drop >= 0.05:

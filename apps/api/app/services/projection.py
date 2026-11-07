@@ -63,7 +63,7 @@ async def projection(db: AsyncSession, zid: str, trees: int, roof_m2: int, shade
         warming_source = "none"
     lines = CO.project(now_c, per_year, z.area_km2, trees, roof_m2, shade, now_year)
     assumptions = [
-        {"code": "assumption.surface", "params": {"basis": now_basis}},
+        {"code": f"assumption.surface.{now_basis}", "params": {}},
         {
             "code": f"assumption.warming.{warming_source}",
             "params": {"per_decade": round(per_year * 10, 2), **({"models": len(cm.value["models"])} if cm else {})},
