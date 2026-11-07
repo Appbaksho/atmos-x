@@ -45,6 +45,7 @@ def profile_out(user: User, prof: Profile) -> ProfileOut:
         ask_on=prof.ask_on,
         onboarded=prof.onboarded,
         push_on=prof.push_on,
+        imported_at=prof.imported_at,
     )
 
 

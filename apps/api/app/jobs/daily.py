@@ -51,7 +51,7 @@ async def tree_reminders(db: AsyncSession, job: Job) -> dict:
         if overdue > TR.CFG["at_risk_overdue_days"]:
             code, key = "notif.tree.at_risk", f"tree:{t.id}:risk:{due}"
         else:
-            code, key = "notif.tree.due", f"tree:{t.id}:due:{due}"
+            code, key = "notif.tree.due_on", f"tree:{t.id}:due:{due}"
         await notify(
             db,
             t.user_id,

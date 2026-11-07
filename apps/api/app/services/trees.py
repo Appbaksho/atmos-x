@@ -119,6 +119,7 @@ async def tree_out(db: AsyncSession, t: Tree, viewer: User | None, *, with_check
     latest_photo = next((c.photo_id for c in checks if c.photo_id), None) or t.photo_id
     out = {
         "id": str(t.id),
+        "mine": viewer is not None and viewer.id == t.user_id,
         "species_id": t.species_id,
         "nickname": t.nickname,
         "planted_at": t.planted_at.isoformat(),

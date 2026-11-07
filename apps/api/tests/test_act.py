@@ -376,5 +376,5 @@ async def test_daily_reminders_are_sent_once_per_due_date(client, db, seeded):
     second = await daily.tree_reminders(db, None)
     assert first["notified"] == 2 and second["notified"] == 2  # due + 90-day nudge, attempted twice
     kinds = (await db.execute(select(Notification.title).where(Notification.kind == "tree_due"))).scalars().all()
-    assert sorted(k["code"] for k in kinds) == ["notif.tree.d90_due", "notif.tree.due"]  # deduplicated
+    assert sorted(k["code"] for k in kinds) == ["notif.tree.d90_due", "notif.tree.due_on"]  # deduplicated
     assert (await daily.points_unlock(db, None))["unlocked"] == 0
