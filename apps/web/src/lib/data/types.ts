@@ -122,7 +122,8 @@ export type Warning = {
 };
 
 export type Conditions = {
-  place: string;
+  /** Cached place name; null until the worker has named a new place (the app shows its own then) */
+  place: string | null;
   /** ISO time of the reading (local time at the place) */
   time: string;
   air_c: number;

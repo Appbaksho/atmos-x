@@ -14,6 +14,7 @@ import { cellsToSvg } from '@/components/map/geo';
 import { useTServer } from '@/i18n/server-text';
 import { daysUntilDue, needsPhoto, usePlan, useTeam } from '@/lib/data/hooks';
 import type { Air, Conditions, Goal, HexCell, Tree, ZoneSummary } from '@/lib/data/types';
+import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { href } from '@/lib/routes';
 
@@ -27,6 +28,7 @@ const mx = { marginHorizontal: 16 };
 
 export function ForecastCard({ cond }: { cond: Conditions }) {
   const { c, f } = useCz();
+  const { placeName } = useLocation();
   const t = useTranslations('home');
   const tc = useTranslations('common');
   const ts = useTServer();
@@ -40,7 +42,7 @@ export function ForecastCard({ cond }: { cond: Conditions }) {
           {t('forecast')}
         </Txt>
         <Txt size={11} dim>
-          {cond.place}
+          {cond.place ?? placeName ?? ''}
         </Txt>
       </View>
       <View role="list" style={{ flexDirection: 'row', gap: 6 }}>

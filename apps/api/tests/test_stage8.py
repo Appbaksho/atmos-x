@@ -173,3 +173,22 @@ async def test_org_admin_exports_team_numbers_as_csv(client):
     await client.post("/api/v1/auth/logout")
     await signup(client, "someone@example.org", "Someone")
     assert (await client.get(f"/api/v1/orgs/{org['id']}/export.csv")).status_code == 403
+
+
+@respx.mock
+async def test_conditions_never_calls_the_geocoder(client, db):
+    """E3: /conditions makes at most the forecast call; the place name comes from the cache, and a
+    missing one is queued for the worker instead of being fetched in the request."""
+    from sqlalchemy import select
+
+    from app.models import Job
+    from tests.test_farm import om_forecast
+
+    respx.get(url__startswith="https://api.open-meteo.com/").mock(return_value=httpx.Response(200, json=om_forecast()))
+    nominatim = respx.get(url__startswith="https://nominatim.openstreetmap.org/").mock(return_value=httpx.Response(500))
+    r = await client.get("/api/v1/conditions", params={"lat": 23.7811, "lng": 90.3412, "lang": "en"})
+    assert r.status_code == 200, r.text
+    assert r.json()["place"] is None and r.json()["air_c"] == 33.0
+    assert not nominatim.called
+    jobs = (await db.execute(select(Job.kind).where(Job.kind == "place_label"))).scalars().all()
+    assert jobs == ["place_label"]
