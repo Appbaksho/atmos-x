@@ -17,20 +17,8 @@ import {
   type LiveRow,
   type SeedTeam,
 } from '../seed';
-import type {
-  ActionLog,
-  Invite,
-  Leaderboard,
-  LeaderboardScope,
-  LeaderboardSubject,
-  Member,
-  Org,
-  Period,
-  RisingTeam,
-  Team,
-  TeamActivity,
-  TreeCheck,
-} from '../types';
+import type { Invite, Leaderboard, LeaderboardScope, LeaderboardSubject, Member, Org, Period, RisingTeam, Team, TeamActivity } from '../types';
+import type { ActionLog, TreeCheck } from './v0-types';
 import { listActions } from './actions';
 import type { DataContext } from './context';
 import { buildDemoData } from './demo';

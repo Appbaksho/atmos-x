@@ -88,6 +88,8 @@ class ProfileOut(BaseModel):
     ask_on: bool
     onboarded: bool
     push_on: bool = False
+    # A9: set once this account has imported a V0 device's data.
+    imported_at: datetime | None = None
 
 
 class ProfilePatch(BaseModel):

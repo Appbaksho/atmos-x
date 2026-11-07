@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { ActionLog } from '../types';
+import type { ActionLog } from './v0-types';
 import { ACTION_TYPES, badgesFor, computeStats, levelFor, scoreAction, sumVerified } from './points';
 
 const DAY = 864e5;

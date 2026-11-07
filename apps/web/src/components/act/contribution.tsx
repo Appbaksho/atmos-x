@@ -1,6 +1,6 @@
 'use client';
 
-/** S15 · Contribution (useAction): photo, status, checks, cooling contributed, points, rank, share. */
+/** S15 · Contribution (useAction): photo, status, deterministic checks, review, cooling, points, rank, share. */
 import { useTranslations } from 'next-intl';
 
 import {
@@ -25,11 +25,11 @@ import {
   toast,
   useCz,
 } from '@/components/cz';
-import { zoneArea } from '@/components/plan/use-goal-plan';
-import { ACTION_BY_ID, PHOTO_EVERY_DAYS, TREE_CHECK_POINTS, isGuestRestricted, useAction, useConfirmAction, useGoals, useMyStats, usePhotoUrl, useTeam, useZone } from '@/lib/data/hooks';
+import { ACTION_BY_ID, PHOTO_EVERY_DAYS, TREE_CHECK_POINTS, isGuestRestricted, useAction, useGoals, useMyStats, usePhotoUrl, useReviewAction, useSession, useTeam } from '@/lib/data/hooks';
 import type { ActionLog } from '@/lib/data/types';
 
 import { ACTION_ICON, qtyText } from './action-meta';
+import { ChecksList } from './checks';
 import { useReasonText } from './reason';
 
 export function ContributionScreen({ id }: { id: string }) {
@@ -66,28 +66,18 @@ function Body({ log }: { log: ActionLog }) {
   const photo = usePhotoUrl(log.photo_url);
   const goals = useGoals();
   const goal = goals.data?.find((g) => g.id === log.goal_id) ?? null;
-  const zone = useZone(goal && !goal.zone_id.startsWith('demo:') ? goal.zone_id : null);
   const team = useTeam(log.team_id);
   const stats = useMyStats();
-  const confirm = useConfirmAction();
+  const session = useSession();
+  const review = useReviewAction();
 
   const ok = log.status === 'verified';
-  const v = log.verification;
+  const mine = session.user.id === log.user_id;
   const title = ta(`type.${log.action_type}`);
   const qty = qtyText(tu, ACTION_BY_ID[log.action_type].unit_code, log.quantity, f.loc);
   const zoneName = log.zone_label ?? goal?.zone_name ?? null;
-  const coolC = log.cooling_c > 0 ? log.cooling_c / zoneArea(zone.data?.h3) : 0;
-  const hasGps = log.lat != null && log.lng != null;
-  const ageH = log.taken_at ? (Date.parse(log.created_at) - Date.parse(log.taken_at)) / 36e5 : null;
-  const timeOk = ageH != null && ageH <= 24 && ageH > -0.2;
-  const aiOk = !!v && v.confidence >= 0.6 && !['ai_mismatch', 'different_action', 'not_a_photo', 'ai_low_confidence'].includes(v.reason_code);
-  const gpsOk = hasGps && v?.reason_code !== 'gps_far' && v?.reason_code !== 'gps_missing';
-
-  const checks: [string, string, string, boolean][] = [
-    [v?.seen || t('aiSeen'), t('aiCheck'), v && v.confidence > 0 ? f.pct(v.confidence * 100, 0) : '—', aiOk],
-    [hasGps ? t('gps') : t('gpsMissing'), t('gpsRule'), gpsOk ? t('pass') : t('check'), gpsOk],
-    [t('time'), t('timeRule'), timeOk ? t('pass') : t('check'), timeOk],
-  ];
+  // The server already scales cooling to the goal zone's area.
+  const coolC = log.cooling_c > 0 ? log.cooling_c : 0;
 
   const share = async () => {
     const url = typeof window !== 'undefined' ? window.location.href : '';
@@ -128,9 +118,9 @@ function Body({ log }: { log: ActionLog }) {
           </View>
         )}
         <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
-          <View style={{ alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: 5, height: 26, paddingHorizontal: 10, borderRadius: R.pill, backgroundColor: ok ? B.lime : B.orange }}>
-            <Icon d={ok ? I.check : I.clock} size={12} color={B.limeInk} sw={3} />
-            <Txt size={11.5} w={700} color={B.limeInk}>
+          <View style={{ alignSelf: 'flex-start', flexDirection: 'row', alignItems: 'center', gap: 5, height: 26, paddingHorizontal: 10, borderRadius: R.pill, backgroundColor: ok ? B.lime : log.status === 'rejected' ? B.deepRed : B.orange }}>
+            <Icon d={ok ? I.check : log.status === 'rejected' ? I.close : I.clock} size={12} color={log.status === 'rejected' ? B.white : B.limeInk} sw={3} />
+            <Txt size={11.5} w={700} color={log.status === 'rejected' ? B.white : B.limeInk}>
               {t(log.status)}
             </Txt>
           </View>
@@ -138,7 +128,7 @@ function Body({ log }: { log: ActionLog }) {
             {t('pts', { points: f.num(log.points) })}
           </Txt>
           <Txt size={12} color="rgba(255,255,255,0.8)">
-            {ok ? (team.data ? t('creditedTo', { who: team.data.name }) : t('creditedMe')) : t('provisionalNote')}
+            {ok ? (team.data ? t('creditedTo', { who: team.data.name }) : t('creditedMe')) : log.status === 'rejected' ? t('rejectedNote') : t('provisionalNote')}
           </Txt>
         </View>
       </Card>
@@ -147,42 +137,41 @@ function Body({ log }: { log: ActionLog }) {
         <Txt label style={{ paddingTop: 10, paddingBottom: 2 }}>
           {t('checks')}
         </Txt>
-        {checks.map(([label, kind, val, pass], i) => (
-          <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 11, borderBottomWidth: 1, borderBottomColor: c.line }}>
-            <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: pass ? c.limeSoft : 'rgba(242,154,56,0.2)', alignItems: 'center', justifyContent: 'center' }}>
-              <Icon d={pass ? I.check : I.warn} size={13} sw={2.6} />
-            </View>
-            <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
-              <Txt size={13.5} w={500}>
-                {label}
-              </Txt>
-              <Txt size={11} dim>
-                {kind}
-              </Txt>
-            </View>
-            <Txt size={12.5} w={600} num lines={1}>
-              {val}
-            </Txt>
-          </View>
-        ))}
+        <ChecksList checks={log.checks} />
         <View style={{ flexDirection: 'row', gap: 8, paddingVertical: 12, alignItems: 'flex-start' }}>
           <Icon d={ok ? I.check : I.info} size={15} sw={2.2} color={ok ? c.leaf : B.orangeInk} />
           <Txt size={12.5} style={{ flex: 1 }}>
-            {reason(v?.reason_code ?? (ok ? 'ok' : 'unavailable'))}
+            {reason(log.reason_code ?? (ok ? 'ok' : 'unavailable'))}
           </Txt>
         </View>
       </Card>
 
-      {!ok && log.status === 'pending' ? (
+      {log.status === 'pending' && log.can_review ? (
         <Card tone="limeSoft" gap={8}>
           <Txt size={14} w={600}>
-            {t('confirm')}
+            {t('reviewTitle')}
           </Txt>
           <Txt size={12} dim>
-            {t('confirmSub')}
+            {t('reviewSub')}
           </Txt>
-          {confirm.isError && !isGuestRestricted(confirm.error) ? <ErrorState compact error={confirm.error} /> : null}
-          <CzButton label={t('confirm')} icon="check" size="md" variant="navy" busy={confirm.isPending} onPress={() => confirm.mutate(log.id)} />
+          {review.isError && !isGuestRestricted(review.error) ? <ErrorState compact error={review.error} /> : null}
+          <View style={{ flexDirection: 'row', gap: 8 }}>
+            <View style={{ flex: 1 }}>
+              <CzButton label={t('approve')} icon="check" size="md" variant="navy" busy={review.isPending && review.variables?.approve === true} onPress={() => review.mutate({ id: log.id, approve: true })} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <GhostButton label={t('reject')} onPress={() => review.mutate({ id: log.id, approve: false })} />
+            </View>
+          </View>
+        </Card>
+      ) : log.status === 'pending' && mine ? (
+        <Card tone="limeSoft" gap={6}>
+          <Txt size={14} w={600}>
+            {t('waitTitle')}
+          </Txt>
+          <Txt size={12} dim>
+            {t('waitSub')}
+          </Txt>
         </Card>
       ) : null}
 
@@ -202,17 +191,17 @@ function Body({ log }: { log: ActionLog }) {
         )}
       </Card>
 
-      {stats.data?.rank_area ? (
-        <Tap href={href('S16')} label={t('rank', { rank: f.loc(stats.data.rank_area) })} style={{ backgroundColor: c.card, borderRadius: R.xl, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+      {mine && stats.data?.rank_area ? (
+        <Tap href={href('S16')} label={t('rank', { rank: f.loc(stats.data.rank_area.rank) })} style={{ backgroundColor: c.card, borderRadius: R.xl, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
           <Txt size={30} w={600} num style={{ lineHeight: '34px' }}>
-            {'#' + f.loc(stats.data.rank_area)}
+            {'#' + f.loc(stats.data.rank_area.rank)}
           </Txt>
           <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
             <Txt size={13.5} w={600}>
-              {t('rank', { rank: f.loc(stats.data.rank_area) })}
+              {t('rank', { rank: f.loc(stats.data.rank_area.rank) })}
             </Txt>
             <Txt size={12} dim>
-              {t('rankSub', { points: f.num(stats.data.points), level: tp.has(stats.data.level.name_code) ? tp(stats.data.level.name_code) : stats.data.level.name_code.replace(/^level\./, '').replace(/_/g, ' ') })}
+              {t('rankSub', { points: f.num(stats.data.points.earned), level: tp.has(stats.data.level.name_code) ? tp(stats.data.level.name_code) : stats.data.level.name_code.replace(/^level\./, '').replace(/_/g, ' ') })}
             </Txt>
           </View>
           <Icon d={f.fwdPath} size={16} sw={2} />

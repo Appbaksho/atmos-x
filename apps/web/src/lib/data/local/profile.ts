@@ -1,7 +1,8 @@
 /** Profile (contract `Profile`) = device prefs (prefs-store) + per-namespace profile fields. */
 import { setPrefs, type Prefs } from '@/lib/prefs-store';
 
-import type { MyStats, Profile } from '../types';
+import type { Profile } from '../types';
+import type { MyStats } from './v0-types';
 import { listActions } from './actions';
 import { leaderboard, myMemberships } from './community';
 import type { DataContext } from './context';

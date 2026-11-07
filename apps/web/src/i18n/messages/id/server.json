@@ -229,16 +229,23 @@
   },
   "verify": {
     "ok": "Terverifikasi: foto cocok dengan aksinya.",
-    "ai_unavailable": "Kami belum bisa memeriksa foto sekarang. Rekan tim bisa mengonfirmasinya.",
-    "not_a_photo": "Ini sepertinya bukan foto kamera. Rekan tim bisa mengonfirmasinya.",
-    "different_action": "Foto ini tampaknya menunjukkan aksi yang berbeda. Rekan tim bisa mengonfirmasinya.",
-    "ai_mismatch": "Kami tidak bisa melihat aksinya di foto. Rekan tim bisa mengonfirmasinya.",
-    "ai_low_confidence": "Foto kurang jelas untuk dipastikan. Rekan tim bisa mengonfirmasinya.",
     "gps_missing": "Tidak ada lokasi pada foto. Rekan tim bisa mengonfirmasinya.",
-    "gps_far": "Foto diambil lebih dari 300 m dari zona. Rekan tim bisa mengonfirmasinya.",
+    "gps_far": "Foto diambil {dist_m} dari zona (lebih dari 300 m). Rekan tim bisa mengonfirmasi.",
     "time_unknown": "Kami tidak bisa membaca kapan foto diambil. Rekan tim bisa mengonfirmasinya.",
     "time_future": "Waktu foto ada di masa depan. Rekan tim bisa mengonfirmasinya.",
-    "too_old": "Foto ini berusia lebih dari 24 jam. Rekan tim bisa mengonfirmasinya."
+    "too_old": "Foto ini berusia lebih dari 24 jam. Rekan tim bisa mengonfirmasinya.",
+    "gps_inaccurate": "Lokasi kurang akurat (lebih dari 100 m). Rekan tim bisa mengonfirmasi.",
+    "on_water": "Lokasinya di atas air. Rekan tim bisa mengonfirmasi.",
+    "inside_building": "Lokasinya di dalam gedung. Rekan tim bisa mengonfirmasi.",
+    "too_fast": "Tempat ini terlalu jauh dari catatan terakhir Anda untuk selang waktunya. Rekan tim bisa mengonfirmasi.",
+    "exif_mismatch": "Kami tidak bisa memastikan kapan dan di mana foto ini diambil. Gunakan kamera aplikasi, atau rekan tim bisa mengonfirmasi.",
+    "duplicate_photo": "Foto ini sudah pernah dipakai. Ambil foto baru.",
+    "not_green": "Tanaman di foto kurang terlihat. Rekan tim bisa mengonfirmasi.",
+    "not_roof": "Atap terang tidak terlihat di foto. Rekan tim bisa mengonfirmasi.",
+    "no_photo": "Tidak ada foto. Rekan tim bisa mengonfirmasi.",
+    "imported": "Diimpor dari perangkat Anda. Rekan tim atau moderator mengonfirmasi.",
+    "reviewed": "Dikonfirmasi oleh peninjau.",
+    "review_rejected": "Peninjau tidak mengonfirmasinya."
   },
   "action": {
     "open_zone": "Buka zona",
@@ -325,5 +332,17 @@
   },
   "task": {
     "custom": "{text}"
+  },
+  "tree": {
+    "tip": {
+      "replant": "Pohon ini tidak bertahan. Tanam ulang di tempat yang sama dengan spesies tangguh dan pelindung.",
+      "stressed": "Daun tampak stres: siram dalam di pangkal pada pagi hari dan periksa lagi 3 hari lagi.",
+      "water_dry": "Hanya {rain_mm} mm hujan minggu lalu: siram 10–15 liter setiap 2–3 hari.",
+      "drainage": "{rain_mm} mm hujan minggu ini: pastikan air mengalir menjauh dari pangkal.",
+      "guard": "Pasang pelindung pada tahun pertama agar kambing dan orang tidak merusaknya.",
+      "thirsty": "Spesies ini butuh banyak air saat masih muda.",
+      "monsoon": "Musim hujan: tidak perlu menyiram, tapi bersihkan gulma di sekitar pangkal.",
+      "keep_going": "Terlihat baik. Terus check-in setiap 15 hari."
+    }
   }
 }

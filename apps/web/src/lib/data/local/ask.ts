@@ -1,5 +1,6 @@
 /** Ask Atmos client-side pieces: daily usage counter and the compact client_state (§5.2). */
-import type { AskClientState, Goal, Tree, Unit } from '../types';
+import type { AskClientState, Goal, Unit } from '../types';
+import type { Tree } from './v0-types';
 import type { DataContext } from './context';
 import { consumeAsk, remainingAsks, type AskUsage, type ProfileKind } from './guest';
 import { dayKey } from './ids';

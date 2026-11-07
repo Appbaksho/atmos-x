@@ -14,8 +14,6 @@
   "points": "积分",
   "toNext": "距 {n} 级还差 {pts} 分",
   "maxLevel": "已达最高等级",
-  "provisional": "+{pts} 待验证",
-  "provisionalA11y": "来自等待检查的行动的 {pts} 个临时积分",
   "statRank": "地区排名",
   "statTrees": "存活树木",
   "statActions": "行动",
@@ -74,7 +72,27 @@
     "whereNote": "已保存在你当前聚焦的位置：{place}。精确地点不会向他人显示。",
     "save": "保存树木",
     "saved": "已添加 {name}",
-    "regNote": "保存后会得到一个像 ATX-26-0006 的编号"
+    "regNote": "保存后会得到一个像 ATX-26-0006 的编号",
+    "state": {
+      "verifying": "验证中",
+      "lost": "已失去",
+      "at_risk": "有风险",
+      "needs_water": "需要浇水"
+    },
+    "plantCta": "记录种植",
+    "viewL": "视图",
+    "grid": "网格",
+    "map": "地图",
+    "helping": "我帮忙浇水的树",
+    "stripPlanted": "已种植",
+    "stripAlive": "存活",
+    "stripPoints": "积分",
+    "stripPending": "+{n} 待解锁",
+    "stripCooling": "新增降温",
+    "tileMeta": "{species} · {age} 天",
+    "mapLabel": "你的 {n} 棵树的地图",
+    "mapMissing": "{n} 棵树没有位置",
+    "seeAll": "查看全部 {n} 棵树"
   },
   "sp": {
     "neem": "印楝",
@@ -95,9 +113,7 @@
     "photoA11y": "{name} 的照片",
     "age": "树龄",
     "days": "{count, plural, one {{n} 天} other {{n} 天}}",
-    "photos": "照片",
     "next": "下次检查",
-    "health": "健康状况",
     "nextT": "需拍照 · {status}",
     "nextOk": "下次拍照 · {status}",
     "what": "拍这 3 张照片",
@@ -108,12 +124,8 @@
     "s3": "根部土壤",
     "s3s": "能看出浇水和覆盖物",
     "take": "按引导拍照",
-    "pick": "选择照片",
-    "busy": "AI 正在检查叶片、颜色和受压情况……",
-    "busySub": "正在与 {name} 的上一张照片比对",
-    "aiT": "AI 健康检查",
-    "conf": "置信度 {n}%",
-    "seen": "AI 看到的内容",
+    "busy": "正在保存打卡…",
+    "busySub": "正在检查照片、地点和时间",
     "tip": "给 {name} 的建议",
     "verdict": {
       "healthy": "健康",
@@ -122,30 +134,65 @@
     },
     "verdictSub": {
       "healthy": "叶片看起来不错。干旱时继续浇水。",
-      "stressed": "有一些受压迹象。按下面的建议处理，3 天后再检查。",
-      "dead": "如果你觉得 AI 判断错了，请在白天再拍一张照片。"
+      "stressed": "有些缺水迹象。按提示照顾，3 天后复查。",
+      "dead": "很遗憾。你可以在原地补种。"
     },
-    "noAi": "照片已保存。AI 检查现在不可用，所以健康状况保持不变。",
-    "pts": "+{pts} 分 · 照片检查已完成",
+    "pts": "+{pts} 积分 · 打卡完成",
     "nextOn": "{date} 再拍下一张，保持同一位置、同一角度。",
     "again": "再拍一张",
-    "hist": "照片记录",
+    "hist": "时间线",
     "hPlant": "已种下并登记",
-    "hCheck": "照片检查",
-    "hCheckAi": "照片检查 · {verdict}",
-    "notFound": "此设备上没有这棵树。",
-    "guest": "创建免费账号，才能添加照片检查。",
+    "notFound": "这棵树不在你的账户中。",
     "feature": "添加树木照片检查",
     "remove": "删除树",
     "removeTitle": "删除 {name}？",
-    "removeBody": "它的照片和检查会保留在你的记录中。",
+    "removeBody": "其积分也会被移除。此操作无法撤销。",
     "removed": "已删除 {name}",
-    "aiChip": "AI 估计",
-    "healthShort": {
-      "healthy": "健康",
-      "stressed": "受压",
-      "dead": "死亡"
-    }
+    "allTrees": "我的所有树",
+    "height": "高度",
+    "cm": "{n} 厘米",
+    "checkins": "打卡",
+    "planted": "种于 {date}",
+    "verifyingNote": "等待种植确认。打卡仍会记录时间线；验证后开始计分。",
+    "lostTitle": "{name} 没能存活",
+    "lostSub": "这很正常。在原地补种；护栏和第一次浇透水最有帮助。",
+    "replant": "补种",
+    "stillThere": "{name} 还在吗？",
+    "stillThereSub": "超过 45 天未打卡。如果还活着请加照片，否则标记为已失去。",
+    "markLost": "标记为已失去",
+    "waterNote": "7 天仅 {mm} 毫米降雨且无降雨预报：今天浇水。",
+    "waterNoteStressed": "上次打卡显示缺水：浇水并在 3 天后复查。",
+    "captured": "你的照片",
+    "howIsIt": "它长得怎么样？",
+    "healthHint": {
+      "healthy": "叶子翠绿，挺立",
+      "stressed": "枯萎，叶子发黄或发褐",
+      "dead": "没有绿色，茎已干枯"
+    },
+    "heightL": "高度（厘米，可选）",
+    "heightPh": "例如 85",
+    "heightBad": "请输入以厘米为单位的高度",
+    "noteL": "备注（可选）",
+    "failed": "打卡未保存",
+    "submit": "保存打卡",
+    "cancel": "取消",
+    "saved": "打卡已保存",
+    "milestone": {
+      "d90": "{name} 已满 90 天：待解锁积分现已可用",
+      "y1": "{name} 满一年：+200 积分"
+    },
+    "ptsNone": "本次无积分",
+    "ptsLate": "不在时间窗内：按时打卡可得 +{pts}",
+    "tipsT": "照顾 {name}",
+    "rainImerg": "过去 7 天降雨：{mm} 毫米（NASA IMERG）",
+    "rainPower": "过去 7 天降雨：{mm} 毫米（NASA POWER 模型）",
+    "offSchedule": "不在时间窗内",
+    "inviteText": "在 Atmos X 上帮我给 {name} 浇水",
+    "inviteCopied": "邀请链接已复制",
+    "inviteFailed": "无法创建邀请",
+    "inviteT": "邀请朋友帮忙浇水",
+    "inviteSub": "对方可以查看 {name} 并打卡。积分仍归你。",
+    "invite": "分享邀请链接"
   },
   "notif": {
     "title": "通知",
@@ -194,20 +241,25 @@
       "climate_guardian": "气候守护者"
     },
     "badge": {
-      "first": "首次行动",
-      "trees10": "10 棵树",
       "trees100": "100 棵树",
-      "clan": "加入了团队",
       "p1000": "1,000 分",
-      "streak": "25 次行动"
+      "streak": "连续打卡",
+      "first_seed": "第一颗种子",
+      "grove": "小树林",
+      "survivor_3m": "存活 3 个月",
+      "guardian_1y": "一年守护者",
+      "monsoon": "雨季种植者",
+      "roof_cooler": "屋顶降温者",
+      "team_player": "团队伙伴"
     },
     "notif": {
       "verification": {
         "verified": "+{points} 分 · {action} × {qty} 已验证",
-        "verified_body": "AI 看到了：{seen}",
         "pending": "{action} × {qty} 待审核 · +{points} 预估",
         "pending_body": "{reason}",
-        "pending_body_none": "队友可以确认。"
+        "pending_body_none": "队友可以确认。",
+        "reviewed_ok": "{action} 已确认 · +{points} 积分",
+        "reviewed_no": "{action} 未被确认"
       },
       "goal": {
         "milestone": "{zone}：已达到你降温目标的 {pct}%"
@@ -215,14 +267,22 @@
       "tree": {
         "due": "{count, plural, =0 {{name}：今天该上传照片} one {{name}：照片还有 {days} 天到期} other {{name}：照片还有 {days} 天到期}}",
         "overdue": "{count, plural, one {{name}：照片逾期 {days} 天} other {{name}：照片逾期 {days} 天}}",
-        "rule": "每棵树每 {every} 天需要一张照片。"
+        "rule": "每棵树每 {every} 天需要一张照片。",
+        "due_on": "{name}：{date} 需打卡",
+        "at_risk": "{name} 有风险：自 {date} 起未打卡",
+        "d90_due": "{name} 快满 90 天：下次打卡将解锁积分",
+        "d90": "{name} 已满 90 天！积分现已可用",
+        "y1": "{name} 满一年：+200 积分",
+        "lost": "{name} 已标记为死亡。有空请补种",
+        "helper_joined": "{who} 将帮忙给 {name} 浇水"
       },
       "heat": {
         "warning": "{place} 高温预警 · 体感 {feels}"
       },
       "team": {
         "joined": "你已加入 {team}"
-      }
+      },
+      "badge": "新徽章：{badge}"
     },
     "reason": {
       "unavailable": "AI 检查不可用。队友可以确认。",
@@ -333,5 +393,20 @@
       "photos": "照片：Unsplash（Zac Gudakov，Mahmud Ahsan，OWN FILTERS，Sehajpal Singh，Erwan Hesry，Kabiur Rahman Riyad）",
       "fonts": "字体：Lemon/Milk，Poppins，Noto Sans Bengali，Noto Nastaliq Urdu"
     }
+  },
+  "spendable": "{pts} 可用",
+  "pending": "+{pts} 待解锁",
+  "pendingUntil": "+{pts} 待解锁 · 首次解锁 {date}",
+  "pendingA11y": "{pts} 积分待树木 90 天打卡后解锁",
+  "join": {
+    "title": "帮忙给树浇水",
+    "bad": "此邀请链接无效",
+    "badSub": "可能已过期。请朋友发送新链接。",
+    "mine": "我的树",
+    "guestTitle": "创建账户来帮忙",
+    "guestSub": "免费账户即可为朋友的树打卡。",
+    "guestCta": "创建免费账户",
+    "feature": "帮朋友的树浇水",
+    "joining": "正在加入…"
   }
 }

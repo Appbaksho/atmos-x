@@ -16,6 +16,7 @@ export const I = {
   check: 'M5 12l5 5 9-10',
   checkSm: 'M5 12.5l4.5 4.5L19 7.5',
   plus: 'M12 5v14M5 12h14',
+  minus: 'M5 12h14',
   chevDown: 'M6 9l6 6 6-6',
   up: 'M12 19V5M6 11l6-6 6 6',
   trend: 'M4 16l5-5 4 4 7-7M15 8h5v5',

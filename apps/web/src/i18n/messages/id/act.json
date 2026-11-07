@@ -87,23 +87,22 @@
     "submitNoPhoto": "Kirim tanpa foto",
     "noPhotoNote": "Tanpa foto, aksi ini menunggu rekan tim untuk mengonfirmasinya.",
     "feature": "catat aksi",
-    "verifying": "Memverifikasi dengan AI…",
-    "verifyingSub": "Memeriksa apa yang terlihat di foto, serta kapan dan di mana foto diambil.",
+    "verifying": "Memeriksa foto Anda…",
+    "verifyingSub": "Memeriksa di mana dan kapan diambil, dan bahwa fotonya baru.",
     "verified": "Terverifikasi",
     "pending": "Menunggu konfirmasi",
-    "seen": "Yang dilihat AI",
-    "confidence": "Tingkat yakin {pct}",
     "earned": "poin diperoleh",
     "provisional": "poin sementara",
     "treesAdded": "{count, plural, one {{n} pohon ditambahkan ke Pohon saya} other {{n} pohon ditambahkan ke Pohon saya}}",
     "milestone": "Tonggak target tercapai: {pct}",
     "seeContribution": "Lihat kontribusi",
     "logAnother": "Catat lagi",
-    "failed": "Aksi tidak bisa disimpan. Coba lagi."
+    "failed": "Aksi tidak bisa disimpan. Coba lagi.",
+    "checks": "Pemeriksaan"
   },
   "reason": {
     "ok": "Terverifikasi: foto cocok dengan aksinya.",
-    "unavailable": "Pemeriksaan foto sedang tidak tersedia. Rekan tim bisa mengonfirmasinya.",
+    "unavailable": "Beberapa pemeriksaan tidak bisa dijalankan. Rekan tim atau moderator bisa mengonfirmasi.",
     "rate_limited": "Terlalu banyak pemeriksaan hari ini. Rekan tim bisa mengonfirmasinya.",
     "no_photo": "Tidak ada foto yang ditambahkan. Rekan tim bisa mengonfirmasinya.",
     "teammate_confirmed": "Dikonfirmasi oleh rekan tim."
@@ -116,17 +115,8 @@
     "pts": "+{points} poin",
     "creditedTo": "Diberikan ke {who}",
     "creditedMe": "Diberikan ke Anda",
-    "provisionalNote": "Poin dihitung setelah ada yang mengonfirmasi.",
+    "provisionalNote": "Poin dihitung setelah peninjau mengonfirmasi.",
     "checks": "Pemeriksaan",
-    "aiCheck": "Pemeriksaan gambar AI",
-    "aiSeen": "Foto menunjukkan aksinya",
-    "gps": "Lokasi disegel",
-    "gpsRule": "Aturan · GPS dalam jarak 300 m dari zona",
-    "gpsMissing": "Tidak ada lokasi",
-    "time": "Waktu disegel",
-    "timeRule": "Aturan · diambil dalam 24 jam terakhir",
-    "pass": "Lulus",
-    "check": "Periksa",
     "cooling": "Pendinginan berkontribusi",
     "coolingSub": "Dimodelkan untuk {zone} saat dewasa",
     "coolingNone": "Aksi ini tidak menambah pendinginan yang dimodelkan, tetapi menjaga rencana tetap berjalan.",
@@ -139,15 +129,20 @@
     "survival": "Foto kelangsungan hidup",
     "survivalNote": "Setiap cek mendapat poin. Jika satu terlewat, poin berhenti; tidak hilang.",
     "dayN": "Hari {n}",
-    "confirm": "Dikonfirmasi rekan tim",
-    "confirmSub": "Di v0 ini dikonfirmasi di perangkat ini.",
     "share": "Bagikan",
     "shareText": "Saya baru saja mencatat “{action}” dengan Atmos X: {points} poin untuk {zone} yang lebih sejuk.",
     "copied": "Tautan disalin",
     "backPlan": "Kembali ke rencana",
     "seeTeam": "Lihat tim",
     "notFound": "Tindakan ini tidak ada di perangkat ini.",
-    "photoAlt": "Foto Anda dari tindakan ini"
+    "photoAlt": "Foto Anda dari tindakan ini",
+    "rejectedNote": "Peninjau tidak mengonfirmasi ini. Tidak ada poin ditambahkan.",
+    "reviewTitle": "Bisakah Anda mengonfirmasi ini?",
+    "reviewSub": "Anda rekan tim atau moderator. Konfirmasi hanya yang Anda tahu terjadi.",
+    "approve": "Konfirmasi",
+    "reject": "Tidak dikonfirmasi",
+    "waitTitle": "Menunggu tinjauan",
+    "waitSub": "Rekan tim atau moderator yang mengonfirmasi. Anda tidak bisa mengonfirmasi aksi sendiri."
   },
   "budget": {
     "title": "Anggaran",
@@ -184,5 +179,50 @@
     "noneSub": "Coba daftar kurasi di Dhaka, atau cari “plant nursery” di aplikasi peta Anda.",
     "you": "Zona Anda",
     "mapLabel": "Peta pembibitan di dekat {place}"
+  },
+  "check": {
+    "pass": "Lolos",
+    "skip": "T/A",
+    "review": "Perlu ditinjau",
+    "gps_present": {
+      "title": "Lokasi bersama foto",
+      "rule": "GPS akurat hingga 100 m"
+    },
+    "gps_near": {
+      "title": "Dekat zona target",
+      "rule": "Dalam 300 m dari zona"
+    },
+    "location_plausible": {
+      "title": "Tempat yang masuk akal",
+      "rule": "Bukan di air atau di dalam gedung, tanpa lompatan mustahil"
+    },
+    "time_recent": {
+      "title": "Diambil baru-baru ini",
+      "rule": "Dalam 24 jam terakhir"
+    },
+    "capture_source": {
+      "title": "Diambil dengan kamera",
+      "rule": "Kamera aplikasi, atau waktu dan tempat foto cocok"
+    },
+    "not_duplicate": {
+      "title": "Foto baru",
+      "rule": "Bukan foto yang pernah dipakai"
+    },
+    "content_plausible": {
+      "title": "Foto sesuai aksi",
+      "rule": "Cek kasar: cukup hijau, atau atap terang"
+    },
+    "photo_present": {
+      "title": "Foto ditambahkan",
+      "rule": "Satu foto setiap check-in"
+    },
+    "gps_near_tree": {
+      "title": "Di dekat pohon",
+      "rule": "Dalam 100 m dari tempat penanaman"
+    },
+    "imported": {
+      "title": "Diimpor dari perangkat ini",
+      "rule": "Diperiksa oleh orang"
+    }
   }
 }

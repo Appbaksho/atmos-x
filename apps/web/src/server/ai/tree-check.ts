@@ -2,7 +2,7 @@ import 'server-only';
 
 import { z } from 'zod';
 
-import type { TreeCheckRequest, TreeCheckResult } from '@/lib/data/types';
+import type { TreeCheckRequest, TreeCheckResult } from '@/lib/data/local/v0-types';
 
 import { imageInput, models, structured } from '../openai';
 import { curatedDetail } from '../plan/species';

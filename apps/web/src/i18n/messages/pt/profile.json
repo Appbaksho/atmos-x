@@ -14,8 +14,6 @@
   "points": "Pontos",
   "toNext": "Faltam {pts} para o nível {n}",
   "maxLevel": "Nível máximo alcançado",
-  "provisional": "+{pts} pendentes de verificação",
-  "provisionalA11y": "{pts} pontos provisórios de ações aguardando verificação",
   "statRank": "Ranking da área",
   "statTrees": "Árvores vivas",
   "statActions": "Ações",
@@ -74,7 +72,27 @@
     "whereNote": "Salvo no seu foco atual: {place}. Os pontos exatos nunca são mostrados para outras pessoas.",
     "save": "Salvar árvore",
     "saved": "{name} adicionada",
-    "regNote": "Recebe um ID como ATX-26-0006 ao salvar"
+    "regNote": "Recebe um ID como ATX-26-0006 ao salvar",
+    "state": {
+      "verifying": "Verificando",
+      "lost": "Perdida",
+      "at_risk": "Em risco",
+      "needs_water": "Precisa de água"
+    },
+    "plantCta": "Registrar um plantio",
+    "viewL": "Visualização",
+    "grid": "Grade",
+    "map": "Mapa",
+    "helping": "Árvores que ajudo a regar",
+    "stripPlanted": "Plantadas",
+    "stripAlive": "Vivas",
+    "stripPoints": "Pontos",
+    "stripPending": "+{n} pendentes",
+    "stripCooling": "Resfriamento somado",
+    "tileMeta": "{species} · {count, plural, one {{age} dia} other {{age} dias}}",
+    "mapLabel": "Mapa das suas {n} árvores",
+    "mapMissing": "{n} árvores sem localização",
+    "seeAll": "Ver as {n} árvores"
   },
   "sp": {
     "neem": "Nim",
@@ -95,9 +113,7 @@
     "photoA11y": "Foto de {name}",
     "age": "Idade",
     "days": "{count, plural, one {{n} dia} other {{n} dias}}",
-    "photos": "Fotos",
     "next": "Próxima verificação",
-    "health": "Saúde",
     "nextT": "Foto necessária · {status}",
     "nextOk": "Próxima foto · {status}",
     "what": "Tire estas 3 fotos",
@@ -108,12 +124,8 @@
     "s3": "Solo na base",
     "s3s": "Mostra a rega e a cobertura do solo",
     "take": "Tirar foto guiada",
-    "pick": "Escolher uma foto",
-    "busy": "A IA está verificando folhas, cor e estresse…",
-    "busySub": "Comparando com a última foto de {name}",
-    "aiT": "Verificação de saúde por IA",
-    "conf": "{n}% de confiança",
-    "seen": "O que a IA viu",
+    "busy": "Salvando seu check-in…",
+    "busySub": "Verificando foto, local e hora",
     "tip": "O que {name} precisa",
     "verdict": {
       "healthy": "Saudável",
@@ -122,30 +134,65 @@
     },
     "verdictSub": {
       "healthy": "As folhas parecem boas. Continue regando na seca.",
-      "stressed": "Há sinais de estresse. Siga a dica abaixo e verifique de novo em 3 dias.",
-      "dead": "Se achar que a IA errou, envie outra foto com luz do dia."
+      "stressed": "Alguns sinais de estresse. Siga as dicas e verifique de novo em 3 dias.",
+      "dead": "Sentimos muito. Você pode replantar no mesmo lugar."
     },
-    "noAi": "Foto salva. A verificação da IA não está disponível agora, então a saúde continua como antes.",
-    "pts": "+{pts} pts · verificação da foto concluída",
+    "pts": "+{pts} pts · check-in feito",
     "nextOn": "Próxima foto em {date}, no mesmo lugar e no mesmo ângulo.",
     "again": "Adicionar outra foto",
-    "hist": "Histórico de fotos",
+    "hist": "Linha do tempo",
     "hPlant": "Plantada e registrada",
-    "hCheck": "Verificação da foto",
-    "hCheckAi": "Verificação da foto · {verdict}",
-    "notFound": "Esta árvore não está neste dispositivo.",
-    "guest": "Crie uma conta grátis para adicionar verificações de foto.",
+    "notFound": "Esta árvore não está na sua conta.",
     "feature": "adicionar uma verificação de foto da árvore",
     "remove": "Remover árvore",
     "removeTitle": "Remover {name}?",
-    "removeBody": "As fotos e verificações permanecem no seu histórico.",
+    "removeBody": "Os pontos também são removidos. Não dá para desfazer.",
     "removed": "{name} removida",
-    "aiChip": "Estimativa da IA",
-    "healthShort": {
-      "healthy": "Saudável",
-      "stressed": "Estressada",
-      "dead": "Morta"
-    }
+    "allTrees": "Todas as minhas árvores",
+    "height": "Altura",
+    "cm": "{n} cm",
+    "checkins": "Check-ins",
+    "planted": "plantada em {date}",
+    "verifyingNote": "Aguardando a confirmação do plantio. Os check-ins continuam a linha do tempo; os pontos começam após a verificação.",
+    "lostTitle": "{name} não sobreviveu",
+    "lostSub": "Acontece. Replante no mesmo lugar; um protetor e uma primeira rega profunda ajudam muito.",
+    "replant": "Replantar",
+    "stillThere": "{name} ainda está lá?",
+    "stillThereSub": "Sem check-in há mais de 45 dias. Adicione uma foto se estiver viva, ou marque como perdida.",
+    "markLost": "Marcar como perdida",
+    "waterNote": "Só {mm} mm de chuva em 7 dias e nada previsto: regue hoje.",
+    "waterNoteStressed": "Seu último check-in indicou estresse: regue e verifique de novo em 3 dias.",
+    "captured": "Sua foto",
+    "howIsIt": "Como ela está?",
+    "healthHint": {
+      "healthy": "Folhas verdes, de pé",
+      "stressed": "Murcha, folhas amarelas ou marrons",
+      "dead": "Sem verde, caule seco"
+    },
+    "heightL": "Altura em cm (opcional)",
+    "heightPh": "ex.: 85",
+    "heightBad": "Digite a altura em cm",
+    "noteL": "Nota (opcional)",
+    "failed": "Check-in não salvo",
+    "submit": "Salvar check-in",
+    "cancel": "Cancelar",
+    "saved": "Check-in salvo",
+    "milestone": {
+      "d90": "{name} passou dos 90 dias: os pontos pendentes já estão disponíveis",
+      "y1": "{name} fez um ano: +200 pontos"
+    },
+    "ptsNone": "Sem pontos desta vez",
+    "ptsLate": "Fora do prazo: check-ins em dia valem +{pts}",
+    "tipsT": "Cuidados com {name}",
+    "rainImerg": "Chuva nos últimos 7 dias: {mm} mm (NASA IMERG)",
+    "rainPower": "Chuva nos últimos 7 dias: {mm} mm (modelo NASA POWER)",
+    "offSchedule": "Fora do prazo",
+    "inviteText": "Me ajude a regar {name} no Atmos X",
+    "inviteCopied": "Link de convite copiado",
+    "inviteFailed": "Não foi possível criar o convite",
+    "inviteT": "Convide um amigo para regar",
+    "inviteSub": "A pessoa pode ver {name} e fazer check-ins. Os pontos ficam com você.",
+    "invite": "Compartilhar link"
   },
   "notif": {
     "title": "Notificações",
@@ -194,20 +241,25 @@
       "climate_guardian": "Guardião do clima"
     },
     "badge": {
-      "first": "Primeira ação",
-      "trees10": "10 árvores",
       "trees100": "100 árvores",
-      "clan": "Entrou em um grupo",
       "p1000": "1.000 pontos",
-      "streak": "25 ações"
+      "streak": "Sequência",
+      "first_seed": "Primeira semente",
+      "grove": "Bosque",
+      "survivor_3m": "Sobrevivente de 3 meses",
+      "guardian_1y": "Guardião de um ano",
+      "monsoon": "Plantador da monção",
+      "roof_cooler": "Resfriador de telhados",
+      "team_player": "Jogador de equipe"
     },
     "notif": {
       "verification": {
         "verified": "+{points} pts · {action} × {qty} verificado",
-        "verified_body": "A IA viu: {seen}",
         "pending": "{action} × {qty} está pendente · +{points} provisórios",
         "pending_body": "{reason}",
-        "pending_body_none": "Um colega de equipe pode confirmar."
+        "pending_body_none": "Um colega de equipe pode confirmar.",
+        "reviewed_ok": "{action} confirmado · +{points} pts",
+        "reviewed_no": "{action} não foi confirmado"
       },
       "goal": {
         "milestone": "{zone}: {pct}% da sua meta de resfriamento"
@@ -215,14 +267,22 @@
       "tree": {
         "due": "{count, plural, =0 {{name}: foto vence hoje} one {{name}: foto vence em {days} dia} other {{name}: foto vence em {days} dias}}",
         "overdue": "{count, plural, one {{name}: foto atrasada há {days} dia} other {{name}: foto atrasada há {days} dias}}",
-        "rule": "Cada árvore precisa de uma foto a cada {every} dias."
+        "rule": "Cada árvore precisa de uma foto a cada {every} dias.",
+        "due_on": "{name}: check-in em {date}",
+        "at_risk": "{name} está em risco: check-in atrasado desde {date}",
+        "d90_due": "{name} tem quase 90 dias: o próximo check-in desbloqueia os pontos",
+        "d90": "{name} passou dos 90 dias! Os pontos já estão disponíveis",
+        "y1": "{name} fez um ano: +200 pontos",
+        "lost": "{name} foi marcada como morta. Replante quando puder",
+        "helper_joined": "{who} vai ajudar a regar {name}"
       },
       "heat": {
         "warning": "Alerta de calor em {place} · sensação de {feels}"
       },
       "team": {
         "joined": "Você entrou em {team}"
-      }
+      },
+      "badge": "Nova medalha: {badge}"
     },
     "reason": {
       "unavailable": "A checagem da IA não estava disponível. Um colega de equipe pode confirmar.",
@@ -333,5 +393,20 @@
       "photos": "Fotos: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Fontes: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
     }
+  },
+  "spendable": "{pts} disponíveis",
+  "pending": "+{pts} pendentes",
+  "pendingUntil": "+{pts} pendentes · primeiro desbloqueio {date}",
+  "pendingA11y": "{pts} pontos pendentes até o check-in de 90 dias da árvore",
+  "join": {
+    "title": "Ajude a regar uma árvore",
+    "bad": "Este link de convite não funciona",
+    "badSub": "Pode ter expirado. Peça um link novo ao seu amigo.",
+    "mine": "Minhas árvores",
+    "guestTitle": "Crie uma conta para ajudar",
+    "guestSub": "Uma conta grátis permite fazer check-in na árvore do seu amigo.",
+    "guestCta": "Criar conta grátis",
+    "feature": "ajudar a regar a árvore de um amigo",
+    "joining": "Entrando…"
   }
 }

@@ -83,5 +83,14 @@
     "cta": "Fixer un objectif"
   },
   "goalFeature": "fixer un objectif de fraîcheur",
-  "treesFeature": "suivre vos arbres"
+  "treesFeature": "suivre vos arbres",
+  "import": {
+    "title": "Récupérez les données de cet appareil",
+    "sub": "{count, plural, one {{n} élément enregistré} other {{n} éléments enregistrés}} sur ce téléphone avant les comptes : objectifs, arbres, actions et photos.",
+    "cta": "Ajouter à mon compte",
+    "later": "Pas maintenant",
+    "failed": "L’import n’a pas abouti",
+    "done": "{trees} arbres, {actions} actions et {goals} objectifs ajoutés",
+    "note": "Les actions importées sont vérifiées par un coéquipier ou modérateur avant de rapporter des points."
+  }
 }

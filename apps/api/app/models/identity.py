@@ -30,6 +30,10 @@ class User(Base):
     created_at: Mapped[datetime] = now_col()
     last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # PT7: who invited this person (tree invite link); set once, before they plant.
+    invited_by_id: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("users.id", ondelete="SET NULL")
+    )
 
     __table_args__ = (CheckConstraint(f"role in {ROLES}", name="role"),)
 

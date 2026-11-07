@@ -83,5 +83,14 @@
     "cta": "Definir meta"
   },
   "goalFeature": "definir uma meta de resfriamento",
-  "treesFeature": "acompanhar suas árvores"
+  "treesFeature": "acompanhar suas árvores",
+  "import": {
+    "title": "Traga seus dados deste dispositivo",
+    "sub": "{count, plural, one {{n} item salvo} other {{n} itens salvos}} neste celular antes das contas: metas, árvores, ações e fotos.",
+    "cta": "Adicionar à minha conta",
+    "later": "Agora não",
+    "failed": "A importação não terminou",
+    "done": "Adicionadas {trees} árvores, {actions} ações e {goals} metas",
+    "note": "Ações importadas são revisadas por um colega ou moderador antes de valer pontos."
+  }
 }

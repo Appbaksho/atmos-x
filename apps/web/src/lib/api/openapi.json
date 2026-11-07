@@ -2271,10 +2271,778 @@
      }
     }
    }
+  },
+  "/api/v1/actions": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Log Action",
+    "operationId": "actions_log",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_actions_log"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Actions Log"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/actions/mine": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "My Actions",
+    "operationId": "actions_mine",
+    "parameters": [
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 200,
+       "minimum": 1,
+       "default": 50,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "status",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "pattern": "^(pending|verified|rejected)$"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Status"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Actions Mine"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/actions/review-queue": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Review Queue",
+    "description": "Pending actions this person may confirm: teammates' (shared team) or, for moderators, everyone's.",
+    "operationId": "actions_review_queue",
+    "parameters": [
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 100,
+       "minimum": 1,
+       "default": 30,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Actions Review Queue"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/actions/{action_id}": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Get Action",
+    "operationId": "actions_get",
+    "parameters": [
+     {
+      "name": "action_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Action Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Actions Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/actions/{action_id}/review": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Review Action",
+    "operationId": "actions_review",
+    "parameters": [
+     {
+      "name": "action_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Action Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReviewIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Actions Review"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees/mine": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "My Trees",
+    "operationId": "trees_mine",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Trees Mine"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees/helping": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Helping",
+    "operationId": "trees_helping",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Trees Helping"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Add Tree",
+    "description": "Track a tree by hand (no planting action, so no planting points; check-ins still build its timeline).",
+    "operationId": "trees_add",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_trees_add"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Trees Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees/{tree_id}": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Get Tree",
+    "operationId": "trees_get",
+    "parameters": [
+     {
+      "name": "tree_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Tree Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Trees Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Patch Tree",
+    "operationId": "trees_patch",
+    "parameters": [
+     {
+      "name": "tree_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Tree Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TreePatch"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Trees Patch"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Delete Tree",
+    "operationId": "trees_delete",
+    "parameters": [
+     {
+      "name": "tree_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Tree Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees/{tree_id}/checks": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Check In",
+    "operationId": "trees_check_in",
+    "parameters": [
+     {
+      "name": "tree_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Tree Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_trees_check_in"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Trees Check In"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees/{tree_id}/invite": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Invite",
+    "operationId": "trees_invite",
+    "parameters": [
+     {
+      "name": "tree_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Tree Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Trees Invite"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/trees/invites/accept": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Accept",
+    "operationId": "trees_invite_accept",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AcceptIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Trees Invite Accept"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/me/stats": {
+   "get": {
+    "tags": [
+     "act"
+    ],
+    "summary": "My Stats",
+    "operationId": "me_stats",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Me Stats"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/me/avatar": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Avatar",
+    "operationId": "me_avatar",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_me_avatar"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Me Avatar"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Avatar Delete",
+    "operationId": "me_avatar_delete",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    }
+   }
+  },
+  "/api/v1/me/import": {
+   "post": {
+    "tags": [
+     "act"
+    ],
+    "summary": "Device Import",
+    "description": "A9. `payload` is JSON ({goals, trees, actions, checks, fields}); photos are files named `photo:<key>`.",
+    "operationId": "me_import",
+    "requestBody": {
+     "content": {
+      "application/x-www-form-urlencoded": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_me_import"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Me Import"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
   "schemas": {
+   "AcceptIn": {
+    "properties": {
+     "token": {
+      "type": "string",
+      "maxLength": 2048,
+      "title": "Token"
+     }
+    },
+    "type": "object",
+    "required": [
+     "token"
+    ],
+    "title": "AcceptIn"
+   },
    "Acquired": {
     "properties": {
      "lst_from": {
@@ -2373,6 +3141,372 @@
      "ecostress_passes"
     ],
     "title": "Acquired"
+   },
+   "Body_actions_log": {
+    "properties": {
+     "action_type": {
+      "type": "string",
+      "maxLength": 24,
+      "title": "Action Type"
+     },
+     "quantity": {
+      "type": "number",
+      "maximum": 10000.0,
+      "exclusiveMinimum": 0.0,
+      "title": "Quantity"
+     },
+     "capture_source": {
+      "type": "string",
+      "pattern": "^(camera|upload)$",
+      "title": "Capture Source",
+      "default": "upload"
+     },
+     "lat": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 90.0,
+        "minimum": -90.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lat"
+     },
+     "lng": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 180.0,
+        "minimum": -180.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lng"
+     },
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     },
+     "taken_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Taken At"
+     },
+     "goal_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Goal Id"
+     },
+     "team_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Team Id"
+     },
+     "species_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Id"
+     },
+     "nickname": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 60
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Nickname"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     },
+     "client_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 64
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Client Id"
+     },
+     "device_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 64
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Device Id"
+     },
+     "photo": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "action_type",
+     "quantity"
+    ],
+    "title": "Body_actions_log"
+   },
+   "Body_me_avatar": {
+    "properties": {
+     "photo": {
+      "type": "string",
+      "contentMediaType": "application/octet-stream",
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "photo"
+    ],
+    "title": "Body_me_avatar"
+   },
+   "Body_me_import": {
+    "properties": {
+     "payload": {
+      "type": "string",
+      "maxLength": 2000000,
+      "title": "Payload"
+     },
+     "lang": {
+      "type": "string",
+      "maxLength": 5,
+      "title": "Lang",
+      "default": "en"
+     }
+    },
+    "type": "object",
+    "required": [
+     "payload"
+    ],
+    "title": "Body_me_import"
+   },
+   "Body_trees_add": {
+    "properties": {
+     "species_id": {
+      "type": "string",
+      "maxLength": 40,
+      "title": "Species Id"
+     },
+     "nickname": {
+      "type": "string",
+      "maxLength": 60,
+      "title": "Nickname",
+      "default": ""
+     },
+     "planted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Planted At"
+     },
+     "lat": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 90.0,
+        "minimum": -90.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lat"
+     },
+     "lng": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 180.0,
+        "minimum": -180.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lng"
+     },
+     "client_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 64
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Client Id"
+     },
+     "photo": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "species_id"
+    ],
+    "title": "Body_trees_add"
+   },
+   "Body_trees_check_in": {
+    "properties": {
+     "health": {
+      "type": "string",
+      "pattern": "^(healthy|stressed|dead)$",
+      "title": "Health"
+     },
+     "height_cm": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 10000.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Height Cm"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     },
+     "lat": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 90.0,
+        "minimum": -90.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lat"
+     },
+     "lng": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 180.0,
+        "minimum": -180.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lng"
+     },
+     "photo": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "health"
+    ],
+    "title": "Body_trees_check_in"
    },
    "Contribution": {
     "properties": {
@@ -3124,6 +4258,18 @@
       "type": "boolean",
       "title": "Push On",
       "default": false
+     },
+     "imported_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Imported At"
      }
     },
     "type": "object",
@@ -3426,6 +4572,31 @@
      "password"
     ],
     "title": "RegisterIn"
+   },
+   "ReviewIn": {
+    "properties": {
+     "approve": {
+      "type": "boolean",
+      "title": "Approve"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 280
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     }
+    },
+    "type": "object",
+    "required": [
+     "approve"
+    ],
+    "title": "ReviewIn"
    },
    "ScanInfo": {
     "properties": {
@@ -3923,6 +5094,47 @@
     },
     "type": "object",
     "title": "TaskPatch"
+   },
+   "TreePatch": {
+    "properties": {
+     "nickname": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 60
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Nickname"
+     },
+     "species_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Species Id"
+     },
+     "lost_confirmed": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lost Confirmed"
+     }
+    },
+    "type": "object",
+    "title": "TreePatch"
    },
    "UserOut": {
     "properties": {

@@ -14,8 +14,6 @@
   "points": "Poin",
   "toNext": "{pts} ke Level {n}",
   "maxLevel": "Level tertinggi tercapai",
-  "provisional": "+{pts} menunggu verifikasi",
-  "provisionalA11y": "{pts} poin sementara dari aksi yang menunggu pemeriksaan",
   "statRank": "Peringkat wilayah",
   "statTrees": "Pohon hidup",
   "statActions": "Aksi",
@@ -74,7 +72,27 @@
     "whereNote": "Disimpan pada fokus Anda saat ini: {place}. Titik persis tidak pernah ditampilkan ke orang lain.",
     "save": "Simpan pohon",
     "saved": "{name} ditambahkan",
-    "regNote": "Mendapat ID seperti ATX-26-0006 saat disimpan"
+    "regNote": "Mendapat ID seperti ATX-26-0006 saat disimpan",
+    "state": {
+      "verifying": "Diverifikasi",
+      "lost": "Hilang",
+      "at_risk": "Berisiko",
+      "needs_water": "Perlu air"
+    },
+    "plantCta": "Catat penanaman",
+    "viewL": "Tampilan",
+    "grid": "Kisi",
+    "map": "Peta",
+    "helping": "Pohon yang saya bantu siram",
+    "stripPlanted": "Ditanam",
+    "stripAlive": "Hidup",
+    "stripPoints": "Poin",
+    "stripPending": "+{n} tertunda",
+    "stripCooling": "Pendinginan ditambah",
+    "tileMeta": "{species} · {age} hari",
+    "mapLabel": "Peta {n} pohon Anda",
+    "mapMissing": "{n} pohon tanpa lokasi",
+    "seeAll": "Lihat semua {n} pohon"
   },
   "sp": {
     "neem": "Nimba",
@@ -95,9 +113,7 @@
     "photoA11y": "Foto {name}",
     "age": "Usia",
     "days": "{count, plural, one {{n} hari} other {{n} hari}}",
-    "photos": "Foto",
     "next": "Pemeriksaan berikutnya",
-    "health": "Kesehatan",
     "nextT": "Perlu foto · {status}",
     "nextOk": "Foto berikutnya · {status}",
     "what": "Ambil 3 foto ini",
@@ -108,12 +124,8 @@
     "s3": "Tanah di pangkal",
     "s3s": "Terlihat siraman dan mulsa",
     "take": "Ambil foto terpandu",
-    "pick": "Pilih foto",
-    "busy": "AI sedang memeriksa daun, warna, dan stres…",
-    "busySub": "Membandingkan dengan foto terakhir {name}",
-    "aiT": "Pemeriksaan kesehatan AI",
-    "conf": "{n}% yakin",
-    "seen": "Apa yang dilihat AI",
+    "busy": "Menyimpan check-in…",
+    "busySub": "Memeriksa foto, tempat, dan waktu",
     "tip": "Yang dibutuhkan {name}",
     "verdict": {
       "healthy": "Sehat",
@@ -122,30 +134,65 @@
     },
     "verdictSub": {
       "healthy": "Daunnya terlihat baik. Tetap siram saat kering.",
-      "stressed": "Ada tanda stres. Ikuti tip di bawah dan periksa lagi dalam 3 hari.",
-      "dead": "Jika Anda rasa AI salah, tambahkan foto lain di siang hari."
+      "stressed": "Ada tanda stres. Ikuti tips dan periksa lagi 3 hari lagi.",
+      "dead": "Maaf. Anda bisa menanam ulang di tempat yang sama."
     },
-    "noAi": "Foto disimpan. Pemeriksaan AI belum tersedia sekarang, jadi kesehatan tetap seperti sebelumnya.",
-    "pts": "+{pts} poin · pemeriksaan foto selesai",
+    "pts": "+{pts} poin · check-in selesai",
     "nextOn": "Foto berikutnya pada {date}, di titik dan sudut yang sama.",
     "again": "Tambah foto lain",
-    "hist": "Riwayat foto",
+    "hist": "Linimasa",
     "hPlant": "Ditanam & didaftarkan",
-    "hCheck": "Periksa foto",
-    "hCheckAi": "Periksa foto · {verdict}",
-    "notFound": "Pohon ini tidak ada di perangkat ini.",
-    "guest": "Buat akun gratis untuk menambah pemeriksaan foto.",
+    "notFound": "Pohon ini tidak ada di akun Anda.",
     "feature": "tambah pemeriksaan foto pohon",
     "remove": "Hapus pohon",
     "removeTitle": "Hapus {name}?",
-    "removeBody": "Foto dan pemeriksaannya tetap ada di riwayat Anda.",
+    "removeBody": "Poinnya juga dihapus. Tidak bisa dibatalkan.",
     "removed": "{name} dihapus",
-    "aiChip": "Perkiraan AI",
-    "healthShort": {
-      "healthy": "Sehat",
-      "stressed": "Stres",
-      "dead": "Mati"
-    }
+    "allTrees": "Semua pohon saya",
+    "height": "Tinggi",
+    "cm": "{n} cm",
+    "checkins": "Check-in",
+    "planted": "ditanam {date}",
+    "verifyingNote": "Menunggu penanaman dikonfirmasi. Check-in tetap membangun linimasanya; poin mulai setelah terverifikasi.",
+    "lostTitle": "{name} tidak bertahan",
+    "lostSub": "Itu bisa terjadi. Tanam ulang di tempat yang sama; pelindung dan siraman pertama yang dalam paling membantu.",
+    "replant": "Tanam ulang",
+    "stillThere": "Apakah {name} masih ada?",
+    "stillThereSub": "Tidak ada check-in lebih dari 45 hari. Tambahkan foto jika masih hidup, atau tandai hilang.",
+    "markLost": "Tandai hilang",
+    "waterNote": "Hanya {mm} mm hujan dalam 7 hari dan tidak ada prakiraan: siram hari ini.",
+    "waterNoteStressed": "Check-in terakhir menyebut stres: siram dan periksa lagi 3 hari lagi.",
+    "captured": "Foto Anda",
+    "howIsIt": "Bagaimana kondisinya?",
+    "healthHint": {
+      "healthy": "Daun hijau, berdiri tegak",
+      "stressed": "Layu, daun kuning atau cokelat",
+      "dead": "Tidak ada hijau, batang kering"
+    },
+    "heightL": "Tinggi dalam cm (opsional)",
+    "heightPh": "mis. 85",
+    "heightBad": "Masukkan tinggi dalam cm",
+    "noteL": "Catatan (opsional)",
+    "failed": "Check-in tidak tersimpan",
+    "submit": "Simpan check-in",
+    "cancel": "Batal",
+    "saved": "Check-in tersimpan",
+    "milestone": {
+      "d90": "{name} lewat 90 hari: poin tertunda kini bisa dipakai",
+      "y1": "{name} berumur setahun: +200 poin"
+    },
+    "ptsNone": "Tidak ada poin untuk ini",
+    "ptsLate": "Di luar jadwal: check-in tepat waktu dapat +{pts}",
+    "tipsT": "Perawatan {name}",
+    "rainImerg": "Hujan 7 hari terakhir: {mm} mm (NASA IMERG)",
+    "rainPower": "Hujan 7 hari terakhir: {mm} mm (model NASA POWER)",
+    "offSchedule": "Di luar jadwal",
+    "inviteText": "Bantu saya menyiram {name} di Atmos X",
+    "inviteCopied": "Tautan undangan disalin",
+    "inviteFailed": "Tidak bisa membuat undangan",
+    "inviteT": "Undang teman untuk menyiramnya",
+    "inviteSub": "Mereka bisa melihat {name} dan menambah check-in. Poin tetap milik Anda.",
+    "invite": "Bagikan tautan undangan"
   },
   "notif": {
     "title": "Notifikasi",
@@ -194,20 +241,25 @@
       "climate_guardian": "Penjaga iklim"
     },
     "badge": {
-      "first": "Aksi pertama",
-      "trees10": "10 pohon",
       "trees100": "100 pohon",
-      "clan": "Bergabung dengan klan",
       "p1000": "1,000 poin",
-      "streak": "25 aksi"
+      "streak": "Beruntun",
+      "first_seed": "Benih Pertama",
+      "grove": "Kebun",
+      "survivor_3m": "Bertahan 3 Bulan",
+      "guardian_1y": "Penjaga Satu Tahun",
+      "monsoon": "Penanam Musim Hujan",
+      "roof_cooler": "Pendingin Atap",
+      "team_player": "Pemain Tim"
     },
     "notif": {
       "verification": {
         "verified": "+{points} pts · {action} × {qty} terverifikasi",
-        "verified_body": "AI melihat: {seen}",
         "pending": "{action} × {qty} menunggu · +{points} sementara",
         "pending_body": "{reason}",
-        "pending_body_none": "Rekan tim dapat mengonfirmasinya."
+        "pending_body_none": "Rekan tim dapat mengonfirmasinya.",
+        "reviewed_ok": "{action} dikonfirmasi · +{points} poin",
+        "reviewed_no": "{action} tidak dikonfirmasi"
       },
       "goal": {
         "milestone": "{zone}: {pct}% dari target pendinginan Anda"
@@ -215,14 +267,22 @@
       "tree": {
         "due": "{count, plural, =0 {{name}: foto jatuh tempo hari ini} one {{name}: foto jatuh tempo dalam {days} hari} other {{name}: foto jatuh tempo dalam {days} hari}}",
         "overdue": "{count, plural, one {{name}: foto terlambat {days} hari} other {{name}: foto terlambat {days} hari}}",
-        "rule": "Setiap pohon perlu foto tiap {every} hari."
+        "rule": "Setiap pohon perlu foto tiap {every} hari.",
+        "due_on": "{name}: check-in {date}",
+        "at_risk": "{name} berisiko: check-in terlambat sejak {date}",
+        "d90_due": "{name} hampir 90 hari: check-in berikutnya membuka poinnya",
+        "d90": "{name} lewat 90 hari! Poinnya kini bisa dipakai",
+        "y1": "{name} berumur satu tahun: +200 poin",
+        "lost": "{name} ditandai mati. Tanam ulang saat bisa",
+        "helper_joined": "{who} akan membantu menyiram {name}"
       },
       "heat": {
         "warning": "Peringatan panas di {place} · terasa seperti {feels}"
       },
       "team": {
         "joined": "Anda bergabung dengan {team}"
-      }
+      },
+      "badge": "Lencana baru: {badge}"
     },
     "reason": {
       "unavailable": "Pemeriksaan AI tidak tersedia. Rekan tim dapat mengonfirmasinya.",
@@ -333,5 +393,20 @@
       "photos": "Foto: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Font: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
     }
+  },
+  "spendable": "{pts} bisa dipakai",
+  "pending": "+{pts} tertunda",
+  "pendingUntil": "+{pts} tertunda · buka pertama {date}",
+  "pendingA11y": "{pts} poin tertunda hingga check-in 90 hari pohon",
+  "join": {
+    "title": "Bantu menyiram pohon",
+    "bad": "Tautan undangan ini tidak berfungsi",
+    "badSub": "Mungkin sudah kedaluwarsa. Minta tautan baru ke teman Anda.",
+    "mine": "Pohon saya",
+    "guestTitle": "Buat akun untuk membantu",
+    "guestSub": "Akun gratis memungkinkan Anda check-in di pohon teman.",
+    "guestCta": "Buat akun gratis",
+    "feature": "membantu menyiram pohon teman",
+    "joining": "Bergabung…"
   }
 }

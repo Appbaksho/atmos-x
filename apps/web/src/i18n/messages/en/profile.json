@@ -11,8 +11,6 @@
   "points": "Points",
   "toNext": "{pts} to Level {n}",
   "maxLevel": "Top level reached",
-  "provisional": "+{pts} pending verification",
-  "provisionalA11y": "{pts} provisional points from actions waiting for a check",
   "statRank": "Area rank",
   "statTrees": "Trees alive",
   "statActions": "Actions",
@@ -71,7 +69,27 @@
     "whereNote": "Saved at your current focus: {place}. Exact spots are never shown to others.",
     "save": "Save tree",
     "saved": "{name} added",
-    "regNote": "Gets an ID like ATX-26-0006 when saved"
+    "regNote": "Gets an ID like ATX-26-0006 when saved",
+    "state": {
+      "verifying": "Verifying",
+      "lost": "Lost",
+      "at_risk": "At risk",
+      "needs_water": "Needs water"
+    },
+    "plantCta": "Log a planting",
+    "viewL": "View",
+    "grid": "Grid",
+    "map": "Map",
+    "helping": "Trees I help water",
+    "stripPlanted": "Planted",
+    "stripAlive": "Alive",
+    "stripPoints": "Points",
+    "stripPending": "+{n} pending",
+    "stripCooling": "Cooling added",
+    "tileMeta": "{species} · {count, plural, one {{age} day} other {{age} days}}",
+    "mapLabel": "Map of your {n} trees",
+    "mapMissing": "{n} trees have no location",
+    "seeAll": "See all {n} trees"
   },
   "sp": {
     "neem": "Neem",
@@ -92,9 +110,7 @@
     "photoA11y": "Photo of {name}",
     "age": "Age",
     "days": "{count, plural, one {{n} day} other {{n} days}}",
-    "photos": "Photos",
     "next": "Next check",
-    "health": "Health",
     "nextT": "Photo needed · {status}",
     "nextOk": "Next photo · {status}",
     "what": "Capture these 3 shots",
@@ -105,12 +121,8 @@
     "s3": "Soil at the base",
     "s3s": "Shows watering and mulch",
     "take": "Take guided photo",
-    "pick": "Choose a photo",
-    "busy": "AI is checking leaves, colour and stress…",
-    "busySub": "Comparing with {name}’s last photo",
-    "aiT": "AI health check",
-    "conf": "{n}% confident",
-    "seen": "What the AI saw",
+    "busy": "Saving your check-in…",
+    "busySub": "Checking the photo, place and time",
     "tip": "What {name} needs",
     "verdict": {
       "healthy": "Healthy",
@@ -119,30 +131,65 @@
     },
     "verdictSub": {
       "healthy": "Leaves look good. Keep watering in dry spells.",
-      "stressed": "Some signs of stress. Follow the tip below and re-check in 3 days.",
-      "dead": "If you think the AI is wrong, add another photo in daylight."
+      "stressed": "Some signs of stress. Follow the tips and check again in 3 days.",
+      "dead": "Sorry. You can replant in the same spot."
     },
-    "noAi": "Photo saved. The AI check isn’t available right now, so the health stays as before.",
-    "pts": "+{pts} pts · photo check done",
+    "pts": "+{pts} pts · check-in done",
     "nextOn": "Next photo on {date}, same spot, same angle.",
     "again": "Add another photo",
-    "hist": "Photo history",
+    "hist": "Timeline",
     "hPlant": "Planted & registered",
-    "hCheck": "Photo check",
-    "hCheckAi": "Photo check · {verdict}",
-    "notFound": "This tree isn’t on this device.",
-    "guest": "Create a free account to add photo checks.",
+    "notFound": "This tree isn’t in your account.",
     "feature": "add a tree photo check",
     "remove": "Remove tree",
     "removeTitle": "Remove {name}?",
-    "removeBody": "Its photos and checks stay in your history.",
+    "removeBody": "Its points are removed too. This can’t be undone.",
     "removed": "{name} removed",
-    "aiChip": "AI estimate",
-    "healthShort": {
-      "healthy": "Healthy",
-      "stressed": "Stressed",
-      "dead": "Dead"
-    }
+    "allTrees": "All my trees",
+    "height": "Height",
+    "cm": "{n} cm",
+    "checkins": "Check-ins",
+    "planted": "planted {date}",
+    "verifyingNote": "Waiting for the planting to be confirmed. Check-ins still build its timeline; points start once it’s verified.",
+    "lostTitle": "{name} didn’t make it",
+    "lostSub": "It happens. Replant in the same spot; a guard and a deep first watering help most.",
+    "replant": "Replant",
+    "stillThere": "Is {name} still there?",
+    "stillThereSub": "No check-in for over 45 days. Add a photo if it’s alive, or mark it as lost.",
+    "markLost": "Mark as lost",
+    "waterNote": "Only {mm} mm of rain in 7 days and none forecast: water it today.",
+    "waterNoteStressed": "Your last check said stressed: water it and check again in 3 days.",
+    "captured": "Your photo",
+    "howIsIt": "How is it doing?",
+    "healthHint": {
+      "healthy": "Green leaves, standing straight",
+      "stressed": "Wilting, yellow or brown leaves",
+      "dead": "No green left, dry stem"
+    },
+    "heightL": "Height in cm (optional)",
+    "heightPh": "e.g. 85",
+    "heightBad": "Enter a height in cm",
+    "noteL": "Note (optional)",
+    "failed": "Check-in not saved",
+    "submit": "Save check-in",
+    "cancel": "Cancel",
+    "saved": "Check-in saved",
+    "milestone": {
+      "d90": "{name} passed 90 days: its pending points are now spendable",
+      "y1": "{name} is a year old: +200 points"
+    },
+    "ptsNone": "No points for this one",
+    "ptsLate": "Off schedule: on-time check-ins earn +{pts}",
+    "tipsT": "Care for {name}",
+    "rainImerg": "Rain in the last 7 days: {mm} mm (NASA IMERG)",
+    "rainPower": "Rain in the last 7 days: {mm} mm (NASA POWER model)",
+    "offSchedule": "Off schedule",
+    "inviteText": "Help me water {name} on Atmos X",
+    "inviteCopied": "Invite link copied",
+    "inviteFailed": "Couldn’t create the invite",
+    "inviteT": "Invite a friend to water it",
+    "inviteSub": "They can see {name} and add check-ins. Points stay with you.",
+    "invite": "Share invite link"
   },
   "notif": {
     "title": "Notifications",
@@ -191,20 +238,25 @@
       "climate_guardian": "Climate guardian"
     },
     "badge": {
-      "first": "First action",
-      "trees10": "10 trees",
       "trees100": "100 trees",
-      "clan": "Joined a clan",
       "p1000": "1,000 points",
-      "streak": "25 actions"
+      "streak": "Streak",
+      "first_seed": "First Seed",
+      "grove": "Grove",
+      "survivor_3m": "3-Month Survivor",
+      "guardian_1y": "One-Year Guardian",
+      "monsoon": "Monsoon Planter",
+      "roof_cooler": "Roof Cooler",
+      "team_player": "Team Player"
     },
     "notif": {
       "verification": {
         "verified": "+{points} pts · {action} × {qty} verified",
-        "verified_body": "AI saw: {seen}",
         "pending": "{action} × {qty} is pending · +{points} provisional",
         "pending_body": "{reason}",
-        "pending_body_none": "A teammate can confirm it."
+        "pending_body_none": "A teammate can confirm it.",
+        "reviewed_ok": "{action} confirmed · +{points} pts",
+        "reviewed_no": "{action} wasn’t confirmed"
       },
       "goal": {
         "milestone": "{zone}: {pct}% of your cooling goal"
@@ -212,14 +264,22 @@
       "tree": {
         "due": "{count, plural, =0 {{name}: photo due today} one {{name}: photo due in {days} day} other {{name}: photo due in {days} days}}",
         "overdue": "{count, plural, one {{name}: photo overdue {days} day} other {{name}: photo overdue {days} days}}",
-        "rule": "Each tree needs a photo every {every} days."
+        "rule": "Each tree needs a photo every {every} days.",
+        "due_on": "{name}: check-in due {date}",
+        "at_risk": "{name} is at risk: check-in overdue since {date}",
+        "d90_due": "{name} is nearly 90 days old: its next check-in unlocks its points",
+        "d90": "{name} passed 90 days! Its points are now spendable",
+        "y1": "{name} is one year old: +200 points",
+        "lost": "{name} was marked dead. Replant when you can",
+        "helper_joined": "{who} will help water {name}"
       },
       "heat": {
         "warning": "Heat warning in {place} · feels like {feels}"
       },
       "team": {
         "joined": "You joined {team}"
-      }
+      },
+      "badge": "New badge: {badge}"
     },
     "reason": {
       "unavailable": "The AI check wasn’t available. A teammate can confirm it.",
@@ -330,5 +390,20 @@
       "photos": "Photos: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Fonts: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
     }
+  },
+  "spendable": "{pts} spendable",
+  "pending": "+{pts} pending",
+  "pendingUntil": "+{pts} pending · first unlock {date}",
+  "pendingA11y": "{pts} points pending until the tree’s 90-day check-in",
+  "join": {
+    "title": "Help water a tree",
+    "bad": "This invite link doesn’t work",
+    "badSub": "It may have expired. Ask your friend for a new link.",
+    "mine": "My trees",
+    "guestTitle": "Create an account to help",
+    "guestSub": "A free account lets you check in on your friend’s tree.",
+    "guestCta": "Create a free account",
+    "feature": "help water a friend’s tree",
+    "joining": "Joining…"
   }
 }

@@ -17,6 +17,7 @@ import { useCz } from '@/lib/prefs';
 import { href } from '@/lib/routes';
 
 import { Hero } from './hero';
+import { ImportOffer } from './import-offer';
 import { ScoreCard } from './score-card';
 import { AirCard, DueTreesCard, ForecastCard, GoalCard, GoalCta, GuestTreesCard, HottestZones, SectionSkeleton } from './sections';
 
@@ -72,6 +73,7 @@ export function HomeScreen() {
 
       {air.data ? <AirCard air={air.data} /> : air.isLoading ? <SectionSkeleton /> : air.error ? <ErrorState compact error={air.error} onRetry={() => void air.refetch()} style={{ marginHorizontal: 16 }} /> : null}
 
+      {session.ready && !session.isGuest ? <ImportOffer /> : null}
       {session.ready && session.isGuest ? <GuestTreesCard /> : trees.data ? <DueTreesCard trees={trees.data} /> : null}
 
       {scan.data ? <HottestZones zones={scan.data.zones} hexes={scan.data.hexes} /> : null}

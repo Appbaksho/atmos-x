@@ -2,7 +2,8 @@ import 'server-only';
 
 import { z } from 'zod';
 
-import type { LatLng, VerifyPhotoRequest, VerifyPhotoResult } from '@/lib/data/types';
+import type { LatLng } from '@/lib/data/types';
+import type { VerifyPhotoRequest, VerifyPhotoResult } from '@/lib/data/local/v0-types';
 
 import { AiUnavailable, imageInput, models, structured } from '../openai';
 import { haversineM } from '../util';

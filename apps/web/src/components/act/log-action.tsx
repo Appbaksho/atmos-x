@@ -2,8 +2,8 @@
 
 /**
  * S14 · Log an action: in-app camera (GPS + time sealed) → action type, species, quantity, credit,
- * note → useLogAction → "Verifying with AI…" → result (verified with what the AI saw, or pending
- * with the reason) → points count-up → contribution card (S15).
+ * note → useLogAction (the server runs deterministic checks, §7.11) → result (verified, or waiting
+ * for a teammate's review with the reason) → points count-up → contribution card (S15).
  * Query params: ?type=<ActionTypeId>&species=<id>&goal=<goal id>.
  */
 import { useTranslations } from 'next-intl';
@@ -41,6 +41,7 @@ import { ACTION_BY_ID, isGuestRestricted, scoreAction, useLogAction, useSpecies,
 import type { ActionTypeId } from '@/lib/data/types';
 
 import { ACTION_ICON, ACTION_ORDER, qtyText } from './action-meta';
+import { ChecksList } from './checks';
 import { useReasonText } from './reason';
 
 const IDS = new Set<string>(ACTION_ORDER);
@@ -104,8 +105,10 @@ export function LogActionScreen({
         quantity: qty,
         lat: withPhoto ? (shot?.lat ?? null) : null,
         lng: withPhoto ? (shot?.lng ?? null) : null,
+        accuracy_m: withPhoto ? (shot?.accuracy ?? null) : null,
         taken_at: withPhoto && shot ? shot.takenAt : new Date().toISOString(),
         photo: withPhoto && shot ? shot.blob : null,
+        capture_source: shot?.source === 'file' ? 'upload' : 'camera',
         goal_id: useGoal && goal ? goal.id : null,
         team_id: teamId,
         note: note.trim() || null,
@@ -426,21 +429,14 @@ function Result({ result, photo, onAnother }: { result: LogActionResult; photo: 
       </View>
 
       <View style={{ backgroundColor: c.card, borderRadius: 22, padding: 16, gap: 10 }}>
-        {log.verification?.seen ? (
-          <View style={{ gap: 4 }}>
-            <Label>{t('seen')}</Label>
-            <Txt size={14}>{log.verification.seen}</Txt>
-            {log.verification.confidence > 0 ? (
-              <Txt size={12} dim num>
-                {t('confidence', { pct: f.pct(log.verification.confidence * 100, 0) })}
-              </Txt>
-            ) : null}
-          </View>
-        ) : null}
+        <View style={{ gap: 2 }}>
+          <Label>{t('checks')}</Label>
+          <ChecksList checks={log.checks} compact />
+        </View>
         <View style={{ flexDirection: 'row', gap: 8, alignItems: 'flex-start' }}>
           <Icon d={ok ? I.check : I.info} size={16} sw={2.2} color={ok ? c.leaf : B.orangeInk} />
           <Txt size={13} style={{ flex: 1 }}>
-            {reason(log.verification?.reason_code ?? (ok ? 'ok' : 'unavailable'))}
+            {reason(log.reason_code ?? (ok ? 'ok' : 'unavailable'))}
           </Txt>
         </View>
         {trees.length ? (

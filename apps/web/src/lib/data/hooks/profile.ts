@@ -2,13 +2,14 @@
 /** Profile, prefs and the user's stats (points, level, badges). */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { api, call } from '@/lib/api/client';
+import { api, call, postForm } from '@/lib/api/client';
 import { setPrefs, type Prefs } from '@/lib/prefs-store';
 
 import { currentContext } from '../local/context';
-import { myStats } from '../local/profile';
 import type { MyStats, Profile } from '../types';
 import { useDataContext } from './context';
+import { getJSON, shouldRetry } from './http';
+import { API } from './heat';
 import { qk } from './keys';
 
 /**
@@ -77,12 +78,27 @@ export function useUpdateProfile() {
   });
 }
 
-/** Points (verified + tree checks), provisional points (pending), level, badges, area rank. */
+/** GET /me/stats: ledger points (spendable, pending, next unlock), level, badges, trees, rank in my area. */
 export function useMyStats() {
   const ctx = useDataContext();
   return useQuery<MyStats>({
     queryKey: qk.stats(ctx.ns),
-    enabled: ctx.ready,
-    queryFn: async () => myStats(await currentContext()),
+    enabled: ctx.ready && ctx.kind !== 'guest',
+    retry: shouldRetry,
+    queryFn: ({ signal }) => getJSON<MyStats>(`${API}/me/stats`, {}, signal),
+  });
+}
+
+/** Upload a profile photo (already cropped and compressed by the caller). Hidden from others until approved. */
+export function useUploadAvatar() {
+  const qc = useQueryClient();
+  const ctx = useDataContext();
+  return useMutation<{ avatar_url: string; moderation: string }, Error, Blob>({
+    mutationFn: async (blob) => {
+      const form = new FormData();
+      form.set('photo', blob, 'avatar.jpg');
+      return postForm(`${API}/me/avatar`, form);
+    },
+    onSuccess: () => void qc.invalidateQueries({ queryKey: qk.profile(ctx.ns) }),
   });
 }

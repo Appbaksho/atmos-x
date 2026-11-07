@@ -83,5 +83,14 @@
     "cta": "Tetapkan target"
   },
   "goalFeature": "tetapkan target pendinginan",
-  "treesFeature": "lacak pohon Anda"
+  "treesFeature": "lacak pohon Anda",
+  "import": {
+    "title": "Bawa data Anda dari perangkat ini",
+    "sub": "{n} item tersimpan di ponsel ini sebelum ada akun: target, pohon, aksi, dan foto.",
+    "cta": "Tambahkan ke akun saya",
+    "later": "Nanti saja",
+    "failed": "Impor tidak selesai",
+    "done": "Ditambahkan {trees} pohon, {actions} aksi, dan {goals} target",
+    "note": "Aksi yang diimpor ditinjau rekan tim atau moderator sebelum mendapat poin."
+  }
 }

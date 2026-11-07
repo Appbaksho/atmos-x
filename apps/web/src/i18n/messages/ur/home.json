@@ -87,7 +87,23 @@
       "causes.dense_buildings",
       "causes.dense_population",
       "causes.hot_nights",
+      "import.cta",
+      "import.done",
+      "import.failed",
+      "import.later",
+      "import.note",
+      "import.sub",
+      "import.title",
       "lst"
     ]
+  },
+  "import": {
+    "title": "اس ڈیوائس کا ڈیٹا لائیں",
+    "sub": "اکاؤنٹس سے پہلے اس فون پر {n} چیزیں محفوظ: اہداف، درخت، کام اور تصاویر۔",
+    "cta": "میرے اکاؤنٹ میں شامل کریں",
+    "later": "ابھی نہیں",
+    "failed": "درآمد مکمل نہیں ہوئی",
+    "done": "{trees} درخت، {actions} کام اور {goals} اہداف شامل ہوئے",
+    "note": "درآمد شدہ کام پوائنٹ ملنے سے پہلے ٹیم کا ساتھی یا ماڈریٹر جانچتا ہے۔"
   }
 }

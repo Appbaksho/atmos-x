@@ -39,19 +39,18 @@
     "submitNoPhoto": "ছবি ছাড়াই জমা দিন",
     "noPhotoNote": "ছবি না থাকলে কাজটি নিশ্চিত করতে একজন টিমমেটের অপেক্ষায় থাকবে।",
     "feature": "একটি কাজ নথিভুক্ত করুন",
-    "verifying": "AI দিয়ে যাচাই করা হচ্ছে…",
-    "verifyingSub": "ছবিতে কী আছে, কোথায় ও কখন তোলা হয়েছে, তা দেখা হচ্ছে।",
+    "verifying": "আপনার ছবি যাচাই হচ্ছে…",
+    "verifyingSub": "কোথায় ও কখন তোলা হয়েছে এবং ছবিটি নতুন কিনা যাচাই হচ্ছে।",
     "verified": "যাচাই হয়েছে",
     "pending": "নিশ্চিত হওয়ার অপেক্ষায়",
-    "seen": "AI যা দেখেছে",
-    "confidence": "বিশ্বাসযোগ্যতা {pct}",
     "earned": "পয়েন্ট অর্জিত",
     "provisional": "অস্থায়ী পয়েন্ট",
     "treesAdded": "{count, plural, one {{n}টি গাছ আমার গাছে যোগ হয়েছে} other {{n}টি গাছ আমার গাছে যোগ হয়েছে}}",
     "milestone": "লক্ষ্যের মাইলফলক পূরণ: {pct}",
     "seeContribution": "অবদান দেখুন",
     "logAnother": "আরেকটি নথিভুক্ত করুন",
-    "failed": "কাজটি সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।"
+    "failed": "কাজটি সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।",
+    "checks": "যাচাই"
   },
   "budget": {
     "title": "বাজেট",
@@ -103,17 +102,8 @@
     "pts": "+{points} পয়েন্ট",
     "creditedTo": "{who}-এর নামে যোগ হয়েছে",
     "creditedMe": "আপনার নামে যোগ হয়েছে",
-    "provisionalNote": "কেউ নিশ্চিত করলে পয়েন্ট গণনা হবে।",
+    "provisionalNote": "একজন পর্যালোচক নিশ্চিত করলে পয়েন্ট গণনা হবে।",
     "checks": "যাচাই",
-    "aiCheck": "AI ছবি যাচাই",
-    "aiSeen": "ছবিতে কাজটি দেখা যায়",
-    "gps": "অবস্থান সিল করা",
-    "gpsRule": "নিয়ম · জোনের ৩০০ মিটারের মধ্যে GPS",
-    "gpsMissing": "অবস্থান নেই",
-    "time": "সময় সিল করা",
-    "timeRule": "নিয়ম · গত ২৪ ঘণ্টায় তোলা",
-    "pass": "পাস",
-    "check": "যাচাই",
     "cooling": "শীতলতায় অবদান",
     "coolingSub": "পূর্ণবয়সে {zone}-এর জন্য হিসাব করা হয়েছে",
     "coolingNone": "এই কাজটি হিসাব করা শীতলতা যোগ করে না, তবে পরিকল্পনাটি এগিয়ে রাখে।",
@@ -122,13 +112,18 @@
     "groundSrc": "v০-তে এটি এই ডিভাইসেই থাকে · GLOBE-ধরনের প্রোটোকল",
     "survivalNote": "প্রতিটি যাচাইয়ে পয়েন্ট মেলে। একটি মিস হলে পয়েন্ট স্থগিত থাকে; হারায় না।",
     "dayN": "দিন {n}",
-    "confirm": "দলের সদস্য এটি নিশ্চিত করেন",
-    "confirmSub": "v০-তে এটি এই ডিভাইসেই নিশ্চিত হয়।",
     "share": "শেয়ার",
     "shareText": "আমি এখনই Atmos X-এ “{action}” নথিভুক্ত করেছি: আরও ঠান্ডা {zone}-এর জন্য {points} পয়েন্ট।",
     "copied": "লিংক কপি হয়েছে",
     "notFound": "এই কাজটি এই ডিভাইসে নেই।",
-    "photoAlt": "কাজটির আপনার ছবি"
+    "photoAlt": "কাজটির আপনার ছবি",
+    "rejectedNote": "একজন পর্যালোচক এটি নিশ্চিত করেননি। কোনো পয়েন্ট যোগ হয়নি।",
+    "reviewTitle": "আপনি কি এটি নিশ্চিত করতে পারেন?",
+    "reviewSub": "আপনি সতীর্থ বা মডারেটর। শুধু যা ঘটেছে বলে জানেন তা-ই নিশ্চিত করুন।",
+    "approve": "নিশ্চিত করুন",
+    "reject": "নিশ্চিত নয়",
+    "waitTitle": "পর্যালোচনার অপেক্ষায়",
+    "waitSub": "একজন সতীর্থ বা মডারেটর এটি নিশ্চিত করবেন। নিজের কাজ নিজে নিশ্চিত করা যায় না।"
   },
   "camera": {
     "title": "ক্যামেরা",
@@ -177,9 +172,93 @@
   },
   "reason": {
     "ok": "যাচাই হয়েছে: ছবিটি কাজটির সঙ্গে মেলে।",
-    "unavailable": "ছবির যাচাই এখন সম্ভব নয়। একজন টিমমেট এটি নিশ্চিত করতে পারেন।",
+    "unavailable": "কিছু যাচাই চালানো যায়নি। একজন সতীর্থ বা মডারেটর নিশ্চিত করতে পারেন।",
     "rate_limited": "আজ খুব বেশি যাচাই হয়েছে। একজন টিমমেট এটি নিশ্চিত করতে পারেন।",
     "no_photo": "কোনো ছবি যোগ করা হয়নি। একজন টিমমেট এটি নিশ্চিত করতে পারেন।",
     "teammate_confirmed": "দলের সদস্য নিশ্চিত করেছেন।"
+  },
+  "check": {
+    "pass": "ঠিক আছে",
+    "skip": "প্রযোজ্য নয়",
+    "review": "পর্যালোচনা দরকার",
+    "gps_present": {
+      "title": "ছবির সাথে অবস্থান",
+      "rule": "GPS নির্ভুলতা ১০০ মিটারের মধ্যে"
+    },
+    "gps_near": {
+      "title": "লক্ষ্য এলাকার কাছে",
+      "rule": "এলাকা থেকে ৩০০ মিটারের মধ্যে"
+    },
+    "location_plausible": {
+      "title": "যুক্তিসঙ্গত স্থান",
+      "rule": "পানির ওপর বা ভবনের ভেতরে নয়, অসম্ভব দূরত্ব নয়"
+    },
+    "time_recent": {
+      "title": "সম্প্রতি তোলা",
+      "rule": "গত ২৪ ঘণ্টার মধ্যে"
+    },
+    "capture_source": {
+      "title": "ক্যামেরায় তোলা",
+      "rule": "অ্যাপের ক্যামেরা, অথবা ছবির সময় ও স্থান মেলে"
+    },
+    "not_duplicate": {
+      "title": "নতুন ছবি",
+      "rule": "আগে ব্যবহৃত ছবি নয়"
+    },
+    "content_plausible": {
+      "title": "ছবি কাজের সাথে মেলে",
+      "rule": "মোটামুটি যাচাই: যথেষ্ট সবুজ, অথবা উজ্জ্বল ছাদ"
+    },
+    "photo_present": {
+      "title": "ছবি যোগ হয়েছে",
+      "rule": "প্রতিটি চেক-ইনে একটি ছবি"
+    },
+    "gps_near_tree": {
+      "title": "গাছের কাছে",
+      "rule": "লাগানোর জায়গা থেকে ১০০ মিটারের মধ্যে"
+    },
+    "imported": {
+      "title": "এই ডিভাইস থেকে আনা",
+      "rule": "একজন মানুষ যাচাই করবেন"
+    }
+  },
+  "_meta": {
+    "machine_keys": [
+      "check.capture_source.rule",
+      "check.capture_source.title",
+      "check.content_plausible.rule",
+      "check.content_plausible.title",
+      "check.gps_near.rule",
+      "check.gps_near.title",
+      "check.gps_near_tree.rule",
+      "check.gps_near_tree.title",
+      "check.gps_present.rule",
+      "check.gps_present.title",
+      "check.imported.rule",
+      "check.imported.title",
+      "check.location_plausible.rule",
+      "check.location_plausible.title",
+      "check.not_duplicate.rule",
+      "check.not_duplicate.title",
+      "check.pass",
+      "check.photo_present.rule",
+      "check.photo_present.title",
+      "check.review",
+      "check.skip",
+      "check.time_recent.rule",
+      "check.time_recent.title",
+      "contribution.approve",
+      "contribution.provisionalNote",
+      "contribution.reject",
+      "contribution.rejectedNote",
+      "contribution.reviewSub",
+      "contribution.reviewTitle",
+      "contribution.waitSub",
+      "contribution.waitTitle",
+      "log.checks",
+      "log.verifying",
+      "log.verifyingSub",
+      "reason.unavailable"
+    ]
   }
 }

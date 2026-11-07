@@ -135,3 +135,19 @@ class TreeCheck(Base):
     tip: Mapped[dict | None] = mapped_column(JSONB)
     client_id: Mapped[str | None] = mapped_column(String(64))
     created_at: Mapped[datetime] = now_col()
+
+
+class TreeHelper(Base):
+    """A friend invited to help water a tree (T5). Helpers can see the tree and check in; points stay with the owner."""
+
+    __tablename__ = "tree_helpers"
+    tree_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("trees.id", ondelete="CASCADE"), primary_key=True
+    )
+    user_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True
+    )
+    invited_by: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True), ForeignKey("users.id", ondelete="SET NULL")
+    )
+    created_at: Mapped[datetime] = now_col()

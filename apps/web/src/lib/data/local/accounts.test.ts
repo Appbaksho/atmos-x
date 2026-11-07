@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { buildClientState, CLIENT_STATE_MAX_BYTES } from './ask';
 import { hashPassword, listAccounts, loginAccount, registerAccount, signInWithGoogle, verifyPassword } from './accounts';
 import { freshStore } from './test-helpers';
-import type { Tree } from '../types';
+import type { Tree } from './v0-types';
 
 describe('local accounts', () => {
   beforeEach(freshStore);

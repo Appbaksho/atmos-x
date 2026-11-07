@@ -14,8 +14,6 @@
   "points": "Points",
   "toNext": "{pts} pour le niveau {n}",
   "maxLevel": "Niveau max atteint",
-  "provisional": "+{pts} en attente de vérification",
-  "provisionalA11y": "{pts} points provisoires issus d’actions en attente de vérification",
   "statRank": "Rang du quartier",
   "statTrees": "Arbres vivants",
   "statActions": "Actions",
@@ -74,7 +72,27 @@
     "whereNote": "Enregistré à votre zone actuelle : {place}. Les lieux exacts ne sont jamais montrés aux autres.",
     "save": "Enregistrer l’arbre",
     "saved": "{name} ajouté",
-    "regNote": "Reçoit un identifiant comme ATX-26-0006 lors de l’enregistrement"
+    "regNote": "Reçoit un identifiant comme ATX-26-0006 lors de l’enregistrement",
+    "state": {
+      "verifying": "En vérification",
+      "lost": "Perdu",
+      "at_risk": "En danger",
+      "needs_water": "Besoin d’eau"
+    },
+    "plantCta": "Enregistrer une plantation",
+    "viewL": "Affichage",
+    "grid": "Grille",
+    "map": "Carte",
+    "helping": "Arbres que j’aide à arroser",
+    "stripPlanted": "Plantés",
+    "stripAlive": "Vivants",
+    "stripPoints": "Points",
+    "stripPending": "+{n} en attente",
+    "stripCooling": "Rafraîchissement ajouté",
+    "tileMeta": "{species} · {count, plural, one {{age} jour} other {{age} jours}}",
+    "mapLabel": "Carte de vos {n} arbres",
+    "mapMissing": "{n} arbres sans position",
+    "seeAll": "Voir les {n} arbres"
   },
   "sp": {
     "neem": "Neem",
@@ -95,9 +113,7 @@
     "photoA11y": "Photo de {name}",
     "age": "Âge",
     "days": "{count, plural, one {{n} jour} other {{n} jours}}",
-    "photos": "Photos",
     "next": "Prochain contrôle",
-    "health": "État",
     "nextT": "Photo requise · {status}",
     "nextOk": "Prochaine photo · {status}",
     "what": "Prenez ces 3 photos",
@@ -108,12 +124,8 @@
     "s3": "Sol au pied",
     "s3s": "Montre l’arrosage et le paillis",
     "take": "Prendre une photo guidée",
-    "pick": "Choisir une photo",
-    "busy": "L’IA vérifie les feuilles, la couleur et le stress…",
-    "busySub": "Comparaison avec la dernière photo de {name}",
-    "aiT": "Contrôle santé par IA",
-    "conf": "{n}% de confiance",
-    "seen": "Ce que l’IA a vu",
+    "busy": "Enregistrement du suivi…",
+    "busySub": "Vérification de la photo, du lieu et de l’heure",
     "tip": "Ce dont {name} a besoin",
     "verdict": {
       "healthy": "En bonne santé",
@@ -122,30 +134,65 @@
     },
     "verdictSub": {
       "healthy": "Les feuilles ont l’air en bonne santé. Continuez à arroser en période sèche.",
-      "stressed": "Quelques signes de stress. Suivez le conseil ci-dessous et revérifiez dans 3 jours.",
-      "dead": "Si vous pensez que l’IA se trompe, ajoutez une autre photo en lumière du jour."
+      "stressed": "Quelques signes de stress. Suivez les conseils et revérifiez dans 3 jours.",
+      "dead": "Désolé. Vous pouvez replanter au même endroit."
     },
-    "noAi": "Photo enregistrée. Le contrôle IA n’est pas disponible pour le moment, donc l’état reste inchangé.",
-    "pts": "+{pts} pts · contrôle photo fait",
+    "pts": "+{pts} pts · suivi fait",
     "nextOn": "Prochaine photo le {date}, au même endroit, sous le même angle.",
     "again": "Ajouter une autre photo",
-    "hist": "Historique des photos",
+    "hist": "Chronologie",
     "hPlant": "Planté et enregistré",
-    "hCheck": "Contrôle photo",
-    "hCheckAi": "Contrôle photo · {verdict}",
-    "notFound": "Cet arbre n’est pas sur cet appareil.",
-    "guest": "Créez un compte gratuit pour ajouter des contrôles photo.",
+    "notFound": "Cet arbre n’est pas dans votre compte.",
     "feature": "ajouter un contrôle photo d’arbre",
     "remove": "Supprimer l’arbre",
     "removeTitle": "Supprimer {name} ?",
-    "removeBody": "Ses photos et contrôles restent dans votre historique.",
+    "removeBody": "Ses points sont aussi retirés. Action irréversible.",
     "removed": "{name} supprimé",
-    "aiChip": "Estimation IA",
-    "healthShort": {
-      "healthy": "En bonne santé",
-      "stressed": "Stressé",
-      "dead": "Mort"
-    }
+    "allTrees": "Tous mes arbres",
+    "height": "Hauteur",
+    "cm": "{n} cm",
+    "checkins": "Suivis",
+    "planted": "planté le {date}",
+    "verifyingNote": "En attente de confirmation de la plantation. Les suivis construisent sa chronologie ; les points commencent après vérification.",
+    "lostTitle": "{name} n’a pas survécu",
+    "lostSub": "Ça arrive. Replantez au même endroit ; une protection et un premier arrosage profond aident beaucoup.",
+    "replant": "Replanter",
+    "stillThere": "{name} est-il toujours là ?",
+    "stillThereSub": "Aucun suivi depuis plus de 45 jours. Ajoutez une photo s’il est vivant, ou marquez-le perdu.",
+    "markLost": "Marquer comme perdu",
+    "waterNote": "Seulement {mm} mm de pluie en 7 jours et rien de prévu : arrosez-le aujourd’hui.",
+    "waterNoteStressed": "Votre dernier suivi indiquait un stress : arrosez et revérifiez dans 3 jours.",
+    "captured": "Votre photo",
+    "howIsIt": "Comment va-t-il ?",
+    "healthHint": {
+      "healthy": "Feuilles vertes, bien droit",
+      "stressed": "Fané, feuilles jaunes ou brunes",
+      "dead": "Plus de vert, tige sèche"
+    },
+    "heightL": "Hauteur en cm (facultatif)",
+    "heightPh": "ex. 85",
+    "heightBad": "Saisissez une hauteur en cm",
+    "noteL": "Note (facultatif)",
+    "failed": "Suivi non enregistré",
+    "submit": "Enregistrer le suivi",
+    "cancel": "Annuler",
+    "saved": "Suivi enregistré",
+    "milestone": {
+      "d90": "{name} a passé 90 jours : ses points en attente sont utilisables",
+      "y1": "{name} a un an : +200 points"
+    },
+    "ptsNone": "Pas de points cette fois",
+    "ptsLate": "Hors calendrier : les suivis à l’heure rapportent +{pts}",
+    "tipsT": "Soins pour {name}",
+    "rainImerg": "Pluie sur 7 jours : {mm} mm (NASA IMERG)",
+    "rainPower": "Pluie sur 7 jours : {mm} mm (modèle NASA POWER)",
+    "offSchedule": "Hors calendrier",
+    "inviteText": "Aide-moi à arroser {name} sur Atmos X",
+    "inviteCopied": "Lien d’invitation copié",
+    "inviteFailed": "Impossible de créer l’invitation",
+    "inviteT": "Invitez un ami à l’arroser",
+    "inviteSub": "Il pourra voir {name} et ajouter des suivis. Les points restent à vous.",
+    "invite": "Partager le lien"
   },
   "notif": {
     "title": "Notifications",
@@ -194,20 +241,25 @@
       "climate_guardian": "Gardien du climat"
     },
     "badge": {
-      "first": "Première action",
-      "trees10": "10 arbres",
       "trees100": "100 arbres",
-      "clan": "A rejoint un clan",
       "p1000": "1 000 points",
-      "streak": "25 actions"
+      "streak": "Série",
+      "first_seed": "Première graine",
+      "grove": "Bosquet",
+      "survivor_3m": "Survivant de 3 mois",
+      "guardian_1y": "Gardien d’un an",
+      "monsoon": "Planteur de mousson",
+      "roof_cooler": "Rafraîchisseur de toits",
+      "team_player": "Esprit d’équipe"
     },
     "notif": {
       "verification": {
         "verified": "+{points} pts · {action} × {qty} vérifié",
-        "verified_body": "L’IA a vu : {seen}",
         "pending": "{action} × {qty} est en attente · +{points} pts provisoires",
         "pending_body": "{reason}",
-        "pending_body_none": "Un coéquipier peut le confirmer."
+        "pending_body_none": "Un coéquipier peut le confirmer.",
+        "reviewed_ok": "{action} confirmé · +{points} pts",
+        "reviewed_no": "{action} n’a pas été confirmé"
       },
       "goal": {
         "milestone": "{zone} : {pct}% de votre objectif de refroidissement"
@@ -215,14 +267,22 @@
       "tree": {
         "due": "{count, plural, =0 {{name} : photo à faire aujourd’hui} one {{name} : photo à faire dans {days} jour} other {{name} : photo à faire dans {days} jours}}",
         "overdue": "{count, plural, one {{name} : photo en retard de {days} jour} other {{name} : photo en retard de {days} jours}}",
-        "rule": "Chaque arbre a besoin d’une photo tous les {every} jours."
+        "rule": "Chaque arbre a besoin d’une photo tous les {every} jours.",
+        "due_on": "{name} : suivi prévu le {date}",
+        "at_risk": "{name} est en danger : suivi en retard depuis le {date}",
+        "d90_due": "{name} a presque 90 jours : le prochain suivi débloque ses points",
+        "d90": "{name} a passé 90 jours ! Ses points sont utilisables",
+        "y1": "{name} a un an : +200 points",
+        "lost": "{name} est marqué mort. Replantez quand vous pourrez",
+        "helper_joined": "{who} aidera à arroser {name}"
       },
       "heat": {
         "warning": "Alerte chaleur à {place} · température ressentie {feels}"
       },
       "team": {
         "joined": "Vous avez rejoint {team}"
-      }
+      },
+      "badge": "Nouveau badge : {badge}"
     },
     "reason": {
       "unavailable": "La vérification par IA n’était pas disponible. Un coéquipier peut le confirmer.",
@@ -333,5 +393,20 @@
       "photos": "Photos : Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Polices : Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
     }
+  },
+  "spendable": "{pts} utilisables",
+  "pending": "+{pts} en attente",
+  "pendingUntil": "+{pts} en attente · premier déblocage {date}",
+  "pendingA11y": "{pts} points en attente jusqu’au suivi des 90 jours de l’arbre",
+  "join": {
+    "title": "Aidez à arroser un arbre",
+    "bad": "Ce lien d’invitation ne fonctionne pas",
+    "badSub": "Il a peut-être expiré. Demandez un nouveau lien à votre ami.",
+    "mine": "Mes arbres",
+    "guestTitle": "Créez un compte pour aider",
+    "guestSub": "Un compte gratuit vous permet de suivre l’arbre de votre ami.",
+    "guestCta": "Créer un compte gratuit",
+    "feature": "aider à arroser l’arbre d’un ami",
+    "joining": "Connexion…"
   }
 }
