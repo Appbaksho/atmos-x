@@ -127,10 +127,5 @@
   "placeholder": {
     "title": "{id} · bientôt disponible",
     "body": "Cet écran est en cours de création par {owner}."
-  },
-  "landingPlaceholder": {
-    "pitch": "Trouvez les zones les plus chaudes autour de vous et rafraîchissez-les : des arbres, des toits frais et de l’ombre, avec vos voisins.",
-    "open": "Ouvrir l’application",
-    "install": "Installer"
   }
 }

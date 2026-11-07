@@ -124,10 +124,5 @@
   "placeholder": {
     "title": "{id} · coming soon",
     "body": "This screen is being built by {owner}."
-  },
-  "landingPlaceholder": {
-    "pitch": "Find the hottest blocks around you and cool them down: trees, cool roofs and shade, with your neighbours.",
-    "open": "Open the app",
-    "install": "Install"
   }
 }

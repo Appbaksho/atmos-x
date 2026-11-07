@@ -20,6 +20,7 @@ export * from './photos';
 export * from './plan';
 export * from './profile';
 export * from './session';
+export * from './sources';
 export * from './store';
 export * from './trees';
 

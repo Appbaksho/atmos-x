@@ -709,6 +709,30 @@ export type ModerationQueue = {
   photos: { id: string; purpose: string; owner: PersonCard | null; photo_url: string; created_at: string }[];
 };
 
+/* ───────────────────────────── Sources (GET /sources) ───────────────────────────── */
+
+export type SourceEntry = {
+  id: string;
+  name: string;
+  url: string | null;
+  kind: DataKind;
+  licence: string | null;
+  credit: string | null;
+  used_for: string;
+  nasa: boolean;
+  status: 'active' | 'idle' | 'unavailable' | string;
+  reason: string | null;
+  latest_data: string | null;
+  resolution_m: number | null;
+};
+export type SourcesInfo = {
+  sources: SourceEntry[];
+  active_nasa_count: number;
+  heat_score: { text: string; f: string; weights: Record<string, number> };
+  driver_fit: { area: string; r2: number; n: number; label: string; as_of: string } | null;
+  pipeline_version: string;
+};
+
 /* ───────────────────────────── Store and marketplace ───────────────────────────── */
 
 export type StorePartner = { id: string; name: string; logo_url: string | null; logo_emoji: string | null; csr_line: string | null; city: string | null; is_pilot: boolean; is_demo: boolean; products: number };

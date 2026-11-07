@@ -127,10 +127,5 @@
   "placeholder": {
     "title": "{id} · em breve",
     "body": "Esta tela está sendo criada por {owner}."
-  },
-  "landingPlaceholder": {
-    "pitch": "Encontre os blocos mais quentes ao seu redor e resfrie-os: árvores, telhados frios e sombra, com seus vizinhos.",
-    "open": "Abrir o app",
-    "install": "Instalar"
   }
 }

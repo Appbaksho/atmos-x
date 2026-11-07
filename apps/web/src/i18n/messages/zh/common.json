@@ -127,10 +127,5 @@
   "placeholder": {
     "title": "{id} · 即将推出",
     "body": "这个页面正在由 {owner} 制作。"
-  },
-  "landingPlaceholder": {
-    "pitch": "找到你周围最热的街区，然后把它们降下来：和邻居一起种树、做凉屋顶、搭遮荫。",
-    "open": "打开应用",
-    "install": "安装"
   }
 }
