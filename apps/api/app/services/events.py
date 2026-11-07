@@ -99,13 +99,18 @@ async def event_out(db: AsyncSession, events: list[Event], viewer: User | None) 
             p.id: p
             for p in (
                 await db.execute(
-                    select(Photo).where(Photo.id.in_([e.group_photo_id for e in events if e.group_photo_id]))
+                    select(Photo).where(
+                        Photo.id.in_(
+                            [e.group_photo_id for e in events if e.group_photo_id]
+                            + [e.sponsor_logo_photo_id for e in events if e.sponsor_logo_photo_id]
+                        )
+                    )
                 )
             )
             .scalars()
             .all()
         }
-        if any(e.group_photo_id for e in events)
+        if any(e.group_photo_id or e.sponsor_logo_photo_id for e in events)
         else {}
     )
     now = datetime.now(UTC)
@@ -114,6 +119,10 @@ async def event_out(db: AsyncSession, events: list[Event], viewer: User | None) 
         w0, w1 = _window(e)
         ph = gp.get(e.group_photo_id)
         show = ph is not None and (ph.moderation == "approved" or (viewer is not None and viewer.id == e.organizer_id))
+        logo = gp.get(e.sponsor_logo_photo_id)
+        show_logo = logo is not None and (
+            logo.moderation == "approved" or (viewer is not None and viewer.id == e.organizer_id)
+        )
         out.append(
             {
                 "id": str(e.id),
@@ -127,6 +136,7 @@ async def event_out(db: AsyncSession, events: list[Event], viewer: User | None) 
                 "team": {"id": str(e.team_id), "name": teams[e.team_id].name} if e.team_id in teams else None,
                 "org": {"id": str(e.org_id), "name": orgs[e.org_id].name} if e.org_id in orgs else None,
                 "sponsor_name": e.sponsor_name,
+                "sponsor_logo_url": photo_url(e.sponsor_logo_photo_id, "public") if show_logo else None,
                 "capacity": e.capacity,
                 "going": int(going.get(e.id, 0)),
                 "checked_in": int(checked.get(e.id, 0)),
@@ -255,6 +265,44 @@ async def set_group_photo(db: AsyncSession, e: Event, user: User, photo: Photo) 
         raise forbidden("event.not_organizer", "Only the organizer can add the group photo")
     e.group_photo_id = photo.id
     await db.commit()
+
+
+async def set_sponsor_logo(db: AsyncSession, e: Event, user: User, photo: Photo) -> None:
+    """R3: the organizer adds the sponsor's logo; it shows once moderation approves it."""
+    if user.id != e.organizer_id:
+        raise forbidden("event.not_organizer", "Only the organizer can add the sponsor logo")
+    if not e.sponsor_name:
+        raise AppError(400, "event.no_sponsor", "Add the sponsor's name first")
+    e.sponsor_logo_photo_id = photo.id
+    await db.commit()
+
+
+async def certificate(db: AsyncSession, e: Event, user: User) -> bytes:
+    """R3/C10: a participation certificate for someone who checked in at the drive."""
+    from ..storage import storage
+    from . import reports as REP
+
+    came = (
+        await db.execute(select(EventCheckin).where(EventCheckin.event_id == e.id, EventCheckin.user_id == user.id))
+    ).first()
+    if came is None:
+        raise forbidden("event.not_checked_in", "Certificates are for people who checked in at the drive")
+    logo_path = None
+    if e.sponsor_logo_photo_id:
+        ph = await db.get(Photo, e.sponsor_logo_photo_id)
+        if ph is not None and ph.moderation == "approved":
+            rel = ph.path_public or ph.path_thumb
+            logo_path = str(storage().path(rel)) if rel else None
+    return REP.event_certificate_pdf(
+        {
+            "title": e.title,
+            "date": e.starts_at,
+            "place": e.place_name,
+            "sponsor": e.sponsor_name,
+            "logo_path": logo_path,
+        },
+        user.display_name,
+    )
 
 
 async def remind(db: AsyncSession) -> int:
