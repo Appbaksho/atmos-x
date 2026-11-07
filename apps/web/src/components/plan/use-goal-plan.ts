@@ -2,26 +2,27 @@
 
 /**
  * Composes the data hooks the Plan/Act screens share (no new data logic, just wiring):
- *  - the active goal (or a goal by id),
- *  - in Presentation mode, a zone scan that binds the seeded `demo:asad-gate` goal to the live
- *    hottest zone (V0-3 binds it inside useZones; usePlan stays disabled until then),
+ *  - the goal by id, else the active one (server goals; the demo user has real ones too),
  *  - the plan for that goal,
  *  - the point the screens use for species / nurseries (goal zone centroid, else the focus).
  */
+
 import { cellArea } from 'h3-js';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
-import { useCz, useLocation } from '@/components/cz';
-import { ACTION_BY_ID, DEMO_POINT, GUEST_MAX_RADIUS_M, useGoals, usePlan, useSession, useZones } from '@/lib/data/hooks';
+import { DEMO_POINT, useGoals, usePlan, useSession } from '@/lib/data/hooks';
+import { ACTION_BY_ID } from '@/lib/data/local/points';
 import type { Goal, LatLng } from '@/lib/data/types';
+import { useLocation } from '@/lib/location';
 
+/** V0 bound a device demo goal to a live zone; V1 demo goals reference stored zones. */
 export function isUnbound(goal: Goal | null | undefined): boolean {
-  return !!goal && goal.zone_id.startsWith('demo:');
+  void goal;
+  return false;
 }
 
 /** The goal to show: by id when given, else the active one. */
 export function useGoalPlan(goalId?: string | null) {
-  const { prefs } = useCz();
   const session = useSession();
   const { focus } = useLocation();
   const goals = useGoals();
@@ -29,36 +30,9 @@ export function useGoalPlan(goalId?: string | null) {
     if (goalId) return goals.data?.find((g) => g.id === goalId) ?? null;
     return goals.active ?? null;
   }, [goalId, goals.data, goals.active]);
-
-  // Presentation mode, first load: the demo-namespace goals query can run before the story seed
-  // has been written and cache []. Refetch a couple of times so the seeded goal shows up.
-  const emptyDemo = session.presentation && !!goals.data && goals.data.length === 0;
-  const { refetch } = goals;
-  useEffect(() => {
-    if (!emptyDemo) return;
-    const ids = [800, 2500].map((ms) => setTimeout(() => void refetch(), ms));
-    return () => ids.forEach(clearTimeout);
-  }, [emptyDemo, refetch]);
-
-  const unbound = isUnbound(goal);
-  const radius = session.isGuest ? Math.min(prefs.radius_m, GUEST_MAX_RADIUS_M) : prefs.radius_m;
-  // Only scans while the demo goal is unbound; the query is shared with Home/Map (same key).
-  const scan = useZones(unbound ? (session.presentation ? DEMO_POINT : focus) : null, radius);
-  const plan = usePlan(unbound ? null : goal);
-
-  const point: LatLng = goal && !unbound ? goal.zone_centroid : session.presentation ? DEMO_POINT : focus;
-
-  return {
-    session,
-    goals,
-    goal,
-    plan,
-    point,
-    /** true while the demo goal waits for its zone */
-    binding: unbound && (scan.isLoading || scan.isFetching || !scan.isError),
-    bindError: unbound && scan.isError ? scan.error : null,
-    retryBind: () => void scan.refetch(),
-  };
+  const plan = usePlan(goal);
+  const point: LatLng = goal ? goal.zone_centroid : session.presentation ? DEMO_POINT : focus;
+  return { session, goals, goal, plan, point, binding: false, bindError: null as Error | null, retryBind: () => undefined };
 }
 
 /** Zone area (km²) from its H3 cells, floored at 0.1 km² like the server's cooling maths. */

@@ -104,7 +104,7 @@
   },
   "editMap": "Check feasibility",
   "species": "Recommended species",
-  "speciesAll": "All species for this area",
+  "speciesAll": "Trees for this area",
   "nurseries": "Nurseries",
   "nurseLine": "{n} nearby · nearest {dist}",
   "nurseLineNone": "Find saplings near your zone",
@@ -160,5 +160,31 @@
     "label": "Planting spots map for {zone}"
   },
   "loadingPlan": "Building your plan…",
-  "focusLabel": "Starting with"
+  "focusLabel": "Starting with",
+  "speciesAllSub": "Ranked by shade and water need",
+  "recLoading": "Checking what this space can do…",
+  "recNone": "With this space and date, about {max} is realistic: pick a later date or a smaller target.",
+  "recNoteDate": "{target} recommended: about {max} is reachable with this space by {date}.",
+  "goals": {
+    "title": "My goals",
+    "sub": "Yours and your teams'",
+    "kindAction": "Action goal",
+    "kindCooling": "Cooling goal",
+    "team": "Team",
+    "actionTarget": "{trees} trees and {roof} of cool roof by {date} · long-term {c}",
+    "coolingTarget": "{target} by {date}",
+    "progress": "Progress",
+    "done": "Verified so far: {trees} trees, {roof} of roof · {c} at maturity",
+    "next": "Next task",
+    "openPlan": "Open plan",
+    "logAction": "Log action",
+    "guestTitle": "Goals are saved to your account",
+    "guestSub": "Create a free account to save goals and track progress.",
+    "create": "Create free account",
+    "feature": "save goals",
+    "emptyTitle": "No goals yet",
+    "emptySub": "Pick a hot zone and set what you want to cool by when.",
+    "new": "Set a new goal"
+  },
+  "region": "Widely grown in"
 }

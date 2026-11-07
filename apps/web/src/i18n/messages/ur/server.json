@@ -68,6 +68,44 @@
       "cool_roof": "{roof_m2} m² سفید یا منعکس کرنے والی چھت پہلی گرمی میں ہی بلاک کو ٹھنڈا کرتی ہے۔",
       "shade_structure": "گرم ترین گلیوں اور اسٹاپوں پر {shade} سایہ دار ترپال یا چھتریاں۔",
       "awareness": "پڑوسیوں، اسکولوں اور دکانوں سے بات کریں تاکہ زیادہ لوگ شامل ہوں اور درختوں کی دیکھ بھال کریں۔"
+    },
+    "step": {
+      "map": {
+        "title": "خالی جگہوں کا نقشہ بنائیں",
+        "detail": "زون میں چل کر سڑک کنارے، اسکول کے میدان، مسجد و مندر کے احاطے اور بے سایہ خالی پلاٹ نوٹ کریں۔"
+      },
+      "plant": {
+        "title": "تقریباً {trees} سایہ دار درخت لگائیں",
+        "detail": "نیچے کی فہرست سے چوڑی چھتری والے درخت چنیں۔ برسات کے آغاز میں لگانے سے پودے زیادہ بچتے ہیں۔"
+      },
+      "roofs": {
+        "title": "تقریباً {roof_m2} م² چھت پر کوٹنگ کریں",
+        "detail": "ٹین اور کنکریٹ کی چھتوں پر چونا یا منعکس رنگ: گرمی سے پہلے جلد فائدہ۔"
+      },
+      "team": {
+        "title": "ٹیم بنائیں",
+        "detail": "پڑوسیوں، اسکول یا دفتر کو بلائیں۔ ہر تصدیق شدہ کام مشترکہ ہدف میں شامل ہوتا ہے۔"
+      },
+      "care": {
+        "title": "2 سال دیکھ بھال کریں",
+        "detail": "خشک موسم میں پودوں کو پانی دیں اور ہر 15 دن تصویر بھیجیں تاکہ ہر درخت کی حالت معلوم رہے۔"
+      },
+      "long_term": {
+        "title": "طویل مدتی ٹھنڈک دیکھیں",
+        "detail": "درخت تقریباً آٹھویں سال پوری ٹھنڈک دیتے ہیں؛ پروجیکشن منصوبے کے ساتھ اور بغیر لکیر دکھاتا ہے۔"
+      }
+    },
+    "next": {
+      "plant": "پہلے {n} درخت لگائیں",
+      "roof": "پہلی {m2} م² چھت پر کوٹنگ کریں",
+      "awareness": "پڑوسیوں کے ساتھ مختصر گفتگو کریں"
+    },
+    "care": {
+      "year1": "پہلا سال: ہفتے میں دو بار پانی دیں اور ہر پودے کے گرد جنگلہ رکھیں۔",
+      "dry": "ابھی خشک موسم ہے: صبح سویرے گہرا پانی دیں۔",
+      "monsoon": "ابھی برسات ہے: طوفان کے بعد نکاسی اور سہارا دیکھیں۔",
+      "checkin": "ہر 15 دن ہر درخت کی تصویر بھیجیں؛ Atmos X یاد دلائے گا۔",
+      "year2": "دوسرا سال: صرف خشک موسم میں پانی دیں اور نچلی شاخیں تراشیں۔"
     }
   },
   "budget": {
@@ -262,6 +300,46 @@
       "feas.action_goal",
       "feas.max_cooling",
       "feas.trees_take_years",
+      "nursery.unnamed",
+      "plan.care.checkin",
+      "plan.care.dry",
+      "plan.care.monsoon",
+      "plan.care.year1",
+      "plan.care.year2",
+      "plan.next.awareness",
+      "plan.next.plant",
+      "plan.next.roof",
+      "plan.step.care.detail",
+      "plan.step.care.title",
+      "plan.step.long_term.detail",
+      "plan.step.long_term.title",
+      "plan.step.map.detail",
+      "plan.step.map.title",
+      "plan.step.plant.detail",
+      "plan.step.plant.title",
+      "plan.step.roofs.detail",
+      "plan.step.roofs.title",
+      "plan.step.team.detail",
+      "plan.step.team.title",
+      "species.care.climber.1",
+      "species.care.climber.2",
+      "species.care.climber.3",
+      "species.care.climber.4",
+      "species.care.krish.1",
+      "species.care.krish.2",
+      "species.care.krish.3",
+      "species.care.krish.4",
+      "species.care.tree.1",
+      "species.care.tree.2",
+      "species.care.tree.3",
+      "species.care.tree.4",
+      "species.growth.fast",
+      "species.growth.medium",
+      "species.growth.slow",
+      "species.intl.check_nursery",
+      "species.season.local",
+      "species.season.monsoon",
+      "task.custom",
       "warning.coldwave_mild",
       "warning.coldwave_moderate",
       "warning.coldwave_severe",
@@ -278,5 +356,45 @@
       "why.one.sealed",
       "why.typical"
     ]
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "پہلے 12 ماہ ہفتے میں دو بار پانی دیں، پھر صرف خشک موسم میں۔",
+        "2": "سڑک کے درختوں کو جنگلہ چاہیے: بکریوں، سائیکلوں اور رکشوں سے بچاؤ کے لیے۔",
+        "3": "برسات میں لگائیں، جون سے ستمبر۔",
+        "4": "دیواروں، نالیوں اور پائپوں سے 3 میٹر دور رکھیں۔"
+      },
+      "krish": {
+        "1": "پہلے 12 ماہ ہفتے میں دو بار پانی دیں، پھر صرف خشک موسم میں۔",
+        "2": "سڑک کے درختوں کو جنگلہ چاہیے: بکریوں، سائیکلوں اور رکشوں سے بچاؤ کے لیے۔",
+        "3": "برسات میں لگائیں، جون سے ستمبر۔",
+        "4": "جڑیں کم گہری: دیواروں، نالیوں اور فرش سے 4 میٹر دور رکھیں۔"
+      },
+      "climber": {
+        "1": "پہلے 3 ماہ ہر دوسرے دن پانی دیں، پھر ہفتے میں دو بار۔",
+        "2": "دیوار سے 10 سینٹی میٹر دور جالی یا تار لگائیں۔",
+        "3": "برسات میں لگائیں، جون سے ستمبر۔",
+        "4": "پھول آنے کے بعد تراشیں تاکہ نالیوں اور تاروں پر نہ چڑھے۔"
+      }
+    },
+    "intl": {
+      "check_nursery": "اس آب و ہوا کے شہروں میں عام طور پر لگایا جاتا ہے۔ مقامی نرسری سے پوچھیں کہ آپ کے علاقے میں کیا اچھا اگتا ہے اور حملہ آور نہیں۔"
+    },
+    "growth": {
+      "fast": "تیز",
+      "medium": "درمیانہ",
+      "slow": "سست"
+    },
+    "season": {
+      "monsoon": "برسات، جون سے ستمبر",
+      "local": "بہترین موسم مقامی نرسری سے پوچھیں"
+    }
+  },
+  "nursery": {
+    "unnamed": "نرسری"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }

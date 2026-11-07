@@ -292,17 +292,34 @@ export type Goal = {
   /** Negative = cooling target, e.g. -1.5 */
   target_c: number;
   by_date: string;
+  /** Under 3 years a goal is stated in actions (trees, roof m²) with the long-term °C alongside (G3) */
+  kind?: 'action' | 'cooling';
+  targets?: { trees?: number; roof_m2?: number; shade?: number; long_term_c?: number };
   progress_pct: number;
+  /** °C at maturity from verified actions */
   modeled_c: number;
+  done?: { trees: number; roof_m2: number; shade: number };
   team_id: string | null;
   org_id: string | null;
+  status?: 'active' | 'done' | 'archived';
+  owner_id?: string;
   created_at: string;
 };
+
+export type GoalTaskItem = { id: string; title: I18nText; action_type: ActionTypeId | null; qty: number | null; owner_id: string | null; due: string | null; status: 'todo' | 'doing' | 'done' };
 
 export type Feasibility = {
   feasible: 'yes' | 'stretch' | 'no';
   needed: { trees: number; roof_m2: number; shade: number };
-  spots_available: { ground_m2: number; roof_m2: number };
+  capacity?: { trees: number; roof_m2: number } | null;
+  spots_available: { ground_m2: number; roof_m2: number; roadside_m?: number };
+  /** °C reachable by the date with the space available */
+  achievable_c?: number | null;
+  /** Largest target ≤ 85 % of what is achievable by the date (negative), or null when space is unknown */
+  recommended_target_c?: number | null;
+  kind?: 'action' | 'cooling';
+  spots_status?: 'ready' | 'pending';
+  years?: number;
   notes: I18nText[];
 };
 
@@ -332,18 +349,20 @@ export type BudgetLine = { label: I18nText | string; qty: number; unit_cost: Mon
 
 export type Budget = { lines: BudgetLine[]; total: Money; water_l_week: number; care_per_year: Money };
 
-export type PlanStep = { title: string; detail: string };
+export type PlanStep = { title: I18nText | string; detail: I18nText | string };
 
 export type Plan = {
-  goal_id: string;
+  goal_id: string | null;
   feasibility: Feasibility;
   actions: PlanAction[];
   species: SpeciesSummary[];
   steps: PlanStep[];
-  next_task: { action_type: ActionTypeId; text: string } | null;
+  next_task: { action_type: ActionTypeId; text: I18nText | string } | null;
   budget: Budget;
-  /** AI care plan for the first two years (v0, estimate) */
-  care_plan?: string | null;
+  /** Care for the first two years, as short sentences */
+  care_plan?: I18nText[] | null;
+  species_total?: number;
+  zone_id?: string;
   meta: Meta;
 };
 
@@ -365,12 +384,19 @@ export type SpeciesSummary = {
   water: 'high' | 'medium' | 'low';
   price?: Money | null;
   image_url?: string | null;
+  kind?: 'tree' | 'climber';
+  estimate?: boolean;
+  /** Outside Bangladesh: a widely planted urban tree, not a native claim; check with a local nursery */
+  commonly_planted?: boolean;
 };
 
 export type Species = SpeciesSummary & {
+  /** 'monsoon' | 'local' */
   planting_season: string;
+  /** 'fast' | 'medium' | 'slow' */
   growth: string;
-  notes: string[];
+  notes: (I18nText | string)[];
+  cooling_c_at_maturity?: number;
   native_regions: string[];
   estimate?: boolean;
   meta?: Meta;
@@ -378,7 +404,9 @@ export type Species = SpeciesSummary & {
 
 export type Nursery = {
   id: string;
-  name: string;
+  name: string | null;
+  partner?: boolean;
+  kind?: string;
   location: LatLng;
   dist_m: number;
   phone?: string | null;
@@ -387,7 +415,7 @@ export type Nursery = {
   address?: string | null;
 };
 
-export type NurseriesResponse = { nurseries: Nursery[]; meta: Meta };
+export type NurseriesResponse = { nurseries: Nursery[]; status?: 'ready' | 'pending'; meta: Meta };
 
 /* ───────────────────────────── Actions & verification ───────────────────────────── */
 

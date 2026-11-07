@@ -19,6 +19,7 @@ import { href } from '@/lib/routes';
 
 import { placeTime } from './hero';
 import { PHOTO } from './photos';
+import { useServerText } from '@/lib/server-text';
 
 const mx = { marginHorizontal: 16 };
 
@@ -276,6 +277,7 @@ export function GoalCard({ goal }: { goal: Goal }) {
   const plan = usePlan(goal);
   const goalLine = t('goalLine', { d: f.dC(goal.target_c), date: f.date(goal.by_date) });
   const who = team.data?.name ?? goal.zone_name;
+  const tx = useServerText();
   const task = plan.data?.next_task;
   return (
     <Card style={mx} gap={14}>
@@ -304,7 +306,7 @@ export function GoalCard({ goal }: { goal: Goal }) {
               <Label>{t('next')}</Label>
               {task ? (
                 <Txt size={14} w={600}>
-                  {task.text}
+                  {tx(task.text)}
                 </Txt>
               ) : (
                 <View style={{ gap: 6, paddingTop: 4 }}>

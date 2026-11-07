@@ -107,7 +107,7 @@
   },
   "editMap": "检查可行性",
   "species": "推荐树种",
-  "speciesAll": "这个区域的所有树种",
+  "speciesAll": "适合本区域的树",
   "nurseries": "苗圃",
   "nurseLine": "附近 {n} 家 · 最近 {dist}",
   "nurseLineNone": "在你的区域附近找幼苗",
@@ -163,5 +163,31 @@
     "label": "{zone} 的种植点地图"
   },
   "loadingPlan": "正在生成你的计划……",
-  "focusLabel": "从…开始"
+  "focusLabel": "从…开始",
+  "speciesAllSub": "按遮荫和需水量排序",
+  "recLoading": "正在评估这块空间能做到什么…",
+  "recNone": "以此空间和日期，约 {max} 可行：请选更晚的日期或更小的目标。",
+  "recNoteDate": "建议 {target}：以此空间到 {date} 约可降温 {max}。",
+  "goals": {
+    "title": "我的目标",
+    "sub": "你和你团队的目标",
+    "kindAction": "行动目标",
+    "kindCooling": "降温目标",
+    "team": "团队",
+    "actionTarget": "到 {date} 种 {trees} 棵树、改造 {roof} 冷屋顶 · 长期 {c}",
+    "coolingTarget": "到 {date} 实现 {target}",
+    "progress": "进度",
+    "done": "已核实：{trees} 棵树、{roof} 屋顶 · 成熟后 {c}",
+    "next": "下一项任务",
+    "openPlan": "打开计划",
+    "logAction": "记录行动",
+    "guestTitle": "目标保存在你的账户中",
+    "guestSub": "创建免费账户以保存目标并跟踪进度。",
+    "create": "创建免费账户",
+    "feature": "保存目标",
+    "emptyTitle": "还没有目标",
+    "emptySub": "选择一个高温区域，设定降温幅度和时间。",
+    "new": "设定新目标"
+  },
+  "region": "广泛种植于"
 }

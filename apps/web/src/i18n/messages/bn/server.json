@@ -68,6 +68,44 @@
       "cool_roof": "{roof_m2} m² সাদা বা প্রতিফলক ছাদ প্রথম গ্রীষ্মেই ব্লক ঠান্ডা করে।",
       "shade_structure": "সবচেয়ে গরম গলি ও স্টপে {shade}টি ছায়া-পাল বা ছাউনি।",
       "awareness": "প্রতিবেশী, স্কুল ও দোকানের সাথে কথা বলুন যাতে আরও মানুষ যোগ দেয় ও গাছের যত্ন নেয়।"
+    },
+    "step": {
+      "map": {
+        "title": "খালি জায়গা চিহ্নিত করুন",
+        "detail": "জোনটি হেঁটে রাস্তার ধার, স্কুলের মাঠ, মসজিদ-মন্দিরের আঙিনা ও ছায়াহীন খালি প্লট লিখে রাখুন।"
+      },
+      "plant": {
+        "title": "প্রায় {trees}টি ছায়াগাছ লাগান",
+        "detail": "নিচের তালিকা থেকে চওড়া ছাউনির প্রজাতি বেছে নিন। বর্ষার শুরুতে লাগালে চারা বেশি বাঁচে।"
+      },
+      "roofs": {
+        "title": "প্রায় {roof_m2} m² ছাদে ঠান্ডা প্রলেপ দিন",
+        "detail": "টিন ও কংক্রিটের ছাদে চুনকাম বা প্রতিফলক রং: গরমের আগে দ্রুত ফল।"
+      },
+      "team": {
+        "title": "দল গড়ুন",
+        "detail": "প্রতিবেশী, স্কুল বা অফিসকে ডাকুন। প্রতিটি যাচাই করা কাজ যৌথ লক্ষ্যে যোগ হয়।"
+      },
+      "care": {
+        "title": "২ বছর যত্ন নিন",
+        "detail": "শুকনো সময়ে চারায় পানি দিন এবং প্রতি ১৫ দিনে ছবি দিন, যাতে প্রতিটি গাছের অবস্থা দেখা যায়।"
+      },
+      "long_term": {
+        "title": "দীর্ঘমেয়াদি শীতলতা দেখুন",
+        "detail": "গাছ প্রায় ৮ম বছরে পূর্ণ শীতলতা দেয়; প্রক্ষেপণে পরিকল্পনাসহ ও ছাড়া রেখা দেখা যায়।"
+      }
+    },
+    "next": {
+      "plant": "প্রথম {n}টি গাছ লাগান",
+      "roof": "প্রথম {m2} m² ছাদে প্রলেপ দিন",
+      "awareness": "প্রতিবেশীদের সাথে ছোট আলোচনা করুন"
+    },
+    "care": {
+      "year1": "১ম বছর: সপ্তাহে দুবার পানি দিন এবং প্রতিটি চারায় খাঁচা রাখুন।",
+      "dry": "এখন শুকনো মৌসুম: ভোরে গভীরভাবে পানি দিন।",
+      "monsoon": "এখন বর্ষা: ঝড়ের পরে নিষ্কাশন ও খুঁটি দেখে নিন।",
+      "checkin": "প্রতি ১৫ দিনে প্রতিটি গাছের ছবি দিন; Atmos X মনে করিয়ে দেবে।",
+      "year2": "২য় বছর: শুধু শুকনো সময়ে পানি দিন এবং নিচের ডাল ছাঁটুন।"
     }
   },
   "budget": {
@@ -262,6 +300,46 @@
       "feas.action_goal",
       "feas.max_cooling",
       "feas.trees_take_years",
+      "nursery.unnamed",
+      "plan.care.checkin",
+      "plan.care.dry",
+      "plan.care.monsoon",
+      "plan.care.year1",
+      "plan.care.year2",
+      "plan.next.awareness",
+      "plan.next.plant",
+      "plan.next.roof",
+      "plan.step.care.detail",
+      "plan.step.care.title",
+      "plan.step.long_term.detail",
+      "plan.step.long_term.title",
+      "plan.step.map.detail",
+      "plan.step.map.title",
+      "plan.step.plant.detail",
+      "plan.step.plant.title",
+      "plan.step.roofs.detail",
+      "plan.step.roofs.title",
+      "plan.step.team.detail",
+      "plan.step.team.title",
+      "species.care.climber.1",
+      "species.care.climber.2",
+      "species.care.climber.3",
+      "species.care.climber.4",
+      "species.care.krish.1",
+      "species.care.krish.2",
+      "species.care.krish.3",
+      "species.care.krish.4",
+      "species.care.tree.1",
+      "species.care.tree.2",
+      "species.care.tree.3",
+      "species.care.tree.4",
+      "species.growth.fast",
+      "species.growth.medium",
+      "species.growth.slow",
+      "species.intl.check_nursery",
+      "species.season.local",
+      "species.season.monsoon",
+      "task.custom",
       "warning.coldwave_mild",
       "warning.coldwave_moderate",
       "warning.coldwave_severe",
@@ -278,5 +356,45 @@
       "why.one.sealed",
       "why.typical"
     ]
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "প্রথম ১২ মাস সপ্তাহে দুবার পানি দিন, পরে শুধু শুকনো সময়ে।",
+        "2": "রাস্তার গাছে খাঁচা দিন: ছাগল, সাইকেল ও রিকশা থেকে রক্ষা করতে।",
+        "3": "বর্ষায় লাগান, জুন থেকে সেপ্টেম্বর।",
+        "4": "দেয়াল, নালা ও পাইপ থেকে ৩ মিটার দূরে রাখুন।"
+      },
+      "krish": {
+        "1": "প্রথম ১২ মাস সপ্তাহে দুবার পানি দিন, পরে শুধু শুকনো সময়ে।",
+        "2": "রাস্তার গাছে খাঁচা দিন: ছাগল, সাইকেল ও রিকশা থেকে রক্ষা করতে।",
+        "3": "বর্ষায় লাগান, জুন থেকে সেপ্টেম্বর।",
+        "4": "শিকড় অগভীর: দেয়াল, নালা ও ফুটপাত থেকে ৪ মিটার দূরে রাখুন।"
+      },
+      "climber": {
+        "1": "প্রথম ৩ মাস একদিন পরপর পানি দিন, পরে সপ্তাহে দুবার।",
+        "2": "দেয়াল থেকে ১০ সেমি দূরে মাচা বা তারের জাল দিন।",
+        "3": "বর্ষায় লাগান, জুন থেকে সেপ্টেম্বর।",
+        "4": "ফুল ফোটার পর ছেঁটে দিন যাতে নালা ও তারে না ওঠে।"
+      }
+    },
+    "intl": {
+      "check_nursery": "এই জলবায়ুর শহরে সাধারণত লাগানো হয়। আপনার এলাকায় কী ভালো জন্মায় ও আক্রমণাত্মক নয়, স্থানীয় নার্সারিতে জেনে নিন।"
+    },
+    "growth": {
+      "fast": "দ্রুত",
+      "medium": "মাঝারি",
+      "slow": "ধীর"
+    },
+    "season": {
+      "monsoon": "বর্ষা, জুন থেকে সেপ্টেম্বর",
+      "local": "সেরা মৌসুম স্থানীয় নার্সারিতে জেনে নিন"
+    }
+  },
+  "nursery": {
+    "unnamed": "নার্সারি"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }

@@ -2,6 +2,7 @@
 
 /** S10 · Your plan (tab root): progress, ranked actions, planting map, species, nurseries, steps. */
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 
 import {
   B,
@@ -37,11 +38,13 @@ import { useTServer } from '@/i18n/server-text';
 import { PlantingMap } from './planting-map';
 import { SpeciesCatalog } from './species-catalog';
 import { useGoalPlan } from './use-goal-plan';
+import { useServerText } from '@/lib/server-text';
 
 export function PlanScreen() {
   const t = useTranslations('plan');
   const { f } = useCz();
-  const { goal, goals, plan, point, binding, bindError, retryBind } = useGoalPlan();
+  const goalParam = useSearchParams().get('goal');
+  const { goal, goals, plan, point, binding, bindError, retryBind } = useGoalPlan(goalParam);
 
   const header = (sub?: string) => <ScreenHeader title={t('planTitle')} sub={sub} back={false} big />;
 
@@ -117,6 +120,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
   const t = useTranslations('plan');
   const ta = useTranslations('act');
   const ts = useTServer();
+  const tx = useServerText();
   const { c, f } = useCz();
   const spots = usePlantingSpots(goal.zone_id);
   const nurseries = useNurseries(goal.zone_centroid);
@@ -161,7 +165,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
                 {t('nextTask')}
               </Txt>
               <Txt size={13.5} w={600}>
-                {plan.next_task.text}
+                {tx(plan.next_task.text)}
               </Txt>
             </View>
           </View>
@@ -294,20 +298,24 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
               </View>
               <View style={{ flex: 1, minWidth: 0, gap: 2, paddingBottom: 14 }}>
                 <Txt size={13.5} w={600}>
-                  {s.title}
+                  {tx(s.title)}
                 </Txt>
                 <Txt size={12.5} dim>
-                  {s.detail}
+                  {tx(s.detail)}
                 </Txt>
               </View>
             </View>
           ))}
-          {plan.care_plan ? (
+          {plan.care_plan?.length ? (
             <View style={{ backgroundColor: c.soft, borderRadius: R.md, padding: 12, gap: 4 }}>
               <Txt size={12} w={600}>
                 {t('carePlan')}
               </Txt>
-              <Txt size={12.5}>{plan.care_plan}</Txt>
+              {plan.care_plan.map((line, i) => (
+                <Txt key={i} size={12.5}>
+                  {'• ' + tx(line)}
+                </Txt>
+              ))}
             </View>
           ) : null}
         </Card>

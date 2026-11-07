@@ -71,6 +71,44 @@
       "cool_roof": "{roof_m2} m² de toit blanc ou réfléchissant rafraîchissent le quartier dès le premier été.",
       "shade_structure": "{shade} voiles d’ombrage ou auvents sur les rues et arrêts les plus chauds.",
       "awareness": "Parlez aux voisins, aux écoles et aux commerces pour que plus de gens participent et prennent soin des arbres."
+    },
+    "step": {
+      "map": {
+        "title": "Repérez les espaces libres",
+        "detail": "Parcourez la zone et notez bords de rue, cours d’école, abords de mosquées et de temples, et terrains vagues sans ombre."
+      },
+      "plant": {
+        "title": "Plantez environ {trees} arbres d’ombrage",
+        "detail": "Choisissez des espèces à large houppier dans la liste. Planter au début de la mousson donne la meilleure survie."
+      },
+      "roofs": {
+        "title": "Peignez environ {roof_m2} m² de toiture",
+        "detail": "Lait de chaux ou peinture réfléchissante sur les toits en tôle et en béton : un gain rapide avant les chaleurs."
+      },
+      "team": {
+        "title": "Formez une équipe",
+        "detail": "Invitez voisins, école ou bureau. Chaque action vérifiée compte pour l’objectif commun."
+      },
+      "care": {
+        "title": "Entretenez-les 2 ans",
+        "detail": "Arrosez par temps sec et publiez une photo tous les 15 jours pour suivre chaque arbre."
+      },
+      "long_term": {
+        "title": "Suivez le refroidissement à long terme",
+        "detail": "Les arbres atteignent leur plein effet vers l’an 8 ; la projection montre la courbe avec et sans votre plan."
+      }
+    },
+    "next": {
+      "plant": "Plantez vos {n} premiers arbres",
+      "roof": "Peignez les {m2} premiers m² de toit",
+      "awareness": "Organisez une courte réunion avec vos voisins"
+    },
+    "care": {
+      "year1": "Année 1 : arrosez deux fois par semaine et protégez chaque plant.",
+      "dry": "C’est la saison sèche : arrosez en profondeur tôt le matin.",
+      "monsoon": "C’est la saison des pluies : vérifiez drainage et tuteurs après les orages.",
+      "checkin": "Publiez une photo de chaque arbre tous les 15 jours ; Atmos X vous le rappelle.",
+      "year2": "Année 2 : arrosez seulement par temps sec et taillez les branches basses."
     }
   },
   "budget": {
@@ -247,5 +285,45 @@
       "green": "Ajouter {add_pct} % de végétation refroidirait la surface d’environ {drop_c} °C.",
       "roofs": "Avec autant de toits, les toits frais et les toits végétalisés aident le plus."
     }
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "Arrosez deux fois par semaine les 12 premiers mois, puis seulement par temps sec.",
+        "2": "Les arbres de rue ont besoin d’une protection contre chèvres, vélos et rickshaws.",
+        "3": "Plantez pendant la mousson, de juin à septembre.",
+        "4": "Gardez 3 m de distance avec murs, caniveaux et canalisations."
+      },
+      "krish": {
+        "1": "Arrosez deux fois par semaine les 12 premiers mois, puis seulement par temps sec.",
+        "2": "Les arbres de rue ont besoin d’une protection contre chèvres, vélos et rickshaws.",
+        "3": "Plantez pendant la mousson, de juin à septembre.",
+        "4": "Racines superficielles : gardez 4 m avec murs, caniveaux et revêtements."
+      },
+      "climber": {
+        "1": "Arrosez un jour sur deux les 3 premiers mois, puis deux fois par semaine.",
+        "2": "Installez un treillage ou un grillage à 10 cm du mur.",
+        "3": "Plantez pendant la mousson, de juin à septembre.",
+        "4": "Taillez après la floraison pour l’éloigner des gouttières et des câbles."
+      }
+    },
+    "intl": {
+      "check_nursery": "Souvent planté dans les villes de ce climat. Demandez à une pépinière locale ce qui pousse bien et n’est pas envahissant chez vous."
+    },
+    "growth": {
+      "fast": "Rapide",
+      "medium": "Moyenne",
+      "slow": "Lente"
+    },
+    "season": {
+      "monsoon": "Mousson, de juin à septembre",
+      "local": "Demandez la meilleure saison à une pépinière locale"
+    }
+  },
+  "nursery": {
+    "unnamed": "Pépinière"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }

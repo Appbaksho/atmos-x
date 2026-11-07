@@ -71,6 +71,44 @@
       "cool_roof": "{roof_m2} m² de techo blanco o reflectante enfrían el bloque en el primer verano.",
       "shade_structure": "{shade} velas o techos de sombra sobre las calles y paradas más calurosas.",
       "awareness": "Habla con vecinos, escuelas y tiendas para que más personas se unan y cuiden los árboles."
+    },
+    "step": {
+      "map": {
+        "title": "Ubica los espacios libres",
+        "detail": "Recorre la zona y anota bordes de calle, patios escolares, terrenos de mezquitas y templos, y solares sin sombra."
+      },
+      "plant": {
+        "title": "Planta unos {trees} árboles de sombra",
+        "detail": "Elige especies de copa ancha de la lista. Plantar al inicio del monzón da la mejor supervivencia."
+      },
+      "roofs": {
+        "title": "Pinta unos {roof_m2} m² de techo",
+        "detail": "Cal o pintura reflectante en techos de chapa y hormigón: una mejora rápida antes del calor."
+      },
+      "team": {
+        "title": "Forma un equipo",
+        "detail": "Invita a vecinos, tu escuela u oficina. Cada acción verificada suma a la meta común."
+      },
+      "care": {
+        "title": "Cuídalos 2 años",
+        "detail": "Riega en épocas secas y sube una foto cada 15 días para ver el estado de cada árbol."
+      },
+      "long_term": {
+        "title": "Sigue el enfriamiento a largo plazo",
+        "detail": "Los árboles enfrían del todo hacia el año 8; la proyección muestra la línea con y sin tu plan."
+      }
+    },
+    "next": {
+      "plant": "Planta tus primeros {n} árboles",
+      "roof": "Pinta los primeros {m2} m² de techo",
+      "awareness": "Organiza una charla breve con tus vecinos"
+    },
+    "care": {
+      "year1": "Año 1: riega dos veces por semana y protege cada plantón.",
+      "dry": "Es temporada seca: riega a fondo temprano por la mañana.",
+      "monsoon": "Es temporada de lluvias: revisa el drenaje y los tutores tras las tormentas.",
+      "checkin": "Sube una foto de cada árbol cada 15 días; Atmos X te lo recuerda.",
+      "year2": "Año 2: riega solo en épocas secas y poda las ramas bajas."
     }
   },
   "budget": {
@@ -247,5 +285,45 @@
       "green": "Añadir un {add_pct}% más de vegetación enfriaría la superficie unos {drop_c} °C.",
       "roofs": "Con tanta superficie de techo, los techos fríos y las azoteas verdes ayudan más."
     }
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "Riega dos veces por semana los primeros 12 meses y luego solo en épocas secas.",
+        "2": "Los árboles de calle necesitan protección contra cabras, bicicletas y rickshaws.",
+        "3": "Planta en el monzón, de junio a septiembre.",
+        "4": "Déjalo a 3 m de muros, desagües y tuberías."
+      },
+      "krish": {
+        "1": "Riega dos veces por semana los primeros 12 meses y luego solo en épocas secas.",
+        "2": "Los árboles de calle necesitan protección contra cabras, bicicletas y rickshaws.",
+        "3": "Planta en el monzón, de junio a septiembre.",
+        "4": "Raíces superficiales: déjalo a 4 m de muros, desagües y pavimento."
+      },
+      "climber": {
+        "1": "Riega un día sí y otro no los primeros 3 meses, luego dos veces por semana.",
+        "2": "Ponle una celosía o malla a 10 cm del muro.",
+        "3": "Planta en el monzón, de junio a septiembre.",
+        "4": "Pódala tras la floración para alejarla de canalones y cables."
+      }
+    },
+    "intl": {
+      "check_nursery": "Se planta a menudo en ciudades con este clima. Consulta en un vivero local qué crece bien y no es invasor donde vives."
+    },
+    "growth": {
+      "fast": "Rápido",
+      "medium": "Medio",
+      "slow": "Lento"
+    },
+    "season": {
+      "monsoon": "Monzón, de junio a septiembre",
+      "local": "Pregunta en un vivero local la mejor temporada"
+    }
+  },
+  "nursery": {
+    "unnamed": "Vivero"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }

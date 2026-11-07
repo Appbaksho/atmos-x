@@ -211,7 +211,7 @@ export async function buildPlan(req: PlanRequest): Promise<Plan> {
     steps,
     next_task: { action_type: 'plant_tree', text: ai?.next_task ?? steps[0].title },
     budget,
-    care_plan: ai?.care_plan ?? null,
+    care_plan: (ai?.care_plan ? [ai.care_plan] : null) as unknown as Plan['care_plan'],
     meta: makeMeta(live && !!ai, [...sources, ...(curated.length ? [SRC.curated] : [])]),
   };
 }

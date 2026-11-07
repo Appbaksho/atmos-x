@@ -11,6 +11,7 @@ import { useTServer } from '@/i18n/server-text';
 
 import { PlantingMap } from './planting-map';
 import { monthsUntil, useGoalPlan } from './use-goal-plan';
+import { useServerText } from '@/lib/server-text';
 
 /** Rough hours of work: planting a tree ≈ 1.5 h, coating 15 m² ≈ 1 h, one shade structure ≈ 8 h. */
 export function workHours(n: { trees: number; roof_m2: number; shade: number }) {
@@ -85,11 +86,12 @@ function Body({ goal, plan, head }: { goal: Goal; plan: Plan; head: React.ReactN
     [t('org'), verdict(perWeek / orgN), t('perMonthTeam', { h: f.loc(Math.max(1, Math.round((perWeek * 4.35) / orgN))) })],
   ];
 
+  const tx = useServerText();
   // Milestones: the plan's steps spread from now to the goal date.
   const [now] = useState(() => Date.now());
   const end = Date.parse(goal.by_date) || now + 365 * 864e5;
   const steps = plan.steps.slice(0, 4);
-  const ms: [string, string][] = steps.map((s, i) => [f.date(new Date(now + ((end - now) * (i + 0.5)) / (steps.length + 0.5)), { month: 'short', year: 'numeric' }), s.title]);
+  const ms: [string, string][] = steps.map((s, i) => [f.date(new Date(now + ((end - now) * (i + 0.5)) / (steps.length + 0.5)), { month: 'short', year: 'numeric' }), tx(s.title)]);
   ms.push([f.date(goal.by_date), t('goalDateMs')]);
 
   const needed: [string, string][] = [

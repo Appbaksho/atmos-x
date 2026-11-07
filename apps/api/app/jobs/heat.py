@@ -173,3 +173,14 @@ async def planting_spots(db: AsyncSession, job: Job) -> dict:
         return await spots.compute(db, job.payload["zone_id"])
     except UpstreamError as e:
         raise Retry(str(e), delay_s=1800)
+
+
+@handler("nurseries", concurrency=1)
+async def nurseries_job(db: AsyncSession, job: Job) -> dict:
+    from ..http import UpstreamError
+    from ..services import nurseries
+
+    try:
+        return await nurseries.refresh(db, job.payload["lat"], job.payload["lng"], job.payload["radius_m"])
+    except UpstreamError as e:
+        raise Retry(str(e), delay_s=1800)

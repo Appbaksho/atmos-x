@@ -82,7 +82,7 @@ out center tags 150;`;
   const all = osm.map((n) => ({ ...n, dist_m: Math.round(haversineM(p, n.location)) }));
   if (haversineM(p, env.demo) <= 15_000) {
     for (const c of CURATED) {
-      if (all.some((n) => norm(n.name) === norm(c.name))) continue;
+      if (all.some((n) => norm(n.name ?? '') === norm(c.name))) continue;
       all.push({ id: c.id, name: c.name, location: c.location, dist_m: Math.round(haversineM(p, c.location)), phone: null, hours: c.hours, osm_url: null, address: 'Dhaka (approximate location)', low: false });
     }
     sources.push(SRC.curated);

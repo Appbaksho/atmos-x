@@ -1,61 +1,46 @@
 'use client';
-/** Plan (POST /plan, keyed by goal), species and nurseries (server-backed). */
-import { useQuery } from '@tanstack/react-query';
+/** Plan (per goal, or a preview before a goal exists), species and nurseries, from the API. */
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { useTranslations } from 'next-intl';
+import { useCallback } from 'react';
 
-import type { Goal, LatLng, NurseriesResponse, Plan, PlanRequest, Species, SpeciesSummary, Meta } from '../types';
-import { DataError } from '../errors';
-import { getKV } from '../local/kv';
-import { V0_ROUTES } from '../types';
+import type { Goal, LatLng, Meta, NurseriesResponse, Plan, Species, SpeciesSummary } from '../types';
 import { cachePolicy, useDataContext } from './context';
-import { getJSON, postJSON, routePath, shouldRetry } from './http';
+import { getJSON, shouldRetry } from './http';
+import { API } from './heat';
 import { qk } from './keys';
 
-export type SpeciesList = { species: SpeciesSummary[]; meta: Meta };
+export type SpeciesList = { species: SpeciesSummary[]; region?: string; meta: Meta };
 
-/**
- * The plan for a (local) goal: a query that POSTs the goal + optional zone detail. Cached per goal
- * and per target/date/lang, so it only re-runs when the goal changes.
- */
-export function usePlan(goal: Goal | null | undefined, zone?: PlanRequest['zone']) {
+/** The plan for a saved goal. Refetches while planting spots are still being fetched. */
+export function usePlan(goal: Goal | null | undefined, _zone?: unknown) {
+  void _zone;
   const ctx = useDataContext();
   const sig = goal ? `${goal.zone_id}|${goal.target_c}|${goal.by_date}` : '';
   return useQuery<Plan>({
     queryKey: qk.plan(goal?.id ?? '', sig, ctx.lang),
-    enabled: ctx.ready && !!goal && !goal.zone_id.startsWith('demo:'),
+    enabled: ctx.ready && !!goal && ctx.kind !== 'guest',
     retry: shouldRetry,
-    staleTime: 6 * 60 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: async ({ signal }) => {
-      const g = goal!;
-      const body: PlanRequest = {
-        goal: { id: g.id, zone_id: g.zone_id, zone_name: g.zone_name, zone_centroid: g.zone_centroid, target_c: g.target_c, by_date: g.by_date },
-        zone: zone ?? null,
-        lang: ctx.lang,
-      };
-      // POST responses can't sit in the service-worker cache, so the last good plan per goal is
-      // kept on the device and served when the network is gone (offline demo safety net).
-      const key = `${ctx.ns}:plan-cache:${g.id}|${sig}|${ctx.lang}`;
-      try {
-        const plan = await postJSON<Plan>(V0_ROUTES.plan.path, body, signal);
-        void getKV()
-          .then((kv) => kv.set(key, plan))
-          .catch(() => undefined);
-        return plan;
-      } catch (e) {
-        const offline = e instanceof DataError && (e.code === 'network.error' || e.status >= 500);
-        if (offline) {
-          const kept = await getKV()
-            .then((kv) => kv.get<Plan>(key))
-            .catch(() => undefined);
-          if (kept) return { ...kept, meta: { ...kept.meta, live: false } };
-        }
-        throw e;
-      }
-    },
+    refetchInterval: (q) => (q.state.data?.feasibility.spots_status === 'pending' ? 8000 : false),
+    queryFn: ({ signal }) => getJSON<Plan>(`${API}/goals/${encodeURIComponent(goal!.id)}/plan`, { lang: ctx.lang }, signal),
   });
 }
 
-/** Species shortlist for a location (curated for Bangladesh, AI elsewhere). */
+/** Plan and feasibility for a zone, target and date before any goal exists (wizard, guests). */
+export function usePlanPreview(zoneId: string | null | undefined, target_c: number, by_date: string) {
+  const ctx = useDataContext();
+  return useQuery<Plan>({
+    queryKey: ['atmos', 'server', 'plan-preview', zoneId ?? '', target_c, by_date, ctx.lang],
+    enabled: ctx.ready && !!zoneId,
+    retry: shouldRetry,
+    placeholderData: keepPreviousData,
+    refetchInterval: (q) => (q.state.data?.feasibility.spots_status === 'pending' ? 8000 : false),
+    queryFn: ({ signal }) => getJSON<Plan>(`${API}/plan/preview`, { zone_id: zoneId!, target_c, by_date, lang: ctx.lang }, signal),
+  });
+}
+
+/** Species for a location: the curated Bangladesh list, else commonly planted trees for the climate band. */
 export function useSpecies(point: LatLng | null | undefined) {
   const ctx = useDataContext();
   return useQuery<SpeciesList>({
@@ -64,8 +49,7 @@ export function useSpecies(point: LatLng | null | undefined) {
     retry: shouldRetry,
     staleTime: 24 * 60 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) =>
-      getJSON<SpeciesList>(V0_ROUTES.species.path, { lat: point?.lat, lng: point?.lng, lang: ctx.lang }, signal),
+    queryFn: ({ signal }) => getJSON<SpeciesList>(`${API}/species`, { lat: point?.lat, lng: point?.lng, lang: ctx.lang }, signal),
   });
 }
 
@@ -77,19 +61,25 @@ export function useSpeciesDetail(id: string | null | undefined, point?: LatLng |
     retry: shouldRetry,
     staleTime: 24 * 60 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) =>
-      getJSON<Species>(routePath(V0_ROUTES.speciesOne.path, { id: id! }), { lat: point?.lat, lng: point?.lng, lang: ctx.lang }, signal),
+    queryFn: ({ signal }) => getJSON<Species>(`${API}/species/${encodeURIComponent(id!)}`, { lang: ctx.lang }, signal),
   });
 }
 
+/** Nearby nurseries from OpenStreetMap (a worker job; `status: 'pending'` until it lands). */
 export function useNurseries(point: LatLng | null | undefined, radius_m = 5000) {
   const ctx = useDataContext();
-  return useQuery<NurseriesResponse>({
+  const ts = useTranslations('server');
+  const select = useCallback(
+    (d: NurseriesResponse) => ({ ...d, nurseries: d.nurseries.map((n) => (n.name ? n : { ...n, name: ts('nursery.unnamed') })) }) as NurseriesResponse & { nurseries: (NurseriesResponse['nurseries'][number] & { name: string })[] },
+    [ts],
+  );
+  return useQuery<NurseriesResponse, Error, NurseriesResponse & { nurseries: (NurseriesResponse['nurseries'][number] & { name: string })[] }>({
+    select,
     queryKey: qk.nurseries(point ?? { lat: 0, lng: 0 }, radius_m),
     enabled: ctx.ready && !!point,
     retry: shouldRetry,
-    staleTime: 24 * 60 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) => getJSON<NurseriesResponse>(V0_ROUTES.nurseries.path, { lat: point!.lat, lng: point!.lng, radius_m }, signal),
+    refetchInterval: (q) => (q.state.data?.status === 'pending' ? 8000 : false),
+    queryFn: ({ signal }) => getJSON<NurseriesResponse>(`${API}/nurseries`, { lat: point!.lat, lng: point!.lng, radius_m }, signal),
   });
 }

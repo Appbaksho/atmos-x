@@ -71,6 +71,44 @@
       "cool_roof": "{roof_m2} m² atap putih atau reflektif mendinginkan blok pada musim panas pertama.",
       "shade_structure": "{shade} kain peneduh atau kanopi di gang dan persimpangan terpanas.",
       "awareness": "Berbicaralah dengan tetangga, sekolah, dan toko agar lebih banyak orang ikut serta dan merawat pohon."
+    },
+    "step": {
+      "map": {
+        "title": "Petakan lahan terbuka",
+        "detail": "Telusuri zona dan catat tepi jalan, halaman sekolah, halaman masjid dan pura, serta lahan kosong tanpa naungan."
+      },
+      "plant": {
+        "title": "Tanam sekitar {trees} pohon peneduh",
+        "detail": "Pilih spesies bertajuk lebar dari daftar di bawah. Menanam di awal musim hujan memberi daya hidup terbaik."
+      },
+      "roofs": {
+        "title": "Lapisi sekitar {roof_m2} m² atap",
+        "detail": "Kapur atau cat reflektif pada atap seng dan beton: hasil cepat sebelum musim panas."
+      },
+      "team": {
+        "title": "Bentuk tim",
+        "detail": "Ajak tetangga, sekolah, atau kantor. Setiap aksi terverifikasi dihitung untuk target bersama."
+      },
+      "care": {
+        "title": "Rawat selama 2 tahun",
+        "detail": "Siram bibit saat kering dan unggah foto tiap 15 hari agar kondisi tiap pohon terlihat."
+      },
+      "long_term": {
+        "title": "Pantau pendinginan jangka panjang",
+        "detail": "Pohon mencapai pendinginan penuh sekitar tahun ke-8; proyeksi menampilkan garis dengan dan tanpa rencana Anda."
+      }
+    },
+    "next": {
+      "plant": "Tanam {n} pohon pertama",
+      "roof": "Lapisi {m2} m² atap pertama",
+      "awareness": "Adakan obrolan singkat dengan tetangga"
+    },
+    "care": {
+      "year1": "Tahun 1: siram dua kali seminggu dan beri pelindung tiap bibit.",
+      "dry": "Sekarang musim kemarau: siram dalam-dalam di pagi hari.",
+      "monsoon": "Sekarang musim hujan: periksa drainase dan penyangga setelah badai.",
+      "checkin": "Unggah foto tiap pohon setiap 15 hari; Atmos X akan mengingatkan.",
+      "year2": "Tahun 2: siram hanya saat kering dan pangkas cabang bawah."
     }
   },
   "budget": {
@@ -247,5 +285,45 @@
       "green": "Menambah {add_pct}% tutupan hijau akan mendinginkan permukaan sekitar {drop_c} °C.",
       "roofs": "Dengan atap seluas ini, atap sejuk dan taman atap paling membantu."
     }
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "Siram dua kali seminggu selama 12 bulan pertama, lalu hanya saat kering.",
+        "2": "Pohon tepi jalan perlu pelindung dari kambing, sepeda, dan becak.",
+        "3": "Tanam di musim hujan, Juni hingga September.",
+        "4": "Jaga jarak 3 m dari dinding, saluran, dan pipa."
+      },
+      "krish": {
+        "1": "Siram dua kali seminggu selama 12 bulan pertama, lalu hanya saat kering.",
+        "2": "Pohon tepi jalan perlu pelindung dari kambing, sepeda, dan becak.",
+        "3": "Tanam di musim hujan, Juni hingga September.",
+        "4": "Akar dangkal: jaga jarak 4 m dari dinding, saluran, dan paving."
+      },
+      "climber": {
+        "1": "Siram selang sehari selama 3 bulan pertama, lalu dua kali seminggu.",
+        "2": "Pasang teralis atau jaring kawat 10 cm dari dinding.",
+        "3": "Tanam di musim hujan, Juni hingga September.",
+        "4": "Pangkas setelah berbunga agar tidak merambat ke talang dan kabel."
+      }
+    },
+    "intl": {
+      "check_nursery": "Umum ditanam di kota beriklim ini. Tanyakan ke pembibitan lokal apa yang tumbuh baik dan tidak invasif di tempat Anda."
+    },
+    "growth": {
+      "fast": "Cepat",
+      "medium": "Sedang",
+      "slow": "Lambat"
+    },
+    "season": {
+      "monsoon": "Musim hujan, Juni–September",
+      "local": "Tanyakan musim terbaik ke pembibitan lokal"
+    }
+  },
+  "nursery": {
+    "unnamed": "Pembibitan"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }

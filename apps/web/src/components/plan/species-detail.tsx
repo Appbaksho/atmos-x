@@ -34,6 +34,7 @@ import { useNurseries, useSpeciesDetail } from '@/lib/data/hooks';
 import type { Species } from '@/lib/data/types';
 
 import { treeCoolingC, useGoalPlan } from './use-goal-plan';
+import { useServerText } from '@/lib/server-text';
 
 const BLANK = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
 
@@ -79,6 +80,7 @@ function Body({
   back: string;
 }) {
   const t = useTranslations('plan');
+  const tx = useServerText();
   const { c, f } = useCz();
   const nurseries = useNurseries(point);
   const name = sp.name;
@@ -93,8 +95,8 @@ function Body({
     [t('facts.canopy'), `${f.loc(sp.canopy_m)} m`],
     [t('facts.cooling'), t(`cooling.${sp.cooling}`)],
     [t('facts.water'), t(`waterNeed.${sp.water}`)],
-    [t('facts.growth'), sp.growth],
-    [t('facts.season'), sp.planting_season],
+    [t('facts.growth'), tx({ code: `species.growth.${sp.growth}` })],
+    [t('facts.season'), tx({ code: `species.season.${sp.planting_season}` })],
     ...(sp.price ? ([[t('facts.price'), f.money(sp.price)]] as [string, string][]) : []),
   ];
   const near = [...(nurseries.data?.nurseries ?? [])].sort((a, b) => a.dist_m - b.dist_m).slice(0, 2);
@@ -173,19 +175,19 @@ function Body({
       {sp.notes.length ? (
         <Card style={{ marginHorizontal: 16 }}>
           <Label>{t('care')}</Label>
-          {sp.notes.map((line) => (
-            <View key={line} style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start' }}>
+          {sp.notes.map((line, i) => (
+            <View key={i} style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start' }}>
               <View style={{ width: 22, height: 22, borderRadius: 11, backgroundColor: c.limeSoft, alignItems: 'center', justifyContent: 'center', marginTop: 1 }}>
                 <Icon d={I.check} size={12} sw={3} />
               </View>
               <Txt size={13.5} style={{ flex: 1 }}>
-                {line}
+                {tx(line)}
               </Txt>
             </View>
           ))}
           {sp.native_regions.length ? (
             <Txt size={12} dim>
-              {t('native') + ': ' + sp.native_regions.join(', ')}
+              {t('region') + ': ' + sp.native_regions.join(', ')}
             </Txt>
           ) : null}
         </Card>
@@ -201,7 +203,7 @@ function Body({
           ) : null}
         </View>
         {near.map((n) => (
-          <Tap key={n.id} role="link" label={n.name} href={href('S12')} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingTop: 10, minHeight: 44, borderTopWidth: 1, borderTopColor: c.line }}>
+          <Tap key={n.id} role="link" label={n.name ?? ''} href={href('S12')} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingTop: 10, minHeight: 44, borderTopWidth: 1, borderTopColor: c.line }}>
             <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
               <Txt size={13.5} w={600}>
                 {n.name}
@@ -216,6 +218,11 @@ function Body({
       </Card>
 
       <View style={{ marginHorizontal: 16 }}>
+        {sp.commonly_planted ? (
+          <Txt size={12} dim>
+            {tx({ code: 'species.intl.check_nursery' })}
+          </Txt>
+        ) : null}
         <SourceChips meta={sp.meta} ai={sp.estimate} />
       </View>
 

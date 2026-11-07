@@ -51,6 +51,11 @@ export const ROUTES = {
 export const EXTRA_ROUTES = {
   landing: '/',
   tree: '/app/tree/[id]',
+  trees: '/app/tree',
+  goals: '/app/goal',
+  species: '/app/species',
+  teams: '/app/team',
+  orgs: '/app/org',
   about: '/app/about',
   login: '/auth/login',
   register: '/auth/register',

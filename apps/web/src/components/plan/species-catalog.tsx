@@ -12,12 +12,12 @@ const FILTERS = ['all', 'high', 'lowWater', 'cheap'] as const;
 type Filter = (typeof FILTERS)[number];
 const RANK = { high: 3, medium: 2, low: 1 } as const;
 
-export function SpeciesCatalog({ point }: { point: LatLng | null }) {
+export function SpeciesCatalog({ point, expanded = false }: { point: LatLng | null; expanded?: boolean }) {
   const t = useTranslations('plan');
   const { c, f } = useCz();
   const q = useSpecies(point);
   const [filter, setFilter] = useState<Filter>('all');
-  const [all, setAll] = useState(false);
+  const [all, setAll] = useState(expanded);
 
   let list: SpeciesSummary[] = [...(q.data?.species ?? [])];
   if (filter === 'high') list = list.filter((s) => s.cooling === 'high');
@@ -99,7 +99,7 @@ export function SpeciesCatalog({ point }: { point: LatLng | null }) {
               );
             })}
           </View>
-          {list.length > 6 ? <GhostButton label={all ? t('showLess') : t('showAll', { n: f.loc(list.length) })} height={44} onPress={() => setAll(!all)} /> : null}
+          {list.length > 6 && !expanded ? <GhostButton label={t('showAll', { n: f.loc(list.length) })} height={44} href={href('species')} /> : null}
           {q.data ? <SourceChips meta={q.data.meta} /> : null}
         </>
       )}
