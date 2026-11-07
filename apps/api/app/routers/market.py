@@ -21,6 +21,7 @@ from ..models import (
     Invoice,
     PackageOrder,
     Partner,
+    PartnerOutlet,
     Photo,
     Product,
     Redemption,
@@ -236,6 +237,61 @@ async def partner_product_patch(product_id: uuid.UUID, body: ProductPatch, db: D
     p = await ST.my_partner(db, user)
     pr = await ST.upsert_product(db, p, body.model_dump(exclude_unset=True), product_id)
     return await ST.product_out(db, pr, user, owner=True)
+
+
+class OutletIn(BaseModel):
+    name: str = Field(min_length=2, max_length=120)
+    address: str | None = Field(default=None, max_length=300)
+    lat: float | None = Field(default=None, ge=-90, le=90)
+    lng: float | None = Field(default=None, ge=-180, le=180)
+
+
+def _outlet(o: PartnerOutlet) -> dict:
+    return {
+        "id": str(o.id),
+        "name": o.name,
+        "address": o.address,
+        "location": {"lat": o.lat, "lng": o.lng} if o.lat is not None and o.lng is not None else None,
+    }
+
+
+@router.get("/partner/outlets", operation_id="partner_outlets")
+async def partner_outlets(db: DB, user: FullUser) -> list[dict]:
+    """S11: the pickup points vouchers can be collected at."""
+    p = await ST.my_partner(db, user)
+    rows = (
+        await db.execute(select(PartnerOutlet).where(PartnerOutlet.partner_id == p.id).order_by(PartnerOutlet.name))
+    ).scalars()
+    return [_outlet(o) for o in rows]
+
+
+@router.post("/partner/outlets", operation_id="partner_outlet_add")
+async def partner_outlet_add(body: OutletIn, db: DB, user: FullUser) -> dict:
+    p = await ST.my_partner(db, user)
+    n = (await db.execute(select(PartnerOutlet.id).where(PartnerOutlet.partner_id == p.id))).all()
+    if len(n) >= 50:
+        raise AppError(409, "partner.outlet_limit", "A partner can list up to 50 outlets")
+    o = PartnerOutlet(
+        partner_id=p.id,
+        name=body.name.strip(),
+        address=(body.address or "").strip() or None,
+        lat=body.lat,
+        lng=body.lng,
+    )
+    db.add(o)
+    await db.commit()
+    return _outlet(o)
+
+
+@router.delete("/partner/outlets/{outlet_id}", operation_id="partner_outlet_delete", status_code=204)
+async def partner_outlet_delete(outlet_id: uuid.UUID, db: DB, user: FullUser) -> Response:
+    p = await ST.my_partner(db, user)
+    o = await db.get(PartnerOutlet, outlet_id)
+    if o is None or o.partner_id != p.id:
+        raise not_found("partner.outlet_not_found", "Outlet not found")
+    await db.delete(o)
+    await db.commit()
+    return Response(status_code=204)
 
 
 @router.get("/partner/redemptions", operation_id="partner_redemptions")

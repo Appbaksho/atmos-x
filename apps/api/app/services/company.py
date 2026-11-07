@@ -370,16 +370,29 @@ async def allocate(db: AsyncSession, o: PackageOrder | None = None) -> int:
                     note="moved to planter",
                 )
             )
+            # R2: the platform fee per verified tree is recorded; the planter gets the rest.
+            fee = round(min(settings.fee_per_tree_bdt, order.unit_price), 2)
             db.add(
                 PayoutLedger(
                     order_id=order.id,
                     tree_id=t.id,
                     payee_type="planter",
-                    amount=order.unit_price,
+                    amount=round(order.unit_price - fee, 2),
                     state="released",
                     note=f"tree {t.id} verified",
                 )
             )
+            if fee > 0:
+                db.add(
+                    PayoutLedger(
+                        order_id=order.id,
+                        tree_id=t.id,
+                        payee_type="platform",
+                        amount=fee,
+                        state="released",
+                        note="fee per verified tree",
+                    )
+                )
             n += 1
     await db.flush()
     return n

@@ -205,7 +205,7 @@ class PayoutLedger(Base):
     id: Mapped[uuid.UUID] = uuid_pk()
     order_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), nullable=False, index=True)
     tree_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
-    payee_type: Mapped[str] = mapped_column(String(10), nullable=False)  # pool | nursery | planter
+    payee_type: Mapped[str] = mapped_column(String(10), nullable=False)  # pool | nursery | planter | platform
     amount: Mapped[float] = mapped_column(Float, nullable=False)
     state: Mapped[str] = mapped_column(String(10), nullable=False)  # held | released
     note: Mapped[str | None] = mapped_column(Text)

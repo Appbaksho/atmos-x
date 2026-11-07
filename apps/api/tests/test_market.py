@@ -343,7 +343,12 @@ async def test_company_flow_trees_held_then_released_and_no_points(client, clien
         x.amount
         for x in (await db.execute(select(PayoutLedger).where(PayoutLedger.payee_type == "planter"))).scalars().all()
     )
-    assert held == 1500.0 and released == 1500.0  # one tree's money released, one still held
+    fee = sum(
+        x.amount
+        for x in (await db.execute(select(PayoutLedger).where(PayoutLedger.payee_type == "platform"))).scalars().all()
+    )
+    # One tree's money released (planter share + the recorded fee per verified tree, R2), one still held.
+    assert held == 1500.0 and released == 1350.0 and fee == 150.0
     async with make_client() as pc2:
         await signup(pc2, "planter2@example.org", "Planter Two")
         await multipart(pc2, "/api/v1/actions", plant(1), jpeg(42))
@@ -421,3 +426,23 @@ async def test_store_listing_package_opens_the_partner_portal(client, client2, d
     await form_post(client, "/api/v1/payments/sslcommerz/success", {"tran_id": tran, "val_id": "s1"})
     portal = await client.get("/api/v1/partner/products")
     assert portal.status_code == 200 and portal.json()["partner"]["name"] == "Fresh Foods Ltd"
+
+
+async def test_partner_manages_pickup_outlets(client, db, seeded):
+    """S11: partners add and remove the pickup points shown on their products."""
+    staff = await signup(client, "outlets@example.org", "Outlet Staff")
+    await partner_with(db, member=staff["id"])
+    before = (await client.get("/api/v1/partner/outlets")).json()
+    o = await client.post(
+        "/api/v1/partner/outlets", json={"name": "Dhanmondi 27 shop", "address": "Road 27", "lat": 23.75, "lng": 90.37}
+    )
+    assert o.status_code == 200 and o.json()["location"] == {"lat": 23.75, "lng": 90.37}
+    listed = (await client.get("/api/v1/partner/outlets")).json()
+    assert len(listed) == len(before) + 1
+    prod = (await client.get("/api/v1/partner/products")).json()["products"][0]
+    assert "Dhanmondi 27 shop" in [x["name"] for x in prod["outlets"]]
+    assert (await client.delete(f"/api/v1/partner/outlets/{o.json()['id']}")).status_code == 204
+    assert len((await client.get("/api/v1/partner/outlets")).json()) == len(before)
+    # Another person can't touch them.
+    await signup(client, "stranger@example.org", "Stranger")
+    assert (await client.get("/api/v1/partner/outlets")).status_code == 403
