@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useDebounced } from '@/components/cz/hooks';
 import { B, R } from '@/components/cz/tokens';
 import { Bar, CzButton, I, Icon, IconBtn, LightStatusBar, Note, Spinner, Tap, Txt, View } from '@/components/cz/ui';
-import { cellCount, resForRadius } from '@/components/map/geo';
+import { H3_RES, ringCount } from '@/components/map/geo';
 import { MapAttribution, MapView } from '@/components/map/map-view-lazy';
 import { RadiusControl, useRadiusLabel } from '@/components/map/radius-control';
 import { clampRadius, useScan } from '@/components/map/use-scan';
@@ -118,8 +118,9 @@ export function LocationScreen() {
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const n = cellCount(radius);
-  const res = resForRadius(radius);
+  // Hex count from the scan once it answers (H4); the ring formula until then.
+  const n = scan.data?.scan.cell_count ?? ringCount(radius);
+  const res = H3_RES;
   const place = loc.placeName ?? tc('location.demo');
   const coords = `${f.loc(Math.abs(loc.focus.lat).toFixed(4))}° ${loc.focus.lat >= 0 ? 'N' : 'S'}, ${f.loc(Math.abs(loc.focus.lng).toFixed(4))}° ${loc.focus.lng >= 0 ? 'E' : 'W'}`;
 

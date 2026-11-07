@@ -24,7 +24,7 @@
   "why": "क्यों गर्म है",
   "hottest": "आपके पास सबसे गर्म क्षेत्र",
   "seeMap": "नक्शा देखें",
-  "lst": "छत और सड़क",
+  "lst": "सतह",
   "hum": "नमी",
   "wind": "हवा",
   "upd": "अपडेट हुआ",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "पक्की सतहें {pct}%",
     "low_green": "हरियाली {pct}%",
-    "dense_buildings": "घने भवन {per_ha}/ha",
+    "dense_buildings": "इमारतें {pct}%",
     "wide_roads": "सड़कें {pct}%",
-    "dark_roofs": "काली छतें {pct}%"
+    "dark_roofs": "काली छतें {pct}%",
+    "dark_surfaces": "गहरा {pct}%",
+    "hot_nights": "गर्म रातें +{delta_c}°",
+    "dense_population": "घनी आबादी"
   },
   "whatIf": "+ हरियाली",
   "whatIfA11y": "हरियाली बढ़ाई गई",

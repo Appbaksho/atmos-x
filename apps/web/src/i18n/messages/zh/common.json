@@ -54,14 +54,50 @@
     "create": "创建免费账户",
     "signIn": "我已有账户",
     "notNow": "暂不",
-    "note": "你的账户保存在这台设备上。你之前的访客设置会保留。"
+    "note": "你的账户保存在 Atmos X 服务器上，访客期间的一切都会保留。"
   },
   "sources": {
     "label": "来源",
     "cached": "已缓存",
     "live": "实时",
-    "ai": "AI 估算",
-    "demo": "演示社区"
+    "demo": "演示社区",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "BMD 阈值",
+      "atmos": "Atmos X 计算",
+      "atmos_reference": "Atmos X 参考表",
+      "device": "此设备"
+    },
+    "kind": {
+      "observation": "实测",
+      "model": "模型",
+      "forecast": "预报",
+      "derived": "计算",
+      "estimate": "估算",
+      "reference": "参考",
+      "demo": "演示"
+    },
+    "stale": "上次更新",
+    "staleTitle": "数据源未响应，因此显示上次有效数据及其日期。"
   },
   "risk": {
     "ok": "正常",

@@ -1,47 +1,41 @@
 'use client';
-/** Air quality (server) merged with the user's simulated sensors (local). */
+/** Air quality and your own sensors (prompt-v1 §7.8). Sensors are real devices; nothing is simulated. */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { currentContext } from '../local/context';
-import { addSensor, listSensors, removeSensor, SENSOR_INTERVAL_MS, type SensorInput } from '../local/farm';
-import type { Air, LatLng, Sensor, SensorSummary } from '../types';
-import { V0_ROUTES } from '../types';
+import { api, call } from '@/lib/api/client';
+
+import type { Air, LatLng, NewSensor, Sensor } from '../types';
 import { cachePolicy, useDataContext } from './context';
 import { getJSON, shouldRetry } from './http';
+import { API } from './heat';
 import { qk } from './keys';
 
-const summary = (s: Sensor): SensorSummary => ({ id: s.id, name: s.name, pm25: s.pm25, last_seen: s.last_seen, online: s.online, simulated: s.simulated });
-
-/** PM2.5 + AQI for a point; `my_sensors` is filled from this device (simulated, refreshed every 5 min). */
+/** PM2.5 + AQI for a point; `my_sensors` are the signed-in user's devices. Refreshes every 5 min. */
 export function useAir(point: LatLng | null | undefined) {
   const ctx = useDataContext();
   return useQuery<Air>({
     queryKey: qk.air(ctx.ns, point ?? { lat: 0, lng: 0 }),
     enabled: ctx.ready && !!point,
     retry: shouldRetry,
-    refetchInterval: SENSOR_INTERVAL_MS,
+    refetchInterval: 5 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: async ({ signal }) => {
-      const air = await getJSON<Air>(V0_ROUTES.air.path, { lat: point!.lat, lng: point!.lng }, signal);
-      const sensors = await listSensors(await currentContext(), air.pm25);
-      return { ...air, my_sensors: sensors.map(summary) };
-    },
+    queryFn: ({ signal }) => getJSON<Air>(`${API}/air`, { lat: point!.lat, lng: point!.lng }, signal),
   });
 }
 
-/**
- * The user's sensors. Pass the area PM2.5 (e.g. useAir().data?.pm25) to get simulated readings;
- * without it readings are null. Guests get [].
- */
-export function useSensors(basePm25?: number | null) {
+/** The user's sensors (guests: []). The argument is accepted for compatibility and ignored. */
+export function useSensors(_basePm25?: number | null) {
+  void _basePm25;
   const ctx = useDataContext();
   return useQuery<Sensor[]>({
-    queryKey: [...qk.sensors(ctx.ns), basePm25 ?? null],
+    queryKey: qk.sensors(ctx.ns),
     enabled: ctx.ready,
-    refetchInterval: basePm25 == null ? false : SENSOR_INTERVAL_MS,
-    queryFn: async () => listSensors(await currentContext(), basePm25 ?? null),
+    refetchInterval: 60 * 1000,
+    queryFn: async ({ signal }) => (ctx.kind === 'guest' ? [] : getJSON<Sensor[]>(`${API}/sensors/mine`, undefined, signal)),
   });
 }
+
+export type SensorInput = { name: string; model?: string | null; location?: LatLng | null };
 
 function useSensorMutation<V, R>(fn: (v: V) => Promise<R>) {
   const qc = useQueryClient();
@@ -55,11 +49,18 @@ function useSensorMutation<V, R>(fn: (v: V) => Promise<R>) {
   });
 }
 
-/** Guests: throws GuestRestrictedError. */
+/** Returns the new sensor with its ingest token, shown once. Guests: GuestRestrictedError. */
 export function useAddSensor() {
-  return useSensorMutation(async (input: SensorInput) => addSensor(await currentContext(), input));
+  return useSensorMutation(
+    async (input: SensorInput) =>
+      (await call(
+        api.POST('/api/v1/sensors', { body: { name: input.name, model: input.model ?? null, lat: input.location?.lat ?? null, lng: input.location?.lng ?? null } }),
+      )) as unknown as NewSensor,
+  );
 }
 
 export function useRemoveSensor() {
-  return useSensorMutation(async (id: string) => removeSensor(await currentContext(), id));
+  return useSensorMutation(async (id: string) => {
+    await call(api.DELETE('/api/v1/sensors/{sensor_id}', { params: { path: { sensor_id: id } } }));
+  });
 }

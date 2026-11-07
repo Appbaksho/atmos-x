@@ -54,14 +54,50 @@
     "create": "Buat akun gratis",
     "signIn": "Saya sudah punya akun",
     "notNow": "Nanti saja",
-    "note": "Akun Anda tersimpan di perangkat ini. Pengaturan tamu Anda tetap terbawa."
+    "note": "Akun Anda disimpan di server Atmos X. Semua yang Anda lakukan sebagai tamu ikut terbawa."
   },
   "sources": {
     "label": "Sumber",
     "cached": "tersimpan",
     "live": "langsung",
-    "ai": "Perkiraan AI",
-    "demo": "Komunitas demo"
+    "demo": "Komunitas demo",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "Ambang BMD",
+      "atmos": "Perhitungan Atmos X",
+      "atmos_reference": "Tabel Atmos X",
+      "device": "Perangkat ini"
+    },
+    "kind": {
+      "observation": "terukur",
+      "model": "model",
+      "forecast": "prakiraan",
+      "derived": "dihitung",
+      "estimate": "perkiraan",
+      "reference": "referensi",
+      "demo": "demo"
+    },
+    "stale": "terakhir diperbarui",
+    "staleTitle": "Sumber tidak merespons, jadi data valid terakhir ditampilkan beserta tanggalnya."
   },
   "risk": {
     "ok": "Normal",

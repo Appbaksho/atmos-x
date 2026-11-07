@@ -12,12 +12,10 @@
   "observed": "Nível de calor · agora",
   "air": "Ar",
   "feels": "Sensação térmica",
-  "roof": "Telhado e rua",
-  "lstNote": "Telhado e rua é uma estimativa da temperatura da superfície com base na cobertura do solo do OpenStreetMap e na temperatura do ar ao vivo. As superfícies ficam mais quentes que o ar que você sente.",
+  "roof": "Superfície",
+  "lstNote": "Superfície é a temperatura do chão e dos telhados medida pelo Landsat (última {date}, por volta das 10h20 locais). É mais quente que o ar que você sente.",
   "whyTitle": "Por que este bloco é quente",
-  "aiLabel": "Explicação da IA",
-  "aiNote": "Escrito pela IA só com os números acima. Pode estar errado; os números vêm da nossa estimativa de calor.",
-  "noWhy": "Estas causas aumentam mais o calor aqui:",
+  "noWhy": "Estas causas somam mais calor aqui:",
   "whatIfTitle": "E se adicionarmos verde?",
   "years": {
     "title": "Ao longo dos anos",
@@ -32,15 +30,16 @@
     "vsAvg": "vs média de 20 anos",
     "trend": "Tendência / década",
     "perDecade": "{d} / década",
-    "note": "Média da estação quente da diária {kind, select, max {máxima} other {mínima}} da temperatura do ar do arquivo Open-Meteo (ERA5). Esta é a temperatura do ar da área, não a temperatura da superfície por satélite.",
+    "note": "Mediana da estação quente da temperatura da superfície {kind, select, max {diurna} other {noturna}} do NASA MODIS a ~1 km desta zona. É temperatura da superfície, não do ar.",
     "avg": "Média de 20 anos",
     "chartA11y": "{kind} de {from} a {to}. Média {avg}. Tendência {trend} por década.",
-    "empty": "Ainda não há histórico para este lugar."
+    "empty": "Ainda não há histórico para este lugar.",
+    "pending": "Carregando 20 anos de histórico de satélite da NASA…"
   },
   "drivers": {
     "label": "Fatores · causas",
     "title": "O que torna este bloco quente",
-    "adds": "adicionado pela cobertura do solo (estimativa)",
+    "adds": "somado pela cobertura do solo, ajustado com dados de satélite",
     "addsLbl": "O que cada causa adiciona",
     "addsShort": "Adiciona {d}",
     "estimate": "estimativa",
@@ -55,23 +54,32 @@
       "sealed": "O concreto e o asfalto absorvem o sol o dia todo e devolvem o calor à noite, então o bloco nunca esfria de verdade.",
       "green": "As árvores resfriam com sombra e ao evaporar água. Menos cobertura verde significa menos dos dois.",
       "roofs": "Telhados escuros ficam muito mais quentes que os claros ao meio-dia e aquecem os cômodos abaixo.",
-      "density": "Prédios muito juntos prendem o calor e barram o vento, então as noites ficam quentes."
+      "density": "Prédios muito juntos prendem o calor e barram o vento, então as noites ficam quentes.",
+      "dark_surface": "Telhados escuros e asfalto refletem pouca luz, então esquentam mais ao meio-dia.",
+      "water": "Lagos, canais e rios refrescam o entorno durante o dia."
     },
     "fix": {
       "sealed": "Trocar parte do piso por blocos vazados com grama ou canteiros para árvores",
       "green": "Plantar árvores de rua ao longo das vias principais",
       "roofs": "Revestimento de telhado frio nos maiores telhados",
-      "density": "Sombrite sobre as vielas mais estreitas"
+      "density": "Sombrite sobre as vielas mais estreitas",
+      "dark_surface": "Pintura de telhado frio nos maiores telhados",
+      "water": "Mantenha lagos e canais limpos e sombreados"
     },
-    "source": "Estimativa de calor: cobertura do solo do OpenStreetMap + clima ao vivo. Telhados escuros são uma parcela assumida para o país."
+    "other": "Outros fatores (materiais, altura, trânsito): {d}",
+    "coolsShort": "Esfria {d}",
+    "dark_surface": "Superfícies escuras",
+    "water": "Água",
+    "sourceFit": "Parcelas em °C: temperatura da superfície Landsat ajustada à cobertura do solo em {n} hexágonos (R² {r2}), imagens até {date}.",
+    "sourceEstimate": "Parcelas em °C com coeficientes publicados (estimativa): poucos hexágonos de satélite aqui para um ajuste local."
   },
   "setGoal": "Definir uma meta de resfriamento",
   "seeProj": "Ver projeção",
   "goalFeature": "definir uma meta de resfriamento",
   "proj": {
     "title": "Projeção",
-    "sub": "{zone} · temperatura média do ar, estação quente",
-    "subNoZone": "Temperatura média do ar, estação quente",
+    "sub": "{zone} · temperatura da superfície, estação quente",
+    "subNoZone": "Temperatura da superfície, estação quente",
     "horizon": "Horizonte",
     "doNothing": "Não fazer nada",
     "withPlan": "Com o plano",
@@ -84,13 +92,17 @@
     "shade": "Estruturas de sombra",
     "updating": "Atualizando…",
     "assumptions": "Suposições",
-    "rangesNote": "Faixas, não promessas: tendência de 20 anos de dados de arquivo mais coeficientes de resfriamento publicados.",
+    "rangesNote": "Faixas, não promessas: histórico de satélite e modelos climáticos da NASA mais coeficientes publicados.",
     "start": "Iniciar o plano",
     "empty": "Ainda não há projeção para esta zona."
   },
   "notFound": {
     "title": "Esta zona não está mais no mapa",
-    "body": "Os IDs da zona mudam quando uma área é escaneada de novo. Abra o mapa e escolha o quarteirão novamente.",
+    "body": "Este link de zona não está mais salvo. Abra o mapa para ver as zonas atuais.",
     "action": "Abrir o mapa"
-  }
+  },
+  "lstNoteEstimate": "Ainda não há pixels de satélite limpos aqui, então a temperatura da superfície é estimada pela cobertura do solo e a máxima de hoje.",
+  "whyNote": "Escrito pelo Atmos X com os números medidos desta página, igual em todos os idiomas.",
+  "newer": "Há dados de satélite mais recentes para este lugar.",
+  "newerAction": "Abrir a zona mais recente"
 }

@@ -6,17 +6,15 @@
   "heroA11y": "Carte de {zone}",
   "sub": "{place} · {d} de vous",
   "distOnly": "{d} de vous",
-  "anom": "{d} vs moyenne sur 20 ans",
+  "anom": "{d} par rapport à la moyenne sur 20 ans",
   "vhigh": "Très élevé",
   "high": "Élevé",
   "observed": "Niveau de chaleur · maintenant",
   "air": "Air",
   "feels": "Ressenti",
-  "roof": "Toit et route",
-  "lstNote": "Toit et route est une estimation de la température de surface à partir du couvert du sol d’OpenStreetMap et de la température de l’air en direct. Les surfaces deviennent plus chaudes que l’air que vous ressentez.",
+  "roof": "Surface",
+  "lstNote": "La surface est la température du sol et des toits mesurée par Landsat (dernière {date}, vers 10 h 20 heure locale). Elle est plus chaude que l’air ressenti.",
   "whyTitle": "Pourquoi ce secteur est chaud",
-  "aiLabel": "Explication IA",
-  "aiNote": "Rédigé par IA à partir des chiffres ci-dessus seulement. Elle peut se tromper ; les chiffres viennent de notre estimation de chaleur.",
   "noWhy": "Ces causes ajoutent le plus de chaleur ici :",
   "whatIfTitle": "Et si on ajoutait du vert ?",
   "years": {
@@ -32,15 +30,16 @@
     "vsAvg": "vs moyenne sur 20 ans",
     "trend": "Tendance / décennie",
     "perDecade": "{d} / décennie",
-    "note": "Moyenne de saison chaude de la {kind, select, max {maximum} other {minimum}} quotidienne de la température de l’air de l’archive Open-Meteo (ERA5). Il s’agit de la température de l’air pour la zone, pas de la température de surface vue par satellite.",
+    "note": "Médiane de saison chaude de la température de surface {kind, select, max {de jour} other {de nuit}} NASA MODIS à ~1 km autour de cette zone. Température de surface, pas de l’air.",
     "avg": "Moy. sur 20 ans",
     "chartA11y": "{kind} de {from} à {to}. Moyenne {avg}. Tendance {trend} par décennie.",
-    "empty": "Aucun historique n’est encore disponible pour cet endroit."
+    "empty": "Aucun historique n’est encore disponible pour cet endroit.",
+    "pending": "Chargement de 20 ans d’historique satellite NASA…"
   },
   "drivers": {
     "label": "Facteurs · causes",
     "title": "Ce qui chauffe ce quartier",
-    "adds": "ajouté par le couvert du sol (estimation)",
+    "adds": "ajouté par l’occupation du sol, ajusté sur les données satellite",
     "addsLbl": "Ce que chaque cause ajoute",
     "addsShort": "Ajoute {d}",
     "estimate": "estimation",
@@ -55,23 +54,32 @@
       "sealed": "Le béton et l’asphalte absorbent le soleil toute la journée et rendent la chaleur la nuit, donc le quartier ne se refroidit jamais vraiment.",
       "green": "Les arbres refroidissent par l’ombre et par l’évaporation de l’eau. Moins de couvert végétal veut dire moins des deux.",
       "roofs": "Les toits sombres deviennent bien plus chauds que les clairs à midi et chauffent les pièces en dessous.",
-      "density": "Des bâtiments serrés retiennent la chaleur et bloquent le vent, donc les nuits restent chaudes."
+      "density": "Des bâtiments serrés retiennent la chaleur et bloquent le vent, donc les nuits restent chaudes.",
+      "dark_surface": "Les toits sombres et l’asphalte renvoient peu de lumière : ils chauffent davantage à midi.",
+      "water": "Mares, canaux et rivières rafraîchissent leurs abords le jour."
     },
     "fix": {
       "sealed": "Remplacer une partie du sol dur par des dalles engazonnées ou des fosses d’arbres",
       "green": "Planter des arbres de rue le long des grands axes",
       "roofs": "Revêtement de toit frais sur les plus grands toits",
-      "density": "Voiles d’ombrage au-dessus des ruelles les plus étroites"
+      "density": "Voiles d’ombrage au-dessus des ruelles les plus étroites",
+      "dark_surface": "Peinture réfléchissante sur les plus grands toits",
+      "water": "Gardez mares et canaux propres et ombragés"
     },
-    "source": "Estimation de chaleur : couvert du sol d’OpenStreetMap + météo en direct. La part de toits sombres est supposée pour le pays."
+    "other": "Autres facteurs (matériaux, hauteur, trafic) : {d}",
+    "coolsShort": "Rafraîchit de {d}",
+    "dark_surface": "Surfaces sombres",
+    "water": "Eau",
+    "sourceFit": "Parts en °C : température de surface Landsat ajustée sur l’occupation du sol de {n} hexagones (R² {r2}), images jusqu’au {date}.",
+    "sourceEstimate": "Parts en °C issues de coefficients publiés (estimation) : trop peu d’hexagones satellite pour un ajustement local."
   },
   "setGoal": "Fixer un objectif de fraîcheur",
   "seeProj": "Voir la projection",
   "goalFeature": "fixer un objectif de fraîcheur",
   "proj": {
     "title": "Projection",
-    "sub": "{zone} · température moyenne de l’air, saison chaude",
-    "subNoZone": "Température moyenne de l’air, saison chaude",
+    "sub": "{zone} · température de surface, saison chaude",
+    "subNoZone": "Température de surface, saison chaude",
     "horizon": "Horizon",
     "doNothing": "Ne rien faire",
     "withPlan": "Avec le plan",
@@ -84,13 +92,17 @@
     "shade": "Structures d’ombre",
     "updating": "Mise à jour…",
     "assumptions": "Hypothèses",
-    "rangesNote": "Fourchettes, pas promesses : tendance tirée de 20 ans de données d’archive, plus des coefficients de refroidissement publiés.",
+    "rangesNote": "Des ordres de grandeur, pas des promesses : historique satellite et modèles climatiques NASA, plus des coefficients publiés.",
     "start": "Commencer le plan",
     "empty": "Aucune projection n’est encore disponible pour cette zone."
   },
   "notFound": {
     "title": "Cette zone n’est plus sur la carte",
-    "body": "Les identifiants de zone changent quand une zone est scannée de nouveau. Ouvrez la carte et choisissez à nouveau le bloc.",
+    "body": "Ce lien de zone n’est plus enregistré. Ouvrez la carte pour voir les zones actuelles.",
     "action": "Ouvrir la carte"
-  }
+  },
+  "lstNoteEstimate": "Pas encore de pixels satellite dégagés ici : la température de surface est estimée d’après l’occupation du sol et la maximale du jour.",
+  "whyNote": "Rédigé par Atmos X à partir des chiffres mesurés de cette page, identique dans toutes les langues.",
+  "newer": "Des données satellite plus récentes sont disponibles pour ce lieu.",
+  "newerAction": "Ouvrir la zone plus récente"
 }

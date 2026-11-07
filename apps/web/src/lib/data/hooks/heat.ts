@@ -1,77 +1,97 @@
 'use client';
-/** Heat now, zones, zone detail, projection, planting spots (server-backed). */
+/**
+ * Heat now, zones, zone detail, projection, planting spots, NASA GIBS layer (prompt-v1 §9).
+ * Every number comes from the API; a scan is a database read on the server, so a cold area returns
+ * `status: 'partial'` at once and this hook polls until the satellite job has filled the hexes.
+ */
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import { useCallback, useEffect } from 'react';
 
-import { bindDemoGoalZone } from '../local/goals';
 import { guardScanRadius } from '../local/guest';
-import { maybeNotifyHeat } from '../local/notifications';
-import { getDataContext } from '../local/context';
-import type { Conditions, LatLng, PlantingSpots, Projection, ZoneDetail, ZonesScan } from '../types';
-import { V0_ROUTES } from '../types';
+import type { Conditions, LatLng, PlantingSpots, Projection, ScanJob, ZoneDetail, ZoneSummary, ZonesScan } from '../types';
 import { cachePolicy, useDataContext } from './context';
-import { getJSON, routePath, shouldRetry } from './http';
+import { getJSON, shouldRetry } from './http';
 import { qk } from './keys';
+
+export const API = '/api/v1';
+
+const PARTIAL_POLL_MS = 4000;
+
+/**
+ * Zones are named once by a worker job (Nominatim); until then `name` is '' and `name_text` says
+ * "Zone N". Fill the display name here so every screen can render `zone.name`.
+ */
+function useNameFill() {
+  const ts = useTranslations('server');
+  return useCallback(<Z extends Pick<ZoneSummary, 'name' | 'name_text' | 'rank'>>(z: Z): Z => (z.name ? z : { ...z, name: ts('zone.unnamed', { n: z.rank }) }), [ts]);
+}
+const SPOTS_POLL_MS = 6000;
+/** Zone names arrive from a worker job shortly after a scan is built. */
+const NAME_POLL_MS = 8000;
 
 /** Pass `DEMO_POINT` in Presentation mode. `null` disables the query. */
 export function useConditions(point: LatLng | null | undefined) {
   const ctx = useDataContext();
-  const qc = useQueryClient();
   return useQuery<Conditions>({
     queryKey: qk.conditions(point ?? { lat: 0, lng: 0 }, ctx.lang),
     enabled: ctx.ready && !!point,
     retry: shouldRetry,
     ...cachePolicy(ctx),
-    queryFn: async ({ signal }) => {
-      const data = await getJSON<Conditions>(V0_ROUTES.conditions.path, { lat: point!.lat, lng: point!.lng, lang: ctx.lang }, signal);
-      // heat warning notification (moderate+), at most once a day
-      void maybeNotifyHeat(getDataContext(), data)
-        .then((added) => {
-          if (added) void qc.invalidateQueries({ queryKey: qk.notifications(getDataContext().ns) });
-        })
-        .catch(() => undefined);
-      return data;
-    },
+    // NASA normals and GEOS-FP arrive from the worker; refetch once they are pending.
+    refetchInterval: (q) => (q.state.data?.normal_status === 'pending' ? 20_000 : false),
+    queryFn: ({ signal }) => getJSON<Conditions>(`${API}/conditions`, { lat: point!.lat, lng: point!.lng, lang: ctx.lang }, signal),
   });
 }
 
 /**
  * Hex scan around a point. Guests are limited to 500 m: a wider radius throws GuestRestrictedError
  * (map it to requireAccount(); clamp the slider with GUEST_MAX_RADIUS_M to avoid it).
+ * While the scan is `partial`, it refetches every few seconds until the hexes are complete.
  */
 export function useZones(point: LatLng | null | undefined, radius_m: number) {
   const ctx = useDataContext();
-  const qc = useQueryClient();
+  const fill = useNameFill();
+  const select = useCallback((d: ZonesScan): ZonesScan => ({ ...d, zones: d.zones.map(fill) }), [fill]);
   return useQuery<ZonesScan>({
+    select,
     queryKey: qk.zones(point ?? { lat: 0, lng: 0 }, Math.round(radius_m), ctx.lang),
     enabled: ctx.ready && !!point,
     retry: shouldRetry,
     placeholderData: keepPreviousData,
     ...cachePolicy(ctx),
-    queryFn: async ({ signal }) => {
+    refetchInterval: (q) =>
+      q.state.data?.scan.status === 'partial' ? PARTIAL_POLL_MS : q.state.data?.zones.some((z) => !z.name) ? NAME_POLL_MS : false,
+    queryFn: ({ signal }) => {
       const radius = guardScanRadius(ctx.kind, radius_m);
-      const scan = await getJSON<ZonesScan>(V0_ROUTES.zones.path, { lat: point!.lat, lng: point!.lng, radius_m: radius, lang: ctx.lang }, signal);
-      // Presentation mode: bind the story's goal to the live hottest zone
-      if (ctx.presentation) {
-        void bindDemoGoalZone(ctx.ns, scan)
-          .then((changed) => {
-            if (changed) void qc.invalidateQueries({ queryKey: qk.goals(ctx.ns) });
-          })
-          .catch(() => undefined);
-      }
-      return scan;
+      return getJSON<ZonesScan>(`${API}/zones`, { lat: point!.lat, lng: point!.lng, radius_m: radius, lang: ctx.lang }, signal);
     },
+  });
+}
+
+/** Progress of the satellite job behind a partial scan. */
+export function useScanJob(jobId: string | null | undefined) {
+  const ctx = useDataContext();
+  return useQuery<ScanJob>({
+    queryKey: ['atmos', 'server', 'scan-job', jobId ?? ''],
+    enabled: ctx.ready && !!jobId,
+    retry: shouldRetry,
+    refetchInterval: (q) => (q.state.data && (q.state.data.status === 'done' || q.state.data.status === 'failed') ? false : 2500),
+    queryFn: ({ signal }) => getJSON<ScanJob>(`${API}/scan-jobs/${encodeURIComponent(jobId!)}`, undefined, signal),
   });
 }
 
 export function useZone(id: string | null | undefined) {
   const ctx = useDataContext();
+  const select = useNameFill();
   return useQuery<ZoneDetail>({
+    select,
     queryKey: qk.zone(id ?? '', ctx.lang),
     enabled: ctx.ready && !!id,
     retry: shouldRetry,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) => getJSON<ZoneDetail>(routePath(V0_ROUTES.zone.path, { id: id! }), { lang: ctx.lang }, signal),
+    refetchInterval: (q) => (q.state.data && !q.state.data.name ? NAME_POLL_MS : q.state.data?.history_status === 'pending' ? 30_000 : false),
+    queryFn: ({ signal }) => getJSON<ZoneDetail>(`${API}/zones/${encodeURIComponent(id!)}`, { lang: ctx.lang }, signal),
   });
 }
 
@@ -87,27 +107,38 @@ export function useProjection(id: string | null | undefined, input: ProjectionIn
     retry: shouldRetry,
     placeholderData: keepPreviousData,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) => getJSON<Projection>(routePath(V0_ROUTES.projection.path, { id: id! }), { ...a, lang: ctx.lang }, signal),
+    queryFn: ({ signal }) => getJSON<Projection>(`${API}/zones/${encodeURIComponent(id!)}/projection`, a, signal),
   });
 }
 
+/** Planting spots come from an OpenStreetMap job; `status: 'pending'` until it lands (it polls). */
 export function usePlantingSpots(id: string | null | undefined) {
   const ctx = useDataContext();
   return useQuery<PlantingSpots>({
     queryKey: qk.plantingSpots(id ?? ''),
     enabled: ctx.ready && !!id,
     retry: shouldRetry,
-    staleTime: 60 * 60 * 1000,
     ...cachePolicy(ctx),
-    queryFn: ({ signal }) => getJSON<PlantingSpots>(routePath(V0_ROUTES.plantingSpots.path, { id: id! }), undefined, signal),
+    refetchInterval: (q) => (q.state.data?.status === 'pending' ? SPOTS_POLL_MS : false),
+    queryFn: ({ signal }) => getJSON<PlantingSpots>(`${API}/zones/${encodeURIComponent(id!)}/planting-spots`, undefined, signal),
   });
 }
 
-/**
- * Warm the cache for the screen the demo goes to next (V0-10): zone detail (AI "why" text) and,
- * optionally, its planting spots (Overpass). Same query keys as useZone / usePlantingSpots, so the
- * next screen renders straight from cache. Runs after the current screen has settled.
- */
+export type GibsLayer = { layer: string; date: string | null; tile_url: string; max_zoom: number; meta: import('../types').Meta };
+
+/** NASA GIBS daily MODIS land-surface temperature tiles for city zoom (E11). */
+export function useGibsLayer() {
+  const ctx = useDataContext();
+  return useQuery<GibsLayer>({
+    queryKey: ['atmos', 'server', 'gibs'],
+    enabled: ctx.ready,
+    retry: shouldRetry,
+    staleTime: 60 * 60 * 1000,
+    queryFn: ({ signal }) => getJSON<GibsLayer>(`${API}/map/gibs`, undefined, signal),
+  });
+}
+
+/** Warm the cache for the zone screen the user is likely to open next. */
 export function usePrefetchZone(id: string | null | undefined, opts: { spots?: boolean } = {}) {
   const ctx = useDataContext();
   const qc = useQueryClient();
@@ -117,14 +148,13 @@ export function usePrefetchZone(id: string | null | undefined, opts: { spots?: b
     const timer = setTimeout(() => {
       void qc.prefetchQuery({
         queryKey: qk.zone(id, ctx.lang),
-        queryFn: ({ signal }) => getJSON<ZoneDetail>(routePath(V0_ROUTES.zone.path, { id }), { lang: ctx.lang }, signal),
+        queryFn: ({ signal }) => getJSON<ZoneDetail>(`${API}/zones/${encodeURIComponent(id)}`, { lang: ctx.lang }, signal),
         ...cachePolicy(ctx),
       });
       if (spots) {
         void qc.prefetchQuery({
           queryKey: qk.plantingSpots(id),
-          queryFn: ({ signal }) => getJSON<PlantingSpots>(routePath(V0_ROUTES.plantingSpots.path, { id }), undefined, signal),
-          staleTime: 60 * 60 * 1000,
+          queryFn: ({ signal }) => getJSON<PlantingSpots>(`${API}/zones/${encodeURIComponent(id)}/planting-spots`, undefined, signal),
           ...cachePolicy(ctx),
         });
       }

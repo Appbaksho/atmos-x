@@ -14,13 +14,13 @@ import { SkeletonText, ErrorState, EmptyState, SourceChips } from '@/components/
 import { B, R, SHADOW, TAB_CLEARANCE, heatColor } from '@/components/cz/tokens';
 import { Card, GlassPill, I, Icon, LightStatusBar, Screen, Seg, Spinner, Tap, Txt, View } from '@/components/cz/ui';
 import { MyFields } from '@/components/farm/my-fields';
-import { usePrefetchZone } from '@/lib/data/hooks';
+import { useGibsLayer, usePrefetchZone, useScanJob } from '@/lib/data/hooks';
 import type { ZoneSummary, ZonesScan } from '@/lib/data/types';
 import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { goPath, href } from '@/lib/routes';
 
-import { distM } from './geo';
+import { distM, LST_STOPS } from './geo';
 import { MapAttribution, MapView, type MapMarker } from './map-view-lazy';
 import { RadiusControl, useRadiusLabel } from './radius-control';
 import { clampRadius, useScan } from './use-scan';
@@ -91,7 +91,12 @@ export function HeatMapScreen() {
 
   const data = scan.data;
   const fresh = data && !scan.isPlaceholderData;
-  const scanning = scan.isFetching && (!data || scan.isPlaceholderData);
+  // A cold area returns at once with `partial`; the satellite job fills it in (§7.1 scan flow).
+  const partial = data?.scan.status === 'partial';
+  const job = useScanJob(partial ? data?.scan.job_id : null);
+  const progress = partial && job.data ? Math.round((job.data.progress ?? 0) * 100) : null;
+  const scanning = (scan.isFetching && (!data || scan.isPlaceholderData)) || partial;
+  const gibs = useGibsLayer();
   const zones = useMemo(() => data?.zones ?? [], [data]);
   const animateKey = fresh ? `${data.meta.generated_at}|${data.scan.radius_m}` : null;
   const center = scan.point ?? data?.scan.center ?? null;
@@ -117,7 +122,11 @@ export function HeatMapScreen() {
     if (z) goPath(href('S06', { id: z.id }));
   };
 
-  const sub = `${t('withinR', { r: rl(radius) })} · ${t('estimateShort')}`;
+  const acq = data?.scan.acquired;
+  const sub = data
+    ? `${t('hexesR', { n: f.num(data.scan.cell_count), r: rl(data.scan.radius_m) })} · ${data.scan.method === 'landcover' ? t('estimateShort') : t('satelliteShort')}`
+    : t('withinR', { r: rl(radius) });
+  const dates = acq?.lst_to ? t('landsatDates', { from: f.date(acq.lst_from ?? acq.lst_to, { day: 'numeric', month: 'short' }), to: f.date(acq.lst_to, { day: 'numeric', month: 'short', year: 'numeric' }), n: f.loc(acq.lst_scenes) }) : null;
   const place = placeName ?? t('yourArea');
 
   /* ── shared pieces ── */
@@ -131,6 +140,11 @@ export function HeatMapScreen() {
           <Txt size={12} color={B.white} style={{ opacity: 0.85 }} lines={1}>
             {sub}
           </Txt>
+          {dates ? (
+            <Txt size={11} color={B.white} style={{ opacity: 0.75 }} lines={1}>
+              {dates}
+            </Txt>
+          ) : null}
         </View>
         <Seg<Layer>
           tone="glass"
@@ -160,19 +174,34 @@ export function HeatMapScreen() {
           ))}
         </View>
       ) : (
-        <GlassPill dark style={{ alignSelf: 'flex-start', minHeight: 30, gap: 8 }}>
-          <Icon d={I.sat} size={14} color={B.lime} />
-          <Txt size={11.5} color={B.white}>
-            {t('gibsNote')}
-          </Txt>
-        </GlassPill>
+        <View style={{ gap: 6 }}>
+          <View
+            role="img"
+            label={t('lstLegendA11y')}
+            style={{ flexDirection: 'row', gap: 2, padding: 6, borderRadius: 14, backgroundColor: B.glassDark, borderWidth: 1, borderColor: 'rgba(255,255,255,0.25)' }}>
+            {LST_STOPS.map(([c0, color]) => (
+              <View key={c0} style={{ flex: 1, alignItems: 'center', gap: 4 }}>
+                <View style={{ alignSelf: 'stretch', height: 6, borderRadius: 3, backgroundColor: color }} />
+                <Txt size={10.5} color={B.white} num lines={1}>
+                  {f.deg(c0)}
+                </Txt>
+              </View>
+            ))}
+          </View>
+          <GlassPill dark style={{ alignSelf: 'flex-start', minHeight: 30, gap: 8 }}>
+            <Icon d={I.sat} size={14} color={B.lime} />
+            <Txt size={11.5} color={B.white}>
+              {gibs.data?.date ? t('gibsNoteDated', { date: f.date(gibs.data.date) }) : t('gibsNote')}
+            </Txt>
+          </GlassPill>
+        </View>
       )}
       {scanning ? (
         <View aria-live="polite" style={{ alignSelf: 'center' }}>
           <GlassPill dark style={{ minHeight: 34, gap: 8 }}>
             <Spinner size={16} color={B.lime} />
             <Txt size={12.5} w={600} color={B.white}>
-              {t('scanning', { r: rl(radius) })}
+              {partial ? (progress != null && progress > 0 ? t('scanningSatPct', { pct: f.loc(progress) }) : t('scanningSat')) : t('scanning', { r: rl(radius) })}
             </Txt>
           </GlassPill>
         </View>
@@ -226,10 +255,13 @@ export function HeatMapScreen() {
       label={t('mapA11y', { place })}
       center={center}
       radiusM={radius}
-      hexes={layer === 'heat' ? data?.hexes : []}
-      zones={data?.zones}
+      hexes={data?.hexes}
+      hexColor={layer === 'lst' ? 'lst' : 'score'}
+      outline={data?.scan.outline}
+      zones={layer === 'heat' ? data?.zones : []}
       me={device ?? center}
       gibs={layer === 'lst'}
+      gibsUrl={gibs.data?.tile_url}
       animateKey={animateKey}
       scanning={scanning}
       onHex={onHex}

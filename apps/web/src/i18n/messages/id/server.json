@@ -11,7 +11,11 @@
     "heatwave_severe": "Gelombang panas parah diperkirakan: hingga {tmax} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
     "heatwave_very_severe": "Gelombang panas sangat parah diperkirakan: hingga {tmax} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
     "heat_danger": "Panas berbahaya: terasa hingga {feels} °C pada {day}. Hindari matahari tengah hari dan minum air sering-sering.",
-    "heat_extreme": "Panas ekstrem: terasa hingga {feels} °C pada {day}. Tetap di tempat teduh dan periksa tetangga yang lebih tua."
+    "heat_extreme": "Panas ekstrem: terasa hingga {feels} °C pada {day}. Tetap di tempat teduh dan periksa tetangga yang lebih tua.",
+    "coldwave_mild": "Gelombang dingin ringan diperkirakan: hingga {tmin} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "coldwave_moderate": "Gelombang dingin sedang diperkirakan: hingga {tmin} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "coldwave_severe": "Gelombang dingin parah diperkirakan: hingga {tmin} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi.",
+    "coldwave_very_severe": "Gelombang dingin sangat parah diperkirakan: hingga {tmin} °C pada {day}, sampai {until}. Berdasarkan ambang BMD, bukan peringatan resmi."
   },
   "bmd": {
     "mild": "Gelombang panas ringan",
@@ -29,27 +33,37 @@
   },
   "cause": {
     "sealed_surface": "{pct}% permukaan tertutup (atap, paving, jalan) menyerap matahari: menambah sekitar {adds_c} °C",
-    "wide_roads": "Jalan menutup {pct}% permukaan tanah: menambah sekitar {adds_c} °C",
-    "low_green": "Hanya {pct}% tutupan hijau: sekitar {adds_c} °C lebih sedikit pendinginan daripada blok yang lebih hijau",
-    "dense_buildings": "Bangunan padat ({per_ha} per hektare) memerangkap panas dan menghalangi angin: menambah sekitar {adds_c} °C",
-    "dark_roofs": "Sekitar {pct}% atap berwarna gelap (diasumsikan): menambah sekitar {adds_c} °C"
+    "wide_roads": "Jalan menutupi {pct}% lahan",
+    "low_green": "Hanya {pct}% tutupan hijau: menambah sekitar {adds_c} °C dibanding rata-rata area",
+    "dense_buildings": "Bangunan menutupi {pct}% lahan: menahan panas dan menghalangi angin",
+    "dark_surfaces": "{pct}% permukaan bangunan tampak gelap di citra Landsat: menambah sekitar {adds_c} °C",
+    "hot_nights": "Malam hari tetap {delta_c} °C lebih hangat dari sekitarnya (pembacaan satelit malam NASA)",
+    "dense_population": "Banyak orang tinggal di sini, jadi panasnya berdampak pada lebih banyak orang"
   },
   "assumption": {
-    "trend": "Tren: {per_decade} °C per dekade pada suhu maksimum harian musim panas ({from}–{to}, arsip Open-Meteo), diperpanjang sampai 2040.",
     "hot_season": "Musim panas yang dipakai untuk tren: bulan {months}.",
     "tree_ramp": "Pohon mendingin saat tumbuh: 20% dari efek penuh pada tahun 1, 50% pada tahun 3, 80% pada tahun 5, 100% mulai tahun 8.",
     "tree_cooling": "100 pohon dewasa mendinginkan zona ini ({area_km2} km²) sekitar {per_100_trees} °C.",
     "roof_cooling": "1,000 m² atap sejuk mendinginkan zona ini sekitar {per_1000_m2} °C.",
     "inputs": "Rencana pada proyeksi ini: {trees} pohon, {roof_m2} m² atap sejuk, {shade} struktur peneduh.",
-    "ranges": "Ini hanya kisaran, bukan janji: perkiraan dari tutupan lahan dan koefisien pendinginan yang diterbitkan."
+    "ranges": "Kisaran, bukan janji: pendinginan memakai koefisien yang dipublikasikan dan merupakan perkiraan.",
+    "surface": {
+      "modis_hot_season": "Titik awal: rata-rata suhu permukaan zona di musim panas selama 3 tahun terakhir (NASA MODIS, 1 km).",
+      "landsat_zone": "Titik awal: suhu permukaan zona terbaru dari Landsat (riwayatnya masih dimuat)."
+    },
+    "warming": {
+      "cmip6": "Pemanasan: {per_decade} °C per dekade, rata-rata {models} model iklim NASA NEX-GDDP-CMIP6 (SSP2-4.5) untuk musim panas.",
+      "modis_trend": "Pemanasan: {per_decade} °C per dekade, tren suhu permukaan musim panas yang teramati dari NASA MODIS.",
+      "none": "Pemanasan: belum ada tren, jadi garisnya datar."
+    }
   },
   "feas": {
     "trees_vs_space": "{trees} pohon dibutuhkan; lahan terbuka dan tepi jalan muat sekitar {capacity}.",
     "roofs_vs_space": "{roof_m2} m² atap sejuk dibutuhkan; sekitar {capacity_m2} m² atap tampak bisa dipakai.",
-    "max_cooling": "Dengan ruang yang ada, sekitar {max_c} °C adalah nilai yang realistis.",
+    "max_cooling": "Dengan ruang yang ada, sekitar {max_c} °C realistis dalam {years} tahun.",
     "spots_unknown": "Kami tidak bisa memuat lokasi tanam, jadi ruang tidak diperiksa.",
-    "action_goal": "Di bawah 6 bulan, ini adalah target aksi: kami melacak pekerjaannya, karena pendinginan butuh waktu lebih lama untuk terlihat.",
-    "trees_take_years": "Pohon butuh beberapa tahun untuk mencapai naungan penuh; sebagian besar pendinginan baru muncul setelah tanggal target."
+    "action_goal": "Di bawah 3 tahun ini adalah target aksi: kami mencatat penanaman dan atap, dan menampilkan pendinginan jangka panjang di sampingnya.",
+    "trees_take_years": "Pada tanggal target, pohon memberi sekitar {ramp_pct}% dari pendinginan penuhnya; sisanya datang kemudian."
   },
   "plan": {
     "why": {
@@ -213,6 +227,25 @@
       "farm": "Ya. Padi Aman Anda sedang berbunga (terdeteksi satelit 28 Sep) dan pada Minggu mencapai 36°. Naikkan genangan air menjadi 5 cm malam ini dan tambahkan lagi pada Minggu saat fajar.",
       "tree_due": "{name} sudah waktunya foto 15 hari. Ambil foto baru agar kami bisa memeriksa kesehatannya; saat cuaca panas, siram dalam-dalam pada sore hari dan jaga cincin mulsa di sekitar pangkal.",
       "tree": "Pohon muda perlu disiram dalam dua kali seminggu saat cuaca panas dan kering, diberi cincin mulsa di sekitar pangkal, dan dipasang pelindung. Tambahkan foto setiap 15 hari agar kami bisa memeriksa kesehatannya."
+    }
+  },
+  "why": {
+    "hotter": "Pada citra satelit terbaru, permukaan zona ini {delta_c} °C lebih panas dari sekitarnya.",
+    "cooler": "Pada citra satelit terbaru, permukaan zona ini {delta_c} °C lebih sejuk dari sekitarnya.",
+    "typical": "Suhu permukaannya mendekati rata-rata area.",
+    "one": {
+      "sealed": "Alasan utama: {pct}% lahan tertutup (atap, paving, jalan), menambah sekitar {adds_c} °C.",
+      "green": "Alasan utama: hanya {pct}% yang hijau, menambah sekitar {adds_c} °C.",
+      "dark_surface": "Alasan utama: {pct}% permukaan bangunannya gelap, menambah sekitar {adds_c} °C."
+    },
+    "also": {
+      "sealed": "Permukaan tertutup ({pct}%) menambah sekitar {adds_c} °C lagi.",
+      "green": "Sedikit tutupan hijau ({pct}%) menambah sekitar {adds_c} °C lagi.",
+      "dark_surface": "Permukaan gelap ({pct}% area terbangun) menambah sekitar {adds_c} °C lagi."
+    },
+    "help": {
+      "green": "Menambah {add_pct}% tutupan hijau akan mendinginkan permukaan sekitar {drop_c} °C.",
+      "roofs": "Dengan atap seluas ini, atap sejuk dan taman atap paling membantu."
     }
   }
 }

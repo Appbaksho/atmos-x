@@ -24,7 +24,7 @@
   "why": "Mengapa panas",
   "hottest": "Zona terpanas di dekat Anda",
   "seeMap": "Lihat peta",
-  "lst": "Atap & jalan",
+  "lst": "Permukaan",
   "hum": "Kelembapan",
   "wind": "Angin",
   "upd": "Diperbarui",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "Permukaan tertutup {pct}%",
     "low_green": "Ruang hijau {pct}%",
-    "dense_buildings": "Bangunan padat {per_ha}/ha",
+    "dense_buildings": "Bangunan {pct}%",
     "wide_roads": "Jalan {pct}%",
-    "dark_roofs": "Atap gelap {pct}%"
+    "dark_roofs": "Atap gelap {pct}%",
+    "dark_surfaces": "Gelap {pct}%",
+    "hot_nights": "Malam panas +{delta_c}°",
+    "dense_population": "Padat"
   },
   "whatIf": "+ Hijau",
   "whatIfA11y": "Tutupan hijau ditambah",

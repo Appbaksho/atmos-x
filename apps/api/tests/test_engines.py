@@ -201,7 +201,7 @@ def test_contributions_causes_why_whatif():
     assert wi["lst_drop_c"] == pytest.approx(0.3) and wi["score_after"] < H.heat_score(2.0, None, 0.95, 0.02).score
     why = D.why(2.0, contribs, 0.02, 0.95, wi["lst_drop_c"])
     assert why[0] == {"code": "why.hotter", "params": {"delta_c": 2.0}}
-    assert why[1]["code"] == "why.two.sealed.green"
+    assert why[1]["code"] == "why.one.sealed" and why[2]["code"] == "why.also.green"
     assert why[-1]["code"] == "why.help.green"
 
 

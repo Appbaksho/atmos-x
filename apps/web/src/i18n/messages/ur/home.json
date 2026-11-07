@@ -21,7 +21,7 @@
   "why": "گرمی کیوں ہے",
   "hottest": "آپ کے قریب گرم ترین زون",
   "seeMap": "نقشہ",
-  "lst": "چھت اور سڑک",
+  "lst": "سطح",
   "hum": "نمی",
   "wind": "ہوا",
   "upd": "تازہ",
@@ -63,9 +63,12 @@
   "causes": {
     "sealed_surface": "بند سطح {pct}%",
     "low_green": "سبزہ {pct}%",
-    "dense_buildings": "گنجان عمارتیں {per_ha}/ہیکٹر",
+    "dense_buildings": "عمارتیں {pct}%",
     "wide_roads": "سڑکیں {pct}%",
-    "dark_roofs": "گہری چھتیں {pct}%"
+    "dark_roofs": "گہری چھتیں {pct}%",
+    "dark_surfaces": "گہرا {pct}%",
+    "hot_nights": "گرم راتیں +{delta_c}°",
+    "dense_population": "گنجان آبادی"
   },
   "noZone": "ہمیں ابھی آپ کے آس پاس کوئی گرم زون نہیں ملا۔ نقشہ کھولیں اور بڑا علاقہ دیکھیں۔",
   "goalLine": "{d} تک {date}",
@@ -77,5 +80,14 @@
     "cta": "ہدف مقرر کریں"
   },
   "goalFeature": "ٹھنڈک کا ہدف مقرر کریں",
-  "treesFeature": "اپنے درختوں پر نظر رکھیں"
+  "treesFeature": "اپنے درختوں پر نظر رکھیں",
+  "_meta": {
+    "machine_keys": [
+      "causes.dark_surfaces",
+      "causes.dense_buildings",
+      "causes.dense_population",
+      "causes.hot_nights",
+      "lst"
+    ]
+  }
 }

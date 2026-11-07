@@ -74,7 +74,6 @@ export async function addSensor(ctx: DataContext, input: SensorInput): Promise<S
     pm25: null,
     last_seen: null,
     online: true,
-    simulated: true,
     created_at: new Date().toISOString(),
   };
   await updateList<Sensor>(ctx.ns, COLL.sensors, (l) => [...l, s]);

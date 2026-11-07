@@ -11,7 +11,11 @@
     "heatwave_severe": "预计有严重热浪：{day}最高可达 {tmax} °C，持续到 {until}。依据 BMD 阈值，不是官方预警。",
     "heatwave_very_severe": "预计有极严重热浪：{day}最高可达 {tmax} °C，持续到 {until}。依据 BMD 阈值，不是官方预警。",
     "heat_danger": "危险高温：{day}体感最高可达 {feels} °C。避免中午暴晒，并经常喝水。",
-    "heat_extreme": "极端高温：{day}体感最高可达 {feels} °C。待在阴凉处，并查看附近年长邻居。"
+    "heat_extreme": "极端高温：{day}体感最高可达 {feels} °C。待在阴凉处，并查看附近年长邻居。",
+    "coldwave_mild": "预计出现轻度寒潮：{day}最低 {tmin} °C，持续至 {until}。依据 BMD 阈值计算，并非官方预警。",
+    "coldwave_moderate": "预计出现中度寒潮：{day}最低 {tmin} °C，持续至 {until}。依据 BMD 阈值计算，并非官方预警。",
+    "coldwave_severe": "预计出现重度寒潮：{day}最低 {tmin} °C，持续至 {until}。依据 BMD 阈值计算，并非官方预警。",
+    "coldwave_very_severe": "预计出现极重度寒潮：{day}最低 {tmin} °C，持续至 {until}。依据 BMD 阈值计算，并非官方预警。"
   },
   "bmd": {
     "mild": "轻度热浪",
@@ -29,27 +33,37 @@
   },
   "cause": {
     "sealed_surface": "{pct}% 封闭地表（屋顶、铺装、道路）吸收阳光：大约增加 {adds_c} °C",
-    "wide_roads": "道路覆盖了 {pct}% 的地面：大约增加 {adds_c} °C",
-    "low_green": "只有 {pct}% 绿化覆盖：比更绿的街区少约 {adds_c} °C 的降温效果",
-    "dense_buildings": "建筑密集（每公顷 {per_ha} 栋）会困住热量并挡风：大约增加 {adds_c} °C",
-    "dark_roofs": "约 {pct}% 的屋顶是深色的（假定）：大约增加 {adds_c} °C"
+    "wide_roads": "道路覆盖 {pct}% 的地面",
+    "low_green": "绿化仅 {pct}%：比区域平均水平高约 {adds_c} °C",
+    "dense_buildings": "建筑覆盖 {pct}% 的地面：会困住热量并阻挡风",
+    "dark_surfaces": "Landsat 影像中 {pct}% 的建成表面颜色较深：约增加 {adds_c} °C",
+    "hot_nights": "夜间比周边高 {delta_c} °C（NASA 夜间卫星数据）",
+    "dense_population": "这里人口密集，高温影响的人更多"
   },
   "assumption": {
-    "trend": "趋势：热季日最高气温每10年升高 {per_decade} °C（{from}–{to}，Open-Meteo 归档），并外推到 2040 年。",
     "hot_season": "用于趋势的热季月份：{months}。",
     "tree_ramp": "树木长大后降温会增强：第1年达到全部效果的20%，第3年50%，第5年80%，第8年起100%。",
     "tree_cooling": "100 棵成年树可让该区域（{area_km2} km²）降温约 {per_100_trees} °C。",
     "roof_cooling": "1,000 m² 的凉屋顶可让该区域降温约 {per_1000_m2} °C。",
     "inputs": "本预测中的方案：{trees} 棵树，{roof_m2} m² 凉屋顶，{shade} 个遮阳设施。",
-    "ranges": "这是范围，不是承诺：根据土地覆盖和公开的降温系数估算。"
+    "ranges": "是范围，不是承诺：降温依据已发表的系数，属于估算。",
+    "surface": {
+      "modis_hot_season": "起点：该区域近 3 年炎热季节的平均地表温度（NASA MODIS，1 公里）。",
+      "landsat_zone": "起点：该区域近期的 Landsat 地表温度（历史数据仍在加载）。"
+    },
+    "warming": {
+      "cmip6": "升温：每十年 {per_decade} °C，为炎热季节 {models} 个 NASA NEX-GDDP-CMIP6 气候模型（SSP2-4.5）的平均值。",
+      "modis_trend": "升温：每十年 {per_decade} °C，为 NASA MODIS 观测到的炎热季节地表温度趋势。",
+      "none": "升温：暂无趋势数据，因此曲线为平线。"
+    }
   },
   "feas": {
     "trees_vs_space": "需要 {trees} 棵树；可用的空地和路边大约能放下 {capacity}。",
     "roofs_vs_space": "需要 {roof_m2} m² 凉屋顶；大约有 {capacity_m2} m² 屋顶可用。",
-    "max_cooling": "按现有空间，约 {max_c} °C 比较现实。",
+    "max_cooling": "以现有空间，{years} 年内约可降温 {max_c} °C。",
     "spots_unknown": "无法加载种植点，因此未检查空间。",
-    "action_goal": "6 个月内，这算行动目标：我们跟踪工作本身，因为降温需要更久才看得见。",
-    "trees_take_years": "树木需要多年才能长出完整树荫；大部分降温会在目标日期之后出现。"
+    "action_goal": "不足 3 年时这是行动目标：我们记录种植和屋顶改造，并在旁边显示长期降温效果。",
+    "trees_take_years": "到目标日期，树木约能发挥其全部降温效果的 {ramp_pct}%；其余在之后显现。"
   },
   "plan": {
     "why": {
@@ -213,6 +227,25 @@
       "farm": "是。你的Aman水稻正在开花（卫星监测到9月28日），周日最高36°。今晚把田间水位提到5厘米，周日黎明再补水。",
       "tree_due": "{name}该拍15天照片了。请拍一张新照片，我们好查看它的健康；高温时，晚上深浇一次，并在树基部留一圈覆盖物。",
       "tree": "幼树在炎热干燥天气里每周要深浇两次，树基部要有一圈覆盖物和护树架。每15天上传一张照片，我们好查看它们的健康。"
+    }
+  },
+  "why": {
+    "hotter": "在近期卫星影像中，这个区域的地表比周边高 {delta_c} °C。",
+    "cooler": "在近期卫星影像中，这个区域的地表比周边低 {delta_c} °C。",
+    "typical": "其地表温度接近区域平均水平。",
+    "one": {
+      "sealed": "主要原因：{pct}% 的地面被硬化（屋顶、铺装、道路），约增加 {adds_c} °C。",
+      "green": "主要原因：绿化仅 {pct}%，约增加 {adds_c} °C。",
+      "dark_surface": "主要原因：{pct}% 的建成表面颜色较深，约增加 {adds_c} °C。"
+    },
+    "also": {
+      "sealed": "硬化地面（{pct}%）再增加约 {adds_c} °C。",
+      "green": "绿化不足（{pct}%）再增加约 {adds_c} °C。",
+      "dark_surface": "深色表面（占建成区 {pct}%）再增加约 {adds_c} °C。"
+    },
+    "help": {
+      "green": "增加 {add_pct}% 的绿化，可使地表降温约 {drop_c} °C。",
+      "roofs": "屋顶面积这么大，冷屋顶和屋顶花园最有效。"
     }
   }
 }

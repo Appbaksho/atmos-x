@@ -1,8 +1,8 @@
 'use client';
 /**
- * S28 · Add sensor (V0-7): pick a build, indoor/outdoor, name it, pass the placement check, then
- * start the 7-day check. In v0 the device is simulated (useAddSensor stores it on this device and
- * readings follow the area PM2.5); that is said on screen. Guests get the account sheet.
+ * S28 · Add sensor (prompt-v1 §7.8): pick a build, indoor/outdoor, name it, pass the placement check,
+ * then register it. The API returns an ingest token once; this screen shows it with a curl example
+ * the device (or a person) uses to send readings. Nothing is simulated. Guests get the account sheet.
  */
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -31,6 +31,7 @@ import {
   View,
 } from '@/components/cz';
 import { useAddSensor, useSession } from '@/lib/data/hooks';
+import type { NewSensor } from '@/lib/data/types';
 
 const BUILDS = ['esp32', 'sc', 'purple', 'existing'] as const;
 type Answer = boolean | null;
@@ -45,6 +46,7 @@ export function AddSensorScreen() {
   const [io, setIo] = useState<'outd' | 'ind'>('outd');
   const [name, setName] = useState('');
   const [ans, setAns] = useState<Answer[]>([null, null, null]);
+  const [created, setCreated] = useState<NewSensor | null>(null);
 
   const answer = (i: number, v: boolean) => setAns((a) => a.map((x, k) => (k === i ? v : x)));
   const ready = io === 'ind' || ans.every((a) => a !== null);
@@ -53,22 +55,60 @@ export function AddSensorScreen() {
   const start = async () => {
     if (session.isGuest) return requireAccount(t('addSensorFeature'));
     try {
-      await add.mutateAsync({
+      const s = await add.mutateAsync({
         name: name.trim() || t('namePh'),
         location: device ?? focus ?? null,
         model: `${t(`builds.${build}.name`)} · ${io === 'outd' ? t('outd') : t('ind')}`,
       });
       toast(t('saved'), { tone: 'success' });
-      go('S27');
+      setCreated(s);
     } catch {
       /* GuestRestrictedError opens the account sheet globally */
     }
   };
 
+  if (created) {
+    const curl = `curl -X POST ${created.ingest_url} \\\n  -H "X-Sensor-Token: ${created.token}" \\\n  -H "Content-Type: application/json" \\\n  -d '{"pm25": 42.0}'`;
+    return (
+      <Screen>
+        <ScreenHeader title={t('tokenTitle')} sub={t('tokenSub', { name: created.name })} />
+        <Card gap={10}>
+          <Label>{t('tokenLabel')}</Label>
+          <Txt size={13} w={600} num selectable style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', wordBreak: 'break-all' }}>
+            {created.token}
+          </Txt>
+          <Note tone="danger" icon={I.warn}>
+            {t('tokenOnce')}
+          </Note>
+        </Card>
+        <Card gap={10}>
+          <Label>{t('curlLabel')}</Label>
+          <pre dir="ltr" style={{ margin: 0, padding: 12, borderRadius: 12, backgroundColor: c.soft, fontSize: 11.5, whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{curl}</pre>
+          <Txt size={11.5} dim>
+            {t('curlNote')}
+          </Txt>
+          <Tap
+            label={t('copy')}
+            onPress={() => void navigator.clipboard?.writeText(curl).then(() => toast(t('copied'), { tone: 'success' }))}
+            style={{ alignSelf: 'flex-start', minHeight: 40, paddingHorizontal: 14, borderRadius: R.pill, backgroundColor: B.lime, justifyContent: 'center' }}>
+            <Txt size={13} w={600} color={B.limeInk}>
+              {t('copy')}
+            </Txt>
+          </Tap>
+        </Card>
+        <Tap label={t('done')} onPress={() => go('S27')} style={{ minHeight: 48, borderRadius: R.pill, backgroundColor: c.solid, alignItems: 'center', justifyContent: 'center' }}>
+          <Txt size={14} w={600} color={c.onSolid}>
+            {t('done')}
+          </Txt>
+        </Tap>
+      </Screen>
+    );
+  }
+
   return (
     <Screen>
       <ScreenHeader title={t('addTitle')} sub={t('addSub')} />
-      <Note icon={I.info}>{t('simNote')}</Note>
+      <Note icon={I.info}>{t('realNote')}</Note>
 
       {/* 1 · Build */}
       <View style={{ gap: 8 }} role="radiogroup" label={t('step1')}>

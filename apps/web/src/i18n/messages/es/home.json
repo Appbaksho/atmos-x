@@ -24,7 +24,7 @@
   "why": "Por qué hace calor",
   "hottest": "Zonas más calientes cerca de ti",
   "seeMap": "Ver mapa",
-  "lst": "Techo y calle",
+  "lst": "Superficie",
   "hum": "Humedad",
   "wind": "Viento",
   "upd": "Actualizado",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "Superficie sellada {pct}%",
     "low_green": "Verde {pct}%",
-    "dense_buildings": "Edificios densos {per_ha}/ha",
+    "dense_buildings": "Edificios {pct}%",
     "wide_roads": "Calles anchas {pct}%",
-    "dark_roofs": "Techos oscuros {pct}%"
+    "dark_roofs": "Techos oscuros {pct}%",
+    "dark_surfaces": "Oscuro {pct}%",
+    "hot_nights": "Noches cálidas +{delta_c}°",
+    "dense_population": "Muy poblado"
   },
   "whatIf": "+ Verde",
   "whatIfA11y": "Se añadió cobertura verde",

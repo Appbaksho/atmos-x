@@ -5,17 +5,17 @@
   "title": "خريطة الحرارة",
   "within": "ضمن",
   "withinR": "ضمن {r}",
-  "estimateShort": "OSM + الطقس المباشر",
-  "estimateNote": "تقدير الحرارة: غطاء الأرض في OpenStreetMap + الطقس المباشر. تقارن الدرجات بين المربعات داخل هذا المسح؛ وهي ليست قياسات من القمر الصناعي.",
+  "estimateShort": "تقدير من الغطاء الأرضي",
+  "estimateNote": "Heat Score: حرارة سطح NASA/USGS Landsat (مُحسّنة بـ ECOSTRESS حيث يتوفر)، وحرارة الليل من MODIS، والغطاء الأرضي من ESA WorldCover، لكل خلية 15,000 م². الخلايا الرمادية بلا بيانات بعد.",
   "yourArea": "منطقتك",
   "mapA11y": "خريطة حرارة {place}",
   "layersLabel": "طبقة الخريطة",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA حرارة سطح الأرض"
+    "lst": "السطح °م"
   },
   "legendA11y": "مفتاح Heat Score: {bands}",
-  "gibsNote": "NASA درجة حرارة سطح الأرض · شهريًا · ~1 km",
+  "gibsNote": "عند التصغير: حرارة السطح اليومية من NASA MODIS (~1 كم). عند التكبير: خلايا Landsat.",
   "ranked": "الأكثر حرارة ضمن نصف القطر",
   "count": "{count, plural, one {{n} منطقة} other {{n} مناطق}}",
   "nearTie": "متقارب جدًا",
@@ -34,5 +34,12 @@
   },
   "attribution": {
     "osm": "© مساهمو OpenStreetMap"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} خلية سداسية · {r}",
+  "landsatDates": "صور الأقمار الصناعية {from} – {to} · {n} مشاهد",
+  "lstLegendA11y": "ألوان حرارة السطح من الأزرق البارد إلى الأحمر الحار",
+  "gibsNoteDated": "حرارة السطح من NASA MODIS، {date} (~1 كم) · كبّر لرؤية خلايا Landsat",
+  "scanningSat": "جارٍ مسح بيانات الأقمار الصناعية…",
+  "scanningSatPct": "جارٍ مسح بيانات الأقمار الصناعية… {pct}%"
 }

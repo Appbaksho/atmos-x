@@ -167,14 +167,21 @@ export function EmptyState({
 
 /* ───────────────────────────── Source chips ───────────────────────────── */
 
-const AI_IDS = /^(ai|openai|gpt|llm)/i;
-const DEMO_IDS = /^(demo|seed)/i;
+const KIND_DOT: Record<string, string> = {
+  observation: B.green,
+  model: B.blue,
+  forecast: B.blue,
+  derived: B.green,
+  estimate: B.orange,
+  reference: B.navy2,
+  demo: B.orange,
+};
 
 /**
- * Data-honesty chips (prompt-v0 §1 rule 5): one chip per `meta.sources` entry (linked when it has
- * a url), plus "cached" when `meta.live === false`. Sources whose id starts with `ai`/`openai`
- * render as "AI estimate", `demo`/`seed` as "Demo community". `ai` / `demo` props add those chips
- * explicitly (e.g. for AI-filled plan values or seeded community data).
+ * Where a number comes from (prompt-v1 §4 rules 2 and 9, §8.4): a chip per source with a short name,
+ * what kind of value it is (measured, model, forecast, computed, estimate, reference, demo) and its
+ * date. `meta.stale` adds a "last updated" chip; `demo` marks demo data. There is no "AI" chip: V1
+ * uses no language model.
  */
 export function SourceChips({
   meta,
@@ -186,6 +193,7 @@ export function SourceChips({
 }: {
   meta?: Meta | null;
   sources?: Source[];
+  /** @deprecated V1 has no AI values; kept so older call sites compile. Shows an "estimate" chip. */
   ai?: boolean;
   demo?: boolean;
   /** `glass` over photos / the map */
@@ -196,30 +204,38 @@ export function SourceChips({
   const t = useTranslations('common.sources');
   const list = [...(meta?.sources ?? []), ...(sources ?? [])];
   const seen = new Set<string>();
-  const chips: { key: string; text: string; url?: string; title?: string; kind: 'src' | 'ai' | 'demo' | 'cached' }[] = [];
+  const chips: { key: string; text: string; sub?: string; url?: string; title?: string; kind: string }[] = [];
   for (const s of list) {
-    const kind = AI_IDS.test(s.id) ? 'ai' : DEMO_IDS.test(s.id) ? 'demo' : 'src';
-    const text = kind === 'ai' ? t('ai') : kind === 'demo' ? t('demo') : s.name;
-    if (seen.has(text)) continue;
-    seen.add(text);
-    chips.push({ key: s.id, text, url: s.url, title: s.as_of ? `${s.name} · ${f.date(s.as_of)}` : s.name, kind });
+    if (seen.has(s.id)) continue;
+    seen.add(s.id);
+    const kind = s.kind ?? (/^(demo|seed)/i.test(s.id) ? 'demo' : 'reference');
+    const name = t.has(`name.${s.id}`) ? t(`name.${s.id}`) : s.name;
+    const when = s.as_of && /^\d{4}-\d{2}-\d{2}/.test(s.as_of) ? f.date(s.as_of.slice(0, 10), { dateStyle: 'medium' }) : (s.as_of ?? undefined);
+    const kindLabel = t.has(`kind.${kind}`) ? t(`kind.${kind}`) : kind;
+    chips.push({ key: s.id, text: name, sub: [kindLabel, when].filter(Boolean).join(' · '), url: s.url && /^https?:/.test(s.url) ? s.url : undefined, title: `${s.name}${when ? ` · ${when}` : ''}`, kind });
   }
-  if (ai && !seen.has(t('ai'))) chips.push({ key: 'ai', text: t('ai'), kind: 'ai' });
-  if (demo && !seen.has(t('demo'))) chips.push({ key: 'demo', text: t('demo'), kind: 'demo' });
-  if (meta && meta.live === false) chips.push({ key: 'cached', text: t('cached'), kind: 'cached', title: f.date(meta.generated_at, { dateStyle: 'medium', timeStyle: 'short' }) });
+  if (ai && !seen.has('estimate')) chips.push({ key: 'estimate', text: t('kind.estimate'), kind: 'estimate' });
+  if (demo && !seen.has('demo')) chips.push({ key: 'demo', text: t('demo'), kind: 'demo' });
+  if (meta && (meta.stale || meta.live === false))
+    chips.push({ key: 'stale', text: t('stale'), sub: f.date(meta.generated_at, { dateStyle: 'medium', timeStyle: 'short' }), kind: 'stale', title: t('staleTitle') });
   if (!chips.length) return null;
 
   const glass = tone === 'glass';
   return (
     <ul aria-label={t('label')} className="cz-view" style={rn([{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, listStyle: 'none', margin: 0, padding: 0 }, style])}>
       {chips.map((x) => {
-        const dot = x.kind === 'ai' ? (c.dark ? B.lime : B.blue) : x.kind === 'demo' ? B.orange : x.kind === 'cached' ? B.orangeInk : B.green;
+        const dot = x.kind === 'stale' ? B.orangeInk : (KIND_DOT[x.kind] ?? B.green);
         const body = (
           <>
             <span aria-hidden style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: dot, flexShrink: 0 }} />
             <Txt size={10.5} w={600} color={glass ? B.white : c.ink2} lines={1}>
               {x.text}
             </Txt>
+            {x.sub ? (
+              <Txt size={10} color={glass ? B.white : c.ink2} lines={1} style={{ opacity: 0.8 }}>
+                {x.sub}
+              </Txt>
+            ) : null}
           </>
         );
         const chipStyle = rn({
@@ -230,7 +246,7 @@ export function SourceChips({
           height: 22,
           paddingHorizontal: 8,
           borderRadius: R.pill,
-          backgroundColor: glass ? B.glassDark : x.kind === 'cached' ? 'rgba(242,154,56,0.16)' : c.soft,
+          backgroundColor: glass ? B.glassDark : x.kind === 'stale' ? 'rgba(242,154,56,0.16)' : c.soft,
           borderWidth: glass ? 1 : 0,
           borderColor: B.glassLine,
           textDecoration: 'none',

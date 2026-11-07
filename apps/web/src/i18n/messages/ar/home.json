@@ -24,7 +24,7 @@
   "why": "لماذا الجو حار",
   "hottest": "أشد المناطق حرارة حولك",
   "seeMap": "افتح الخريطة",
-  "lst": "الأسقف والطرق",
+  "lst": "السطح",
   "hum": "الرطوبة",
   "wind": "الرياح",
   "upd": "تم التحديث",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "الأسطح المعبّدة {pct}%",
     "low_green": "الخضرة {pct}%",
-    "dense_buildings": "مبانٍ كثيفة {per_ha}/ha",
+    "dense_buildings": "مبانٍ {pct}%",
     "wide_roads": "الطرق الواسعة {pct}%",
-    "dark_roofs": "الأسقف الداكنة {pct}%"
+    "dark_roofs": "الأسقف الداكنة {pct}%",
+    "dark_surfaces": "داكن {pct}%",
+    "hot_nights": "ليالٍ حارة +{delta_c}°",
+    "dense_population": "مكتظ"
   },
   "whatIf": "+ خضرة",
   "whatIfA11y": "تمت إضافة غطاء أخضر",

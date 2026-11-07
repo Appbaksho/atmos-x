@@ -161,3 +161,15 @@ async def boot_regions() -> None:
         for r in regs:
             await q.enqueue(db, "heat_region", f"{r.id}:boot", {"region": r.id}, priority=4, max_attempts=3)
         await db.commit()
+
+
+@handler("planting_spots", concurrency=1)
+async def planting_spots(db: AsyncSession, job: Job) -> dict:
+    """Overpass is often down: failures retry later and never block anything (§10)."""
+    from ..http import UpstreamError
+    from ..services import spots
+
+    try:
+        return await spots.compute(db, job.payload["zone_id"])
+    except UpstreamError as e:
+        raise Retry(str(e), delay_s=1800)

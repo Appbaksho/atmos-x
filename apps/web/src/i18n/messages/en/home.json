@@ -21,7 +21,7 @@
   "why": "Why is it hot",
   "hottest": "Hottest zones near you",
   "seeMap": "See map",
-  "lst": "Roof & road",
+  "lst": "Surface",
   "hum": "Humidity",
   "wind": "Wind",
   "upd": "Updated",
@@ -39,9 +39,12 @@
   "causes": {
     "sealed_surface": "Sealed {pct}%",
     "low_green": "Green {pct}%",
-    "dense_buildings": "Dense {per_ha}/ha",
+    "dense_buildings": "Buildings {pct}%",
     "wide_roads": "Roads {pct}%",
-    "dark_roofs": "Dark roofs {pct}%"
+    "dark_roofs": "Dark roofs {pct}%",
+    "dark_surfaces": "Dark {pct}%",
+    "hot_nights": "Hot nights +{delta_c}°",
+    "dense_population": "Crowded"
   },
   "whatIf": "+ Green",
   "whatIfA11y": "Added green cover",

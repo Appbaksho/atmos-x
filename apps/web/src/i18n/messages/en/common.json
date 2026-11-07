@@ -51,14 +51,50 @@
     "create": "Create free account",
     "signIn": "I already have an account",
     "notNow": "Not now",
-    "note": "Your account lives on this device. Your guest settings carry over."
+    "note": "Your account is kept on Atmos X servers. Everything you did as a guest carries over."
   },
   "sources": {
     "label": "Sources",
     "cached": "cached",
     "live": "live",
-    "ai": "AI estimate",
-    "demo": "Demo community"
+    "demo": "Demo community",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "BMD thresholds",
+      "atmos": "Atmos X calculation",
+      "atmos_reference": "Atmos X tables",
+      "device": "This device"
+    },
+    "kind": {
+      "observation": "measured",
+      "model": "model",
+      "forecast": "forecast",
+      "derived": "computed",
+      "estimate": "estimate",
+      "reference": "reference",
+      "demo": "demo"
+    },
+    "stale": "last updated",
+    "staleTitle": "The source did not answer, so the last good data is shown with its date."
   },
   "risk": {
     "ok": "Normal",

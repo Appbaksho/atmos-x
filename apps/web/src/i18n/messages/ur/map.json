@@ -6,17 +6,17 @@
   "nearTie": "تقریباً برابر",
   "tieNote": "±۳ کے اندر اسکور تقریباً برابر ہیں — انہیں یکساں گرم سمجھیں۔",
   "openZone": "زون کی تفصیل",
-  "estimateShort": "OSM + لائیو موسم",
-  "estimateNote": "حرارت کا اندازہ: OpenStreetMap زمینی احاطہ + لائیو موسم۔ اسکورز اس اسکین کے اندر بلاکس کا موازنہ کرتے ہیں؛ یہ سیٹلائٹ پیمائش نہیں ہیں۔",
+  "estimateShort": "زمینی احاطے کا اندازہ",
+  "estimateNote": "Heat Score: ہر 15,000 م² ہیکس پر NASA/USGS Landsat سطحی درجہ حرارت (جہاں دستیاب ہو ECOSTRESS سے بہتر)، MODIS رات کی گرمی اور ESA WorldCover زمینی احاطہ۔ سرمئی ہیکس میں ابھی ڈیٹا نہیں۔",
   "yourArea": "آپ کا علاقہ",
   "mapA11y": "{place} کا ہیٹ میپ",
   "layersLabel": "نقشہ پرت",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA سطحی درجۂ حرارت"
+    "lst": "سطح °C"
   },
   "legendA11y": "Heat Score کی علامات: {bands}",
-  "gibsNote": "NASA زمینی سطح کا درجۂ حرارت · ماہانہ · تقریباً ۱ km",
+  "gibsNote": "دور سے: NASA MODIS روزانہ سطحی درجہ حرارت (~1 کلومیٹر)۔ قریب سے: Landsat ہیکس۔",
   "count": "{count, plural, one {{n} علاقہ} other {{n} علاقے}}",
   "lstShort": "سطح",
   "scoreA11y": "Heat Score {score}",
@@ -31,5 +31,27 @@
   },
   "attribution": {
     "osm": "© OpenStreetMap کے معاونین"
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} ہیکس · {r}",
+  "landsatDates": "سیٹلائٹ تصاویر {from} – {to} · {n} مناظر",
+  "lstLegendA11y": "سطحی درجہ حرارت کے رنگ: ٹھنڈے نیلے سے گرم سرخ تک",
+  "gibsNoteDated": "NASA MODIS سطحی درجہ حرارت، {date} (~1 کلومیٹر) · Landsat ہیکس کے لیے قریب کریں",
+  "scanningSat": "سیٹلائٹ ڈیٹا اسکین ہو رہا ہے…",
+  "scanningSatPct": "سیٹلائٹ ڈیٹا اسکین ہو رہا ہے… {pct}%",
+  "_meta": {
+    "machine_keys": [
+      "estimateNote",
+      "estimateShort",
+      "gibsNote",
+      "gibsNoteDated",
+      "hexesR",
+      "landsatDates",
+      "layers.lst",
+      "lstLegendA11y",
+      "satelliteShort",
+      "scanningSat",
+      "scanningSatPct"
+    ]
   }
 }

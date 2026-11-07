@@ -24,7 +24,7 @@
   "why": "为什么这么热",
   "hottest": "你附近最热区域",
   "seeMap": "查看地图",
-  "lst": "屋顶和道路",
+  "lst": "地表",
   "hum": "湿度",
   "wind": "风速",
   "upd": "已更新",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "硬化地面 {pct}%",
     "low_green": "绿地 {pct}%",
-    "dense_buildings": "密集建筑 {per_ha}/ha",
+    "dense_buildings": "建筑 {pct}%",
     "wide_roads": "道路 {pct}%",
-    "dark_roofs": "深色屋顶 {pct}%"
+    "dark_roofs": "深色屋顶 {pct}%",
+    "dark_surfaces": "深色 {pct}%",
+    "hot_nights": "夜热 +{delta_c}°",
+    "dense_population": "人口稠密"
   },
   "whatIf": "+ 增绿",
   "whatIfA11y": "新增绿化覆盖",

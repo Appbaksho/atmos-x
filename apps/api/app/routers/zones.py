@@ -9,8 +9,8 @@ from fastapi import APIRouter, Query
 from ..deps import DB, ViewerDep
 from ..schemas.common import lang_or_en
 from ..schemas.zones import JobOut, ZoneDetailOut, ZonesScanOut
+from ..services import projection, spots_read, zone_detail
 from ..services import scan as svc
-from ..services import zone_detail
 
 router = APIRouter(tags=["zones"])
 
@@ -30,6 +30,22 @@ async def zones(
 @router.get("/zones/{zone_id}", response_model=ZoneDetailOut, operation_id="zone_detail")
 async def zone(zone_id: str, db: DB, lang: str = "en"):
     return await zone_detail.detail(db, zone_id, lang_or_en(lang))
+
+
+@router.get("/zones/{zone_id}/projection", operation_id="zone_projection")
+async def zone_projection(
+    zone_id: str,
+    db: DB,
+    trees: int = Query(0, ge=0, le=100000),
+    roof_m2: int = Query(0, ge=0, le=10_000_000),
+    shade: int = Query(0, ge=0, le=10000),
+) -> dict:
+    return await projection.projection(db, zone_id, trees, roof_m2, shade)
+
+
+@router.get("/zones/{zone_id}/planting-spots", operation_id="zone_planting_spots")
+async def zone_spots(zone_id: str, db: DB) -> dict:
+    return await spots_read.read(db, zone_id)
 
 
 @router.get("/scan-jobs/{job_id}", response_model=JobOut, operation_id="scan_job")

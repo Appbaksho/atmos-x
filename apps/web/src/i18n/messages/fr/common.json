@@ -54,14 +54,50 @@
     "create": "Créer un compte gratuit",
     "signIn": "J’ai déjà un compte",
     "notNow": "Pas maintenant",
-    "note": "Votre compte reste sur cet appareil. Vos réglages invité sont conservés."
+    "note": "Votre compte est conservé sur les serveurs d’Atmos X. Tout ce que vous avez fait en invité est conservé."
   },
   "sources": {
     "label": "Sources",
     "cached": "en cache",
     "live": "en direct",
-    "ai": "Estimation IA",
-    "demo": "Communauté de démo"
+    "demo": "Communauté de démo",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "Seuils du BMD",
+      "atmos": "Calcul Atmos X",
+      "atmos_reference": "Tables Atmos X",
+      "device": "Cet appareil"
+    },
+    "kind": {
+      "observation": "mesuré",
+      "model": "modèle",
+      "forecast": "prévision",
+      "derived": "calculé",
+      "estimate": "estimation",
+      "reference": "référence",
+      "demo": "démo"
+    },
+    "stale": "dernière mise à jour",
+    "staleTitle": "La source n’a pas répondu ; les dernières données valides sont affichées avec leur date."
   },
   "risk": {
     "ok": "Normal",

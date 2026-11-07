@@ -189,9 +189,19 @@ async def check_imerg(r: Row):
     g = await _cmr_latest("C2723754850-GES_DISC")
     r.latest = g["time_start"][:10]
     href = next(ln["href"] for ln in g["links"] if ln["href"].endswith(".nc4") and "data.gesdisc" in ln["href"])
-    head = await fetch("gesdisc", "HEAD", href, headers=_bearer(), timeout=60, ok_statuses=(200, 401, 403))
-    r.sample = f"daily file HTTP {head.status_code}, {int(head.headers.get('content-length', 0)) // 1_000_000} MB"
-    return head.status_code == 200
+    # A ranged GET, not HEAD: GES DISC answers HEAD even when the account may not download (EULA).
+    got = await fetch(
+        "gesdisc",
+        "GET",
+        href,
+        headers={**_bearer(), "Range": "bytes=0-0"},
+        timeout=60,
+        ok_statuses=(200, 206, 401, 403),
+    )
+    r.sample = f"ranged GET HTTP {got.status_code}"
+    if got.status_code == 403 and "EULA" in got.text:
+        r.note = "approve NASA GESDISC DATA ARCHIVE in the Earthdata profile (EULA)"
+    return got.status_code in (200, 206)
 
 
 async def check_smap(r: Row):

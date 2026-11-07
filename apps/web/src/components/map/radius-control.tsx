@@ -8,7 +8,8 @@ import { CzSlider, Icon, I, Tap, Txt, View } from '@/components/cz/ui';
 import { B } from '@/components/cz/tokens';
 import { useCz } from '@/lib/prefs';
 
-export const RADIUS_PRESETS = [100, 300, 500, 1000];
+/** prompt-v1 §6.4 H3: 200 m · 500 m · 1 km (19, 61 and 217 hexes). */
+export const RADIUS_PRESETS = [200, 500, 1000];
 export const GUEST_RADIUS = 500;
 
 export function useRadiusLabel() {

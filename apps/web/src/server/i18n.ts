@@ -22,8 +22,8 @@ type Tree = { [k: string]: Tree | string };
 // All 10 locales (V0-8 machine-translated the other 7); `_meta` is never looked up as a code.
 const MESSAGES: Record<Locale, Tree> = {
   en: en as Tree,
-  bn: bn as Tree,
-  ur: ur as Tree,
+  bn: bn as unknown as Tree,
+  ur: ur as unknown as Tree,
   hi: hi as unknown as Tree,
   ar: ar as unknown as Tree,
   es: es as unknown as Tree,

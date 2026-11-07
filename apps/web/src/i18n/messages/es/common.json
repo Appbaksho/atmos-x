@@ -54,14 +54,50 @@
     "create": "Crear cuenta gratis",
     "signIn": "Ya tengo una cuenta",
     "notNow": "Ahora no",
-    "note": "Tu cuenta vive en este dispositivo. Tus ajustes de invitado se conservan."
+    "note": "Tu cuenta se guarda en los servidores de Atmos X. Todo lo que hiciste como invitado se conserva."
   },
   "sources": {
     "label": "Fuentes",
     "cached": "en caché",
     "live": "en vivo",
-    "ai": "Estimación de IA",
-    "demo": "Comunidad de prueba"
+    "demo": "Comunidad de prueba",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "Umbrales del BMD",
+      "atmos": "Cálculo de Atmos X",
+      "atmos_reference": "Tablas de Atmos X",
+      "device": "Este dispositivo"
+    },
+    "kind": {
+      "observation": "medido",
+      "model": "modelo",
+      "forecast": "pronóstico",
+      "derived": "calculado",
+      "estimate": "estimación",
+      "reference": "referencia",
+      "demo": "demo"
+    },
+    "stale": "última actualización",
+    "staleTitle": "La fuente no respondió, así que se muestran los últimos datos válidos con su fecha."
   },
   "risk": {
     "ok": "Normal",

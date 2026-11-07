@@ -5,17 +5,17 @@
   "title": "हीट मैप",
   "within": "दायरा",
   "withinR": "{r} के भीतर",
-  "estimateShort": "OSM + लाइव मौसम",
-  "estimateNote": "हीट का अनुमान: OpenStreetMap का भूमि आवरण + लाइव मौसम। स्कोर इस स्कैन के भीतर के ब्लॉकों की तुलना करते हैं; ये सैटेलाइट माप नहीं हैं।",
+  "estimateShort": "भूमि-आवरण अनुमान",
+  "estimateNote": "Heat Score: हर 15,000 मी² हेक्स में NASA/USGS Landsat सतह तापमान (जहाँ उपलब्ध हो ECOSTRESS से बारीक), MODIS रात की गर्मी और ESA WorldCover भूमि-आवरण। धूसर हेक्स में अभी डेटा नहीं।",
   "yourArea": "आपका क्षेत्र",
   "mapA11y": "{place} का हीट मैप",
   "layersLabel": "मैप लेयर",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "सतह °C"
   },
   "legendA11y": "Heat Score लेजेंड: {bands}",
-  "gibsNote": "NASA भूमि सतह तापमान · मासिक · ~1 km",
+  "gibsNote": "दूर से: NASA MODIS दैनिक सतह तापमान (~1 किमी)। पास से: Landsat हेक्स।",
   "ranked": "आपकी सीमा में सबसे गर्म",
   "count": "{count, plural, one {{n} ज़ोन} other {{n} ज़ोन}}",
   "nearTie": "करीब बराबर",
@@ -34,5 +34,12 @@
   },
   "attribution": {
     "osm": "© OpenStreetMap योगदानकर्ता"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} हेक्स · {r}",
+  "landsatDates": "उपग्रह चित्र {from} – {to} · {n} दृश्य",
+  "lstLegendA11y": "सतह तापमान के रंग: ठंडे नीले से गर्म लाल तक",
+  "gibsNoteDated": "NASA MODIS सतह तापमान, {date} (~1 किमी) · Landsat हेक्स के लिए ज़ूम करें",
+  "scanningSat": "उपग्रह डेटा स्कैन हो रहा है…",
+  "scanningSatPct": "उपग्रह डेटा स्कैन हो रहा है… {pct}%"
 }

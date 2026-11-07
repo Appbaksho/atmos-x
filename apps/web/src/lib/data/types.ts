@@ -11,15 +11,18 @@
 
 export type LatLng = { lat: number; lng: number };
 
-export type Source = { id: string; name: string; url?: string; as_of?: string };
+/** What a value is (prompt-v1 §4 rule 2). The UI shows it on every source chip. */
+export type DataKind = 'observation' | 'model' | 'forecast' | 'derived' | 'estimate' | 'reference' | 'demo';
 
-/** Attached to every data response. `live: false` = served from snapshot / fallback / seed. */
-export type Meta = { live: boolean; generated_at: string; sources: Source[] };
+export type Source = { id: string; name: string; url?: string | null; as_of?: string | null; kind?: DataKind | null; resolution_m?: number | null };
+
+/** `live`: fresh from its normal source. `stale`: last-good data beyond its TTL (shown with its date). */
+export type Meta = { live: boolean; stale?: boolean; generated_at: string; sources: Source[]; pipeline_version?: string | null };
 
 /** Server text rendered on the client from the `server` i18n namespace: t(`server.${code}`, params). */
 export type I18nText = { code: string; params?: Record<string, string | number> };
 
-export type ApiError = { code: string; message: string };
+export type ApiError = { code: string; message: string; fields?: Record<string, string>; retry_after?: number };
 
 export const LOCALES = ['en', 'bn', 'ur', 'hi', 'ar', 'es', 'fr', 'pt', 'id', 'zh'] as const;
 export type Locale = (typeof LOCALES)[number];
@@ -93,12 +96,19 @@ export type BmdLevel = 'mild' | 'moderate' | 'severe' | 'very_severe';
 export type ForecastDay = {
   date: string;
   tmax_c: number;
-  tmin_c: number;
+  tmin_c: number | null;
   feels_max_c: number;
   rain_mm: number;
   bmd_level: BmdLevel | null;
+  cold_level?: BmdLevel | null;
+  rain_class?: string | null;
   heat_risk: HeatRisk;
+  /** 'geos_fp' | 'open_meteo' | 'geos_fp+open_meteo' (§7.7 sanity rule) */
+  source?: string;
+  disagreement?: boolean;
 };
+
+export type RecentDay = { date: string; tmax_c: number; tmin_c: number; rain_mm: number | null };
 
 export type Warning = {
   /** 'BMD' only for a real official bulletin; computed-by-us warnings are 'local' */
@@ -110,7 +120,7 @@ export type Warning = {
 
 export type Conditions = {
   place: string;
-  /** ISO time of the reading */
+  /** ISO time of the reading (local time at the place) */
   time: string;
   air_c: number;
   feels_c: number;
@@ -119,8 +129,14 @@ export type Conditions = {
   heat_risk: HeatRisk;
   /** null outside Bangladesh */
   bmd_level: BmdLevel | null;
+  cold_level?: BmdLevel | null;
+  /** NASA POWER mean daily max for this date, 2001–2025 */
   normal_c: number | null;
+  /** today's high minus the normal */
   anomaly_c: number | null;
+  normal_status?: 'ready' | 'pending';
+  /** NASA POWER, last 7 valid days */
+  recent?: RecentDay[];
   /** 5 days */
   forecast: ForecastDay[];
   warnings: Warning[];
@@ -129,68 +145,112 @@ export type Conditions = {
 
 /* ───────────────────────────── Zones & map ───────────────────────────── */
 
-export type HexCell = { h3: string; score: number; lst_c: number };
+/** Per-hex label (prompt-v1 §7.1): satellite (Landsat/MODIS), estimate (land cover), no_data. */
+export type HexLabel = 'satellite' | 'estimate' | 'no_data';
 
+export type HexCell = { h3: string; score: number | null; lst_c: number | null; label: HexLabel };
+
+export type DriverContribution = { driver: 'sealed' | 'green' | 'water' | 'dark_surface'; value: number; unit: string; adds_c: number };
+
+export type ZoneDrivers = {
+  sealed_pct: number | null;
+  green_pct: number | null;
+  water_pct?: number | null;
+  ndvi: number | null;
+  /** Share of built 30 m pixels with Landsat albedo < 0.15 ("dark surfaces") */
+  dark_roof_pct: number | null;
+  pop_density_km2: number | null;
+  night_lst_c: number | null;
+  /** Fields that are assumptions rather than measurements */
+  estimated?: string[];
+  /** °C each driver adds versus the area mean (fit on measured hexes, §7.4) */
+  contributions?: DriverContribution[];
+  /** °C not explained by land cover */
+  other_c?: number | null;
+  anom_day_c?: number | null;
+  anom_night_c?: number | null;
+  fit?: { r2: number | null; n: number; label: 'derived' | 'estimate' } | null;
+  /** Latest Landsat acquisition behind the numbers */
+  as_of?: string | null;
+};
+
+/** One immutable zone row (§7.3): list and detail return the same id, name, score, dist_m and h3. */
 export type ZoneSummary = {
   id: string;
+  scan_id?: string;
+  /** Stored name; '' while unnamed (render name_text then) */
   name: string;
+  name_text?: I18nText | null;
   score: number;
-  /** v0: estimated surface temperature (°C); v1: Landsat LST */
-  lst_c: number;
+  /** Landsat surface temperature, °C (not air temperature) */
+  lst_c: number | null;
+  label?: HexLabel;
   dist_m: number;
   rank: number;
   near_tie: boolean;
   centroid: LatLng;
   h3: string[];
+  area_km2?: number;
+  drivers?: ZoneDrivers;
+};
+
+export type ScanAcquired = {
+  lst_from: string | null;
+  lst_to: string | null;
+  lst_scenes: number;
+  ndvi_date: string | null;
+  worldcover_year: number | null;
+  ecostress_passes: number;
+  night_source?: string | null;
+  night_to?: string | null;
+  window_days?: number | null;
 };
 
 export type ZonesScan = {
   scan: {
+    id: string;
     center: LatLng;
+    center_cell: string;
     radius_m: number;
+    k: number;
     h3_res: number;
-    acquired: { lst_date: string | null; ndvi_date: string | null };
-    baseline_lst_c: number;
-    /** v0: 'osm-proxy' | 'synthetic'; v1: 'landsat' | 'modis' … */
-    method: string;
+    /** hexes in the ring, from the scan (H4) */
+    cell_count: number;
+    place: string | null;
+    status: 'complete' | 'partial' | 'unavailable';
+    /** poll GET /scan-jobs/{id} while partial */
+    job_id: string | null;
+    acquired: ScanAcquired;
+    baseline_lst_c: number | null;
+    method: 'landsat' | 'modis' | 'landcover';
+    /** Outline of the hex ring, GeoJSON polygon rings ([lng, lat]) */
+    outline: number[][][];
   };
   hexes: HexCell[];
   zones: ZoneSummary[];
   my_zone_id: string | null;
+  satellite_cells?: number;
   meta: Meta;
 };
 
-export type ZoneDrivers = {
-  sealed_pct: number;
-  green_pct: number;
-  ndvi: number | null;
-  dark_roof_pct: number | null;
-  /** v0: building density per hectare as a proxy */
-  pop_density_km2: number | null;
-  night_lst_c: number | null;
-  /** Drivers that are assumptions rather than measurements */
-  estimated?: (keyof Omit<ZoneDrivers, 'estimated'>)[];
-};
+export type ScanJob = { status: 'queued' | 'running' | 'done' | 'failed'; progress: number; done_cells: number; total_cells: number };
 
 export type HistoryPoint = { year: number; day_lst_c: number | null; night_lst_c: number | null };
 
-export type ZoneDetail = {
-  id: string;
-  name: string;
-  score: number;
-  lst_c: number;
-  air_c: number;
-  feels_c: number;
-  centroid: LatLng;
-  h3: string[];
-  drivers: ZoneDrivers;
+export type ZoneDetail = ZoneSummary & {
+  air_c: number | null;
+  feels_c: number | null;
   causes: I18nText[];
-  /** AI plain-language explanation in the requested language (v0) */
-  why_text?: string | null;
-  what_if_green: { add_green_pct: number; score_after: number; lst_drop_c: number };
-  /** ~20 years. v0: hot-season air temperature from Open-Meteo archive (label it so). */
+  /** 2–3 deterministic sentences built from the measured drivers (§7.4) */
+  why: I18nText[];
+  what_if_green: { add_green_pct: number; score_after: number | null; lst_drop_c: number; label?: string };
+  /** Hot-season MODIS surface temperature per year at the zone's 5 km² chunk (1 km context) */
   history: HistoryPoint[];
-  history_kind: 'air_temp' | 'lst';
+  history_kind: 'lst';
+  history_status?: 'ready' | 'pending' | 'unavailable';
+  /** Newer satellite data made a newer zone for this place */
+  superseded_by: string | null;
+  place?: string | null;
   meta: Meta;
 };
 
@@ -198,6 +258,8 @@ export type Projection = {
   years: number[];
   without_c: number[];
   with_c: number[];
+  now_c?: number;
+  warming_source?: 'cmip6' | 'modis_trend' | 'none';
   assumptions: I18nText[];
   meta: Meta;
 };
@@ -214,6 +276,9 @@ export type PlantingSpots = {
   type: 'FeatureCollection';
   features: PlantingSpotFeature[];
   totals: { ground_m2: number; roof_m2: number; roadside_m: number };
+  zone_area_m2?: number;
+  /** pending while the OpenStreetMap job runs (Overpass is often slow) */
+  status?: 'ready' | 'pending' | 'failed';
   meta: Meta;
 };
 
@@ -508,19 +573,28 @@ export type AqiCategory = 'good' | 'moderate' | 'usg' | 'unhealthy' | 'very_unhe
 
 export type Air = {
   pm25: number;
+  /** sensor | openaq | open_meteo | geos_cf (§5.3 chain) */
+  pm25_source?: string;
+  pm25_kind?: DataKind;
+  /** NASA GEOS-CF v2 for the same hour, to compare */
+  nasa_pm25?: number | null;
   aqi: number;
   category: AqiCategory;
   dominant: 'pm25' | 'pm10';
-  forecast: { date: string; pm25: number; aqi: number; category: AqiCategory }[];
+  forecast: { date: string; pm25: number; aqi: number; category: AqiCategory; source?: string }[];
   stations: { name: string; dist_m: number; pm25: number; as_of: string }[];
+  stations_enabled?: boolean;
   my_sensors: SensorSummary[];
   advice: I18nText[];
   meta: Meta;
 };
 
-export type SensorSummary = { id: string; name: string; pm25: number | null; last_seen: string | null; online: boolean; simulated?: boolean };
+export type SensorSummary = { id: string; name: string; pm25: number | null; last_seen: string | null; online: boolean };
 
 export type Sensor = SensorSummary & { location: LatLng | null; model?: string | null; created_at: string };
+
+/** POST /sensors returns the ingest token once. */
+export type NewSensor = Sensor & { token: string; ingest_url: string };
 
 /* ───────────────────────────── Farmer ───────────────────────────── */
 

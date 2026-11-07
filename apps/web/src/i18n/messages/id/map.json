@@ -5,17 +5,17 @@
   "title": "Peta panas",
   "within": "Radius",
   "withinR": "Dalam {r}",
-  "estimateShort": "OSM + cuaca langsung",
-  "estimateNote": "Perkiraan panas: tutupan lahan OpenStreetMap + cuaca langsung. Skor membandingkan blok di dalam pemindaian ini; bukan pengukuran satelit.",
+  "estimateShort": "perkiraan tutupan lahan",
+  "estimateNote": "Heat Score: suhu permukaan NASA/USGS Landsat (dipertajam ECOSTRESS bila ada), panas malam MODIS, dan tutupan lahan ESA WorldCover, per heksagon 15.000 m². Heksagon abu-abu belum punya data.",
   "yourArea": "area Anda",
   "mapA11y": "Peta panas {place}",
   "layersLabel": "Lapisan peta",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "Permukaan °C"
   },
   "legendA11y": "Legenda Heat Score: {bands}",
-  "gibsNote": "Suhu permukaan darat NASA · bulanan · ~1 km",
+  "gibsNote": "Diperkecil: suhu permukaan harian NASA MODIS (~1 km). Diperbesar: heksagon Landsat.",
   "ranked": "Paling panas dalam radius Anda",
   "count": "{count, plural, one {{n} zona} other {{n} zona}}",
   "nearTie": "Hampir sama",
@@ -34,5 +34,12 @@
   },
   "attribution": {
     "osm": "© Kontributor OpenStreetMap"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} heksagon · {r}",
+  "landsatDates": "Citra satelit {from} – {to} · {n} adegan",
+  "lstLegendA11y": "Warna suhu permukaan dari biru sejuk ke merah panas",
+  "gibsNoteDated": "Suhu permukaan NASA MODIS, {date} (~1 km) · perbesar untuk heksagon Landsat",
+  "scanningSat": "Memindai data satelit…",
+  "scanningSatPct": "Memindai data satelit… {pct}%"
 }

@@ -6,18 +6,16 @@
   "heroA11y": "Peta {zone}",
   "sub": "{place} · {d} dari Anda",
   "distOnly": "{d} dari Anda",
-  "anom": "{d} dibanding rata-rata 20 tahun",
+  "anom": "{d} vs rata-rata 20 tahun",
   "vhigh": "Sangat tinggi",
   "high": "Tinggi",
   "observed": "Tingkat panas · sekarang",
   "air": "Udara",
   "feels": "Terasa seperti",
-  "roof": "Atap & jalan",
-  "lstNote": "Atap & jalan adalah perkiraan suhu permukaan dari tutupan lahan OpenStreetMap dan suhu udara langsung. Permukaan menjadi lebih panas daripada udara yang Anda rasakan.",
+  "roof": "Permukaan",
+  "lstNote": "Permukaan adalah suhu tanah dan atap yang diukur Landsat (terbaru {date}, sekitar 10.20 waktu setempat). Lebih panas dari udara yang Anda rasakan.",
   "whyTitle": "Mengapa blok ini panas",
-  "aiLabel": "Penjelasan AI",
-  "aiNote": "Ditulis AI hanya dari angka di atas. Bisa keliru; angka berasal dari estimasi panas kami.",
-  "noWhy": "Penyebab ini paling menambah panas di sini:",
+  "noWhy": "Penyebab ini menambah panas paling banyak di sini:",
   "whatIfTitle": "Bagaimana jika ditambah ruang hijau?",
   "years": {
     "title": "Dari tahun ke tahun",
@@ -32,15 +30,16 @@
     "vsAvg": "vs rata-rata 20 thn",
     "trend": "Tren / dekade",
     "perDecade": "{d} / dekade",
-    "note": "Rata-rata musim panas dari {kind, select, max {suhu udara maksimum harian} other {suhu udara minimum harian}} dari arsip Open-Meteo (ERA5). Ini adalah suhu udara untuk area ini, bukan suhu permukaan satelit.",
+    "note": "Median musim panas suhu permukaan {kind, select, max {siang} other {malam}} NASA MODIS sekitar 1 km di sekitar zona ini. Ini suhu permukaan, bukan suhu udara.",
     "avg": "Rata-rata 20 thn",
     "chartA11y": "{kind} dari {from} sampai {to}. Rata-rata {avg}. Tren {trend} per dekade.",
-    "empty": "Belum ada riwayat untuk tempat ini."
+    "empty": "Belum ada riwayat untuk tempat ini.",
+    "pending": "Memuat 20 tahun riwayat satelit NASA…"
   },
   "drivers": {
     "label": "Pendorong · penyebab",
     "title": "Apa yang membuat blok ini panas",
-    "adds": "ditambah oleh tutupan lahan (estimasi)",
+    "adds": "ditambahkan tutupan lahan, dihitung dari data satelit",
     "addsLbl": "Tambahan tiap penyebab",
     "addsShort": "Menambah {d}",
     "estimate": "estimasi",
@@ -55,23 +54,32 @@
       "sealed": "Beton dan aspal menyerap matahari sepanjang hari dan memantulkan panasnya kembali pada malam hari, jadi blok ini tidak pernah benar-benar sejuk.",
       "green": "Pohon menyejukkan lewat naungan dan dengan menguapkan air. Tutupan hijau yang lebih sedikit berarti keduanya juga lebih sedikit.",
       "roofs": "Atap gelap jauh lebih panas daripada atap terang saat siang dan memanaskan ruangan di bawahnya.",
-      "density": "Bangunan yang rapat memerangkap panas dan menghalangi angin, jadi malam tetap hangat."
+      "density": "Bangunan yang rapat memerangkap panas dan menghalangi angin, jadi malam tetap hangat.",
+      "dark_surface": "Atap gelap dan aspal memantulkan sedikit cahaya, jadi lebih panas di siang hari.",
+      "water": "Kolam, kanal, dan sungai menyejukkan sekitarnya di siang hari."
     },
     "fix": {
       "sealed": "Ganti sebagian perkerasan dengan paving rumput atau lubang pohon",
       "green": "Tanam pohon jalan di sepanjang jalan utama",
       "roofs": "Lapisi atap terbesar dengan lapisan atap sejuk",
-      "density": "Pasang kain peneduh di gang tersempit"
+      "density": "Pasang kain peneduh di gang tersempit",
+      "dark_surface": "Lapisan atap sejuk di atap terbesar",
+      "water": "Jaga kolam dan kanal tetap bersih dan teduh"
     },
-    "source": "Estimasi panas: tutupan lahan OpenStreetMap + cuaca langsung. Atap gelap adalah porsi yang diasumsikan untuk negara ini."
+    "other": "Faktor lain (material, tinggi, lalu lintas): {d}",
+    "coolsShort": "Mendinginkan {d}",
+    "dark_surface": "Permukaan gelap",
+    "water": "Air",
+    "sourceFit": "Porsi °C: suhu permukaan Landsat dicocokkan dengan tutupan lahan di {n} heksagon (R² {r2}), citra hingga {date}.",
+    "sourceEstimate": "Porsi °C memakai koefisien terbitan (perkiraan): terlalu sedikit heksagon satelit di sini untuk pencocokan lokal."
   },
   "setGoal": "Tetapkan target pendinginan",
   "seeProj": "Lihat proyeksi",
   "goalFeature": "tetapkan target pendinginan",
   "proj": {
     "title": "Proyeksi",
-    "sub": "{zone} · suhu udara rata-rata, musim panas",
-    "subNoZone": "Suhu udara rata-rata, musim panas",
+    "sub": "{zone} · suhu permukaan, musim panas",
+    "subNoZone": "Suhu permukaan, musim panas",
     "horizon": "Rentang waktu",
     "doNothing": "Tidak ada tindakan",
     "withPlan": "Dengan rencana",
@@ -84,13 +92,17 @@
     "shade": "Struktur peneduh",
     "updating": "Memperbarui…",
     "assumptions": "Asumsi",
-    "rangesNote": "Rentang, bukan janji: tren dari 20 tahun data arsip ditambah koefisien pendinginan yang dipublikasikan.",
+    "rangesNote": "Kisaran, bukan janji: riwayat satelit dan model iklim NASA ditambah koefisien pendinginan terbitan.",
     "start": "Mulai rencana",
     "empty": "Belum ada proyeksi untuk zona ini."
   },
   "notFound": {
     "title": "Zona ini sudah tidak ada di peta lagi",
-    "body": "ID zona berubah saat area dipindai lagi. Buka peta dan pilih blok itu lagi.",
+    "body": "Tautan zona ini sudah tidak tersimpan. Buka peta untuk melihat zona saat ini.",
     "action": "Buka peta"
-  }
+  },
+  "lstNoteEstimate": "Belum ada piksel satelit yang jernih di sini, jadi suhu permukaan diperkirakan dari tutupan lahan dan suhu tertinggi hari ini.",
+  "whyNote": "Ditulis oleh Atmos X dari angka terukur di halaman ini, sama di semua bahasa.",
+  "newer": "Data satelit yang lebih baru tersedia untuk tempat ini.",
+  "newerAction": "Buka zona yang lebih baru"
 }

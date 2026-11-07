@@ -23,8 +23,7 @@
   "sensSub": "Anak, lansia, atau kondisi jantung atau paru · disimpan hanya di ponsel ini",
   "lead": "Utamakan perlindungan. Ikuti saran dokter pada hari bernilai tinggi.",
   "sensors": "Sensor saya",
-  "sensorsSub": "Dibanding perkiraan area",
-  "simulated": "Perangkat simulasi (v0)",
+  "sensorsSub": "{count, plural, other {{n} perangkat PM2.5 milik Anda}}",
   "noSensors": "Belum ada sensor",
   "noSensorsSub": "Hubungkan sensor PM2.5 untuk membandingkan jalan Anda dengan area.",
   "offline": "Luring",
@@ -42,8 +41,7 @@
   },
   "remove": "Hapus {name}",
   "removed": "Sensor dihapus",
-  "simNote": "v0 mensimulasikan pembacaan PM2.5 area (±8 %), diperbarui setiap 5 menit. Unggahan dari perangkat nyata ada di v1.",
-  "guestDevices": "Sensor disimpan ke akun Anda di perangkat ini.",
+  "guestDevices": "Sensor disimpan di akun Atmos X Anda.",
   "addSensorFeature": "tambahkan sensor",
   "addTitle": "Tambah sensor",
   "addSub": "Pembacaan tetap privat selama 7 hari",
@@ -88,5 +86,15 @@
       "parts": "Tautkan lewat ID sensor, hanya baca",
       "best": "Tidak perlu perangkat baru"
     }
-  }
+  },
+  "realNote": "Sensor Anda mengirim bacaan PM2.5 sendiri dengan token pribadi. Bacaan lebih dari 6 jam membuat perangkat tampil offline.",
+  "tokenTitle": "Sensor ditambahkan",
+  "tokenSub": "Atur {name} untuk mengirim bacaan",
+  "tokenLabel": "Token pengiriman",
+  "tokenOnce": "Salin sekarang: hanya ditampilkan sekali. Siapa pun yang memilikinya bisa mengirim bacaan sebagai sensor ini.",
+  "curlLabel": "Uji dari komputer",
+  "curlNote": "Kirim paling banyak satu bacaan per menit. PM2.5 dalam µg/m³ (0–1000); pm10, temp_c, dan rh opsional.",
+  "copy": "Salin",
+  "copied": "Disalin",
+  "done": "Selesai"
 }

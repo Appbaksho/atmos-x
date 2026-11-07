@@ -50,7 +50,7 @@ export function ForecastCard({ cond }: { cond: Conditions }) {
             <View
               key={d.date}
               role="listitem"
-              label={t('forecastA11y', { day, max: f.deg(d.tmax_c), min: f.deg(d.tmin_c), feels: f.deg(d.feels_max_c), risk: tc(`risk.${d.heat_risk}`) })}
+              label={t('forecastA11y', { day, max: f.deg(d.tmax_c), min: d.tmin_c != null ? f.deg(d.tmin_c) : '—', feels: f.deg(d.feels_max_c), risk: tc(`risk.${d.heat_risk}`) })}
               style={{ flex: 1, minWidth: 0, alignItems: 'center', gap: 6, paddingVertical: 10, borderRadius: 16, backgroundColor: c.soft }}>
               <Txt size={11.5} w={600} lines={1}>
                 {day}
@@ -62,7 +62,7 @@ export function ForecastCard({ cond }: { cond: Conditions }) {
                 {f.deg(d.tmax_c)}
               </Txt>
               <Txt size={11} dim num>
-                {f.deg(d.tmin_c)}
+                {d.tmin_c != null ? f.deg(d.tmin_c) : '—'}
               </Txt>
               {d.bmd_level ? (
                 <span aria-hidden style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: B.red }} title={ts({ code: `bmd.${d.bmd_level}` })} />
@@ -214,7 +214,7 @@ function ZoneThumb({ zone, hexes }: { zone: ZoneSummary; hexes: Map<string, HexC
   return (
     <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" aria-hidden style={{ position: 'absolute', inset: 0 }}>
       {polys.map((p, i) => (
-        <polygon key={i} points={p.pts} fill={heatColor(p.score)} fillOpacity={0.85} stroke="rgba(255,255,255,0.85)" strokeWidth={1} />
+        <polygon key={i} points={p.pts} fill={heatColor(p.score ?? 0)} fillOpacity={0.85} stroke="rgba(255,255,255,0.85)" strokeWidth={1} />
       ))}
     </svg>
   );
@@ -231,7 +231,7 @@ export function HottestZones({ zones, hexes }: { zones: ZoneSummary[]; hexes: He
       <SectionTitle title={t('hottest')} action={t('seeMap')} actionHref={href('S05')} style={{ paddingHorizontal: 20 }} />
       <HScroll gap={10} padded={false} style={{ paddingHorizontal: 16, paddingBottom: 4 }}>
         {zones.slice(0, 6).map((z) => {
-          const meta = `${tm('lstShort')} ${f.deg(z.lst_c)} · ${f.dist(z.dist_m)}`;
+          const meta = `${z.lst_c != null ? `${tm('lstShort')} ${f.deg(z.lst_c)} · ` : ''}${f.dist(z.dist_m)}`;
           return (
             <Tap
               key={z.id}
