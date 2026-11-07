@@ -223,7 +223,7 @@ function Body({
             {tx({ code: 'species.intl.check_nursery' })}
           </Txt>
         ) : null}
-        <SourceChips meta={sp.meta} ai={sp.estimate} />
+        <SourceChips meta={sp.meta} estimate={sp.estimate} />
       </View>
 
       <View style={{ marginHorizontal: 16, gap: 10 }}>

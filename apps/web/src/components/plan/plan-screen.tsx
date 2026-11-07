@@ -202,7 +202,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
                 {eff ? <Chip text={t('effectIn', { time: t(eff) })} /> : null}
                 {a.water_l_week > 0 ? <Chip text={t('water', { l: f.num(a.water_l_week) })} /> : null}
                 <Chip text={t(`effort.${a.effort}`)} />
-                {a.estimate ? <Chip text={t('estimate')} ai /> : null}
+                {a.estimate ? <Chip text={t('estimate')} estimate /> : null}
               </View>
               {w > 0 ? (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -321,7 +321,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
         </Card>
       ) : null}
 
-      <SourceChips meta={plan.meta} ai={anyEstimate} />
+      <SourceChips meta={plan.meta} estimate={anyEstimate} />
 
       <View style={{ gap: 10 }}>
         <CzButton label={goal.progress_pct > 0 ? t('logNext') : t('logFirst')} icon="camera" href={href('S14', {}, { goal: goal.id })} />
@@ -383,11 +383,12 @@ function StatCard({ label, value, color, href: to }: { label: string; value: str
   );
 }
 
-export function Chip({ text, ai }: { text: string; ai?: boolean }) {
+/** A small fact chip; `estimate` marks a modelled value (no AI is involved anywhere in V1). */
+export function Chip({ text, estimate }: { text: string; estimate?: boolean }) {
   const { c } = useCz();
   return (
-    <View style={{ paddingVertical: 4, paddingHorizontal: 10, borderRadius: R.pill, backgroundColor: ai ? c.limeSoft : c.soft, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-      {ai ? <Icon d={I.sparkleOne} size={11} sw={2} /> : null}
+    <View style={{ paddingVertical: 4, paddingHorizontal: 10, borderRadius: R.pill, backgroundColor: estimate ? c.limeSoft : c.soft, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+      {estimate ? <Icon d={I.info} size={11} sw={2} /> : null}
       <Txt size={11.5} num>
         {text}
       </Txt>

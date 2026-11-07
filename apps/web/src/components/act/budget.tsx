@@ -158,7 +158,7 @@ function Body({ goal, plan }: { goal: Goal; plan: Plan }) {
           {t('estimateNote')}
         </Txt>
       ) : null}
-      <SourceChips meta={plan.meta} ai={anyEstimate} />
+      <SourceChips meta={plan.meta} estimate={anyEstimate} />
 
       <CzButton label={t('logAct')} icon="camera" href={href('S14', {}, { goal: goal.id })} />
     </Screen>
