@@ -161,7 +161,7 @@ async def _users(db, viewer, scope, since, where, demo):
 async def _teams_or_orgs(db, viewer, subject, scope, since, where, demo):
     if subject == "team":
         cond = _scope_sql(scope, "geom", "city", "country")
-        sql = f"SELECT id FROM teams WHERE is_demo = :demo AND {cond}"
+        sql = f"SELECT id FROM teams WHERE is_demo = :demo AND is_public AND {cond}"  # private teams stay off public boards
         ids = list((await db.execute(text(sql), _p(sql, {"demo": demo, **where}))).scalars().all())
         stats = await team_stats(db, ids, since)
         items = (

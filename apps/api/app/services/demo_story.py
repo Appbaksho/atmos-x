@@ -237,11 +237,30 @@ async def ensure_community(db: AsyncSession) -> dict:
 async def seed_nadia(db: AsyncSession, user: User) -> None:
     """Nadia's own story: lead of Shade Street Collective, 4 trees (one due today), verified actions, a field."""
     lat, lng = _demo_point()
-    comm = await ensure_community(db)
-    team = await db.get(Team, comm["team_id"])
-    n = len((await db.execute(select(TeamMember).where(TeamMember.team_id == team.id))).all())
-    if n < team.max_members:
-        db.add(TeamMember(team_id=team.id, user_id=user.id, role="member"))
+    await ensure_community(db)
+    # Nadia's own private crew (so demo sessions never fill a shared team): her and two invented neighbours.
+    team = Team(
+        name="Asad Gate Crew",
+        code="D" + uuid.uuid4().hex[:7].upper(),
+        owner_id=user.id,
+        max_members=5,
+        is_public=False,
+        area="Mohammadpur",
+        city="Dhaka",
+        country="BD",
+        lat=lat,
+        lng=lng,
+        geom=point_wkt(lat, lng),
+        emoji="🌳",
+        org_id=_id("org"),
+        is_demo=True,
+    )
+    db.add(team)
+    await db.flush()
+    db.add(TeamMember(team_id=team.id, user_id=user.id, role="lead"))
+    for i in (5, 6):
+        db.add(TeamMember(team_id=team.id, user_id=_id(f"person:{i}"), role="member"))
+    await db.flush()
     now = datetime.now(UTC)
     plant = await db.get(ActionType, "plant_tree")
     roof = await db.get(ActionType, "cool_roof")

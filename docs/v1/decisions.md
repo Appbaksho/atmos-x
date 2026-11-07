@@ -153,4 +153,6 @@ Posts store area, city and a location rounded to 0.01°; their photos are public
 moderation. Mentions use `@[Name](user-id)` markup written by the client. New accounts (under 24 h)
 may post 5 times and comment 20 times a day. The demo community is a fixed, shared set of invented
 people, teams, one organization, posts and an event (ids from a UUID5 namespace); demo users join it
-and are purged after 7 days, while the shared community stays.
+and are purged after 7 days, while the shared community stays. Each demo session gets its own private
+"Asad Gate Crew" (Nadia plus two invented neighbours) so sessions never fill a shared team; private
+teams are left off the public team leaderboards.
