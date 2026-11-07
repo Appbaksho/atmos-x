@@ -21,3 +21,22 @@ yarn-error.*
 
 example
 
+
+# env files (prompt-v1 §8.5): only the template is committed
+.env*
+!.env.example
+
+# python / api
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+apps/api/data/
+*.egg-info/
+
+# playwright
+test-results/
+playwright-report/
+.vscode/

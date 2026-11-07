@@ -29,7 +29,7 @@ From a clean checkout of the commit to deploy:
 ```sh
 git archive HEAD | ssh root@93.127.172.118 'tar -x -C /root/atmos-x'
 ssh root@93.127.172.118 'cd /root/atmos-x && \
-  ATMOS_BUILD_ID='"$(git rev-parse --short HEAD)"' docker compose up -d --build'
+  ATMOS_BUILD_ID='"$(git rev-parse --short HEAD)"' docker compose -f docker-compose.prod.yml up -d --build'
 ```
 
 Passing the git hash as `ATMOS_BUILD_ID` makes each deploy install a fresh service worker. The build
@@ -38,6 +38,6 @@ runs on the VPS, which also hosts other production sites, so keep an eye on its 
 ## Check it
 
 ```sh
-ssh root@93.127.172.118 'cd /root/atmos-x && docker compose ps && docker compose logs --tail=50 web'
+ssh root@93.127.172.118 'cd /root/atmos-x && docker compose -f docker-compose.prod.yml ps && docker compose -f docker-compose.prod.yml logs --tail=50 web'
 curl -I https://atmosx.baksho.app
 ```
