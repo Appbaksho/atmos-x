@@ -170,3 +170,17 @@ report. The SSLCommerz sandbox accepted a real session request and its validatio
 browser checkout in the sandbox was not run. The IPN needs a public URL, so locally the success
 callback carries validation. Demo users see an invented pilot partner and nursery; real users see
 empty states until a real partner signs.
+
+## D28 · Store screens: roles, voucher scanning and client hints (5H/5I web)
+
+The app asks `GET /partner/me` (always 200, `partner: null` for everyone else) to decide whether to show
+the partner portal link, so ordinary people never trigger a 403. Partner listings include the declared
+value, the active flag and the server's price band; the portal shows the band as a hint while the
+server stays the only judge (M22). Outlets scan the voucher QR with the browser's `BarcodeDetector`
+where Chromium offers it, and type the code everywhere else; the QR holds only the voucher code.
+Package prices, the VAT rate and the bank-transfer minimum come from `GET /company/packages`; the
+client only multiplies them for the preview. Payment results come back as `?payment=` on
+`/app/store?tab=saplings` and `/app/company` and are shown as a note; the order state itself always
+comes from the server. Carbon credits stay disabled in the UI unless the server reports certified
+tonnes. The admin screen is shown only to the admin role, and every admin call is checked again on
+the server.

@@ -36,7 +36,7 @@
   "howToEarn": "种一棵树并让它存活 90 天，即可获得可用积分。",
   "pilotTag": "试点",
   "csrLine": "{name} 奖励达卡的植树者",
-  "productsN": "{count, plural, other {# 件商品}}",
+  "productsN": "{count, plural, other {{n} 件商品}}",
   "productA11y": "{name}，{pts} 积分",
   "pts": "{pts} 积分",
   "pickup": "自提",

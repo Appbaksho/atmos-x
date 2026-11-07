@@ -36,7 +36,7 @@
   "howToEarn": "Planta un árbol y mantenlo vivo 90 días para ganar puntos disponibles.",
   "pilotTag": "Piloto",
   "csrLine": "{name} premia a quienes plantan árboles en Daca",
-  "productsN": "{count, plural, one {# producto} other {# productos}}",
+  "productsN": "{count, plural, one {{n} producto} other {{n} productos}}",
   "productA11y": "{name}, {pts} puntos",
   "pts": "{pts} pts",
   "pickup": "Recogida",

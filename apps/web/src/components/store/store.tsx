@@ -139,12 +139,13 @@ function PointsHeader({ points, loading }: { points?: { spendable: number; pendi
 
 function PartnerRow({ p }: { p: StorePartner }) {
   const t = useTranslations('store');
+  const { f } = useCz();
   return (
     <Card pad={12} style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
       <ProductArt photo={p.logo_url} emoji={p.logo_emoji ?? '🏪'} size={44} label={p.name} />
       <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-          <Txt size={14} w={600} lines={1}>
+          <Txt size={14} w={600} lines={2}>
             {p.name}
           </Txt>
           {p.is_pilot ? <Tag label={t('pilotTag')} size="xs" bg={B.lime} fg={B.limeInk} /> : null}
@@ -154,7 +155,7 @@ function PartnerRow({ p }: { p: StorePartner }) {
         </Txt>
       </View>
       <Txt size={11.5} dim>
-        {t('productsN', { count: p.products })}
+        {t('productsN', { count: p.products, n: f.num(p.products) })}
       </Txt>
     </Card>
   );
@@ -168,6 +169,7 @@ function ProductCard({ p }: { p: StoreProduct }) {
     <Tap
       label={t('productA11y', { name: p.name, pts: f.num(p.points_price) })}
       href={href('product', { id: p.id })}
+      role="link"
       style={{ backgroundColor: c.card, borderRadius: R.xl, padding: 10, gap: 8, textAlign: 'start', opacity: out ? 0.6 : 1 }}>
       <ProductArt photo={p.photo_url} emoji={p.emoji} size="100%" label={p.name} />
       <Txt size={13.5} w={600} lines={2}>
@@ -242,10 +244,10 @@ function SaplingRow({ p, onBuy }: { p: SaplingProduct; onBuy: () => void }) {
     <Card pad={12} style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
       <ProductArt photo={p.photo_url} emoji={p.kind === 'kit' ? '🧰' : '🌱'} size={56} label={p.name} />
       <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
-        <Txt size={14} w={600} lines={1}>
+        <Txt size={14} w={600} lines={2}>
           {p.name}
         </Txt>
-        <Txt size={12} dim lines={1}>
+        <Txt size={12} dim lines={2}>
           {p.nursery.dist_m != null ? t('fromDist', { name: p.nursery.name, dist: f.dist(p.nursery.dist_m) }) : p.nursery.name}
         </Txt>
         <Txt size={14} w={700} num>

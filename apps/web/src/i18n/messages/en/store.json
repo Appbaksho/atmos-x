@@ -36,7 +36,7 @@
   "howToEarn": "Plant a tree and keep it alive 90 days to earn spendable points.",
   "pilotTag": "Pilot",
   "csrLine": "{name} rewards Dhaka's tree planters",
-  "productsN": "{count, plural, one {# product} other {# products}}",
+  "productsN": "{count, plural, one {{n} product} other {{n} products}}",
   "productA11y": "{name}, {pts} points",
   "pts": "{pts} pts",
   "pickup": "Pickup",

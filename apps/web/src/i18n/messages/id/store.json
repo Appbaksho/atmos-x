@@ -36,7 +36,7 @@
   "howToEarn": "Tanam pohon dan jaga tetap hidup 90 hari untuk mendapat poin.",
   "pilotTag": "Percontohan",
   "csrLine": "{name} memberi hadiah bagi penanam pohon Dhaka",
-  "productsN": "{count, plural, other {# produk}}",
+  "productsN": "{count, plural, other {{n} produk}}",
   "productA11y": "{name}, {pts} poin",
   "pts": "{pts} poin",
   "pickup": "Ambil sendiri",

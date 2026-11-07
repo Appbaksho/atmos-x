@@ -36,7 +36,7 @@
   "howToEarn": "पेड़ लगाकर 90 दिन ज़िंदा रखें, तब खर्च योग्य अंक मिलेंगे।",
   "pilotTag": "पायलट",
   "csrLine": "{name} ढाका के पेड़ लगाने वालों को इनाम देता है",
-  "productsN": "{count, plural, one {# उत्पाद} other {# उत्पाद}}",
+  "productsN": "{count, plural, one {{n} उत्पाद} other {{n} उत्पाद}}",
   "productA11y": "{name}, {pts} अंक",
   "pts": "{pts} अंक",
   "pickup": "पिकअप",

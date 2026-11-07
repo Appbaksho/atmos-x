@@ -36,7 +36,7 @@
   "howToEarn": "ازرع شجرة وأبقها حية 90 يومًا لتكسب نقاطًا قابلة للإنفاق.",
   "pilotTag": "تجريبي",
   "csrLine": "{name} يكافئ زارعي الأشجار في دكا",
-  "productsN": "{count, plural, one {منتج واحد} two {منتجان} few {# منتجات} many {# منتجًا} other {# منتج}}",
+  "productsN": "{count, plural, one {منتج واحد} two {منتجان} few {{n} منتجات} many {{n} منتجًا} other {{n} منتج}}",
   "productA11y": "{name}، {pts} نقطة",
   "pts": "{pts} نقطة",
   "pickup": "استلام",

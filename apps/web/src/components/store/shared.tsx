@@ -77,7 +77,7 @@ export function VoucherCard({ order }: { order: StoreOrder }) {
 export function ProductArt({ photo, emoji, size = 64, label }: { photo: string | null; emoji: string | null; size?: number | string; label: string }) {
   const { c } = useCz();
   return (
-    <View role="img" label={label} style={{ width: size, ...(typeof size === 'number' ? { height: size } : { aspectRatio: '4 / 3' }), borderRadius: R.lg, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
+    <View role="img" label={label} style={{ width: size, ...(typeof size === 'number' ? { height: size } : { aspectRatio: '4 / 3', maxHeight: 260 }), borderRadius: R.lg, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', flexShrink: 0 }}>
       {photo ? (
         // eslint-disable-next-line @next/next/no-img-element -- partner-provided URL
         <img src={photo} alt={label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

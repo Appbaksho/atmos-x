@@ -36,7 +36,7 @@
   "howToEarn": "একটি গাছ লাগিয়ে ৯০ দিন বাঁচিয়ে রাখলে খরচযোগ্য পয়েন্ট পাবেন।",
   "pilotTag": "পাইলট",
   "csrLine": "{name} ঢাকার গাছ লাগানো মানুষদের পুরস্কার দেয়",
-  "productsN": "{count, plural, one {#টি পণ্য} other {#টি পণ্য}}",
+  "productsN": "{count, plural, one {{n}টি পণ্য} other {{n}টি পণ্য}}",
   "productA11y": "{name}, {pts} পয়েন্ট",
   "pts": "{pts} পয়েন্ট",
   "pickup": "সংগ্রহ",

@@ -36,7 +36,7 @@
   "howToEarn": "Plantez un arbre et gardez-le en vie 90 jours pour gagner des points.",
   "pilotTag": "Pilote",
   "csrLine": "{name} récompense les planteurs d'arbres de Dacca",
-  "productsN": "{count, plural, one {# produit} other {# produits}}",
+  "productsN": "{count, plural, one {{n} produit} other {{n} produits}}",
   "productA11y": "{name}, {pts} points",
   "pts": "{pts} pts",
   "pickup": "Retrait",

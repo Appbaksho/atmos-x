@@ -36,7 +36,7 @@
   "howToEarn": "درخت لگا کر 90 دن زندہ رکھیں، تب خرچ کے قابل پوائنٹس ملیں گے۔",
   "pilotTag": "پائلٹ",
   "csrLine": "{name} ڈھاکہ کے درخت لگانے والوں کو انعام دیتا ہے",
-  "productsN": "{count, plural, one {# پروڈکٹ} other {# پروڈکٹس}}",
+  "productsN": "{count, plural, one {{n} پروڈکٹ} other {{n} پروڈکٹس}}",
   "productA11y": "{name}، {pts} پوائنٹس",
   "pts": "{pts} پوائنٹس",
   "pickup": "پک اپ",
