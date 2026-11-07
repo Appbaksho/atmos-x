@@ -181,3 +181,30 @@ def retirement_pdf(company: dict, lot: dict, serial_from: str, serial_to: str) -
     ]
     _doc(buf, "Retirement certificate").build(story)
     return buf.getvalue()
+
+
+def event_certificate_pdf(event: dict, name: str) -> bytes:
+    """R3/C10: certificate of participation in a planting drive, with the sponsor and its logo."""
+    buf = io.BytesIO()
+    s = getSampleStyleSheet()
+    story: list = [Spacer(1, 18 * mm), Paragraph("Certificate of participation", s["Title"]), Spacer(1, 8 * mm)]
+    story.append(Paragraph(f"This certifies that <b>{name}</b>", s["Heading2"]))
+    story.append(
+        Paragraph(
+            f"took part in <b>{event['title']}</b> at {event['place']} on {event['date'].strftime('%d %B %Y')}.",
+            s["Normal"],
+        )
+    )
+    story.append(Spacer(1, 10 * mm))
+    if event.get("sponsor"):
+        story.append(Paragraph(f"Sponsored by <b>{event['sponsor']}</b>", s["Normal"]))
+        if event.get("logo_path"):
+            try:
+                story.append(Spacer(1, 4 * mm))
+                story.append(Image(event["logo_path"], width=40 * mm, height=24 * mm, kind="proportional"))
+            except Exception:  # noqa: BLE001  a missing logo file never breaks the certificate
+                pass
+    story.append(Spacer(1, 14 * mm))
+    story.append(Paragraph("Atmos X · cooling neighbourhoods with NASA data", s["Italic"]))
+    _doc(buf, "Certificate of participation").build(story)
+    return buf.getvalue()

@@ -7,8 +7,9 @@
 import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
-import { B, BottomSheet, Card, CzButton, EmptyState, ErrorState, Field, GhostButton, I, Note, Screen, ScreenHeader, Seg, SkeletonCard, Stepper, Tap, Txt, View, href, toast, useCz, useMounted } from '@/components/cz';
-import { normalizeVoucher, partnerReportUrl, useCollectVoucher, useMarkDelivered, usePartnerMe, usePartnerPortal, usePartnerRedemptions, useSavePartnerProduct, useSession } from '@/lib/data/hooks';
+import { B, BottomSheet, Card, CzButton, EmptyState, ErrorState, Field, GhostButton, I, Icon, Note, Screen, ScreenHeader, Seg, SkeletonCard, Stepper, Tap, Txt, View, href, toast, useCz, useMounted } from '@/components/cz';
+import { normalizeVoucher, partnerReportUrl, useAddOutlet, useCollectVoucher, useMarkDelivered, usePartnerMe, usePartnerOutlets, usePartnerPortal, usePartnerRedemptions, useRemoveOutlet, useSavePartnerProduct, useSession } from '@/lib/data/hooks';
+import { useLocation } from '@/lib/location';
 import type { PartnerPortal as Portal, PartnerProduct, StoreCategory, StoreOrder } from '@/lib/data/types';
 
 import { MONO, ProductArt, StatusTag, openPdf, useStoreError } from './shared';
@@ -85,6 +86,7 @@ function Products() {
       <Note tone="navy" icon={I.info}>
         {t('rule', { rate: f.loc(rule.points_per_bdt), pct: f.pct(rule.tolerance * 100) })}
       </Note>
+      <Outlets />
       <CzButton label={t('add')} icon="plus" size="md" onPress={() => setEditing('new')} />
       {q.data.products.length ? (
         q.data.products.map((p) => (
@@ -96,6 +98,7 @@ function Products() {
               </Txt>
               <Txt size={12} dim>
                 {t('row', { pts: f.num(p.points_price), stock: f.num(p.stock), value: f.tk(p.declared_value_bdt) })}
+                {p.updated_at ? ` · ${t('updated', { date: f.date(p.updated_at) })}` : ''}
               </Txt>
             </View>
             {!p.active ? <StatusTag status="paused" /> : null}
@@ -106,6 +109,89 @@ function Products() {
       )}
       {editing ? <ProductSheet key={editing === 'new' ? 'new' : editing.id} product={editing === 'new' ? null : editing} rule={rule} onClose={() => setEditing(null)} /> : null}
     </View>
+  );
+}
+
+/** S11 · Pickup points: where vouchers are collected. */
+function Outlets() {
+  const t = useTranslations('store.partner');
+  const { c } = useCz();
+  const q = usePartnerOutlets();
+  const add = useAddOutlet();
+  const remove = useRemoveOutlet();
+  const loc = useLocation();
+  const errText = useStoreError();
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [here, setHere] = useState(true);
+  const save = () => {
+    if (name.trim().length < 2) return toast(t('outletName'), { tone: 'warn' });
+    const at = here && loc.resolved ? loc.focus : null;
+    add.mutate(
+      { name: name.trim(), address: address.trim() || null, lat: at?.lat ?? null, lng: at?.lng ?? null },
+      {
+        onSuccess: () => {
+          setOpen(false);
+          setName('');
+          setAddress('');
+          toast(t('saved'), { tone: 'success' });
+        },
+        onError: (e) => toast(errText(e), { tone: 'warn' }),
+      },
+    );
+  };
+  return (
+    <Card gap={8}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+        <Txt size={14} w={600}>
+          {t('outlets')}
+        </Txt>
+        <GhostButton label={t('addOutlet')} height={38} onPress={() => setOpen(true)} style={{ paddingHorizontal: 12 }} />
+      </View>
+      {q.isPending ? (
+        <SkeletonCard lines={1} height={48} />
+      ) : q.data?.length ? (
+        q.data.map((o, i) => (
+          <View key={o.id} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 8, borderTopWidth: i ? 1 : 0, borderTopColor: c.line }}>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Txt size={13.5} w={600} lines={1}>
+                {o.name}
+              </Txt>
+              {o.address ? (
+                <Txt size={12} dim lines={1}>
+                  {o.address}
+                </Txt>
+              ) : null}
+            </View>
+            <Tap label={t('removeOutlet', { name: o.name })} onPress={() => remove.mutate(o.id, { onError: (e) => toast(errText(e), { tone: 'warn' }) })} style={{ minHeight: 40, minWidth: 40, alignItems: 'center', justifyContent: 'center' }}>
+              <Icon d={I.close} size={16} sw={2} color={c.ink2} />
+            </Tap>
+          </View>
+        ))
+      ) : (
+        <Txt size={12.5} dim>
+          {t('noOutlets')}
+        </Txt>
+      )}
+      <BottomSheet open={open} onClose={() => setOpen(false)} title={t('addOutlet')} footer={<CzButton label={t('save')} icon="check" busy={add.isPending} onPress={save} />}>
+        <View style={{ gap: 12 }}>
+          <Field label={t('outletNameL')} value={name} onChangeText={setName} maxLength={120} />
+          <Field label={t('outletAddress')} value={address} onChangeText={setAddress} maxLength={300} />
+          {loc.resolved ? (
+            <Seg
+              value={here ? 'here' : 'none'}
+              onChange={(v) => setHere(v === 'here')}
+              label={t('outletPin')}
+              options={[
+                { label: t('outletHere', { place: loc.placeName ?? '' }), value: 'here' },
+                { label: t('outletNoPin'), value: 'none' },
+              ]}
+            />
+          ) : null}
+        </View>
+      </BottomSheet>
+    </Card>
   );
 }
 

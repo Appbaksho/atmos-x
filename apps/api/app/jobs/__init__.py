@@ -15,6 +15,8 @@ SCHEDULE: list[dict] = [
     {"id": "farm_alerts", "fn": farm.enqueue_farm, "trigger": CronTrigger(hour="0,12", minute=30)},
     # Event reminders every hour for events starting within 24 h (once per event).
     {"id": "event_reminders", "fn": daily.enqueue_events, "trigger": CronTrigger(minute=5)},
+    # Heat warnings for people's home areas at 01:00 UTC = 07:00 Dhaka (C12).
+    {"id": "heat_warnings", "fn": daily.enqueue_heat_warnings, "trigger": CronTrigger(hour=1, minute=0)},
     # Web push for new notifications every 5 minutes (only when VAPID keys are set).
     {"id": "push_send", "fn": push.enqueue_push, "trigger": CronTrigger(minute="*/5")},
 ]

@@ -246,7 +246,8 @@
     "orgsTitle": "Organisasi",
     "orgsSub": "Sekolah, LSM, dan kelurahan dengan banyak tim",
     "noOrgs": "Belum ada organisasi",
-    "noOrgsSub": "Ketua tim bisa menambahkan timnya ke organisasi."
+    "noOrgsSub": "Ketua tim bisa menambahkan timnya ke organisasi.",
+    "invites": "Undangan"
   },
   "feed": {
     "title": "Linimasa",
@@ -390,8 +391,16 @@
       "checkin_closed": "Check-in belum dibuka.",
       "gps_inaccurate": "Lokasi kurang akurat; coba di luar.",
       "full": "Aksi ini sudah penuh.",
-      "past": "Pilih waktu di masa depan."
-    }
+      "past": "Pilih waktu di masa depan.",
+      "no_sponsor": "Tambahkan nama sponsor dulu",
+      "not_checked_in": "Sertifikat untuk yang check-in di aksi",
+      "not_organizer": "Hanya penyelenggara yang bisa"
+    },
+    "sponsorLogo": "Logo {name}",
+    "certificate": "Sertifikat partisipasi (PDF)",
+    "addLogo": "Tambah logo sponsor",
+    "replaceLogo": "Ganti logo sponsor",
+    "logoSaved": "Logo tersimpan. Tampil setelah ditinjau."
   },
   "person": {
     "title": "Profil",
@@ -416,5 +425,23 @@
     "blocked": "Diblokir. Kalian tidak akan melihat postingan satu sama lain.",
     "unblocked": "Blokir dibuka",
     "feature": "mengikuti orang"
-  }
+  },
+  "sharePost": {
+    "cta": "Bagikan sebagai postingan",
+    "title": "Bagikan ke tetangga",
+    "sub": "Muncul di umpan wilayah Anda",
+    "say": "Tulis sesuatu (opsional)",
+    "privacy": "Foto diperiksa sebelum dilihat orang lain, dan lokasi ditampilkan sebagai wilayah Anda, bukan titik tepatnya.",
+    "post": "Kirim",
+    "done": "Terkirim",
+    "feature": "Bagikan di komunitas",
+    "err": {
+      "generic": "Gagal memposting. Coba lagi.",
+      "post": {
+        "action_not_verified": "Hanya aksi terverifikasi yang bisa dibagikan",
+        "empty": "Tulis sesuatu sebagai keterangan"
+      }
+    }
+  },
+  "orgExport": "Unduh angka tim (CSV)"
 }

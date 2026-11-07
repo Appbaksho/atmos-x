@@ -56,7 +56,8 @@
     "terms": "Termos",
     "demo": "Produto de demonstração de um parceiro fictício. Nada real é entregue.",
     "short": "Faltam {pts} pontos disponíveis",
-    "redeem": "Resgatar"
+    "redeem": "Resgatar",
+    "dates": "Publicado {listed} · atualizado {updated}"
   },
   "done": {
     "title": "Resgatado",
@@ -174,7 +175,9 @@
     "order_not_found": "Pedido não encontrado",
     "order_not_awaiting": "Este pedido não aguarda transferência",
     "auth_guest_restricted": "Crie uma conta para fazer isso",
-    "rate_limited": "Tentativas demais. Aguarde um pouco."
+    "rate_limited": "Tentativas demais. Aguarde um pouco.",
+    "partner_outlet_limit": "Um parceiro pode ter até 50 pontos",
+    "partner_outlet_not_found": "Ponto não encontrado"
   },
   "partner": {
     "title": "Portal do parceiro",
@@ -229,7 +232,18 @@
     "noCamera": "A câmera não está disponível. Digite o código.",
     "reportTitle": "Relatório de impacto de RSC",
     "reportSub": "PDF com árvores verificadas, sobrevivência, CO₂ estimado, pessoas alcançadas, resgates e fotos.",
-    "download": "Baixar PDF"
+    "download": "Baixar PDF",
+    "updated": "atualizado {date}",
+    "outlets": "Pontos de retirada",
+    "addOutlet": "Adicionar ponto",
+    "noOutlets": "Ainda não há pontos. Adicione onde retirar os vales.",
+    "outletName": "Dê um nome ao ponto",
+    "outletNameL": "Nome do ponto",
+    "outletAddress": "Endereço",
+    "outletPin": "Marcador no mapa",
+    "outletHere": "Em {place}",
+    "outletNoPin": "Sem marcador",
+    "removeOutlet": "Remover {name}"
   },
   "company": {
     "title": "Conta da empresa",

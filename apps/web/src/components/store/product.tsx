@@ -62,6 +62,11 @@ function ProductBody({ p }: { p: StoreProduct }) {
           {' · '}
           {t('product.limit', { n: f.loc(p.monthly_limit) })}
         </Txt>
+        {p.updated_at ? (
+          <Txt size={11.5} dim>
+            {t('product.dates', { listed: f.date(p.listed_at ?? p.updated_at), updated: f.date(p.updated_at) })}
+          </Txt>
+        ) : null}
         {p.description ? <Txt size={14}>{p.description}</Txt> : null}
       </Card>
 

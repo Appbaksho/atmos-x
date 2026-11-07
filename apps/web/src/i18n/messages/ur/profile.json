@@ -163,7 +163,10 @@
     "inviteFailed": "دعوت نہیں بن سکی",
     "inviteT": "کسی دوست کو پانی دینے کی دعوت دیں",
     "inviteSub": "وہ {name} دیکھ سکتے ہیں اور چیک اِن کر سکتے ہیں۔ پوائنٹ آپ کے رہیں گے۔",
-    "invite": "دعوت کا لنک شیئر کریں"
+    "invite": "دعوت کا لنک شیئر کریں",
+    "shareBody": "میرا درخت {name} بڑھ رہا ہے!",
+    "coolingTitle": "اس درخت سے ٹھنڈک (تخمینہ)",
+    "coolingNote": "آج اس کے ایک مربع کلومیٹر کی ماڈل کی گئی ٹھنڈک؛ درخت کے ساتھ بڑھتی ہے۔ تخمینہ، پیمائش نہیں۔"
   },
   "notif": {
     "title": "اطلاعات",
@@ -574,6 +577,8 @@
       "tree.captured",
       "tree.checkins",
       "tree.cm",
+      "tree.coolingNote",
+      "tree.coolingTitle",
       "tree.failed",
       "tree.healthHint.dead",
       "tree.healthHint.healthy",
@@ -607,6 +612,7 @@
       "tree.removeBody",
       "tree.replant",
       "tree.saved",
+      "tree.shareBody",
       "tree.stillThere",
       "tree.stillThereSub",
       "tree.submit",

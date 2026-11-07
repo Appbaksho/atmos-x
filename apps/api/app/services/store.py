@@ -104,6 +104,9 @@ async def product_out(
         ],
         "can_afford": spendable is not None and spendable >= pr.points_price,
         "is_demo": pr.is_demo,
+        # R16: dates make stale listings visible.
+        "listed_at": pr.created_at.isoformat() if pr.created_at else None,
+        "updated_at": pr.updated_at.isoformat() if pr.updated_at else None,
     } | (
         {
             "declared_value_bdt": pr.declared_value_bdt,
@@ -361,6 +364,7 @@ async def upsert_product(db: AsyncSession, partner: Partner, data: dict, pid: uu
             if v is not None:
                 setattr(pr, k, v)
     await db.commit()
+    await db.refresh(pr)  # server-set timestamps (listed_at / updated_at, R16) without lazy IO
     return pr
 
 

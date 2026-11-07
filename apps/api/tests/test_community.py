@@ -255,6 +255,7 @@ async def test_events_rsvp_checkin_and_reminders(client, client2, db, seeded):
             "lat": DHAKA[0],
             "lng": DHAKA[1],
             "capacity": 2,
+            "sponsor_name": "Lane Hardware",
         },
     )
     assert e.status_code == 200, e.text
@@ -273,6 +274,17 @@ async def test_events_rsvp_checkin_and_reminders(client, client2, db, seeded):
         f"/api/v1/events/{ev['id']}/checkin", json={"lat": DHAKA[0] + 0.001, "lng": DHAKA[1], "accuracy_m": 10}
     )
     assert ok.status_code == 200 and ok.json()["i_checked_in"] and ok.json()["checked_in"] == 1
+    # R3: the organizer adds the sponsor logo; others see it only after moderation.
+    from tests.test_act import jpeg, multipart
+
+    logo = await multipart(client, f"/api/v1/events/{ev['id']}/sponsor-logo", {}, jpeg(7))
+    assert logo.status_code == 200 and logo.json()["sponsor_logo_url"]
+    assert (await client2.get(f"/api/v1/events/{ev['id']}")).json()["sponsor_logo_url"] is None
+    assert (await multipart(client2, f"/api/v1/events/{ev['id']}/sponsor-logo", {}, jpeg(8))).status_code == 403
+    # A participation certificate for people who checked in, and only for them.
+    cert = await client2.get(f"/api/v1/events/{ev['id']}/certificate.pdf")
+    assert cert.status_code == 200 and cert.content[:4] == b"%PDF"
+    assert (await client.get(f"/api/v1/events/{ev['id']}/certificate.pdf")).status_code == 403
     past = await client.post(
         "/api/v1/events",
         json={

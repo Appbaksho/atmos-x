@@ -201,7 +201,13 @@ function OrgBody({ org }: { org: Org }) {
             })}
           </View>
         </View>
-        <SourceChips demo />
+        {org.my_role === 'admin' ? (
+          // R9: CSV of the teams' numbers for the org's admins.
+          <a href={`/api/v1/orgs/${encodeURIComponent(org.id)}/export.csv`} download style={{ alignSelf: 'flex-start', minHeight: 44, display: 'inline-flex', alignItems: 'center', padding: '0 16px', borderRadius: 999, border: `1px solid ${c.line}`, color: c.ink, textDecoration: 'none', fontSize: 13.5, fontWeight: 600 }}>
+            {t('orgExport')}
+          </a>
+        ) : null}
+        <SourceChips demo={org.is_demo} />
       </View>
     </Screen>
   );

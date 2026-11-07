@@ -246,7 +246,8 @@
     "orgsTitle": "Organisations",
     "orgsSub": "Écoles, ONG et quartiers avec plusieurs équipes",
     "noOrgs": "Pas encore d’organisation",
-    "noOrgsSub": "Un responsable peut rattacher son équipe à une organisation."
+    "noOrgsSub": "Un responsable peut rattacher son équipe à une organisation.",
+    "invites": "Invitations"
   },
   "feed": {
     "title": "Fil",
@@ -390,8 +391,16 @@
       "checkin_closed": "Le pointage n’est pas ouvert.",
       "gps_inaccurate": "Position imprécise ; essayez dehors.",
       "full": "Cette plantation est complète.",
-      "past": "Choisissez une heure à venir."
-    }
+      "past": "Choisissez une heure à venir.",
+      "no_sponsor": "Ajoutez d'abord le nom du sponsor",
+      "not_checked_in": "Les certificats sont pour les personnes présentes",
+      "not_organizer": "Seul l'organisateur peut le faire"
+    },
+    "sponsorLogo": "Logo de {name}",
+    "certificate": "Certificat de participation (PDF)",
+    "addLogo": "Ajouter le logo du sponsor",
+    "replaceLogo": "Remplacer le logo du sponsor",
+    "logoSaved": "Logo enregistré. Il s'affichera après examen."
   },
   "person": {
     "title": "Profil",
@@ -416,5 +425,23 @@
     "blocked": "Bloqué. Vous ne verrez plus vos publications respectives.",
     "unblocked": "Débloqué",
     "feature": "suivre des personnes"
-  }
+  },
+  "sharePost": {
+    "cta": "Partager en publication",
+    "title": "Partagez avec vos voisins",
+    "sub": "Il apparaît dans le fil de votre quartier",
+    "say": "Écrivez quelque chose (facultatif)",
+    "privacy": "La photo est vérifiée avant que d'autres la voient, et le lieu s'affiche comme votre quartier, jamais l'endroit exact.",
+    "post": "Publier",
+    "done": "Publié",
+    "feature": "Partager dans la communauté",
+    "err": {
+      "generic": "Publication impossible. Réessayez.",
+      "post": {
+        "action_not_verified": "Seules les actions vérifiées peuvent être partagées",
+        "empty": "Écrivez quelque chose avec"
+      }
+    }
+  },
+  "orgExport": "Télécharger les chiffres des équipes (CSV)"
 }

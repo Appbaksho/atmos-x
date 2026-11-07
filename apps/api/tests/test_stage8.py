@@ -94,3 +94,82 @@ async def test_place_search_degrades_without_an_error(client):
     r = await client.get("/api/v1/geo/search", params={"q": "Nowhereville-xyz", "lang": "en"})
     assert r.status_code == 200
     assert r.json()["results"] == [] and r.json()["meta"]["live"] is False
+
+
+async def test_heat_warnings_notify_each_home_area_once_a_day(client, db, monkeypatch):
+    """C12: a BMD heat-wave warning at someone's home area becomes one notification a day."""
+    import uuid
+    from datetime import UTC, datetime
+
+    from sqlalchemy import select
+
+    from app.models import Notification, Profile
+    from app.services import conditions as C
+    from app.services import heat_alerts as HA
+    from tests.conftest import signup
+
+    u = await signup(client)
+    prof = await db.get(Profile, uuid.UUID(u["id"]))
+    prof.home_lat, prof.home_lng, prof.city = 23.759, 90.359, "Mohammadpur"
+    await db.commit()
+    hot = {
+        "place": "Lalmatia, Dhaka",
+        "forecast": [{"feels_max_c": 44.2, "tmax_c": 39.1}, {"feels_max_c": 41.0}, {"feels_max_c": 40.0}],
+        "warnings": [
+            {
+                "source": "local",
+                "level": "severe",
+                "text": {"code": "warning.heatwave_severe", "params": {}},
+                "until": "2026-04-18",
+            }
+        ],
+    }
+    calm = {"place": "Lalmatia, Dhaka", "forecast": [{"feels_max_c": 31.0}], "warnings": []}
+    answer = {"v": calm}
+
+    async def fake_conditions(db_, lat, lng, lang):
+        return answer["v"]
+
+    monkeypatch.setattr(C, "conditions", fake_conditions)
+    now = datetime(2026, 4, 16, 1, 0, tzinfo=UTC)
+    assert (await HA.run(db, now))["notified"] == 0
+    answer["v"] = hot
+    assert (await HA.run(db, now))["notified"] == 1
+    await HA.run(db, now)  # same day: no second notification
+    rows = (await db.execute(select(Notification).where(Notification.kind == "heat_warning"))).scalars().all()
+    assert len(rows) == 1 and rows[0].title == {
+        "code": "notif.heat.warning",
+        "params": {"place": "Mohammadpur", "feels": 44},
+    }
+    # Guests are never notified, even with a home in a warned area.
+    await client.post("/api/v1/auth/logout")
+    g = (await client.post("/api/v1/auth/guest", json={})).json()["user"]
+    gp = await db.get(Profile, uuid.UUID(g["id"]))
+    gp.home_lat, gp.home_lng = 23.76, 90.36
+    await db.commit()
+    await HA.run(db, datetime(2026, 4, 17, 1, 0, tzinfo=UTC))
+    guest_rows = (
+        (await db.execute(select(Notification).where(Notification.user_id == uuid.UUID(g["id"])))).scalars().all()
+    )
+    assert guest_rows == []
+    assert HA.cell_of(23.759, 90.359) == (23.75, 90.35)
+
+
+async def test_org_admin_exports_team_numbers_as_csv(client):
+    """R9: an org's admin downloads its teams' numbers; nobody else can."""
+    from tests.conftest import signup
+
+    await signup(client, "orgadmin@example.org", "Org Admin")
+    org = (await client.post("/api/v1/orgs", json={"name": "Lane School Eco Club", "kind": "school"})).json()
+    team = await client.post(
+        "/api/v1/teams", json={"name": "Class Seven Planters", "is_public": True, "org_id": org["id"]}
+    )
+    assert team.status_code == 200, team.text
+    r = await client.get(f"/api/v1/orgs/{org['id']}/export.csv")
+    assert r.status_code == 200 and r.headers["content-type"].startswith("text/csv")
+    lines = r.text.strip().splitlines()
+    assert lines[0] == "team,public,points,trees,actions,cooling_c_estimate"
+    assert lines[1].startswith("Class Seven Planters,True,")
+    await client.post("/api/v1/auth/logout")
+    await signup(client, "someone@example.org", "Someone")
+    assert (await client.get(f"/api/v1/orgs/{org['id']}/export.csv")).status_code == 403

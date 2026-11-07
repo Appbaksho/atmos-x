@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { useRef, useState } from 'react';
 
 import { B, BottomSheet, Card, CzButton, EmptyState, ErrorState, Field, GhostButton, I, Icon, Label, Note, Photo, R, Screen, ScreenHeader, Seg, SkeletonCard, Tap, Txt, View, go, href, requireAccount, toast, useCz, useLocation } from '@/components/cz';
-import { isGuestRestricted, useCreateEvent, useEvent, useEventCheckin, useEventPhoto, useEvents, useRsvp, useSession, useTeams } from '@/lib/data/hooks';
+import { eventCertificateUrl, isGuestRestricted, useCreateEvent, useEvent, useEventCheckin, useEventPhoto, useEvents, useEventSponsorLogo, useRsvp, useSession, useTeams } from '@/lib/data/hooks';
 import type { CommunityEvent } from '@/lib/data/types';
 
 function useEventError() {
@@ -171,6 +171,8 @@ function EventBody({ e }: { e: CommunityEvent }) {
   const rsvp = useRsvp();
   const checkin = useEventCheckin();
   const photo = useEventPhoto();
+  const logo = useEventSponsorLogo();
+  const logoFile = useRef<HTMLInputElement>(null);
   const errText = useEventError();
   const file = useRef<HTMLInputElement>(null);
   const [locating, setLocating] = useState(false);
@@ -209,9 +211,15 @@ function EventBody({ e }: { e: CommunityEvent }) {
           {t('goingOf', { going: f.loc(e.going), in: f.loc(e.checked_in) }) + (e.capacity ? ` · ${t('capacity', { n: f.loc(e.capacity) })}` : '')}
         </Txt>
         {e.sponsor_name ? (
-          <Txt size={12} color="rgba(255,255,255,0.8)">
-            {t('sponsor', { name: e.sponsor_name })}
-          </Txt>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            {e.sponsor_logo_url ? (
+              // eslint-disable-next-line @next/next/no-img-element -- moderated sponsor logo
+              <img src={e.sponsor_logo_url} alt={t('sponsorLogo', { name: e.sponsor_name })} style={{ width: 36, height: 36, borderRadius: 8, objectFit: 'contain', backgroundColor: B.white }} />
+            ) : null}
+            <Txt size={12} color="rgba(255,255,255,0.8)">
+              {t('sponsor', { name: e.sponsor_name })}
+            </Txt>
+          </View>
         ) : null}
         {e.is_demo ? (
           <Txt size={11} w={600} color={B.lime}>
@@ -241,7 +249,12 @@ function EventBody({ e }: { e: CommunityEvent }) {
           {e.checkin_open ? t('checkinOpen') : t('checkinClosed')}
         </Txt>
         {e.i_checked_in ? (
-          <Note icon={I.checkSm}>{t('checkedIn')}</Note>
+          <>
+            <Note icon={I.checkSm}>{t('checkedIn')}</Note>
+            <a href={eventCertificateUrl(e.id)} target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'flex-start', minHeight: 44, display: 'inline-flex', alignItems: 'center', padding: '0 16px', borderRadius: 999, border: `1px solid ${c.line}`, color: c.ink, textDecoration: 'none', fontSize: 13.5, fontWeight: 600 }}>
+              {t('certificate')}
+            </a>
+          </>
         ) : (
           <CzButton label={t('checkin')} icon="check" size="md" disabled={!e.checkin_open} busy={locating || checkin.isPending} onPress={guard(doCheckin)} />
         )}
@@ -261,6 +274,22 @@ function EventBody({ e }: { e: CommunityEvent }) {
             }}
           />
           <GhostButton label={e.group_photo_url ? t('replacePhoto') : t('addPhoto')} height={46} disabled={photo.isPending} onPress={() => file.current?.click()} />
+          {e.sponsor_name ? (
+            <>
+              <input
+                ref={logoFile}
+                type="file"
+                accept="image/*"
+                hidden
+                onChange={(ev) => {
+                  const fl = ev.target.files?.[0];
+                  ev.target.value = '';
+                  if (fl) logo.mutate({ id: e.id, photo: fl }, { onSuccess: () => toast(t('logoSaved'), { tone: 'success' }), onError: (er) => toast(errText(er), { tone: 'warn' }) });
+                }}
+              />
+              <GhostButton label={e.sponsor_logo_url ? t('replaceLogo') : t('addLogo')} height={46} disabled={logo.isPending} onPress={() => logoFile.current?.click()} />
+            </>
+          ) : null}
         </>
       ) : null}
       <View style={{ height: 4, backgroundColor: c.bg }} />

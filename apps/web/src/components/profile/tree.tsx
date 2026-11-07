@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useRef, useState } from 'react';
 
 import { ChecksList } from '@/components/act/checks';
+import { SharePostButton } from '@/components/community/share-post';
 import { Camera, type CameraCapture } from '@/components/camera';
 import {
   B,
@@ -237,8 +238,11 @@ function TreeBody({ tree, openCheck }: { tree: Tree; openCheck: boolean }) {
 
         <Tips tree={tree} name={name} />
 
+        <Cooling tree={tree} />
+
         <Timeline tree={tree} />
 
+        {tree.mine ? <SharePostButton treeId={tree.id} actionId={tree.verified ? tree.action_id : null} defaultBody={t('shareBody', { name })} /> : null}
         {tree.mine ? <InviteFriend tree={tree} name={name} /> : null}
         {tree.mine ? <RemoveTree tree={tree} name={name} /> : null}
       </View>
@@ -518,6 +522,26 @@ function HistRow({ label, sub, date, photo, health }: { label: string; sub: stri
 }
 
 /* ───────────────────────────── Invite ───────────────────────────── */
+
+/** T5 · This tree's estimated cooling (grows with the tree; an estimate, not a measurement). */
+function Cooling({ tree }: { tree: Tree }) {
+  const t = useTranslations('profile.tree');
+  const { f } = useCz();
+  if (!(tree.cooling_c_est > 0)) return null;
+  return (
+    <Card gap={6}>
+      <Txt size={13.5} w={600}>
+        {t('coolingTitle')}
+      </Txt>
+      <Txt size={22} w={700} num>
+        {f.dC(-tree.cooling_c_est, 4)}
+      </Txt>
+      <Txt size={12} dim>
+        {t('coolingNote')}
+      </Txt>
+    </Card>
+  );
+}
 
 function InviteFriend({ tree, name }: { tree: Tree; name: string }) {
   const t = useTranslations('profile.tree');

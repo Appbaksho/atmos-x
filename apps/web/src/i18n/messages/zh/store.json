@@ -56,7 +56,8 @@
     "terms": "条款",
     "demo": "虚构试点伙伴的演示商品，不会真实发货。",
     "short": "还需要 {pts} 可用积分",
-    "redeem": "兑换"
+    "redeem": "兑换",
+    "dates": "上架 {listed} · 更新 {updated}"
   },
   "done": {
     "title": "兑换成功",
@@ -174,7 +175,9 @@
     "order_not_found": "找不到订单",
     "order_not_awaiting": "该订单不在等待转账",
     "auth_guest_restricted": "创建账户后才能操作",
-    "rate_limited": "尝试次数过多，请稍候。"
+    "rate_limited": "尝试次数过多，请稍候。",
+    "partner_outlet_limit": "每个合作伙伴最多 50 个自提点",
+    "partner_outlet_not_found": "找不到自提点"
   },
   "partner": {
     "title": "合作伙伴门户",
@@ -229,7 +232,18 @@
     "noCamera": "摄像头不可用，请手动输入券码。",
     "reportTitle": "企业社会责任影响报告",
     "reportSub": "PDF：已核实树木、存活率、估算 CO₂、惠及人数、兑换记录和树木照片。",
-    "download": "下载 PDF"
+    "download": "下载 PDF",
+    "updated": "更新 {date}",
+    "outlets": "自提点",
+    "addOutlet": "添加自提点",
+    "noOutlets": "还没有自提点。请添加领取券的地点。",
+    "outletName": "请为自提点命名",
+    "outletNameL": "自提点名称",
+    "outletAddress": "地址",
+    "outletPin": "地图标记",
+    "outletHere": "位于 {place}",
+    "outletNoPin": "不标记",
+    "removeOutlet": "移除 {name}"
   },
   "company": {
     "title": "企业账户",

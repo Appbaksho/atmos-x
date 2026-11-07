@@ -8,12 +8,13 @@ from datetime import UTC, datetime
 from typing import Annotated
 
 from fastapi import APIRouter, File, Form, Query, UploadFile
+from fastapi.responses import Response
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 
 from ..deps import DB, FullUser, Moderator, ViewerDep
 from ..errors import AppError, forbidden, not_found
-from ..models import Comment, Org, Team, TeamMember
+from ..models import Comment, Org, OrgMember, Team, TeamMember
 from ..services import events as EV
 from ..services import leaderboard as LB
 from ..services import people
@@ -225,6 +226,41 @@ async def get_org(org_id: uuid.UUID, db: DB, viewer: ViewerDep) -> dict:
     if o is None:
         raise not_found("org.not_found", "Organization not found")
     return await TM.org_out(db, o, _viewer_user(viewer))
+
+
+@router.get("/orgs/{org_id}/export.csv", operation_id="orgs_export", response_class=Response)
+async def export_org(org_id: uuid.UUID, db: DB, user: FullUser) -> Response:
+    """R9: an org admin downloads its teams' numbers as CSV (no personal data beyond team names)."""
+    import csv
+    import io
+
+    o = await db.get(Org, org_id)
+    if o is None:
+        raise not_found("org.not_found", "Organization not found")
+    role = (
+        await db.execute(select(OrgMember.role).where(OrgMember.org_id == o.id, OrgMember.user_id == user.id))
+    ).scalar_one_or_none()
+    if role != "admin" and user.role != "admin":
+        raise AppError(403, "org.not_admin", "Only the organization's admins can export")
+    teams = (await db.execute(select(Team).where(Team.org_id == o.id).order_by(Team.name))).scalars().all()
+    stats = await TM.team_stats(db, [t.id for t in teams])
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(["team", "public", "points", "trees", "actions", "cooling_c_estimate"])
+    for t in teams:
+        st = stats.get(t.id, {})
+        w.writerow(
+            [t.name, t.is_public, st.get("points", 0), st.get("trees", 0), st.get("actions", 0), st.get("cooling_c", 0)]
+        )
+    name = "".join(ch if ch.isalnum() else "-" for ch in o.name.lower()).strip("-") or "org"
+    return Response(
+        content=buf.getvalue(),
+        media_type="text/csv; charset=utf-8",
+        headers={
+            "Content-Disposition": f'attachment; filename="atmos-x-{name}.csv"',
+            "Cache-Control": "private, no-store",
+        },
+    )
 
 
 # ─────────────────────────── leaderboard, people, follows ───────────────────────────
@@ -505,6 +541,30 @@ async def checkin(event_id: uuid.UUID, body: CheckinIn, db: DB, user: FullUser) 
     e = await EV.get(db, event_id, user)
     r = await EV.checkin(db, e, user, body.lat, body.lng, body.accuracy_m)
     return {**(await EV.event_out(db, [e], user))[0], **r}
+
+
+@router.post("/events/{event_id}/sponsor-logo", operation_id="events_sponsor_logo")
+async def event_sponsor_logo(event_id: uuid.UUID, db: DB, user: FullUser, photo: Annotated[UploadFile, File()]) -> dict:
+    e = await EV.get(db, event_id, user)
+    ph = await _photo(db, user, photo, "event")
+    if ph is None:
+        raise AppError(400, "photo.missing", "Choose a photo")
+    await EV.set_sponsor_logo(db, e, user, ph)
+    return (await EV.event_out(db, [e], user))[0]
+
+
+@router.get("/events/{event_id}/certificate.pdf", operation_id="events_certificate", response_class=Response)
+async def event_certificate(event_id: uuid.UUID, db: DB, user: FullUser) -> Response:
+    e = await EV.get(db, event_id, user)
+    pdf = await EV.certificate(db, e, user)
+    return Response(
+        content=pdf,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": 'inline; filename="atmos-x-certificate.pdf"',
+            "Cache-Control": "private, no-store",
+        },
+    )
 
 
 @router.post("/events/{event_id}/photo", operation_id="events_photo")

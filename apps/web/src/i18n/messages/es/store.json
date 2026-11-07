@@ -56,7 +56,8 @@
     "terms": "Condiciones",
     "demo": "Producto de demostración de un socio inventado. No se entrega nada real.",
     "short": "Te faltan {pts} puntos disponibles",
-    "redeem": "Canjear"
+    "redeem": "Canjear",
+    "dates": "Publicado {listed} · actualizado {updated}"
   },
   "done": {
     "title": "Canjeado",
@@ -174,7 +175,9 @@
     "order_not_found": "Pedido no encontrado",
     "order_not_awaiting": "Este pedido no espera una transferencia",
     "auth_guest_restricted": "Crea una cuenta para hacer esto",
-    "rate_limited": "Demasiados intentos. Espera un momento."
+    "rate_limited": "Demasiados intentos. Espera un momento.",
+    "partner_outlet_limit": "Un socio puede tener hasta 50 puntos",
+    "partner_outlet_not_found": "Punto no encontrado"
   },
   "partner": {
     "title": "Portal de socios",
@@ -229,7 +232,18 @@
     "noCamera": "La cámara no está disponible. Escribe el código.",
     "reportTitle": "Informe de impacto RSC",
     "reportSub": "PDF con árboles verificados, supervivencia, CO₂ estimado, personas alcanzadas, canjes y fotos.",
-    "download": "Descargar PDF"
+    "download": "Descargar PDF",
+    "updated": "actualizado {date}",
+    "outlets": "Puntos de recogida",
+    "addOutlet": "Añadir punto",
+    "noOutlets": "Aún no hay puntos. Añade dónde se recogen los vales.",
+    "outletName": "Ponle un nombre al punto",
+    "outletNameL": "Nombre del punto",
+    "outletAddress": "Dirección",
+    "outletPin": "Marcador en el mapa",
+    "outletHere": "En {place}",
+    "outletNoPin": "Sin marcador",
+    "removeOutlet": "Quitar {name}"
   },
   "company": {
     "title": "Cuenta de empresa",

@@ -138,6 +138,20 @@ async def enqueue_events() -> None:
         await db.commit()
 
 
+@handler("heat_warnings")
+async def heat_warnings(db: AsyncSession, job: Job) -> dict:
+    """C12: one heat-warning notification per home area per day."""
+    from ..services import heat_alerts
+
+    return await heat_alerts.run(db)
+
+
+async def enqueue_heat_warnings() -> None:
+    async with SessionLocal() as db:
+        await q.enqueue(db, "heat_warnings", datetime.now(UTC).date().isoformat(), {}, priority=5, max_attempts=2)
+        await db.commit()
+
+
 @handler("demo_purge")
 async def demo_purge(db: AsyncSession, job: Job) -> dict:
     from ..services import demo_story

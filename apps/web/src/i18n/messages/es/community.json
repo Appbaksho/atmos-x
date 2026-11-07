@@ -246,7 +246,8 @@
     "orgsTitle": "Organizaciones",
     "orgsSub": "Escuelas, ONG y barrios con muchos equipos",
     "noOrgs": "Aún no hay organizaciones",
-    "noOrgsSub": "Un líder puede añadir su equipo a una organización."
+    "noOrgsSub": "Un líder puede añadir su equipo a una organización.",
+    "invites": "Invitaciones"
   },
   "feed": {
     "title": "Muro",
@@ -390,8 +391,16 @@
       "checkin_closed": "El registro no está abierto ahora.",
       "gps_inaccurate": "Tu ubicación no es precisa; prueba al aire libre.",
       "full": "Esta jornada está completa.",
-      "past": "Elige una hora futura."
-    }
+      "past": "Elige una hora futura.",
+      "no_sponsor": "Añade primero el nombre del patrocinador",
+      "not_checked_in": "Los certificados son para quienes registraron su llegada",
+      "not_organizer": "Solo el organizador puede hacerlo"
+    },
+    "sponsorLogo": "Logo de {name}",
+    "certificate": "Certificado de participación (PDF)",
+    "addLogo": "Añadir logo del patrocinador",
+    "replaceLogo": "Cambiar logo del patrocinador",
+    "logoSaved": "Logo guardado. Se mostrará tras la revisión."
   },
   "person": {
     "title": "Perfil",
@@ -416,5 +425,23 @@
     "blocked": "Bloqueado. No veréis vuestras publicaciones.",
     "unblocked": "Desbloqueado",
     "feature": "seguir a personas"
-  }
+  },
+  "sharePost": {
+    "cta": "Compartir como publicación",
+    "title": "Compártelo con tus vecinos",
+    "sub": "Aparece en el muro de tu zona",
+    "say": "Escribe algo (opcional)",
+    "privacy": "La foto se revisa antes de que otros la vean, y el lugar aparece como tu zona, nunca el punto exacto.",
+    "post": "Publicar",
+    "done": "Publicado",
+    "feature": "Compartir en la comunidad",
+    "err": {
+      "generic": "No se pudo publicar. Inténtalo de nuevo.",
+      "post": {
+        "action_not_verified": "Solo se pueden compartir acciones verificadas",
+        "empty": "Escribe algo para acompañarlo"
+      }
+    }
+  },
+  "orgExport": "Descargar cifras de equipos (CSV)"
 }

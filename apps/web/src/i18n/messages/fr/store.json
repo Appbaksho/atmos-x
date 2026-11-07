@@ -56,7 +56,8 @@
     "terms": "Conditions",
     "demo": "Produit de démonstration d'un partenaire fictif. Rien n'est livré.",
     "short": "Il vous manque {pts} points disponibles",
-    "redeem": "Échanger"
+    "redeem": "Échanger",
+    "dates": "En ligne depuis {listed} · mis à jour {updated}"
   },
   "done": {
     "title": "Échangé",
@@ -174,7 +175,9 @@
     "order_not_found": "Commande introuvable",
     "order_not_awaiting": "Cette commande n'attend pas de virement",
     "auth_guest_restricted": "Créez un compte pour faire cela",
-    "rate_limited": "Trop d'essais. Patientez un instant."
+    "rate_limited": "Trop d'essais. Patientez un instant.",
+    "partner_outlet_limit": "Un partenaire peut avoir jusqu'à 50 points",
+    "partner_outlet_not_found": "Point introuvable"
   },
   "partner": {
     "title": "Espace partenaire",
@@ -229,7 +232,18 @@
     "noCamera": "Caméra indisponible. Saisissez le code.",
     "reportTitle": "Rapport d'impact RSE",
     "reportSub": "PDF avec arbres vérifiés, taux de survie, CO₂ estimé, personnes touchées, échanges et photos.",
-    "download": "Télécharger le PDF"
+    "download": "Télécharger le PDF",
+    "updated": "mis à jour {date}",
+    "outlets": "Points de retrait",
+    "addOutlet": "Ajouter un point",
+    "noOutlets": "Pas encore de points. Ajoutez où retirer les bons.",
+    "outletName": "Donnez un nom au point",
+    "outletNameL": "Nom du point",
+    "outletAddress": "Adresse",
+    "outletPin": "Épingle sur la carte",
+    "outletHere": "À {place}",
+    "outletNoPin": "Sans épingle",
+    "removeOutlet": "Retirer {name}"
   },
   "company": {
     "title": "Compte entreprise",

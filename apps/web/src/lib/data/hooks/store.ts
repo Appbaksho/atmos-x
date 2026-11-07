@@ -216,6 +216,37 @@ export function useMarkDelivered() {
   });
 }
 
+export type PartnerOutlet = { id: string; name: string; address: string | null; location: LatLng | null };
+
+/** S11: the partner's pickup points. */
+export function usePartnerOutlets(enabled = true) {
+  const ctx = useDataContext();
+  return useQuery<PartnerOutlet[]>({
+    queryKey: [...sk.partner(ctx.ns), 'outlets'],
+    enabled: ctx.ready && enabled,
+    retry: shouldRetry,
+    queryFn: ({ signal }) => getJSON<PartnerOutlet[]>(`${API}/partner/outlets`, undefined, signal),
+  });
+}
+
+export function useAddOutlet() {
+  const ctx = useDataContext();
+  const qc = useQueryClient();
+  return useMutation<PartnerOutlet, Error, { name: string; address?: string | null; lat?: number | null; lng?: number | null }>({
+    mutationFn: (body) => send<PartnerOutlet>('POST', '/partner/outlets', body),
+    onSuccess: () => Promise.all([qc.invalidateQueries({ queryKey: sk.partner(ctx.ns) }), qc.invalidateQueries({ queryKey: sk.root(ctx.ns) })]),
+  });
+}
+
+export function useRemoveOutlet() {
+  const ctx = useDataContext();
+  const qc = useQueryClient();
+  return useMutation<void, Error, string>({
+    mutationFn: (id) => send<void>('DELETE', `/partner/outlets/${enc(id)}`),
+    onSuccess: () => Promise.all([qc.invalidateQueries({ queryKey: sk.partner(ctx.ns) }), qc.invalidateQueries({ queryKey: sk.root(ctx.ns) })]),
+  });
+}
+
 export const partnerReportUrl = () => `${API}/partner/report`;
 
 export function normalizeVoucher(code: string): string {

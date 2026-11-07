@@ -197,7 +197,10 @@
     "inviteFailed": "Impossible de créer l’invitation",
     "inviteT": "Invitez un ami à l’arroser",
     "inviteSub": "Il pourra voir {name} et ajouter des suivis. Les points restent à vous.",
-    "invite": "Partager le lien"
+    "invite": "Partager le lien",
+    "shareBody": "Mon arbre {name} grandit !",
+    "coolingTitle": "Rafraîchissement de cet arbre (estimation)",
+    "coolingNote": "Rafraîchissement modélisé de son kilomètre carré aujourd'hui ; il augmente avec l'arbre. Une estimation, pas une mesure."
   },
   "notif": {
     "title": "Notifications",

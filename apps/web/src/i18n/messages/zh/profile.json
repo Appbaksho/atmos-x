@@ -197,7 +197,10 @@
     "inviteFailed": "无法创建邀请",
     "inviteT": "邀请朋友帮忙浇水",
     "inviteSub": "对方可以查看 {name} 并打卡。积分仍归你。",
-    "invite": "分享邀请链接"
+    "invite": "分享邀请链接",
+    "shareBody": "我的树 {name} 正在长大！",
+    "coolingTitle": "这棵树的降温（估算）",
+    "coolingNote": "按模型估算其所在一平方公里今天的降温，会随树木生长而增加。这是估算，不是测量。"
   },
   "notif": {
     "title": "通知",

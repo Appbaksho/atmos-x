@@ -77,6 +77,7 @@ class Settings(BaseSettings):
     voucher_days: int = 14
     tree_package_bdt: float = 1500.0  # M5: one tree planted and cared for over 3 years
     store_listing_fee_bdt: float = 25000.0  # M7: per year
+    fee_per_tree_bdt: float = 150.0  # R2: Atmos X fee recorded on each verified tree; the rest goes to the planter
     credit_price_bdt: float = 2500.0  # M6: per tonne, only once a lot is certified
     co2_kg_per_tree_year: float = 10.0  # young urban tree, rough estimate (labelled, never an offset)
     bank_transfer_min_bdt: float = 200000.0  # M14: bank transfer for large orders

@@ -197,7 +197,10 @@
     "inviteFailed": "No se pudo crear la invitación",
     "inviteT": "Invita a un amigo a regarlo",
     "inviteSub": "Podrá ver {name} y añadir revisiones. Los puntos son tuyos.",
-    "invite": "Compartir enlace"
+    "invite": "Compartir enlace",
+    "shareBody": "¡Mi árbol {name} está creciendo!",
+    "coolingTitle": "Enfriamiento de este árbol (estimación)",
+    "coolingNote": "Enfriamiento modelado de su kilómetro cuadrado hoy; crece con el árbol. Una estimación, no una medición."
   },
   "notif": {
     "title": "Notificaciones",
