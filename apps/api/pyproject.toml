@@ -1,0 +1,59 @@
+[project]
+name = "atmos-api"
+version = "1.0.0"
+description = "Atmos X V1 API and worker: NASA satellite and climate data, accounts, community, store."
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "pydantic>=2.9",
+  "pydantic-settings>=2.6",
+  "sqlalchemy[asyncio]>=2.0.36",
+  "asyncpg>=0.30",
+  "alembic>=1.14",
+  "geoalchemy2>=0.16",
+  "h3>=4.1",
+  "httpx>=0.28",
+  "tenacity>=9.0",
+  "rasterio>=1.4",
+  "numpy>=2.1",
+  "shapely>=2.0",
+  "h5py>=3.12",
+  "pyproj>=3.7",
+  "pillow>=11.0",
+  "imagehash>=4.3",
+  "pyjwt>=2.10",
+  "pwdlib[argon2]>=0.2",
+  "python-multipart>=0.0.18",
+  "apscheduler>=3.11,<4",
+  "maxminddb>=2.6",
+  "pywebpush>=2.0",
+  "reportlab>=4.2",
+  "sse-starlette>=2.1",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3",
+  "pytest-asyncio>=0.24",
+  "respx>=0.21",
+  "ruff>=0.8",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "ASYNC"]
+ignore = ["E501", "B008", "B904"]
