@@ -192,3 +192,17 @@ service reports as gone (404/410). The lock-screen text is one short line per no
 person's language, never a name, place or post text; tapping opens `/app/notifications`. The service
 worker now caches only public `/api/v1` reads (conditions, zones, air, farm alerts without a field,
 nurseries, species) and skips any response marked private or no-store.
+
+**D30. Gaps closed after the audit.**
+- **Place:** there is no silent default place. Screens that need one show a gate (use my location, city search, the labelled demo) until a device fix, a choice, the IP city or the demo resolves it. A granted location is watched with high accuracy, and a move over 100 m re-scans.
+- **Heat warnings (C12):** a daily job (07:00 Dhaka) notifies people whose home area (~5 km cell) has a heat warning, once per area per day; guests and demo users are skipped.
+- **Store and company money:**
+  - Partners manage their own pickup outlets, and every product lists them (S11).
+  - Each verified tree records a ৳150 platform fee (`FEE_PER_TREE_BDT`); the planter's released share is the rest (R2).
+  - Products show when they were listed and last updated (R16).
+- **Community:**
+  - Event sponsors get a moderated logo, and people who checked in can download a participation certificate (R3).
+  - Org admins export their teams' numbers as CSV (R9).
+  - Verified actions and trees can be shared as posts (C14, T5).
+
+**D31. No multi-package cart (M9).** Each company package is one order with its own SSLCommerz checkout, VAT invoice and allocation rules (tree money held per tree, credits sold whole by lot). A cart would need multi-line orders and split refunds across those rules. The Buy tab therefore checks out one package at a time, which also keeps each invoice to one kind of purchase.
