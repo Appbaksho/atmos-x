@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from apscheduler.triggers.cron import CronTrigger
 
-from . import climate, daily, farm, heat, weather  # noqa: F401  (registers handlers)
+from . import climate, daily, farm, heat, push, weather  # noqa: F401  (registers handlers)
 
 SCHEDULE: list[dict] = [
     # Dhaka (and any other enabled region) nightly at 21:30 UTC = 03:30 Dhaka.
@@ -15,6 +15,8 @@ SCHEDULE: list[dict] = [
     {"id": "farm_alerts", "fn": farm.enqueue_farm, "trigger": CronTrigger(hour="0,12", minute=30)},
     # Event reminders every hour for events starting within 24 h (once per event).
     {"id": "event_reminders", "fn": daily.enqueue_events, "trigger": CronTrigger(minute=5)},
+    # Web push for new notifications every 5 minutes (only when VAPID keys are set).
+    {"id": "push_send", "fn": push.enqueue_push, "trigger": CronTrigger(minute="*/5")},
 ]
 
 BOOT: list = [heat.boot_regions]
