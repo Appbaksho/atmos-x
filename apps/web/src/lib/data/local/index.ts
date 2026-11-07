@@ -4,7 +4,6 @@
  */
 export * from './accounts';
 export * from './actions';
-export * from './ask';
 export * from './community';
 export * from './context';
 export * from './demo';

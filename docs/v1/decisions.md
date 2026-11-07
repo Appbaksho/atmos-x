@@ -135,3 +135,12 @@ Open-Meteo ET0, and makes no claim without either; lightning scales the CAPE thr
 LIS/OTD monthly climatology weight (0.5–2), so a quiet month needs more instability. Alert ids are
 `<rule>-<from>@<0.1° cell>`; "I've done it" is stored per person and alert. Saved fields are checked
 twice a day (06:30 and 18:30 Dhaka) and notified once per field and alert (danger and warning only).
+
+**D25. Ask Atmos sends codes, not prose.** The SSE contract keeps its event names, but `token`,
+`warning` and `notice` carry I18nText (one sentence per `token`), rendered by the client from the
+`server.ask.*` templates in 10 languages with local digits; `done` adds `intent` and follow-up
+`suggestions`. Chips send intent ids. Intent keywords cover all 10 languages; messages of 3 words or
+fewer without a keyword use the screen's topic, longer ones get the "what I can answer" reply and are
+stored as unanswered. Limits are counted on the server per day (Dhaka time). The V0 `/api/v0/ask`,
+`/verify-photo` and `/tree-check` routes and their OpenAI code were removed in this step because
+nothing calls them any more; the rest of `src/server` goes in Stage 7.

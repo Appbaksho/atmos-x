@@ -2,7 +2,6 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { GuestRestrictedError, RateLimitedError } from '../errors';
 import { logAction } from './actions';
-import { askRemaining, consumeAskQuota } from './ask';
 import { addField, addSensor, listFields, listSensors } from './farm';
 import { createGoal } from './goals';
 import { assertAccount, ASK_LIMIT, consumeAsk, guardScanRadius, remainingAsks } from './guest';
@@ -84,13 +83,5 @@ describe('Ask quota', () => {
       expect(e).toBeInstanceOf(RateLimitedError);
       expect((e as RateLimitedError).retryAfter).toBe(14 * 3600);
     }
-  });
-
-  it('is persisted per namespace', async () => {
-    const g = guestCtx();
-    expect(await askRemaining(g, day)).toBe(5);
-    expect(await consumeAskQuota(g, day)).toBe(4);
-    expect(await askRemaining(g, day)).toBe(4);
-    expect(await askRemaining(userCtx(), day)).toBe(30);
   });
 });

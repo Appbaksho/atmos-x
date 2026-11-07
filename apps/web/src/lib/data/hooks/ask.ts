@@ -1,39 +1,35 @@
 'use client';
 /**
- * Ask Atmos (§5.2): POST /api/v0/ask, read the SSE stream (warning → token… → sources → action → done).
- * Keeps the last 6 turns as history, builds the compact client_state (≤ 6 KB) and tracks the daily
- * quota locally (5 guest / 30 account; the server enforces too).
+ * Ask Atmos (§6.12): POST /api/v1/ask and read the SSE stream (warning → token… → sources → action →
+ * notice → done). Answers are deterministic and arrive as I18nText parts, rendered in the person's
+ * language by the panel. The daily limit (5 guest / 30 account) is enforced by the server; the
+ * counter comes from GET /ask/usage and each `done` event.
  */
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { DataError } from '../errors';
-import { askRemaining, buildClientState, consumeAskQuota, syncAskRemaining } from '../local/ask';
-import { currentContext } from '../local/context';
-import { activeGoal, listGoals } from '../local/goals';
-import { ASK_LIMIT } from '../local/guest';
 import { newId } from '../local/ids';
-import { resizeToDataUrl } from '../local/images';
-import { listTrees } from '../local/trees';
-import type { AskAction, AskContext, AskEvent, AskRequest, AskTurn, ScreenId, Source } from '../types';
-import { V0_ROUTES } from '../types';
+import type { AskAction, AskContext, AskEvent, AskIntent, AskRequest, CropId, I18nText, ScreenId, Source, StageId } from '../types';
 import { useDataContext } from './context';
-import { request } from './http';
+import { getJSON, request } from './http';
+import { API } from './heat';
 import { readSSE } from './sse';
 
-export const ASK_HISTORY_TURNS = 6;
 const MAX_ACTIONS = 2;
-const ASK_IMAGE_PX = 1024;
 
 export type AskMessage = {
   id: string;
   role: 'user' | 'assistant';
+  /** user turn: what was typed or the chip's label */
   text: string;
-  /** user turn: the attached photo (data URL) */
-  image?: string | null;
-  warning?: { source: 'BMD' | 'local'; text: string } | null;
+  /** assistant turn: one I18nText per sentence */
+  parts: I18nText[];
+  warning?: { source: 'BMD' | 'local'; text: I18nText } | null;
   sources: Source[];
   actions: AskAction[];
-  notices: string[];
+  notices: I18nText[];
+  suggestions: AskIntent[];
+  intent?: string;
   error?: { code: string; message: string } | null;
   /** assistant turn finished (done, error or stopped) */
   done: boolean;
@@ -42,20 +38,21 @@ export type AskMessage = {
 
 export type AskSendOptions = {
   screen: ScreenId;
+  /** A suggestion chip: the server skips classification */
+  intent?: AskIntent;
   context?: AskContext;
-  /** data URL or a Blob/File (resized to ≤ 1024 px JPEG) */
-  image?: string | Blob | null;
-  /** What the current screen shows (numbers, names). Trimmed to fit 6 KB. */
-  visible?: Record<string, unknown>;
+  crop?: CropId;
+  stage?: StageId;
+  farmer?: boolean;
 };
 
 /** Applies one SSE event to the assistant message. Exported for tests. */
 export function applyAskEvent(m: AskMessage, e: AskEvent): AskMessage {
   switch (e.type) {
     case 'warning':
-      return { ...m, warning: { source: e.source, text: e.text } };
+      return m.warning ? m : { ...m, warning: { source: e.source, text: e.text } };
     case 'token':
-      return { ...m, text: m.text + e.text };
+      return { ...m, parts: [...m.parts, e.text] };
     case 'sources': {
       const seen = new Set(m.sources.map((s) => s.id));
       return { ...m, sources: [...m.sources, ...e.sources.filter((s) => !seen.has(s.id))] };
@@ -65,7 +62,7 @@ export function applyAskEvent(m: AskMessage, e: AskEvent): AskMessage {
     case 'notice':
       return { ...m, notices: [...m.notices, e.text] };
     case 'done':
-      return { ...m, done: true, message_id: e.message_id };
+      return { ...m, done: true, message_id: e.message_id, suggestions: e.suggestions ?? [], intent: e.intent };
     case 'error':
       return { ...m, done: true, error: { code: e.code, message: e.message } };
     default:
@@ -73,13 +70,7 @@ export function applyAskEvent(m: AskMessage, e: AskEvent): AskMessage {
   }
 }
 
-/** Last N completed turns, oldest first. Exported for tests. */
-export function historyFrom(messages: readonly AskMessage[], turns = ASK_HISTORY_TURNS): AskTurn[] {
-  return messages
-    .filter((m) => m.text.trim() && !m.error)
-    .slice(-turns)
-    .map((m) => ({ role: m.role, text: m.text }));
-}
+const blank = (role: AskMessage['role'], text = ''): AskMessage => ({ id: newId('m'), role, text, parts: [], sources: [], actions: [], notices: [], suggestions: [], done: role === 'user' });
 
 export function useAskStream() {
   const ctx = useDataContext();
@@ -87,23 +78,18 @@ export function useAskStream() {
   const [streaming, setStreaming] = useState(false);
   const [remaining, setRemaining] = useState<number | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const messagesRef = useRef<AskMessage[]>([]);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    messagesRef.current = messages;
-  }, [messages]);
-
-  useEffect(() => {
-    if (!ctx.ready) return;
+    if (!ctx.ready || ctx.offline) return;
     let cancelled = false;
-    askRemaining(ctx)
-      .then((n) => !cancelled && setRemaining(n))
+    getJSON<{ limit: number; remaining_today: number }>(`${API}/ask/usage`)
+      .then((u) => !cancelled && setRemaining(u.remaining_today))
       .catch(() => undefined);
     return () => {
       cancelled = true;
     };
-  }, [ctx]);
+  }, [ctx.ready, ctx.offline, ctx.ns]);
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
@@ -111,9 +97,7 @@ export function useAskStream() {
     setMessages((list) => list.map((m) => (m.id === id ? fn(m) : m)));
   }, []);
 
-  const stop = useCallback(() => {
-    abortRef.current?.abort();
-  }, []);
+  const stop = useCallback(() => abortRef.current?.abort(), []);
 
   const reset = useCallback(() => {
     abortRef.current?.abort();
@@ -122,52 +106,33 @@ export function useAskStream() {
   }, []);
 
   /**
-   * Send a message. Rejects with GuestRestrictedError (guest over 5/day → requireAccount()) or
-   * RateLimitedError (30/day, or the server's limit). Stream errors land on the assistant message.
+   * Send a message (or a chip's intent). Rejects with GuestRestrictedError (guest over 5/day →
+   * requireAccount()) or RateLimitedError (30/day). Stream errors land on the assistant message.
    */
   const send = useCallback(
     async (message: string, opts: AskSendOptions): Promise<void> => {
       const text = message.trim();
-      if (!text && !opts.image) return;
+      if (!text && !opts.intent) return;
       abortRef.current?.abort();
       setError(null);
-      const c = await currentContext();
-      try {
-        setRemaining(await consumeAskQuota(c));
-      } catch (e) {
-        setError(e as Error);
-        throw e;
-      }
-
-      const image = opts.image instanceof Blob ? await resizeToDataUrl(opts.image, ASK_IMAGE_PX) : opts.image ?? null;
-      const [trees, goals] = c.kind === 'user' ? await Promise.all([listTrees(c.ns), listGoals(c.ns)]) : [[], []];
       const body: AskRequest = {
-        message: text,
+        message: text || undefined,
+        intent: opts.intent,
         screen: opts.screen,
-        lang: c.lang,
+        lang: ctx.lang,
         context: opts.context,
-        client_state: buildClientState({
-          kind: c.kind,
-          unit: c.prefs.unit,
-          farmer: c.prefs.farmer_mode,
-          trees,
-          goal: activeGoal(goals),
-          visible: opts.visible,
-        }),
-        history: historyFrom(messagesRef.current),
-        image,
+        crop: opts.crop,
+        stage: opts.stage,
+        farmer: opts.farmer,
       };
-
-      const userMsg: AskMessage = { id: newId('m'), role: 'user', text, image, sources: [], actions: [], notices: [], done: true };
-      const botId = newId('m');
-      const botMsg: AskMessage = { id: botId, role: 'assistant', text: '', sources: [], actions: [], notices: [], done: false };
-      setMessages((l) => [...l, userMsg, botMsg]);
+      const userMsg = blank('user', text);
+      const bot = blank('assistant');
+      setMessages((l) => [...l, userMsg, bot]);
       setStreaming(true);
-
       const controller = new AbortController();
       abortRef.current = controller;
       try {
-        const res = await request(V0_ROUTES.ask.path, {
+        const res = await request(`${API}/ask`, {
           method: 'POST',
           signal: controller.signal,
           headers: { 'content-type': 'application/json', accept: 'text/event-stream' },
@@ -175,29 +140,38 @@ export function useAskStream() {
         });
         if (!res.body) throw new DataError('ask.no_stream', 'No response stream', 502);
         await readSSE(res.body, (e) => {
-          patch(botId, (m) => applyAskEvent(m, e));
-          if (e.type === 'done') {
-            setRemaining((r) => (r === null ? e.remaining_today : Math.min(r, e.remaining_today)));
-            void syncAskRemaining(c, e.remaining_today, ASK_LIMIT[c.kind]).catch(() => undefined);
-          }
+          patch(bot.id, (m) => applyAskEvent(m, e));
+          if (e.type === 'done') setRemaining(e.remaining_today);
         });
-        patch(botId, (m) => ({ ...m, done: true }));
+        patch(bot.id, (m) => ({ ...m, done: true }));
       } catch (e) {
         if (e instanceof DOMException && e.name === 'AbortError') {
-          patch(botId, (m) => ({ ...m, done: true }));
+          patch(bot.id, (m) => ({ ...m, done: true }));
         } else {
           const err = e instanceof DataError ? e : new DataError('ask.failed', (e as Error).message || 'Ask failed', 500);
-          patch(botId, (m) => ({ ...m, done: true, error: { code: err.code, message: err.message } }));
+          patch(bot.id, (m) => ({ ...m, done: true, error: { code: err.code, message: err.message } }));
           setError(err);
-          if (err.status === 429 || err.code === 'auth.guest_restricted') throw err;
+          if (err.status === 429 || err.code === 'auth.guest_restricted') {
+            setRemaining(0);
+            throw err;
+          }
         }
       } finally {
         if (abortRef.current === controller) abortRef.current = null;
         setStreaming(false);
       }
     },
-    [patch],
+    [patch, ctx.lang],
   );
 
   return { messages, send, streaming, stop, reset, remaining, error };
+}
+
+/** 👍 / 👎 on an answer (stored so the team can extend intents, K8). */
+export async function sendAskFeedback(messageId: string, helpful: boolean): Promise<void> {
+  await request(`${API}/ask/${encodeURIComponent(messageId)}/feedback`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ helpful }),
+  });
 }
