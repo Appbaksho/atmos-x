@@ -76,7 +76,7 @@ test('My trees and a tree link ask guests to create an account (A7)', async ({ p
   await page.goto('/en/auth/register');
   await expect.poll(async () => (await page.context().cookies()).some((c) => c.name === 'atmos_session')).toBe(true);
   await page.goto('/en/app/tree');
-  await expect(page.getByText(/Create a free account to track your trees|guest/i).first()).toBeVisible();
+  await expect(page.getByRole('main').getByText(/Create a free account to track your trees|guest/i).first()).toBeVisible();
   await page.goto('/en/app/tree/join?t=not-a-token');
   await expect(page.getByText('Create an account to help')).toBeVisible();
 });
