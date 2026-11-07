@@ -118,3 +118,10 @@ async def signup(
     r = await c.post("/api/v1/auth/register", json={"email": email, "password": password, "display_name": name})
     assert r.status_code == 200, r.text
     return r.json()["user"]
+
+
+@pytest.fixture
+async def seeded():
+    from app.scripts import seed
+
+    await seed.main()

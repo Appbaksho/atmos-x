@@ -236,8 +236,14 @@ async def conditions(db: AsyncSession, lat: float, lng: float, lang: str) -> dic
 
 async def refresh_normal(db: AsyncSession, lat: float, lng: float) -> dict:
     """Daily T2M_MAX 2001-01-01..2025-12-31 → mean Tmax per day-of-year ± 7 (all 366 MM-DD keys)."""
-    data = await power.daily(lat, lng, date(2001, 1, 1), date(2025, 12, 31), ["T2M_MAX"], timeout=120)
+    data = await power.daily(lat, lng, date(2001, 1, 1), date(2025, 12, 31), ["T2M_MAX", "PRECTOTCORR"], timeout=120)
     series = data["values"]["T2M_MAX"]
+    rain = data["values"].get("PRECTOTCORR", {})
+    yearly: dict[str, list[float]] = {}
+    for k, v in rain.items():
+        yearly.setdefault(k[:4], []).append(v)
+    full = [sum(v) for v in yearly.values() if len(v) >= 360]
+    annual_rain = round(sum(full) / len(full)) if full else None
     normals = {}
     d = date(2024, 1, 1)  # a leap year, so 02-29 has a key
     while d.year == 2024:
@@ -245,7 +251,13 @@ async def refresh_normal(db: AsyncSession, lat: float, lng: float) -> dict:
         if v is not None:
             normals[d.strftime("%m-%d")] = v
         d += timedelta(days=1)
-    value = {"normals": normals, "period": "2001–2025", "units": data["units"].get("T2M_MAX"), "n_days": len(series)}
+    value = {
+        "normals": normals,
+        "period": "2001–2025",
+        "units": data["units"].get("T2M_MAX"),
+        "n_days": len(series),
+        "annual_rain_mm": annual_rain,
+    }
     await cache.write(db, normal_key(lat, lng), "power", value, NORMAL_TTL, as_of="2025-12-31")
     return {"normals": len(normals)}
 
