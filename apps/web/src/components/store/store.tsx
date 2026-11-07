@@ -8,7 +8,7 @@ import { useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { B, BottomSheet, Card, CzButton, EmptyState, ErrorState, Field, FilterChip, HScroll, I, Icon, Note, R, Screen, ScreenHeader, Seg, SkeletonCard, Stepper, Tag, Tap, Txt, View, href, requireAccount, toast, useCz, useLocation } from '@/components/cz';
+import { B, BottomSheet, Card, CzButton, EmptyState, ErrorState, Field, FilterChip, GhostButton, HScroll, I, Icon, Note, R, Screen, ScreenHeader, Seg, SkeletonCard, Stepper, Tag, Tap, Txt, View, href, requireAccount, toast, useCz, useLocation } from '@/components/cz';
 import { goToPayment, saplingInvoiceUrl, useMyOrders, useOrderSaplings, useSaplings, useSession, useStorePartners, useStoreProducts } from '@/lib/data/hooks';
 import type { SaplingOrderOut, SaplingProduct, StoreFilter, StoreOrder, StorePartner, StoreProduct } from '@/lib/data/types';
 
@@ -228,6 +228,7 @@ function SaplingsTab() {
           {q.data.products.map((p) => (
             <SaplingRow key={p.id} p={p} onBuy={() => setBuying(p)} />
           ))}
+          <GhostButton label={t('nurseries')} href={href('S12')} />
         </>
       ) : (
         <EmptyState icon={I.tree} title={t('none')} sub={t('noneSub')} action={t('nurseries')} actionHref={href('S12')} />

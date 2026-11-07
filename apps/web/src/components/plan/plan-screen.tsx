@@ -168,6 +168,7 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
                 {tx(plan.next_task.text)}
               </Txt>
             </View>
+            <LogTask type={plan.next_task.action_type} goal={goal.id} compact />
           </View>
         ) : null}
       </Card>
@@ -178,11 +179,8 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
           const eff = EFFECT_KEY[a.action_type];
           const w = ratios[i] > 0 ? Math.max(6, (ratios[i] / maxRatio) * 100) : 0;
           return (
-            <Tap
-              key={a.action_type}
-              href={actionHref(a)}
-              label={`${f.loc(i + 1)}. ${ta(`type.${a.action_type}`)}, ${f.dC(-a.cooling_c, 2)}`}
-              style={{ backgroundColor: c.card, borderRadius: 22, padding: 14, gap: 10 }}>
+            <View key={a.action_type} style={{ backgroundColor: c.card, borderRadius: 22, padding: 14, gap: 10 }}>
+              <Tap href={actionHref(a)} label={`${f.loc(i + 1)}. ${ta(`type.${a.action_type}`)}, ${f.dC(-a.cooling_c, 2)}`} style={{ gap: 10, textAlign: 'start' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
                 <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center' }}>
                   <Icon d={ACTION_ICON[a.action_type]} size={22} sw={1.7} />
@@ -216,7 +214,9 @@ function PlanBody({ goal, plan, header, point }: { goal: Goal; plan: Plan; sub: 
                   </View>
                 </View>
               ) : null}
-            </Tap>
+              </Tap>
+              <LogTask type={a.action_type} goal={goal.id} />
+            </View>
           );
         })}
       </View>
@@ -392,5 +392,22 @@ export function Chip({ text, ai }: { text: string; ai?: boolean }) {
         {text}
       </Txt>
     </View>
+  );
+}
+
+/** N3 · "+ Log action" on every goal task, prefilled with the task's action type and the goal. */
+function LogTask({ type, goal, compact }: { type: string; goal: string; compact?: boolean }) {
+  const t = useTranslations('nav');
+  return (
+    <Tap
+      role="link"
+      label={t('logAction')}
+      href={href('S14', {}, { type, goal })}
+      style={{ alignSelf: compact ? 'center' : 'flex-start', flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 40, paddingStart: 10, paddingEnd: 14, borderRadius: 999, backgroundColor: B.lime, flexShrink: 0 }}>
+      <Icon d={I.plus} size={15} sw={2.4} color={B.limeInk} />
+      <Txt size={12.5} w={600} color={B.limeInk}>
+        {compact ? t('logShort') : t('logAction')}
+      </Txt>
+    </Tap>
   );
 }
