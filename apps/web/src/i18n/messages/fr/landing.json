@@ -1,1 +1,134 @@
-{}
+{
+  "metaTitle": "Atmos X · Rafraîchissez votre quartier avec les données de la NASA",
+  "metaDescription": "Repérez les îlots les plus chauds autour de vous grâce aux satellites de la NASA, obtenez un plan de rafraîchissement avec arbres, toits frais et ombre, et suivez chaque arbre planté.",
+  "eyebrow": "NASA Space Apps 2026 · Dacca et le monde entier",
+  "title": "Rafraîchissez votre quartier, îlot par îlot",
+  "sub": "Atmos X repère les îlots les plus chauds autour de vous grâce aux satellites de la NASA, construit un plan de rafraîchissement avec arbres, toits frais et ombre, et suit chaque arbre planté jusqu'à ce qu'il soit prouvé vivant.",
+  "open": "Ouvrir l'app",
+  "install": "Installer l'app",
+  "demo": "Essayer la démo de Dacca",
+  "nasaCount": "{n} jeux de données de la NASA utilisés en ce moment",
+  "problem": {
+    "title": "Le problème",
+    "sub": "Les villes chauffent de façon inégale. À deux rues d'écart, un îlot peut être plus chaud de plusieurs degrés, et ses habitants ne voient souvent pas pourquoi.",
+    "concrete": {
+      "title": "Le béton stocke la chaleur",
+      "body": "Sols imperméables et toits sombres absorbent le soleil toute la journée. Les satellites les voient plus chauds que les parcs et l'eau."
+    },
+    "nights": {
+      "title": "Les nuits chaudes font le plus de mal",
+      "body": "Les bâtiments relâchent la chaleur du jour la nuit et le corps ne récupère pas. C'est là que la chaleur devient dangereuse pour les enfants et les aînés."
+    },
+    "shade": {
+      "title": "L'ombre n'est pas partagée équitablement",
+      "body": "Les îlots avec peu d'arbres et d'eau sont les moins soulagés. Atmos X montre où un arbre ou un toit frais aiderait le plus."
+    }
+  },
+  "how": {
+    "title": "Comment ça marche",
+    "scan": {
+      "title": "Scanner",
+      "body": "Choisissez un lieu et un rayon de 200 m à 1 km. Atmos X note chaque hexagone autour de vous."
+    },
+    "understand": {
+      "title": "Comprendre",
+      "body": "Voyez le Heat Score et ses causes : chaleur de surface, nuits chaudes, sols imperméables, peu de verdure."
+    },
+    "plan": {
+      "title": "Planifier",
+      "body": "Fixez un objectif de rafraîchissement. Découvrez les arbres adaptés, leur coût et où les planter."
+    },
+    "act": {
+      "title": "Agir",
+      "body": "Plantez, peignez un toit en blanc ou installez de l'ombre. Une photo GPS et des contrôles automatiques vérifient chaque action."
+    },
+    "track": {
+      "title": "Suivre",
+      "body": "Faites un point sur chaque arbre tous les 15 jours. Les points se débloquent quand l'arbre passe 90 jours."
+    }
+  },
+  "data": {
+    "title": "Données de la NASA utilisées",
+    "sub": "{n} jeux de données de la NASA alimentent Atmos X en ce moment. Cette liste est lue en direct depuis les sources de l'app, avec la date de la dernière donnée de chacun.",
+    "subNone": "Les jeux de données de la NASA derrière chaque chiffre de l'app.",
+    "unavailable": "La liste en direct n'est pas disponible. Ouvrez la page À propos de l'app pour toutes les sources.",
+    "others": "Également utilisés"
+  },
+  "kind": {
+    "observation": "Observation",
+    "model": "Modèle",
+    "forecast": "Prévision",
+    "derived": "Dérivé",
+    "estimate": "Estimation",
+    "reference": "Référence",
+    "demo": "Démo"
+  },
+  "resolution": "{m} m",
+  "latest": "dernière {date}",
+  "use": {
+    "landsat": "Température de surface, réflectance et albédo de chaque hexagone",
+    "hls": "Indice de végétation (NDVI)",
+    "modis_lst": "Chaleur nocturne, 20 ans d'historique, secours à 1 km",
+    "ecostress": "Motifs de chaleur diurne plus fins et chaleur nocturne",
+    "power": "Normales climatiques, météo récente et déficit de pluie",
+    "geos_fp": "Prévision de température sur 5 jours",
+    "geos_cf": "Prévision de qualité de l'air PM2.5",
+    "imerg": "Pluie des 72 dernières heures (estimation satellite)",
+    "smap": "Humidité du sol pour les alertes sécheresse",
+    "lisotd": "Risque de foudre selon la saison",
+    "cmip6": "Réchauffement futur dans les projections",
+    "ornl_modis": "Température de surface de secours",
+    "gibs": "Couche cartographique satellite à l'échelle de la ville",
+    "gpw": "Densité de population"
+  },
+  "features": {
+    "title": "Ce que vous pouvez faire",
+    "map": {
+      "title": "Carte de chaleur",
+      "body": "Hexagones notés selon la chaleur de surface satellite, avec une couche satellite en direct."
+    },
+    "plan": {
+      "title": "Plans de rafraîchissement",
+      "body": "Espèces, coûts, emplacements et le rafraîchissement attendu de chaque action."
+    },
+    "trees": {
+      "title": "Mes arbres",
+      "body": "Suivi tous les 15 jours avec photos de croissance, et des amis qui aident à arroser."
+    },
+    "community": {
+      "title": "Équipes et événements",
+      "body": "Plantez avec vos voisins, rejoignez des journées de plantation et voyez le classement de votre quartier."
+    },
+    "store": {
+      "title": "Boutique de points",
+      "body": "Les arbres qui survivent rapportent des points à dépenser chez les partenaires, et les pépinières vendent des plants."
+    },
+    "farm": {
+      "title": "Alertes agricoles",
+      "body": "Alertes chaleur, sécheresse, inondation et foudre selon votre culture et son stade."
+    },
+    "ask": {
+      "title": "Ask Atmos",
+      "body": "Demandez dans votre langue pourquoi votre quartier est chaud ou quoi planter ; réponse tirée des données de l'app."
+    },
+    "air": {
+      "title": "Qualité de l'air",
+      "body": "Stations PM2.5 mesurées à côté des prévisions des modèles, clairement étiquetées."
+    }
+  },
+  "science": {
+    "title": "Notes scientifiques",
+    "scoreTitle": "Comment le Heat Score est calculé",
+    "scoreBody": "Chaque hexagone est comparé à son propre quartier : chaleur de surface de jour et de nuit par satellite, plus sols imperméables, manque de verdure et nombre d'habitants.",
+    "fitTitle": "Ce qui fait la chaleur ici",
+    "fitBody": "Un modèle ajusté sur {n} hexagones de Dacca explique un R² de {r2} de la chaleur de surface par la verdure, l'eau et les sols imperméables. L'app s'en sert pour montrer le poids de chaque cause.",
+    "fitNone": "L'app ajuste pour chaque ville un modèle verdure, eau et sols imperméables face à la chaleur de surface, pour montrer le poids de chaque cause.",
+    "honestTitle": "Des étiquettes honnêtes",
+    "honestBody": "Chaque chiffre indique s'il s'agit d'une observation, d'un modèle, d'une prévision ou d'une estimation, avec sa date. Le rafraîchissement et le CO₂ des arbres sont des estimations, pas des compensations."
+  },
+  "credit": "Créé par l'équipe Atmos X pour le NASA Space Apps Challenge 2026. Dacca est notre histoire ; l'app fonctionne partout dans le monde.",
+  "about": "Données et science",
+  "languages": "Langues",
+  "attributions": "Attributions",
+  "osm": "Données cartographiques © contributeurs OpenStreetMap (ODbL)"
+}

@@ -1,1 +1,134 @@
-{}
+{
+  "metaTitle": "Atmos X · Cool your neighbourhood with NASA data",
+  "metaDescription": "Find the hottest blocks around you from NASA satellite data, get a cooling plan with trees, cool roofs and shade, and track every tree you plant.",
+  "eyebrow": "NASA Space Apps 2026 · Dhaka and worldwide",
+  "title": "Cool your neighbourhood, block by block",
+  "sub": "Atmos X finds the hottest blocks around you from NASA satellite data, builds a cooling plan with trees, cool roofs and shade, and tracks every tree you plant until it's proven alive.",
+  "open": "Open the app",
+  "install": "Install app",
+  "demo": "Try the Dhaka demo",
+  "nasaCount": "{n} NASA datasets in use right now",
+  "problem": {
+    "title": "The problem",
+    "sub": "Cities heat up unevenly. Two streets apart, one block can be several degrees hotter than the next, and the people living there often can't see why.",
+    "concrete": {
+      "title": "Concrete stores heat",
+      "body": "Sealed ground and dark roofs soak up the sun all day. Satellites see these surfaces burning hotter than parks and water."
+    },
+    "nights": {
+      "title": "Hot nights hurt most",
+      "body": "Buildings release the day's heat after dark, so bodies can't recover. That is when heat becomes dangerous for children and older people."
+    },
+    "shade": {
+      "title": "Shade isn't shared fairly",
+      "body": "Blocks with few trees and little water get the least relief. Atmos X shows where a tree or a cool roof would help most."
+    }
+  },
+  "how": {
+    "title": "How it works",
+    "scan": {
+      "title": "Scan",
+      "body": "Pick a spot and a radius of 200 m to 1 km. Atmos X scores every hexagon around you."
+    },
+    "understand": {
+      "title": "Understand",
+      "body": "See the Heat Score and what drives it: surface heat, hot nights, sealed ground, little green."
+    },
+    "plan": {
+      "title": "Plan",
+      "body": "Set a cooling goal. Get the trees that suit the place, what they cost and where to plant them."
+    },
+    "act": {
+      "title": "Act",
+      "body": "Plant, paint a roof white or put up shade. A GPS photo and automatic checks verify each action."
+    },
+    "track": {
+      "title": "Track",
+      "body": "Check in on each tree every 15 days. Points unlock when a tree passes 90 days alive."
+    }
+  },
+  "data": {
+    "title": "NASA data in use",
+    "sub": "{n} NASA datasets feed Atmos X right now. This list is read live from the app's sources, with the date of the latest data each one gave.",
+    "subNone": "The NASA datasets behind every number in the app.",
+    "unavailable": "The live list isn't available right now. Open the app's About page for every source.",
+    "others": "Also used"
+  },
+  "kind": {
+    "observation": "Observation",
+    "model": "Model",
+    "forecast": "Forecast",
+    "derived": "Derived",
+    "estimate": "Estimate",
+    "reference": "Reference",
+    "demo": "Demo"
+  },
+  "resolution": "{m} m",
+  "latest": "latest {date}",
+  "use": {
+    "landsat": "Surface temperature, reflectance and albedo for each hexagon",
+    "hls": "Vegetation index (NDVI)",
+    "modis_lst": "Night heat, 20 years of history, 1 km fallback",
+    "ecostress": "Sharper daytime heat patterns and night heat",
+    "power": "Climate normals, recent weather and rain deficit",
+    "geos_fp": "5-day temperature forecast",
+    "geos_cf": "PM2.5 air quality forecast",
+    "imerg": "Rain in the last 72 hours (satellite estimate)",
+    "smap": "Soil wetness for drought alerts",
+    "lisotd": "Lightning risk by season",
+    "cmip6": "Future warming in the projections",
+    "ornl_modis": "Fallback land surface temperature",
+    "gibs": "City-scale satellite map layer",
+    "gpw": "Population density"
+  },
+  "features": {
+    "title": "What you can do",
+    "map": {
+      "title": "Heat map",
+      "body": "Hexagons scored from satellite surface heat, with a live satellite layer."
+    },
+    "plan": {
+      "title": "Cooling plans",
+      "body": "Species, costs, planting spots and the cooling each action should bring."
+    },
+    "trees": {
+      "title": "My trees",
+      "body": "Check-ins every 15 days with growth photos, and friends who help water."
+    },
+    "community": {
+      "title": "Teams and events",
+      "body": "Plant with neighbours, join planting drives and see your area's leaderboard."
+    },
+    "store": {
+      "title": "Points store",
+      "body": "Trees that stay alive earn points to spend on partner products, and nurseries sell saplings."
+    },
+    "farm": {
+      "title": "Farmer alerts",
+      "body": "Heat, drought, flood and lightning alerts for your crop and its growth stage."
+    },
+    "ask": {
+      "title": "Ask Atmos",
+      "body": "Ask why your area is hot or what to plant, in your language, answered from the app's own data."
+    },
+    "air": {
+      "title": "Air quality",
+      "body": "Measured PM2.5 stations next to model forecasts, clearly labelled."
+    }
+  },
+  "science": {
+    "title": "Science notes",
+    "scoreTitle": "How the Heat Score is made",
+    "scoreBody": "Each hexagon is compared with its own area: daytime and night-time surface heat from satellites, plus sealed ground, missing green and how many people live there.",
+    "fitTitle": "What drives heat here",
+    "fitBody": "A model fitted on {n} Dhaka hexagons explains R² {r2} of the surface heat from green cover, water and sealed ground. The app uses it to show how much each driver adds.",
+    "fitNone": "The app fits a model of green cover, water and sealed ground against surface heat for each city, to show how much each driver adds.",
+    "honestTitle": "Honest labels",
+    "honestBody": "Every number says whether it is an observation, a model, a forecast or an estimate, with its date. Cooling and CO₂ for trees are estimates, not offsets."
+  },
+  "credit": "Built for the NASA Space Apps Challenge 2026 by the Atmos X team. Dhaka is our home story; the app works worldwide.",
+  "about": "Data and science",
+  "languages": "Languages",
+  "attributions": "Attributions",
+  "osm": "Map data © OpenStreetMap contributors (ODbL)"
+}

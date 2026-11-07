@@ -127,10 +127,5 @@
   "placeholder": {
     "title": "{id} · pronto",
     "body": "Esta pantalla la está construyendo {owner}."
-  },
-  "landingPlaceholder": {
-    "pitch": "Encuentra los bloques más calientes cerca de ti y enfríalos: árboles, techos fríos y sombra, con tus vecinos.",
-    "open": "Abrir la app",
-    "install": "Instalar"
   }
 }

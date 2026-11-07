@@ -1,1 +1,134 @@
-{}
+{
+  "metaTitle": "Atmos X · Refresca tu barrio con datos de la NASA",
+  "metaDescription": "Encuentra las manzanas más calurosas a tu alrededor con datos satelitales de la NASA, obtén un plan de enfriamiento con árboles, techos frescos y sombra, y sigue cada árbol que plantes.",
+  "eyebrow": "NASA Space Apps 2026 · Daca y todo el mundo",
+  "title": "Refresca tu barrio, manzana a manzana",
+  "sub": "Atmos X encuentra las manzanas más calurosas a tu alrededor con datos satelitales de la NASA, arma un plan de enfriamiento con árboles, techos frescos y sombra, y sigue cada árbol que plantas hasta comprobar que está vivo.",
+  "open": "Abrir la app",
+  "install": "Instalar la app",
+  "demo": "Prueba la demo de Daca",
+  "nasaCount": "{n} conjuntos de datos de la NASA en uso ahora mismo",
+  "problem": {
+    "title": "El problema",
+    "sub": "Las ciudades se calientan de forma desigual. A dos calles, una manzana puede estar varios grados más caliente que la siguiente, y quienes viven ahí no suelen ver por qué.",
+    "concrete": {
+      "title": "El hormigón acumula calor",
+      "body": "El suelo sellado y los techos oscuros absorben el sol todo el día. Los satélites los ven más calientes que parques y agua."
+    },
+    "nights": {
+      "title": "Las noches calurosas son lo peor",
+      "body": "Los edificios sueltan el calor del día al anochecer y el cuerpo no se recupera. Ahí el calor se vuelve peligroso para niños y mayores."
+    },
+    "shade": {
+      "title": "La sombra no se reparte igual",
+      "body": "Las manzanas con pocos árboles y poca agua reciben el menor alivio. Atmos X muestra dónde un árbol o un techo fresco ayudaría más."
+    }
+  },
+  "how": {
+    "title": "Cómo funciona",
+    "scan": {
+      "title": "Escanea",
+      "body": "Elige un punto y un radio de 200 m a 1 km. Atmos X puntúa cada hexágono a tu alrededor."
+    },
+    "understand": {
+      "title": "Entiende",
+      "body": "Mira el Heat Score y sus causas: calor de superficie, noches calurosas, suelo sellado, poco verde."
+    },
+    "plan": {
+      "title": "Planifica",
+      "body": "Fija una meta de enfriamiento. Conoce los árboles adecuados, su costo y dónde plantarlos."
+    },
+    "act": {
+      "title": "Actúa",
+      "body": "Planta, pinta un techo de blanco o pon sombra. Una foto con GPS y controles automáticos verifican cada acción."
+    },
+    "track": {
+      "title": "Sigue",
+      "body": "Revisa cada árbol cada 15 días. Los puntos se liberan cuando el árbol cumple 90 días vivo."
+    }
+  },
+  "data": {
+    "title": "Datos de la NASA en uso",
+    "sub": "{n} conjuntos de datos de la NASA alimentan Atmos X ahora mismo. Esta lista se lee en vivo de las fuentes de la app, con la fecha del último dato de cada uno.",
+    "subNone": "Los conjuntos de datos de la NASA detrás de cada número de la app.",
+    "unavailable": "La lista en vivo no está disponible ahora. Abre la página Acerca de de la app para ver todas las fuentes.",
+    "others": "También usamos"
+  },
+  "kind": {
+    "observation": "Observación",
+    "model": "Modelo",
+    "forecast": "Pronóstico",
+    "derived": "Derivado",
+    "estimate": "Estimación",
+    "reference": "Referencia",
+    "demo": "Demo"
+  },
+  "resolution": "{m} m",
+  "latest": "último {date}",
+  "use": {
+    "landsat": "Temperatura de superficie, reflectancia y albedo de cada hexágono",
+    "hls": "Índice de vegetación (NDVI)",
+    "modis_lst": "Calor nocturno, 20 años de historia, respaldo a 1 km",
+    "ecostress": "Patrones de calor diurno más finos y calor nocturno",
+    "power": "Normales climáticas, clima reciente y déficit de lluvia",
+    "geos_fp": "Pronóstico de temperatura a 5 días",
+    "geos_cf": "Pronóstico de calidad del aire PM2.5",
+    "imerg": "Lluvia de las últimas 72 horas (estimación satelital)",
+    "smap": "Humedad del suelo para alertas de sequía",
+    "lisotd": "Riesgo de rayos según la temporada",
+    "cmip6": "Calentamiento futuro en las proyecciones",
+    "ornl_modis": "Temperatura de superficie de respaldo",
+    "gibs": "Capa de mapa satelital a escala urbana",
+    "gpw": "Densidad de población"
+  },
+  "features": {
+    "title": "Lo que puedes hacer",
+    "map": {
+      "title": "Mapa de calor",
+      "body": "Hexágonos puntuados con el calor de superficie satelital, con capa satelital en vivo."
+    },
+    "plan": {
+      "title": "Planes de enfriamiento",
+      "body": "Especies, costos, lugares para plantar y el enfriamiento que aportaría cada acción."
+    },
+    "trees": {
+      "title": "Mis árboles",
+      "body": "Revisiones cada 15 días con fotos de crecimiento y amigos que ayudan a regar."
+    },
+    "community": {
+      "title": "Equipos y eventos",
+      "body": "Planta con tus vecinos, únete a jornadas de plantación y mira la clasificación de tu zona."
+    },
+    "store": {
+      "title": "Tienda de puntos",
+      "body": "Los árboles que sobreviven dan puntos para productos de socios, y los viveros venden plantones."
+    },
+    "farm": {
+      "title": "Alertas para agricultores",
+      "body": "Alertas de calor, sequía, inundación y rayos según tu cultivo y su etapa."
+    },
+    "ask": {
+      "title": "Ask Atmos",
+      "body": "Pregunta en tu idioma por qué tu zona está caliente o qué plantar; responde con los datos de la app."
+    },
+    "air": {
+      "title": "Calidad del aire",
+      "body": "Estaciones de PM2.5 medidas junto a pronósticos de modelo, bien etiquetadas."
+    }
+  },
+  "science": {
+    "title": "Notas científicas",
+    "scoreTitle": "Cómo se calcula el Heat Score",
+    "scoreBody": "Cada hexágono se compara con su propia zona: calor de superficie diurno y nocturno satelital, más suelo sellado, falta de verde y cuánta gente vive allí.",
+    "fitTitle": "Qué impulsa el calor aquí",
+    "fitBody": "Un modelo ajustado con {n} hexágonos de Daca explica un R² de {r2} del calor de superficie a partir de verde, agua y suelo sellado. La app lo usa para mostrar cuánto aporta cada causa.",
+    "fitNone": "La app ajusta para cada ciudad un modelo de verde, agua y suelo sellado frente al calor de superficie, para mostrar cuánto aporta cada causa.",
+    "honestTitle": "Etiquetas honestas",
+    "honestBody": "Cada número indica si es una observación, un modelo, un pronóstico o una estimación, con su fecha. El enfriamiento y el CO₂ de los árboles son estimaciones, no compensaciones."
+  },
+  "credit": "Creado por el equipo de Atmos X para el NASA Space Apps Challenge 2026. Daca es nuestra historia; la app funciona en todo el mundo.",
+  "about": "Datos y ciencia",
+  "languages": "Idiomas",
+  "attributions": "Atribuciones",
+  "osm": "Datos del mapa © colaboradores de OpenStreetMap (ODbL)"
+}

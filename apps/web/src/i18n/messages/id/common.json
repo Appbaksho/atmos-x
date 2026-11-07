@@ -127,10 +127,5 @@
   "placeholder": {
     "title": "{id} · segera hadir",
     "body": "Layar ini sedang dibuat oleh {owner}."
-  },
-  "landingPlaceholder": {
-    "pitch": "Temukan blok terpanas di sekitar Anda dan dinginkan: pohon, atap sejuk, dan naungan, bersama tetangga Anda.",
-    "open": "Buka aplikasi",
-    "install": "Pasang"
   }
 }

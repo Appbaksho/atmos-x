@@ -1,1 +1,134 @@
-{}
+{
+  "metaTitle": "Atmos X · Sejukkan lingkungan Anda dengan data NASA",
+  "metaDescription": "Temukan blok terpanas di sekitar Anda dari data satelit NASA, dapatkan rencana pendinginan dengan pohon, atap sejuk, dan naungan, lalu pantau setiap pohon yang Anda tanam.",
+  "eyebrow": "NASA Space Apps 2026 · Dhaka dan seluruh dunia",
+  "title": "Sejukkan lingkungan Anda, blok demi blok",
+  "sub": "Atmos X menemukan blok terpanas di sekitar Anda dari data satelit NASA, menyusun rencana pendinginan dengan pohon, atap sejuk, dan naungan, lalu memantau setiap pohon yang Anda tanam sampai terbukti hidup.",
+  "open": "Buka aplikasi",
+  "install": "Pasang aplikasi",
+  "demo": "Coba demo Dhaka",
+  "nasaCount": "{n} dataset NASA sedang digunakan saat ini",
+  "problem": {
+    "title": "Masalahnya",
+    "sub": "Kota memanas secara tidak merata. Hanya berjarak dua jalan, satu blok bisa beberapa derajat lebih panas, dan warganya sering tidak tahu sebabnya.",
+    "concrete": {
+      "title": "Beton menyimpan panas",
+      "body": "Tanah tertutup dan atap gelap menyerap matahari sepanjang hari. Satelit melihatnya lebih panas daripada taman dan air."
+    },
+    "nights": {
+      "title": "Malam panas paling menyiksa",
+      "body": "Bangunan melepas panas siang setelah gelap, sehingga tubuh tidak bisa pulih. Saat itulah panas berbahaya bagi anak-anak dan lansia."
+    },
+    "shade": {
+      "title": "Naungan tidak terbagi adil",
+      "body": "Blok dengan sedikit pohon dan air paling sedikit mendapat kelegaan. Atmos X menunjukkan di mana pohon atau atap sejuk paling membantu."
+    }
+  },
+  "how": {
+    "title": "Cara kerjanya",
+    "scan": {
+      "title": "Pindai",
+      "body": "Pilih lokasi dan radius 200 m hingga 1 km. Atmos X menilai setiap heksagon di sekitar Anda."
+    },
+    "understand": {
+      "title": "Pahami",
+      "body": "Lihat Heat Score dan penyebabnya: panas permukaan, malam panas, tanah tertutup, sedikit hijau."
+    },
+    "plan": {
+      "title": "Rencanakan",
+      "body": "Tetapkan target pendinginan. Ketahui pohon yang cocok, biayanya, dan di mana menanamnya."
+    },
+    "act": {
+      "title": "Bertindak",
+      "body": "Tanam, cat atap putih, atau pasang naungan. Foto GPS dan pemeriksaan otomatis memverifikasi setiap aksi."
+    },
+    "track": {
+      "title": "Pantau",
+      "body": "Periksa setiap pohon tiap 15 hari. Poin terbuka saat pohon hidup lebih dari 90 hari."
+    }
+  },
+  "data": {
+    "title": "Data NASA yang digunakan",
+    "sub": "{n} dataset NASA sedang memasok Atmos X saat ini. Daftar ini dibaca langsung dari sumber aplikasi, beserta tanggal data terbaru masing-masing.",
+    "subNone": "Dataset NASA di balik setiap angka di aplikasi.",
+    "unavailable": "Daftar langsung tidak tersedia saat ini. Buka halaman Tentang di aplikasi untuk semua sumber.",
+    "others": "Juga digunakan"
+  },
+  "kind": {
+    "observation": "Observasi",
+    "model": "Model",
+    "forecast": "Prakiraan",
+    "derived": "Turunan",
+    "estimate": "Perkiraan",
+    "reference": "Referensi",
+    "demo": "Demo"
+  },
+  "resolution": "{m} m",
+  "latest": "terbaru {date}",
+  "use": {
+    "landsat": "Suhu permukaan, reflektansi, dan albedo tiap heksagon",
+    "hls": "Indeks vegetasi (NDVI)",
+    "modis_lst": "Panas malam, riwayat 20 tahun, cadangan 1 km",
+    "ecostress": "Pola panas siang lebih tajam dan panas malam",
+    "power": "Normal iklim, cuaca terkini, dan defisit hujan",
+    "geos_fp": "Prakiraan suhu 5 hari",
+    "geos_cf": "Prakiraan kualitas udara PM2.5",
+    "imerg": "Hujan 72 jam terakhir (perkiraan satelit)",
+    "smap": "Kelembapan tanah untuk peringatan kekeringan",
+    "lisotd": "Risiko petir per musim",
+    "cmip6": "Pemanasan masa depan dalam proyeksi",
+    "ornl_modis": "Suhu permukaan cadangan",
+    "gibs": "Lapisan peta satelit skala kota",
+    "gpw": "Kepadatan penduduk"
+  },
+  "features": {
+    "title": "Yang bisa Anda lakukan",
+    "map": {
+      "title": "Peta panas",
+      "body": "Heksagon dinilai dari panas permukaan satelit, dengan lapisan satelit langsung."
+    },
+    "plan": {
+      "title": "Rencana pendinginan",
+      "body": "Spesies, biaya, lokasi tanam, dan pendinginan dari setiap aksi."
+    },
+    "trees": {
+      "title": "Pohon saya",
+      "body": "Pemeriksaan tiap 15 hari dengan foto pertumbuhan, dan teman yang membantu menyiram."
+    },
+    "community": {
+      "title": "Tim dan acara",
+      "body": "Tanam bersama tetangga, ikut aksi tanam, dan lihat papan peringkat wilayah Anda."
+    },
+    "store": {
+      "title": "Toko poin",
+      "body": "Pohon yang tetap hidup memberi poin untuk produk mitra, dan pembibitan menjual bibit."
+    },
+    "farm": {
+      "title": "Peringatan petani",
+      "body": "Peringatan panas, kekeringan, banjir, dan petir sesuai tanaman dan tahap tumbuhnya."
+    },
+    "ask": {
+      "title": "Ask Atmos",
+      "body": "Tanyakan dalam bahasa Anda mengapa wilayah Anda panas atau apa yang ditanam; dijawab dari data aplikasi sendiri."
+    },
+    "air": {
+      "title": "Kualitas udara",
+      "body": "Stasiun PM2.5 terukur berdampingan dengan prakiraan model, diberi label jelas."
+    }
+  },
+  "science": {
+    "title": "Catatan sains",
+    "scoreTitle": "Cara Heat Score dihitung",
+    "scoreBody": "Setiap heksagon dibandingkan dengan wilayahnya sendiri: panas permukaan siang dan malam dari satelit, ditambah tanah tertutup, kurangnya hijau, dan jumlah penduduk.",
+    "fitTitle": "Apa penyebab panas di sini",
+    "fitBody": "Model yang dicocokkan pada {n} heksagon Dhaka menjelaskan R² {r2} panas permukaan dari tutupan hijau, air, dan tanah tertutup. Aplikasi memakainya untuk menunjukkan kontribusi tiap penyebab.",
+    "fitNone": "Aplikasi mencocokkan model tutupan hijau, air, dan tanah tertutup terhadap panas permukaan untuk tiap kota, guna menunjukkan kontribusi tiap penyebab.",
+    "honestTitle": "Label yang jujur",
+    "honestBody": "Setiap angka menyebutkan apakah itu observasi, model, prakiraan, atau perkiraan, beserta tanggalnya. Pendinginan dan CO₂ pohon adalah perkiraan, bukan offset."
+  },
+  "credit": "Dibuat oleh tim Atmos X untuk NASA Space Apps Challenge 2026. Dhaka adalah kisah utama kami; aplikasi berfungsi di seluruh dunia.",
+  "about": "Data dan sains",
+  "languages": "Bahasa",
+  "attributions": "Atribusi",
+  "osm": "Data peta © kontributor OpenStreetMap (ODbL)"
+}
