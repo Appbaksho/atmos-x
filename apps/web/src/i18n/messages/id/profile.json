@@ -282,7 +282,10 @@
       "team": {
         "joined": "Anda bergabung dengan {team}"
       },
-      "badge": "Lencana baru: {badge}"
+      "badge": "Lencana baru: {badge}",
+      "farm": {
+        "body": "{field} · mulai {date}"
+      }
     },
     "reason": {
       "unavailable": "Pemeriksaan AI tidak tersedia. Rekan tim dapat mengonfirmasinya.",

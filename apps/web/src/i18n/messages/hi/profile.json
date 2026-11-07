@@ -282,7 +282,10 @@
       "team": {
         "joined": "आप {team} में शामिल हो गए"
       },
-      "badge": "नया बैज: {badge}"
+      "badge": "नया बैज: {badge}",
+      "farm": {
+        "body": "{field} · {date} से"
+      }
     },
     "reason": {
       "unavailable": "AI जाँच उपलब्ध नहीं थी. टीम का कोई साथी पुष्टि कर सकता है.",

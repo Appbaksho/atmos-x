@@ -282,7 +282,10 @@
       "team": {
         "joined": "Vous avez rejoint {team}"
       },
-      "badge": "Nouveau badge : {badge}"
+      "badge": "Nouveau badge : {badge}",
+      "farm": {
+        "body": "{field} · à partir du {date}"
+      }
     },
     "reason": {
       "unavailable": "La vérification par IA n’était pas disponible. Un coéquipier peut le confirmer.",

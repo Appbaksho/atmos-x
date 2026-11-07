@@ -382,7 +382,10 @@
       "team": {
         "joined": "آپ {team} میں شامل ہو گئے ہیں"
       },
-      "badge": "نیا بیج: {badge}"
+      "badge": "نیا بیج: {badge}",
+      "farm": {
+        "body": "{field} · {date} سے"
+      }
     },
     "reason": {
       "unavailable": "AI جانچ دستیاب نہیں تھی۔ کوئی ساتھی اس کی تصدیق کر سکتا ہے۔",
@@ -406,6 +409,7 @@
       "code.badge.survivor_3m",
       "code.badge.team_player",
       "code.notif.badge",
+      "code.notif.farm.body",
       "code.notif.tree.at_risk",
       "code.notif.tree.d90",
       "code.notif.tree.d90_due",

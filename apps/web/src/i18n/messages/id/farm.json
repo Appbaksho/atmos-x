@@ -63,7 +63,8 @@
     "notFoundSub": "Peringatan diperbarui setiap prakiraan. Buka lahan Anda untuk melihat yang terbaru.",
     "backFarm": "Kembali ke lahan saya",
     "dae": "Untuk dosis pestisida atau pupuk, tanyakan ke kantor penyuluhan pertanian setempat (DAE).",
-    "rule": "Aturan dari mesin petani Atmos X pada prakiraan Open-Meteo."
+    "rule": "Aturan praktis dari imbauan BMD, BRRI, dan DAE, pada prakiraan Open-Meteo dan data NASA bila tersedia.",
+    "doneFeature": "menandai peringatan pertanian selesai"
   },
   "fields": {
     "myFields": "Lahan saya",

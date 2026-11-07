@@ -161,7 +161,8 @@
       "body": "Solo {rain30} mm de lluvia en los últimos 30 días (NASA POWER) y {rain7} mm previstos esta semana, mientras los cultivos pierden ~{et7} mm por evaporación.",
       "a1": "Usa riego intermitente alternado (AWD) para ahorrar agua de riego.",
       "a2": "Cubre los bancales de hortalizas con paja para conservar la humedad.",
-      "a3": "Planea riego adicional para Aman trasplantado si la lluvia sigue baja."
+      "a3": "Planea riego adicional para Aman trasplantado si la lluvia sigue baja.",
+      "body_smap": "El suelo en la zona de raíces solo tiene un {wet_pct}% de humedad (NASA SMAP; regla práctica) y se prevén {rain7} mm de lluvia esta semana."
     },
     "storm": {
       "title": "Riesgo de tormenta / nor’wester",
@@ -179,7 +180,8 @@
       "body": "La temperatura nocturna bajará hasta {low} °C desde {day}.",
       "a1": "Cubre los semilleros de Boro con polietileno transparente de noche y ábrelos de día.",
       "a2": "Mantén 2–3 cm de agua en los semilleros y drena el agua fría por la mañana.",
-      "a3": "Protege al ganado con sacos de yute y cama seca."
+      "a3": "Protege al ganado con sacos de yute y cama seca.",
+      "title_very_severe": "Ola de frío muy severa"
     },
     "late_blight": {
       "title": "Tiempo favorable para tizón tardío",
@@ -209,6 +211,15 @@
       "a1": "Trabaja temprano en la mañana y al final de la tarde.",
       "a2": "Bebe agua con SRO cada 20 minutos.",
       "a3": "Descansa a la sombra; vigila mareos y detén el trabajo si te sientes mal."
+    },
+    "heavy_rain": {
+      "title_heavy": "Lluvia fuerte",
+      "title_very_heavy": "Lluvia muy fuerte",
+      "body": "Hasta {mm} mm de lluvia en un día desde el {day} (BMD: 44 mm o más es fuerte).",
+      "body_observed": "Hace poco cayeron {mm} mm en un día y {mm72} mm en 3 días (NASA IMERG).",
+      "a1": "Abre los drenajes y limpia los canales antes de la lluvia.",
+      "a2": "Cosecha antes los cultivos maduros y guárdalos en un lugar seco.",
+      "a3": "Cubre semilleros y almacenes de abono; aplaza las fumigaciones."
     }
   },
   "alert_level": {

@@ -74,8 +74,8 @@ export function sortAlerts(alerts: readonly FarmAlert[]): FarmAlert[] {
 }
 
 /** Input for useFarmAlerts from a saved field, or the guest preview at the focus point. */
-export function alertsInput(field: Pick<FarmField, 'crop' | 'stage' | 'location'> | null, focus: LatLng | null) {
-  if (field) return { location: field.location, crop: field.crop, stage: field.stage };
+export function alertsInput(field: Pick<FarmField, 'id' | 'crop' | 'stage' | 'location'> | null, focus: LatLng | null) {
+  if (field) return { location: field.location, crop: field.crop, stage: field.stage, field_id: field.id };
   if (!focus) return null;
   return { location: focus, crop: PREVIEW_CROP, stage: PREVIEW_STAGE };
 }

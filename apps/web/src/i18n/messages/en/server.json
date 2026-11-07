@@ -158,7 +158,8 @@
       "body": "Only {rain30} mm of rain in the past 30 days (NASA POWER) and {rain7} mm forecast this week, while crops lose ~{et7} mm to evaporation.",
       "a1": "Use alternate wetting and drying (AWD) to stretch irrigation water.",
       "a2": "Mulch vegetable beds with straw to keep moisture.",
-      "a3": "Plan supplementary irrigation for transplanted Aman if rain stays low."
+      "a3": "Plan supplementary irrigation for transplanted Aman if rain stays low.",
+      "body_smap": "Soil in the root zone is only {wet_pct}% wet (NASA SMAP; a rule of thumb) and {rain7} mm of rain is forecast this week."
     },
     "storm": {
       "title": "Storm / nor’wester risk",
@@ -176,7 +177,8 @@
       "body": "Night temperature down to {low} °C from {day}.",
       "a1": "Cover Boro seedbeds with clear polythene at night, open during the day.",
       "a2": "Keep 2–3 cm water in seedbeds and drain cold water in the morning.",
-      "a3": "Protect livestock with jute sacks and dry bedding."
+      "a3": "Protect livestock with jute sacks and dry bedding.",
+      "title_very_severe": "Very severe cold wave"
     },
     "late_blight": {
       "title": "Late blight weather",
@@ -206,6 +208,15 @@
       "a1": "Work early morning and late afternoon.",
       "a2": "Drink water with ORS every 20 minutes.",
       "a3": "Rest in shade; watch for dizziness and stop work if unwell."
+    },
+    "heavy_rain": {
+      "title_heavy": "Heavy rain",
+      "title_very_heavy": "Very heavy rain",
+      "body": "Up to {mm} mm of rain in a day from {day} (BMD: 44 mm or more is heavy).",
+      "body_observed": "{mm} mm fell in one day recently, {mm72} mm over 3 days (NASA IMERG).",
+      "a1": "Open field drains and clear channels before the rain.",
+      "a2": "Harvest ripe crops early and move them to a dry place.",
+      "a3": "Cover seedbeds and fertiliser stores; delay spraying."
     }
   },
   "alert_level": {

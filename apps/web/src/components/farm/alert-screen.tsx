@@ -5,12 +5,11 @@
  * given by `?field=` (or the first saved field, or the guest preview at the focus point).
  */
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
 
-import { B, Card, CzButton, EmptyState, ErrorState, href, Icon, Label, Note, Screen, ScreenHeader, SkeletonCard, SourceChips, Txt, useCz, useLocation, View, I } from '@/components/cz';
+import { B, Card, CzButton, EmptyState, ErrorState, href, Icon, Label, Note, requireAccount, Screen, ScreenHeader, SkeletonCard, SourceChips, Txt, useCz, useLocation, View, I } from '@/components/cz';
 import { useTServer } from '@/i18n/server-text';
 import { useAskContext } from '@/components/ask/ask-context';
-import { useFarmAlerts, useFields, useSession } from '@/lib/data/hooks';
+import { isGuestRestricted, useFarmAlerts, useFields, useMarkAlertDone, useSession } from '@/lib/data/hooks';
 
 import { AlertTag, useWindowText } from './alert-card';
 import { alertsInput, daysUntil, HAZARD_ICON, levelColors, PREVIEW_CROP } from './farm-data';
@@ -27,7 +26,7 @@ export function AlertScreen({ id, fieldId }: { id: string; fieldId?: string }) {
   const field = fields.find((x) => x.id === fieldId) ?? fields[0] ?? null;
   const waiting = fieldsQ.isPending && !session.isGuest;
   const q = useFarmAlerts(waiting ? null : alertsInput(field, focus ?? null));
-  const [done, setDone] = useState(false);
+  const markDone = useMarkAlertDone();
 
   const alert = q.data?.alerts.find((a) => a.id === id) ?? null;
   useAskContext({
@@ -131,7 +130,14 @@ export function AlertScreen({ id, fieldId }: { id: string; fieldId?: string }) {
           <Txt display size={18} style={{ lineHeight: 24 }}>
             {ts(first)}
           </Txt>
-          <CzButton label={done ? t('alert.doneOk') : t('alert.done')} icon="check" onPress={() => setDone(!done)} />
+          <CzButton
+            label={alert.done ? t('alert.doneOk') : t('alert.done')}
+            icon="check"
+            busy={markDone.isPending}
+            disabled={!!alert.done}
+            onPress={() => (session.isGuest ? requireAccount(t('alert.doneFeature')) : markDone.mutate({ id: alert.id, field_id: field?.id ?? null }))}
+          />
+          {markDone.isError && !isGuestRestricted(markDone.error) ? <ErrorState compact error={markDone.error} /> : null}
         </Card>
       ) : null}
 

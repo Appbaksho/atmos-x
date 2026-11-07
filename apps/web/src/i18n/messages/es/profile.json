@@ -282,7 +282,10 @@
       "team": {
         "joined": "Te uniste a {team}"
       },
-      "badge": "Nueva insignia: {badge}"
+      "badge": "Nueva insignia: {badge}",
+      "farm": {
+        "body": "{field} · desde el {date}"
+      }
     },
     "reason": {
       "unavailable": "La verificación de IA no estuvo disponible. Un compañero de equipo puede confirmarlo.",

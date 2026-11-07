@@ -161,7 +161,8 @@
       "body": "Seulement {rain30} mm de pluie au cours des 30 derniers jours (NASA POWER) et {rain7} mm prévus cette semaine, alors que les cultures perdent environ {et7} mm par évaporation.",
       "a1": "Utilisez l’alternance mouillage-séchage (AWD) pour économiser l’eau d’irrigation.",
       "a2": "Paillez les planches de légumes avec de la paille pour garder l’humidité.",
-      "a3": "Prévoyez un apport d’eau supplémentaire pour l’Aman repiqué si la pluie reste faible."
+      "a3": "Prévoyez un apport d’eau supplémentaire pour l’Aman repiqué si la pluie reste faible.",
+      "body_smap": "Le sol de la zone racinaire n’est humide qu’à {wet_pct} % (NASA SMAP ; règle empirique) et {rain7} mm de pluie sont prévus cette semaine."
     },
     "storm": {
       "title": "Risque de tempête / nor’wester",
@@ -179,7 +180,8 @@
       "body": "La température nocturne descend à {low} °C à partir de {day}.",
       "a1": "Couvrez les pépinières de Boro avec du polyéthylène transparent la nuit, ouvrez le jour.",
       "a2": "Gardez 2–3 cm d’eau dans les pépinières et évacuez l’eau froide le matin.",
-      "a3": "Protégez le bétail avec des sacs de jute et une litière sèche."
+      "a3": "Protégez le bétail avec des sacs de jute et une litière sèche.",
+      "title_very_severe": "Vague de froid très sévère"
     },
     "late_blight": {
       "title": "Temps favorable au mildiou tardif",
@@ -209,6 +211,15 @@
       "a1": "Travaillez tôt le matin et tard l’après-midi.",
       "a2": "Buvez de l’eau avec une solution de réhydratation orale toutes les 20 minutes.",
       "a3": "Reposez-vous à l’ombre ; surveillez les étourdissements et arrêtez le travail si vous vous sentez mal."
+    },
+    "heavy_rain": {
+      "title_heavy": "Fortes pluies",
+      "title_very_heavy": "Pluies très fortes",
+      "body": "Jusqu’à {mm} mm de pluie en un jour à partir du {day} (BMD : 44 mm ou plus = fortes pluies).",
+      "body_observed": "Récemment, {mm} mm sont tombés en un jour et {mm72} mm en 3 jours (NASA IMERG).",
+      "a1": "Ouvrez les drains et dégagez les canaux avant la pluie.",
+      "a2": "Récoltez tôt les cultures mûres et mettez-les au sec.",
+      "a3": "Couvrez les pépinières et les engrais ; reportez les traitements."
     }
   },
   "alert_level": {

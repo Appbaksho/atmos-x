@@ -667,7 +667,9 @@ export type Hazard = 'flood' | 'heat' | 'drought' | 'cold' | 'lightning' | 'rain
 export type AlertLevel = 'danger' | 'warning' | 'watch' | 'info';
 
 export type FarmAlert = {
+  /** `<rule>-<from>@<0.1° cell>`: stable while the event lasts */
   id: string;
+  rule?: string;
   hazard: Hazard;
   level: AlertLevel;
   emoji?: string;
@@ -675,10 +677,20 @@ export type FarmAlert = {
   body: I18nText | string;
   actions: (I18nText | string)[];
   window: { from: string; to: string };
+  /** Only the sources this alert used */
   sources: Source[];
+  /** "I've done it" was pressed (signed-in users) */
+  done?: boolean;
 };
 
-export type FarmAlertsResponse = { alerts: FarmAlert[]; region?: string | null; meta: Meta };
+export type FarmAlertsResponse = {
+  alerts: FarmAlert[];
+  region?: string | null;
+  field_id?: string | null;
+  /** NASA context the rules had: POWER 30-day rain, IMERG last 72 h, SMAP root-zone wetness, LIS/OTD flash rate */
+  context?: { rain30_mm: number | null; imerg_72h_mm: number | null; smap_rootzone: number | null; lightning_flash_rate: number | null };
+  meta: Meta;
+};
 
 /* ───────────────────────────── Notifications ───────────────────────────── */
 
