@@ -84,23 +84,22 @@
     "submitNoPhoto": "Submit without photo",
     "noPhotoNote": "Without a photo the action waits for a teammate to confirm it.",
     "feature": "log an action",
-    "verifying": "Verifying with AI…",
-    "verifyingSub": "Checking what the photo shows, where and when it was taken.",
+    "verifying": "Checking your photo…",
+    "verifyingSub": "Checking where and when it was taken, and that it’s a new photo.",
     "verified": "Verified",
     "pending": "Waiting for confirmation",
-    "seen": "What the AI saw",
-    "confidence": "Confidence {pct}",
     "earned": "points earned",
     "provisional": "provisional points",
     "treesAdded": "{count, plural, one {{n} tree added to My trees} other {{n} trees added to My trees}}",
     "milestone": "Goal milestone reached: {pct}",
     "seeContribution": "See contribution",
     "logAnother": "Log another",
-    "failed": "Couldn’t save the action. Try again."
+    "failed": "Couldn’t save the action. Try again.",
+    "checks": "Checks"
   },
   "reason": {
     "ok": "Verified: the photo matches the action.",
-    "unavailable": "Photo checks are unavailable right now. A teammate can confirm it.",
+    "unavailable": "Some checks couldn’t run. A teammate or moderator can confirm it.",
     "rate_limited": "Too many checks today. A teammate can confirm it.",
     "no_photo": "No photo was added. A teammate can confirm it.",
     "teammate_confirmed": "Confirmed by a teammate."
@@ -113,17 +112,8 @@
     "pts": "+{points} pts",
     "creditedTo": "Credited to {who}",
     "creditedMe": "Credited to you",
-    "provisionalNote": "Points count once someone confirms it.",
+    "provisionalNote": "Points count once a reviewer confirms it.",
     "checks": "Checks",
-    "aiCheck": "AI image check",
-    "aiSeen": "Photo shows the action",
-    "gps": "Location sealed",
-    "gpsRule": "Rule · GPS within 300 m of the zone",
-    "gpsMissing": "No location",
-    "time": "Time sealed",
-    "timeRule": "Rule · taken in the last 24 h",
-    "pass": "Pass",
-    "check": "Check",
     "cooling": "Cooling contributed",
     "coolingSub": "Modeled for {zone} at maturity",
     "coolingNone": "This action doesn’t add modeled cooling, but it keeps the plan going.",
@@ -136,15 +126,20 @@
     "survival": "Survival photos",
     "survivalNote": "Each check earns points. Miss one and the points pause; they don’t vanish.",
     "dayN": "Day {n}",
-    "confirm": "A teammate confirms it",
-    "confirmSub": "In v0 this confirms on this device.",
     "share": "Share",
     "shareText": "I just logged “{action}” with Atmos X: {points} points toward a cooler {zone}.",
     "copied": "Link copied",
     "backPlan": "Back to plan",
     "seeTeam": "See team",
     "notFound": "This action isn’t on this device.",
-    "photoAlt": "Your photo of the action"
+    "photoAlt": "Your photo of the action",
+    "rejectedNote": "A reviewer didn’t confirm this. No points were added.",
+    "reviewTitle": "Can you confirm this?",
+    "reviewSub": "You’re a teammate or moderator. Confirm only what you know happened.",
+    "approve": "Confirm",
+    "reject": "Not confirmed",
+    "waitTitle": "Waiting for a review",
+    "waitSub": "A teammate or a moderator confirms it. You can’t confirm your own action."
   },
   "budget": {
     "title": "Budget",
@@ -181,5 +176,50 @@
     "noneSub": "Try the curated list in Dhaka, or search your maps app for “plant nursery”.",
     "you": "Your zone",
     "mapLabel": "Map of nurseries near {place}"
+  },
+  "check": {
+    "pass": "Pass",
+    "skip": "N/A",
+    "review": "Needs review",
+    "gps_present": {
+      "title": "Location with the photo",
+      "rule": "GPS accurate to 100 m"
+    },
+    "gps_near": {
+      "title": "Near the goal zone",
+      "rule": "Within 300 m of the zone"
+    },
+    "location_plausible": {
+      "title": "Plausible place",
+      "rule": "Not on water or inside a building, no impossible jump"
+    },
+    "time_recent": {
+      "title": "Taken recently",
+      "rule": "Within the last 24 hours"
+    },
+    "capture_source": {
+      "title": "Taken with the camera",
+      "rule": "In-app camera, or photo time and place match"
+    },
+    "not_duplicate": {
+      "title": "New photo",
+      "rule": "Not a photo used before"
+    },
+    "content_plausible": {
+      "title": "Photo fits the action",
+      "rule": "Rough check: enough green, or a bright roof"
+    },
+    "photo_present": {
+      "title": "Photo added",
+      "rule": "A photo with each check-in"
+    },
+    "gps_near_tree": {
+      "title": "At the tree",
+      "rule": "Within 100 m of where it was planted"
+    },
+    "imported": {
+      "title": "Imported from this device",
+      "rule": "A person checks it"
+    }
   }
 }

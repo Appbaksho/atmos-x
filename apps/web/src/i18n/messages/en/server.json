@@ -226,16 +226,23 @@
   },
   "verify": {
     "ok": "Verified: the photo matches the action.",
-    "ai_unavailable": "We couldn’t check the photo right now. A teammate can confirm it.",
-    "not_a_photo": "This doesn’t look like a camera photo. A teammate can confirm it.",
-    "different_action": "The photo seems to show a different action. A teammate can confirm it.",
-    "ai_mismatch": "We couldn’t see the action in the photo. A teammate can confirm it.",
-    "ai_low_confidence": "The photo isn’t clear enough to be sure. A teammate can confirm it.",
     "gps_missing": "No location with the photo. A teammate can confirm it.",
-    "gps_far": "The photo was taken more than 300 m from the zone. A teammate can confirm it.",
+    "gps_far": "The photo was taken {dist_m} from the zone (over 300 m). A teammate can confirm it.",
     "time_unknown": "We couldn’t read when the photo was taken. A teammate can confirm it.",
     "time_future": "The photo time is in the future. A teammate can confirm it.",
-    "too_old": "The photo is more than 24 hours old. A teammate can confirm it."
+    "too_old": "The photo is more than 24 hours old. A teammate can confirm it.",
+    "gps_inaccurate": "The location wasn’t accurate enough (over 100 m). A teammate can confirm it.",
+    "on_water": "The location is on water. A teammate can confirm it.",
+    "inside_building": "The location is inside a building. A teammate can confirm it.",
+    "too_fast": "This place is too far from your last log for the time between them. A teammate can confirm it.",
+    "exif_mismatch": "We couldn’t confirm when and where this photo was taken. Use the in-app camera, or a teammate can confirm it.",
+    "duplicate_photo": "This photo was used before. Take a new one.",
+    "not_green": "We couldn’t see enough plants in the photo. A teammate can confirm it.",
+    "not_roof": "We couldn’t see a bright roof in the photo. A teammate can confirm it.",
+    "no_photo": "No photo was added. A teammate can confirm it.",
+    "imported": "Imported from your device. A teammate or moderator confirms it.",
+    "reviewed": "Confirmed by a reviewer.",
+    "review_rejected": "A reviewer didn’t confirm it."
   },
   "action": {
     "open_zone": "Open zone",
@@ -322,5 +329,17 @@
   },
   "task": {
     "custom": "{text}"
+  },
+  "tree": {
+    "tip": {
+      "replant": "This tree didn’t make it. Replant in the same spot with a hardy species and a guard.",
+      "stressed": "Leaves look stressed: water deeply at the base in the morning and check again in 3 days.",
+      "water_dry": "Only {rain_mm} mm of rain in the last week: water 10–15 litres every 2–3 days.",
+      "drainage": "{rain_mm} mm of rain this week: make sure water drains away from the base.",
+      "guard": "Keep the tree guard on for the first year so goats and people don’t damage it.",
+      "thirsty": "This species needs a lot of water while young.",
+      "monsoon": "Monsoon: no need to water, but clear weeds around the base.",
+      "keep_going": "Looking good. Keep checking in every 15 days."
+    }
   }
 }

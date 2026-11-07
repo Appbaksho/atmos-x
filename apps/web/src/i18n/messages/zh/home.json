@@ -83,5 +83,14 @@
     "cta": "设目标"
   },
   "goalFeature": "设置降温目标",
-  "treesFeature": "跟踪你的树"
+  "treesFeature": "跟踪你的树",
+  "import": {
+    "title": "导入此设备上的数据",
+    "sub": "此手机在启用账户前保存了 {n} 项：目标、树、行动和照片。",
+    "cta": "添加到我的账户",
+    "later": "暂不",
+    "failed": "导入未完成",
+    "done": "已添加 {trees} 棵树、{actions} 项行动和 {goals} 个目标",
+    "note": "导入的行动需经队友或版主审核后才计分。"
+  }
 }

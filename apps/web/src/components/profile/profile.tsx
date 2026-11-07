@@ -29,7 +29,7 @@ import {
   useCz,
 } from '@/components/cz';
 import { teamInitials } from '@/components/community/shared';
-import { useActions, useMe, useMyStats, useOrg, useSensors, useSession, useTeams, useTrees, useUnreadCount } from '@/lib/data/hooks';
+import { useActions, useMe, useMyStats, useOrg, useSensors, useSession, useTeams, useUnreadCount } from '@/lib/data/hooks';
 import type { ActionLog, Badge, Team } from '@/lib/data/types';
 import { initials } from '@/lib/format';
 
@@ -151,18 +151,16 @@ function PointsCard() {
   const t = useTranslations('profile');
   const { c, f } = useCz();
   const stats = useMyStats();
-  const trees = useTrees();
 
   if (stats.isPending) return <SkeletonCard lines={3} height={180} />;
   if (stats.isError) return <ErrorState error={stats.error} onRetry={() => void stats.refetch()} />;
   const s = stats.data;
   const lvl = s.level;
-  const pct = lvl.next ? ((s.points - lvl.min) / Math.max(1, lvl.next - lvl.min)) * 100 : 100;
-  const alive = (trees.data ?? []).filter((x) => x.health !== 'dead').length;
-  const total = trees.data?.length ?? 0;
+  const earned = s.points.earned;
+  const pct = lvl.next ? ((earned - lvl.min) / Math.max(1, lvl.next - lvl.min)) * 100 : 100;
   const tiles: [string, string][] = [
-    [s.rank_area ? `#${f.loc(s.rank_area)}` : '–', t('statRank')],
-    [`${f.loc(alive)}/${f.loc(total)}`, t('statTrees')],
+    [s.rank_area ? `#${f.loc(s.rank_area.rank)}` : '–', t('statRank')],
+    [`${f.loc(s.trees_alive)}/${f.loc(s.trees)}`, t('statTrees')],
     [f.loc(s.actions), t('statActions')],
   ];
 
@@ -174,19 +172,27 @@ function PointsCard() {
             {t('points')}
           </Txt>
           <Txt size={40} num color={B.white} style={{ lineHeight: '44px', letterSpacing: -0.8 }}>
-            {f.num(s.points)}
+            {f.num(earned)}
           </Txt>
         </View>
         <Txt size={12} w={600} color={B.lime} style={{ textAlign: 'end' }}>
-          {lvl.next ? t('toNext', { pts: f.num(lvl.next - s.points), n: f.loc(lvl.level + 1) }) : t('maxLevel')}
+          {lvl.next ? t('toNext', { pts: f.num(lvl.next - earned), n: f.loc(lvl.level + 1) }) : t('maxLevel')}
         </Txt>
       </View>
       <Bar pct={pct} height={10} color={B.lime} track="rgba(255,255,255,0.14)" label={t('points')} />
-      {s.provisional_points > 0 ? (
-        <View role="note" label={t('provisionalA11y', { pts: f.num(s.provisional_points) })} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+        <Icon d={I.check} size={14} sw={2.4} color={B.lime} />
+        <Txt size={12} w={600} color={B.white}>
+          {t('spendable', { pts: f.num(s.points.spendable) })}
+        </Txt>
+      </View>
+      {s.points.pending > 0 ? (
+        <View role="note" label={t('pendingA11y', { pts: f.num(s.points.pending) })} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
           <Icon d={I.clock} size={14} sw={2} color={B.orange} />
-          <Txt size={12} w={600} color={B.orange}>
-            {t('provisional', { pts: f.num(s.provisional_points) })}
+          <Txt size={12} w={600} color={B.orange} style={{ flex: 1 }}>
+            {s.points.next_unlock_at
+              ? t('pendingUntil', { pts: f.num(s.points.pending), date: f.date(s.points.next_unlock_at, { day: 'numeric', month: 'short' }) })
+              : t('pending', { pts: f.num(s.points.pending) })}
           </Txt>
         </View>
       ) : null}

@@ -62,6 +62,9 @@ export function useCodeText() {
       if (typeof p.name === 'string') p.name = tsp.has(p.name) ? tsp(p.name) : p.name;
       if (typeof p.level === 'string' && ts.has(`bmd.${p.level}`)) p.level = ts(`bmd.${p.level}`);
       if (typeof p.feels === 'number') p.feels = f.deg(p.feels);
+      if (typeof p.badge === 'string') p.badge = raw(p.badge);
+      if (typeof p.date === 'string' && /^\d{4}-\d{2}-\d{2}/.test(p.date)) p.date = f.date(p.date, { day: 'numeric', month: 'short' });
+      for (const k of ['rain_mm', 'mm'] as const) if (typeof p[k] === 'number') p[k] = f.loc(p[k] as number);
       // plural selectors keep the raw number; display copies get native digits
       if (typeof p.days === 'number') {
         p.count = p.days;

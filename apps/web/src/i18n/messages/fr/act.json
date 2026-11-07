@@ -87,23 +87,22 @@
     "submitNoPhoto": "Envoyer sans photo",
     "noPhotoNote": "Sans photo, l’action attend qu’un membre de l’équipe la confirme.",
     "feature": "enregistrer une action",
-    "verifying": "Vérification avec l’IA…",
-    "verifyingSub": "Vérification de ce que montre la photo, et du lieu et moment de la prise.",
+    "verifying": "Vérification de votre photo…",
+    "verifyingSub": "Nous vérifions où et quand elle a été prise, et qu’elle est nouvelle.",
     "verified": "Vérifié",
     "pending": "En attente de confirmation",
-    "seen": "Ce que l’IA a vu",
-    "confidence": "Confiance {pct}",
     "earned": "points gagnés",
     "provisional": "points provisoires",
     "treesAdded": "{count, plural, one {{n} arbre ajouté à Mes arbres} other {{n} arbres ajoutés à Mes arbres}}",
     "milestone": "Étape d’objectif atteinte : {pct}",
     "seeContribution": "Voir la contribution",
     "logAnother": "En enregistrer une autre",
-    "failed": "Impossible d’enregistrer l’action. Réessayez."
+    "failed": "Impossible d’enregistrer l’action. Réessayez.",
+    "checks": "Vérifications"
   },
   "reason": {
     "ok": "Vérifié : la photo correspond à l’action.",
-    "unavailable": "Les vérifications de photo ne sont pas disponibles pour le moment. Un membre de l’équipe peut la confirmer.",
+    "unavailable": "Certaines vérifications n’ont pas pu être faites. Un coéquipier ou modérateur peut confirmer.",
     "rate_limited": "Trop de vérifications aujourd’hui. Un membre de l’équipe peut la confirmer.",
     "no_photo": "Aucune photo n’a été ajoutée. Un membre de l’équipe peut la confirmer.",
     "teammate_confirmed": "Confirmé par un membre de l’équipe."
@@ -116,17 +115,8 @@
     "pts": "+{points} pts",
     "creditedTo": "Crédité à {who}",
     "creditedMe": "Crédité à vous",
-    "provisionalNote": "Les points comptent une fois que quelqu’un la confirme.",
+    "provisionalNote": "Les points comptent une fois confirmés par un relecteur.",
     "checks": "Vérifications",
-    "aiCheck": "Contrôle d’image par IA",
-    "aiSeen": "La photo montre l’action",
-    "gps": "Position scellée",
-    "gpsRule": "Règle · GPS à moins de 300 m de la zone",
-    "gpsMissing": "Aucune position",
-    "time": "Heure scellée",
-    "timeRule": "Règle · prise dans les 24 dernières heures",
-    "pass": "Validé",
-    "check": "Contrôle",
     "cooling": "Refroidissement apporté",
     "coolingSub": "Modélisé pour {zone} à maturité",
     "coolingNone": "Cette action n’ajoute pas de refroidissement modélisé, mais elle fait avancer le plan.",
@@ -139,15 +129,20 @@
     "survival": "Photos de survie",
     "survivalNote": "Chaque vérification rapporte des points. En manquer une met les points en pause ; ils ne disparaissent pas.",
     "dayN": "Jour {n}",
-    "confirm": "Un membre de l’équipe le confirme",
-    "confirmSub": "Dans v0, cela se confirme sur cet appareil.",
     "share": "Partager",
     "shareText": "Je viens d’enregistrer « {action} » avec Atmos X : {points} points pour un {zone} plus frais.",
     "copied": "Lien copié",
     "backPlan": "Retour au plan",
     "seeTeam": "Voir l’équipe",
     "notFound": "Cette action n’est pas sur cet appareil.",
-    "photoAlt": "Votre photo de l’action"
+    "photoAlt": "Votre photo de l’action",
+    "rejectedNote": "Un relecteur ne l’a pas confirmé. Aucun point ajouté.",
+    "reviewTitle": "Pouvez-vous le confirmer ?",
+    "reviewSub": "Vous êtes coéquipier ou modérateur. Ne confirmez que ce que vous savez.",
+    "approve": "Confirmer",
+    "reject": "Non confirmé",
+    "waitTitle": "En attente de relecture",
+    "waitSub": "Un coéquipier ou un modérateur le confirme. Vous ne pouvez pas confirmer votre propre action."
   },
   "budget": {
     "title": "Budget",
@@ -184,5 +179,50 @@
     "noneSub": "Essayez la liste sélectionnée à Dhaka, ou cherchez “plant nursery” dans votre appli de cartes.",
     "you": "Votre zone",
     "mapLabel": "Carte des pépinières près de {place}"
+  },
+  "check": {
+    "pass": "Validé",
+    "skip": "N/A",
+    "review": "À vérifier",
+    "gps_present": {
+      "title": "Position avec la photo",
+      "rule": "GPS précis à 100 m"
+    },
+    "gps_near": {
+      "title": "Près de la zone visée",
+      "rule": "À moins de 300 m de la zone"
+    },
+    "location_plausible": {
+      "title": "Lieu plausible",
+      "rule": "Ni sur l’eau ni dans un bâtiment, pas de saut impossible"
+    },
+    "time_recent": {
+      "title": "Prise récemment",
+      "rule": "Dans les dernières 24 heures"
+    },
+    "capture_source": {
+      "title": "Prise avec l’appareil",
+      "rule": "Appareil de l’app, ou l’heure et le lieu de la photo concordent"
+    },
+    "not_duplicate": {
+      "title": "Nouvelle photo",
+      "rule": "Pas une photo déjà utilisée"
+    },
+    "content_plausible": {
+      "title": "La photo correspond à l’action",
+      "rule": "Contrôle approximatif : assez de vert ou un toit clair"
+    },
+    "photo_present": {
+      "title": "Photo ajoutée",
+      "rule": "Une photo à chaque suivi"
+    },
+    "gps_near_tree": {
+      "title": "Près de l’arbre",
+      "rule": "À moins de 100 m de l’endroit où il a été planté"
+    },
+    "imported": {
+      "title": "Importé depuis cet appareil",
+      "rule": "Une personne le vérifie"
+    }
   }
 }

@@ -87,23 +87,22 @@
     "submitNoPhoto": "无照片提交",
     "noPhotoNote": "没有照片时，这个行动会等待队友确认。",
     "feature": "记录行动",
-    "verifying": "正在用 AI 验证…",
-    "verifyingSub": "检查照片内容、拍摄地点和时间。",
+    "verifying": "正在检查你的照片…",
+    "verifyingSub": "正在检查拍摄地点和时间，以及是否为新照片。",
     "verified": "已验证",
     "pending": "等待确认",
-    "seen": "AI 看到的内容",
-    "confidence": "置信度 {pct}",
     "earned": "已获得积分",
     "provisional": "临时积分",
     "treesAdded": "{count, plural, one {{n}棵树已加入“我的树木”} other {{n}棵树已加入“我的树木”}}",
     "milestone": "已达成目标里程碑：{pct}",
     "seeContribution": "查看贡献",
     "logAnother": "再记一条",
-    "failed": "无法保存这个行动。请重试。"
+    "failed": "无法保存这个行动。请重试。",
+    "checks": "检查"
   },
   "reason": {
     "ok": "已验证：照片与行动相符。",
-    "unavailable": "照片检查目前不可用。队友可以确认。",
+    "unavailable": "部分检查无法运行。队友或版主可以确认。",
     "rate_limited": "今天检查次数过多。队友可以确认。",
     "no_photo": "未添加照片。队友可以确认。",
     "teammate_confirmed": "已由队友确认。"
@@ -116,17 +115,8 @@
     "pts": "+{points} 分",
     "creditedTo": "记到 {who} 名下",
     "creditedMe": "记到你名下",
-    "provisionalNote": "有人确认后，积分才会计入。",
+    "provisionalNote": "审核人确认后才计分。",
     "checks": "检查",
-    "aiCheck": "AI 图片检查",
-    "aiSeen": "照片显示了该行动",
-    "gps": "位置已封存",
-    "gpsRule": "规则 · GPS 在该区域 300 米内",
-    "gpsMissing": "无位置",
-    "time": "时间已封存",
-    "timeRule": "规则 · 拍摄于最近 24 小时内",
-    "pass": "通过",
-    "check": "检查",
     "cooling": "已贡献降温",
     "coolingSub": "按成熟状态为 {zone} 建模",
     "coolingNone": "这个行动不会增加建模降温，但会让计划继续推进。",
@@ -139,15 +129,20 @@
     "survival": "成活照片",
     "survivalNote": "每次检查都会得分。漏一次，积分就暂停；不会消失。",
     "dayN": "第{n}天",
-    "confirm": "队友确认",
-    "confirmSub": "在 v0 中，这会在此设备上确认。",
     "share": "分享",
     "shareText": "我刚在 Atmos X 记录了“{action}”：为更凉爽的{zone}积累了 {points} 分。",
     "copied": "链接已复制",
     "backPlan": "返回方案",
     "seeTeam": "查看团队",
     "notFound": "此操作不在这台设备上。",
-    "photoAlt": "你拍的操作照片"
+    "photoAlt": "你拍的操作照片",
+    "rejectedNote": "审核人未确认，未加分。",
+    "reviewTitle": "你能确认吗？",
+    "reviewSub": "你是队友或版主。只确认你知道发生过的事。",
+    "approve": "确认",
+    "reject": "不确认",
+    "waitTitle": "等待审核",
+    "waitSub": "由队友或版主确认。你不能确认自己的行动。"
   },
   "budget": {
     "title": "预算",
@@ -184,5 +179,50 @@
     "noneSub": "试试达卡的精选列表，或在你的地图应用里搜索“plant nursery”。",
     "you": "你的区域",
     "mapLabel": "{place} 附近苗圃地图"
+  },
+  "check": {
+    "pass": "通过",
+    "skip": "不适用",
+    "review": "需要审核",
+    "gps_present": {
+      "title": "照片附带位置",
+      "rule": "GPS 精度在 100 米内"
+    },
+    "gps_near": {
+      "title": "靠近目标区域",
+      "rule": "距区域 300 米以内"
+    },
+    "location_plausible": {
+      "title": "位置合理",
+      "rule": "不在水面或建筑内，没有不可能的跳跃"
+    },
+    "time_recent": {
+      "title": "近期拍摄",
+      "rule": "过去 24 小时内"
+    },
+    "capture_source": {
+      "title": "用相机拍摄",
+      "rule": "应用内相机，或照片时间和地点一致"
+    },
+    "not_duplicate": {
+      "title": "新照片",
+      "rule": "不是用过的照片"
+    },
+    "content_plausible": {
+      "title": "照片与行动相符",
+      "rule": "粗略检查：足够绿色，或浅色屋顶"
+    },
+    "photo_present": {
+      "title": "已添加照片",
+      "rule": "每次打卡一张照片"
+    },
+    "gps_near_tree": {
+      "title": "在树旁",
+      "rule": "距种植地点 100 米以内"
+    },
+    "imported": {
+      "title": "从此设备导入",
+      "rule": "由人工核查"
+    }
   }
 }

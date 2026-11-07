@@ -229,16 +229,23 @@
   },
   "verify": {
     "ok": "Vérifié : la photo correspond à l’action.",
-    "ai_unavailable": "Nous n’avons pas pu vérifier la photo pour le moment. Un membre de l’équipe peut la confirmer.",
-    "not_a_photo": "Cela ne ressemble pas à une photo prise avec l’appareil. Un membre de l’équipe peut la confirmer.",
-    "different_action": "La photo semble montrer une autre action. Un membre de l’équipe peut la confirmer.",
-    "ai_mismatch": "Nous n’avons pas pu voir l’action sur la photo. Un membre de l’équipe peut la confirmer.",
-    "ai_low_confidence": "La photo n’est pas assez nette pour être sûr. Un membre de l’équipe peut la confirmer.",
     "gps_missing": "Aucune position avec la photo. Un membre de l’équipe peut la confirmer.",
-    "gps_far": "La photo a été prise à plus de 300 m de la zone. Un membre de l’équipe peut la confirmer.",
+    "gps_far": "La photo a été prise à {dist_m} de la zone (plus de 300 m). Un coéquipier peut confirmer.",
     "time_unknown": "Nous n’avons pas pu lire l’heure de la photo. Un membre de l’équipe peut la confirmer.",
     "time_future": "L’heure de la photo est dans le futur. Un membre de l’équipe peut la confirmer.",
-    "too_old": "La photo date de plus de 24 heures. Un membre de l’équipe peut la confirmer."
+    "too_old": "La photo date de plus de 24 heures. Un membre de l’équipe peut la confirmer.",
+    "gps_inaccurate": "La position n’était pas assez précise (plus de 100 m). Un coéquipier peut confirmer.",
+    "on_water": "La position est sur l’eau. Un coéquipier peut confirmer.",
+    "inside_building": "La position est dans un bâtiment. Un coéquipier peut confirmer.",
+    "too_fast": "Ce lieu est trop loin de votre dernier relevé pour le temps écoulé. Un coéquipier peut confirmer.",
+    "exif_mismatch": "Impossible de confirmer quand et où la photo a été prise. Utilisez l’appareil de l’app, ou un coéquipier peut confirmer.",
+    "duplicate_photo": "Cette photo a déjà été utilisée. Prenez-en une nouvelle.",
+    "not_green": "Pas assez de végétation visible sur la photo. Un coéquipier peut confirmer.",
+    "not_roof": "Pas de toit clair visible sur la photo. Un coéquipier peut confirmer.",
+    "no_photo": "Aucune photo ajoutée. Un coéquipier peut confirmer.",
+    "imported": "Importé depuis votre appareil. Un coéquipier ou modérateur le confirme.",
+    "reviewed": "Confirmé par un relecteur.",
+    "review_rejected": "Un relecteur ne l’a pas confirmé."
   },
   "action": {
     "open_zone": "Ouvrir la zone",
@@ -325,5 +332,17 @@
   },
   "task": {
     "custom": "{text}"
+  },
+  "tree": {
+    "tip": {
+      "replant": "Cet arbre n’a pas survécu. Replantez au même endroit une espèce robuste avec une protection.",
+      "stressed": "Les feuilles semblent stressées : arrosez en profondeur au pied le matin et revérifiez dans 3 jours.",
+      "water_dry": "Seulement {rain_mm} mm de pluie la semaine passée : arrosez 10–15 litres tous les 2–3 jours.",
+      "drainage": "{rain_mm} mm de pluie cette semaine : vérifiez que l’eau s’écoule loin du pied.",
+      "guard": "Gardez la protection la première année pour que chèvres et passants ne l’abîment pas.",
+      "thirsty": "Cette espèce a besoin de beaucoup d’eau quand elle est jeune.",
+      "monsoon": "Mousson : pas besoin d’arroser, mais désherbez autour du pied.",
+      "keep_going": "Tout va bien. Continuez le suivi tous les 15 jours."
+    }
   }
 }

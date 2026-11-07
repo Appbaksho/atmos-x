@@ -229,16 +229,23 @@
   },
   "verify": {
     "ok": "Verificado: la foto coincide con la acción.",
-    "ai_unavailable": "No pudimos revisar la foto ahora. Una persona del equipo puede confirmarlo.",
-    "not_a_photo": "Esto no parece una foto tomada con cámara. Una persona del equipo puede confirmarlo.",
-    "different_action": "La foto parece mostrar otra acción. Una persona del equipo puede confirmarlo.",
-    "ai_mismatch": "No pudimos ver la acción en la foto. Una persona del equipo puede confirmarlo.",
-    "ai_low_confidence": "La foto no está lo bastante clara para estar seguros. Una persona del equipo puede confirmarlo.",
     "gps_missing": "La foto no tiene ubicación. Una persona del equipo puede confirmarlo.",
-    "gps_far": "La foto se tomó a más de 300 m de la zona. Una persona del equipo puede confirmarlo.",
+    "gps_far": "La foto se tomó a {dist_m} de la zona (más de 300 m). Un compañero puede confirmarlo.",
     "time_unknown": "No pudimos leer cuándo se tomó la foto. Una persona del equipo puede confirmarlo.",
     "time_future": "La hora de la foto está en el futuro. Una persona del equipo puede confirmarlo.",
-    "too_old": "La foto tiene más de 24 horas. Una persona del equipo puede confirmarlo."
+    "too_old": "La foto tiene más de 24 horas. Una persona del equipo puede confirmarlo.",
+    "gps_inaccurate": "La ubicación no era lo bastante precisa (más de 100 m). Un compañero puede confirmarlo.",
+    "on_water": "La ubicación está sobre el agua. Un compañero puede confirmarlo.",
+    "inside_building": "La ubicación está dentro de un edificio. Un compañero puede confirmarlo.",
+    "too_fast": "Este lugar está demasiado lejos de tu último registro para el tiempo transcurrido. Un compañero puede confirmarlo.",
+    "exif_mismatch": "No pudimos confirmar cuándo y dónde se tomó la foto. Usa la cámara de la app, o un compañero puede confirmarlo.",
+    "duplicate_photo": "Esta foto ya se usó. Toma una nueva.",
+    "not_green": "No vimos suficientes plantas en la foto. Un compañero puede confirmarlo.",
+    "not_roof": "No vimos un techo claro en la foto. Un compañero puede confirmarlo.",
+    "no_photo": "No se añadió foto. Un compañero puede confirmarlo.",
+    "imported": "Importado de tu dispositivo. Lo confirma un compañero o moderador.",
+    "reviewed": "Confirmado por un revisor.",
+    "review_rejected": "Un revisor no lo confirmó."
   },
   "action": {
     "open_zone": "Abrir zona",
@@ -325,5 +332,17 @@
   },
   "task": {
     "custom": "{text}"
+  },
+  "tree": {
+    "tip": {
+      "replant": "Este árbol no sobrevivió. Vuelve a plantar en el mismo sitio con una especie resistente y un protector.",
+      "stressed": "Las hojas muestran estrés: riega a fondo en la base por la mañana y revisa en 3 días.",
+      "water_dry": "Solo {rain_mm} mm de lluvia la última semana: riega 10–15 litros cada 2–3 días.",
+      "drainage": "{rain_mm} mm de lluvia esta semana: asegúrate de que el agua drene lejos de la base.",
+      "guard": "Mantén el protector el primer año para que cabras y personas no lo dañen.",
+      "thirsty": "Esta especie necesita mucha agua mientras es joven.",
+      "monsoon": "Monzón: no hace falta regar, pero quita las malas hierbas de la base.",
+      "keep_going": "Va bien. Sigue revisando cada 15 días."
+    }
   }
 }

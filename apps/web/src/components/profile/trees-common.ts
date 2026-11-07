@@ -11,18 +11,29 @@ import { humanize } from './codes';
 
 export type TreeChip = { label: string; bg: string; fg: string; urgent: boolean; overdue: boolean; days: number };
 
-/** Photo-due chip for a tree (prototype `treeStatus`). */
+/** State chip for a tree (T3 state from the server, with the days to the next check-in). */
 export function useTreeChip() {
   const t = useTranslations('profile.trees');
   const { c, f } = useCz();
   return useCallback(
-    (tree: Pick<Tree, 'next_due_at' | 'status' | 'health'>): TreeChip => {
+    (tree: Pick<Tree, 'next_due_at' | 'state'>): TreeChip => {
       const n = daysUntilDue(tree.next_due_at);
-      if (tree.health === 'dead') return { label: t('dead'), bg: c.soft, fg: c.ink2, urgent: false, overdue: false, days: n };
-      if (n < 0) return { label: t('od', { count: -n, n: f.loc(-n) }), bg: B.deepRed, fg: B.white, urgent: true, overdue: true, days: n };
-      if (n === 0) return { label: t('today'), bg: B.orange, fg: B.navy, urgent: true, overdue: false, days: n };
-      if (tree.status === 'due' || n <= 3) return { label: t('soon', { count: n, n: f.loc(n) }), bg: 'rgba(242,154,56,0.22)', fg: c.ink, urgent: tree.status !== 'ok', overdue: false, days: n };
-      return { label: t('ok', { count: n, n: f.loc(n) }), bg: c.limeSoft, fg: c.ink, urgent: false, overdue: false, days: n };
+      switch (tree.state) {
+        case 'verifying':
+          return { label: t('state.verifying'), bg: c.soft, fg: c.ink, urgent: false, overdue: false, days: n };
+        case 'lost':
+          return { label: t('state.lost'), bg: c.soft, fg: c.ink2, urgent: false, overdue: false, days: n };
+        case 'at_risk':
+          return { label: t('state.at_risk'), bg: B.deepRed, fg: B.white, urgent: true, overdue: n < 0, days: n };
+        case 'needs_water':
+          return { label: t('state.needs_water'), bg: B.orange, fg: B.navy, urgent: true, overdue: n < 0, days: n };
+        case 'due':
+          if (n < 0) return { label: t('od', { count: -n, n: f.loc(-n) }), bg: B.orange, fg: B.navy, urgent: true, overdue: true, days: n };
+          if (n === 0) return { label: t('today'), bg: B.orange, fg: B.navy, urgent: true, overdue: false, days: n };
+          return { label: t('soon', { count: n, n: f.loc(n) }), bg: 'rgba(242,154,56,0.22)', fg: c.ink, urgent: true, overdue: false, days: n };
+        default:
+          return { label: t('ok', { count: n, n: f.loc(n) }), bg: c.limeSoft, fg: c.ink, urgent: false, overdue: false, days: n };
+      }
     },
     [t, c, f],
   );

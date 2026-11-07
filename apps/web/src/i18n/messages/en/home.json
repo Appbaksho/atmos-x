@@ -80,5 +80,14 @@
     "cta": "Set a goal"
   },
   "goalFeature": "set a cooling goal",
-  "treesFeature": "track your trees"
+  "treesFeature": "track your trees",
+  "import": {
+    "title": "Bring your data from this device",
+    "sub": "{count, plural, one {{n} item} other {{n} items}} saved on this phone before accounts: goals, trees, actions and photos.",
+    "cta": "Add to my account",
+    "later": "Not now",
+    "failed": "Import didn’t finish",
+    "done": "Added {trees} trees, {actions} actions and {goals} goals",
+    "note": "Imported actions are reviewed by a teammate or moderator before they earn points."
+  }
 }

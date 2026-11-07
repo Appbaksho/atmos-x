@@ -83,5 +83,14 @@
     "cta": "Fijar una meta"
   },
   "goalFeature": "fijar una meta de enfriamiento",
-  "treesFeature": "seguir tus árboles"
+  "treesFeature": "seguir tus árboles",
+  "import": {
+    "title": "Trae tus datos de este dispositivo",
+    "sub": "{count, plural, one {{n} elemento guardado} other {{n} elementos guardados}} en este teléfono antes de las cuentas: metas, árboles, acciones y fotos.",
+    "cta": "Añadir a mi cuenta",
+    "later": "Ahora no",
+    "failed": "La importación no terminó",
+    "done": "Se añadieron {trees} árboles, {actions} acciones y {goals} metas",
+    "note": "Un compañero o moderador revisa las acciones importadas antes de que sumen puntos."
+  }
 }

@@ -87,7 +87,23 @@
       "causes.dense_buildings",
       "causes.dense_population",
       "causes.hot_nights",
+      "import.cta",
+      "import.done",
+      "import.failed",
+      "import.later",
+      "import.note",
+      "import.sub",
+      "import.title",
       "lst"
     ]
+  },
+  "import": {
+    "title": "এই ডিভাইসের ডেটা নিয়ে আসুন",
+    "sub": "অ্যাকাউন্টের আগে এই ফোনে {n}টি জিনিস সংরক্ষিত: লক্ষ্য, গাছ, কাজ ও ছবি।",
+    "cta": "আমার অ্যাকাউন্টে যোগ করুন",
+    "later": "এখন না",
+    "failed": "আমদানি শেষ হয়নি",
+    "done": "{trees}টি গাছ, {actions}টি কাজ ও {goals}টি লক্ষ্য যোগ হয়েছে",
+    "note": "আনা কাজগুলো পয়েন্ট পাওয়ার আগে একজন সতীর্থ বা মডারেটর পর্যালোচনা করবেন।"
   }
 }
