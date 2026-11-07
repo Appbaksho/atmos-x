@@ -13,7 +13,8 @@ export type Prefs = Pick<
 > & { presentation: boolean };
 
 export const DEFAULT_PREFS: Prefs = {
-  radius_m: 500,
+  // prompt-v1 §6.4 H3: presets 200 m · 500 m · 1 km, default 200 m
+  radius_m: 200,
   lang: 'en',
   unit: 'C',
   area: 'metric',
