@@ -135,7 +135,7 @@
   "linkA11y": "邀请链接",
   "spotsLeft": "{count, plural, one {{n} 个空位} other {{n} 个空位}} · 队伍最多 {max} 人",
   "teamFull": "这个队伍已满（{max}/{max}）。",
-  "deviceNote": "v0：队伍只保存在这台设备上。预置演示队伍可在任何浏览器中加入。",
+  "deviceNote": "团队保存在你的账户中。公开团队会出现在排行榜上，私密团队仅能受邀加入。",
   "orgSub": "{description}",
   "orgStats": {
     "rank": "区域排名",
@@ -168,7 +168,6 @@
   "createdSub": "分享邀请。最多 {max} 人可加入。",
   "openTeam": "打开队伍",
   "nameError": "队伍名称需为 3–60 个字符。",
-  "expires": "v0 中邀请码不会过期。要移除成员，请重新创建队伍。",
   "joinPage": {
     "title": "你收到邀请了",
     "pitch": "Atmos X 会找出你附近最热的街区，并帮助邻居用树木、凉屋顶和遮阴把它们降温。每项行动都会经过照片核验，并计入队伍目标。",
@@ -182,7 +181,6 @@
     "signIn": "我已经有账户",
     "full": "这个队伍已满（{max} / {max}）。请队长再建一个队伍。",
     "invalid": "没有队伍使用代码 {code}。请检查后重试。",
-    "remote": "这个队伍是在另一台设备上创建的。v0 版中，队伍保存在每台设备上，所以现在还不能在这里加入。",
     "already": "你已经在{name}里了。",
     "openApp": "打开应用",
     "openTeam": "打开队伍",

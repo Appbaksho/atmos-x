@@ -28,7 +28,7 @@
   "mapA11y": "Mapa dos lugares onde você contribuiu",
   "snapNote": "Ajustado ao centro da área. Seus pontos exatos ficam privados.",
   "sensors": "Meus sensores de ar",
-  "sensorsSub": "{count, plural, =0 {Adicionar um sensor simulado} one {{n} sensor · simulado (v0)} other {{n} sensores · simulado (v0)}}",
+  "sensorsSub": "{count, plural, =0 {Adicione seu sensor de PM2.5} one {{n} sensor} other {{n} sensores}}",
   "history": "Histórico",
   "historyEmpty": "Ainda não há ações. Registre a primeira para ganhar pontos.",
   "logAction": "Registrar ação",
@@ -310,7 +310,7 @@
       }
     },
     "reason": {
-      "unavailable": "A checagem da IA não estava disponível. Um colega de equipe pode confirmar.",
+      "unavailable": "A verificação automática não estava disponível. Um colega pode confirmar.",
       "rate_limited": "Muitas checagens hoje. Um colega de equipe pode confirmar.",
       "no_photo": "Nenhuma foto foi adicionada. Um colega de equipe pode confirmar.",
       "teammate_confirmed": "Confirmado por um colega de equipe."
@@ -337,7 +337,7 @@
     "askL": "Ask Atmos",
     "askShow": "Mostrar botão",
     "askHide": "Ocultar",
-    "askNote": "Chat flutuante com IA em toda tela",
+    "askNote": "Respostas rápidas sobre calor, planos, árvores e lavoura em cada tela",
     "radius": "Raio de busca",
     "radiusNote": "Até onde o mapa procura áreas quentes ao seu redor",
     "radiusGuest": "Convidados podem pesquisar até {max}. Crie uma conta para ir até 1 km.",
@@ -361,7 +361,7 @@
     "more": "Mais",
     "data": "Dados e ciência",
     "about": "Sobre Atmos X",
-    "footer": "Atmos X v0 · estimativa de calor a partir da cobertura do solo do OpenStreetMap + clima do Open-Meteo · © colaboradores do OpenStreetMap",
+    "footer": "Atmos X · Dados de satélite, tempo e clima da NASA · Dados do mapa © colaboradores do OpenStreetMap",
     "push": {
       "title": "Notificações push",
       "on": "Ativadas neste dispositivo",
@@ -386,58 +386,72 @@
   "about": {
     "title": "Dados e ciência",
     "sub": "De onde vem cada número",
-    "opens": "{title}, abre {url}",
     "credits": "Créditos e licenças",
-    "version": "Atmos X v0 · MVP apresentável",
+    "version": "Atmos X · pipeline de calor {v}",
     "sections": {
       "heat": {
-        "title": "Estimativa de calor: OpenStreetMap + clima ao vivo",
-        "body": "Na v0, o mapa de calor é uma estimativa. Em cada hex H3, medimos prédios, ruas, verde e água do OpenStreetMap e somamos à temperatura do ar ao vivo do Open-Meteo. O Heat Score compara cada hex com a mediana da sua busca. Não são dados de satélite."
+        "title": "Mapa de calor e Heat Score",
+        "body": "Cada hexágono (cerca de 135 m) recebe um Heat Score de 0 a 100 comparado com a própria área. O calor de superfície diurno vem do Landsat 8/9 e do HLS a 30 m, o noturno do MODIS, refinado pelo ECOSTRESS quando há passagem. Chão impermeável, verde e água vêm do ESA WorldCover. Hexágono sem dados aparece como “sem dados”, nunca é estimado."
       },
       "zones": {
-        "title": "Como as zonas de calor são encontradas",
-        "body": "O quarto mais quente dos hexes é agrupado em zonas conectadas e classificado pela média da pontuação. Zonas com até 3 pontos de diferença entre si são marcadas como empate técnico, em vez de classificadas."
+        "title": "Zonas quentes e suas causas",
+        "body": "O quarto mais quente dos hexágonos é agrupado em zonas conectadas e ordenado; zonas a menos de 3 pontos aparecem como quase empatadas. As causas de cada zona vêm de um modelo ajustado nos hexágonos da própria cidade, e a explicação é escrita a partir desses números."
       },
       "air": {
-        "title": "Temperatura do ar: Open-Meteo",
-        "body": "Temperatura, umidade e a previsão de 5 dias vêm da previsão do Open-Meteo. A “sensação térmica” usa o índice de calor da NOAA. As normais e o histórico de 20 anos vêm do arquivo ERA5 via Open-Meteo. Em Bangladesh, os níveis de calor usam os limites da BMD; não são alertas oficiais."
+        "title": "Temperatura e previsão",
+        "body": "As leituras atuais vêm do modelo Open-Meteo, conferidas com o NASA GEOS-FP. Normais e tempo recente vêm do NASA POWER, e o aquecimento futuro do NASA NEX-GDDP-CMIP6. A “sensação” usa o índice de calor da NOAA. Em Bangladesh, os níveis de calor seguem os limites do BMD; não são alertas oficiais."
       },
       "aq": {
-        "title": "Qualidade do ar: Open-Meteo Air Quality",
-        "body": "PM2.5 vem do modelo Open-Meteo Air Quality. Nós calculamos o AQI com os limites de PM2.5 da US EPA de 2024. Os sensores que você adiciona na v0 são simulados."
+        "title": "Qualidade do ar",
+        "body": "O PM2.5 medido vem de estações do OpenAQ. As previsões vêm do NASA GEOS-CF e do Open-Meteo e são marcadas como modelos. O AQI usa os limites de PM2.5 de 2024 da EPA dos EUA. Um sensor que você adiciona envia leituras reais; nada é simulado."
       },
       "cooling": {
         "title": "Estimativas de resfriamento",
-        "body": "Cada +1 % de cobertura de árvores em 1 km² reduz a temperatura da superfície durante o dia em cerca de 0,1–0,2 °C; telhados frios, cerca de 0,04 °C por 1 % de 1 km². O resfriamento das árvores aumenta conforme elas crescem. As projeções são faixas, nunca promessas."
+        "body": "Cada +1 % de copa de árvores em um km² reduz a temperatura de superfície diurna em cerca de 0,1–0,2 °C; telhados frescos cerca de 0,04 °C por 1 % de um km². O resfriamento das árvores cresce com elas. Projeções são faixas e estimativas, nunca promessas; o CO₂ das árvores é estimativa, não compensação."
       },
       "farm": {
         "title": "Alertas para agricultores",
-        "body": "As regras usam a previsão do Open-Meteo mais a chuva de 30 dias da NASA POWER, seguindo orientações de BMD, BRRI e DAE, por exemplo, calor ≥ 35 °C na floração do arroz. Atmos X nunca informa doses de pesticidas."
-      },
-      "ai": {
-        "title": "IA: OpenAI",
-        "body": "Os modelos da OpenAI escrevem o texto “por que está quente”, os detalhes do plano (espécies, custos, etapas), respondem ao Ask Atmos e verificam fotos. Tudo o que a IA preenche aparece como “estimativa de IA”. Os índices, o resfriamento e o AQI sempre vêm de fórmulas fixas."
+        "body": "Dez regras fixas rodam sobre a previsão, a chuva do NASA POWER, a umidade do solo do NASA SMAP, a chuva das últimas 72 h do NASA IMERG e a climatologia de raios NASA LIS/OTD, seguindo as orientações do BMD, BRRI e DAE. O Atmos X nunca indica doses de agrotóxicos."
       },
       "community": {
-        "title": "Dados da comunidade",
-        "body": "Sua conta, ações, fotos, árvores e equipes ficam só neste dispositivo na v0. As outras pessoas, equipes e placares são uma comunidade de demonstração, marcada como “comunidade de demonstração”."
+        "title": "Sua conta e privacidade",
+        "body": "Sua conta, ações, árvores e equipes ficam nos servidores do Atmos X e funcionam em qualquer dispositivo. Locais públicos são arredondados para cerca de 100 m, e suas fotos ficam privadas, a menos que você as publique. A comunidade de demonstração usa pessoas e equipes fictícias e nunca entra nos rankings reais."
       },
       "nurseries": {
-        "title": "Viveiros",
-        "body": "Os locais dos viveiros vêm do OpenStreetMap mais uma lista curada de Dhaka. Atmos X nunca vende plantas."
+        "title": "Viveiros e loja",
+        "body": "Os viveiros vêm do OpenStreetMap e de uma lista selecionada de Daca. Viveiros parceiros podem vender mudas e kits pelo app, pagos em taka via SSLCommerz; o Atmos X fica com uma pequena comissão. Pontos de árvores verificadas compram produtos doados por empresas parceiras; pontos não têm valor em dinheiro."
+      },
+      "checks": {
+        "title": "Como as ações são conferidas",
+        "body": "Cada foto passa por verificações fixas: GPS presente e perto do local, localização plausível, tirada há pouco, tirada no app, não duplicada e com conteúdo compatível com a ação. O que for sinalizado vai para um colega de equipe ou um moderador. Nenhum modelo de linguagem é usado."
+      },
+      "ask": {
+        "title": "Ask Atmos",
+        "body": "O Ask Atmos responde com os dados do próprio app e regras fixas: reconhece a pergunta, lê os mesmos números da tela e mostra as fontes. Não usa modelo de linguagem, então nunca inventa fatos."
       }
     },
     "credit": {
       "osm": "Dados do mapa © colaboradores do OpenStreetMap, ODbL",
       "ofm": "Blocos do mapa: OpenFreeMap",
       "meteo": "Clima e qualidade do ar: Open-Meteo, CC BY 4.0",
-      "era5": "Arquivo climático: Copernicus ERA5 via Open-Meteo",
-      "power": "Chuva: NASA POWER",
-      "gibs": "Camada opcional de temperatura da superfície: NASA GIBS",
-      "openai": "IA: OpenAI",
       "photos": "Fotos: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Fontes: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
-    }
+    },
+    "live": {
+      "count": "{n} conjuntos de dados da NASA em uso agora",
+      "formula": "O Heat Score de cada hexágono, exatamente como o app calcula:",
+      "fit": "Modelo de causas para Daca: R² {r2} em {n} hexágonos."
+    },
+    "sources": {
+      "title": "Todas as fontes de dados",
+      "sub": "Lidas ao vivo do app, com o tipo, o dado mais recente e a licença de cada fonte.",
+      "inUse": "em uso",
+      "standby": "em espera",
+      "latest": "mais recente {date}",
+      "resolution": "{m} m",
+      "opens": "{name}, abre a fonte"
+    },
+    "versionNone": "Atmos X"
   },
   "spendable": "{pts} disponíveis",
   "pending": "+{pts} pendentes",

@@ -132,7 +132,7 @@
   "linkA11y": "Invite link",
   "spotsLeft": "{count, plural, one {{n} place left} other {{n} places left}} · teams have up to {max} members",
   "teamFull": "This team is full ({max} of {max}).",
-  "deviceNote": "v0: teams live on this device. Seeded demo teams can be joined from any browser.",
+  "deviceNote": "Teams are saved to your account. Public teams appear on leaderboards; private teams are joined by invite only.",
   "orgSub": "{description}",
   "orgStats": {
     "rank": "Area rank",
@@ -165,7 +165,6 @@
   "createdSub": "Share the invite. Up to {max} people can join.",
   "openTeam": "Open team",
   "nameError": "Team names are 3–60 characters.",
-  "expires": "Codes don’t expire in v0. Remove people by recreating the team.",
   "joinPage": {
     "title": "You’re invited",
     "pitch": "Atmos X finds the hottest blocks around you and helps neighbours cool them with trees, cool roofs and shade. Every action is photo-checked and counts toward the team goal.",
@@ -179,7 +178,6 @@
     "signIn": "I already have an account",
     "full": "This team is full ({max} of {max}). Ask the lead to start a second team.",
     "invalid": "No team has the code {code}. Check it and try again.",
-    "remote": "This team was created on another device. In v0 teams are stored on each device, so it can’t be joined here yet.",
     "already": "You’re already in {name}.",
     "openApp": "Open the app",
     "openTeam": "Open team",

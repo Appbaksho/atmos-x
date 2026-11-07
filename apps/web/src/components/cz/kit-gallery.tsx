@@ -275,7 +275,7 @@ function KitBody() {
       <Section title="Source chips">
         <SourceChips meta={META_LIVE} />
         <SourceChips meta={META_CACHED} />
-        <SourceChips ai demo />
+        <SourceChips estimate demo />
       </Section>
 
       <Section title="States">

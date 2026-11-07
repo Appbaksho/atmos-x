@@ -28,7 +28,7 @@
   "mapA11y": "Carte des lieux où vous avez contribué",
   "snapNote": "Rattachées aux centres de zone. Vos lieux exacts restent privés.",
   "sensors": "Mes capteurs d’air",
-  "sensorsSub": "{count, plural, =0 {Ajouter un capteur simulé} one {{n} capteur · simulé (v0)} other {{n} capteurs · simulés (v0)}}",
+  "sensorsSub": "{count, plural, =0 {Ajoutez votre capteur PM2.5} one {{n} capteur} other {{n} capteurs}}",
   "history": "Historique",
   "historyEmpty": "Aucune action pour le moment. Enregistrez la première pour gagner des points.",
   "logAction": "Enregistrer une action",
@@ -310,7 +310,7 @@
       }
     },
     "reason": {
-      "unavailable": "La vérification par IA n’était pas disponible. Un coéquipier peut le confirmer.",
+      "unavailable": "La vérification automatique n'était pas disponible. Un coéquipier peut la confirmer.",
       "rate_limited": "Trop de vérifications aujourd’hui. Un coéquipier peut le confirmer.",
       "no_photo": "Aucune photo n’a été ajoutée. Un coéquipier peut le confirmer.",
       "teammate_confirmed": "Confirmé par un coéquipier."
@@ -337,7 +337,7 @@
     "askL": "Ask Atmos",
     "askShow": "Afficher le bouton",
     "askHide": "Masquer",
-    "askNote": "Chat IA flottant sur chaque écran",
+    "askNote": "Réponses rapides sur la chaleur, les plans, les arbres et l'agriculture sur chaque écran",
     "radius": "Rayon de recherche",
     "radiusNote": "Jusqu’où la carte cherche des zones chaudes autour de vous",
     "radiusGuest": "Les invités peuvent scanner jusqu’à {max}. Créez un compte pour aller jusqu’à 1 km.",
@@ -361,7 +361,7 @@
     "more": "Plus",
     "data": "Données et science",
     "about": "À propos d’Atmos X",
-    "footer": "Atmos X v0 · Estimation de chaleur à partir du couvert du sol OpenStreetMap + météo Open-Meteo · © contributeurs OpenStreetMap",
+    "footer": "Atmos X · Données satellite, météo et climat de la NASA · Données cartographiques © contributeurs OpenStreetMap",
     "push": {
       "title": "Notifications push",
       "on": "Activées sur cet appareil",
@@ -386,58 +386,72 @@
   "about": {
     "title": "Données et science",
     "sub": "D’où vient chaque chiffre",
-    "opens": "{title}, ouvre {url}",
     "credits": "Crédits et licences",
-    "version": "Atmos X v0 · MVP présentable",
+    "version": "Atmos X · chaîne de calcul de chaleur {v}",
     "sections": {
       "heat": {
-        "title": "Estimation de chaleur : OpenStreetMap + météo en direct",
-        "body": "Dans v0, la carte de chaleur est une estimation. Pour chaque hexagone H3, nous mesurons les bâtiments, les routes, la végétation et l’eau à partir d’OpenStreetMap, puis nous les combinons avec la température de l’air en direct d’Open-Meteo. Le Heat Score compare chaque hexagone à la médiane de votre scan. Ce ne sont pas des données satellites."
+        "title": "Carte de chaleur et Heat Score",
+        "body": "Chaque hexagone (environ 135 m) reçoit un Heat Score de 0 à 100 par rapport à son quartier. La chaleur de surface de jour vient de Landsat 8/9 et HLS à 30 m, celle de nuit de MODIS, affinée par ECOSTRESS quand un passage existe. Sols imperméables, verdure et eau viennent d'ESA WorldCover. Un hexagone sans données affiche « pas de données », jamais une supposition."
       },
       "zones": {
-        "title": "Comment les zones chaudes sont trouvées",
-        "body": "Les hexagones du quart le plus chaud sont regroupés en zones reliées et classés selon le score moyen. Les zones à moins de 3 points l’une de l’autre sont marquées comme quasi ex æquo au lieu d’être classées."
+        "title": "Zones chaudes et leurs causes",
+        "body": "Le quart le plus chaud des hexagones est regroupé en zones contiguës et classé ; les zones à moins de 3 points sont signalées comme quasi ex æquo. Les causes viennent d'un modèle ajusté sur les hexagones de la ville, et l'explication est écrite à partir de ces chiffres."
       },
       "air": {
-        "title": "Température de l’air : Open-Meteo",
-        "body": "La température, l’humidité et les prévisions sur 5 jours viennent des prévisions Open-Meteo. « Ressenti » utilise l’indice de chaleur de la NOAA. Les normales et l’historique sur 20 ans viennent de l’archive ERA5 via Open-Meteo. Au Bangladesh, les niveaux de chaleur utilisent les seuils BMD ; ce ne sont pas des alertes officielles."
+        "title": "Température et prévisions",
+        "body": "Les valeurs actuelles viennent du modèle Open-Meteo, recoupées avec NASA GEOS-FP. Les normales et la météo récente viennent de NASA POWER, le réchauffement futur de NASA NEX-GDDP-CMIP6. Le « ressenti » utilise l'indice de chaleur de la NOAA. Au Bangladesh, les niveaux de chaleur suivent les seuils du BMD ; ce ne sont pas des alertes officielles."
       },
       "aq": {
-        "title": "Qualité de l’air : Open-Meteo Air Quality",
-        "body": "Le PM2.5 vient du modèle Open-Meteo Air Quality. Nous calculons nous-mêmes l’AQI avec les seuils PM2.5 2024 de l’US EPA. Les capteurs que vous ajoutez dans v0 sont simulés."
+        "title": "Qualité de l'air",
+        "body": "Le PM2.5 mesuré vient des stations OpenAQ. Les prévisions viennent de NASA GEOS-CF et d'Open-Meteo, étiquetées comme modèles. L'AQI utilise les seuils PM2.5 2024 de l'US EPA. Un capteur que vous ajoutez envoie ses vraies mesures ; rien n'est simulé."
       },
       "cooling": {
-        "title": "Estimations de refroidissement",
-        "body": "Chaque +1 % de couvert arboré dans 1 km² baisse la température de surface en journée d’environ 0,1 à 0,2 °C ; les toits frais d’environ 0,04 °C par 1 % d’un km². Le rafraîchissement des arbres augmente à mesure qu’ils poussent. Les projections sont des fourchettes, jamais des promesses."
+        "title": "Estimations de rafraîchissement",
+        "body": "Chaque +1 % de canopée sur un km² abaisse la température de surface diurne d'environ 0,1–0,2 °C ; les toits frais d'environ 0,04 °C par 1 % d'un km². Le rafraîchissement des arbres augmente avec leur croissance. Les projections sont des fourchettes et des estimations, jamais des promesses ; le CO₂ des arbres est une estimation, pas une compensation."
       },
       "farm": {
-        "title": "Alertes agriculteurs",
-        "body": "Les règles s’appuient sur les prévisions Open-Meteo et les pluies sur 30 jours de NASA POWER, selon les consignes de BMD, BRRI et DAE, par exemple chaleur ≥ 35 °C à la floraison du riz. Atmos X ne donne jamais de doses de pesticides."
-      },
-      "ai": {
-        "title": "IA : OpenAI",
-        "body": "Les modèles OpenAI rédigent le texte « pourquoi il fait chaud », les détails du plan (espèces, coûts, étapes), répondent à Ask Atmos et vérifient les photos. Tout ce que l’IA remplit est marqué « estimation de l’IA ». Les scores, le refroidissement et l’AQI viennent toujours de formules fixes."
+        "title": "Alertes agricoles",
+        "body": "Dix règles fixes s'appliquent à la prévision, aux pluies NASA POWER, à l'humidité du sol NASA SMAP, aux pluies des 72 dernières heures NASA IMERG et à la climatologie de la foudre NASA LIS/OTD, selon les consignes du BMD, du BRRI et du DAE. Atmos X ne donne jamais de doses de pesticides."
       },
       "community": {
-        "title": "Données communautaires",
-        "body": "Votre compte, vos actions, vos photos, vos arbres et vos équipes restent uniquement sur cet appareil dans v0. Les autres personnes, équipes et classements font partie d’une communauté de démonstration, marquée « communauté de démonstration »."
+        "title": "Votre compte et votre vie privée",
+        "body": "Votre compte, vos actions, arbres et équipes sont gardés sur les serveurs d'Atmos X et fonctionnent sur tout appareil. Les lieux publics sont arrondis à environ 100 m, et vos photos restent privées sauf si vous les publiez. La communauté de démo utilise des personnes et équipes fictives et n'entre jamais dans les vrais classements."
       },
       "nurseries": {
-        "title": "Pépinières",
-        "body": "Les emplacements des pépinières viennent d’OpenStreetMap et d’une liste Dhaka sélectionnée. Atmos X ne vend jamais de plantes."
+        "title": "Pépinières et boutique",
+        "body": "Les pépinières viennent d'OpenStreetMap et d'une liste choisie pour Dacca. Les pépinières partenaires peuvent vendre plants et kits dans l'app, payés en takas via SSLCommerz ; Atmos X garde une petite commission. Les points des arbres vérifiés s'échangent contre des produits offerts par des entreprises partenaires ; les points n'ont pas de valeur monétaire."
+      },
+      "checks": {
+        "title": "Comment les actions sont vérifiées",
+        "body": "Chaque photo passe des contrôles fixes : GPS présent et proche du lieu, emplacement plausible, prise récemment, prise dans l'app, pas un doublon, et un contenu cohérent avec l'action. Ce qui est signalé va à un coéquipier ou à un modérateur. Aucun modèle de langage n'intervient."
+      },
+      "ask": {
+        "title": "Ask Atmos",
+        "body": "Ask Atmos répond à partir des données de l'app avec des règles fixes : il reconnaît la question, lit les mêmes chiffres qu'à l'écran et montre ses sources. Il n'utilise pas de modèle de langage, donc n'invente jamais de faits."
       }
     },
     "credit": {
       "osm": "Données cartographiques © contributeurs OpenStreetMap, ODbL",
       "ofm": "Tuiles cartographiques : OpenFreeMap",
       "meteo": "Météo et qualité de l’air : Open-Meteo, CC BY 4.0",
-      "era5": "Archive climatique : Copernicus ERA5 via Open-Meteo",
-      "power": "Précipitations : NASA POWER",
-      "gibs": "Superposition optionnelle de température de surface des terres : NASA GIBS",
-      "openai": "IA : OpenAI",
       "photos": "Photos : Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Polices : Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
-    }
+    },
+    "live": {
+      "count": "{n} jeux de données de la NASA utilisés en ce moment",
+      "formula": "Le Heat Score de chaque hexagone, tel que l'app le calcule :",
+      "fit": "Modèle des causes pour Dacca : R² {r2} sur {n} hexagones."
+    },
+    "sources": {
+      "title": "Toutes les sources de données",
+      "sub": "Lues en direct depuis l'app, avec le type, la dernière donnée et la licence de chaque source.",
+      "inUse": "utilisée",
+      "standby": "en attente",
+      "latest": "dernière {date}",
+      "resolution": "{m} m",
+      "opens": "{name}, ouvre la source"
+    },
+    "versionNone": "Atmos X"
   },
   "spendable": "{pts} utilisables",
   "pending": "+{pts} en attente",

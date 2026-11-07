@@ -125,7 +125,7 @@
     "groundTitle": "Verdade de campo",
     "groundTag": "Usado por cientistas",
     "groundBody": "Sua foto agora é um ponto de verdade de campo. Ela confere o que o satélite vê aqui (nova copa, verde e calor da superfície), do jeito que cientistas da NASA usam fotos do GLOBE enviadas por pessoas.",
-    "groundSrc": "Fica neste dispositivo na v0 · protocolo no estilo GLOBE",
+    "groundSrc": "Salvo com a sua ação · protocolo no estilo GLOBE",
     "survival": "Fotos de sobrevivência",
     "survivalNote": "Cada verificação rende pontos. Pular uma pausa os pontos; eles não somem.",
     "dayN": "Dia {n}",
@@ -161,7 +161,7 @@
     "splitSolo": "Divida com uma equipe",
     "splitSoloSub": "Uma equipe de 5 reduz para {each} por pessoa.",
     "logAct": "Registrar ação",
-    "estimateNote": "Os preços são estimativas da IA para esta área, comparadas com custos de referência. Confirme com fornecedores."
+    "estimateNote": "Os preços são estimativas para esta área a partir de custos de referência. Confirme com fornecedores."
   },
   "nurseries": {
     "title": "Viveiros",

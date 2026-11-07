@@ -1,6 +1,7 @@
 'use client';
 /** S01 · Welcome (port of screens/onboarding/welcome.tsx): full-bleed aerial, example score pills, headline, CTAs. */
 import { useTranslations } from 'next-intl';
+import { preload } from 'react-dom';
 
 import { B } from '@/components/cz/tokens';
 import { CzButton, GlassPill, LightStatusBar, Photo, Tap, Txt, View } from '@/components/cz/ui';
@@ -33,6 +34,8 @@ function ScorePill({ style, score, color, text, value }: { style: React.CSSPrope
 }
 
 export function WelcomeScreen() {
+  // E18: start fetching the hero before the image element mounts.
+  preload(PHOTO.welcome, { as: 'image', fetchPriority: 'high' });
   const { f, prefs, lang, setPrefs } = useCz();
   const t = useTranslations('onboarding.welcome');
   const demo = () => {
@@ -66,8 +69,9 @@ export function WelcomeScreen() {
         </GlassPill>
       </View>
 
-      <ScorePill style={{ top: '34%', insetInlineStart: '9%' }} score={86} color={B.red} text={t('roof')} value={f.deg(49)} />
-      <ScorePill style={{ top: '44%', insetInlineEnd: '7.5%' }} score={31} color={B.green} text={t('park')} value={f.deg(36)} />
+      {/* E18: both pills sit well above the headline block, even on short phones. */}
+      <ScorePill style={{ top: 'max(84px, 17%)', insetInlineStart: '9%' }} score={86} color={B.red} text={t('roof')} value={f.deg(49)} />
+      <ScorePill style={{ top: 'max(140px, 26%)', insetInlineEnd: '7.5%' }} score={31} color={B.green} text={t('park')} value={f.deg(36)} />
 
       <View style={{ position: 'absolute', start: 24, end: 24, bottom: 'calc(env(safe-area-inset-bottom, 0px) + 36px)', gap: 18, maxWidth: 520, marginInline: 'auto' }}>
         <Txt display size={30} color={B.white} as="h2" style={{ lineHeight: 35 }}>

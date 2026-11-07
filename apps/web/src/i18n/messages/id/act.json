@@ -125,7 +125,7 @@
     "groundTitle": "Data lapangan",
     "groundTag": "Dipakai ilmuwan",
     "groundBody": "Foto Anda sekarang menjadi titik data lapangan. Foto ini memeriksa apa yang dilihat satelit di sini (kanopi baru, kehijauan, dan panas permukaan), seperti cara ilmuwan NASA memakai foto warga GLOBE.",
-    "groundSrc": "Tetap di perangkat ini di v0 · protokol gaya GLOBE",
+    "groundSrc": "Disimpan bersama aksi Anda · protokol gaya GLOBE",
     "survival": "Foto kelangsungan hidup",
     "survivalNote": "Setiap cek mendapat poin. Jika satu terlewat, poin berhenti; tidak hilang.",
     "dayN": "Hari {n}",
@@ -161,7 +161,7 @@
     "splitSolo": "Bagikan biayanya dengan tim",
     "splitSoloSub": "Tim berisi 5 orang membuatnya turun menjadi {each} per orang.",
     "logAct": "Catat tindakan",
-    "estimateNote": "Harga adalah perkiraan AI untuk area ini, dicek dengan biaya referensi. Konfirmasi dengan pemasok."
+    "estimateNote": "Harga adalah perkiraan untuk wilayah ini dari biaya acuan. Pastikan ke pemasok."
   },
   "nurseries": {
     "title": "Pembibitan",

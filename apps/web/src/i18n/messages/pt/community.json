@@ -135,7 +135,7 @@
   "linkA11y": "Link de convite",
   "spotsLeft": "{count, plural, one {{n} vaga restante} other {{n} vagas restantes}} · as equipes têm até {max} membros",
   "teamFull": "Esta equipe está cheia ({max} de {max}).",
-  "deviceNote": "v0: as equipes ficam neste dispositivo. As equipes de demonstração carregadas podem ser acessadas de qualquer navegador.",
+  "deviceNote": "As equipes ficam salvas na sua conta. Equipes públicas aparecem nos rankings; nas privadas só se entra por convite.",
   "orgSub": "{description}",
   "orgStats": {
     "rank": "Ranking da área",
@@ -168,7 +168,6 @@
   "createdSub": "Compartilhe o convite. Até {max} pessoas podem entrar.",
   "openTeam": "Abrir equipe",
   "nameError": "Os nomes das equipes devem ter de 3 a 60 caracteres.",
-  "expires": "Os códigos não expiram na v0. Remova pessoas recriando a equipe.",
   "joinPage": {
     "title": "Você foi convidado",
     "pitch": "O Atmos X encontra os quarteirões mais quentes perto de você e ajuda os vizinhos a resfriá-los com árvores, telhados frios e sombra. Cada ação é verificada por foto e conta para a meta da equipe.",
@@ -182,7 +181,6 @@
     "signIn": "Já tenho uma conta",
     "full": "Esta equipe está cheia ({max} de {max}). Peça à liderança para criar uma segunda equipe.",
     "invalid": "Nenhuma equipe tem o código {code}. Confira e tente de novo.",
-    "remote": "Esta equipe foi criada em outro dispositivo. Na v0, as equipes ficam salvas em cada dispositivo, então ainda não dá para entrar aqui.",
     "already": "Você já está em {name}.",
     "openApp": "Abrir o app",
     "openTeam": "Abrir equipe",

@@ -186,15 +186,15 @@ const KIND_DOT: Record<string, string> = {
 export function SourceChips({
   meta,
   sources,
-  ai,
+  estimate,
   demo,
   tone = 'default',
   style,
 }: {
   meta?: Meta | null;
   sources?: Source[];
-  /** @deprecated V1 has no AI values; kept so older call sites compile. Shows an "estimate" chip. */
-  ai?: boolean;
+  /** Adds an "estimate" chip when the values shown are estimates (costs, cooling, CO₂). */
+  estimate?: boolean;
   demo?: boolean;
   /** `glass` over photos / the map */
   tone?: 'default' | 'glass';
@@ -214,7 +214,7 @@ export function SourceChips({
     const kindLabel = t.has(`kind.${kind}`) ? t(`kind.${kind}`) : kind;
     chips.push({ key: s.id, text: name, sub: [kindLabel, when].filter(Boolean).join(' · '), url: s.url && /^https?:/.test(s.url) ? s.url : undefined, title: `${s.name}${when ? ` · ${when}` : ''}`, kind });
   }
-  if (ai && !seen.has('estimate')) chips.push({ key: 'estimate', text: t('kind.estimate'), kind: 'estimate' });
+  if (estimate && !seen.has('estimate')) chips.push({ key: 'estimate', text: t('kind.estimate'), kind: 'estimate' });
   if (demo && !seen.has('demo')) chips.push({ key: 'demo', text: t('demo'), kind: 'demo' });
   if (meta && (meta.stale || meta.live === false))
     chips.push({ key: 'stale', text: t('stale'), sub: f.date(meta.generated_at, { dateStyle: 'medium', timeStyle: 'short' }), kind: 'stale', title: t('staleTitle') });

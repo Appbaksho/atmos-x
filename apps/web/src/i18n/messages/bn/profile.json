@@ -204,7 +204,7 @@
     "farmer": "কৃষক",
     "askShow": "বাটন দেখান",
     "askHide": "লুকান",
-    "askNote": "প্রতিটি পেজে ভাসমান AI চ্যাট",
+    "askNote": "প্রতিটি পর্দায় তাপ, পরিকল্পনা, গাছ ও কৃষি নিয়ে দ্রুত উত্তর",
     "data": "ডেটা ও বিজ্ঞান",
     "account": "অ্যাকাউন্ট",
     "metric": "m · km",
@@ -233,7 +233,7 @@
     "demoAccount": "প্রেজেন্টেশন মোডে নাদিয়ার ডেমো অ্যাকাউন্ট ব্যবহার হয়।",
     "more": "আরও",
     "about": "Atmos X সম্পর্কে",
-    "footer": "Atmos X v0 · OpenStreetMap ভূমি-আবরণ + Open-Meteo আবহাওয়া থেকে Heat Score · © OpenStreetMap contributors",
+    "footer": "Atmos X · NASA স্যাটেলাইট, আবহাওয়া ও জলবায়ু ডেটা · মানচিত্রের ডেটা © OpenStreetMap অবদানকারী",
     "liveNote": "পরিবর্তন সঙ্গে সঙ্গেই পুরো অ্যাপে প্রযোজ্য হবে",
     "unitC": "°C",
     "unitF": "°F",
@@ -262,58 +262,72 @@
   "about": {
     "title": "ডেটা ও বিজ্ঞান",
     "sub": "প্রতিটি সংখ্যা কোথা থেকে আসে",
-    "opens": "{title}, {url} খুলবে",
     "credits": "ক্রেডিট ও লাইসেন্স",
-    "version": "Atmos X v0 · দেখানোর মতো MVP",
+    "version": "Atmos X · হিট পাইপলাইন {v}",
     "sections": {
       "heat": {
-        "title": "তাপের অনুমান: OpenStreetMap + সরাসরি আবহাওয়া",
-        "body": "v0-এ তাপের মানচিত্র একটি অনুমান। প্রতিটি H3 ষড়ভুজে আমরা OpenStreetMap থেকে ভবন, রাস্তা, সবুজ ও পানি মাপি, তারপর তা সরাসরি Open-Meteo বাতাসের তাপমাত্রার সঙ্গে যোগ করি। Heat Score আপনার স্ক্যানের মধ্যমানের সঙ্গে প্রতিটি ষড়ভুজ তুলনা করে। এটি স্যাটেলাইটের তথ্য নয়।"
+        "title": "তাপ মানচিত্র ও Heat Score",
+        "body": "প্রতিটি ষড়ভুজ (প্রায় ১৩৫ মি) তার নিজের এলাকার তুলনায় ০ থেকে ১০০ Heat Score পায়। দিনের ভূপৃষ্ঠ তাপ আসে ৩০ মি রেজোলিউশনের Landsat 8/9 ও HLS থেকে, রাতের তাপ MODIS থেকে, আর ECOSTRESS পাস পাওয়া গেলে আরও সূক্ষ্ম করা হয়। ঢাকা মাটি, সবুজ ও পানি আসে ESA WorldCover থেকে। ডেটা না থাকলে ষড়ভুজটি “ডেটা নেই” দেখায়, কখনো অনুমান করা হয় না।"
       },
       "zones": {
-        "title": "তাপের এলাকা কীভাবে ধরা হয়",
-        "body": "সবচেয়ে গরম চতুর্থাংশের ষড়ভুজগুলো একসঙ্গে যুক্ত করে এলাকা বানানো হয় এবং গড় স্কোর অনুযায়ী সাজানো হয়। ৩ পয়েন্টের মধ্যে থাকা এলাকাগুলোকে র‌্যাঙ্ক না করে প্রায় সমান হিসেবে চিহ্নিত করা হয়।"
+        "title": "গরম এলাকা ও তার কারণ",
+        "body": "সবচেয়ে গরম এক-চতুর্থাংশ ষড়ভুজকে সংযুক্ত এলাকায় ভাগ করে ক্রম দেওয়া হয়; ৩ পয়েন্টের মধ্যের এলাকাগুলো প্রায় সমান দেখায়। প্রতিটি এলাকার কারণ আসে শহরের নিজস্ব ষড়ভুজে মেলানো মডেল থেকে, আর ব্যাখ্যা লেখা হয় সেই সংখ্যা থেকেই।"
       },
       "air": {
-        "title": "বাতাসের তাপমাত্রা: Open-Meteo",
-        "body": "তাপমাত্রা, আর্দ্রতা এবং ৫ দিনের পূর্বাভাস Open-Meteo-এর পূর্বাভাস থেকে আসে। “কেমন লাগে” হিসাব NOAA heat index ব্যবহার করে। স্বাভাবিক মান এবং ২০ বছরের ইতিহাস ERA5 আর্কাইভ থেকে Open-Meteo-এর মাধ্যমে আসে। বাংলাদেশে তাপের মাত্রা BMD সীমা ব্যবহার করে; এগুলো সরকারি সতর্কতা নয়।"
+        "title": "তাপমাত্রা ও পূর্বাভাস",
+        "body": "বর্তমান মান আসে Open-Meteo মডেল থেকে, NASA GEOS-FP দিয়ে মিলিয়ে দেখা। স্বাভাবিক মান ও সাম্প্রতিক আবহাওয়া NASA POWER থেকে, আর প্রক্ষেপণে ভবিষ্যৎ উষ্ণতা NASA NEX-GDDP-CMIP6 থেকে। “অনুভূত” তাপ NOAA হিট ইনডেক্স দিয়ে। বাংলাদেশে তাপের মাত্রা BMD-র সীমা অনুযায়ী; এগুলো সরকারি সতর্কতা নয়।"
       },
       "aq": {
-        "title": "বায়ুগুণমান: Open-Meteo Air Quality",
-        "body": "PM2.5 আসে Open-Meteo Air Quality মডেল থেকে। আমরা US EPA 2024 PM2.5 breakpoints দিয়ে AQI নিজেই হিসাব করি। v0-এ আপনি যে সেন্সর যোগ করেন, সেগুলো সিমুলেটেড।"
+        "title": "বায়ুর মান",
+        "body": "পরিমাপ করা PM2.5 আসে OpenAQ স্টেশন থেকে। পূর্বাভাস আসে NASA GEOS-CF ও Open-Meteo থেকে, মডেল হিসেবে চিহ্নিত। AQI-তে US EPA ২০২৪ PM2.5 সীমা ব্যবহার হয়। আপনার যোগ করা সেন্সর নিজের আসল মান পাঠায়; কিছুই কৃত্রিম নয়।"
       },
       "cooling": {
-        "title": "ঠান্ডা করার হিসাব",
-        "body": "এক km²-এ গাছের ছায়া ১% বাড়লে দিনের বেলার পৃষ্ঠতাপমাত্রা প্রায় ০.১–০.২ °C কমে; ঠান্ডা ছাদ প্রতি km²-এর ১% এ প্রায় ০.০৪ °C কমায়। গাছ বড় হলে তাদের শীতল প্রভাব বাড়ে। পূর্বাভাস কেবল পরিসর, প্রতিশ্রুতি নয়।"
+        "title": "ঠান্ডা হওয়ার অনুমান",
+        "body": "এক বর্গকিলোমিটারে গাছের ছাউনি প্রতি +১ % বাড়লে দিনের ভূপৃষ্ঠ তাপমাত্রা প্রায় ০.১–০.২ °সে কমে; ঠান্ডা ছাদে প্রতি ১ %-এ প্রায় ০.০৪ °সে। গাছ বড় হলে ঠান্ডা বাড়ে। প্রক্ষেপণ হলো পরিসর ও অনুমান, প্রতিশ্রুতি নয়; গাছের CO₂ অনুমান, অফসেট নয়।"
       },
       "farm": {
         "title": "কৃষক সতর্কতা",
-        "body": "নিয়মগুলো Open-Meteo পূর্বাভাস ও NASA POWER-এর ৩০ দিনের বৃষ্টিপাতের উপর চলে, BMD, BRRI ও DAE নির্দেশনা মেনে, যেমন ধানের ফুল আসার সময় তাপ ≥ ৩৫ °C। Atmos X কখনো কীটনাশকের মাত্রা দেয় না।"
-      },
-      "ai": {
-        "title": "AI: OpenAI",
-        "body": "OpenAI মডেলগুলো “কেন এত গরম” লেখা, পরিকল্পনার বিস্তারিত (প্রজাতি, খরচ, ধাপ), Ask Atmos-এর উত্তর, এবং ছবি পরীক্ষা করে। AI যা পূরণ করে, তা “AI estimate” হিসেবে চিহ্নিত হয়। স্কোর, শীতলতা ও AQI সবসময় নির্দিষ্ট সূত্র থেকে আসে।"
+        "body": "দশটি নির্দিষ্ট নিয়ম চলে পূর্বাভাস, NASA POWER বৃষ্টি, NASA SMAP মাটির আর্দ্রতা, গত ৭২ ঘণ্টার NASA IMERG বৃষ্টি ও NASA LIS/OTD বজ্রপাত তথ্যের উপর, BMD, BRRI ও DAE নির্দেশনা মেনে। Atmos X কখনো কীটনাশকের মাত্রা দেয় না।"
       },
       "community": {
-        "title": "কমিউনিটির তথ্য",
-        "body": "আপনার অ্যাকাউন্ট, কাজ, ছবি, গাছ ও টিম শুধু এই ডিভাইসেই থাকে v0-এ। অন্য মানুষ, টিম ও লিডারবোর্ডগুলো একটি ডেমো কমিউনিটি, চিহ্নিত থাকে “ডেমো কমিউনিটি” হিসেবে।"
+        "title": "আপনার অ্যাকাউন্ট ও গোপনীয়তা",
+        "body": "আপনার অ্যাকাউন্ট, কাজ, গাছ ও দল Atmos X সার্ভারে রাখা হয়, তাই যেকোনো ডিভাইসে কাজ করে। প্রকাশ্য অবস্থান প্রায় ১০০ মি পর্যন্ত গোল করা হয়, আর পোস্ট না করলে আপনার ছবি গোপন থাকে। ডেমো কমিউনিটিতে কাল্পনিক মানুষ ও দল, যা কখনো আসল লিডারবোর্ডে মেশে না।"
       },
       "nurseries": {
-        "title": "নার্সারি",
-        "body": "নার্সারির অবস্থান OpenStreetMap এবং একটি বাছাই করা ঢাকার তালিকা থেকে আসে। Atmos X কখনো গাছ বিক্রি করে না।"
+        "title": "নার্সারি ও স্টোর",
+        "body": "নার্সারির অবস্থান আসে OpenStreetMap ও বাছাই করা ঢাকার তালিকা থেকে। পার্টনার নার্সারি অ্যাপের মাধ্যমে চারা ও রোপণ কিট বিক্রি করতে পারে, SSLCommerz দিয়ে টাকায় পরিশোধ; Atmos X সামান্য কমিশন রাখে। যাচাইকৃত গাছের পয়েন্টে পার্টনার কোম্পানির দেওয়া পণ্য নেওয়া যায়; পয়েন্টের নগদ মূল্য নেই।"
+      },
+      "checks": {
+        "title": "কাজ কীভাবে যাচাই হয়",
+        "body": "প্রতিটি ছবি নির্দিষ্ট যাচাইয়ের মধ্য দিয়ে যায়: জিপিএস আছে ও জায়গার কাছে, বিশ্বাসযোগ্য অবস্থান, সাম্প্রতিক তোলা, অ্যাপে তোলা, নকল নয়, আর কাজের সাথে মানানসই বিষয়বস্তু। সন্দেহজনক হলে দলের সদস্য বা মডারেটর দেখেন। কোনো ভাষা-মডেল ব্যবহার হয় না।"
+      },
+      "ask": {
+        "title": "Ask Atmos",
+        "body": "Ask Atmos নির্দিষ্ট নিয়মে অ্যাপের নিজস্ব ডেটা থেকে উত্তর দেয়: প্রশ্ন চিনে, পর্দায় দেখা একই সংখ্যা পড়ে আর উৎস দেখায়। এটি ভাষা-মডেল ব্যবহার করে না, তাই কখনো তথ্য বানায় না।"
       }
     },
     "credit": {
       "osm": "মানচিত্রের তথ্য © OpenStreetMap contributors, ODbL",
       "ofm": "মানচিত্র টাইল: OpenFreeMap",
       "meteo": "আবহাওয়া ও বায়ুগুণমান: Open-Meteo, CC BY 4.0",
-      "era5": "জলবায়ু আর্কাইভ: Copernicus ERA5 via Open-Meteo",
-      "power": "বৃষ্টিপাত: NASA POWER",
-      "gibs": "ঐচ্ছিক ভূমি-পৃষ্ঠ তাপমাত্রা ওভারলে: NASA GIBS",
-      "openai": "AI: OpenAI",
       "photos": "ছবি: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "ফন্ট: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
-    }
+    },
+    "live": {
+      "count": "এই মুহূর্তে {n}টি NASA ডেটাসেট ব্যবহার হচ্ছে",
+      "formula": "প্রতিটি ষড়ভুজের Heat Score, অ্যাপ ঠিক যেভাবে হিসাব করে:",
+      "fit": "ঢাকার কারণ-মডেল: {n}টি ষড়ভুজে R² {r2}।"
+    },
+    "sources": {
+      "title": "সব ডেটা উৎস",
+      "sub": "অ্যাপ থেকে সরাসরি পড়া, প্রতিটি উৎসের ধরন, সর্বশেষ ডেটা ও লাইসেন্সসহ।",
+      "inUse": "ব্যবহারে",
+      "standby": "অপেক্ষায়",
+      "latest": "সর্বশেষ {date}",
+      "resolution": "{m} মি",
+      "opens": "{name}, উৎস খোলে"
+    },
+    "versionNone": "Atmos X"
   },
   "title": "প্রোফাইল",
   "notifsUnread": "নোটিফিকেশন, {n}টি না-পড়া",
@@ -337,7 +351,7 @@
   "myMap": "আমার অবদানের মানচিত্র",
   "mapA11y": "আপনি যে জায়গাগুলোতে অবদান রেখেছেন তার মানচিত্র",
   "snapNote": "এলাকার কেন্দ্রে বসানো হয়েছে। আপনার ঠিক জায়গাগুলো গোপন থাকে।",
-  "sensorsSub": "{count, plural, =0 {সিমুলেটেড সেন্সর যোগ করুন} one {{n}টি সেন্সর · সিমুলেটেড (v০)} other {{n}টি সেন্সর · সিমুলেটেড (v০)}}",
+  "sensorsSub": "{count, plural, =0 {নিজের PM2.5 সেন্সর যোগ করুন} one {{n}টি সেন্সর} other {{n}টি সেন্সর}}",
   "historyEmpty": "এখনও কোনো কাজ নেই। পয়েন্ট পেতে প্রথম কাজটি নথিভুক্ত করুন।",
   "logAction": "কাজ নথিভুক্ত করুন",
   "historyMeta": "{date} · {where}",
@@ -430,7 +444,7 @@
       }
     },
     "reason": {
-      "unavailable": "AI পরীক্ষা পাওয়া যায়নি। একজন টিমসদস্য এটি নিশ্চিত করতে পারেন।",
+      "unavailable": "স্বয়ংক্রিয় যাচাই পাওয়া যায়নি। দলের কেউ নিশ্চিত করতে পারেন।",
       "rate_limited": "আজ খুব বেশি পরীক্ষা হয়েছে। একজন টিমসদস্য এটি নিশ্চিত করতে পারেন।",
       "no_photo": "কোনো ছবি যোগ করা হয়নি। একজন টিমসদস্য এটি নিশ্চিত করতে পারেন।",
       "teammate_confirmed": "একজন টিমসদস্য নিশ্চিত করেছেন।"
@@ -442,6 +456,38 @@
   "pendingA11y": "গাছের ৯০ দিনের চেক-ইন পর্যন্ত {pts} পয়েন্ট অপেক্ষমাণ",
   "_meta": {
     "machine_keys": [
+      "about.live.count",
+      "about.live.fit",
+      "about.live.formula",
+      "about.sections.air.body",
+      "about.sections.air.title",
+      "about.sections.aq.body",
+      "about.sections.aq.title",
+      "about.sections.ask.body",
+      "about.sections.ask.title",
+      "about.sections.checks.body",
+      "about.sections.checks.title",
+      "about.sections.community.body",
+      "about.sections.community.title",
+      "about.sections.cooling.body",
+      "about.sections.cooling.title",
+      "about.sections.farm.body",
+      "about.sections.farm.title",
+      "about.sections.heat.body",
+      "about.sections.heat.title",
+      "about.sections.nurseries.body",
+      "about.sections.nurseries.title",
+      "about.sections.zones.body",
+      "about.sections.zones.title",
+      "about.sources.inUse",
+      "about.sources.latest",
+      "about.sources.opens",
+      "about.sources.resolution",
+      "about.sources.standby",
+      "about.sources.sub",
+      "about.sources.title",
+      "about.version",
+      "about.versionNone",
       "avatar.another",
       "avatar.change",
       "avatar.choose",
@@ -485,6 +531,7 @@
       "code.notif.tree.y1",
       "code.notif.verification.reviewed_no",
       "code.notif.verification.reviewed_ok",
+      "code.reason.unavailable",
       "join.bad",
       "join.badSub",
       "join.feature",
@@ -502,6 +549,9 @@
       "pending",
       "pendingA11y",
       "pendingUntil",
+      "sensorsSub",
+      "settings.askNote",
+      "settings.footer",
       "settings.push.denied",
       "settings.push.disabled",
       "settings.push.err.generic",

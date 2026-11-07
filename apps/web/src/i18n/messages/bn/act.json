@@ -63,7 +63,7 @@
     "split": "ভাগ করুন · {n} জন সদস্য",
     "splitSolo": "একটি দলের সঙ্গে ভাগ করুন",
     "splitSoloSub": "৫ জনের একটি দল হলে প্রতিজনে {each} করে পড়বে।",
-    "estimateNote": "এই এলাকার জন্য দাম AI-এর হিসাব, রেফারেন্স খরচের সঙ্গে মিলিয়ে দেখা হয়েছে। সরবরাহকারীর সঙ্গে নিশ্চিত করুন।",
+    "estimateNote": "দাম এই এলাকার রেফারেন্স খরচ থেকে অনুমান। সরবরাহকারীর সাথে নিশ্চিত করুন।",
     "sub": "{target} পরিকল্পনা · {zone}",
     "perMember": "জনপ্রতি",
     "perDeg": "প্রতি °C",
@@ -109,7 +109,7 @@
     "coolingNone": "এই কাজটি হিসাব করা শীতলতা যোগ করে না, তবে পরিকল্পনাটি এগিয়ে রাখে।",
     "rank": "আপনি আপনার এলাকায় #{rank} নম্বরে আছেন",
     "rankSub": "{points} পয়েন্ট · {level}",
-    "groundSrc": "v০-তে এটি এই ডিভাইসেই থাকে · GLOBE-ধরনের প্রোটোকল",
+    "groundSrc": "আপনার কাজের সাথে সংরক্ষিত · GLOBE-ধাঁচের পদ্ধতি",
     "survivalNote": "প্রতিটি যাচাইয়ে পয়েন্ট মেলে। একটি মিস হলে পয়েন্ট স্থগিত থাকে; হারায় না।",
     "dayN": "দিন {n}",
     "share": "শেয়ার",
@@ -224,6 +224,7 @@
   },
   "_meta": {
     "machine_keys": [
+      "budget.estimateNote",
       "check.capture_source.rule",
       "check.capture_source.title",
       "check.content_plausible.rule",
@@ -248,6 +249,7 @@
       "check.time_recent.rule",
       "check.time_recent.title",
       "contribution.approve",
+      "contribution.groundSrc",
       "contribution.provisionalNote",
       "contribution.reject",
       "contribution.rejectedNote",
