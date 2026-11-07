@@ -67,6 +67,19 @@ class Settings(BaseSettings):
     sslcommerz_store_password: str = ""
     sslcommerz_sandbox: bool = True
 
+    # Store and marketplace (prompt-v1 §6.9–§6.10). Prices are proposals; humans refine them (§14).
+    vat_rate: float = 0.15
+    points_per_bdt: float = 2.0  # M22: a listing's points price ≈ declared value × this rate
+    points_price_tolerance: float = 0.25
+    store_monthly_per_person: int = 4  # S15
+    store_monthly_per_device: int = 6
+    voucher_days: int = 14
+    tree_package_bdt: float = 1500.0  # M5: one tree planted and cared for over 3 years
+    store_listing_fee_bdt: float = 25000.0  # M7: per year
+    credit_price_bdt: float = 2500.0  # M6: per tonne, only once a lot is certified
+    co2_kg_per_tree_year: float = 10.0  # young urban tree, rough estimate (labelled, never an offset)
+    bank_transfer_min_bdt: float = 200000.0  # M14: bank transfer for large orders
+
     moderation_provider: str = "manual"
     google_vision_api_key: str = ""
 
