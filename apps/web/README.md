@@ -1,36 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# apps/web
 
-## Getting Started
+The Atmos X landing page, web app and installable PWA (Next.js 16, React 19, next-intl, TanStack Query, MapLibre). It holds no backend secrets: every request goes to the FastAPI service through the `/api/v1` and `/media` rewrites in `next.config.ts` (`API_ORIGIN`).
 
-First, run the development server:
+## Run
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+From the repo root: `make env` (writes `.env.local` with the web variables only), then `make dev`, or just this app with `npm run dev` while the API runs on `API_ORIGIN`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Layout
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | What |
+| --- | --- |
+| `src/app/[locale]/(marketing)` | Landing page (`/`), server-rendered with live `/sources` |
+| `src/app/[locale]/(app)/app/**` | App screens; `src/proxy.ts` handles locales and the `atmos_device` cookie |
+| `src/components/**` | Screens by feature; `components/cz` is the design kit and app shell |
+| `src/lib/data/hooks` | The only way screens get data (TanStack Query over the generated client) |
+| `src/lib/data/types.ts`, `src/lib/api/` | Contract types and the OpenAPI client (`make gen-client`) |
+| `src/i18n/messages/{locale}` | Messages for 10 locales; `npm run i18n:merge` and `npm run i18n:check` |
+| `public/sw.js` | Service worker: app shell, public `/api/v1` reads, web push |
+| `e2e/` | Playwright specs (Chromium only); the fixture fails on console errors and 404s |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Checks
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`npm run lint` · `npm run typecheck` · `npm test` (vitest) · `npm run build` · `npm run i18n:check` · `make e2e` from the root.
