@@ -61,6 +61,11 @@ export const EXTRA_ROUTES = {
   events: '/app/event',
   event: '/app/event/[id]',
   moderation: '/app/moderation',
+  store: '/app/store',
+  product: '/app/store/[id]',
+  partner: '/app/partner',
+  company: '/app/company',
+  admin: '/app/admin',
   about: '/app/about',
   login: '/auth/login',
   register: '/auth/register',
@@ -91,6 +96,7 @@ const FALLBACK: Partial<Record<RouteId, RouteId>> = {
   user: 'S16',
   post: 'S16',
   event: 'events',
+  product: 'store',
 };
 
 /** Build a locale-less path for a screen. */

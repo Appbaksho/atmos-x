@@ -709,6 +709,115 @@ export type ModerationQueue = {
   photos: { id: string; purpose: string; owner: PersonCard | null; photo_url: string; created_at: string }[];
 };
 
+/* ───────────────────────────── Store and marketplace ───────────────────────────── */
+
+export type StorePartner = { id: string; name: string; logo_url: string | null; logo_emoji: string | null; csr_line: string | null; city: string | null; is_pilot: boolean; is_demo: boolean; products: number };
+export type StoreCategory = 'food' | 'home' | 'garden' | 'vouchers';
+export type StoreFilter = StoreCategory | 'can_afford';
+
+export type StoreProduct = {
+  id: string;
+  partner: StorePartner | null;
+  name: string;
+  description: string | null;
+  category: StoreCategory;
+  photo_url: string | null;
+  emoji: string | null;
+  points_price: number;
+  stock: number;
+  fulfilment: 'pickup' | 'delivery';
+  delivery_area: string | null;
+  terms: string | null;
+  monthly_limit: number;
+  outlets: { id: string; name: string; address: string | null; location: LatLng | null }[];
+  can_afford: boolean;
+  is_demo: boolean;
+};
+
+export type StoreListing = { products: StoreProduct[]; pilot: boolean; points?: { spendable: number; pending: number; next_unlock_at: string | null } };
+
+export type StoreOrder = {
+  id: string;
+  product: { id: string; name: string; emoji: string | null; photo_url: string | null; fulfilment: 'pickup' | 'delivery' } | null;
+  partner: StorePartner | null;
+  points: number;
+  status: 'issued' | 'processing' | 'collected' | 'expired' | 'cancelled';
+  voucher: { code: string; expires_at: string; collected_at: string | null } | null;
+  delivery_address: string | null;
+  created_at: string;
+  collected_at: string | null;
+};
+
+export type PartnerProduct = StoreProduct & { declared_value_bdt: number; active: boolean; price_band: [number, number] };
+export type PartnerPortal = { partner: StorePartner; products: PartnerProduct[]; price_rule: { points_per_bdt: number; tolerance: number } };
+export type PartnerProductInput = {
+  name: string;
+  description?: string | null;
+  category: StoreCategory;
+  emoji?: string | null;
+  points_price: number;
+  declared_value_bdt: number;
+  stock: number;
+  fulfilment: 'pickup' | 'delivery';
+  delivery_area?: string | null;
+  terms?: string | null;
+  monthly_limit?: number;
+};
+export type PartnerProductPatch = Partial<Pick<PartnerProductInput, 'name' | 'description' | 'points_price' | 'declared_value_bdt' | 'stock' | 'terms'>> & { active?: boolean };
+export type SaplingProduct = { id: string; name: string; species_id: string | null; kind: 'sapling' | 'kit'; price_bdt: number; stock: number; photo_url: string | null; nursery: { id: string; name: string; address: string | null; dist_m: number | null }; is_demo: boolean };
+export type SaplingListing = { products: SaplingProduct[]; vat_rate: number; payments: boolean };
+export type SaplingOrderOut = { id: string; name: string | null; qty: number; amount_bdt: number; vat_bdt: number; total_bdt: number; status: 'unpaid' | 'paid' | 'failed' | 'cancelled'; created_at: string; paid_at: string | null; payment_url?: string | null };
+export type MyOrders = { redemptions: StoreOrder[]; saplings: SaplingOrderOut[] };
+
+export type CompanyStatus = 'pending' | 'approved' | 'rejected';
+export type CompanyInfo = {
+  id: string;
+  name: string;
+  trade_licence: string;
+  tin_bin: string;
+  contact_name: string;
+  contact_email: string;
+  contact_phone: string | null;
+  industry: string;
+  status: CompanyStatus;
+  review_note: string | null;
+  approved_at: string | null;
+  documents: { id: string; kind: 'trade_licence' | 'tin_bin' | 'other'; mime: string; size: number }[];
+};
+export type PackageId = 'tree_impact' | 'store_listing' | 'carbon_credits';
+export type CompanyPackage = { id: PackageId; unit: 'tree' | 'year' | 'tonne'; unit_price: number; currency: string; enabled: boolean; note: string; available_tonnes?: number; co2_kg_per_tree_year?: number };
+export type CompanyOrder = { id: string; package: PackageId; qty: number; unit_price: number; subtotal: number; vat_rate: number; vat: number; total: number; currency: string; status: 'unpaid' | 'paid' | 'failed' | 'cancelled' | 'awaiting_transfer'; payment_method: 'sslcommerz' | 'bank_transfer'; created_at: string; paid_at: string | null; note: string | null; payment_url?: string | null };
+export type CompanyOverview = {
+  trees_funded: number;
+  trees_allocated: number;
+  trees_alive: number;
+  survival_rate: number | null;
+  co2e_estimated_t: number;
+  co2e_certified_t: number;
+  people_reached: number;
+  products_redeemed: number;
+  has_store_listing: boolean;
+  note: string;
+  orders: CompanyOrder[];
+};
+export type EmissionsRow = { year: number; tonnes_co2e: number; offset_target_t: number | null; source_note: string | null; label: 'company_reported' };
+export type CompanyInvoice = { id: string; number: string; subtotal: number; vat_rate: number; vat: number; total: number; currency: string; created_at: string };
+export type CompanyCertificate = { id: string; kind: 'retirement' | 'impact_report' | 'retirement_record'; serial_from?: string; serial_to?: string; retired_at?: string; created_at?: string };
+export type CompanyRegisterInput = {
+  name: string;
+  trade_licence: string;
+  tin_bin: string;
+  contact_name: string;
+  contact_email: string;
+  contact_phone?: string | null;
+  industry: string;
+  trade_licence_doc: File;
+  tin_bin_doc: File;
+  other_doc?: File | null;
+};
+export type AdminOrder = CompanyOrder & { company_id: string; tran_id: string };
+export type CreditLotOut = { id: string; project_id: string | null; tonnes: number; serial_prefix: string; state: 'estimated' | 'verified' | 'sold' | 'retired'; standard: string | null; registry_project_id: string | null; auditor: string | null; certified_at: string | null; sold_to_company_id: string | null };
+
 /* ───────────────────────────── Air ───────────────────────────── */
 
 export type AqiCategory = 'good' | 'moderate' | 'usg' | 'unhealthy' | 'very_unhealthy' | 'hazardous';
