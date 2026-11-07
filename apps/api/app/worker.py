@@ -190,4 +190,8 @@ def next_run(delta: timedelta) -> datetime:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # Run the canonical `app.worker` module, not this `__main__` copy, so handlers registered by
+    # `app.jobs` (which import `app.worker`) are the ones the runner sees.
+    from app import worker as _canonical
+
+    asyncio.run(_canonical.main())

@@ -71,3 +71,40 @@ they are done directly with httpx (`providers/earthdata.py`).
 
 **D13. Dev ports.** Another project's Docker container already serves port 3000 on the dev machine, so
 local runs of the web app used port 3001 (`E2E_BASE_URL=http://localhost:3001`).
+
+**D14. Earthdata Login (URS) is unreachable from the build machine.** `urs.earthdata.nasa.gov`
+(198.118.243.33:443) times out over IPv4 and IPv6, while the NASA data hosts answer. The owner's
+`EARTHDATA_TOKEN` (valid to 6 Jan 2027) works as a bearer token on LP DAAC (ECOSTRESS) and on the
+GES DISC file host (IMERG). So the Earthdata provider prefers the token and only tries URS
+(`find_or_create_token`) when no token is set. Token-free URS flows cannot be verified from here.
+
+**D15. GEOS-FP humidity.** `tavg1_2d_slv_Nx` has no `t2mdew` (prompt §5.2 assumed it). Only daily
+Tmax/Tmin come from GEOS-FP; feels-like uses Open-Meteo humidity. `qv2m` and `ps` exist if needed.
+
+**D16. Driver fit.** Land-cover shares nearly sum to 1, so plain OLS (§7.4) split them arbitrarily
+and gave sealed surfaces a negative effect on real Dhaka data. The fit is sign-constrained (sealed
+and dark surfaces warm; green and water cool) with a small ridge on standardized drivers. On the
+Dhaka composite: sealed +1.04, green −1.76, water −3.27 °C per unit share, dark surface 0, R² 0.36.
+The residual is shown as "other factors".
+
+**D17. IMERG reads.** GES DISC Hyrax OPeNDAP needs a URS cookie (401 with a bearer token) and the
+cloud OPeNDAP rejected DAP2/DAP4 constraints, so IMERG daily files (≈ 28 MB global) are read from
+`data.gesdisc.earthdata.nasa.gov` by a daily worker job and sampled per active 0.1° cell.
+
+**D18. Read concurrency.** Planetary Computer COG reads take ~4 s each from the build machine. With
+the §7.1 cap of 4 concurrent reads a 2,401-hex chunk job takes ~80 s and the Dhaka region ~60 s, so
+cold areas complete in about 1–2 minutes, not the ~30 s target. The cap is kept (unconfirmed rate
+limits); scans return `partial` in well under 2 s meanwhile.
+
+**D19. ECOSTRESS checks (first read, as §5.2 asked).** `ECO_L2T_LSTE.002` LST is float32 Kelvin with
+NaN fill, 70 m UTM, one file per MGRS tile; `cloud` and `water` are uint8 0/1. Dhaka straddles tiles
+45QZG and 46QBM, and an orbit's swath is split into consecutive scenes a minute apart, so passes are
+grouped by orbit number and all their scenes and tiles merged. `LST_err` on clear Dhaka passes is
+3.1–3.4 K, so the plan's `LST_err ≤ 2 K` rejected every pass; the threshold is 3.5 K. ECOSTRESS only
+adds the relative day pattern (0.3 weight), where a uniform error cancels. Protected assets are read
+through presigned URLs (GDAL must not forward the bearer header to S3).
+
+**D20. Earthdata application approvals.** LP DAAC (ECOSTRESS), NSIDC (SMAP) and GHRC (LIS/OTD) accept
+the owner's token. GES DISC (IMERG) answers "EULA Acceptance Failure": the account has not approved the
+NASA GESDISC DATA ARCHIVE application. Until a person approves it, rain falls back to NASA POWER,
+labelled. This is a human task.
