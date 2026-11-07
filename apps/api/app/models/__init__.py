@@ -1,6 +1,6 @@
 """All models, imported so Alembic sees every table."""
 
-from .actions import Action, ActionReview, ActionType, Photo, Tree, TreeCheck
+from .actions import Action, ActionReview, ActionType, Photo, Tree, TreeCheck, TreeHelper
 from .airfarm import AlertAcknowledgement, FarmField, Sensor, SensorReading
 from .community import (
     Comment,
