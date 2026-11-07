@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { VerifyPhotoRequest } from '@/lib/data/types';
+import type { VerifyPhotoRequest } from '@/lib/data/local/v0-types';
 
 const structured = vi.fn();
 vi.mock('../openai', async (orig) => {
