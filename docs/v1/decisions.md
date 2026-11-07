@@ -171,9 +171,7 @@ browser checkout in the sandbox was not run. The IPN needs a public URL, so loca
 callback carries validation. Demo users see an invented pilot partner and nursery; real users see
 empty states until a real partner signs.
 
-## D28 · Store screens: roles, voucher scanning and client hints (5H/5I web)
-
-The app asks `GET /partner/me` (always 200, `partner: null` for everyone else) to decide whether to show
+**D28. Store screens.** The app asks `GET /partner/me` (always 200, `partner: null` for everyone else) to decide whether to show
 the partner portal link, so ordinary people never trigger a 403. Partner listings include the declared
 value, the active flag and the server's price band; the portal shows the band as a hint while the
 server stays the only judge (M22). Outlets scan the voucher QR with the browser's `BarcodeDetector`
