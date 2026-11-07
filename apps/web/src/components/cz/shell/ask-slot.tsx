@@ -21,6 +21,7 @@ import { useMounted } from '../hooks';
 import { I } from '../icons';
 import { B, SHADOW } from '../tokens';
 import { Icon, Tap } from '../ui';
+import { isTabRoot } from './tab-bar';
 
 type AskState = { open: () => void; close: () => void; isOpen: boolean; screen: ScreenId | null; visible: boolean };
 const Ctx = createContext<AskState | null>(null);
@@ -31,7 +32,6 @@ export function useAsk(): AskState {
   return v;
 }
 
-const TAB_PATHS = new Set(['/app', '/app/map', '/app/plan', '/app/community', '/app/profile']);
 const HIDDEN_PREFIXES = ['/app/log-action', '/app/onboarding'];
 
 export function AskProvider({ children }: { children: React.ReactNode }) {
@@ -47,7 +47,7 @@ export function AskProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const value = useMemo<AskState>(() => ({ isOpen, open: () => setOpen(true), close: () => setOpen(false), screen, visible }), [isOpen, screen, visible]);
-  const onTab = TAB_PATHS.has(path);
+  const onTab = isTabRoot(path, prefs.farmer_mode);
 
   return (
     <Ctx.Provider value={value}>

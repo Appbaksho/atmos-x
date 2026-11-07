@@ -28,6 +28,7 @@ import {
   View,
   href,
   useCz,
+  goBack,
 } from '@/components/cz';
 import { teamInitials } from '@/components/community/shared';
 import { useActions, useMe, useMyStats, useOrg, usePartnerMe, useProfile, useSensors, useSession, useTeams, useUnreadCount } from '@/lib/data/hooks';
@@ -67,13 +68,17 @@ const ACTION_ICON: Record<string, string> = {
 
 export function ProfileScreen() {
   const t = useTranslations('profile');
+  const tc = useTranslations('common');
+  const { f } = useCz();
   const session = useSession();
   const unread = useUnreadCount();
   const n = unread.data ?? 0;
 
   return (
-    <Screen tab>
-      <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 8 }}>
+    <Screen>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+        <IconBtn d={f.backPath} label={tc('back')} onPress={goBack} />
+        <View style={{ flex: 1 }} />
         <IconBtn d={I.bell} iconSize={20} label={n ? t('notifsUnread', { n }) : t('notifs')} badge={n > 0} href={href('S21')} />
         <IconBtn d={GEAR} iconSize={20} label={t('links.settings')} href={href('S22')} />
       </View>

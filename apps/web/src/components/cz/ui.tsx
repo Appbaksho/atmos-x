@@ -20,6 +20,7 @@ import { Link } from '@/i18n/navigation';
 import { goBack } from '@/lib/routes';
 import { useCz } from '@/lib/prefs';
 
+import { useHeaderMenu } from './header-slot';
 import { haptic as vibrate } from './hooks';
 import { BUTTON_GLYPH, I, type ButtonGlyph } from './icons';
 import { absoluteFill, rn, type CzStyle, type StyleProp } from './style';
@@ -533,6 +534,7 @@ export function ScreenHeader({
 }) {
   const { f } = useCz();
   const t = useTranslations('common');
+  const menu = useHeaderMenu();
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: big ? 4 : 0 }}>
       {back ? <IconBtn d={f.backPath} label={t('back')} onPress={onBack ?? goBack} /> : null}
@@ -547,6 +549,7 @@ export function ScreenHeader({
         ) : null}
       </View>
       {right}
+      {big ? menu : null}
     </View>
   );
 }

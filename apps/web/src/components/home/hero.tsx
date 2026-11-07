@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 
 import { SourceChips, Skeleton } from '@/components/cz/states';
 import { B, HEAT_RISK, R } from '@/components/cz/tokens';
+import { AccountMenuButton } from '@/components/cz/shell/account-menu';
 import { GlassPill, I, Icon, IconBtn, Photo, Tap, Txt, View } from '@/components/cz/ui';
 import { useTServer } from '@/i18n/server-text';
 import type { Conditions } from '@/lib/data/types';
@@ -85,7 +86,10 @@ export function Hero({
               {place}
             </Txt>
           </Tap>
-          <IconBtn d={I.bell} label={t('alerts')} tone="glass" iconSize={20} badge={unread} href={href('S21')} />
+          <View style={{ flexDirection: 'row', gap: 8, flexShrink: 0 }}>
+            <IconBtn d={I.bell} label={t('alerts')} tone="glass" iconSize={20} badge={unread} href={href('S21')} />
+            <AccountMenuButton tone="glass" />
+          </View>
         </View>
 
         {/* Warnings come first (BMD-threshold heat wave / dangerous heat) */}

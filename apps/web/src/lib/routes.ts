@@ -79,7 +79,7 @@ export type RouteParams = Record<string, string | number | null | undefined>;
 const ALL: Record<RouteId, string> = { ...ROUTES, ...EXTRA_ROUTES };
 
 /** Tab roots (switching between them is a tab change, not a push, in the prototype). */
-export const TAB_IDS: ReadonlySet<ScreenId> = new Set<ScreenId>(['S04', 'S05', 'S10', 'S16', 'S20', 'F01', 'F03']);
+export const TAB_IDS: ReadonlySet<ScreenId> = new Set<ScreenId>(['S04', 'S05', 'S10', 'S16', 'F01', 'F03']);
 
 /** Where a dynamic route goes when its param is missing. */
 const FALLBACK: Partial<Record<RouteId, RouteId>> = {
