@@ -8,8 +8,8 @@ import { getKV } from './kv';
 import { PHOTO_KEY_PREFIX, type LocalGoal } from './store';
 import type { ActionLog, Tree, TreeCheck } from './v0-types';
 
-/** Collections that moved to the server; cleared after import. Fields stay until the farm screens move. */
-const MOVED = ['goals', 'actions', 'trees', 'checks'] as const;
+/** Collections that moved to the server; cleared after import. */
+const MOVED = ['goals', 'actions', 'trees', 'checks', 'fields'] as const;
 const MAX_PHOTOS = 60;
 
 type GoalItem = { id: string; zone_centroid: LatLng | null; zone_name: string | null; target_c: number; by_date: string };

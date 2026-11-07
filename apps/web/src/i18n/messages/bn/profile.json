@@ -382,7 +382,10 @@
       "team": {
         "joined": "আপনি {team} দলে যোগ দিয়েছেন"
       },
-      "badge": "নতুন ব্যাজ: {badge}"
+      "badge": "নতুন ব্যাজ: {badge}",
+      "farm": {
+        "body": "{field} · {date} থেকে"
+      }
     },
     "reason": {
       "unavailable": "AI পরীক্ষা পাওয়া যায়নি। একজন টিমসদস্য এটি নিশ্চিত করতে পারেন।",
@@ -406,6 +409,7 @@
       "code.badge.survivor_3m",
       "code.badge.team_player",
       "code.notif.badge",
+      "code.notif.farm.body",
       "code.notif.tree.at_risk",
       "code.notif.tree.d90",
       "code.notif.tree.d90_due",

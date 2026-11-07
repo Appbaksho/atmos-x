@@ -63,7 +63,8 @@
     "notFoundSub": "每次预报更新时，预警也会更新。打开你的地块查看最新信息。",
     "backFarm": "返回我的农场",
     "dae": "农药或化肥用量，请咨询当地农业推广部门（DAE）。",
-    "rule": "规则移植自 Atmos X 农户引擎，基于 Open-Meteo 预报。"
+    "rule": "依据 BMD、BRRI 和 DAE 建议的经验规则，基于 Open-Meteo 预报及可用的 NASA 数据。",
+    "doneFeature": "将农田预警标记为已完成"
   },
   "fields": {
     "myFields": "我的地块",

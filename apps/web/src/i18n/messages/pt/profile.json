@@ -282,7 +282,10 @@
       "team": {
         "joined": "Você entrou em {team}"
       },
-      "badge": "Nova medalha: {badge}"
+      "badge": "Nova medalha: {badge}",
+      "farm": {
+        "body": "{field} · a partir de {date}"
+      }
     },
     "reason": {
       "unavailable": "A checagem da IA não estava disponível. Um colega de equipe pode confirmar.",

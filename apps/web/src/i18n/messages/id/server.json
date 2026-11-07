@@ -161,7 +161,8 @@
       "body": "Hanya {rain30} mm hujan dalam 30 hari terakhir (NASA POWER) dan prakiraan {rain7} mm minggu ini, sementara tanaman kehilangan ~{et7} mm karena penguapan.",
       "a1": "Gunakan penggenangan dan pengeringan bergantian (AWD) untuk menghemat air irigasi.",
       "a2": "Tutup bedengan sayur dengan jerami untuk menjaga kelembapan.",
-      "a3": "Rencanakan irigasi tambahan untuk Aman pindah tanam jika hujan tetap sedikit."
+      "a3": "Rencanakan irigasi tambahan untuk Aman pindah tanam jika hujan tetap sedikit.",
+      "body_smap": "Tanah di zona akar hanya {wet_pct}% basah (NASA SMAP; aturan praktis) dan {rain7} mm hujan diperkirakan minggu ini."
     },
     "storm": {
       "title": "Risiko badai / nor’wester",
@@ -179,7 +180,8 @@
       "body": "Suhu malam turun hingga {low} °C mulai {day}.",
       "a1": "Tutup persemaian Boro dengan polietena bening pada malam hari, buka pada siang hari.",
       "a2": "Jaga air 2–3 cm di persemaian dan buang air dingin pada pagi hari.",
-      "a3": "Lindungi ternak dengan karung goni dan alas tidur yang kering."
+      "a3": "Lindungi ternak dengan karung goni dan alas tidur yang kering.",
+      "title_very_severe": "Gelombang dingin sangat parah"
     },
     "late_blight": {
       "title": "Cuaca hawar daun akhir",
@@ -209,6 +211,15 @@
       "a1": "Bekerjalah pagi lebih awal dan sore akhir.",
       "a2": "Minum air dengan ORS setiap 20 menit.",
       "a3": "Istirahat di tempat teduh; waspadai pusing dan hentikan kerja jika tidak enak badan."
+    },
+    "heavy_rain": {
+      "title_heavy": "Hujan lebat",
+      "title_very_heavy": "Hujan sangat lebat",
+      "body": "Hingga {mm} mm hujan sehari mulai {day} (BMD: 44 mm atau lebih tergolong lebat).",
+      "body_observed": "Baru-baru ini {mm} mm turun dalam sehari, {mm72} mm dalam 3 hari (NASA IMERG).",
+      "a1": "Buka saluran sawah dan bersihkan parit sebelum hujan.",
+      "a2": "Panen tanaman yang matang lebih awal dan simpan di tempat kering.",
+      "a3": "Tutup persemaian dan gudang pupuk; tunda penyemprotan."
     }
   },
   "alert_level": {

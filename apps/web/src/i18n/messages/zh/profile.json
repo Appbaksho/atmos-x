@@ -282,7 +282,10 @@
       "team": {
         "joined": "你已加入 {team}"
       },
-      "badge": "新徽章：{badge}"
+      "badge": "新徽章：{badge}",
+      "farm": {
+        "body": "{field} · 自 {date} 起"
+      }
     },
     "reason": {
       "unavailable": "AI 检查不可用。队友可以确认。",

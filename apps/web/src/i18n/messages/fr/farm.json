@@ -63,7 +63,8 @@
     "notFoundSub": "Les alertes se mettent à jour à chaque prévision. Ouvrez vos champs pour voir les dernières.",
     "backFarm": "Retour à mes champs",
     "dae": "Pour les doses de pesticides ou d’engrais, demandez au service local de vulgarisation agricole (DAE).",
-    "rule": "Règles issues du moteur agricole d’Atmos X sur les prévisions Open-Meteo."
+    "rule": "Règles empiriques issues des conseils BMD, BRRI et DAE, sur la prévision Open-Meteo et les données NASA quand elles existent.",
+    "doneFeature": "marquer les alertes agricoles comme faites"
   },
   "fields": {
     "myFields": "Mes champs",

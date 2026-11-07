@@ -279,7 +279,10 @@
       "team": {
         "joined": "You joined {team}"
       },
-      "badge": "New badge: {badge}"
+      "badge": "New badge: {badge}",
+      "farm": {
+        "body": "{field} · from {date}"
+      }
     },
     "reason": {
       "unavailable": "The AI check wasn’t available. A teammate can confirm it.",

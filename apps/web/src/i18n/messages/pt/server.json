@@ -161,7 +161,8 @@
       "body": "Apenas {rain30} mm de chuva nos últimos 30 dias (NASA POWER) e {rain7} mm previstos para esta semana, enquanto as lavouras perdem ~{et7} mm por evaporação.",
       "a1": "Use o molhamento e secagem alternados (AWD) para economizar água de irrigação.",
       "a2": "Cubra os canteiros de verduras com palha para manter a umidade.",
-      "a3": "Planeje irrigação complementar para o Aman transplantado se a chuva continuar baixa."
+      "a3": "Planeje irrigação complementar para o Aman transplantado se a chuva continuar baixa.",
+      "body_smap": "O solo na zona das raízes está só {wet_pct}% úmido (NASA SMAP; regra prática) e há previsão de {rain7} mm de chuva esta semana."
     },
     "storm": {
       "title": "Risco de tempestade / vento de noroeste",
@@ -179,7 +180,8 @@
       "body": "A temperatura noturna cai para até {low} °C a partir de {day}.",
       "a1": "Cubra os canteiros de mudas de Boro com polietileno transparente à noite, e abra durante o dia.",
       "a2": "Mantenha 2–3 cm de água nos canteiros e drene a água fria pela manhã.",
-      "a3": "Proteja o gado com sacos de juta e cama seca."
+      "a3": "Proteja o gado com sacos de juta e cama seca.",
+      "title_very_severe": "Onda de frio muito severa"
     },
     "late_blight": {
       "title": "Tempo favorável à requeima",
@@ -209,6 +211,15 @@
       "a1": "Trabalhe cedo, de manhã, e no fim da tarde.",
       "a2": "Beba água com ORS a cada 20 minutos.",
       "a3": "Descanse na sombra; observe tontura e pare o trabalho se não estiver bem."
+    },
+    "heavy_rain": {
+      "title_heavy": "Chuva forte",
+      "title_very_heavy": "Chuva muito forte",
+      "body": "Até {mm} mm de chuva em um dia a partir de {day} (BMD: 44 mm ou mais é forte).",
+      "body_observed": "Recentemente caíram {mm} mm em um dia e {mm72} mm em 3 dias (NASA IMERG).",
+      "a1": "Abra os drenos e limpe os canais antes da chuva.",
+      "a2": "Colha cedo o que estiver maduro e guarde em lugar seco.",
+      "a3": "Cubra sementeiras e depósitos de adubo; adie pulverizações."
     }
   },
   "alert_level": {

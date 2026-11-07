@@ -60,7 +60,8 @@
     "notFoundSub": "Alerts update with every forecast. Open your fields for the latest.",
     "backFarm": "Back to my farm",
     "dae": "For pesticide or fertiliser doses, ask your local agriculture extension office (DAE).",
-    "rule": "Rules ported from the Atmos X farmer engine on the Open-Meteo forecast."
+    "rule": "Rules of thumb from BMD, BRRI and DAE advisories, on the Open-Meteo forecast and NASA data where available.",
+    "doneFeature": "mark farm alerts as done"
   },
   "fields": {
     "myFields": "My fields",

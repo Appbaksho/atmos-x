@@ -63,7 +63,8 @@
     "notFoundSub": "Os alertas mudam a cada previsão. Abra seus campos para ver a previsão mais recente.",
     "backFarm": "Voltar para minha fazenda",
     "dae": "Para doses de pesticida ou fertilizante, consulte o escritório local de extensão agrícola (DAE).",
-    "rule": "Regras adaptadas do motor agrícola do Atmos X na previsão do Open-Meteo."
+    "rule": "Regras práticas dos avisos do BMD, BRRI e DAE, sobre a previsão Open-Meteo e dados da NASA quando disponíveis.",
+    "doneFeature": "marcar alertas da lavoura como feitos"
   },
   "fields": {
     "myFields": "Meus campos",
