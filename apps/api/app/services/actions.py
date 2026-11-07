@@ -193,6 +193,13 @@ async def award(db: AsyncSession, a: Action, at: ActionType) -> int:
         )
         total += r.amount if r else 0
     a.points = max(a.points, total) if total else a.points
+    if a.goal_id is not None:
+        goal = await db.get(Goal, a.goal_id)
+        if goal is not None and goal.team_id is not None:
+            from . import teams as TEAMS
+
+            await db.flush()
+            await TEAMS.team_goal_reached(db, goal)
     return total
 
 
