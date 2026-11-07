@@ -3,16 +3,11 @@
     "machine": true
   },
   "sub": "Respostas com base nos dados do Atmos X, com fontes",
-  "hello": "Pergunte sobre calor, clima, ar, suas árvores ou lavouras. Eu uso apenas dados do Atmos X e digo quando não tenho.",
+  "hello": "Pergunte sobre calor, tempo, ar, suas árvores ou lavouras. As respostas usam só dados do Atmos X, com fontes, e avisam quando faltam dados.",
   "ph": "Digite uma pergunta…",
   "busy": "Verificando dados do Atmos X…",
   "official": "Oficial:",
   "local": "Alerta do Atmos X:",
-  "photoTag": "Foto anexada",
-  "photoAlt": "Sua foto",
-  "photoQ": "O que você vê nesta foto?",
-  "attach": "Anexar foto",
-  "removePhoto": "Remover foto",
   "send": "Enviar",
   "stop": "Parar",
   "newChat": "Novo chat",
@@ -23,25 +18,6 @@
   "outOfMessages": "Você usou as mensagens de hoje. Volte amanhã.",
   "error": "Não foi possível acessar o Atmos X. Verifique sua conexão e tente novamente.",
   "retry": "Tentar novamente",
-  "sugg": {
-    "heat": [
-      "Por que minha zona está tão quente?",
-      "É seguro correr às 18h?"
-    ],
-    "air": [
-      "Devo abrir as janelas agora?",
-      "Qual máscara funciona para PM2.5?"
-    ],
-    "farm": [
-      "Devo irrigar antes de domingo?",
-      "Quando meu arroz estará pronto?"
-    ],
-    "tree": [
-      "Por que as folhas de {name} estão enrolando?",
-      "Qual árvore devo plantar em seguida?"
-    ]
-  },
-  "myTree": "minha árvore",
   "screen": {
     "S01": "Bem-vindo",
     "S02": "Bem-vindo",
@@ -73,5 +49,24 @@
     "F02": "Detalhe do alerta",
     "F03": "Meus campos",
     "tree": "Minha árvore"
-  }
+  },
+  "chip": {
+    "why_hot": "Por que está tão quente aqui?",
+    "temp_now": "Qual a temperatura agora?",
+    "forecast": "E nos próximos dias?",
+    "normal": "Está mais quente que o normal?",
+    "air_now": "Como está o ar hoje?",
+    "air_advice": "Devo usar máscara?",
+    "farm_alerts": "Há alertas para minha lavoura?",
+    "tree_care": "Como cuido da minha árvore?",
+    "tree_due": "Quando é meu próximo check-in?",
+    "nurseries": "Onde compro mudas?",
+    "species": "Quais árvores devo plantar?",
+    "goal_progress": "Como está minha meta?",
+    "points": "Quantos pontos eu tenho?",
+    "data_sources": "De onde vêm os dados?",
+    "help": "O que você sabe responder?"
+  },
+  "notHelpful": "Não ajudou",
+  "photoHint": "Para checar a árvore com foto, abra o check-in →"
 }

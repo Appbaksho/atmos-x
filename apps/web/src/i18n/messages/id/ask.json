@@ -3,16 +3,11 @@
     "machine": true
   },
   "sub": "Jawaban dari data Atmos X, dengan sumber",
-  "hello": "Tanya tentang panas, cuaca, udara, pohon Anda, atau tanaman. Saya hanya memakai data Atmos X dan akan bilang saat saya tidak punya datanya.",
+  "hello": "Tanyakan soal panas, cuaca, udara, pohon atau tanaman Anda. Jawaban hanya dari data Atmos X, dengan sumber, dan memberi tahu jika data belum ada.",
   "ph": "Ketik pertanyaan…",
   "busy": "Memeriksa data Atmos X…",
   "official": "Resmi:",
   "local": "Peringatan Atmos X:",
-  "photoTag": "Foto dilampirkan",
-  "photoAlt": "Foto Anda",
-  "photoQ": "Apa yang Anda lihat di foto ini?",
-  "attach": "Lampirkan foto",
-  "removePhoto": "Hapus foto",
   "send": "Kirim",
   "stop": "Berhenti",
   "newChat": "Obrolan baru",
@@ -23,25 +18,6 @@
   "outOfMessages": "Anda sudah memakai pesan hari ini. Coba lagi besok.",
   "error": "Tidak bisa terhubung ke Atmos X. Periksa koneksi Anda dan coba lagi.",
   "retry": "Coba lagi",
-  "sugg": {
-    "heat": [
-      "Mengapa zona saya sangat panas?",
-      "Aman lari sore jam 6?"
-    ],
-    "air": [
-      "Perlukah saya buka jendela sekarang?",
-      "Masker mana yang cocok untuk PM2.5?"
-    ],
-    "farm": [
-      "Perlukah saya mengairi sebelum Minggu?",
-      "Kapan padi saya siap panen?"
-    ],
-    "tree": [
-      "Mengapa daun {name} menggulung?",
-      "Pohon apa yang harus saya tanam berikutnya?"
-    ]
-  },
-  "myTree": "pohon saya",
   "screen": {
     "S01": "Selamat datang",
     "S02": "Selamat datang",
@@ -73,5 +49,24 @@
     "F02": "Detail peringatan",
     "F03": "Lahan saya",
     "tree": "Pohon saya"
-  }
+  },
+  "chip": {
+    "why_hot": "Kenapa di sini panas sekali?",
+    "temp_now": "Berapa suhu sekarang?",
+    "forecast": "Bagaimana beberapa hari ke depan?",
+    "normal": "Apakah lebih panas dari biasanya?",
+    "air_now": "Bagaimana kualitas udara hari ini?",
+    "air_advice": "Perlu pakai masker?",
+    "farm_alerts": "Ada peringatan untuk tanaman saya?",
+    "tree_care": "Bagaimana merawat pohon saya?",
+    "tree_due": "Kapan check-in berikutnya?",
+    "nurseries": "Di mana beli bibit?",
+    "species": "Pohon apa yang sebaiknya ditanam?",
+    "goal_progress": "Bagaimana kemajuan target saya?",
+    "points": "Berapa poin saya?",
+    "data_sources": "Dari mana datanya?",
+    "help": "Apa yang bisa kamu jawab?"
+  },
+  "notHelpful": "Tidak membantu",
+  "photoHint": "Untuk cek foto pohon, buka check-in pohon →"
 }

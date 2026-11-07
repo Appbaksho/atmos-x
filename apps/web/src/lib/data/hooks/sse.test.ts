@@ -1,20 +1,20 @@
 import { describe, expect, it } from 'vitest';
 
 import type { AskEvent } from '../types';
-import { applyAskEvent, historyFrom, type AskMessage } from './ask';
+import { applyAskEvent, type AskMessage } from './ask';
 import { createSSEParser, readSSE } from './sse';
 
 const wire = (events: AskEvent[], nl = '\n') =>
   events.map((e) => `event: ${e.type}${nl}data: ${JSON.stringify(e)}${nl}${nl}`).join('');
 
 const EVENTS: AskEvent[] = [
-  { type: 'warning', source: 'local', text: 'Severe heat today' },
-  { type: 'token', text: 'আপনার এলাকা ' },
-  { type: 'token', text: 'গরম কারণ…' },
+  { type: 'warning', source: 'local', text: { code: 'warning.heatwave_severe', params: { tmax: 41, day: '2026-04-21' } } },
+  { type: 'token', text: { code: 'ask.answer.why_hot_zone', params: { zone: 'আসাদ গেট', score: 86, lst: 44 } } },
+  { type: 'token', text: { code: 'ask.answer.why_hot_cover', params: { sealed: 78, green: 9, water: 2 } } },
   { type: 'sources', sources: [{ id: 'open-meteo', name: 'Open-Meteo' }, { id: 'osm', name: 'OpenStreetMap' }] },
-  { type: 'action', action: { label: 'See zone', screen: 'S06', params: { id: 'z-1' } } },
-  { type: 'notice', text: 'Heat map is an estimate' },
-  { type: 'done', message_id: 'm1', remaining_today: 4 },
+  { type: 'action', action: { label: { code: 'ask.action.open_zone' }, screen: 'S06', params: { id: 'z-1' } } },
+  { type: 'notice', text: { code: 'ask.answer.farm_preview' } },
+  { type: 'done', message_id: 'm1', remaining_today: 4, intent: 'why_hot', suggestions: ['temp_now', 'forecast'] },
 ];
 
 function parseAll(chunks: string[]): AskEvent[] {
@@ -52,13 +52,13 @@ describe('SSE parser', () => {
       'event: token\ndata: {"text":\ndata: "hi"}\n\n',
       'event: mystery\ndata: {"x":1}\n\n',
       'event: token\ndata: not json\n\n',
-      'event: error\ndata: {"type":"error","code":"openai_timeout","message":"Slow"}\n\n',
-      'event: done\ndata: {"type":"done","message_id":"z","remaining_today":0}', // no trailing blank line
+      'event: error\ndata: {"type":"error","code":"ask.failed","message":"Slow"}\n\n',
+      'event: done\ndata: {"type":"done","message_id":"z","remaining_today":0,"intent":"help","suggestions":[]}', // no trailing blank line
     ].join('');
     expect(parseAll([s])).toEqual([
-      { type: 'token', text: 'hi' },
-      { type: 'error', code: 'openai_timeout', message: 'Slow' },
-      { type: 'done', message_id: 'z', remaining_today: 0 },
+      { type: 'token', text: 'hi' } as unknown as AskEvent,
+      { type: 'error', code: 'ask.failed', message: 'Slow' },
+      { type: 'done', message_id: 'z', remaining_today: 0, intent: 'help', suggestions: [] },
     ]);
   });
 
@@ -77,31 +77,21 @@ describe('SSE parser', () => {
 });
 
 describe('Ask message reducer', () => {
-  const empty: AskMessage = { id: 'b', role: 'assistant', text: '', sources: [], actions: [], notices: [], done: false };
+  const empty: AskMessage = { id: 'b', role: 'assistant', text: '', parts: [], sources: [], actions: [], notices: [], suggestions: [], done: false };
 
   it('builds the assistant message from events (warning first, ≤ 2 actions, dedup sources)', () => {
     const extra: AskEvent[] = [
       { type: 'sources', sources: [{ id: 'osm', name: 'OpenStreetMap' }] },
-      { type: 'action', action: { label: 'Plan', screen: 'S10' } },
+      { type: 'action', action: { label: { code: 'ask.action.set_goal' }, screen: 'S08' } },
       { type: 'action', action: { label: 'Third', screen: 'S04' } },
     ];
     const m = [...EVENTS.slice(0, 6), ...extra, EVENTS[6]].reduce(applyAskEvent, empty);
-    expect(m.warning?.text).toBe('Severe heat today');
-    expect(m.text).toBe('আপনার এলাকা গরম কারণ…');
+    expect(m.warning?.text.code).toBe('warning.heatwave_severe');
+    expect(m.parts.map((p) => p.code)).toEqual(['ask.answer.why_hot_zone', 'ask.answer.why_hot_cover']);
     expect(m.sources.map((s) => s.id)).toEqual(['open-meteo', 'osm']);
-    expect(m.actions.map((a) => a.screen)).toEqual(['S06', 'S10']);
-    expect(m.notices).toEqual(['Heat map is an estimate']);
-    expect(m).toMatchObject({ done: true, message_id: 'm1' });
+    expect(m.actions.map((a) => a.screen)).toEqual(['S06', 'S08']);
+    expect(m.notices.map((n) => n.code)).toEqual(['ask.answer.farm_preview']);
+    expect(m).toMatchObject({ done: true, message_id: 'm1', intent: 'why_hot', suggestions: ['temp_now', 'forecast'] });
     expect(applyAskEvent(empty, { type: 'error', code: 'x', message: 'y' })).toMatchObject({ done: true, error: { code: 'x' } });
-  });
-
-  it('keeps the last 6 turns as history, skipping errors and empty text', () => {
-    const msgs: AskMessage[] = Array.from({ length: 10 }, (_, i) => ({ ...empty, id: String(i), role: i % 2 ? 'assistant' : 'user', text: `t${i}`, done: true }));
-    msgs.push({ ...empty, id: 'err', text: 'partial', error: { code: 'e', message: 'm' } });
-    msgs.push({ ...empty, id: 'blank', text: '' });
-    const h = historyFrom(msgs);
-    expect(h).toHaveLength(6);
-    expect(h.map((t) => t.text)).toEqual(['t4', 't5', 't6', 't7', 't8', 't9']);
-    expect(h[0].role).toBe('user');
   });
 });

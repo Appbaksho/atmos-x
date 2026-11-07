@@ -3,16 +3,11 @@
     "machine": true
   },
   "sub": "Respuestas con datos de Atmos X y fuentes",
-  "hello": "Pregúntame sobre calor, clima, aire, tus árboles o cultivos. Solo uso datos de Atmos X y te lo digo cuando no los tengo.",
+  "hello": "Pregunta por el calor, el tiempo, el aire, tus árboles o cultivos. Las respuestas usan solo datos de Atmos X, con fuentes, y lo dicen si faltan datos.",
   "ph": "Escribe una pregunta…",
   "busy": "Revisando datos de Atmos X…",
   "official": "Oficial:",
   "local": "Alerta de Atmos X:",
-  "photoTag": "Foto adjunta",
-  "photoAlt": "Tu foto",
-  "photoQ": "¿Qué ves en esta foto?",
-  "attach": "Adjuntar foto",
-  "removePhoto": "Quitar foto",
   "send": "Enviar",
   "stop": "Detener",
   "newChat": "Nuevo chat",
@@ -23,25 +18,6 @@
   "outOfMessages": "Ya usaste los mensajes de hoy. Vuelve mañana.",
   "error": "No pude conectar con Atmos X. Revisa tu conexión e inténtalo de nuevo.",
   "retry": "Intentar otra vez",
-  "sugg": {
-    "heat": [
-      "¿Por qué mi zona está tan caliente?",
-      "¿Es seguro correr a las 6 pm?"
-    ],
-    "air": [
-      "¿Debo abrir las ventanas ahora?",
-      "¿Qué mascarilla funciona para PM2.5?"
-    ],
-    "farm": [
-      "¿Debo regar antes del domingo?",
-      "¿Cuándo estará lista mi cosecha de arroz?"
-    ],
-    "tree": [
-      "¿Por qué se enrollan las hojas de {name}?",
-      "¿Qué árbol debo plantar después?"
-    ]
-  },
-  "myTree": "Mi árbol",
   "screen": {
     "S01": "Bienvenido",
     "S02": "Bienvenido",
@@ -73,5 +49,24 @@
     "F02": "Detalle de alerta",
     "F03": "Mis parcelas",
     "tree": "Mi árbol"
-  }
+  },
+  "chip": {
+    "why_hot": "¿Por qué hace tanto calor aquí?",
+    "temp_now": "¿Qué temperatura hace ahora?",
+    "forecast": "¿Y los próximos días?",
+    "normal": "¿Hace más calor de lo normal?",
+    "air_now": "¿Cómo está el aire hoy?",
+    "air_advice": "¿Debo usar mascarilla?",
+    "farm_alerts": "¿Hay avisos para mi cultivo?",
+    "tree_care": "¿Cómo cuido mi árbol?",
+    "tree_due": "¿Cuándo es mi próxima revisión?",
+    "nurseries": "¿Dónde compro plantones?",
+    "species": "¿Qué árboles planto?",
+    "goal_progress": "¿Cómo va mi meta?",
+    "points": "¿Cuántos puntos tengo?",
+    "data_sources": "¿De dónde vienen los datos?",
+    "help": "¿Qué puedes responder?"
+  },
+  "notHelpful": "No me sirvió",
+  "photoHint": "Para revisar con foto, abre la revisión del árbol →"
 }

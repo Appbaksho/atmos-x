@@ -1149,6 +1149,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/ask/usage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Usage */
+        get: operations["ask_usage"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ask": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Ask */
+        post: operations["ask"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ask/{message_id}/feedback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Feedback */
+        post: operations["ask_feedback"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1178,6 +1229,43 @@ export interface components {
             night_to?: string | null;
             /** Window Days */
             window_days?: number | null;
+        };
+        /** AskCtx */
+        AskCtx: {
+            /** Lat */
+            lat?: number | null;
+            /** Lng */
+            lng?: number | null;
+            /** Zone Id */
+            zone_id?: string | null;
+            /** Tree Id */
+            tree_id?: string | null;
+            /** Field Id */
+            field_id?: string | null;
+        };
+        /** AskIn */
+        AskIn: {
+            /** Message */
+            message?: string | null;
+            /** Intent */
+            intent?: string | null;
+            /** Screen */
+            screen?: string | null;
+            context?: components["schemas"]["AskCtx"] | null;
+            /**
+             * Lang
+             * @default en
+             */
+            lang?: string;
+            /** Crop */
+            crop?: string | null;
+            /** Stage */
+            stage?: string | null;
+            /**
+             * Farmer
+             * @default false
+             */
+            farmer?: boolean;
         };
         /** Body_actions_log */
         Body_actions_log: {
@@ -1287,6 +1375,11 @@ export interface components {
             payload: {
                 [key: string]: unknown;
             };
+        };
+        /** FeedbackIn */
+        FeedbackIn: {
+            /** Helpful */
+            helpful: boolean;
         };
         /** FieldIn */
         FieldIn: {
@@ -4280,6 +4373,92 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["DoneIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    ask_usage: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
+    ask: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AskIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    ask_feedback: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                message_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FeedbackIn"];
             };
         };
         responses: {

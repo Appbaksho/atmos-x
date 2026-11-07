@@ -3,16 +3,11 @@
     "machine": true
   },
   "sub": "Réponses à partir des données Atmos X, avec sources",
-  "hello": "Posez des questions sur la chaleur, la météo, l’air, vos arbres ou vos cultures. Je n’utilise que les données Atmos X et je le dis quand je ne les ai pas.",
+  "hello": "Posez vos questions sur la chaleur, la météo, l’air, vos arbres ou cultures. Les réponses n’utilisent que les données d’Atmos X, avec sources, et le disent si elles manquent.",
   "ph": "Tapez une question…",
   "busy": "Vérification des données Atmos X…",
   "official": "Officiel :",
   "local": "Alerte Atmos X :",
-  "photoTag": "Photo jointe",
-  "photoAlt": "Votre photo",
-  "photoQ": "Que voyez-vous sur cette photo ?",
-  "attach": "Joindre photo",
-  "removePhoto": "Retirer photo",
   "send": "Envoyer",
   "stop": "Arrêter",
   "newChat": "Nouveau chat",
@@ -23,25 +18,6 @@
   "outOfMessages": "Vous avez utilisé vos messages du jour. Revenez demain.",
   "error": "Impossible de joindre Atmos X. Vérifiez votre connexion et réessayez.",
   "retry": "Réessayer",
-  "sugg": {
-    "heat": [
-      "Pourquoi ma zone est-elle si chaude ?",
-      "Est-il sûr de courir à 18 h ?"
-    ],
-    "air": [
-      "Dois-je ouvrir les fenêtres maintenant ?",
-      "Quel masque marche pour PM2.5 ?"
-    ],
-    "farm": [
-      "Dois-je irriguer avant dimanche ?",
-      "Quand mon riz sera-t-il prêt ?"
-    ],
-    "tree": [
-      "Pourquoi les feuilles de {name} s’enroulent-elles ?",
-      "Quel arbre dois-je planter ensuite ?"
-    ]
-  },
-  "myTree": "Mon arbre",
   "screen": {
     "S01": "Bienvenue",
     "S02": "Bienvenue",
@@ -73,5 +49,24 @@
     "F02": "Détail de l’alerte",
     "F03": "Mes champs",
     "tree": "Mon arbre"
-  }
+  },
+  "chip": {
+    "why_hot": "Pourquoi fait-il si chaud ici ?",
+    "temp_now": "Quelle température fait-il ?",
+    "forecast": "Et les prochains jours ?",
+    "normal": "Fait-il plus chaud que la normale ?",
+    "air_now": "Comment est l’air aujourd’hui ?",
+    "air_advice": "Dois-je porter un masque ?",
+    "farm_alerts": "Des alertes pour ma culture ?",
+    "tree_care": "Comment soigner mon arbre ?",
+    "tree_due": "Quand est mon prochain suivi ?",
+    "nurseries": "Où acheter des plants ?",
+    "species": "Quels arbres planter ?",
+    "goal_progress": "Où en est mon objectif ?",
+    "points": "Combien de points ai-je ?",
+    "data_sources": "D’où viennent les données ?",
+    "help": "À quoi peux-tu répondre ?"
+  },
+  "notHelpful": "Pas utile",
+  "photoHint": "Pour une photo de l’arbre, ouvrez son suivi →"
 }

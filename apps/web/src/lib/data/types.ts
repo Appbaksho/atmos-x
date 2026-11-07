@@ -717,39 +717,47 @@ export type GeoSearchResponse = { results: Place[]; meta: Meta };
 
 export type AskContext = { lat?: number; lng?: number; zone_id?: string; tree_id?: string; field_id?: string };
 
-export type AskClientState = {
-  profile: 'guest' | 'user';
-  units: Unit;
-  farmer: boolean;
-  /** Compact summaries only (≤ 6 KB total) */
-  trees?: Pick<Tree, 'id' | 'nickname' | 'species_id' | 'status' | 'health' | 'next_due_at'>[];
-  goal?: Pick<Goal, 'zone_name' | 'target_c' | 'by_date' | 'progress_pct'> | null;
-  visible?: Record<string, unknown>;
-};
+/** §6.12 K2: what Ask Atmos can answer. Suggestion chips send these ids directly. */
+export type AskIntent =
+  | 'why_hot'
+  | 'temp_now'
+  | 'forecast'
+  | 'normal'
+  | 'air_now'
+  | 'air_advice'
+  | 'farm_alerts'
+  | 'tree_care'
+  | 'tree_due'
+  | 'nurseries'
+  | 'species'
+  | 'goal_progress'
+  | 'points'
+  | 'data_sources'
+  | 'help';
 
-export type AskTurn = { role: 'user' | 'assistant'; text: string };
-
+/** POST /ask (JSON) → text/event-stream. Send `message`, `intent`, or both (the chip label and its id). */
 export type AskRequest = {
-  message: string;
+  message?: string;
+  intent?: AskIntent;
   screen: ScreenId;
   lang: Locale;
   context?: AskContext;
-  client_state?: AskClientState;
-  history?: AskTurn[];
-  /** data URL ≤ 4 MB */
-  image?: string | null;
+  crop?: CropId;
+  stage?: StageId;
+  farmer?: boolean;
 };
 
-export type AskAction = { label: I18nText | string; screen: ScreenId; params?: Record<string, string> };
+/** `screen` is a route id (ScreenId or an extra route like `tree`, `trees`, `species`, `about`). */
+export type AskAction = { label: I18nText | string; screen: string; params?: Record<string, string> };
 
-/** SSE events streamed by POST /api/v0/ask (event name = `type`). */
+/** SSE events from POST /ask (event name = `type`). All text is I18nText, rendered from `server.*`. */
 export type AskEvent =
-  | { type: 'warning'; source: 'BMD' | 'local'; text: string }
-  | { type: 'token'; text: string }
+  | { type: 'warning'; source: 'BMD' | 'local'; text: I18nText; level?: string }
+  | { type: 'token'; text: I18nText }
   | { type: 'sources'; sources: Source[] }
   | { type: 'action'; action: AskAction }
-  | { type: 'notice'; text: string }
-  | { type: 'done'; message_id: string; remaining_today: number }
+  | { type: 'notice'; text: I18nText }
+  | { type: 'done'; message_id: string; remaining_today: number; intent: string; suggestions: AskIntent[] }
   | { type: 'error'; code: string; message: string };
 
 /* ───────────────────────────── Google sign-in (v0) ───────────────────────────── */
@@ -779,9 +787,6 @@ export const V0_ROUTES = {
   nurseries: { method: 'GET', path: '/api/v0/nurseries' }, // ?lat&lng&radius_m → NurseriesResponse
   air: { method: 'GET', path: '/api/v0/air' }, // ?lat&lng → Air (my_sensors filled client-side)
   farmAlerts: { method: 'GET', path: '/api/v0/farm/alerts' }, // ?lat&lng&crop&stage&lang → FarmAlertsResponse
-  verifyPhoto: { method: 'POST', path: '/api/v0/verify-photo' }, // VerifyPhotoRequest → VerifyPhotoResult
-  treeCheck: { method: 'POST', path: '/api/v0/tree-check' }, // TreeCheckRequest → TreeCheckResult
-  ask: { method: 'POST', path: '/api/v0/ask' }, // AskRequest → text/event-stream of AskEvent
   googleAuth: { method: 'GET', path: '/api/v0/auth/google' }, // → GoogleAuthConfig
   googleAuthExchange: { method: 'POST', path: '/api/v0/auth/google' }, // GoogleAuthRequest → GoogleIdentity
 } as const;

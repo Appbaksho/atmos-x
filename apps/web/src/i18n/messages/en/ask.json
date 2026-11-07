@@ -1,15 +1,10 @@
 {
   "sub": "Answers from Atmos X data, with sources",
-  "hello": "Ask about heat, weather, air, your trees or crops. I only use Atmos X data and say so when I don’t have it.",
+  "hello": "Ask about heat, weather, air, your trees or crops. Answers use Atmos X data only, with sources, and say so when the data isn’t there.",
   "ph": "Type a question…",
   "busy": "Checking Atmos X data…",
   "official": "Official:",
   "local": "Atmos X alert:",
-  "photoTag": "Photo attached",
-  "photoAlt": "Your photo",
-  "photoQ": "What do you see in this photo?",
-  "attach": "Attach photo",
-  "removePhoto": "Remove photo",
   "send": "Send",
   "stop": "Stop",
   "newChat": "New chat",
@@ -20,13 +15,6 @@
   "outOfMessages": "You’ve used today’s messages. Come back tomorrow.",
   "error": "Couldn’t reach Atmos X. Check your connection and try again.",
   "retry": "Try again",
-  "sugg": {
-    "heat": ["Why is my zone so hot?", "Is it safe to jog at 6 pm?"],
-    "air": ["Should I open the windows now?", "Which mask works for PM2.5?"],
-    "farm": ["Should I irrigate before Sunday?", "When will my rice be ready?"],
-    "tree": ["Why are {name}’s leaves curling?", "Which tree should I plant next?"]
-  },
-  "myTree": "my tree",
   "screen": {
     "S01": "Welcome",
     "S02": "Welcome",
@@ -58,5 +46,24 @@
     "F02": "Alert detail",
     "F03": "My fields",
     "tree": "My tree"
-  }
+  },
+  "chip": {
+    "why_hot": "Why is it so hot here?",
+    "temp_now": "How hot is it now?",
+    "forecast": "What about the next days?",
+    "normal": "Is it hotter than normal?",
+    "air_now": "How is the air today?",
+    "air_advice": "Should I wear a mask?",
+    "farm_alerts": "Any alerts for my crop?",
+    "tree_care": "How do I care for my tree?",
+    "tree_due": "When is my next check-in?",
+    "nurseries": "Where can I buy saplings?",
+    "species": "Which trees should I plant?",
+    "goal_progress": "How is my goal going?",
+    "points": "How many points do I have?",
+    "data_sources": "Where does the data come from?",
+    "help": "What can you answer?"
+  },
+  "notHelpful": "Not helpful",
+  "photoHint": "For a tree photo check, open the tree’s check-in →"
 }
