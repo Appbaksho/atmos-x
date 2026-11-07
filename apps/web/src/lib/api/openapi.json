@@ -7064,6 +7064,116 @@
      }
     }
    }
+  },
+  "/api/v1/push/config": {
+   "get": {
+    "tags": [
+     "push"
+    ],
+    "summary": "Push Config",
+    "description": "Whether push is on for this server, its VAPID public key and the quiet hours.",
+    "operationId": "push_config",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Push Config"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/push/subscribe": {
+   "post": {
+    "tags": [
+     "push"
+    ],
+    "summary": "Push Subscribe",
+    "operationId": "push_subscribe",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SubscribeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Push Subscribe"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/push/unsubscribe": {
+   "post": {
+    "tags": [
+     "push"
+    ],
+    "summary": "Push Unsubscribe",
+    "operationId": "push_unsubscribe",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UnsubscribeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Push Unsubscribe"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
@@ -8908,6 +9018,28 @@
     ],
     "title": "JobOut"
    },
+   "Keys": {
+    "properties": {
+     "p256dh": {
+      "type": "string",
+      "maxLength": 200,
+      "minLength": 10,
+      "title": "P256Dh"
+     },
+     "auth": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 8,
+      "title": "Auth"
+     }
+    },
+    "type": "object",
+    "required": [
+     "p256dh",
+     "auth"
+    ],
+    "title": "Keys"
+   },
    "LatLng": {
     "properties": {
      "lat": {
@@ -10417,6 +10549,32 @@
     ],
     "title": "SourcesOut"
    },
+   "SubscribeIn": {
+    "properties": {
+     "endpoint": {
+      "type": "string",
+      "maxLength": 1000,
+      "minLength": 12,
+      "title": "Endpoint"
+     },
+     "keys": {
+      "$ref": "#/components/schemas/Keys"
+     },
+     "tz_offset_min": {
+      "type": "integer",
+      "maximum": 840.0,
+      "minimum": -720.0,
+      "title": "Tz Offset Min",
+      "default": 360
+     }
+    },
+    "type": "object",
+    "required": [
+     "endpoint",
+     "keys"
+    ],
+    "title": "SubscribeIn"
+   },
    "TaskIn": {
     "properties": {
      "title": {
@@ -10702,6 +10860,24 @@
     },
     "type": "object",
     "title": "TreePatch"
+   },
+   "UnsubscribeIn": {
+    "properties": {
+     "endpoint": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 1000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Endpoint"
+     }
+    },
+    "type": "object",
+    "title": "UnsubscribeIn"
    },
    "UserOut": {
     "properties": {

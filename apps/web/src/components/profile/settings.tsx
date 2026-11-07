@@ -23,12 +23,13 @@ import {
   View,
   go,
   href,
+  requireAccount,
   toast,
   useCz,
   type SegOption,
 } from '@/components/cz';
 import { LOCALE_NAMES } from '@/i18n/routing';
-import { GUEST_MAX_RADIUS_M, useAuth, useMe, usePresentation, useSession } from '@/lib/data/hooks';
+import { GUEST_MAX_RADIUS_M, useAuth, useMe, usePresentation, usePushConfig, usePushState, useSession, useTogglePush } from '@/lib/data/hooks';
 import { LOCALES, type Locale } from '@/lib/data/types';
 import { initials } from '@/lib/format';
 
@@ -194,6 +195,7 @@ export function SettingsScreen() {
         </Txt>
       </Card>
 
+      <PushCard />
       <PresentationCard />
       <AccountCard />
 
@@ -218,6 +220,55 @@ export function SettingsScreen() {
         {t('footer')}
       </Txt>
     </Screen>
+  );
+}
+
+/** W2 · Web push: on/off for this browser, with the quiet hours. Disabled when the server has no keys. */
+function PushCard() {
+  const t = useTranslations('profile.settings.push');
+  const { f } = useCz();
+  const session = useSession();
+  const config = usePushConfig();
+  const state = usePushState(config.data);
+  const toggle = useTogglePush(config.data);
+  const s = state.data;
+  const on = s === 'on';
+  const usable = s === 'on' || s === 'off';
+  const hour = (h: number) => f.time(new Date(2000, 0, 1, h, 0));
+  const press = () => {
+    if (session.isGuest) return requireAccount(t('feature'));
+    toggle.mutate(!on, {
+      onSuccess: (r) => toast(r === 'on' ? t('turnedOn') : t('turnedOff'), { tone: 'success' }),
+      onError: (e) => toast(t.has(`err.${(e as { code?: string }).code ?? ''}`) ? t(`err.${(e as { code?: string }).code}`) : t('err.generic'), { tone: 'warn' }),
+    });
+  };
+  const note = s === 'unsupported' ? t('unsupported') : s === 'disabled' ? t('disabled') : s === 'denied' ? t('denied') : t('quiet', { from: hour(config.data?.quiet_hours.from ?? 22), to: hour(config.data?.quiet_hours.to ?? 7) });
+  return (
+    <Card gap={10}>
+      <Tap
+        role="switch"
+        selected={on}
+        label={t('title')}
+        disabled={!usable || toggle.isPending || state.isPending}
+        onPress={press}
+        style={{ flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, textAlign: 'start', opacity: usable || state.isPending ? 1 : 0.6 }}>
+        <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: B.navy, alignItems: 'center', justifyContent: 'center' }}>
+          <Icon d={I.bell} size={18} sw={2} color={B.lime} />
+        </View>
+        <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
+          <Txt size={13.5} w={600}>
+            {t('title')}
+          </Txt>
+          <Txt size={11.5} dim>
+            {on ? t('on') : t('off')}
+          </Txt>
+        </View>
+        <SwitchVisual on={on} />
+      </Tap>
+      <Txt size={11.5} dim>
+        {note}
+      </Txt>
+    </Card>
   );
 }
 

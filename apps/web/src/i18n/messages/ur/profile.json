@@ -237,7 +237,27 @@
     "demoAccount": "نمائشی موڈ میں نادیہ کا ڈیمو اکاؤنٹ استعمال ہوتا ہے۔",
     "more": "مزید",
     "about": "Atmos X کے بارے میں",
-    "footer": "Atmos X v0 · OpenStreetMap کے زمینی کور اور Open-Meteo کے موسم سے گرمی کا اندازہ · © OpenStreetMap contributors"
+    "footer": "Atmos X v0 · OpenStreetMap کے زمینی کور اور Open-Meteo کے موسم سے گرمی کا اندازہ · © OpenStreetMap contributors",
+    "push": {
+      "title": "پش اطلاعات",
+      "on": "اس ڈیوائس پر آن",
+      "off": "بند",
+      "quiet": "درختوں کی جانچ، انتباہ اور جوابات۔ آپ کے وقت {from} سے {to} کے درمیان کچھ نہیں، اور لاک اسکرین پر کوئی نام یا جگہ نہیں۔",
+      "disabled": "اس سرور پر پش ابھی شروع نہیں ہوا۔ اطلاعات میں سب کچھ نظر آئے گا۔",
+      "unsupported": "یہ براؤزر پش وصول نہیں کر سکتا۔ آئی فون پر پہلے Atmos X کو ہوم اسکرین میں شامل کریں۔",
+      "denied": "اس سائٹ کی اطلاعات بلاک ہیں۔ براؤزر سیٹنگز میں اجازت دے کر دوبارہ کوشش کریں۔",
+      "feature": "پش اطلاعات",
+      "turnedOn": "پش اطلاعات آن ہیں",
+      "turnedOff": "پش اطلاعات بند ہیں",
+      "err": {
+        "push": {
+          "denied": "اطلاعات بلاک ہیں۔ براؤزر سیٹنگز میں اجازت دیں۔",
+          "no_worker": "ایپ انسٹال کریں یا صفحہ دوبارہ لوڈ کر کے کوشش کریں۔",
+          "unavailable": "اس سرور پر پش ابھی شروع نہیں ہوا۔"
+        },
+        "generic": "پش اطلاعات تبدیل نہیں ہو سکیں۔ دوبارہ کوشش کریں۔"
+      }
+    }
   },
   "about": {
     "title": "ڈیٹا اور سائنس",
@@ -482,6 +502,20 @@
       "pending",
       "pendingA11y",
       "pendingUntil",
+      "settings.push.denied",
+      "settings.push.disabled",
+      "settings.push.err.generic",
+      "settings.push.err.push.denied",
+      "settings.push.err.push.no_worker",
+      "settings.push.err.push.unavailable",
+      "settings.push.feature",
+      "settings.push.off",
+      "settings.push.on",
+      "settings.push.quiet",
+      "settings.push.title",
+      "settings.push.turnedOff",
+      "settings.push.turnedOn",
+      "settings.push.unsupported",
       "spendable",
       "tree.allTrees",
       "tree.busy",

@@ -361,7 +361,27 @@
     "more": "更多",
     "data": "数据与科学",
     "about": "关于 Atmos X",
-    "footer": "Atmos X v0 · 基于 OpenStreetMap 地表覆盖 + Open-Meteo 天气的热度估算 · © OpenStreetMap contributors"
+    "footer": "Atmos X v0 · 基于 OpenStreetMap 地表覆盖 + Open-Meteo 天气的热度估算 · © OpenStreetMap contributors",
+    "push": {
+      "title": "推送通知",
+      "on": "此设备已开启",
+      "off": "已关闭",
+      "quiet": "树木打卡、预警和回复。你当地时间 {from} 至 {to} 不会推送，锁屏上也不显示姓名或地点。",
+      "disabled": "此服务器尚未开启推送，你仍可在“通知”中查看所有内容。",
+      "unsupported": "此浏览器无法接收推送。在 iPhone 上请先将 Atmos X 添加到主屏幕。",
+      "denied": "此网站的通知已被屏蔽，请在浏览器设置中允许后重试。",
+      "feature": "推送通知",
+      "turnedOn": "推送通知已开启",
+      "turnedOff": "推送通知已关闭",
+      "err": {
+        "push": {
+          "denied": "通知已被屏蔽，请在浏览器设置中允许。",
+          "no_worker": "请安装应用或刷新页面后重试。",
+          "unavailable": "此服务器尚未开启推送。"
+        },
+        "generic": "无法更改推送通知，请重试。"
+      }
+    }
   },
   "about": {
     "title": "数据与科学",

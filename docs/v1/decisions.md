@@ -182,3 +182,13 @@ client only multiplies them for the preview. Payment results come back as `?paym
 comes from the server. Carbon credits stay disabled in the UI unless the server reports certified
 tonnes. The admin screen is shown only to the admin role, and every admin call is checked again on
 the server.
+
+**D29. Web push.** Push uses VAPID through `pywebpush` and is off when `VAPID_PUBLIC_KEY` or `VAPID_PRIVATE_KEY`
+is empty; this run had no keys, so the code is tested with a mocked sender and the Settings switch shows
+"not set up". `python -m app.scripts.make_vapid` prints a new pair for a person to paste into `.env`. A
+worker job every 5 minutes sends notifications from the last 12 hours that are unread and not yet pushed,
+holds them during 22:00–07:00 in each subscription's own time zone, and deletes subscriptions the push
+service reports as gone (404/410). The lock-screen text is one short line per notification kind in the
+person's language, never a name, place or post text; tapping opens `/app/notifications`. The service
+worker now caches only public `/api/v1` reads (conditions, zones, air, farm alerts without a field,
+nurseries, species) and skips any response marked private or no-store.
