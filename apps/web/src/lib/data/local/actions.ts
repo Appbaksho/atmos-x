@@ -3,7 +3,8 @@
  * notifications → trees. Network and image work are injected so the flow is testable.
  */
 import { DataError, RateLimitedError } from '../errors';
-import type { ActionLog, LatLng, LogActionInput, Tree, VerifyPhotoRequest, VerifyPhotoResult } from '../types';
+import type { LatLng } from '../types';
+import type { ActionLog, LogActionInput, Tree, VerifyPhotoRequest, VerifyPhotoResult } from './v0-types';
 import type { DataContext } from './context';
 import { applyCooling } from './goals';
 import { assertAccount } from './guest';

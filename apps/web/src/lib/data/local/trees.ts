@@ -1,6 +1,7 @@
 /** Tracked trees and their 15-day photo checks. */
 import { DataError } from '../errors';
-import type { LatLng, Tree, TreeCheck, TreeCheckResult, TreeHealth } from '../types';
+import type { LatLng, TreeHealth } from '../types';
+import type { Tree, TreeCheck, TreeCheckResult } from './v0-types';
 import type { DataContext } from './context';
 import { assertAccount } from './guest';
 import { newId } from './ids';

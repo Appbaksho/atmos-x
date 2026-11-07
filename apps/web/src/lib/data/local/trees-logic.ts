@@ -3,7 +3,7 @@
  * every tree needs a photo every 15 days. next due = last check (or planting) + 15 days.
  * Status: overdue when past due, due when ≤ 2 days left, otherwise ok.
  */
-import type { Tree, TreeStatus } from '../types';
+import type { Tree, TreeStatus } from './v0-types';
 import { DAY_MS } from './ids';
 
 export const PHOTO_EVERY_DAYS = 15;

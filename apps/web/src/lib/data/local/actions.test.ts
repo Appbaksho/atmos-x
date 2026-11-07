@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { DataError, RateLimitedError } from '../errors';
-import type { VerifyPhotoRequest } from '../types';
+import type { VerifyPhotoRequest } from './v0-types';
 import { confirmAction, listActions, logAction } from './actions';
 import { applyCooling, createGoal, h3Resolution, listGoals, milestonesCrossed, progressPct, zoneAreaKm2 } from './goals';
 import { listNotifications } from './notifications';

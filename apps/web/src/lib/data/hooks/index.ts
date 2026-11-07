@@ -8,6 +8,7 @@ export * from './air';
 export * from './ask';
 export * from './community';
 export * from './context';
+export * from './device-import';
 export * from './farm';
 export * from './geo';
 export * from './goals';

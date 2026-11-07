@@ -74,18 +74,21 @@ export type Profile = {
 };
 
 export type Level = { level: number; name_code: string; min: number; next: number | null };
-export type Badge = { id: string; emoji: string; code: string; earned: boolean };
+export type Badge = { id: string; emoji: string; code: string; earned: boolean; earned_at?: string | null };
 
+/** GET /me/stats. Points come from the ledger; pending points unlock at the tree's 90-day check-in. */
 export type MyStats = {
-  points: number;
-  /** Points of actions still pending verification */
-  provisional_points: number;
+  points: { earned: number; spendable: number; pending: number; spent: number; next_unlock_at: string | null };
   level: Level;
   badges: Badge[];
   trees: number;
+  trees_alive: number;
   actions: number;
+  actions_pending: number;
   cooling_c: number;
-  rank_area?: number | null;
+  /** On-time check-ins in a row */
+  streak: number;
+  rank_area: { area: string; rank: number; of: number } | null;
 };
 
 /* ───────────────────────────── Heat now ───────────────────────────── */
@@ -431,15 +434,32 @@ export type ActionType = {
 
 export type VerificationStatus = 'pending' | 'verified' | 'rejected';
 
+/** One deterministic evidence check (§7.11). `skip` = not applicable or not measurable. */
+export type ActionCheckCode =
+  | 'gps_present'
+  | 'gps_near'
+  | 'location_plausible'
+  | 'time_recent'
+  | 'capture_source'
+  | 'not_duplicate'
+  | 'content_plausible'
+  | 'photo_present'
+  | 'gps_near_tree'
+  | 'imported';
+export type ActionCheck = { code: ActionCheckCode | string; status: 'pass' | 'fail' | 'skip'; reason: string | null; params?: Record<string, number | string> };
+
+/** GET /actions/mine, /actions/{id}. `photo_url` and coordinates only for the owner, teammates and moderators. */
 export type ActionLog = {
   id: string;
+  user_id: string;
   action_type: ActionTypeId;
   quantity: number;
+  /** Points awarded (verified) or that the action would earn once reviewed (pending) */
   points: number;
+  /** Modelled °C at maturity for the goal zone */
   cooling_c: number;
   trees: number;
   status: VerificationStatus;
-  /** v0: object URL / IndexedDB key; v1: /media URL */
   photo_url: string | null;
   lat: number | null;
   lng: number | null;
@@ -448,75 +468,87 @@ export type ActionLog = {
   team_id: string | null;
   zone_label: string | null;
   note: string | null;
-  verification?: VerifyPhotoResult | null;
+  checks: ActionCheck[];
+  /** First failing check's reason, or `reviewed` / `review_rejected` / `imported` */
+  reason_code: string | null;
+  capture_source: 'camera' | 'upload';
+  /** True when the viewer may confirm or reject it (a teammate or moderator, never the owner) */
+  can_review: boolean;
   created_at: string;
 };
 
+/** POST /actions (multipart). `photo` is sent as a file. */
 export type LogActionInput = {
   action_type: ActionTypeId;
   quantity: number;
   lat: number | null;
   lng: number | null;
+  accuracy_m?: number | null;
   taken_at: string;
   photo: Blob | null;
+  capture_source?: 'camera' | 'upload';
   goal_id?: string | null;
   team_id?: string | null;
   note?: string | null;
+  species_id?: string;
+  nickname?: string;
 };
 
-export type VerifyPhotoRequest = {
-  /** data URL, ≤ 768 px */
-  image: string;
-  action_type: ActionTypeId;
-  quantity: number;
-  taken_at: string;
-  lat: number | null;
-  lng: number | null;
-  target: LatLng | null;
-  lang: Locale;
-};
-
-export type VerifyPhotoResult = {
-  status: 'verified' | 'pending';
-  confidence: number;
-  /** Short description of what the AI saw, in the requested language */
-  seen: string;
-  reason_code: string;
-  meta?: Meta;
-};
+export type LogActionResult = { log: ActionLog; trees: Tree[]; milestones: number[] };
 
 /* ───────────────────────────── Trees ───────────────────────────── */
 
 export type TreeHealth = 'healthy' | 'stressed' | 'dead';
 export type TreeStatus = 'ok' | 'due' | 'overdue';
+/** T3, derived on the server (first match wins). */
+export type TreeState = 'verifying' | 'lost' | 'at_risk' | 'needs_water' | 'due' | 'healthy';
 
 export type TreeCheck = {
   id: string;
   tree_id: string;
   photo_url: string | null;
   health: TreeHealth;
+  height_cm: number | null;
   note: string | null;
-  ai?: TreeCheckResult | null;
+  on_time: boolean;
+  checks: ActionCheck[];
   points: number;
+  tip: I18nText | null;
   created_at: string;
 };
 
 export type Tree = {
   id: string;
+  /** The viewer planted it (helpers and teammates can check in but not edit) */
+  mine: boolean;
   species_id: string;
   nickname: string;
   planted_at: string;
+  age_days: number;
   location: LatLng | null;
   last_check_at: string | null;
   next_due_at: string;
   status: TreeStatus;
+  state: TreeState;
   health: TreeHealth;
   photo_url: string | null;
+  team_id: string | null;
+  action_id: string | null;
+  /** The planting action is verified (or the tree was added by hand) */
+  verified: boolean;
+  milestones: { d90?: string; y1?: string };
+  /** Rough °C this tree adds to a 1 km² neighbourhood today (grows with age) */
+  cooling_c_est: number;
+  rain_7d_mm: number | null;
+  rain_source: 'imerg' | 'power' | null;
+  /** Detail only: check-ins newest first, care tips */
   checks?: TreeCheck[];
+  tips?: I18nText[];
+  /** POST /trees/{id}/checks only: the check just made */
+  check?: TreeCheck | null;
 };
 
-export type TreeCheckRequest = { image: string; species_id: string; lang: Locale };
-export type TreeCheckResult = { health: TreeHealth; confidence: number; tip: string; seen: string; meta?: Meta };
+export type TreeInvite = { token: string; path: string; expires_at: string };
 
 /* ───────────────────────────── Community ───────────────────────────── */
 

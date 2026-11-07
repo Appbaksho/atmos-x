@@ -7,7 +7,8 @@
  *
  * User-facing text is i18n codes: `action.<id>`, `unit.<id>`, `level.<slug>`, `badge.<id>`.
  */
-import type { ActionLog, ActionType, ActionTypeId, Badge, Level, MyStats, Period, TreeCheck } from '../types';
+import type { ActionType, ActionTypeId, Badge, Level, Period } from '../types';
+import type { ActionLog, MyStats, TreeCheck } from './v0-types';
 
 export const ACTION_TYPES: readonly ActionType[] = [
   { id: 'plant_tree', title_code: 'action.plant_tree', unit_code: 'unit.tree', emoji: '🌳', points: 50, cooling_per_unit: 0.0006, is_tree: true },

@@ -4,7 +4,8 @@
  * `user:<id>` untouched. Story dates are relative to load time, so "1 tree due" holds on the day.
  */
 import { DEMO_NAMESPACE, STORY } from '../seed';
-import type { ActionLog, AppNotification, FarmField, Sensor, Tree, TreeCheck } from '../types';
+import type { AppNotification, FarmField, Sensor } from '../types';
+import type { ActionLog, Tree, TreeCheck } from './v0-types';
 import { DAY_MS } from './ids';
 import { COLL, clearNamespace, readValue, writeList, writeValue, type LocalGoal, type LocalProfile, type Membership } from './store';
 import { withStatus } from './trees-logic';

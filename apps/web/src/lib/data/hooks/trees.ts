@@ -1,100 +1,151 @@
 'use client';
-/** Tracked trees and 15-day photo checks with the AI health verdict. */
+/** My trees on the server (prompt-v1 §6.7 T1–T6): states, timeline, 15-day check-ins, invites. */
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { DataError } from '../errors';
-import { currentContext } from '../local/context';
-import { assertAccount } from '../local/guest';
-import { newId } from '../local/ids';
-import { preparePhoto } from '../local/images';
-import { putPhoto } from '../local/store';
-import { addTrees, getTree, listTrees, recordCheck, removeTree, updateTree, type AddTreeInput } from '../local/trees';
-import type { Tree, TreeCheck, TreeCheckRequest, TreeCheckResult, TreeHealth } from '../types';
-import { V0_ROUTES } from '../types';
+import { api, call, postForm } from '@/lib/api/client';
+
+import type { LatLng, Tree, TreeHealth, TreeInvite } from '../types';
+import { photoForUpload } from './actions';
 import { useDataContext } from './context';
-import { postJSON } from './http';
+import { getJSON, shouldRetry } from './http';
+import { API } from './heat';
 import { invalidate, qk } from './keys';
 
-export { PHOTO_EVERY_DAYS, DUE_SOON_DAYS, daysUntilDue, treeStatus, needsPhoto } from '../local/trees-logic';
+/** Check-ins are every 15 days; "due" starts 2 days before (server config, T3). */
+export const PHOTO_EVERY_DAYS = 15;
+export const DUE_SOON_DAYS = 2;
 
-/** Trees sorted by next photo due (status recomputed on read). Guests get []. */
+/** Whole days until the next check-in (negative = overdue). */
+export function daysUntilDue(nextDueAt: string, now: number = Date.now()): number {
+  return Math.round((Date.parse(nextDueAt) - now) / 864e5);
+}
+
+const newClientId = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`);
+
+/** My trees, soonest check-in first (state derived on the server). Guests get []. */
 export function useTrees() {
   const ctx = useDataContext();
   return useQuery<Tree[]>({
     queryKey: qk.trees(ctx.ns),
     enabled: ctx.ready,
-    queryFn: async () => listTrees((await currentContext()).ns),
+    retry: shouldRetry,
+    queryFn: ({ signal }) => (ctx.kind === 'guest' ? Promise.resolve([]) : getJSON<Tree[]>(`${API}/trees/mine`, {}, signal)),
   });
 }
 
-/** One tree with its checks (newest first). */
+/** Friends' trees I was invited to help water. */
+export function useHelpingTrees() {
+  const ctx = useDataContext();
+  return useQuery<Tree[]>({
+    queryKey: [...qk.trees(ctx.ns), 'helping'],
+    enabled: ctx.ready && ctx.kind !== 'guest',
+    retry: shouldRetry,
+    queryFn: ({ signal }) => getJSON<Tree[]>(`${API}/trees/helping`, {}, signal),
+  });
+}
+
+/** One tree with its check-ins (newest first) and care tips. */
 export function useTree(id: string | null | undefined) {
   const ctx = useDataContext();
   return useQuery<Tree | null>({
     queryKey: qk.tree(ctx.ns, id ?? ''),
-    enabled: ctx.ready && !!id,
-    queryFn: async () => getTree((await currentContext()).ns, id!),
+    enabled: ctx.ready && !!id && ctx.kind !== 'guest',
+    retry: shouldRetry,
+    queryFn: async ({ signal }) => (await call(api.GET('/api/v1/trees/{tree_id}', { params: { path: { tree_id: id! } }, signal }))) as unknown as Tree,
   });
 }
 
-/** Add a tree by hand (S20 "Add tree"). Guests: GuestRestrictedError. */
+export type AddTreeInput = { species_id: string; nickname?: string; planted_at?: string; location: LatLng | null; photo?: Blob | null };
+
+/** Track a tree by hand (no planting action, so no planting points). Guests: GuestRestrictedError. */
 export function useAddTree() {
   const qc = useQueryClient();
   const ctx = useDataContext();
   return useMutation<Tree, Error, AddTreeInput>({
-    mutationFn: async (input) => (await addTrees(await currentContext(), [input]))[0],
+    mutationFn: async (input) => {
+      const form = new FormData();
+      form.set('species_id', input.species_id);
+      if (input.nickname) form.set('nickname', input.nickname);
+      if (input.planted_at) form.set('planted_at', input.planted_at);
+      if (input.location) {
+        form.set('lat', String(input.location.lat));
+        form.set('lng', String(input.location.lng));
+      }
+      form.set('client_id', newClientId());
+      if (input.photo) form.set('photo', await photoForUpload(input.photo, 'camera'), 'photo.jpg');
+      return postForm<Tree>(`${API}/trees`, form);
+    },
     onSuccess: () => void invalidate.afterTreeCheck(qc, ctx.ns),
   });
 }
+
+export type TreePatch = { nickname?: string; species_id?: string; lost_confirmed?: boolean };
 
 export function useUpdateTree() {
   const qc = useQueryClient();
   const ctx = useDataContext();
-  return useMutation<void, Error, { id: string; patch: Partial<Pick<Tree, 'nickname' | 'species_id' | 'location' | 'health'>> }>({
-    mutationFn: async ({ id, patch }) => updateTree(await currentContext(), id, patch),
+  return useMutation<Tree, Error, { id: string; patch: TreePatch }>({
+    mutationFn: async ({ id, patch }) => (await call(api.PATCH('/api/v1/trees/{tree_id}', { params: { path: { tree_id: id } }, body: patch }))) as unknown as Tree,
     onSuccess: () => void invalidate.afterTreeCheck(qc, ctx.ns),
   });
 }
 
+/** Remove a tree. Its points are revoked (PT10). */
 export function useRemoveTree() {
   const qc = useQueryClient();
   const ctx = useDataContext();
   return useMutation<void, Error, string>({
-    mutationFn: async (id) => removeTree(await currentContext(), id),
-    onSuccess: () => void invalidate.afterTreeCheck(qc, ctx.ns),
+    mutationFn: async (id) => void (await call(api.DELETE('/api/v1/trees/{tree_id}', { params: { path: { tree_id: id } } }))),
+    onSuccess: () => void invalidate.afterAction(qc, ctx.ns),
   });
 }
 
-export type TreeCheckInput = { tree_id: string; photo: Blob | null; note?: string | null; health?: TreeHealth };
+export type TreeCheckInput = { tree_id: string; photo: Blob | null; health: TreeHealth; height_cm?: number | null; note?: string | null; location?: LatLng | null };
 
 /**
- * Add a photo check: resize, ask the AI for a health verdict (POST /tree-check), store the check and
- * reset the 15-day clock. If the AI is unavailable the check is stored with `ai: null` and the given
- * (or previous) health. Earns TREE_CHECK_POINTS. Guests: GuestRestrictedError.
+ * Check-in (T6): photo + own health report + optional height. The server runs deterministic checks,
+ * resets the 15-day clock, awards PT2 when on time and the 90-day/1-year milestones.
  */
 export function useTreeCheck() {
   const qc = useQueryClient();
   const ctx = useDataContext();
-  return useMutation<TreeCheck, Error, TreeCheckInput>({
+  return useMutation<Tree, Error, TreeCheckInput>({
     mutationFn: async (input) => {
-      const c = await currentContext();
-      assertAccount(c.kind, 'trees');
-      const tree = await getTree(c.ns, input.tree_id);
-      if (!tree) throw new DataError('tree.not_found', 'Tree not found', 404);
-      let photo_url: string | null = null;
-      let ai: TreeCheckResult | null = null;
-      if (input.photo) {
-        const prepared = await preparePhoto(input.photo);
-        photo_url = await putPhoto(c.ns, newId('tc'), prepared.stored);
-        try {
-          const req: TreeCheckRequest = { image: prepared.preview, species_id: tree.species_id, lang: c.lang };
-          ai = await postJSON<TreeCheckResult>(V0_ROUTES.treeCheck.path, req);
-        } catch {
-          ai = null;
-        }
+      const form = new FormData();
+      form.set('health', input.health);
+      if (input.height_cm != null) form.set('height_cm', String(input.height_cm));
+      if (input.note) form.set('note', input.note);
+      if (input.location) {
+        form.set('lat', String(input.location.lat));
+        form.set('lng', String(input.location.lng));
       }
-      return recordCheck(c, { tree_id: input.tree_id, photo_url, health: input.health, note: input.note, ai });
+      if (input.photo) form.set('photo', await photoForUpload(input.photo, 'camera'), 'photo.jpg');
+      return postForm<Tree>(`${API}/trees/${encodeURIComponent(input.tree_id)}/checks`, form);
     },
+    onSuccess: (tree) => {
+      qc.setQueryData(qk.tree(ctx.ns, tree.id), tree);
+      void invalidate.afterTreeCheck(qc, ctx.ns);
+    },
+  });
+}
+
+/** A signed link a friend opens to help water this tree (T5). */
+export function useTreeInvite() {
+  return useMutation<TreeInvite, Error, string>({
+    mutationFn: async (id) => (await call(api.POST('/api/v1/trees/{tree_id}/invite', { params: { path: { tree_id: id } } }))) as unknown as TreeInvite,
+  });
+}
+
+export function useAcceptTreeInvite() {
+  const qc = useQueryClient();
+  const ctx = useDataContext();
+  return useMutation<Tree, Error, string>({
+    mutationFn: async (token) => (await call(api.POST('/api/v1/trees/invites/accept', { body: { token } }))) as unknown as Tree,
     onSuccess: () => void invalidate.afterTreeCheck(qc, ctx.ns),
   });
+}
+
+/** A check-in photo is due or overdue (lost trees don't ask for one). */
+export function needsPhoto(tree: Pick<Tree, 'status' | 'state'>): boolean {
+  return tree.status !== 'ok' && tree.state !== 'lost';
 }

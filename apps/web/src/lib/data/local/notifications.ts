@@ -3,7 +3,8 @@
  * plus derived ones (tree photo due/overdue), computed at read time. Guests get none (§4.5).
  * Titles/bodies are I18nText codes under the `server` namespace: notif.*.
  */
-import type { AppNotification, Conditions, Tree } from '../types';
+import type { AppNotification, Conditions } from '../types';
+import type { Tree } from './v0-types';
 import type { DataContext } from './context';
 import { DAY_MS, dayKey, newId } from './ids';
 import { COLL, readList, readValue, updateList, updateValue, writeValue, type Namespace } from './store';
