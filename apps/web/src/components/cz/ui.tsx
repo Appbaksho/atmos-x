@@ -1149,6 +1149,7 @@ export function Photo({
         src={url}
         alt={label ?? ''}
         loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : undefined}
         decoding="async"
         // Images that finish loading before hydration never fire onLoad: check `complete` on mount.
         ref={(img) => {
