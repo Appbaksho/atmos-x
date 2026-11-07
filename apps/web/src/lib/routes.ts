@@ -56,6 +56,11 @@ export const EXTRA_ROUTES = {
   species: '/app/species',
   teams: '/app/team',
   orgs: '/app/org',
+  user: '/app/u/[id]',
+  post: '/app/post/[id]',
+  events: '/app/event',
+  event: '/app/event/[id]',
+  moderation: '/app/moderation',
   about: '/app/about',
   login: '/auth/login',
   register: '/auth/register',
@@ -81,8 +86,11 @@ const FALLBACK: Partial<Record<RouteId, RouteId>> = {
   S17: 'S16',
   S18: 'S16',
   F02: 'F01',
-  tree: 'S20',
+  tree: 'trees',
   join: 'S16',
+  user: 'S16',
+  post: 'S16',
+  event: 'events',
 };
 
 /** Build a locale-less path for a screen. */
