@@ -74,6 +74,10 @@ class Settings(BaseSettings):
     vapid_private_key: str = ""
     vapid_subject: str = ""
 
+    # The "Try the Dhaka demo" point (shared with the web app; public, not a secret).
+    next_public_demo_lat: float = 23.7590
+    next_public_demo_lng: float = 90.3590
+
     # Not in .env.example on purpose: test/runtime toggles with safe defaults.
     worker_enabled_in_api: bool = Field(default=False)
 

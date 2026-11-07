@@ -24,8 +24,11 @@ from ..schemas.auth import (
     UserOut,
 )
 from ..schemas.common import Ok
-from ..security import clear_session_cookie, set_session_cookie
+from ..security import SESSION_COOKIE, _secure, clear_session_cookie, read_token, set_session_cookie
 from ..services import auth as svc
+from ..services import demo as demo_svc
+
+PREV_COOKIE = "atmos_prev_session"
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -44,7 +47,9 @@ def user_out(u: User) -> UserOut:
 
 
 async def _ip_limit(db, viewer, name: str, n: int = 20) -> None:
-    await limit(db, f"auth:{name}:{viewer.ip}", n, 3600, code="auth.rate_limited")
+    # Local development and e2e runs come from one IP; production keeps the real limits.
+    cap = n if settings.is_production else n * 20
+    await limit(db, f"auth:{name}:{viewer.ip}", cap, 3600, code="auth.rate_limited")
     await db.commit()  # the hit counts even when the attempt fails
 
 
@@ -137,6 +142,41 @@ async def google_link(body: GoogleLinkIn, request: Request, response: Response, 
     await _ip_limit(db, viewer, "google_link", 10)
     user = await svc.link_google(db, body.link_token, body.password)
     return await _finish(db, request, response, user)
+
+
+@router.post("/demo", response_model=SessionOut, operation_id="auth_demo")
+async def demo(body: GuestIn, request: Request, response: Response, db: DB, viewer: ViewerDep):
+    """Presentation mode: a fresh demo user. The previous session is kept so /auth/demo/exit can restore it."""
+    await _ip_limit(db, viewer, "demo", 30)
+    prev = request.cookies.get(SESSION_COOKIE)
+    user = await demo_svc.create_demo_user(db, body.lang)
+    out = await _finish(db, request, response, user, created=True)
+    if prev and viewer.user is not None and not viewer.user.is_demo:
+        response.set_cookie(
+            PREV_COOKIE, prev, max_age=7 * 24 * 3600, httponly=True, samesite="lax", secure=_secure(request), path="/"
+        )
+    return out
+
+
+@router.post("/demo/exit", response_model=SessionOut | None, operation_id="auth_demo_exit")
+async def demo_exit(request: Request, response: Response, db: DB, viewer: ViewerDep):
+    """Leave Presentation mode: back to the previous session, or signed out."""
+    prev = request.cookies.get(PREV_COOKIE)
+    response.delete_cookie(PREV_COOKIE, path="/")
+    claims = read_token(prev) if prev else None
+    if claims:
+        user = await db.get(User, claims.user_id)
+        if (
+            user
+            and not user.is_demo
+            and user.session_version == claims.sv
+            and not user.blocked
+            and user.deleted_at is None
+        ):
+            set_session_cookie(response, request, user.id, user.role, user.session_version)
+            return SessionOut(user=user_out(user))
+    clear_session_cookie(response, request)
+    return None
 
 
 @router.get("/me", response_model=UserOut, operation_id="auth_me")

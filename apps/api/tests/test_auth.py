@@ -187,3 +187,23 @@ async def test_health_and_sources(client):
     ids = {s["id"] for s in body["sources"]}
     assert {"landsat", "power", "geos_fp", "geos_cf", "worldcover"} <= ids
     assert "0.55" in body["heat_score"]["text"]
+
+
+async def test_demo_enter_and_exit_restores_previous(client):
+    me = await signup(client, email="real@example.org", name="Real")
+    r = await client.post("/api/v1/auth/demo", json={"lang": "bn"})
+    assert r.status_code == 200
+    demo = r.json()["user"]
+    assert demo["is_demo"] is True and demo["display_name"] == "Nadia Rahman"
+    prof = (await client.get("/api/v1/me/profile")).json()
+    assert prof["home"] == {"lat": 23.759, "lng": 90.359} and prof["onboarded"] is True and prof["radius_m"] == 200
+    r = await client.post("/api/v1/auth/demo/exit", json={})
+    assert r.status_code == 200 and r.json()["user"]["id"] == me["id"]
+    assert (await client.get("/api/v1/auth/me")).json()["id"] == me["id"]
+
+
+async def test_demo_exit_without_previous_signs_out(client):
+    await client.post("/api/v1/auth/demo", json={})
+    r = await client.post("/api/v1/auth/demo/exit", json={})
+    assert r.status_code == 200 and r.json() is None
+    assert (await client.get("/api/v1/auth/me")).status_code == 401

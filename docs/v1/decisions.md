@@ -44,3 +44,30 @@ replaced with a generated value. The pre-change file is kept as `.env.pre-v1.bak
 **D6. `apps/web/.env.example` scrubbed.** It held a real-looking Google OAuth client secret. It now
 points to the root template and lists web variables only. The secret is still in git history and must
 be rotated by a person (§14 item 1).
+
+**D7. Session bootstrap.** Every visitor to the app gets a server guest. The client calls
+`POST /auth/guest`, which returns the signed-in user when a session exists and creates a guest
+otherwise. This avoids a 401 from `GET /auth/me` on first load (Playwright fails on console errors,
+E17). `GET /auth/me` stays in the contract.
+
+**D8. Presentation mode.** `POST /auth/demo` creates a fresh demo user and keeps the previous session
+token in an httpOnly `atmos_prev_session` cookie; `POST /auth/demo/exit` restores it (or signs out).
+This replaces V0's separate "demo" IndexedDB namespace.
+
+**D9. Prefs.** Device prefs stay in IndexedDB for an instant first paint and mirror to
+`PATCH /me/profile`. On load the server profile wins once it is onboarded; a fresh server profile
+takes the device's prefs. The default radius is now 200 m (H3).
+
+**D10. Auth limits in development.** Per-IP auth limits are ×20 outside production, because local
+development and e2e runs all come from 127.0.0.1. Production keeps the stated limits.
+
+**D11. Google account linking.** When Google returns an email that already has a password account,
+the API answers 409 `auth.link_requires_password` with a 10-minute signed link token; the client asks
+for the password and calls `POST /auth/google/link`. The one-time Google code is never replayed.
+
+**D12. Earthdata login without `earthaccess`.** The plan lists `earthaccess`, but it pulls in a large
+dependency tree (fsspec, s3fs, pqdm). Token retrieval and bearer-token reads are a few HTTP calls, so
+they are done directly with httpx (`providers/earthdata.py`).
+
+**D13. Dev ports.** Another project's Docker container already serves port 3000 on the dev machine, so
+local runs of the web app used port 3001 (`E2E_BASE_URL=http://localhost:3001`).
