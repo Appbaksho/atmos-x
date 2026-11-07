@@ -195,7 +195,9 @@ async def test_delivery_needs_an_address_and_vouchers_expire(client, client2, db
 
 async def test_partner_prices_stay_within_the_band(client, db, seeded):
     staff = await signup(client, "staff@example.org", "Staff")
+    assert (await client.get("/api/v1/partner/me")).json() == {"partner": None}
     await partner_with(db, member=staff["id"])
+    assert (await client.get("/api/v1/partner/me")).json()["partner"]["name"]
     body = {
         "name": "Tote bag",
         "category": "home",

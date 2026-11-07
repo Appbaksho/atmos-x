@@ -195,6 +195,19 @@ class ProductPatch(BaseModel):
     terms: str | None = Field(default=None, max_length=1000)
 
 
+@router.get("/partner/me", operation_id="partner_me")
+async def partner_me(db: DB, viewer: ViewerDep) -> dict:
+    """The store partner this person works for, or null (no 403, so the app can decide what to show)."""
+    user = _user(viewer)
+    if user is None:
+        return {"partner": None}
+    try:
+        p = await ST.my_partner(db, user)
+    except AppError:
+        return {"partner": None}
+    return {"partner": ST.partner_out(p)}
+
+
 @router.get("/partner/products", operation_id="partner_products")
 async def partner_products(db: DB, user: FullUser) -> dict:
     p = await ST.my_partner(db, user)
@@ -622,6 +635,3 @@ async def admin_allocate(db: DB, admin: Admin) -> dict:
     n = await CO.allocate(db)
     await db.commit()
     return {"allocated": n}
-
-
-_ = AppError
