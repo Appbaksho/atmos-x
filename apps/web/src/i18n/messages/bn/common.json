@@ -114,7 +114,11 @@
   "location": {
     "denied": "লোকেশনের অনুমতি দেওয়া হয়নি। বদলে একটি শহর খুঁজুন।",
     "unavailable": "আপনার লোকেশন পাওয়া যায়নি। বদলে একটি শহর খুঁজুন।",
-    "demo": "মোহাম্মদপুর, ঢাকা"
+    "finding": "আপনার জায়গা খোঁজা হচ্ছে…",
+    "gateTitle": "Atmos X কোথায় দেখবে?",
+    "gateWhy": "তাপ, পরিকল্পনা ও সতর্কতা একটি আসল জায়গার জন্য। আপনার অবস্থান দিন বা এলাকা খুঁজুন; অনুমানের জায়গার কিছু দেখানো হয় না।",
+    "useMine": "আমার অবস্থান ব্যবহার করুন",
+    "tryDemo": "বরং ঢাকা ডেমো দেখুন"
   },
   "notFound": {
     "title": "পেজটি পাওয়া যায়নি",
@@ -128,6 +132,11 @@
   "_meta": {
     "machine_keys": [
       "account.note",
+      "location.finding",
+      "location.gateTitle",
+      "location.gateWhy",
+      "location.tryDemo",
+      "location.useMine",
       "sources.kind.demo",
       "sources.kind.derived",
       "sources.kind.estimate",

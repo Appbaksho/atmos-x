@@ -21,7 +21,7 @@ import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { goBack, goReplace } from '@/lib/routes';
 
-function SearchBox() {
+export function SearchBox() {
   const t = useTranslations('onboarding.location');
   const { search, setFocus, pinned } = useLocation();
   const { fw } = useCz();
@@ -121,7 +121,7 @@ export function LocationScreen() {
   // Hex count from the scan once it answers (H4); the ring formula until then.
   const n = scan.data?.scan.cell_count ?? ringCount(radius);
   const res = H3_RES;
-  const place = loc.placeName ?? tc('location.demo');
+  const place = loc.placeName ?? tc('location.finding');
   const coords = `${f.loc(Math.abs(loc.focus.lat).toFixed(4))}° ${loc.focus.lat >= 0 ? 'N' : 'S'}, ${f.loc(Math.abs(loc.focus.lng).toFixed(4))}° ${loc.focus.lng >= 0 ? 'E' : 'W'}`;
 
   const finish = () => {

@@ -50,6 +50,8 @@ export type MapViewProps = {
   /** Outline this zone instead of rank 1 */
   outlineZoneId?: string | null;
   me?: LatLng | null;
+  /** L9: device fix accuracy (m) drawn as a circle around `me` */
+  meAccuracyM?: number | null;
   showCircle?: boolean;
   /** Outline of the hex ring (H1), from the scan; replaces the radius circle when present */
   outline?: number[][][] | null;
@@ -74,9 +76,11 @@ export type MapViewProps = {
   onFail?: () => void;
 };
 
-type Snapshot = Pick<MapViewProps, 'center' | 'radiusM' | 'hexes' | 'zones' | 'me' | 'showCircle' | 'gibs' | 'outlineZoneId' | 'outline' | 'gibsUrl' | 'hexColor'> & { dark: boolean };
+type Snapshot = Pick<MapViewProps, 'center' | 'radiusM' | 'hexes' | 'zones' | 'me' | 'meAccuracyM' | 'showCircle' | 'gibs' | 'outlineZoneId' | 'outline' | 'gibsUrl' | 'hexColor'> & { dark: boolean };
 
 const areaShape = (s: Pick<Snapshot, 'outline' | 'center' | 'radiusM'>) => ringOutline(s.outline) ?? circlePolygon(s.center, s.radiusM);
+/** A circle only when the fix is usefully precise (≤ 2 km); a coarse fix would just cover the map. */
+const accuracyShape = (me: LatLng | null | undefined, m: number | null | undefined) => (me && m && m > 5 && m <= 2000 ? circlePolygon(me, m) : EMPTY);
 const HEX_FILL = (mode: MapViewProps['hexColor']) => ['get', mode === 'lst' ? 'lstColor' : 'color'] as maplibregl.ExpressionSpecification;
 
 function reducedMotion() {
@@ -129,24 +133,26 @@ function addOverlays(map: MlMap, s: Snapshot) {
     paint: s.outline?.length ? { 'line-color': B.lime, 'line-width': 2.5 } : { 'line-color': B.lime, 'line-width': 2, 'line-dasharray': [3, 3] },
   });
 
+  map.addSource('cz-me-acc', { type: 'geojson', data: accuracyShape(s.me, s.meAccuracyM) });
+  map.addLayer({ id: 'cz-me-acc', type: 'fill', source: 'cz-me-acc', paint: { 'fill-color': B.blue, 'fill-opacity': 0.12, 'fill-outline-color': B.blue } });
   map.addSource('cz-me', { type: 'geojson', data: s.me ? { type: 'Point', coordinates: [s.me.lng, s.me.lat] } : EMPTY });
   map.addLayer({ id: 'cz-me-halo', type: 'circle', source: 'cz-me', paint: { 'circle-radius': 14, 'circle-color': 'rgba(255,255,255,0.28)', 'circle-stroke-color': 'rgba(255,255,255,0.9)', 'circle-stroke-width': 1.2 } });
   map.addLayer({ id: 'cz-me', type: 'circle', source: 'cz-me', paint: { 'circle-radius': 7, 'circle-color': B.blue, 'circle-stroke-color': B.white, 'circle-stroke-width': 3 } });
 }
 
 export default function MapView(props: MapViewProps) {
-  const { center, radiusM, hexes, zones, focusCells, outlineZoneId, me, showCircle = true, outline = null, gibs = false, gibsUrl = null, hexColor = 'score', animateKey, scanning, interactive = true, padding, onHex, markers, label, style, className, onFail } = props;
+  const { center, radiusM, hexes, zones, focusCells, outlineZoneId, me, meAccuracyM = null, showCircle = true, outline = null, gibs = false, gibsUrl = null, hexColor = 'score', animateKey, scanning, interactive = true, padding, onHex, markers, label, style, className, onFail } = props;
   const { dark } = useCz();
   const box = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const snap = useRef<Snapshot>({ center, radiusM, hexes, zones, me, showCircle, gibs, outlineZoneId, outline, gibsUrl, hexColor, dark });
+  const snap = useRef<Snapshot>({ center, radiusM, hexes, zones, me, meAccuracyM, showCircle, gibs, outlineZoneId, outline, gibsUrl, hexColor, dark });
   const onHexRef = useRef(onHex);
   const padRef = useRef(padding);
   // Latest props for map event handlers (style swaps re-add overlays from this snapshot).
   useEffect(() => {
-    snap.current = { center, radiusM, hexes, zones, me, showCircle, gibs, outlineZoneId, outline, gibsUrl, hexColor, dark };
+    snap.current = { center, radiusM, hexes, zones, me, meAccuracyM, showCircle, gibs, outlineZoneId, outline, gibsUrl, hexColor, dark };
     onHexRef.current = onHex;
     padRef.current = padding;
   });
@@ -270,7 +276,8 @@ export default function MapView(props: MapViewProps) {
     const map = mapRef.current;
     if (!map || !ready || !map.getSource('cz-me')) return;
     setSource(map, 'cz-me', me ? { type: 'Point', coordinates: [me.lng, me.lat] } : EMPTY);
-  }, [me, ready]);
+    if (map.getSource('cz-me-acc')) setSource(map, 'cz-me-acc', accuracyShape(me, meAccuracyM));
+  }, [me, meAccuracyM, ready]);
 
   useEffect(() => {
     const map = mapRef.current;

@@ -69,7 +69,7 @@ export function HeatMapScreen() {
   const t = useTranslations('map');
   const rl = useRadiusLabel();
   const desktop = useDesktop();
-  const { device, placeName } = useLocation();
+  const { device, placeName, accuracyM } = useLocation();
 
   // Radius: local while dragging (null = follow prefs), debounced into the scan + prefs.
   const [drag, setR] = useState<number | null>(null);
@@ -262,6 +262,7 @@ export function HeatMapScreen() {
       outline={data?.scan.outline}
       zones={layer === 'heat' ? data?.zones : []}
       me={device ?? center}
+      meAccuracyM={device ? accuracyM : null}
       gibs={layer === 'lst'}
       gibsUrl={gibs.data?.tile_url}
       animateKey={animateKey}

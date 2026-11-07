@@ -6,11 +6,16 @@
  *           refresh, setFocus, resetFocus, search } = useLocation();
  *
  * - `device`: the browser's position (navigator.geolocation), null until granted.
- * - `focus`: the point being analysed (device position, a picked city/spot, or the demo point).
- *   Data hooks key on `focus`.
+ * - `focus`: the point being analysed (device position, a picked city/spot, the city from IP, or the
+ *   demo point in Presentation mode). Data hooks key on `focus`.
+ * - `resolved` (L11): false until the place really comes from somewhere: a restored choice, a device
+ *   fix, a picked place, the city from IP (L8) or the demo. There is no silent default place; while
+ *   `needsPlace` is true the app shell asks for one instead of showing data for a made-up spot.
  * - Permission is never requested on load: onboarding (S03) and "Use my location" call `refresh()`.
- *   If it was already granted, the position is fetched automatically once onboarded.
- * - Presentation mode (prefs.presentation) pins focus to NEXT_PUBLIC_DEMO_LAT/LNG (Mohammadpur).
+ *   If it was already granted, the position is fetched automatically and then watched with high
+ *   accuracy (L9); moving more than 100 m re-scans. `accuracyM` feeds the map's accuracy circle.
+ * - Presentation mode (prefs.presentation) pins focus to NEXT_PUBLIC_DEMO_LAT/LNG; its name comes
+ *   from the same reverse geocode as every other place (E12).
  * - `search(q)` calls GET /api/v1/geo/search and falls back to a small static list (incl. Dhaka).
  * - The chosen focus is persisted in IndexedDB so it survives reloads.
  */
@@ -27,7 +32,8 @@ export const DEMO_POINT: LatLng = {
   lat: Number(process.env.NEXT_PUBLIC_DEMO_LAT ?? 23.759) || 23.759,
   lng: Number(process.env.NEXT_PUBLIC_DEMO_LNG ?? 90.359) || 90.359,
 };
-export const DEMO_PLACE = 'Mohammadpur, Dhaka';
+/** L9: a move this far from the scanned point re-scans. */
+const RESCAN_M = 100;
 
 /** Offline / pre-V0-2 city list for the manual search. */
 export const STATIC_PLACES: Place[] = [
@@ -69,6 +75,12 @@ type LocationState = {
   pinned: boolean;
   /** True once the persisted focus has been restored */
   ready: boolean;
+  /** The place came from somewhere real (device, choice, IP city or the demo) */
+  resolved: boolean;
+  /** Nothing could resolve a place: the app asks the person to pick one */
+  needsPlace: boolean;
+  /** Device fix accuracy in metres (null without a fix) */
+  accuracyM: number | null;
   setFocus: (p: LatLng, name?: string | null) => void;
   resetFocus: () => void;
   /** Ask for permission (if needed) and get a fresh fix. Resolves with the position or null. */
@@ -123,11 +135,13 @@ function nearestStatic(p: LatLng): string | null {
   return best && bestD < 8 ? [best.name, best.admin].filter(Boolean).join(', ') : null;
 }
 
+const GEO_OPTS: PositionOptions = { enableHighAccuracy: true, timeout: 15000, maximumAge: 60 * 1000 };
+
 function getPosition(): Promise<GeolocationPosition> {
-  return new Promise((resolve, reject) =>
-    navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: false, timeout: 12000, maximumAge: 5 * 60 * 1000 }),
-  );
+  return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, GEO_OPTS));
 }
+
+type IpCity = { result: { city: string; country: string | null; location: LatLng } | null };
 
 export function LocationProvider({ children }: { children: React.ReactNode }) {
   const { prefs, ready: prefsReady } = useCz();
@@ -140,7 +154,13 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<LocationState['error']>(null);
   const [custom, setCustom] = useState(false);
   const [ready, setReady] = useState(false);
+  const [resolved, setResolved] = useState(false);
+  const [needsPlace, setNeedsPlace] = useState(false);
+  const [accuracyM, setAccuracyM] = useState<number | null>(null);
+  const [demoName, setDemoName] = useState<string | null>(null);
   const customRef = useRef(false);
+  const focusRef = useRef<LatLng | null>(null);
+  const resolvedRef = useRef(false);
   const reqId = useRef(0);
   const pinned = prefs.presentation;
 
@@ -174,10 +194,13 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
         const saved = typeof indexedDB === 'undefined' ? undefined : await get<Persisted>(KEY);
         if (alive && saved) {
           setFocusState(saved.focus);
+          focusRef.current = saved.focus;
           setPlaceName(saved.placeName);
           setCustom(saved.custom);
           customRef.current = saved.custom;
           setDevice(saved.device);
+          resolvedRef.current = true;
+          setResolved(true);
         }
       } catch {
         // storage unavailable
@@ -200,11 +223,35 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Persist.
+  // Persist (only a place that was really resolved).
   useEffect(() => {
-    if (!ready || pinned) return;
+    if (!ready || pinned || !resolved) return;
     set(KEY, { focus, placeName, custom, device } satisfies Persisted).catch(() => {});
-  }, [ready, pinned, focus, placeName, custom, device]);
+  }, [ready, pinned, resolved, focus, placeName, custom, device]);
+
+  const markResolved = useCallback(() => {
+    resolvedRef.current = true;
+    setResolved(true);
+    setNeedsPlace(false);
+  }, []);
+
+  /** L8: the city from the IP address, when no device fix or choice exists. */
+  const fromIp = useCallback(async () => {
+    if (resolvedRef.current) return;
+    try {
+      const r = await fetchJson<IpCity>('/api/v1/geo/ip', 5000);
+      if (r.result && !resolvedRef.current) {
+        setFocusState(r.result.location);
+        focusRef.current = r.result.location;
+        setPlaceName([r.result.city, r.result.country].filter(Boolean).join(', '));
+        markResolved();
+        return;
+      }
+    } catch {
+      // no IP city (local network, lookup down)
+    }
+    if (!resolvedRef.current) setNeedsPlace(true);
+  }, [markResolved]);
 
   const refresh = useCallback(async (): Promise<LatLng | null> => {
     if (!('geolocation' in navigator)) {
@@ -219,10 +266,13 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
       const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
       setPermission('granted');
       setDevice(p);
+      setAccuracyM(Math.round(pos.coords.accuracy));
       if (!customRef.current) {
         setFocusState(p);
+        focusRef.current = p;
         name(p);
       }
+      markResolved();
       return p;
     } catch (e) {
       const code = (e as GeolocationPositionError).code;
@@ -230,25 +280,67 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
         setPermission('denied');
         setError('denied');
       } else setError(code === 3 ? 'timeout' : 'unavailable');
+      void fromIp();
       return null;
     } finally {
       setLoading(false);
     }
-  }, [name]);
+  }, [name, markResolved, fromIp]);
 
-  // Auto-fix once onboarded when permission was already granted (never prompts).
+  // Resolve on load without prompting: a granted permission gets a fix; otherwise the IP city.
   const autoStarted = useRef(false);
   useEffect(() => {
-    if (!ready || !prefsReady || !prefs.onboarded || permission !== 'granted' || autoStarted.current) return;
+    if (!ready || !prefsReady || pinned || autoStarted.current) return;
+    if (permission === 'unknown' && 'permissions' in navigator) return; // still reading the state
     autoStarted.current = true;
-    void refresh();
-  }, [ready, prefsReady, prefs.onboarded, permission, refresh]);
+    // After this render (both start async work that sets state).
+    void Promise.resolve().then(async () => {
+      if (permission === 'granted') await refresh();
+      else await fromIp();
+    });
+  }, [ready, prefsReady, pinned, permission, refresh, fromIp]);
+
+  // L9: follow the device with high accuracy once allowed; a move over 100 m re-scans.
+  useEffect(() => {
+    if (!ready || pinned || permission !== 'granted' || !('geolocation' in navigator)) return;
+    const id = navigator.geolocation.watchPosition(
+      (pos) => {
+        const p = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        setAccuracyM(Math.round(pos.coords.accuracy));
+        setDevice((d) => (d && distKm(d, p) * 1000 < 10 ? d : p));
+        const f = focusRef.current;
+        if (!customRef.current && (!f || distKm(f, p) * 1000 > RESCAN_M)) {
+          setFocusState(p);
+          focusRef.current = p;
+          name(p);
+          markResolved();
+        }
+      },
+      () => undefined,
+      GEO_OPTS,
+    );
+    return () => navigator.geolocation.clearWatch(id);
+  }, [ready, pinned, permission, name, markResolved]);
+
+  // E12: the demo place is named by the same reverse geocode as any other point.
+  useEffect(() => {
+    if (!pinned) return;
+    let alive = true;
+    void reverse(DEMO_POINT).then((n) => {
+      if (alive) setDemoName(n);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [pinned, reverse]);
 
   const setFocus = useCallback(
     (p: LatLng, n?: string | null) => {
       customRef.current = true;
       setCustom(true);
       setFocusState(p);
+      focusRef.current = p;
+      markResolved();
       if (n) {
         reqId.current++;
         setPlaceName(n);
@@ -257,17 +349,20 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
         name(p);
       }
     },
-    [name],
+    [name, markResolved],
   );
 
+  /** Back to the device position; without a fix, ask for one (no made-up place). */
   const resetFocus = useCallback(() => {
     customRef.current = false;
     setCustom(false);
-    const p = device ?? DEMO_POINT;
-    setFocusState(p);
-    setPlaceName(device ? null : DEMO_PLACE);
-    if (device) name(p);
-  }, [device, name]);
+    if (device) {
+      setFocusState(device);
+      focusRef.current = device;
+      setPlaceName(null);
+      name(device);
+    } else void refresh();
+  }, [device, name, refresh]);
 
   const search = useCallback(
     async (q: string, signal?: AbortSignal): Promise<Place[]> => {
@@ -288,19 +383,22 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
     () => ({
       device,
       focus: pinned ? DEMO_POINT : focus,
-      placeName: pinned ? DEMO_PLACE : placeName,
+      placeName: pinned ? demoName : placeName,
       permission,
       loading,
       error,
       custom: pinned ? true : custom,
       pinned,
       ready,
+      resolved: pinned || resolved,
+      needsPlace: !pinned && needsPlace && !resolved,
+      accuracyM: pinned ? null : accuracyM,
       setFocus,
       resetFocus,
       refresh,
       search,
     }),
-    [device, focus, placeName, permission, loading, error, custom, pinned, ready, setFocus, resetFocus, refresh, search],
+    [device, focus, placeName, demoName, permission, loading, error, custom, pinned, ready, resolved, needsPlace, accuracyM, setFocus, resetFocus, refresh, search],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
