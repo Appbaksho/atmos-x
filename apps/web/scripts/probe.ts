@@ -2,7 +2,7 @@
  * npm run probe — call every /api/v0 route handler for the Dhaka demo point and print
  * status, timing and meta.live. No dev server needed: the handlers are imported and called with a
  * NextRequest. Pass `--base http://localhost:3000` to probe a running server over HTTP instead.
- * Flags: --no-ai (skip /ask and /plan AI), --photo (also POST verify-photo and tree-check with a tiny image).
+ * Flags: --no-ai (skip /plan AI).
  */
 import { NextRequest } from 'next/server';
 
@@ -13,11 +13,8 @@ type Handler = (req: NextRequest, ctx: { params: Promise<Record<string, string>>
 const args = process.argv.slice(2);
 const base = args.includes('--base') ? args[args.indexOf('--base') + 1] : null;
 const noAi = args.includes('--no-ai');
-const photo = args.includes('--photo');
 const { lat, lng } = env.demo;
 // 1×1 white JPEG (enough to exercise the route; the AI will return pending).
-const TINY_JPEG =
-  'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAABAAEBAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=';
 
 async function call(method: 'GET' | 'POST', path: string, mod: () => Promise<Record<string, unknown>>, params: Record<string, string> = {}, body?: unknown) {
   const url = `${base ?? 'http://localhost'}${path}`;
@@ -79,19 +76,6 @@ async function main() {
       goal: { id: 'probe-goal', zone_id: id, zone_name: 'Probe zone', zone_centroid: { lat, lng }, target_c: -1.5, by_date: '2027-10-01' },
       lang: 'bn',
     });
-    await call('POST', '/api/v0/ask', () => import('@/app/api/v0/ask/route'), {}, {
-      message: 'আমার এলাকা এত গরম কেন?',
-      screen: 'S04',
-      lang: 'bn',
-      context: { lat, lng },
-      client_state: { profile: 'user', units: 'C', farmer: false },
-    });
-  }
-  if (photo) {
-    await call('POST', '/api/v0/verify-photo', () => import('@/app/api/v0/verify-photo/route'), {}, {
-      image: TINY_JPEG, action_type: 'plant_tree', quantity: 1, taken_at: new Date().toISOString(), lat, lng, target: { lat, lng }, lang: 'en',
-    });
-    await call('POST', '/api/v0/tree-check', () => import('@/app/api/v0/tree-check/route'), {}, { image: TINY_JPEG, species_id: 'neem', lang: 'en' });
   }
 }
 
