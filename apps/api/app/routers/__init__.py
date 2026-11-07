@@ -1,6 +1,6 @@
 """Every API router, mounted under /api/v1 by main.py."""
 
-from . import act, ask, auth, community, farm, me, meta, plan, sensors, weather, zones
+from . import act, ask, auth, community, farm, market, me, meta, plan, sensors, weather, zones
 
 ROUTERS = [
     meta.router,
@@ -14,4 +14,5 @@ ROUTERS = [
     farm.router,
     ask.router,
     community.router,
+    market.router,
 ]
