@@ -69,7 +69,7 @@
     "split": "تقسیم · {n} ارکان",
     "splitSolo": "اسے ٹیم کے ساتھ تقسیم کریں",
     "splitSoloSub": "۵ افراد کی ٹیم سے یہ {each} فی فرد رہ جاتا ہے۔",
-    "estimateNote": "اس علاقے کے لیے قیمتیں AI کے اندازے ہیں، جنہیں حوالہ لاگت سے چیک کیا گیا ہے۔ سپلائرز سے تصدیق کریں۔"
+    "estimateNote": "قیمتیں اس علاقے کی حوالہ لاگت سے تخمینہ ہیں۔ سپلائرز سے تصدیق کریں۔"
   },
   "nurseries": {
     "title": "نرسریاں",
@@ -111,7 +111,7 @@
     "groundTitle": "حقیقی زمین",
     "groundTag": "سائنس دان استعمال کرتے ہیں",
     "groundBody": "اب آپ کی تصویر حقیقی زمینی نقطہ ہے۔ یہ یہاں سیٹلائٹ کی دیکھی ہوئی چیز چیک کرتی ہے (نیا سایہ، ہریالی اور سطحی حرارت)، جیسے NASA کے سائنس دان GLOBE شہری تصاویر استعمال کرتے ہیں۔",
-    "groundSrc": "v۰ میں اسی ڈیوائس پر رہے گا · GLOBE طرز پروٹوکول",
+    "groundSrc": "آپ کے کام کے ساتھ محفوظ · GLOBE طرز کا طریقہ",
     "survivalNote": "ہر جانچ پر پوائنٹس ملتے ہیں۔ ایک چھوٹ جائے تو پوائنٹس رک جاتے ہیں؛ وہ ختم نہیں ہوتے۔",
     "dayN": "دن {n}",
     "share": "شیئر کریں",
@@ -224,6 +224,7 @@
   },
   "_meta": {
     "machine_keys": [
+      "budget.estimateNote",
       "check.capture_source.rule",
       "check.capture_source.title",
       "check.content_plausible.rule",
@@ -248,6 +249,7 @@
       "check.time_recent.rule",
       "check.time_recent.title",
       "contribution.approve",
+      "contribution.groundSrc",
       "contribution.provisionalNote",
       "contribution.reject",
       "contribution.rejectedNote",

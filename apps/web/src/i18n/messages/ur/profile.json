@@ -204,7 +204,7 @@
     "farmer": "کسان",
     "askShow": "بٹن دکھائیں",
     "askHide": "چھپائیں",
-    "askNote": "ہر اسکرین پر AI چیٹ",
+    "askNote": "ہر اسکرین پر گرمی، منصوبے، درختوں اور کھیتی پر فوری جوابات",
     "data": "ڈیٹا اور سائنس",
     "account": "اکاؤنٹ",
     "liveNote": "تبدیلیاں فوراً پوری ایپ میں لاگو ہو جاتی ہیں",
@@ -237,7 +237,7 @@
     "demoAccount": "نمائشی موڈ میں نادیہ کا ڈیمو اکاؤنٹ استعمال ہوتا ہے۔",
     "more": "مزید",
     "about": "Atmos X کے بارے میں",
-    "footer": "Atmos X v0 · OpenStreetMap کے زمینی کور اور Open-Meteo کے موسم سے گرمی کا اندازہ · © OpenStreetMap contributors",
+    "footer": "Atmos X · NASA سیٹلائٹ، موسم اور آب و ہوا کا ڈیٹا · نقشے کا ڈیٹا © OpenStreetMap معاونین",
     "push": {
       "title": "پش اطلاعات",
       "on": "اس ڈیوائس پر آن",
@@ -262,58 +262,72 @@
   "about": {
     "title": "ڈیٹا اور سائنس",
     "sub": "ہر عدد کہاں سے آتا ہے",
-    "opens": "{title}، {url} کھولتا ہے",
     "credits": "کریڈٹس اور لائسنس",
-    "version": "Atmos X v0 · پیش کرنے کے قابل MVP",
+    "version": "Atmos X · ہیٹ پائپ لائن {v}",
     "sections": {
       "heat": {
-        "title": "گرمی کا اندازہ: OpenStreetMap + لائیو موسم",
-        "body": "v0 میں ہیٹ میپ ایک اندازہ ہے۔ ہر H3 مسدس کے لیے ہم OpenStreetMap سے عمارتیں، سڑکیں، سبزہ اور پانی ناپتے ہیں، پھر انہیں Open-Meteo کے لائیو ہوا کے درجۂ حرارت میں شامل کرتے ہیں۔ Heat Score ہر مسدس کا آپ کے اسکین کی درمیانی قدر سے موازنہ کرتا ہے۔ یہ سیٹلائٹ ڈیٹا نہیں ہے۔"
+        "title": "ہیٹ میپ اور Heat Score",
+        "body": "ہر مسدس (تقریباً 135 میٹر) کو اس کے اپنے علاقے کے مقابلے میں 0 سے 100 کا Heat Score ملتا ہے۔ دن کی سطحی گرمی 30 میٹر پر Landsat 8/9 اور HLS سے، رات کی گرمی MODIS سے آتی ہے، اور ECOSTRESS پاس ملنے پر مزید باریک کی جاتی ہے۔ ڈھکی زمین، ہریالی اور پانی ESA WorldCover سے۔ ڈیٹا نہ ہو تو مسدس “ڈیٹا نہیں” دکھاتا ہے، کبھی اندازہ نہیں لگایا جاتا۔"
       },
       "zones": {
-        "title": "گرمی کے زون کیسے ملتے ہیں",
-        "body": "سب سے گرم چوتھائی مسدس آپس میں جڑے زونز میں گروپ کیے جاتے ہیں اور اوسط اسکور کے حساب سے درجہ دیے جاتے ہیں۔ جو زون ایک دوسرے سے ۳ پوائنٹس کے اندر ہوں، انہیں درجہ دینے کے بجائے قریب برابر سمجھا جاتا ہے۔"
+        "title": "گرم علاقے اور ان کی وجوہات",
+        "body": "سب سے گرم چوتھائی مسدسوں کو جڑے علاقوں میں تقسیم کر کے درجہ دیا جاتا ہے؛ 3 پوائنٹس کے اندر کے علاقے تقریباً برابر دکھتے ہیں۔ ہر علاقے کی وجوہات شہر کے اپنے مسدسوں پر بنے ماڈل سے آتی ہیں، اور وضاحت انہی اعداد سے لکھی جاتی ہے۔"
       },
       "air": {
-        "title": "ہوا کا درجۂ حرارت: Open-Meteo",
-        "body": "درجۂ حرارت، نمی اور ۵ دن کی پیش گوئی Open-Meteo کی پیش گوئی سے آتی ہے۔ “محسوس ہوتا ہے” NOAA کے ہیٹ انڈیکس سے نکالا جاتا ہے۔ معمولات اور ۲۰ سالہ تاریخ ERA5 archive سے Open-Meteo کے ذریعے آتی ہے۔ بنگلہ دیش میں گرمی کی سطحیں BMD حدوں کے مطابق ہیں؛ یہ سرکاری انتباہات نہیں ہیں۔"
+        "title": "درجہ حرارت اور پیش گوئی",
+        "body": "موجودہ قدریں Open-Meteo ماڈل سے، NASA GEOS-FP سے ملا کر۔ معمول اور حالیہ موسم NASA POWER سے، اور تخمینوں میں مستقبل کی گرمی NASA NEX-GDDP-CMIP6 سے۔ “محسوس” درجہ NOAA ہیٹ انڈیکس سے۔ بنگلہ دیش میں گرمی کی سطحیں BMD کی حدوں پر ہیں؛ یہ سرکاری انتباہ نہیں۔"
       },
       "aq": {
-        "title": "ہوا کا معیار: Open-Meteo Air Quality",
-        "body": "PM2.5 Open-Meteo Air Quality ماڈل سے آتا ہے۔ ہم AQI خود US EPA 2024 کے PM2.5 بریک پوائنٹس سے نکالتے ہیں۔ v0 میں آپ جو سینسر شامل کرتے ہیں وہ فرضی ہیں۔"
+        "title": "ہوا کا معیار",
+        "body": "ناپا گیا PM2.5 OpenAQ اسٹیشنوں سے آتا ہے۔ پیش گوئیاں NASA GEOS-CF اور Open-Meteo سے، ماڈل کے طور پر نشان زد۔ AQI میں US EPA 2024 PM2.5 حدیں ہیں۔ آپ کا شامل کیا سینسر اپنی اصل قدریں بھیجتا ہے؛ کچھ بھی فرضی نہیں۔"
       },
       "cooling": {
-        "title": "ٹھنڈک کے اندازے",
-        "body": "km² میں درختوں کے سایے کا ہر +۱ % دن کے وقت سطحی درجۂ حرارت کو تقریباً ۰.۱–۰.۲ °C کم کرتا ہے؛ ٹھنڈی چھتیں km² کے ہر ۱ % پر تقریباً ۰.۰۴ °C کم کرتی ہیں۔ درخت جوں جوں بڑھتے ہیں، ان کی ٹھنڈک بڑھتی جاتی ہے۔ اندازے حدیں ہیں، وعدے نہیں۔"
+        "title": "ٹھنڈک کے تخمینے",
+        "body": "ایک مربع کلومیٹر میں ہر +1 % درختوں کی چھتری سے دن کا سطحی درجہ حرارت تقریباً 0.1–0.2 °C کم ہوتا ہے؛ ٹھنڈی چھتوں سے ہر 1 % پر تقریباً 0.04 °C۔ درخت بڑھنے کے ساتھ ٹھنڈک بڑھتی ہے۔ تخمینے حدود ہیں، وعدے نہیں؛ درختوں کا CO₂ تخمینہ ہے، آف سیٹ نہیں۔"
       },
       "farm": {
-        "title": "کسان الرٹس",
-        "body": "قواعد Open-Meteo کی پیش گوئی اور NASA POWER کی ۳۰ دن کی بارش کے ساتھ، BMD، BRRI اور DAE کی رہنمائی کے مطابق چلتے ہیں، مثلاً دھان کے پھول آنے پر گرمی ≥ ۳۵ °C۔ Atmos X کبھی کیڑے مار دوا کی خوراکیں نہیں بتاتا۔"
-      },
-      "ai": {
-        "title": "AI: OpenAI",
-        "body": "OpenAI کے ماڈل “کیوں گرمی ہے” والا متن، منصوبے کی تفصیل (اقسام، لاگت، مراحل) لکھتے ہیں، Ask Atmos کے جواب دیتے ہیں، اور تصاویر چیک کرتے ہیں۔ AI جو کچھ بھرتا ہے اس پر “AI اندازہ” لکھا ہوتا ہے۔ اسکور، ٹھنڈک اور AQI ہمیشہ مقررہ فارمولوں سے آتے ہیں۔"
+        "title": "کسان انتباہ",
+        "body": "دس طے شدہ اصول پیش گوئی، NASA POWER بارش، NASA SMAP مٹی کی نمی، پچھلے 72 گھنٹوں کی NASA IMERG بارش اور NASA LIS/OTD آسمانی بجلی کے اعداد پر چلتے ہیں، BMD، BRRI اور DAE رہنمائی کے مطابق۔ Atmos X کبھی کیڑے مار دوا کی مقدار نہیں بتاتا۔"
       },
       "community": {
-        "title": "کمیونٹی ڈیٹا",
-        "body": "v0 میں آپ کا اکاؤنٹ، اعمال، تصاویر، درخت اور ٹیمیں صرف اس ڈیوائس پر رہتی ہیں۔ دوسرے لوگ، ٹیمیں اور لیڈر بورڈز ڈیمو کمیونٹی ہیں، جن پر “ڈیمو کمیونٹی” لکھا ہوتا ہے۔"
+        "title": "آپ کا اکاؤنٹ اور رازداری",
+        "body": "آپ کا اکاؤنٹ، کام، درخت اور ٹیمیں Atmos X سرورز پر رہتی ہیں، اس لیے ہر ڈیوائس پر کام کرتی ہیں۔ عوامی مقامات تقریباً 100 میٹر تک گول کیے جاتے ہیں، اور پوسٹ نہ کریں تو تصاویر نجی رہتی ہیں۔ ڈیمو کمیونٹی میں فرضی لوگ اور ٹیمیں ہیں جو اصل لیڈر بورڈ میں شامل نہیں ہوتیں۔"
       },
       "nurseries": {
-        "title": "نرسریاں",
-        "body": "نرسریوں کے مقامات OpenStreetMap اور ڈھاکا کی منتخب فہرست سے آتے ہیں۔ Atmos X کبھی پودے نہیں بیچتا۔"
+        "title": "نرسریاں اور اسٹور",
+        "body": "نرسریوں کے مقامات OpenStreetMap اور منتخب ڈھاکہ فہرست سے آتے ہیں۔ پارٹنر نرسریاں ایپ کے ذریعے پودے اور شجرکاری کٹس بیچ سکتی ہیں، SSLCommerz سے ٹکا میں ادائیگی؛ Atmos X تھوڑا کمیشن رکھتا ہے۔ تصدیق شدہ درختوں کے پوائنٹس سے پارٹنر کمپنیوں کی پروڈکٹس ملتی ہیں؛ پوائنٹس کی نقد قیمت نہیں۔"
+      },
+      "checks": {
+        "title": "کام کیسے جانچے جاتے ہیں",
+        "body": "ہر تصویر طے شدہ جانچوں سے گزرتی ہے: GPS موجود اور جگہ کے قریب، ممکنہ مقام، حال میں لی گئی، ایپ میں لی گئی، نقل نہیں، اور کام سے میل کھاتا مواد۔ مشکوک ہونے پر ٹیم کا رکن یا ماڈریٹر دیکھتا ہے۔ کوئی لینگویج ماڈل شامل نہیں۔"
+      },
+      "ask": {
+        "title": "Ask Atmos",
+        "body": "Ask Atmos طے شدہ اصولوں سے ایپ کے اپنے ڈیٹا سے جواب دیتا ہے: سوال پہچانتا ہے، اسکرین پر نظر آنے والے وہی اعداد پڑھتا ہے اور ذرائع دکھاتا ہے۔ یہ لینگویج ماڈل استعمال نہیں کرتا، اس لیے کبھی حقائق نہیں گھڑتا۔"
       }
     },
     "credit": {
       "osm": "نقشے کا ڈیٹا © OpenStreetMap contributors، ODbL",
       "ofm": "نقشے کی ٹائلز: OpenFreeMap",
       "meteo": "موسم اور ہوا کا معیار: Open-Meteo، CC BY 4.0",
-      "era5": "آب و ہوا کا آرکائیو: Copernicus ERA5 بذریعہ Open-Meteo",
-      "power": "بارش: NASA POWER",
-      "gibs": "اختیاری زمینی سطح کے درجۂ حرارت کی اوورلے: NASA GIBS",
-      "openai": "AI: OpenAI",
       "photos": "تصاویر: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "فونٹس: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
-    }
+    },
+    "live": {
+      "count": "اس وقت {n} NASA ڈیٹاسیٹس استعمال میں",
+      "formula": "ہر مسدس کا Heat Score، بالکل جیسے ایپ حساب کرتی ہے:",
+      "fit": "ڈھاکہ کا وجوہات ماڈل: {n} مسدسوں پر R² {r2}۔"
+    },
+    "sources": {
+      "title": "تمام ڈیٹا ذرائع",
+      "sub": "ایپ سے براہ راست پڑھا گیا، ہر ذریعے کی قسم، تازہ ترین ڈیٹا اور لائسنس کے ساتھ۔",
+      "inUse": "استعمال میں",
+      "standby": "انتظار میں",
+      "latest": "تازہ ترین {date}",
+      "resolution": "{m} میٹر",
+      "opens": "{name}، ذریعہ کھولتا ہے"
+    },
+    "versionNone": "Atmos X"
   },
   "title": "پروفائل",
   "notifsUnread": "اطلاعات، {n} بغیر پڑھی",
@@ -337,7 +351,7 @@
   "myMap": "میرا حصہ داری نقشہ",
   "mapA11y": "ان جگہوں کا نقشہ جہاں آپ نے حصہ ڈالا",
   "snapNote": "زون کے مرکز پر رکھا گیا ہے۔ آپ کی اصل جگہیں نجی رہتی ہیں۔",
-  "sensorsSub": "{count, plural, =0 {ایک نقلی سینسر شامل کریں} one {{n} سینسر · نقلی (v0)} other {{n} سینسر · نقلی (v0)}}",
+  "sensorsSub": "{count, plural, =0 {اپنا PM2.5 سینسر شامل کریں} one {{n} سینسر} other {{n} سینسرز}}",
   "historyEmpty": "ابھی کوئی کارروائی نہیں۔ پوائنٹس حاصل کرنے کے لیے اپنی پہلی کارروائی درج کریں۔",
   "logAction": "کارروائی درج کریں",
   "historyMeta": "{date} · {where}",
@@ -430,7 +444,7 @@
       }
     },
     "reason": {
-      "unavailable": "AI جانچ دستیاب نہیں تھی۔ کوئی ساتھی اس کی تصدیق کر سکتا ہے۔",
+      "unavailable": "خودکار جانچ دستیاب نہیں تھی۔ ٹیم کا کوئی رکن تصدیق کر سکتا ہے۔",
       "rate_limited": "آج بہت زیادہ جانچیں ہو گئیں۔ کوئی ساتھی اس کی تصدیق کر سکتا ہے۔",
       "no_photo": "کوئی تصویر شامل نہیں کی گئی۔ کوئی ساتھی اس کی تصدیق کر سکتا ہے۔",
       "teammate_confirmed": "کسی ساتھی نے تصدیق کر دی ہے۔"
@@ -442,6 +456,38 @@
   "pendingA11y": "درخت کے 90 دن کے چیک اِن تک {pts} پوائنٹ زیرِ التوا",
   "_meta": {
     "machine_keys": [
+      "about.live.count",
+      "about.live.fit",
+      "about.live.formula",
+      "about.sections.air.body",
+      "about.sections.air.title",
+      "about.sections.aq.body",
+      "about.sections.aq.title",
+      "about.sections.ask.body",
+      "about.sections.ask.title",
+      "about.sections.checks.body",
+      "about.sections.checks.title",
+      "about.sections.community.body",
+      "about.sections.community.title",
+      "about.sections.cooling.body",
+      "about.sections.cooling.title",
+      "about.sections.farm.body",
+      "about.sections.farm.title",
+      "about.sections.heat.body",
+      "about.sections.heat.title",
+      "about.sections.nurseries.body",
+      "about.sections.nurseries.title",
+      "about.sections.zones.body",
+      "about.sections.zones.title",
+      "about.sources.inUse",
+      "about.sources.latest",
+      "about.sources.opens",
+      "about.sources.resolution",
+      "about.sources.standby",
+      "about.sources.sub",
+      "about.sources.title",
+      "about.version",
+      "about.versionNone",
       "avatar.another",
       "avatar.change",
       "avatar.choose",
@@ -485,6 +531,7 @@
       "code.notif.tree.y1",
       "code.notif.verification.reviewed_no",
       "code.notif.verification.reviewed_ok",
+      "code.reason.unavailable",
       "join.bad",
       "join.badSub",
       "join.feature",
@@ -502,6 +549,9 @@
       "pending",
       "pendingA11y",
       "pendingUntil",
+      "sensorsSub",
+      "settings.askNote",
+      "settings.footer",
       "settings.push.denied",
       "settings.push.disabled",
       "settings.push.err.generic",

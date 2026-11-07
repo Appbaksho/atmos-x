@@ -135,7 +135,7 @@
   "linkA11y": "Tautan undangan",
   "spotsLeft": "{count, plural, one {{n} tempat tersisa} other {{n} tempat tersisa}} · tim maksimal {max} anggota",
   "teamFull": "Tim ini penuh ({max} dari {max}).",
-  "deviceNote": "v0: tim tersimpan di perangkat ini. Tim demo bawaan bisa bergabung dari browser mana pun.",
+  "deviceNote": "Tim disimpan di akun Anda. Tim publik tampil di papan peringkat; tim privat hanya bisa diikuti lewat undangan.",
   "orgSub": "{description}",
   "orgStats": {
     "rank": "Peringkat wilayah",
@@ -168,7 +168,6 @@
   "createdSub": "Bagikan undangan. Hingga {max} orang bisa bergabung.",
   "openTeam": "Buka tim",
   "nameError": "Nama tim harus 3–60 karakter.",
-  "expires": "Kode tidak kedaluwarsa di v0. Keluarkan orang dengan membuat ulang tim.",
   "joinPage": {
     "title": "Anda diundang",
     "pitch": "Atmos X menemukan blok terpanas di sekitar Anda dan membantu tetangga mendinginkannya dengan pohon, atap dingin, dan naungan. Setiap tindakan dicek lewat foto dan dihitung untuk target tim.",
@@ -182,7 +181,6 @@
     "signIn": "Saya sudah punya akun",
     "full": "Tim ini penuh ({max} dari {max}). Minta ketua memulai tim kedua.",
     "invalid": "Tidak ada tim dengan kode {code}. Periksa lalu coba lagi.",
-    "remote": "Tim ini dibuat di perangkat lain. Di v0, tim disimpan di tiap perangkat, jadi belum bisa bergabung di sini.",
     "already": "Anda sudah ada di {name}.",
     "openApp": "Buka aplikasi",
     "openTeam": "Buka tim",

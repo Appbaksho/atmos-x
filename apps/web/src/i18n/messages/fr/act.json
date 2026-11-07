@@ -125,7 +125,7 @@
     "groundTitle": "Référence terrain",
     "groundTag": "Utilisé par les scientifiques",
     "groundBody": "Votre photo est maintenant un point de référence terrain. Elle vérifie ce que le satellite voit ici (nouveau couvert arboré, verdure et chaleur de surface), comme les scientifiques de NASA utilisent les photos citoyennes GLOBE.",
-    "groundSrc": "Reste sur cet appareil en v0 · protocole de style GLOBE",
+    "groundSrc": "Enregistré avec votre action · protocole de type GLOBE",
     "survival": "Photos de survie",
     "survivalNote": "Chaque vérification rapporte des points. En manquer une met les points en pause ; ils ne disparaissent pas.",
     "dayN": "Jour {n}",
@@ -161,7 +161,7 @@
     "splitSolo": "Répartissez-le avec une équipe",
     "splitSoloSub": "Une équipe de 5 le ramène à {each} par personne.",
     "logAct": "Enregistrer une action",
-    "estimateNote": "Les prix sont des estimations d’IA pour cette zone, vérifiées avec des coûts de référence. Confirmez avec les fournisseurs."
+    "estimateNote": "Les prix sont des estimations pour ce quartier à partir de coûts de référence. Vérifiez auprès des fournisseurs."
   },
   "nurseries": {
     "title": "Pépinières",

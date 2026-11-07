@@ -28,7 +28,7 @@
   "mapA11y": "Peta lokasi kontribusi Anda",
   "snapNote": "Disesuaikan ke pusat zona. Titik persis Anda tetap rahasia.",
   "sensors": "Sensor udara saya",
-  "sensorsSub": "{count, plural, =0 {Tambah sensor simulasi} one {{n} sensor · simulasi (v0)} other {{n} sensor · simulasi (v0)}}",
+  "sensorsSub": "{count, plural, =0 {Tambahkan sensor PM2.5 Anda} other {{n} sensor}}",
   "history": "Riwayat",
   "historyEmpty": "Belum ada aksi. Catat aksi pertama Anda untuk mendapat poin.",
   "logAction": "Catat aksi",
@@ -310,7 +310,7 @@
       }
     },
     "reason": {
-      "unavailable": "Pemeriksaan AI tidak tersedia. Rekan tim dapat mengonfirmasinya.",
+      "unavailable": "Pemeriksaan otomatis tidak tersedia. Rekan tim bisa mengonfirmasinya.",
       "rate_limited": "Terlalu banyak pemeriksaan hari ini. Rekan tim dapat mengonfirmasinya.",
       "no_photo": "Tidak ada foto yang ditambahkan. Rekan tim dapat mengonfirmasinya.",
       "teammate_confirmed": "Dikonfirmasi oleh rekan tim."
@@ -337,7 +337,7 @@
     "askL": "Ask Atmos",
     "askShow": "Tampilkan tombol",
     "askHide": "Sembunyikan",
-    "askNote": "Obrolan AI mengambang di setiap layar",
+    "askNote": "Jawaban cepat soal panas, rencana, pohon, dan pertanian di setiap layar",
     "radius": "Radius pencarian",
     "radiusNote": "Seberapa jauh peta mencari zona panas di sekitar Anda",
     "radiusGuest": "Tamu bisa memindai hingga {max}. Buat akun untuk memindai hingga 1 km.",
@@ -361,7 +361,7 @@
     "more": "Lainnya",
     "data": "Data & sains",
     "about": "Tentang Atmos X",
-    "footer": "Atmos X v0 · Estimasi panas dari tutupan lahan OpenStreetMap + cuaca Open-Meteo · © kontributor OpenStreetMap",
+    "footer": "Atmos X · Data satelit, cuaca, dan iklim NASA · Data peta © kontributor OpenStreetMap",
     "push": {
       "title": "Notifikasi push",
       "on": "Aktif di perangkat ini",
@@ -386,58 +386,72 @@
   "about": {
     "title": "Data & sains",
     "sub": "Sumber setiap angka",
-    "opens": "{title}, buka {url}",
     "credits": "Kredit & lisensi",
-    "version": "Atmos X v0 · MVP siap ditampilkan",
+    "version": "Atmos X · pipeline panas {v}",
     "sections": {
       "heat": {
-        "title": "Estimasi panas: OpenStreetMap + cuaca langsung",
-        "body": "Di v0, peta panas adalah estimasi. Untuk setiap heksagon H3, kami mengukur bangunan, jalan, hijau, dan air dari OpenStreetMap, lalu menambahkannya ke suhu udara langsung Open-Meteo. Heat Score membandingkan tiap heksagon dengan median pemindaian Anda. Ini bukan data satelit."
+        "title": "Peta panas dan Heat Score",
+        "body": "Setiap heksagon (sekitar 135 m) mendapat Heat Score 0–100 dibandingkan wilayahnya sendiri. Panas permukaan siang dari Landsat 8/9 dan HLS beresolusi 30 m, panas malam dari MODIS, dipertajam ECOSTRESS bila ada lintasan. Tanah tertutup, hijau, dan air dari ESA WorldCover. Heksagon tanpa data ditampilkan “tidak ada data”, tidak pernah ditebak."
       },
       "zones": {
-        "title": "Cara zona panas ditemukan",
-        "body": "Seperempat heksagon terpanas dikelompokkan menjadi zona yang saling terhubung dan diberi peringkat menurut skor rata-rata. Zona yang selisih nilainya dalam 3 poin ditandai sebagai seri dekat, bukan diurutkan."
+        "title": "Zona panas dan penyebabnya",
+        "body": "Seperempat heksagon terpanas dikelompokkan menjadi zona yang terhubung lalu diurutkan; zona yang selisihnya di bawah 3 poin ditandai hampir seri. Penyebab tiap zona berasal dari model yang dicocokkan pada heksagon kota itu sendiri, dan penjelasannya ditulis dari angka-angka tersebut."
       },
       "air": {
-        "title": "Suhu udara: Open-Meteo",
-        "body": "Suhu, kelembapan, dan prakiraan 5 hari berasal dari prakiraan Open-Meteo. “Terasa seperti” memakai indeks panas NOAA. Rata-rata normal dan riwayat 20 tahun berasal dari arsip ERA5 lewat Open-Meteo. Di Bangladesh, tingkat panas memakai ambang BMD; ini bukan peringatan resmi."
+        "title": "Suhu dan prakiraan",
+        "body": "Nilai saat ini dari model Open-Meteo, dicocokkan dengan NASA GEOS-FP. Normal iklim dan cuaca terkini dari NASA POWER, pemanasan masa depan dari NASA NEX-GDDP-CMIP6. “Terasa seperti” memakai indeks panas NOAA. Di Bangladesh, tingkat panas mengikuti ambang BMD; bukan peringatan resmi."
       },
       "aq": {
-        "title": "Kualitas udara: Open-Meteo Air Quality",
-        "body": "PM2.5 berasal dari model Open-Meteo Air Quality. Kami menghitung AQI sendiri dengan batas PM2.5 US EPA 2024. Sensor yang Anda tambahkan di v0 disimulasikan."
+        "title": "Kualitas udara",
+        "body": "PM2.5 terukur berasal dari stasiun OpenAQ. Prakiraan dari NASA GEOS-CF dan Open-Meteo dan diberi label model. AQI memakai ambang PM2.5 US EPA 2024. Sensor yang Anda tambahkan mengirim data aslinya; tidak ada yang disimulasikan."
       },
       "cooling": {
-        "title": "Estimasi pendinginan",
-        "body": "Setiap tambahan 1 % tutupan kanopi pohon di 1 km² menurunkan suhu permukaan siang hari sekitar 0.1–0.2 °C; atap sejuk sekitar 0.04 °C per 1 % dari 1 km². Efek pendinginan pohon meningkat saat pohon tumbuh. Proyeksi berupa rentang, bukan janji."
+        "title": "Perkiraan pendinginan",
+        "body": "Setiap +1 % tutupan tajuk pohon dalam 1 km² menurunkan suhu permukaan siang sekitar 0,1–0,2 °C; atap sejuk sekitar 0,04 °C per 1 % dari 1 km². Pendinginan pohon meningkat seiring pertumbuhannya. Proyeksi adalah rentang dan perkiraan, bukan janji; CO₂ pohon adalah perkiraan, bukan offset."
       },
       "farm": {
         "title": "Peringatan petani",
-        "body": "Aturan berjalan berdasarkan prakiraan Open-Meteo plus curah hujan 30 hari NASA POWER, mengikuti panduan BMD, BRRI, dan DAE, misalnya panas ≥ 35 °C saat padi berbunga. Atmos X tidak pernah memberi dosis pestisida."
-      },
-      "ai": {
-        "title": "AI: OpenAI",
-        "body": "Model OpenAI menulis teks “mengapa terasa panas”, detail rencana (jenis, biaya, langkah), menjawab Ask Atmos, dan memeriksa foto. Apa pun yang diisi AI diberi tanda “AI estimate”. Skor, pendinginan, dan AQI selalu berasal dari rumus tetap."
+        "body": "Sepuluh aturan tetap dijalankan pada prakiraan, hujan NASA POWER, kelembapan tanah NASA SMAP, hujan 72 jam terakhir NASA IMERG, dan klimatologi petir NASA LIS/OTD, mengikuti panduan BMD, BRRI, dan DAE. Atmos X tidak pernah memberi dosis pestisida."
       },
       "community": {
-        "title": "Data komunitas",
-        "body": "Akun, aktivitas, foto, pohon, dan tim Anda hanya tersimpan di perangkat ini pada v0. Orang lain, tim, dan papan peringkat adalah komunitas demo, diberi tanda “komunitas demo”."
+        "title": "Akun dan privasi Anda",
+        "body": "Akun, aksi, pohon, dan tim Anda disimpan di server Atmos X sehingga berfungsi di perangkat mana pun. Lokasi publik dibulatkan sekitar 100 m, dan foto Anda tetap pribadi kecuali Anda memostingnya. Komunitas demo memakai orang dan tim rekaan dan tidak pernah tercampur dengan papan peringkat asli."
       },
       "nurseries": {
-        "title": "Pembibitan",
-        "body": "Lokasi pembibitan berasal dari OpenStreetMap ditambah daftar Dhaka yang dikurasi. Atmos X tidak pernah menjual tanaman."
+        "title": "Pembibitan dan toko",
+        "body": "Lokasi pembibitan berasal dari OpenStreetMap dan daftar pilihan Dhaka. Pembibitan mitra dapat menjual bibit dan kit tanam lewat aplikasi, dibayar dalam taka melalui SSLCommerz; Atmos X mengambil komisi kecil. Poin dari pohon terverifikasi bisa ditukar produk yang diberikan perusahaan mitra; poin tidak bernilai uang."
+      },
+      "checks": {
+        "title": "Cara aksi diperiksa",
+        "body": "Setiap foto melewati pemeriksaan tetap: GPS ada dan dekat lokasi, lokasi masuk akal, baru diambil, diambil di aplikasi, bukan duplikat, dan isinya sesuai aksi. Yang ditandai diperiksa rekan tim atau moderator. Tidak ada model bahasa yang dipakai."
+      },
+      "ask": {
+        "title": "Ask Atmos",
+        "body": "Ask Atmos menjawab dari data aplikasi sendiri dengan aturan tetap: mengenali pertanyaan, membaca angka yang sama seperti di layar, dan menampilkan sumbernya. Tidak memakai model bahasa, jadi tidak pernah mengarang fakta."
       }
     },
     "credit": {
       "osm": "Data peta © kontributor OpenStreetMap, ODbL",
       "ofm": "Ubin peta: OpenFreeMap",
       "meteo": "Cuaca dan kualitas udara: Open-Meteo, CC BY 4.0",
-      "era5": "Arsip iklim: Copernicus ERA5 via Open-Meteo",
-      "power": "Curah hujan: NASA POWER",
-      "gibs": "Lapisan opsional suhu permukaan tanah: NASA GIBS",
-      "openai": "AI: OpenAI",
       "photos": "Foto: Unsplash (Zac Gudakov, Mahmud Ahsan, OWN FILTERS, Sehajpal Singh, Erwan Hesry, Kabiur Rahman Riyad)",
       "fonts": "Font: Lemon/Milk, Poppins, Noto Sans Bengali, Noto Nastaliq Urdu"
-    }
+    },
+    "live": {
+      "count": "{n} dataset NASA sedang digunakan",
+      "formula": "Heat Score setiap heksagon, persis seperti yang dihitung aplikasi:",
+      "fit": "Model penyebab untuk Dhaka: R² {r2} pada {n} heksagon."
+    },
+    "sources": {
+      "title": "Semua sumber data",
+      "sub": "Dibaca langsung dari aplikasi, beserta jenis, data terbaru, dan lisensi tiap sumber.",
+      "inUse": "digunakan",
+      "standby": "siaga",
+      "latest": "terbaru {date}",
+      "resolution": "{m} m",
+      "opens": "{name}, membuka sumber"
+    },
+    "versionNone": "Atmos X"
   },
   "spendable": "{pts} bisa dipakai",
   "pending": "+{pts} tertunda",

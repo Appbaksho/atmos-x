@@ -125,7 +125,7 @@
     "groundTitle": "Dato en terreno",
     "groundTag": "Usado por científicos",
     "groundBody": "Tu foto ahora es un punto de referencia en terreno. Comprueba lo que ve el satélite aquí (nueva cobertura de árboles, verdor y calor de la superficie), como hacen los científicos de NASA con fotos ciudadanas de GLOBE.",
-    "groundSrc": "Permanece en este dispositivo en v0 · protocolo estilo GLOBE",
+    "groundSrc": "Guardado con tu acción · protocolo tipo GLOBE",
     "survival": "Fotos de supervivencia",
     "survivalNote": "Cada revisión suma puntos. Si te saltas una, los puntos se pausan; no desaparecen.",
     "dayN": "Día {n}",
@@ -161,7 +161,7 @@
     "splitSolo": "Divídelo con un equipo",
     "splitSoloSub": "Un equipo de 5 lo baja a {each} por persona.",
     "logAct": "Registrar una acción",
-    "estimateNote": "Los precios son estimaciones de IA para esta zona, verificadas con costos de referencia. Confírmalas con proveedores."
+    "estimateNote": "Los precios son estimaciones para esta zona a partir de costos de referencia. Confírmalos con proveedores."
   },
   "nurseries": {
     "title": "Viveros",

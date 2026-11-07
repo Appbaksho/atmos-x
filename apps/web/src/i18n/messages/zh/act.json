@@ -125,7 +125,7 @@
     "groundTitle": "实地真值",
     "groundTag": "供科学家使用",
     "groundBody": "你的照片现在是一个实地真值点。它可核对这里卫星看到的内容（新树冠、绿度和地表热），就像 NASA 科学家使用 GLOBE 公民照片一样。",
-    "groundSrc": "v0 版仅保留在此设备上 · GLOBE 风格协议",
+    "groundSrc": "随行动保存 · GLOBE 式规范",
     "survival": "成活照片",
     "survivalNote": "每次检查都会得分。漏一次，积分就暂停；不会消失。",
     "dayN": "第{n}天",
@@ -161,7 +161,7 @@
     "splitSolo": "和团队一起分摊",
     "splitSoloSub": "5 人团队可把每人降到 {each}。",
     "logAct": "记录一个行动",
-    "estimateNote": "价格是 AI 对本地区的估算，并已对照参考成本。请向供应商确认。"
+    "estimateNote": "价格是根据参考成本对本地区的估算，请向供应商确认。"
   },
   "nurseries": {
     "title": "苗圃",

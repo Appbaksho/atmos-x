@@ -135,7 +135,7 @@
   "linkA11y": "Enlace de invitación",
   "spotsLeft": "{count, plural, one {{n} lugar disponible} other {{n} lugares disponibles}} · los equipos tienen hasta {max} miembros",
   "teamFull": "Este equipo está lleno ({max} de {max}).",
-  "deviceNote": "v0: los equipos viven en este dispositivo. Los equipos de demo precargados se pueden usar desde cualquier navegador.",
+  "deviceNote": "Los equipos se guardan en tu cuenta. Los públicos aparecen en las clasificaciones; a los privados solo se entra por invitación.",
   "orgSub": "{description}",
   "orgStats": {
     "rank": "Ranking del área",
@@ -168,7 +168,6 @@
   "createdSub": "Comparte la invitación. Pueden unirse hasta {max} personas.",
   "openTeam": "Abrir equipo",
   "nameError": "Los nombres de equipo deben tener 3–60 caracteres.",
-  "expires": "Los códigos no vencen en v0. Para quitar personas, vuelve a crear el equipo.",
   "joinPage": {
     "title": "Tienes una invitación",
     "pitch": "Atmos X encuentra las zonas más calientes cerca de ti y ayuda a tus vecinos a enfriarlas con árboles, techos fríos y sombra. Cada acción se verifica con una foto y cuenta para la meta del equipo.",
@@ -182,7 +181,6 @@
     "signIn": "Ya tengo una cuenta",
     "full": "Este equipo está lleno ({max} de {max}). Pídele al líder que cree un segundo equipo.",
     "invalid": "Ningún equipo tiene el código {code}. Revísalo y prueba otra vez.",
-    "remote": "Este equipo se creó en otro dispositivo. En v0, los equipos se guardan en cada dispositivo, así que aún no se puede unir aquí.",
     "already": "Ya estás en {name}.",
     "openApp": "Abrir app",
     "openTeam": "Abrir equipo",

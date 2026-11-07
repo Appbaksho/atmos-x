@@ -28,7 +28,7 @@
   "mapA11y": "你做出贡献的地点地图",
   "snapNote": "已吸附到区域中心。你的精确位置会保密。",
   "sensors": "我的空气传感器",
-  "sensorsSub": "{count, plural, =0 {添加一个模拟传感器} one {{n} 个传感器 · 模拟版（v0）} other {{n} 个传感器 · 模拟版（v0）}}",
+  "sensorsSub": "{count, plural, =0 {添加你自己的 PM2.5 传感器} other {{n} 个传感器}}",
   "history": "历史记录",
   "historyEmpty": "还没有行动。先记录一次，赚取积分。",
   "logAction": "记录行动",
@@ -310,7 +310,7 @@
       }
     },
     "reason": {
-      "unavailable": "AI 检查不可用。队友可以确认。",
+      "unavailable": "自动检查不可用，可由队友确认。",
       "rate_limited": "今天检查次数太多。队友可以确认。",
       "no_photo": "未添加照片。队友可以确认。",
       "teammate_confirmed": "已由队友确认。"
@@ -337,7 +337,7 @@
     "askL": "Ask Atmos",
     "askShow": "显示按钮",
     "askHide": "隐藏",
-    "askNote": "每个页面都有悬浮 AI 聊天",
+    "askNote": "在每个页面快速解答高温、计划、树木和农业问题",
     "radius": "扫描半径",
     "radiusNote": "地图会在你周围多大范围内寻找热区",
     "radiusGuest": "访客最多可扫描到 {max}。创建账号后可到 1 km。",
@@ -361,7 +361,7 @@
     "more": "更多",
     "data": "数据与科学",
     "about": "关于 Atmos X",
-    "footer": "Atmos X v0 · 基于 OpenStreetMap 地表覆盖 + Open-Meteo 天气的热度估算 · © OpenStreetMap contributors",
+    "footer": "Atmos X · NASA 卫星、天气与气候数据 · 地图数据 © OpenStreetMap 贡献者",
     "push": {
       "title": "推送通知",
       "on": "此设备已开启",
@@ -386,58 +386,72 @@
   "about": {
     "title": "数据与科学",
     "sub": "每个数字的来源",
-    "opens": "{title}，打开 {url}",
     "credits": "致谢与许可",
-    "version": "Atmos X v0 · 可展示的 MVP",
+    "version": "Atmos X · 热量处理流程 {v}",
     "sections": {
       "heat": {
-        "title": "热度估算：OpenStreetMap + 实时天气",
-        "body": "在 v0 中，热力图只是估算。对每个 H3 六边形，我们从 OpenStreetMap 统计建筑、道路、绿地和水体，再加上 Open-Meteo 的实时气温。Heat Score 会把每个六边形与你扫描范围的中位数比较。它不是卫星数据。"
+        "title": "热力地图与 Heat Score",
+        "body": "每个六边形（约 135 米）都会得到 0–100 的 Heat Score，与所在区域比较。白天地表热来自 30 米分辨率的 Landsat 8/9 和 HLS，夜间热来自 MODIS，有 ECOSTRESS 过境时会进一步细化。硬化地面、绿化和水体来自 ESA WorldCover。无数据的六边形显示为“无数据”，绝不猜测。"
       },
       "zones": {
-        "title": "热区如何找出",
-        "body": "最热的四分之一六边形会分组为连通热区，并按平均分排序。分数相差 3 分以内的热区会标记为接近并列，而不是排序。"
+        "title": "热点区域及成因",
+        "body": "最热的四分之一六边形被合并为相连区域并排名；相差 3 分以内的区域标为接近并列。每个区域的成因来自用本市六边形拟合的模型，说明文字也由这些数字生成。"
       },
       "air": {
-        "title": "气温：Open-Meteo",
-        "body": "温度、湿度和 5 天预报来自 Open-Meteo 预报。“体感”使用 NOAA 热指数。常年值和 20 年历史数据通过 Open-Meteo 调用 ERA5 档案。在孟加拉国，热级别使用 BMD 阈值；这不是官方预警。"
+        "title": "气温与预报",
+        "body": "当前读数来自 Open-Meteo 模型，并与 NASA GEOS-FP 交叉核对。常年值和近期天气来自 NASA POWER，预测中的未来升温来自 NASA NEX-GDDP-CMIP6。“体感”采用 NOAA 热指数。在孟加拉国，高温等级遵循 BMD 阈值，并非官方预警。"
       },
       "aq": {
-        "title": "空气质量：Open-Meteo Air Quality",
-        "body": "PM2.5 来自 Open-Meteo Air Quality 模型。我们自己用美国 EPA 2024 年 PM2.5 阈值计算 AQI。你在 v0 添加的传感器是模拟的。"
+        "title": "空气质量",
+        "body": "实测 PM2.5 来自 OpenAQ 站点。预报来自 NASA GEOS-CF 和 Open-Meteo，并标注为模型。AQI 采用美国 EPA 2024 年 PM2.5 分级。你添加的传感器发送真实读数，没有任何模拟。"
       },
       "cooling": {
-        "title": "降温预估",
-        "body": "每增加 1% 的树冠覆盖，1 km² 内白天表面温度大约降低 0.1–0.2 °C；冷屋顶在 1 km² 内每增加 1%，大约降低 0.04 °C。树木长大后，降温效果会增强。预测只是范围，从不是承诺。"
+        "title": "降温估算",
+        "body": "每平方公里树冠覆盖每增加 1%，白天地表温度约降低 0.1–0.2 °C；凉屋顶每占 1% 约降低 0.04 °C。树木长大后降温效果增强。预测是区间和估算，不是承诺；树木的 CO₂ 是估算，不是抵消。"
       },
       "farm": {
-        "title": "农民提醒",
-        "body": "这些规则基于 Open-Meteo 预报和 NASA POWER 30天降雨量，并遵循 BMD、BRRI 和 DAE 指南，例如水稻开花期气温 ≥ 35 °C。Atmos X 从不给出农药用量。"
-      },
-      "ai": {
-        "title": "AI：OpenAI",
-        "body": "OpenAI 模型会撰写“为什么这么热”的说明、规划详情（树种、费用、步骤），回答 Ask Atmos，并检查照片。AI 填写的内容都会标记为“AI estimate”。评分、降温和 AQI 始终来自固定公式。"
+        "title": "农民预警",
+        "body": "十条固定规则基于预报、NASA POWER 降雨、NASA SMAP 土壤湿度、NASA IMERG 过去 72 小时降雨和 NASA LIS/OTD 雷电气候数据运行，遵循 BMD、BRRI 和 DAE 指南。Atmos X 从不提供农药剂量。"
       },
       "community": {
-        "title": "社区数据",
-        "body": "你的账号、操作、照片、树和队伍只保存在这台设备上，v0 版本如此。其他人、队伍和排行榜是演示社区，并标记为“Demo community”。"
+        "title": "你的账户与隐私",
+        "body": "你的账户、行动、树木和团队保存在 Atmos X 服务器上，可在任何设备使用。公开位置约取整到 100 米，照片除非你发布否则保持私密。演示社区使用虚构的人物和团队，绝不混入真实排行榜。"
       },
       "nurseries": {
-        "title": "苗圃",
-        "body": "苗圃位置来自 OpenStreetMap 和一份整理过的达卡名单。Atmos X 从不卖植物。"
+        "title": "苗圃与商店",
+        "body": "苗圃位置来自 OpenStreetMap 和精选的达卡名单。合作苗圃可通过应用出售树苗和种植套装，经 SSLCommerz 以塔卡支付，Atmos X 收取少量佣金。已核实树木的积分可兑换合作企业提供的商品，积分没有现金价值。"
+      },
+      "checks": {
+        "title": "行动如何核实",
+        "body": "每张照片都经过固定检查：有 GPS 且靠近地点、位置合理、近期拍摄、在应用内拍摄、非重复、内容与行动相符。被标记的会交给队友或审核员。不使用任何语言模型。"
+      },
+      "ask": {
+        "title": "Ask Atmos",
+        "body": "Ask Atmos 用固定规则基于应用自身数据作答：识别问题、读取与屏幕上相同的数字并显示来源。它不使用语言模型，因此不会编造事实。"
       }
     },
     "credit": {
       "osm": "地图数据 © OpenStreetMap 贡献者，ODbL",
       "ofm": "地图切片：OpenFreeMap",
       "meteo": "天气和空气质量：Open-Meteo，CC BY 4.0",
-      "era5": "气候档案：Copernicus ERA5，经由 Open-Meteo",
-      "power": "降雨量：NASA POWER",
-      "gibs": "可选的地表温度覆盖层：NASA GIBS",
-      "openai": "AI：OpenAI",
       "photos": "照片：Unsplash（Zac Gudakov，Mahmud Ahsan，OWN FILTERS，Sehajpal Singh，Erwan Hesry，Kabiur Rahman Riyad）",
       "fonts": "字体：Lemon/Milk，Poppins，Noto Sans Bengali，Noto Nastaliq Urdu"
-    }
+    },
+    "live": {
+      "count": "当前使用 {n} 个 NASA 数据集",
+      "formula": "每个六边形的 Heat Score，与应用的计算方式完全一致：",
+      "fit": "达卡成因模型：{n} 个六边形，R² {r2}。"
+    },
+    "sources": {
+      "title": "全部数据来源",
+      "sub": "实时读取自应用，标注每个来源的类型、最新数据和许可。",
+      "inUse": "使用中",
+      "standby": "待命",
+      "latest": "最新 {date}",
+      "resolution": "{m} 米",
+      "opens": "{name}，打开来源"
+    },
+    "versionNone": "Atmos X"
   },
   "spendable": "{pts} 可用",
   "pending": "+{pts} 待解锁",
