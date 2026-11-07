@@ -785,7 +785,7 @@ export type CompanyInfo = {
   documents: { id: string; kind: 'trade_licence' | 'tin_bin' | 'other'; mime: string; size: number }[];
 };
 export type PackageId = 'tree_impact' | 'store_listing' | 'carbon_credits';
-export type CompanyPackage = { id: PackageId; unit: 'tree' | 'year' | 'tonne'; unit_price: number; currency: string; enabled: boolean; note: string; available_tonnes?: number; co2_kg_per_tree_year?: number };
+export type CompanyPackage = { id: PackageId; unit: 'tree' | 'year' | 'tonne'; unit_price: number; currency: string; enabled: boolean; note: string; vat_rate: number; bank_transfer_min: number; available_tonnes?: number; co2_kg_per_tree_year?: number };
 export type CompanyOrder = { id: string; package: PackageId; qty: number; unit_price: number; subtotal: number; vat_rate: number; vat: number; total: number; currency: string; status: 'unpaid' | 'paid' | 'failed' | 'cancelled' | 'awaiting_transfer'; payment_method: 'sslcommerz' | 'bank_transfer'; created_at: string; paid_at: string | null; note: string | null; payment_url?: string | null };
 export type CompanyOverview = {
   trees_funded: number;

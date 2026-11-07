@@ -42,7 +42,12 @@
     "title": "और",
     "about": "डेटा और विज्ञान",
     "settings": "सेटिंग्स",
-    "notifs": "सूचनाएँ"
+    "notifs": "सूचनाएँ",
+    "store": "स्टोर",
+    "orders": "मेरे ऑर्डर",
+    "partner": "साझेदार पोर्टल",
+    "company": "कंपनी खाता",
+    "admin": "एडमिन"
   },
   "trees": {
     "title": "मेरे पेड़",
@@ -297,6 +302,11 @@
       },
       "event": {
         "reminder": "याद दिलाना: {title}, {date} को"
+      },
+      "store": {
+        "redeemed": "{product}: {points} अंक में लिया",
+        "collected": "{product} ले लिया गया",
+        "sapling_paid": "भुगतान मिला: {qty} × {name}"
       }
     },
     "reason": {

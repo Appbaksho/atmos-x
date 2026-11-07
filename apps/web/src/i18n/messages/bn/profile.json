@@ -8,7 +8,12 @@
     "notifs": "বিজ্ঞপ্তি",
     "settings": "সেটিংস",
     "about": "ডেটা ও বিজ্ঞান",
-    "title": "আরও"
+    "title": "আরও",
+    "store": "স্টোর",
+    "orders": "আমার অর্ডার",
+    "partner": "পার্টনার পোর্টাল",
+    "company": "কোম্পানি অ্যাকাউন্ট",
+    "admin": "অ্যাডমিন"
   },
   "trees": {
     "title": "আমার গাছ",
@@ -397,6 +402,11 @@
       },
       "event": {
         "reminder": "মনে করিয়ে দিচ্ছি: {title}, {date}"
+      },
+      "store": {
+        "redeemed": "{product}: {points} পয়েন্টে নেওয়া হয়েছে",
+        "collected": "{product} সংগ্রহ করা হয়েছে",
+        "sapling_paid": "পেমেন্ট পাওয়া গেছে: {qty} × {name}"
       }
     },
     "reason": {
@@ -441,6 +451,9 @@
       "code.notif.social.like",
       "code.notif.social.mention",
       "code.notif.social.quote",
+      "code.notif.store.collected",
+      "code.notif.store.redeemed",
+      "code.notif.store.sapling_paid",
       "code.notif.team.goal_reached",
       "code.notif.team.member_joined",
       "code.notif.tree.at_risk",
@@ -461,6 +474,11 @@
       "join.joining",
       "join.mine",
       "join.title",
+      "links.admin",
+      "links.company",
+      "links.orders",
+      "links.partner",
+      "links.store",
       "pending",
       "pendingA11y",
       "pendingUntil",

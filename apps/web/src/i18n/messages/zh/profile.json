@@ -42,7 +42,12 @@
     "title": "更多",
     "about": "数据与科学",
     "settings": "设置",
-    "notifs": "通知"
+    "notifs": "通知",
+    "store": "商店",
+    "orders": "我的订单",
+    "partner": "合作伙伴门户",
+    "company": "企业账户",
+    "admin": "管理"
   },
   "trees": {
     "title": "我的树木",
@@ -297,6 +302,11 @@
       },
       "event": {
         "reminder": "提醒：{title}，{date}"
+      },
+      "store": {
+        "redeemed": "{product}：已用 {points} 积分兑换",
+        "collected": "{product} 已领取",
+        "sapling_paid": "已收到付款：{qty} × {name}"
       }
     },
     "reason": {

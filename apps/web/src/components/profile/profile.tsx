@@ -30,7 +30,7 @@ import {
   useCz,
 } from '@/components/cz';
 import { teamInitials } from '@/components/community/shared';
-import { useActions, useMe, useMyStats, useOrg, useProfile, useSensors, useSession, useTeams, useUnreadCount } from '@/lib/data/hooks';
+import { useActions, useMe, useMyStats, useOrg, usePartnerMe, useProfile, useSensors, useSession, useTeams, useUnreadCount } from '@/lib/data/hooks';
 import type { ActionLog, Badge, Team } from '@/lib/data/types';
 import { initials } from '@/lib/format';
 
@@ -464,7 +464,14 @@ function History() {
 function Links() {
   const t = useTranslations('profile.links');
   const { c, f } = useCz();
+  const session = useSession();
+  const partner = usePartnerMe();
   const rows: { label: string; to: string; icon: string }[] = [
+    { label: t('store'), to: href('store'), icon: I.sparkleOne },
+    { label: t('orders'), to: href('store', undefined, { tab: 'orders' }), icon: I.clock },
+    ...(partner.data ? [{ label: t('partner'), to: href('partner'), icon: I.check }] : []),
+    { label: t('company'), to: href('company'), icon: I.trend },
+    ...(session.role === 'admin' ? [{ label: t('admin'), to: href('admin'), icon: I.lock }] : []),
     { label: t('notifs'), to: href('S21'), icon: I.bell },
     { label: t('settings'), to: href('S22'), icon: GEAR },
     { label: t('about'), to: href('about'), icon: I.sat },
