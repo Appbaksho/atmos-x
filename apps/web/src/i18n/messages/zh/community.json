@@ -246,7 +246,8 @@
     "orgsTitle": "组织",
     "orgsSub": "拥有多个团队的学校、公益组织和街区",
     "noOrgs": "暂无组织",
-    "noOrgsSub": "团队负责人可以把团队加入某个组织。"
+    "noOrgsSub": "团队负责人可以把团队加入某个组织。",
+    "invites": "邀请"
   },
   "feed": {
     "title": "动态",
@@ -390,8 +391,16 @@
       "checkin_closed": "当前不在签到时间。",
       "gps_inaccurate": "定位不够准确，请到户外再试。",
       "full": "活动名额已满。",
-      "past": "请选择未来的时间。"
-    }
+      "past": "请选择未来的时间。",
+      "no_sponsor": "请先添加赞助方名称",
+      "not_checked_in": "证书仅发给在活动现场签到的人",
+      "not_organizer": "只有组织者可以操作"
+    },
+    "sponsorLogo": "{name} 标志",
+    "certificate": "参与证书（PDF）",
+    "addLogo": "添加赞助方标志",
+    "replaceLogo": "更换赞助方标志",
+    "logoSaved": "标志已保存，审核后显示。"
   },
   "person": {
     "title": "个人资料",
@@ -416,5 +425,23 @@
     "blocked": "已屏蔽，你们将看不到彼此的动态。",
     "unblocked": "已取消屏蔽",
     "feature": "关注他人"
-  }
+  },
+  "sharePost": {
+    "cta": "分享为帖子",
+    "title": "与邻居分享",
+    "sub": "将显示在你所在地区的动态中",
+    "say": "说点什么（可选）",
+    "privacy": "照片在他人看到前会经过审核，地点只显示为你的地区，绝不显示确切位置。",
+    "post": "发布",
+    "done": "已发布",
+    "feature": "在社区分享",
+    "err": {
+      "generic": "发布失败，请重试。",
+      "post": {
+        "action_not_verified": "只能分享已核实的行动",
+        "empty": "请写点内容"
+      }
+    }
+  },
+  "orgExport": "下载团队数据（CSV）"
 }

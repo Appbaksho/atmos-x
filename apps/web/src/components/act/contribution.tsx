@@ -3,6 +3,8 @@
 /** S15 · Contribution (useAction): photo, status, deterministic checks, review, cooling, points, rank, share. */
 import { useTranslations } from 'next-intl';
 
+import { SharePostButton } from '@/components/community/share-post';
+
 import {
   B,
   Card,
@@ -132,6 +134,8 @@ function Body({ log }: { log: ActionLog }) {
           </Txt>
         </View>
       </Card>
+
+      {ok && mine ? <SharePostButton actionId={log.id} /> : null}
 
       <Card pad={0} gap={0} style={{ paddingVertical: 6, paddingHorizontal: 16 }}>
         <Txt label style={{ paddingTop: 10, paddingBottom: 2 }}>

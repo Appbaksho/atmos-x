@@ -422,6 +422,21 @@ export function useEventPhoto() {
   });
 }
 
+/** R3: the organizer adds the sponsor's logo (moderated like any public photo). */
+export function useEventSponsorLogo() {
+  const refresh = useEventsRefresh();
+  return useMutation<CommunityEvent, Error, { id: string; photo: Blob }>({
+    mutationFn: async ({ id, photo }) => {
+      const form = new FormData();
+      form.set('photo', await photoForUpload(photo, 'camera'), 'logo.jpg');
+      return postForm<CommunityEvent>(`${API}/events/${enc(id)}/sponsor-logo`, form);
+    },
+    onSuccess: refresh,
+  });
+}
+
+export const eventCertificateUrl = (id: string) => `${API}/events/${enc(id)}/certificate.pdf`;
+
 /* ─────────────────────────── moderation ─────────────────────────── */
 
 export function useModerationQueue(enabled: boolean) {

@@ -243,7 +243,8 @@
     "orgsTitle": "Organizations",
     "orgsSub": "Schools, NGOs and wards with many teams",
     "noOrgs": "No organizations yet",
-    "noOrgsSub": "A team lead can add their team to an organization."
+    "noOrgsSub": "A team lead can add their team to an organization.",
+    "invites": "Invites"
   },
   "feed": {
     "title": "Feed",
@@ -387,8 +388,16 @@
       "checkin_closed": "Check-in isn't open right now.",
       "gps_inaccurate": "Your location isn't accurate enough; try outdoors.",
       "full": "This drive is full.",
-      "past": "Pick a time in the future."
-    }
+      "past": "Pick a time in the future.",
+      "no_sponsor": "Add the sponsor's name first",
+      "not_checked_in": "Certificates are for people who checked in at the drive",
+      "not_organizer": "Only the organizer can do this"
+    },
+    "sponsorLogo": "{name} logo",
+    "certificate": "Certificate of participation (PDF)",
+    "addLogo": "Add sponsor logo",
+    "replaceLogo": "Replace sponsor logo",
+    "logoSaved": "Logo saved. It shows after review."
   },
   "person": {
     "title": "Profile",
@@ -413,5 +422,23 @@
     "blocked": "Blocked. You won't see each other's posts.",
     "unblocked": "Unblocked",
     "feature": "follow people"
-  }
+  },
+  "sharePost": {
+    "cta": "Share as a post",
+    "title": "Share with your neighbours",
+    "sub": "It goes to your area's feed",
+    "say": "Say something (optional)",
+    "privacy": "The photo is checked before others see it, and the place shows as your area, never the exact spot.",
+    "post": "Post",
+    "done": "Posted",
+    "feature": "Share in the community",
+    "err": {
+      "generic": "Couldn't post. Try again.",
+      "post": {
+        "action_not_verified": "Only verified actions can be shared",
+        "empty": "Write something to go with it"
+      }
+    }
+  },
+  "orgExport": "Download team numbers (CSV)"
 }

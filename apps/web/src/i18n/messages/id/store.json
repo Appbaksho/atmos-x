@@ -56,7 +56,8 @@
     "terms": "Ketentuan",
     "demo": "Produk demo dari mitra rekaan. Tidak ada barang sungguhan.",
     "short": "Butuh {pts} poin lagi",
-    "redeem": "Tukar"
+    "redeem": "Tukar",
+    "dates": "Ditayangkan {listed} · diperbarui {updated}"
   },
   "done": {
     "title": "Berhasil ditukar",
@@ -174,7 +175,9 @@
     "order_not_found": "Pesanan tidak ditemukan",
     "order_not_awaiting": "Pesanan ini tidak menunggu transfer",
     "auth_guest_restricted": "Buat akun untuk melakukan ini",
-    "rate_limited": "Terlalu banyak percobaan. Tunggu sebentar."
+    "rate_limited": "Terlalu banyak percobaan. Tunggu sebentar.",
+    "partner_outlet_limit": "Mitra bisa punya hingga 50 titik",
+    "partner_outlet_not_found": "Titik tidak ditemukan"
   },
   "partner": {
     "title": "Portal mitra",
@@ -229,7 +232,18 @@
     "noCamera": "Kamera tidak tersedia. Ketik kodenya.",
     "reportTitle": "Laporan dampak CSR",
     "reportSub": "PDF berisi pohon terverifikasi, tingkat hidup, perkiraan CO₂, orang yang terjangkau, penukaran, dan foto pohon.",
-    "download": "Unduh PDF"
+    "download": "Unduh PDF",
+    "updated": "diperbarui {date}",
+    "outlets": "Titik pengambilan",
+    "addOutlet": "Tambah titik",
+    "noOutlets": "Belum ada titik. Tambahkan tempat orang mengambil voucher.",
+    "outletName": "Beri nama titik",
+    "outletNameL": "Nama titik",
+    "outletAddress": "Alamat",
+    "outletPin": "Pin peta",
+    "outletHere": "Di {place}",
+    "outletNoPin": "Tanpa pin",
+    "removeOutlet": "Hapus {name}"
   },
   "company": {
     "title": "Akun perusahaan",

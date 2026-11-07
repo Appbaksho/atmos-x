@@ -197,7 +197,10 @@
     "inviteFailed": "Não foi possível criar o convite",
     "inviteT": "Convide um amigo para regar",
     "inviteSub": "A pessoa pode ver {name} e fazer check-ins. Os pontos ficam com você.",
-    "invite": "Compartilhar link"
+    "invite": "Compartilhar link",
+    "shareBody": "Minha árvore {name} está crescendo!",
+    "coolingTitle": "Resfriamento desta árvore (estimativa)",
+    "coolingNote": "Resfriamento modelado do seu quilômetro quadrado hoje; cresce com a árvore. Estimativa, não medição."
   },
   "notif": {
     "title": "Notificações",

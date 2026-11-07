@@ -690,6 +690,8 @@ export type CommunityEvent = {
   team: { id: string; name: string } | null;
   org: { id: string; name: string } | null;
   sponsor_name: string | null;
+  /** R3: shown once moderation approves it (the organizer sees it at once) */
+  sponsor_logo_url: string | null;
   capacity: number | null;
   going: number;
   checked_in: number;
@@ -756,6 +758,9 @@ export type StoreProduct = {
   outlets: { id: string; name: string; address: string | null; location: LatLng | null }[];
   can_afford: boolean;
   is_demo: boolean;
+  /** R16 */
+  listed_at: string | null;
+  updated_at: string | null;
 };
 
 export type StoreListing = { products: StoreProduct[]; pilot: boolean; points?: { spendable: number; pending: number; next_unlock_at: string | null } };

@@ -56,7 +56,8 @@
     "terms": "शर्तें",
     "demo": "काल्पनिक पायलट साझेदार का डेमो उत्पाद। असल में कुछ नहीं मिलता।",
     "short": "{pts} और खर्च योग्य अंक चाहिए",
-    "redeem": "लें"
+    "redeem": "लें",
+    "dates": "सूचीबद्ध {listed} · अपडेट {updated}"
   },
   "done": {
     "title": "ले लिया",
@@ -174,7 +175,9 @@
     "order_not_found": "ऑर्डर नहीं मिला",
     "order_not_awaiting": "यह ऑर्डर ट्रांसफ़र की प्रतीक्षा में नहीं है",
     "auth_guest_restricted": "यह करने के लिए खाता बनाएं",
-    "rate_limited": "बहुत बार कोशिश हुई। थोड़ा रुकें।"
+    "rate_limited": "बहुत बार कोशिश हुई। थोड़ा रुकें।",
+    "partner_outlet_limit": "एक साझेदार अधिकतम 50 स्थान रख सकता है",
+    "partner_outlet_not_found": "स्थान नहीं मिला"
   },
   "partner": {
     "title": "साझेदार पोर्टल",
@@ -229,7 +232,18 @@
     "noCamera": "कैमरा उपलब्ध नहीं। कोड टाइप करें।",
     "reportTitle": "CSR प्रभाव रिपोर्ट",
     "reportSub": "सत्यापित पेड़, जीवित रहने की दर, अनुमानित CO₂, पहुंचे लोग, रिडेम्पशन और पेड़ों की फ़ोटो के साथ PDF।",
-    "download": "PDF डाउनलोड करें"
+    "download": "PDF डाउनलोड करें",
+    "updated": "अपडेट {date}",
+    "outlets": "पिकअप स्थान",
+    "addOutlet": "स्थान जोड़ें",
+    "noOutlets": "अभी कोई स्थान नहीं। जोड़ें कि लोग वाउचर कहां लें।",
+    "outletName": "स्थान का नाम दें",
+    "outletNameL": "स्थान का नाम",
+    "outletAddress": "पता",
+    "outletPin": "मानचित्र पिन",
+    "outletHere": "{place} पर",
+    "outletNoPin": "पिन नहीं",
+    "removeOutlet": "{name} हटाएं"
   },
   "company": {
     "title": "कंपनी खाता",

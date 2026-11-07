@@ -163,7 +163,10 @@
     "inviteFailed": "আমন্ত্রণ তৈরি করা যায়নি",
     "inviteT": "বন্ধুকে পানি দিতে আমন্ত্রণ জানান",
     "inviteSub": "তিনি {name} দেখতে ও চেক-ইন করতে পারবেন। পয়েন্ট আপনার থাকবে।",
-    "invite": "আমন্ত্রণ লিংক শেয়ার করুন"
+    "invite": "আমন্ত্রণ লিংক শেয়ার করুন",
+    "shareBody": "আমার গাছ {name} বড় হচ্ছে!",
+    "coolingTitle": "এই গাছের ঠান্ডা (আনুমানিক)",
+    "coolingNote": "আজ তার এক বর্গকিলোমিটারের মডেল করা ঠান্ডা; গাছের সাথে বাড়ে। অনুমান, পরিমাপ নয়।"
   },
   "notif": {
     "title": "বিজ্ঞপ্তি",
@@ -574,6 +577,8 @@
       "tree.captured",
       "tree.checkins",
       "tree.cm",
+      "tree.coolingNote",
+      "tree.coolingTitle",
       "tree.failed",
       "tree.healthHint.dead",
       "tree.healthHint.healthy",
@@ -607,6 +612,7 @@
       "tree.removeBody",
       "tree.replant",
       "tree.saved",
+      "tree.shareBody",
       "tree.stillThere",
       "tree.stillThereSub",
       "tree.submit",

@@ -236,6 +236,7 @@
       "dir.discover",
       "dir.feature",
       "dir.guestSub",
+      "dir.invites",
       "dir.mine",
       "dir.noDiscover",
       "dir.noOrgs",
@@ -255,10 +256,12 @@
       "err.team.not_member",
       "err.team.private",
       "err.team.too_many",
+      "events.addLogo",
       "events.addPhoto",
       "events.all",
       "events.capL",
       "events.capacity",
+      "events.certificate",
       "events.checkedIn",
       "events.checkin",
       "events.checkinClosed",
@@ -273,6 +276,9 @@
       "events.err.generic",
       "events.err.gps_inaccurate",
       "events.err.no_gps",
+      "events.err.no_sponsor",
+      "events.err.not_checked_in",
+      "events.err.not_organizer",
       "events.err.past",
       "events.err.too_far",
       "events.feature",
@@ -281,6 +287,7 @@
       "events.goingOf",
       "events.groupPhoto",
       "events.hoursL",
+      "events.logoSaved",
       "events.noTeam",
       "events.none",
       "events.noneSub",
@@ -289,6 +296,7 @@
       "events.photoSaved",
       "events.placeHint",
       "events.placeL",
+      "events.replaceLogo",
       "events.replacePhoto",
       "events.rsvp",
       "events.rsvpGoing",
@@ -296,6 +304,7 @@
       "events.rsvpNo",
       "events.save",
       "events.sponsor",
+      "events.sponsorLogo",
       "events.sub",
       "events.teamL",
       "events.title",
@@ -381,6 +390,7 @@
       "mod.target.tree",
       "mod.target.user",
       "mod.title",
+      "orgExport",
       "orgKind.city",
       "orgKind.company",
       "orgKind.ngo",
@@ -420,7 +430,18 @@
       "report.thanks",
       "report.title",
       "role.lead",
-      "seeAll"
+      "seeAll",
+      "sharePost.cta",
+      "sharePost.done",
+      "sharePost.err.generic",
+      "sharePost.err.post.action_not_verified",
+      "sharePost.err.post.empty",
+      "sharePost.feature",
+      "sharePost.post",
+      "sharePost.privacy",
+      "sharePost.say",
+      "sharePost.sub",
+      "sharePost.title"
     ]
   },
   "chat": {
@@ -445,7 +466,8 @@
     "orgsTitle": "تنظیمیں",
     "orgsSub": "کئی ٹیموں والے اسکول، این جی اوز اور وارڈ",
     "noOrgs": "ابھی کوئی تنظیم نہیں",
-    "noOrgsSub": "ٹیم لیڈ اپنی ٹیم کو کسی تنظیم میں شامل کر سکتا ہے۔"
+    "noOrgsSub": "ٹیم لیڈ اپنی ٹیم کو کسی تنظیم میں شامل کر سکتا ہے۔",
+    "invites": "دعوتیں"
   },
   "feed": {
     "title": "فیڈ",
@@ -589,8 +611,16 @@
       "checkin_closed": "ابھی چیک اِن کھلا نہیں۔",
       "gps_inaccurate": "مقام درست نہیں؛ باہر کوشش کریں۔",
       "full": "یہ مہم بھر گئی ہے۔",
-      "past": "مستقبل کا وقت چنیں۔"
-    }
+      "past": "مستقبل کا وقت چنیں۔",
+      "no_sponsor": "پہلے اسپانسر کا نام شامل کریں",
+      "not_checked_in": "سرٹیفکیٹ صرف مہم میں چیک ان کرنے والوں کے لیے ہیں",
+      "not_organizer": "صرف منتظم یہ کر سکتا ہے"
+    },
+    "sponsorLogo": "{name} لوگو",
+    "certificate": "شرکت کا سرٹیفکیٹ (PDF)",
+    "addLogo": "اسپانسر لوگو شامل کریں",
+    "replaceLogo": "اسپانسر لوگو تبدیل کریں",
+    "logoSaved": "لوگو محفوظ ہو گیا۔ جائزے کے بعد دکھے گا۔"
   },
   "person": {
     "title": "پروفائل",
@@ -615,5 +645,23 @@
     "blocked": "بلاک ہو گیا۔ آپ ایک دوسرے کی پوسٹس نہیں دیکھیں گے۔",
     "unblocked": "ان بلاک ہو گیا",
     "feature": "لوگوں کو فالو کرنا"
-  }
+  },
+  "sharePost": {
+    "cta": "پوسٹ کے طور پر شیئر کریں",
+    "title": "پڑوسیوں کے ساتھ شیئر کریں",
+    "sub": "یہ آپ کے علاقے کی فیڈ میں جائے گا",
+    "say": "کچھ لکھیں (اختیاری)",
+    "privacy": "دوسروں کے دیکھنے سے پہلے تصویر جانچی جاتی ہے، اور جگہ آپ کے علاقے کے طور پر دکھتی ہے، درست مقام کبھی نہیں۔",
+    "post": "پوسٹ کریں",
+    "done": "پوسٹ ہو گیا",
+    "feature": "کمیونٹی میں شیئر",
+    "err": {
+      "generic": "پوسٹ نہیں ہو سکی۔ دوبارہ کوشش کریں۔",
+      "post": {
+        "action_not_verified": "صرف تصدیق شدہ کام شیئر ہو سکتے ہیں",
+        "empty": "ساتھ میں کچھ لکھیں"
+      }
+    }
+  },
+  "orgExport": "ٹیم کے اعداد ڈاؤن لوڈ کریں (CSV)"
 }

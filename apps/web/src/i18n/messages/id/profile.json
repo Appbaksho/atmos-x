@@ -197,7 +197,10 @@
     "inviteFailed": "Tidak bisa membuat undangan",
     "inviteT": "Undang teman untuk menyiramnya",
     "inviteSub": "Mereka bisa melihat {name} dan menambah check-in. Poin tetap milik Anda.",
-    "invite": "Bagikan tautan undangan"
+    "invite": "Bagikan tautan undangan",
+    "shareBody": "Pohon saya {name} sedang tumbuh!",
+    "coolingTitle": "Pendinginan pohon ini (perkiraan)",
+    "coolingNote": "Pendinginan model pada kilometer perseginya hari ini; bertambah seiring pohon tumbuh. Perkiraan, bukan pengukuran."
   },
   "notif": {
     "title": "Notifikasi",

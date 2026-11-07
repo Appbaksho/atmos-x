@@ -4262,6 +4262,43 @@
     }
    }
   },
+  "/api/v1/orgs/{org_id}/export.csv": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Export Org",
+    "description": "R9: an org admin downloads its teams' numbers as CSV (no personal data beyond team names).",
+    "operationId": "orgs_export",
+    "parameters": [
+     {
+      "name": "org_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Org Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/v1/leaderboard": {
    "get": {
     "tags": [
@@ -5582,6 +5619,97 @@
     }
    }
   },
+  "/api/v1/events/{event_id}/sponsor-logo": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Event Sponsor Logo",
+    "operationId": "events_sponsor_logo",
+    "parameters": [
+     {
+      "name": "event_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Event Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_events_sponsor_logo"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Events Sponsor Logo"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/events/{event_id}/certificate.pdf": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Event Certificate",
+    "operationId": "events_certificate",
+    "parameters": [
+     {
+      "name": "event_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Event Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/v1/events/{event_id}/photo": {
    "post": {
     "tags": [
@@ -6117,6 +6245,110 @@
         }
        }
       }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/outlets": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Outlets",
+    "description": "S11: the pickup points vouchers can be collected at.",
+    "operationId": "partner_outlets",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Partner Outlets"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Outlet Add",
+    "operationId": "partner_outlet_add",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OutletIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Partner Outlet Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/outlets/{outlet_id}": {
+   "delete": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Outlet Delete",
+    "operationId": "partner_outlet_delete",
+    "parameters": [
+     {
+      "name": "outlet_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Outlet Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
      },
      "422": {
       "description": "Validation Error",
@@ -7743,6 +7975,20 @@
      "photo"
     ],
     "title": "Body_events_photo"
+   },
+   "Body_events_sponsor_logo": {
+    "properties": {
+     "photo": {
+      "type": "string",
+      "contentMediaType": "application/octet-stream",
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "photo"
+    ],
+    "title": "Body_events_sponsor_logo"
    },
    "Body_me_avatar": {
     "properties": {
@@ -9397,6 +9643,59 @@
      "code"
     ],
     "title": "OtpVerifyIn"
+   },
+   "OutletIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 120,
+      "minLength": 2,
+      "title": "Name"
+     },
+     "address": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 300
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Address"
+     },
+     "lat": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 90.0,
+        "minimum": -90.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lat"
+     },
+     "lng": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 180.0,
+        "minimum": -180.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lng"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "title": "OutletIn"
    },
    "ProductIn": {
     "properties": {

@@ -194,7 +194,10 @@
     "inviteFailed": "Couldn’t create the invite",
     "inviteT": "Invite a friend to water it",
     "inviteSub": "They can see {name} and add check-ins. Points stay with you.",
-    "invite": "Share invite link"
+    "invite": "Share invite link",
+    "shareBody": "My tree {name} is growing!",
+    "coolingTitle": "Cooling from this tree (estimate)",
+    "coolingNote": "Modelled cooling of its square kilometre today; it grows with the tree. An estimate, not a measurement."
   },
   "notif": {
     "title": "Notifications",

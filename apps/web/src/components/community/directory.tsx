@@ -8,6 +8,7 @@ import { useDiscoverTeams, useOrgs, useSession, useTeams } from '@/lib/data/hook
 import type { Org, Team } from '@/lib/data/types';
 
 import { VerifiedSeal } from './shared';
+import { JoinByCode } from './hub';
 
 function TeamRow({ team }: { team: Team }) {
   const t = useTranslations('community');
@@ -63,6 +64,10 @@ export function MyTeamsPage() {
           onAction={session.isGuest ? () => requireAccount(t('feature')) : undefined}
         />
       )}
+      <Txt label as="h2" style={{ paddingHorizontal: 4, paddingTop: 8 }}>
+        {t('invites')}
+      </Txt>
+      <JoinByCode />
       <Txt label as="h2" style={{ paddingHorizontal: 4, paddingTop: 8 }}>
         {t('discover')}
       </Txt>

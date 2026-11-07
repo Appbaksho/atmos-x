@@ -193,7 +193,7 @@ function OrgClanCard({ id }: { id: string }) {
 
 /* ───────────────────────────── Join by code ───────────────────────────── */
 
-function JoinByCode() {
+export function JoinByCode() {
   const t = useTranslations('community.joinCode');
   const [code, setCode] = useState('');
   const [err, setErr] = useState<string | null>(null);

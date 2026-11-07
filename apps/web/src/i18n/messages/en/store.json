@@ -56,7 +56,8 @@
     "terms": "Terms",
     "demo": "Demo product from an invented pilot partner. Nothing real is delivered.",
     "short": "You need {pts} more spendable points",
-    "redeem": "Redeem"
+    "redeem": "Redeem",
+    "dates": "Listed {listed} · updated {updated}"
   },
   "done": {
     "title": "Redeemed",
@@ -174,7 +175,9 @@
     "order_not_found": "Order not found",
     "order_not_awaiting": "This order isn't waiting for a transfer",
     "auth_guest_restricted": "Create an account to do this",
-    "rate_limited": "Too many tries. Wait a moment."
+    "rate_limited": "Too many tries. Wait a moment.",
+    "partner_outlet_limit": "A partner can list up to 50 outlets",
+    "partner_outlet_not_found": "Outlet not found"
   },
   "partner": {
     "title": "Partner portal",
@@ -229,7 +232,18 @@
     "noCamera": "The camera isn't available. Type the code instead.",
     "reportTitle": "CSR impact report",
     "reportSub": "PDF with verified trees, survival rate, estimated CO₂, people reached, redemptions and tree photos.",
-    "download": "Download PDF"
+    "download": "Download PDF",
+    "updated": "updated {date}",
+    "outlets": "Pickup outlets",
+    "addOutlet": "Add outlet",
+    "noOutlets": "No outlets yet. Add where people collect their vouchers.",
+    "outletName": "Give the outlet a name",
+    "outletNameL": "Outlet name",
+    "outletAddress": "Address",
+    "outletPin": "Map pin",
+    "outletHere": "At {place}",
+    "outletNoPin": "No pin",
+    "removeOutlet": "Remove {name}"
   },
   "company": {
     "title": "Company account",
