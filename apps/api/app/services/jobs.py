@@ -77,10 +77,8 @@ async def claim(db: AsyncSession, kinds: list[str] | None = None) -> Job | None:
 
 async def progress(db: AsyncSession, job_id: uuid.UUID, done: int, total: int) -> None:
     await db.execute(
-        text(
-            "UPDATE jobs SET done_cells = :d, total_cells = :t, progress = CASE WHEN :t > 0 THEN :d::float / :t ELSE 0 END WHERE id = :id"
-        ),
-        {"d": done, "t": total, "id": job_id},
+        text("UPDATE jobs SET done_cells = :d, total_cells = :t, progress = :p WHERE id = :id"),
+        {"d": done, "t": total, "p": done / total if total > 0 else 0.0, "id": job_id},
     )
     await db.commit()
 

@@ -11,7 +11,7 @@
  * - Permission is never requested on load: onboarding (S03) and "Use my location" call `refresh()`.
  *   If it was already granted, the position is fetched automatically once onboarded.
  * - Presentation mode (prefs.presentation) pins focus to NEXT_PUBLIC_DEMO_LAT/LNG (Mohammadpur).
- * - `search(q)` calls GET /api/v0/geo/search and falls back to a small static list (incl. Dhaka).
+ * - `search(q)` calls GET /api/v1/geo/search and falls back to a small static list (incl. Dhaka).
  * - The chosen focus is persisted in IndexedDB so it survives reloads.
  */
 import { get, set } from 'idb-keyval';
@@ -73,7 +73,7 @@ type LocationState = {
   resetFocus: () => void;
   /** Ask for permission (if needed) and get a fresh fix. Resolves with the position or null. */
   refresh: () => Promise<LatLng | null>;
-  /** City search: /api/v0/geo/search, falling back to STATIC_PLACES */
+  /** City search: /api/v1/geo/search, falling back to STATIC_PLACES */
   search: (q: string, signal?: AbortSignal) => Promise<Place[]>;
 };
 
@@ -147,7 +147,7 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
   const reverse = useCallback(
     async (p: LatLng): Promise<string | null> => {
       try {
-        const r = await fetchJson<ReverseGeocode>(`/api/v0/geo/reverse?lat=${p.lat}&lng=${p.lng}&lang=${locale}`, 6000);
+        const r = await fetchJson<ReverseGeocode>(`/api/v1/geo/reverse?lat=${p.lat}&lng=${p.lng}&lang=${locale}`, 6000);
         return r.place || nearestStatic(p);
       } catch {
         return nearestStatic(p);
@@ -274,7 +274,7 @@ export function LocationProvider({ children }: { children: React.ReactNode }) {
       const s = q.trim();
       if (s.length < 2) return [];
       try {
-        const r = await fetchJson<GeoSearchResponse>(`/api/v0/geo/search?q=${encodeURIComponent(s)}&lang=${locale}`, 6000, signal);
+        const r = await fetchJson<GeoSearchResponse>(`/api/v1/geo/search?q=${encodeURIComponent(s)}&lang=${locale}`, 6000, signal);
         if (r.results?.length) return r.results;
         return staticSearch(s);
       } catch {

@@ -56,7 +56,7 @@ import {
 
 const PHOTO = 'https://images.unsplash.com/photo-1688881577496-ed998541f3e4?auto=format&fit=crop&w=800&h=500&q=70';
 const META_LIVE: Meta = { live: true, generated_at: '2026-10-05T08:00:00Z', sources: [{ id: 'open-meteo', name: 'Open-Meteo', url: 'https://open-meteo.com' }, { id: 'osm', name: 'OpenStreetMap', url: 'https://www.openstreetmap.org/copyright' }] };
-const META_CACHED: Meta = { live: false, generated_at: '2026-10-04T06:30:00Z', sources: [{ id: 'openai', name: 'OpenAI' }, { id: 'seed', name: 'Seed' }] };
+const META_CACHED: Meta = { live: false, generated_at: '2026-10-04T06:30:00Z', sources: [{ id: 'open_meteo', name: 'Open-Meteo' }, { id: 'demo', name: 'Demo' }] };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (

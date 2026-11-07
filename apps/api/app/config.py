@@ -11,11 +11,12 @@ import re
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, field_validator
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 API_DIR = Path(__file__).resolve().parents[1]
-REPO_ROOT = API_DIR.parents[1]
+# apps/api → repo root in a checkout; inside the container the API lives at /app with no repo around it.
+REPO_ROOT = API_DIR.parents[1] if len(API_DIR.parents) > 1 else API_DIR
 
 PLACEHOLDER_SECRET = re.compile(r"change-me|replace|placeholder|^$", re.I)
 PLACEHOLDER_CONTACT = re.compile(r"replace-with|example\.(com|org)|your-domain", re.I)
@@ -90,9 +91,6 @@ class Settings(BaseSettings):
     # The "Try the Dhaka demo" point (shared with the web app; public, not a secret).
     next_public_demo_lat: float = 23.7590
     next_public_demo_lng: float = 90.3590
-
-    # Not in .env.example on purpose: test/runtime toggles with safe defaults.
-    worker_enabled_in_api: bool = Field(default=False)
 
     @field_validator("osm_user_agent", "overpass_urls", "vapid_subject", mode="before")
     @classmethod

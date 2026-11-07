@@ -1,31 +1,94 @@
-# Production stack: `docker compose -f docker-compose.prod.yml up -d --build` (see docs/deploy.md).
+# Production stack (prompt-v1 Stage 7, deployment files only; nothing here is deployed by this run).
+#   docker compose -f docker-compose.prod.yml up -d --build
 # Reads .env next to this file for build args and runtime secrets; that file is never committed.
+# The host nginx (deploy/atmosx.baksho.app.nginx) terminates TLS and proxies to the web service.
+# The browser talks only to web; web rewrites /api/v1 and /media to the api service.
 services:
-  web:
-    build:
-      context: ./apps/web
-      args:
-        ATMOS_BUILD_ID: ${ATMOS_BUILD_ID:-}
-        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-}
-        NEXT_PUBLIC_MAP_STYLE_URL: ${NEXT_PUBLIC_MAP_STYLE_URL:-}
-        NEXT_PUBLIC_MAP_STYLE_URL_DARK: ${NEXT_PUBLIC_MAP_STYLE_URL_DARK:-}
-        NEXT_PUBLIC_DEMO_LAT: ${NEXT_PUBLIC_DEMO_LAT:-}
-        NEXT_PUBLIC_DEMO_LNG: ${NEXT_PUBLIC_DEMO_LNG:-}
+  db:
+    image: postgis/postgis:16-3.5
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-atmos}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-atmos}
+    volumes:
+      - atmos-pg:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-atmos} -d ${POSTGRES_DB:-atmos}"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    mem_limit: 1g
+
+  api:
+    build: ./apps/api
     restart: unless-stopped
     env_file:
       - path: ./.env
         required: false
-    # Host nginx terminates TLS and proxies atmosx.baksho.app here.
-    ports:
-      - "127.0.0.1:${WEB_PORT:-3160}:3000"
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-atmos}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-atmos}
+      DATA_DIR: /data
+      RUN_MIGRATIONS: "1"
     volumes:
-      - atmos-cache:/data
-    mem_limit: 1g
-    logging:
+      - atmos-data:/data
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 2g
+    logging: &logs
       driver: json-file
       options:
         max-size: 10m
         max-file: "3"
 
+  worker:
+    build: ./apps/api
+    restart: unless-stopped
+    command: ["python", "-m", "app.worker"]
+    env_file:
+      - path: ./.env
+        required: false
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-atmos}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-atmos}
+      DATA_DIR: /data
+      RUN_MIGRATIONS: "0"
+    volumes:
+      - atmos-data:/data
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      disable: true
+    mem_limit: 3g
+    logging: *logs
+
+  web:
+    build:
+      context: ./apps/web
+      args:
+        ATMOS_BUILD_ID: ${ATMOS_BUILD_ID:-}
+        API_ORIGIN: http://api:8000
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-}
+        NEXT_PUBLIC_MAP_STYLE_URL: ${NEXT_PUBLIC_MAP_STYLE_URL:-}
+        NEXT_PUBLIC_MAP_STYLE_URL_DARK: ${NEXT_PUBLIC_MAP_STYLE_URL_DARK:-}
+        NEXT_PUBLIC_DEMO_LAT: ${NEXT_PUBLIC_DEMO_LAT:-}
+        NEXT_PUBLIC_DEMO_LNG: ${NEXT_PUBLIC_DEMO_LNG:-}
+        NEXT_PUBLIC_TIME_ZONE: ${NEXT_PUBLIC_TIME_ZONE:-}
+    restart: unless-stopped
+    # Only API_ORIGIN at run time: the Next server never holds a backend secret (§8.5).
+    environment:
+      API_ORIGIN: http://api:8000
+    ports:
+      - "127.0.0.1:${WEB_PORT:-3160}:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    mem_limit: 1g
+    logging: *logs
+
 volumes:
-  atmos-cache:
+  atmos-pg:
+  atmos-data:
