@@ -280,11 +280,23 @@
         "warning": "Alerta de calor em {place} · sensação de {feels}"
       },
       "team": {
-        "joined": "Você entrou em {team}"
+        "joined": "Você entrou em {team}",
+        "member_joined": "{who} entrou em {team}",
+        "goal_reached": "{team} atingiu a meta em {zone}: +100 pontos cada"
       },
       "badge": "Nova medalha: {badge}",
       "farm": {
         "body": "{field} · a partir de {date}"
+      },
+      "social": {
+        "like": "{who} curtiu sua publicação",
+        "comment": "{who} comentou sua publicação",
+        "quote": "“{text}”",
+        "mention": "{who} mencionou você",
+        "follow": "{who} começou a seguir você"
+      },
+      "event": {
+        "reminder": "Lembrete: {title} em {date}"
       }
     },
     "reason": {
@@ -411,5 +423,20 @@
     "guestCta": "Criar conta grátis",
     "feature": "ajudar a regar a árvore de um amigo",
     "joining": "Entrando…"
+  },
+  "avatar": {
+    "change": "Trocar foto de perfil",
+    "title": "Foto de perfil",
+    "sub": "Arraste e amplie para caber no círculo.",
+    "choose": "Escolher foto",
+    "another": "Escolher outra",
+    "save": "Salvar foto",
+    "saved": "Foto salva. Os outros a veem após aprovação.",
+    "failed": "Não foi possível enviar a foto",
+    "unreadable": "Esse arquivo não é uma foto legível",
+    "preview": "Pré-visualização",
+    "zoom": "Zoom",
+    "hint": "Escolha uma foto da câmera ou galeria.",
+    "moderation": "As fotos são verificadas antes de outros verem."
   }
 }

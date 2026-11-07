@@ -280,11 +280,23 @@
         "warning": "{place} 高温预警 · 体感 {feels}"
       },
       "team": {
-        "joined": "你已加入 {team}"
+        "joined": "你已加入 {team}",
+        "member_joined": "{who} 加入了 {team}",
+        "goal_reached": "{team} 完成了 {zone} 的目标：每人 +100 积分"
       },
       "badge": "新徽章：{badge}",
       "farm": {
         "body": "{field} · 自 {date} 起"
+      },
+      "social": {
+        "like": "{who} 赞了你的帖子",
+        "comment": "{who} 评论了你的帖子",
+        "quote": "“{text}”",
+        "mention": "{who} 提到了你",
+        "follow": "{who} 开始关注你"
+      },
+      "event": {
+        "reminder": "提醒：{title}，{date}"
       }
     },
     "reason": {
@@ -411,5 +423,20 @@
     "guestCta": "创建免费账户",
     "feature": "帮朋友的树浇水",
     "joining": "正在加入…"
+  },
+  "avatar": {
+    "change": "更换头像",
+    "title": "头像",
+    "sub": "拖动和缩放以适配圆形。",
+    "choose": "选择照片",
+    "another": "换一张",
+    "save": "保存照片",
+    "saved": "照片已保存，审核通过后他人可见。",
+    "failed": "照片上传失败",
+    "unreadable": "无法读取该文件",
+    "preview": "照片预览",
+    "zoom": "缩放",
+    "hint": "从相机或相册选择照片。",
+    "moderation": "照片在他人可见前会经过审核。"
   }
 }
