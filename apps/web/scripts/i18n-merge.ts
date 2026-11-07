@@ -1,7 +1,7 @@
 /**
  * npm run i18n:merge -- <delta.json> [--dry]
  *
- * Applies a batch of message changes to every locale (replaces the V0 OpenAI translate script,
+ * Applies a batch of message changes to every locale (replaces the old machine-translation script,
  * prompt-v1 §3.2: new strings are translated by the team, then merged here).
  *
  * delta.json: { "<namespace>": { "<dotted.key>": { "en": "…", "bn": "…", … } | null } }

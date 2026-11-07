@@ -7,6 +7,6 @@ test('About is built from /sources and has no AI or v0 copy (E6, E14, K9)', asyn
   await expect(page.getByText(live.sources[0].name).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: 'How actions are checked' })).toBeVisible();
   const text = await page.locator('main').innerText();
-  expect(text).not.toMatch(/\bAI\b|OpenAI|\bv0\b|never sells|not satellite data/);
+  expect(text).not.toMatch(/\bAI\b|Open ?A\.?I\.?|\bv0\b|never sells|not satellite data/);
   expect(text).toContain('Partner nurseries can sell saplings');
 });

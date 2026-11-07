@@ -31,7 +31,7 @@ export const TARGET_LOCALES: readonly Locale[] = [...HUMAN_LOCALES, ...MACHINE_L
 /** Terms that must appear unchanged (Latin script) in every translation whose English has them. */
 export const GLOSSARY = ['Atmos X', 'Heat Score', 'Ask Atmos', 'NASA', 'BMD', 'PM2.5', 'AQI', 'OpenStreetMap', 'Open-Meteo'] as const;
 /** Kept as-is too, but not enforced by validation. */
-export const SOFT_GLOSSARY = ['ERA5', 'DAE', 'OpenAI', 'OpenFreeMap', 'GIBS', 'MODIS', 'Landsat', 'POWER', 'H3', 'Google'] as const;
+export const SOFT_GLOSSARY = ['ERA5', 'DAE', 'OpenFreeMap', 'GIBS', 'MODIS', 'Landsat', 'POWER', 'H3', 'Google'] as const;
 
 export const LANG_NAME: Record<Locale, string> = {
   en: 'English',
