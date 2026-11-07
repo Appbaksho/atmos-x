@@ -123,8 +123,9 @@ function Strip() {
   if (stats.isPending) return <SkeletonCard lines={1} height={72} />;
   if (stats.isError || !stats.data) return null;
   const s = stats.data;
+  // 2 × 2 on phones so long values (−0.0040 °C, Urdu digits) never truncate; one row when there's room.
   return (
-    <View style={{ flexDirection: 'row', gap: 6 }}>
+    <View style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(140px, 45%), 1fr))', gap: 6 }}>
       <StatTile label={t('stripPlanted')} value={f.loc(s.trees)} />
       <StatTile label={t('stripAlive')} value={f.loc(s.trees_alive)} />
       <StatTile label={t('stripPoints')} value={f.num(s.points.earned)} sub={s.points.pending ? t('stripPending', { n: f.num(s.points.pending) }) : undefined} />
