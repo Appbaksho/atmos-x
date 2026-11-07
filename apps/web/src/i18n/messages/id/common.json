@@ -117,7 +117,11 @@
   "location": {
     "denied": "Izin lokasi ditolak. Cari kota saja.",
     "unavailable": "Tidak dapat mendapatkan lokasi Anda. Cari kota saja.",
-    "demo": "Mohammadpur, Dhaka"
+    "finding": "Mencari lokasi Anda…",
+    "gateTitle": "Di mana Atmos X harus melihat?",
+    "gateWhy": "Panas, rencana, dan peringatan untuk tempat nyata. Bagikan lokasi Anda atau cari wilayah Anda; tidak ada yang ditampilkan untuk tempat tebakan.",
+    "useMine": "Gunakan lokasi saya",
+    "tryDemo": "Coba demo Dhaka saja"
   },
   "notFound": {
     "title": "Halaman tidak ditemukan",

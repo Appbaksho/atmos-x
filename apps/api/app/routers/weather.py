@@ -62,13 +62,15 @@ async def reverse(
 
 @router.get("/geo/search", operation_id="geo_search")
 async def search(q: str = Query(min_length=1, max_length=120), lang: str = "en") -> dict:
+    # The geocoder being down is not an error for the person: answer with no results and live=false,
+    # and the app falls back to its built-in city list.
     try:
-        results = await geo_svc.search(q, lang_or_en(lang))
+        results, live = await geo_svc.search(q, lang_or_en(lang)), True
     except UpstreamError:
-        raise _unavailable("search")
+        results, live = [], False
     return {
         "results": results,
-        "meta": {"live": True, "stale": False, "generated_at": "", "sources": [SRC["open_meteo"].src().model_dump()]},
+        "meta": {"live": live, "stale": False, "generated_at": "", "sources": [SRC["open_meteo"].src().model_dump()]},
     }
 
 

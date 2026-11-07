@@ -114,7 +114,11 @@
   "location": {
     "denied": "مقام کی اجازت نہیں ملی۔ اس کے بجائے شہر تلاش کریں۔",
     "unavailable": "آپ کا مقام نہیں مل سکا۔ اس کے بجائے شہر تلاش کریں۔",
-    "demo": "محمدپور، ڈھاکہ"
+    "finding": "آپ کی جگہ تلاش کی جا رہی ہے…",
+    "gateTitle": "Atmos X کہاں دیکھے؟",
+    "gateWhy": "گرمی، منصوبے اور انتباہ ایک حقیقی جگہ کے لیے ہیں۔ اپنا مقام دیں یا علاقہ تلاش کریں؛ اندازے کی جگہ کے لیے کچھ نہیں دکھایا جاتا۔",
+    "useMine": "میرا مقام استعمال کریں",
+    "tryDemo": "اس کے بجائے ڈھاکہ ڈیمو آزمائیں"
   },
   "notFound": {
     "title": "صفحہ نہیں ملا",
@@ -128,6 +132,11 @@
   "_meta": {
     "machine_keys": [
       "account.note",
+      "location.finding",
+      "location.gateTitle",
+      "location.gateWhy",
+      "location.tryDemo",
+      "location.useMine",
       "sources.kind.demo",
       "sources.kind.derived",
       "sources.kind.estimate",

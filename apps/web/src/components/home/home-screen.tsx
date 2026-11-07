@@ -41,7 +41,7 @@ export function HomeScreen() {
   const goals = useGoals();
   const unread = useUnreadCount();
 
-  const place = cond.data?.place || placeName || tc('location.demo');
+  const place = cond.data?.place || placeName || tc('location.finding');
   const name = me.role === 'guest' ? null : me.display_name.split(' ')[0] || null;
   const mySummary = scan.data?.zones.find((z) => z.id === myZoneId) ?? null;
   const zoneLoading = scan.isLoading || (!!myZoneId && zone.isLoading) || !session.ready;

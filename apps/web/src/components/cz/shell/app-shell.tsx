@@ -7,12 +7,14 @@
 import React, { useEffect } from 'react';
 
 import { usePathname } from '@/i18n/navigation';
+import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { goReplace } from '@/lib/routes';
 
 import { HeaderMenuSlot } from '../header-slot';
 import { AccountMenuButton } from './account-menu';
 import { InstallBanner } from './install';
+import { LocationGate, needsPlaceGate } from './location-gate';
 import { OfflineIndicator } from './offline';
 import { AskProvider } from './ask-slot';
 import { Sidebar, TabBar } from './tab-bar';
@@ -41,11 +43,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   useOnboardingGate();
   const bare = path.startsWith('/app/onboarding');
+  const loc = useLocation();
+  // L11: no silent default place. A screen that needs one asks for it when nothing resolved.
+  const gate = !bare && loc.needsPlace && needsPlaceGate(path);
   return (
     <HeaderMenuSlot.Provider value={MENU}>
       <AskProvider>
         {bare ? null : <Sidebar />}
-        <div className={bare ? 'cz-shell' : 'cz-shell cz-shell-main'}>{children}</div>
+        <div className={bare ? 'cz-shell' : 'cz-shell cz-shell-main'}>{gate ? <LocationGate /> : children}</div>
         {bare ? null : <TabBar />}
         <OfflineIndicator />
         <InstallBanner />

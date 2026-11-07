@@ -117,7 +117,11 @@
   "location": {
     "denied": "Permissão de localização negada. Busque uma cidade em vez disso.",
     "unavailable": "Não foi possível obter sua localização. Busque uma cidade em vez disso.",
-    "demo": "Mohammadpur, Dhaka"
+    "finding": "Procurando seu local…",
+    "gateTitle": "Onde o Atmos X deve olhar?",
+    "gateWhy": "Calor, planos e alertas são para um lugar real. Compartilhe sua localização ou busque sua área; nada é mostrado para um lugar suposto.",
+    "useMine": "Usar minha localização",
+    "tryDemo": "Experimente a demo de Daca"
   },
   "notFound": {
     "title": "Página não encontrada",

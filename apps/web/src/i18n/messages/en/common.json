@@ -114,7 +114,11 @@
   "location": {
     "denied": "Location permission was denied. Search for a city instead.",
     "unavailable": "Couldn’t get your location. Search for a city instead.",
-    "demo": "Mohammadpur, Dhaka"
+    "finding": "Finding your place…",
+    "gateTitle": "Where should Atmos X look?",
+    "gateWhy": "Heat, plans and alerts are for a real place. Share your location or search for your area; nothing is shown for a guessed spot.",
+    "useMine": "Use my location",
+    "tryDemo": "Try the Dhaka demo instead"
   },
   "notFound": {
     "title": "Page not found",

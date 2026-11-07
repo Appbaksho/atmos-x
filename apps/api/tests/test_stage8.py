@@ -83,3 +83,14 @@ def test_month_starts_on_the_first_in_dhaka():
     assert LB.period_start("all") is None
     with pytest.raises(AppError):
         LB.period_start("year")
+
+
+@respx.mock
+async def test_place_search_degrades_without_an_error(client):
+    """The geocoder being down answers 200 with no results and live=false (the app then uses its own city list)."""
+    respx.get(url__regex=r"https://(customer-)?geocoding-api\.open-meteo\.com/.*").mock(
+        return_value=httpx.Response(503)
+    )
+    r = await client.get("/api/v1/geo/search", params={"q": "Nowhereville-xyz", "lang": "en"})
+    assert r.status_code == 200
+    assert r.json()["results"] == [] and r.json()["meta"]["live"] is False
