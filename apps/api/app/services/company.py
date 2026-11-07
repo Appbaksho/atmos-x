@@ -176,7 +176,8 @@ async def certified_tonnes_available(db: AsyncSession) -> float:
 
 async def packages(db: AsyncSession) -> list[dict]:
     avail = await certified_tonnes_available(db)
-    return [
+    common = {"vat_rate": settings.vat_rate, "bank_transfer_min": settings.bank_transfer_min_bdt}
+    rows = [
         {
             "id": "tree_impact",
             "unit": "tree",
@@ -204,6 +205,7 @@ async def packages(db: AsyncSession) -> list[dict]:
             "note": "certified_only",
         },
     ]
+    return [r | common for r in rows]
 
 
 def order_out(o: PackageOrder) -> dict:

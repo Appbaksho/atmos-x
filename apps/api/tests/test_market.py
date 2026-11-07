@@ -308,6 +308,7 @@ async def test_company_flow_trees_held_then_released_and_no_points(client, clien
     ] == "approved"
     pk = {p["id"]: p for p in (await client.get("/api/v1/company/packages")).json()}
     assert pk["carbon_credits"]["enabled"] is False and pk["tree_impact"]["note"] == "estimate_not_offset"
+    assert pk["tree_impact"]["vat_rate"] == 0.15 and pk["tree_impact"]["bank_transfer_min"] > 0
     assert (
         await client.patch(
             "/api/v1/company/emissions", json={"year": 2025, "tonnes_co2e": 12000, "offset_target_t": 500}
