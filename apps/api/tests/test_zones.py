@@ -98,3 +98,19 @@ async def test_guest_radius_cap(client):
     await signup(client, email="u@example.org")
     r = await client.get("/api/v1/zones", params={"lat": DHAKA[0], "lng": DHAKA[1], "radius_m": 1000})
     assert r.status_code == 200 and r.json()["scan"]["cell_count"] == 217
+
+
+async def test_job_progress_updates(db):
+    """Regression: the progress UPDATE once used `:d::float`, which SQLAlchemy can't bind, so every
+    region precompute failed on its first progress report."""
+    from app.services import jobs as q
+
+    await q.enqueue(db, "heat_region", "progress-test", {})
+    await db.commit()
+    job = (await db.execute(select(Job).where(Job.key == "progress-test"))).scalar_one()
+    await q.progress(db, job.id, 3, 4)
+    await db.refresh(job)
+    assert (job.done_cells, job.total_cells, job.progress) == (3, 4, 0.75)
+    await q.progress(db, job.id, 0, 0)
+    await db.refresh(job)
+    assert job.progress == 0
