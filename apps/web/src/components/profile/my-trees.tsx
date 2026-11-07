@@ -57,7 +57,7 @@ export function MyTreesScreen() {
   const onAdd = () => (session.isGuest ? requireAccount(t('feature')) : setAdding(true));
 
   return (
-    <Screen>
+    <Screen tab>
       <ScreenHeader
         title={t('title')}
         back={false}

@@ -12,5 +12,20 @@
   "air": "Qualité de l’air",
   "notifications": "Notifications",
   "settings": "Réglages",
-  "about": "À propos"
+  "about": "À propos",
+  "trees": "Mes arbres",
+  "store": "Boutique",
+  "farm": "Ferme",
+  "logAction": "Ajouter une action",
+  "menu": "Menu",
+  "menuUnread": "Menu, {n} non lues",
+  "guest": "Invité",
+  "guestSub": "Créez un compte gratuit pour garder votre travail",
+  "signUp": "Créer un compte gratuit",
+  "partner": "Espace partenaire",
+  "company": "Compte entreprise",
+  "moderation": "Modération",
+  "admin": "Administration",
+  "logShort": "Ajouter",
+  "treesTab": "Arbres"
 }

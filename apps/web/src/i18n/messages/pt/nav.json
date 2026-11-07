@@ -12,5 +12,20 @@
   "air": "Qualidade do ar",
   "notifications": "Notificações",
   "settings": "Configurações",
-  "about": "Sobre"
+  "about": "Sobre",
+  "trees": "Minhas árvores",
+  "store": "Loja",
+  "farm": "Fazenda",
+  "logAction": "Registrar ação",
+  "menu": "Menu",
+  "menuUnread": "Menu, {n} não lidas",
+  "guest": "Visitante",
+  "guestSub": "Crie uma conta grátis para salvar seu trabalho",
+  "signUp": "Criar conta grátis",
+  "partner": "Portal do parceiro",
+  "company": "Conta da empresa",
+  "moderation": "Moderação",
+  "admin": "Administração",
+  "logShort": "Registrar",
+  "treesTab": "Árvores"
 }

@@ -10,10 +10,15 @@ import { usePathname } from '@/i18n/navigation';
 import { useCz } from '@/lib/prefs';
 import { goReplace } from '@/lib/routes';
 
+import { HeaderMenuSlot } from '../header-slot';
+import { AccountMenuButton } from './account-menu';
 import { InstallBanner } from './install';
 import { OfflineIndicator } from './offline';
 import { AskProvider } from './ask-slot';
 import { Sidebar, TabBar } from './tab-bar';
+
+/** One element for every tab-root header (the slot is a ReactNode, not a component). */
+const MENU = <AccountMenuButton />;
 
 const demoParam = () => new URLSearchParams(window.location.search).get('demo') === '1';
 
@@ -37,12 +42,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   useOnboardingGate();
   const bare = path.startsWith('/app/onboarding');
   return (
-    <AskProvider>
-      {bare ? null : <Sidebar />}
-      <div className={bare ? 'cz-shell' : 'cz-shell cz-shell-main'}>{children}</div>
-      {bare ? null : <TabBar />}
-      <OfflineIndicator />
-      <InstallBanner />
-    </AskProvider>
+    <HeaderMenuSlot.Provider value={MENU}>
+      <AskProvider>
+        {bare ? null : <Sidebar />}
+        <div className={bare ? 'cz-shell' : 'cz-shell cz-shell-main'}>{children}</div>
+        {bare ? null : <TabBar />}
+        <OfflineIndicator />
+        <InstallBanner />
+      </AskProvider>
+    </HeaderMenuSlot.Provider>
   );
 }

@@ -9,5 +9,20 @@
   "air": "Air quality",
   "notifications": "Notifications",
   "settings": "Settings",
-  "about": "About"
+  "about": "About",
+  "trees": "My trees",
+  "store": "Store",
+  "farm": "Farm",
+  "logAction": "Log action",
+  "menu": "Menu",
+  "menuUnread": "Menu, {n} unread",
+  "guest": "Guest",
+  "guestSub": "Create a free account to save your work",
+  "signUp": "Create a free account",
+  "partner": "Partner portal",
+  "company": "Company account",
+  "moderation": "Moderation",
+  "admin": "Admin",
+  "logShort": "Log",
+  "treesTab": "My trees"
 }

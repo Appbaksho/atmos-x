@@ -12,5 +12,20 @@
   "air": "Kualitas udara",
   "notifications": "Notifikasi",
   "settings": "Setelan",
-  "about": "Tentang"
+  "about": "Tentang",
+  "trees": "Pohon saya",
+  "store": "Toko",
+  "farm": "Kebun",
+  "logAction": "Catat aksi",
+  "menu": "Menu",
+  "menuUnread": "Menu, {n} belum dibaca",
+  "guest": "Tamu",
+  "guestSub": "Buat akun gratis untuk menyimpan pekerjaan Anda",
+  "signUp": "Buat akun gratis",
+  "partner": "Portal mitra",
+  "company": "Akun perusahaan",
+  "moderation": "Moderasi",
+  "admin": "Admin",
+  "logShort": "Catat",
+  "treesTab": "Pohon saya"
 }

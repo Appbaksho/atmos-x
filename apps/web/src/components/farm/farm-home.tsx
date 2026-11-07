@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl';
 
 import { B, Card, CzButton, ErrorState, GlassPill, href, I, Icon, IconBtn, Label, LightStatusBar, Photo, Screen, SkeletonCard, SourceChips, Tap, Txt, useCz, useLocation, View } from '@/components/cz';
 import { useAskContext } from '@/components/ask/ask-context';
+import { AccountMenuButton } from '@/components/cz/shell/account-menu';
 import { useConditions, useFarmAlerts, useFields, useSession, useUnreadCount } from '@/lib/data/hooks';
 import type { FarmField } from '@/lib/data/types';
 
@@ -56,7 +57,10 @@ export function FarmHome() {
               {place}
             </Txt>
           </Tap>
-          <IconBtn d={I.bell} label={t('home.notifications')} tone="glass" iconSize={20} badge={unreadN > 0} href={href('S21')} />
+          <View style={{ flexDirection: 'row', gap: 8, flexShrink: 0 }}>
+            <IconBtn d={I.bell} label={t('home.notifications')} tone="glass" iconSize={20} badge={unreadN > 0} href={href('S21')} />
+            <AccountMenuButton tone="glass" />
+          </View>
         </View>
         <View style={{ position: 'absolute', start: 20, end: 20, bottom: 24, gap: 10, pointerEvents: 'none' }}>
           {preview ? (

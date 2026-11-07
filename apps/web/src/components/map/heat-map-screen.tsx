@@ -12,6 +12,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDesktop, useDebounced } from '@/components/cz/hooks';
 import { SkeletonText, ErrorState, EmptyState, SourceChips } from '@/components/cz/states';
 import { B, R, SHADOW, TAB_CLEARANCE, heatColor } from '@/components/cz/tokens';
+import { AccountMenuButton } from '@/components/cz/shell/account-menu';
 import { Card, GlassPill, I, Icon, LightStatusBar, Screen, Seg, Spinner, Tap, Txt, View } from '@/components/cz/ui';
 import { MyFields } from '@/components/farm/my-fields';
 import { useGibsLayer, usePrefetchZone, useScanJob } from '@/lib/data/hooks';
@@ -149,7 +150,7 @@ export function HeatMapScreen() {
         <Seg<Layer>
           tone="glass"
           height={38}
-          style={{ width: 200, flexShrink: 0 }}
+          style={{ width: 180, flexShrink: 0 }}
           value={layer}
           onChange={setLayer}
           label={t('layersLabel')}
@@ -158,6 +159,7 @@ export function HeatMapScreen() {
             { label: t('layers.lst'), value: 'lst' },
           ]}
         />
+        <AccountMenuButton tone="glass" />
       </View>
       {layer === 'heat' ? (
         <View

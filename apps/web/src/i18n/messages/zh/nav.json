@@ -12,5 +12,20 @@
   "air": "空气质量",
   "notifications": "通知",
   "settings": "设置",
-  "about": "关于"
+  "about": "关于",
+  "trees": "我的树",
+  "store": "商店",
+  "farm": "农场",
+  "logAction": "记录行动",
+  "menu": "菜单",
+  "menuUnread": "菜单，{n} 条未读",
+  "guest": "访客",
+  "guestSub": "创建免费账户以保存你的进度",
+  "signUp": "创建免费账户",
+  "partner": "合作伙伴门户",
+  "company": "企业账户",
+  "moderation": "内容审核",
+  "admin": "管理",
+  "logShort": "记录",
+  "treesTab": "我的树"
 }

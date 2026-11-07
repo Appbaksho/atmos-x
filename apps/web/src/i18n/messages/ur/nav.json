@@ -9,5 +9,39 @@
   "air": "ہوا کا معیار",
   "notifications": "اطلاعات",
   "settings": "ترتیبات",
-  "about": "تعارف"
+  "about": "تعارف",
+  "trees": "میرے درخت",
+  "store": "اسٹور",
+  "farm": "کھیت",
+  "logAction": "کام درج کریں",
+  "menu": "مینو",
+  "menuUnread": "مینو، {n} غیر پڑھے",
+  "guest": "مہمان",
+  "guestSub": "اپنا کام محفوظ کرنے کے لیے مفت اکاؤنٹ بنائیں",
+  "signUp": "مفت اکاؤنٹ بنائیں",
+  "partner": "پارٹنر پورٹل",
+  "company": "کمپنی اکاؤنٹ",
+  "moderation": "ماڈریشن",
+  "admin": "ایڈمن",
+  "_meta": {
+    "machine_keys": [
+      "admin",
+      "company",
+      "farm",
+      "guest",
+      "guestSub",
+      "logAction",
+      "logShort",
+      "menu",
+      "menuUnread",
+      "moderation",
+      "partner",
+      "signUp",
+      "store",
+      "trees",
+      "treesTab"
+    ]
+  },
+  "logShort": "درج کریں",
+  "treesTab": "میرے درخت"
 }
