@@ -108,3 +108,21 @@ through presigned URLs (GDAL must not forward the bearer header to S3).
 the owner's token. GES DISC (IMERG) answers "EULA Acceptance Failure": the account has not approved the
 NASA GESDISC DATA ARCHIVE application. Until a person approves it, rain falls back to NASA POWER,
 labelled. This is a human task.
+
+**D21. Tree milestones are awarded at the check-in, not by a timer.** PT3 (90 days) and PT4 (1 year)
+mean "alive", which only a check-in shows, so they are awarded when an on-schedule check-in passes
+its checks at age ≥ 90 / ≥ 365 days. The same 90-day check-in unlocks the tree's pending PT1/PT2
+(PT9). The daily worker unlocks non-tree points 90 days after verification, sends one reminder per due
+date (an "at risk" one after 15 days overdue) and a 90-day nudge, and re-evaluates badges (PT11).
+
+**D22. Invite a friend to water (T5) and PT7.** `POST /trees/{id}/invite` returns a signed 14-day link
+(not a session token). Accepting adds the person as a tree helper (`tree_helpers`): they can see the
+tree and check in, the owner keeps the points. If the person signed up after the link was issued,
+`users.invited_by_id` is set, and the inviter earns PT7 (25, pending 90 days) once that person's first
+planting is verified.
+
+**D23. Device import (A9).** Imported items keep `v0:<id>` client ids, so retries add nothing. Imported
+claims earn nothing by themselves: imported actions wait for review (`reason_code = imported`),
+imported trees linked to an imported planting stay "verifying" until that review, and imported
+check-ins carry no points. Goals whose centroid lies in a zone on the current map become goals; the
+rest become goal drafts.
