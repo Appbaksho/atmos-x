@@ -126,3 +126,12 @@ claims earn nothing by themselves: imported actions wait for review (`reason_cod
 imported trees linked to an imported planting stay "verifying" until that review, and imported
 check-ins carry no points. Goals whose centroid lies in a zone on the current map become goals; the
 rest become goal drafts.
+
+**D24. Farmer alert details.** The 9 V0 rules are ported with their thresholds. Additions: cold wave
+uses the 4 BMD bands (severe and very severe are both "danger"); `heavy_rain` fires at BMD "heavy"
+(≥ 44 mm/24 h, forecast or IMERG observed) and is "danger" above 88 mm; drought uses SMAP root-zone
+wetness when cached (< 0.30 watch, < 0.20 warning, rules of thumb), else NASA POWER 30-day rain with
+Open-Meteo ET0, and makes no claim without either; lightning scales the CAPE thresholds by the
+LIS/OTD monthly climatology weight (0.5–2), so a quiet month needs more instability. Alert ids are
+`<rule>-<from>@<0.1° cell>`; "I've done it" is stored per person and alert. Saved fields are checked
+twice a day (06:30 and 18:30 Dhaka) and notified once per field and alert (danger and warning only).

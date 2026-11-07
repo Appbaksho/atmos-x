@@ -264,7 +264,7 @@ async def refresh_normal(db: AsyncSession, lat: float, lng: float) -> dict:
 
 async def refresh_recent(db: AsyncSession, lat: float, lng: float) -> dict:
     end = datetime.now(UTC).date()
-    data = await power.daily(lat, lng, end - timedelta(days=21), end, ["T2M_MAX", "T2M_MIN", "PRECTOTCORR"], timeout=60)
+    data = await power.daily(lat, lng, end - timedelta(days=31), end, ["T2M_MAX", "T2M_MIN", "PRECTOTCORR"], timeout=60)
     v = data["values"]
     days = sorted(set(v["T2M_MAX"]) & set(v["T2M_MIN"]))
     out = [
