@@ -107,7 +107,7 @@
   },
   "editMap": "Cek kelayakan",
   "species": "Spesies yang disarankan",
-  "speciesAll": "Semua spesies untuk area ini",
+  "speciesAll": "Pohon untuk area ini",
   "nurseries": "Pembibitan",
   "nurseLine": "{n} di dekat sini · terdekat {dist}",
   "nurseLineNone": "Cari bibit di dekat zona Anda",
@@ -163,5 +163,31 @@
     "label": "Peta titik tanam untuk {zone}"
   },
   "loadingPlan": "Membuat rencana Anda…",
-  "focusLabel": "Dimulai dengan"
+  "focusLabel": "Dimulai dengan",
+  "speciesAllSub": "Diurutkan menurut naungan dan kebutuhan air",
+  "recLoading": "Memeriksa apa yang bisa dicapai ruang ini…",
+  "recNone": "Dengan ruang dan tanggal ini, sekitar {max} realistis: pilih tanggal lebih lama atau target lebih kecil.",
+  "recNoteDate": "{target} disarankan: sekitar {max} tercapai dengan ruang ini pada {date}.",
+  "goals": {
+    "title": "Target saya",
+    "sub": "Milik Anda dan tim Anda",
+    "kindAction": "Target aksi",
+    "kindCooling": "Target pendinginan",
+    "team": "Tim",
+    "actionTarget": "{trees} pohon dan {roof} atap sejuk pada {date} · jangka panjang {c}",
+    "coolingTarget": "{target} pada {date}",
+    "progress": "Kemajuan",
+    "done": "Terverifikasi: {trees} pohon, {roof} atap · {c} saat dewasa",
+    "next": "Tugas berikutnya",
+    "openPlan": "Buka rencana",
+    "logAction": "Catat aksi",
+    "guestTitle": "Target disimpan di akun Anda",
+    "guestSub": "Buat akun gratis untuk menyimpan target dan memantau kemajuan.",
+    "create": "Buat akun gratis",
+    "feature": "menyimpan target",
+    "emptyTitle": "Belum ada target",
+    "emptySub": "Pilih zona panas dan tentukan berapa dan kapan ingin didinginkan.",
+    "new": "Tetapkan target baru"
+  },
+  "region": "Banyak ditanam di"
 }

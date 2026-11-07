@@ -107,7 +107,7 @@
   },
   "editMap": "Verificar viabilidade",
   "species": "Espécies recomendadas",
-  "speciesAll": "Todas as espécies desta área",
+  "speciesAll": "Árvores para esta área",
   "nurseries": "Viveiros",
   "nurseLine": "{n} perto · o mais próximo a {dist}",
   "nurseLineNone": "Encontre mudas perto da sua zona",
@@ -163,5 +163,31 @@
     "label": "Mapa de locais para plantar em {zone}"
   },
   "loadingPlan": "Montando seu plano…",
-  "focusLabel": "Começando com"
+  "focusLabel": "Começando com",
+  "speciesAllSub": "Ordenadas por sombra e necessidade de água",
+  "recLoading": "Verificando o que este espaço permite…",
+  "recNone": "Com este espaço e data, cerca de {max} é realista: escolha uma data posterior ou uma meta menor.",
+  "recNoteDate": "{target} recomendado: cerca de {max} é alcançável com este espaço até {date}.",
+  "goals": {
+    "title": "Minhas metas",
+    "sub": "Suas e das suas equipes",
+    "kindAction": "Meta de ações",
+    "kindCooling": "Meta de resfriamento",
+    "team": "Equipe",
+    "actionTarget": "{trees} árvores e {roof} de telhado frio até {date} · longo prazo {c}",
+    "coolingTarget": "{target} até {date}",
+    "progress": "Progresso",
+    "done": "Verificado: {trees} árvores, {roof} de telhado · {c} na maturidade",
+    "next": "Próxima tarefa",
+    "openPlan": "Abrir plano",
+    "logAction": "Registrar ação",
+    "guestTitle": "As metas ficam salvas na sua conta",
+    "guestSub": "Crie uma conta grátis para salvar metas e acompanhar o progresso.",
+    "create": "Criar conta grátis",
+    "feature": "salvar metas",
+    "emptyTitle": "Nenhuma meta ainda",
+    "emptySub": "Escolha uma zona quente e defina quanto esfriar e até quando.",
+    "new": "Definir nova meta"
+  },
+  "region": "Muito cultivado em"
 }

@@ -71,6 +71,44 @@
       "cool_roof": "{roof_m2} m² de telhado branco ou refletivo resfriam o quarteirão no primeiro verão.",
       "shade_structure": "{shade} lonas ou coberturas de sombra nas vias e paradas mais quentes.",
       "awareness": "Converse com vizinhos, escolas e lojas para mais pessoas participarem e cuidarem das árvores."
+    },
+    "step": {
+      "map": {
+        "title": "Mapeie os espaços livres",
+        "detail": "Percorra a zona e anote beiras de rua, pátios de escolas, terrenos de mesquitas e templos e lotes vazios sem sombra."
+      },
+      "plant": {
+        "title": "Plante cerca de {trees} árvores de sombra",
+        "detail": "Escolha espécies de copa larga da lista abaixo. Plantar no início das monções dá a melhor sobrevivência."
+      },
+      "roofs": {
+        "title": "Pinte cerca de {roof_m2} m² de telhado",
+        "detail": "Cal ou tinta refletiva em telhados de zinco e concreto: ganho rápido antes do calor."
+      },
+      "team": {
+        "title": "Monte uma equipe",
+        "detail": "Convide vizinhos, sua escola ou escritório. Cada ação verificada conta para a meta comum."
+      },
+      "care": {
+        "title": "Cuide por 2 anos",
+        "detail": "Regue nas secas e envie uma foto a cada 15 dias para ver o estado de cada árvore."
+      },
+      "long_term": {
+        "title": "Acompanhe o resfriamento de longo prazo",
+        "detail": "As árvores atingem o resfriamento total por volta do ano 8; a projeção mostra a linha com e sem seu plano."
+      }
+    },
+    "next": {
+      "plant": "Plante suas primeiras {n} árvores",
+      "roof": "Pinte os primeiros {m2} m² de telhado",
+      "awareness": "Faça uma conversa curta com seus vizinhos"
+    },
+    "care": {
+      "year1": "Ano 1: regue duas vezes por semana e proteja cada muda.",
+      "dry": "É a estação seca: regue bem cedo pela manhã.",
+      "monsoon": "É a estação chuvosa: confira a drenagem e as estacas após tempestades.",
+      "checkin": "Envie uma foto de cada árvore a cada 15 dias; o Atmos X lembra você.",
+      "year2": "Ano 2: regue só nas secas e pode os galhos baixos."
     }
   },
   "budget": {
@@ -247,5 +285,45 @@
       "green": "Acrescentar {add_pct}% de área verde esfriaria a superfície em cerca de {drop_c} °C.",
       "roofs": "Com tanta área de telhado, telhados frios e jardins de cobertura ajudam mais."
     }
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "Regue duas vezes por semana nos primeiros 12 meses, depois só nas secas.",
+        "2": "Árvores de rua precisam de proteção contra cabras, bicicletas e riquixás.",
+        "3": "Plante nas monções, de junho a setembro.",
+        "4": "Mantenha 3 m de muros, ralos e canos."
+      },
+      "krish": {
+        "1": "Regue duas vezes por semana nos primeiros 12 meses, depois só nas secas.",
+        "2": "Árvores de rua precisam de proteção contra cabras, bicicletas e riquixás.",
+        "3": "Plante nas monções, de junho a setembro.",
+        "4": "Raízes rasas: mantenha 4 m de muros, ralos e calçamento."
+      },
+      "climber": {
+        "1": "Regue em dias alternados nos primeiros 3 meses, depois duas vezes por semana.",
+        "2": "Coloque uma treliça ou tela a 10 cm da parede.",
+        "3": "Plante nas monções, de junho a setembro.",
+        "4": "Pode após a floração para afastá-la de calhas e fios."
+      }
+    },
+    "intl": {
+      "check_nursery": "Muito plantada em cidades com este clima. Pergunte a um viveiro local o que cresce bem e não é invasor onde você mora."
+    },
+    "growth": {
+      "fast": "Rápido",
+      "medium": "Médio",
+      "slow": "Lento"
+    },
+    "season": {
+      "monsoon": "Monções, de junho a setembro",
+      "local": "Pergunte a melhor época a um viveiro local"
+    }
+  },
+  "nursery": {
+    "unnamed": "Viveiro"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }

@@ -107,7 +107,7 @@
   },
   "editMap": "Vérifier la faisabilité",
   "species": "Espèces recommandées",
-  "speciesAll": "Toutes les espèces pour cette zone",
+  "speciesAll": "Arbres pour ce secteur",
   "nurseries": "Pépinières",
   "nurseLine": "{n} à proximité · la plus proche à {dist}",
   "nurseLineNone": "Trouver des jeunes plants près de votre zone",
@@ -163,5 +163,31 @@
     "label": "Carte des emplacements de plantation pour {zone}"
   },
   "loadingPlan": "Création de votre plan…",
-  "focusLabel": "En commençant par"
+  "focusLabel": "En commençant par",
+  "speciesAllSub": "Classés par ombre et besoin en eau",
+  "recLoading": "Vérification de ce que permet cet espace…",
+  "recNone": "Avec cet espace et cette date, environ {max} est réaliste : choisissez une date plus tardive ou un objectif plus petit.",
+  "recNoteDate": "{target} recommandé : environ {max} est atteignable avec cet espace d’ici {date}.",
+  "goals": {
+    "title": "Mes objectifs",
+    "sub": "Les vôtres et ceux de vos équipes",
+    "kindAction": "Objectif d’actions",
+    "kindCooling": "Objectif de refroidissement",
+    "team": "Équipe",
+    "actionTarget": "{trees} arbres et {roof} de toit frais d’ici {date} · à long terme {c}",
+    "coolingTarget": "{target} d’ici {date}",
+    "progress": "Progression",
+    "done": "Vérifié : {trees} arbres, {roof} de toit · {c} à maturité",
+    "next": "Prochaine tâche",
+    "openPlan": "Ouvrir le plan",
+    "logAction": "Déclarer une action",
+    "guestTitle": "Les objectifs sont enregistrés dans votre compte",
+    "guestSub": "Créez un compte gratuit pour enregistrer des objectifs et suivre leur progression.",
+    "create": "Créer un compte gratuit",
+    "feature": "enregistrer des objectifs",
+    "emptyTitle": "Aucun objectif pour l’instant",
+    "emptySub": "Choisissez une zone chaude et fixez combien refroidir et pour quand.",
+    "new": "Fixer un nouvel objectif"
+  },
+  "region": "Très cultivé en"
 }

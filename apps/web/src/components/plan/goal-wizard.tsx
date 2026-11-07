@@ -1,6 +1,11 @@
 'use client';
 
-/** S08 · Cooling goal wizard: zone, existing goal, space inventory, target + timeline → useCreateGoal. */
+/**
+ * S08 · Cooling goal wizard (prompt-v1 §6.6): zone, existing goal, space inventory, target +
+ * timeline → POST /goals. The recommended target comes from the server's plan preview: the zone's
+ * clipped planting space and the timeline (trees ramp to full effect by year 8). Under 3 years the
+ * goal is an action goal. Guests keep a draft and sign up; the draft survives the sign-up (G5).
+ */
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
@@ -23,6 +28,7 @@ import {
   SkeletonCard,
   SkeletonText,
   SourceChips,
+  Spinner,
   Tap,
   Txt,
   View,
@@ -33,10 +39,10 @@ import {
   useCz,
   useLocation,
 } from '@/components/cz';
-import { DEMO_POINT, GUEST_MAX_RADIUS_M, isGuestRestricted, useCreateGoal, useGoals, usePlantingSpots, useSession, useZone, useZones } from '@/lib/data/hooks';
+import { DEMO_POINT, GUEST_MAX_RADIUS_M, clearGoalDraft, isGuestRestricted, readGoalDraft, saveGoalDraft, useCreateGoal, useGoals, usePlanPreview, usePlantingSpots, useSession, useZone, useZones } from '@/lib/data/hooks';
 import type { LatLng } from '@/lib/data/types';
 
-import { TARGETS, TIMELINES, addMonths, capacity, roofCoolingC, shadeCoolingC, treeCoolingC, zoneArea } from './use-goal-plan';
+import { TARGETS, TIMELINES, addMonths, zoneArea } from './use-goal-plan';
 
 export function distM(a: LatLng, b: LatLng): number {
   const R0 = 6371000;
@@ -86,6 +92,8 @@ function ZonePicker() {
   const radius = session.isGuest ? Math.min(prefs.radius_m, GUEST_MAX_RADIUS_M) : prefs.radius_m;
   const zones = useZones(point, radius);
   const list = zones.data?.zones.slice(0, 6) ?? [];
+  // E7: show progress on the tapped row while its zone page loads.
+  const [opening, setOpening] = useState<string | null>(null);
   return (
     <Screen>
       <ScreenHeader title={t('goalTitle')} sub={t('goalSub')} />
@@ -102,7 +110,14 @@ function ZonePicker() {
           <ErrorState compact error={zones.error} onRetry={() => void zones.refetch()} />
         ) : list.length ? (
           list.map((z, i) => (
-            <ListRow key={z.id} last={i === list.length - 1} label={z.name} onPress={() => goReplace('S08', { zone: z.id })}>
+            <ListRow
+              key={z.id}
+              last={i === list.length - 1}
+              label={z.name}
+              onPress={() => {
+                setOpening(z.id);
+                goReplace('S08', { zone: z.id });
+              }}>
               <HeatBadge score={z.score} size={38} />
               <View style={{ flex: 1, minWidth: 0, gap: 2 }}>
                 <Txt size={14} w={600} lines={1}>
@@ -112,7 +127,7 @@ function ZonePicker() {
                   {f.dist(z.dist_m)}
                 </Txt>
               </View>
-              <Icon d={f.fwdPath} size={16} sw={2} />
+              {opening === z.id ? <Spinner size={16} /> : <Icon d={f.fwdPath} size={16} sw={2} />}
             </ListRow>
           ))
         ) : (
@@ -131,51 +146,69 @@ function Wizard({ zoneId, focus: driver }: { zoneId: string; focus: GoalFocus | 
   const t = useTranslations('plan');
   const { c, f } = useCz();
   const session = useSession();
-  const { focus } = useLocation();
   const zone = useZone(zoneId);
   const spots = usePlantingSpots(zoneId);
   const goals = useGoals();
   const create = useCreateGoal();
-  const [tl, setTl] = useState(1);
-  const [pick, setPick] = useState<number | null>(null);
+  // A draft kept from before sign-up restores the choices (G5).
+  const draft = useMemo(() => {
+    const d = typeof window !== 'undefined' ? readGoalDraft() : null;
+    return d && d.zone_id === zoneId ? d : null;
+  }, [zoneId]);
+  const [tl, setTl] = useState(() => {
+    if (!draft) return 1;
+    const months = (Date.parse(draft.by_date) - Date.now()) / (30.44 * 864e5);
+    let best = 0;
+    TIMELINES.forEach((x, i) => {
+      if (Math.abs(x.months - months) < Math.abs(TIMELINES[best].months - months)) best = i;
+    });
+    return best;
+  });
+  const [pick, setPick] = useState<number | null>(() => {
+    const i = draft ? TARGETS.indexOf(draft.target_c as (typeof TARGETS)[number]) : -1;
+    return i >= 0 ? i : null;
+  });
 
   const existing = goals.data?.find((g) => g.zone_id === zoneId) ?? null;
-  const area = zoneArea(zone.data?.h3);
   const rawArea = zoneArea(zone.data?.h3, 0);
 
-  // What this space can realistically deliver (same capacity rules as the server's feasibility).
-  const maxC = useMemo(() => {
-    const totals = spots.data?.totals;
-    if (!totals) return null;
-    const cap = capacity(totals);
-    return cap.trees * treeCoolingC(area) + cap.roof_m2 * roofCoolingC(area) + Math.max(1, Math.round(area / 0.1)) * shadeCoolingC(area);
-  }, [spots.data, area]);
-  const recIdx = useMemo(() => {
-    if (maxC == null) return 2;
-    let idx = 0;
-    TARGETS.forEach((v, i) => {
-      if (Math.abs(v) <= maxC * 0.85) idx = i;
-    });
-    return idx;
-  }, [maxC]);
-  const tgt = pick ?? recIdx;
-
   const months = TIMELINES[tl].months;
-  const byDate = addMonths(new Date(), months);
-  const actionGoal = months < 6;
+  const byDate = useMemo(() => addMonths(new Date(), months), [months]);
+  const byIso = byDate.toISOString().slice(0, 10);
+  // The server's recommendation for this space and date (§7.10): largest target ≤ 85 % achievable.
+  const preview = usePlanPreview(zone.data ? zoneId : null, TARGETS[pick ?? 1], byIso);
+  const rec = preview.data?.feasibility.recommended_target_c ?? null;
+  const achievable = preview.data?.feasibility.achievable_c ?? null;
+  const recIdx = useMemo(() => {
+    if (rec == null) return 0;
+    let idx = -1;
+    TARGETS.forEach((v, i) => {
+      if (Math.abs(v) <= Math.abs(rec) + 1e-9) idx = i;
+    });
+    return Math.max(0, idx);
+  }, [rec]);
+  const tgt = pick ?? recIdx;
+  // G3: under 3 years a goal is stated in actions, with the long-term °C alongside.
+  const actionGoal = months < 36;
 
   const submit = () => {
     if (!zone.data) return;
-    if (session.isGuest) return requireAccount(t('createFeature'));
+    const d = { zone_id: zone.data.id, target_c: TARGETS[tgt], by_date: byIso };
+    if (session.isGuest) {
+      void saveGoalDraft(d);
+      return requireAccount(t('createFeature'));
+    }
     create.mutate(
+      { zone: { id: zone.data.id }, target_c: d.target_c, by_date: d.by_date },
       {
-        zone: { id: zone.data.id, name: zone.data.name, centroid: zone.data.centroid, h3: zone.data.h3 },
-        target_c: TARGETS[tgt],
-        by_date: byDate.toISOString().slice(0, 10),
+        onSuccess: (g) => {
+          clearGoalDraft();
+          go('S09', { id: g.id });
+        },
       },
-      { onSuccess: (g) => go('S09', { id: g.id }) },
     );
   };
+
 
   if (zone.isLoading) {
     return (
@@ -198,7 +231,8 @@ function Wizard({ zoneId, focus: driver }: { zoneId: string; focus: GoalFocus | 
   }
 
   const z = zone.data;
-  const dist = session.presentation ? null : distM(focus, z.centroid);
+  // The zone's stored distance from its scan centre (§7.3), never recomputed here (E10).
+  const dist = z.dist_m;
   const totals = spots.data?.totals;
   const inv: [string, string][] = totals
     ? [
@@ -315,7 +349,13 @@ function Wizard({ zoneId, focus: driver }: { zoneId: string; focus: GoalFocus | 
           })}
         </View>
         <Txt size={12} dim>
-          {f.dC(TARGETS[recIdx]) + ' ' + (maxC == null ? t('recNoteUnknown') : t('recNote'))}
+          {preview.isLoading
+            ? t('recLoading')
+            : rec == null
+              ? preview.data?.feasibility.spots_status === 'pending'
+                ? t('recNoteUnknown')
+                : t('recNone', { max: f.dC(-(achievable ?? 0)) })
+              : t('recNoteDate', { target: f.dC(TARGETS[recIdx]), max: f.dC(-(achievable ?? 0)), date: f.date(byDate, { month: 'short', year: 'numeric' }) })}
         </Txt>
         <Divider />
         <Label>{t('timeline')}</Label>

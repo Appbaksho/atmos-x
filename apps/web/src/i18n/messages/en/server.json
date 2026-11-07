@@ -68,6 +68,44 @@
       "cool_roof": "{roof_m2} m² of white or reflective roof cools the block in the first summer.",
       "shade_structure": "{shade} shade sails or canopies over the hottest lanes and stops.",
       "awareness": "Talk to neighbours, schools and shops so more people join and care for the trees."
+    },
+    "step": {
+      "map": {
+        "title": "Map the open spots",
+        "detail": "Walk the zone and note roadsides, school yards, mosque and temple grounds, and vacant plots without shade."
+      },
+      "plant": {
+        "title": "Plant about {trees} shade trees",
+        "detail": "Choose wide-canopy species from the list below. Planting at the start of the monsoon gives the best survival."
+      },
+      "roofs": {
+        "title": "Coat about {roof_m2} m² of roof",
+        "detail": "Lime wash or reflective paint on tin and concrete roofs: a quick win before the hot season."
+      },
+      "team": {
+        "title": "Build a team",
+        "detail": "Invite neighbours, your school or office. Every verified action counts toward the shared goal."
+      },
+      "care": {
+        "title": "Care for 2 years",
+        "detail": "Water saplings in dry spells and post a photo every 15 days, so you can see each tree's state."
+      },
+      "long_term": {
+        "title": "Watch the long-term cooling",
+        "detail": "Trees reach full cooling around year 8; the projection shows the line with and without your plan."
+      }
+    },
+    "next": {
+      "plant": "Plant your first {n} trees",
+      "roof": "Coat the first {m2} m² of roof",
+      "awareness": "Hold a short talk with your neighbours"
+    },
+    "care": {
+      "year1": "Year 1: water twice a week and keep a guard around each sapling.",
+      "dry": "It is the dry season now: water deeply in the early morning.",
+      "monsoon": "It is the rainy season: check drainage and stakes after storms.",
+      "checkin": "Post a photo of each tree every 15 days; Atmos X reminds you.",
+      "year2": "Year 2: water only in dry spells and prune low branches."
     }
   },
   "budget": {
@@ -244,5 +282,45 @@
       "green": "Adding {add_pct}% more green cover would cool the surface by about {drop_c} °C.",
       "roofs": "With this much roof area, cool roofs and rooftop gardens help most."
     }
+  },
+  "species": {
+    "care": {
+      "tree": {
+        "1": "Water twice a week for the first 12 months, then only in dry spells.",
+        "2": "Street trees need a guard against goats, bikes and rickshaws.",
+        "3": "Plant in the monsoon, June to September.",
+        "4": "Keep 3 m from walls, drains and pipes."
+      },
+      "krish": {
+        "1": "Water twice a week for the first 12 months, then only in dry spells.",
+        "2": "Street trees need a guard against goats, bikes and rickshaws.",
+        "3": "Plant in the monsoon, June to September.",
+        "4": "Shallow roots: keep 4 m from walls, drains and paving."
+      },
+      "climber": {
+        "1": "Water every other day for the first 3 months, then twice a week.",
+        "2": "Give it a trellis or wire mesh 10 cm off the wall.",
+        "3": "Plant in the monsoon, June to September.",
+        "4": "Trim after flowering to keep it off gutters and wires."
+      }
+    },
+    "intl": {
+      "check_nursery": "Commonly planted in cities with this climate. Check with a local nursery what grows well and is not invasive where you live."
+    },
+    "growth": {
+      "fast": "Fast",
+      "medium": "Medium",
+      "slow": "Slow"
+    },
+    "season": {
+      "monsoon": "Monsoon, June to September",
+      "local": "Ask a local nursery for the best season"
+    }
+  },
+  "nursery": {
+    "unnamed": "Plant nursery"
+  },
+  "task": {
+    "custom": "{text}"
   }
 }
