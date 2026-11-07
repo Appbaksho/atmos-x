@@ -1,6 +1,7 @@
 'use client';
 /** S20 · Profile (tab root): level, points (provisional separately), badges, clans, contribution map, sensors, My trees, history. */
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
 
 import {
   Avatar,
@@ -29,11 +30,12 @@ import {
   useCz,
 } from '@/components/cz';
 import { teamInitials } from '@/components/community/shared';
-import { useActions, useMe, useMyStats, useOrg, useSensors, useSession, useTeams, useUnreadCount } from '@/lib/data/hooks';
+import { useActions, useMe, useMyStats, useOrg, useProfile, useSensors, useSession, useTeams, useUnreadCount } from '@/lib/data/hooks';
 import type { ActionLog, Badge, Team } from '@/lib/data/types';
 import { initials } from '@/lib/format';
 
 import { useCodeText } from './codes';
+import { AvatarEditor } from './avatar-editor';
 import { MyTrees } from './my-trees';
 
 /** Prototype gear (the settings button on S20). */
@@ -102,20 +104,28 @@ function Identity() {
   const stats = useMyStats();
   const codes = useCodeText();
   const lvl = stats.data?.level;
+  const prof = useProfile();
+  const [editing, setEditing] = useState(false);
+  const avatar = prof.data?.avatar_url ?? null;
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16, paddingHorizontal: 4 }}>
-      <View
-        role="img"
-        label={t('yourPhoto')}
+      <Tap
+        label={session.isGuest ? t('yourPhoto') : t('avatar.change')}
+        onPress={session.isGuest ? undefined : () => setEditing(true)}
+        disabled={session.isGuest}
         style={{ width: 90, height: 90, borderRadius: 45, borderWidth: 3, borderColor: B.lime, backgroundColor: c.soft, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
-        {session.isGuest || !me.display_name ? (
+        {avatar && !session.isGuest ? (
+          // eslint-disable-next-line @next/next/no-img-element -- moderated media URL
+          <img src={avatar} alt="" width={84} height={84} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        ) : session.isGuest || !me.display_name ? (
           <Icon d={I.profile} size={38} color={c.ink2} sw={1.5} />
         ) : (
           <Txt size={28} w={600} color={c.ink}>
             {initials(me.display_name)}
           </Txt>
         )}
-      </View>
+      </Tap>
+      {!session.isGuest ? <AvatarEditor open={editing} onClose={() => setEditing(false)} /> : null}
       <View style={{ flex: 1, minWidth: 0, gap: 4 }}>
         <Txt display size={20} as="h1">
           {session.isGuest ? t('guestName') : me.display_name}

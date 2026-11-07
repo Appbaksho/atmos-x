@@ -32,9 +32,17 @@ type Filter = 'all' | 'reminders' | 'results' | 'invites' | 'alerts';
 const FILTERS: Filter[] = ['all', 'reminders', 'results', 'invites', 'alerts'];
 const CAT: Record<NotificationKind, Filter> = {
   tree_due: 'reminders',
+  tree_milestone: 'results',
+  tree_helper: 'invites',
+  event: 'reminders',
   verification: 'results',
+  badge: 'results',
   goal_progress: 'results',
   team_invite: 'invites',
+  like: 'invites',
+  comment: 'invites',
+  mention: 'invites',
+  follow: 'invites',
   heat_warning: 'alerts',
   farm_alert: 'alerts',
 };
@@ -44,7 +52,20 @@ function target(n: AppNotification): { to: string; label: 'takePhoto' | 'seeDeta
   const p = n.params ?? {};
   switch (n.kind) {
     case 'tree_due':
-      return p.tree_id ? { to: href('tree', { id: p.tree_id }, { check: 1 }), label: 'takePhoto' } : { to: href('S20'), label: 'open' };
+      return p.tree_id ? { to: href('tree', { id: p.tree_id }, { check: 1 }), label: 'takePhoto' } : { to: href('trees'), label: 'open' };
+    case 'tree_milestone':
+    case 'tree_helper':
+      return p.tree_id ? { to: href('tree', { id: p.tree_id }), label: 'open' } : { to: href('trees'), label: 'open' };
+    case 'badge':
+      return { to: href('S20'), label: 'open' };
+    case 'like':
+    case 'comment':
+    case 'mention':
+      return p.post_id ? { to: href('post', { id: p.post_id }), label: 'open' } : { to: href('S16'), label: 'open' };
+    case 'follow':
+      return p.user_id ? { to: href('user', { id: p.user_id }), label: 'open' } : null;
+    case 'event':
+      return p.event_id ? { to: href('event', { id: p.event_id }), label: 'open' } : { to: href('events'), label: 'open' };
     case 'verification':
       return p.id ? { to: href('S15', { id: p.id }), label: 'seeDetails' } : null;
     case 'goal_progress':
@@ -52,9 +73,9 @@ function target(n: AppNotification): { to: string; label: 'takePhoto' | 'seeDeta
     case 'heat_warning':
       return { to: href('S04'), label: 'openHome' };
     case 'team_invite':
-      return p.team_id ? { to: href('S17', { id: p.team_id }), label: 'openTeam' } : { to: href('S16'), label: 'open' };
+      return p.id ? { to: href('S17', { id: p.id }), label: 'openTeam' } : { to: href('S16'), label: 'open' };
     case 'farm_alert':
-      return p.id ? { to: href('F02', { id: p.id }), label: 'open' } : { to: href('F01'), label: 'open' };
+      return p.alert_id ? { to: href('F02', { id: p.alert_id }, p.field_id ? { field: p.field_id } : undefined), label: 'open' } : { to: href('F03'), label: 'open' };
     default:
       return n.screen ? { to: href(n.screen, p), label: 'open' } : null;
   }
@@ -73,7 +94,17 @@ function looks(kind: NotificationKind, verified: boolean, c: { soft: string; ink
     case 'goal_progress':
       return { icon: I.target, bg: B.blue, fg: B.white };
     case 'team_invite':
+    case 'follow':
+    case 'mention':
       return { icon: I.community, bg: B.navy, fg: B.lime };
+    case 'like':
+    case 'comment':
+      return { icon: I.sparkleOne, bg: B.lime, fg: B.limeInk };
+    case 'badge':
+    case 'tree_milestone':
+      return { icon: I.sparkle, bg: B.lime, fg: B.limeInk };
+    case 'event':
+      return { icon: I.clock, bg: B.blue, fg: B.white };
     default:
       return { icon: I.bell, bg: c.soft, fg: c.ink };
   }

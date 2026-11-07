@@ -25,7 +25,7 @@ import {
   requireAccount,
   useCz,
 } from '@/components/cz';
-import { MAX_TEAM_MEMBERS, MIN_TEAM_MEMBERS, useActiveGoal, useCreateTeam, useSession } from '@/lib/data/hooks';
+import { MAX_TEAM_MEMBERS, MIN_TEAM_MEMBERS, useActiveGoal, useCreateTeam, useSession, useUpdateGoal } from '@/lib/data/hooks';
 import type { Team } from '@/lib/data/types';
 
 import { InviteCard } from './invite-card';
@@ -60,6 +60,7 @@ function CreateForm({ onCreated }: { onCreated: (t: Team) => void }) {
   const { c, f } = useCz();
   const goal = useActiveGoal();
   const create = useCreateTeam();
+  const updateGoal = useUpdateGoal();
   const errText = useTeamErrorText();
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
@@ -75,8 +76,12 @@ function CreateForm({ onCreated }: { onCreated: (t: Team) => void }) {
     if (n.length < 3 || n.length > 60) return setErr(t('nameError'));
     setErr(null);
     create.mutate(
-      { name: n, description: desc.trim() || null, max_members: size, is_public: isPublic, goal_id: g && useGoal ? g.id : null },
-      { onSuccess: onCreated, onError: (e2) => setErr(errText(e2)) },
+      { name: n, description: desc.trim() || null, max_members: size, is_public: isPublic },
+      {
+        // The active goal becomes the team's goal (its progress then counts for everyone).
+        onSuccess: (tm) => (g && useGoal ? updateGoal.mutate({ id: g.id, patch: { team_id: tm.id } }, { onSettled: () => onCreated(tm) }) : onCreated(tm)),
+        onError: (e2) => setErr(errText(e2)),
+      },
     );
   };
 
