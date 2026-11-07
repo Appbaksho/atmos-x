@@ -34,6 +34,16 @@ async def openaq(db: AsyncSession, job: Job) -> dict:
     return await air.refresh_stations(db, job.payload["lat"], job.payload["lng"])
 
 
+@handler("place_label")
+async def place_label(db: AsyncSession, job: Job) -> dict:
+    """E3: fetch a place name off the request path; the next conditions answer uses the cache."""
+    from ..services import geo
+
+    p = job.payload
+    r = await geo.reverse(db, p["lat"], p["lng"], p.get("lang", "en"), timeout=10)
+    return {"place": r.get("place"), "live": r.get("live")}
+
+
 @handler("gibs_caps")
 async def gibs_caps(db: AsyncSession, job: Job) -> dict:
     from ..services import gibs

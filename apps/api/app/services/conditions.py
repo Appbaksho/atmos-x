@@ -166,10 +166,25 @@ def warnings_for(days: list[dict], bd: bool) -> list[dict]:
 
 async def conditions(db: AsyncSession, lat: float, lng: float, lang: str) -> dict:
     bd = W.in_bangladesh(lat, lng)
-    fc_c = await forecast(db, lat, lng)  # raises UpstreamError when Open-Meteo is down and nothing is cached
+    # E3: one bounded upstream call at most (a forecast for a place nobody has opened yet), and the
+    # place name only from the cache. A missing name is fetched by a worker job for next time; the
+    # app shows its own reverse-geocoded name meanwhile.
+    fc_c = await forecast(
+        db, lat, lng, timeout=1.5
+    )  # raises UpstreamError when Open-Meteo is down and nothing is cached
     fc = fc_c.value
     today = local_today(fc)
-    place = await geo.reverse(db, lat, lng, lang, timeout=2.0)
+    place = await geo.reverse(db, lat, lng, lang, allow_network=False)
+    if not place.get("live"):
+        await jobs.enqueue(
+            db,
+            "place_label",
+            f"{round(lat, 3)},{round(lng, 3)},{lang}",
+            {"lat": lat, "lng": lng, "lang": lang},
+            priority=4,
+            max_attempts=2,
+        )
+        await db.commit()
     cur = fc["current"]
     air = cur["temp"]
     feels = W.heat_index(air, cur["rh"] or 0) if air is not None else None
@@ -207,7 +222,7 @@ async def conditions(db: AsyncSession, lat: float, lng: float, lang: str) -> dic
     if bmd_today:
         sources.append(SRC["bmd_thresholds"].src(kind="reference").model_dump())
     return {
-        "place": place["place"],
+        "place": place["place"] if place.get("as_of") else None,
         "time": cur["time"],
         "air_c": round(air, 1) if air is not None else None,
         "feels_c": round(feels, 1) if feels is not None else None,
