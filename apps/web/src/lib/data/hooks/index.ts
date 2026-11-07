@@ -22,6 +22,6 @@ export * from './profile';
 export * from './session';
 export * from './trees';
 
-export { DEMO_POINT, DEMO_USER_ID } from '../seed';
+export { DEMO_POINT } from '@/lib/location';
 export { GUEST_MAX_RADIUS_M, ASK_LIMIT } from '../local/guest';
 export { DataError, GuestRestrictedError, RateLimitedError, isGuestRestricted } from '../errors';

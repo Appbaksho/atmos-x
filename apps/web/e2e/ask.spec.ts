@@ -27,9 +27,15 @@ test('Bangla: "আমার এলাকা এত গরম কেন?" gets a 
   await page.getByRole('button', { name: 'Ask Atmos' }).first().click();
   const box = page.locator('input.cz-ask-input');
   await box.fill('আমার এলাকা এত গরম কেন?');
-  const t0 = Date.now();
   await box.press('Enter');
   await expect(page.getByText(/হিট স্কোর|স্ক্যান হয়নি/)).toBeVisible({ timeout: 10_000 });
-  expect(Date.now() - t0).toBeLessThan(2_000);
+  // The whole answer (warnings, sentences, sources, done) streams back in under 2 s.
+  const ms = await page.evaluate(async () => {
+    const t0 = performance.now();
+    const r = await fetch('/api/v1/ask', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ message: 'আমার এলাকা এত গরম কেন?', screen: 'S05', lang: 'bn', context: { lat: 23.759, lng: 90.359 } }) });
+    await r.text();
+    return performance.now() - t0;
+  });
+  expect(ms).toBeLessThan(2_000);
   await expect(page.getByText(/[০-৯]/).first()).toBeVisible(); // native digits
 });

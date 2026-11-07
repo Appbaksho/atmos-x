@@ -3,7 +3,6 @@
  * AI copy: ≤ 768 px JPEG data URL (prompt-v0.md §5.4).
  */
 import { DataError } from '../errors';
-import type { PreparedPhoto } from './actions';
 
 export const STORE_MAX_PX = 1600;
 export const AI_MAX_PX = 768;
@@ -74,6 +73,9 @@ export async function resizeToDataUrl(photo: Blob, max = AI_MAX_PX, quality = 0.
 }
 
 /** One decode, two outputs: the stored ≤ 1600 px blob and the ≤ 768 px data URL for the AI. */
+/** ≤ 1600 px JPEG blob to store + ≤ 768 px data URL preview. */
+export type PreparedPhoto = { stored: Blob; preview: string };
+
 export async function preparePhoto(photo: Blob): Promise<PreparedPhoto> {
   const src = await decode(photo);
   try {

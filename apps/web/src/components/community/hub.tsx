@@ -1,5 +1,5 @@
 'use client';
-/** S16 · Community hub (tab root): my clans, join by code, leaderboards (people/teams/orgs × area/city/country × period), discover teams, rising board. */
+/** S16 · Community hub (tab root): my teams, join by code, feed, events, leaderboards (people/teams/orgs × area/city/country × period) and discover. */
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 
@@ -32,9 +32,11 @@ import {
   useLocation,
 } from '@/components/cz';
 import { initials } from '@/lib/format';
-import { useGoals, useLeaderboard, useOrg, useRisingTeams, useSession, useTeam, useTeams } from '@/lib/data/hooks';
-import type { LeaderboardScope, LeaderboardSubject, Period, RisingTeam, Team } from '@/lib/data/types';
+import { useDiscoverTeams, useLeaderboard, useOrg, useSession, useTeams } from '@/lib/data/hooks';
+import type { LeaderboardScope, LeaderboardSubject, Period, Team } from '@/lib/data/types';
 
+import { EventsSection } from './events';
+import { FeedSection } from './feed';
 import { formatCode } from './invite-link';
 import { avatarAt, avatarFor, freePlaces, teamInitials, VerifiedSeal } from './shared';
 
@@ -67,9 +69,11 @@ export function CommunityHub() {
       />
       <MyClans />
       <JoinByCode />
+      <FeedSection />
+      <EventsSection />
       <Boards />
       <Discover />
-      <Rising />
+      <Links />
     </Screen>
   );
 }
@@ -132,7 +136,7 @@ const CLAN_CARD = { flexGrow: 1, flexBasis: 150, minWidth: 0, borderRadius: R.xl
 function TeamClanCard({ team }: { team: Team }) {
   const t = useTranslations('community');
   const { f } = useCz();
-  const goal = useTeamGoalPct(team);
+  const goal = team.goal ? Math.round(team.goal.progress_pct) : null;
   const meta = t('teamMeta', { count: team.members.length, n: f.loc(team.members.length) });
   return (
     <Tap label={t('clanA11y', { name: team.name, meta })} href={href('S17', { id: team.id })} style={[CLAN_CARD, { backgroundColor: B.navy }]}>
@@ -158,14 +162,6 @@ function TeamClanCard({ team }: { team: Team }) {
       </View>
     </Tap>
   );
-}
-
-/** Team goal progress (%) when the team's shared goal is on this device (goals are local in v0). */
-function useTeamGoalPct(team: Team): number | null {
-  const goals = useGoals();
-  if (!team.goal_id) return null;
-  const g = goals.data?.find((x) => x.id === team.goal_id);
-  return g ? Math.round(g.progress_pct) : null;
 }
 
 function OrgClanCard({ id }: { id: string }) {
@@ -204,7 +200,7 @@ function JoinByCode() {
   const submit = (e?: React.FormEvent) => {
     e?.preventDefault();
     const c = formatCode(code);
-    if (!/^[A-Z0-9]{4}-[A-Z0-9]{2}$/.test(c)) return setErr(t('invalid'));
+    if (!/^[A-Z0-9]{6}$/.test(c)) return setErr(t('invalid'));
     setErr(null);
     go('join', { code: c });
   };
@@ -242,6 +238,7 @@ function Boards() {
   const [scope, setScope] = useState<LeaderboardScope>('area');
   const [period, setPeriod] = useState<Period>('all');
   const board = useLeaderboard({ subject, scope, period });
+  const noPlace = board.data?.status === 'no_place';
 
   const youSuffix = { user: t('you'), team: t('yourTeam'), org: t('yourOrg') }[subject];
   const rows = useMemo(() => {
@@ -285,20 +282,20 @@ function Boards() {
       ) : board.isError ? (
         <ErrorState error={board.error} onRetry={() => void board.refetch()} />
       ) : !rows.length ? (
-        <EmptyState title={t('boardEmpty')} icon={I.trend} />
+        <EmptyState title={noPlace ? t('boardNoPlace') : t('boardEmpty')} sub={noPlace ? t('boardNoPlaceSub') : undefined} icon={I.trend} actionHref={noPlace ? href('S22') : undefined} action={noPlace ? t('boardSetPlace') : undefined} />
       ) : (
         <View style={{ backgroundColor: c.card, borderRadius: R.xl, paddingVertical: 4, paddingHorizontal: 14 }}>
           {rows.map((r, i) => {
             const gap = i > 0 && r.rank > rows[i - 1].rank + 1;
             const av = r.is_me ? avatarAt(0) : avatarFor(r.name);
+            const target = r.href ? href(r.href.screen === 'user' ? 'user' : r.href.screen === 'S17' ? 'S17' : 'S18', { id: r.href.id }) : undefined;
             const name = r.is_me ? `${r.name} ${youSuffix}` : r.name;
-            const target = subject === 'team' ? href('S17', { id: r.id }) : subject === 'org' ? href('S18', { id: r.id }) : undefined;
             const body = (
               <>
                 <Txt size={13} w={600} dim num style={{ minWidth: 28 }} lines={1}>
                   {f.loc(r.rank)}
                 </Txt>
-                <Avatar ini={subject === 'user' ? initials(r.name) : teamInitials(r.name)} bg={av[0]} fg={av[1]} size={36} square={subject !== 'user'} />
+                <Avatar ini={subject === 'user' ? initials(r.name) : teamInitials(r.name)} bg={av[0]} fg={av[1]} size={36} square={subject !== 'user'} src={r.avatar_url ?? undefined} />
                 <Txt size={14} w={r.is_me ? 600 : 500} lines={1} style={{ flex: 1, minWidth: 0 }}>
                   {name}
                 </Txt>
@@ -322,7 +319,7 @@ function Boards() {
               textAlign: 'start',
             } as const;
             const a11y = t('rowA11y', { rank: f.loc(r.rank), name, points: f.num(r.points) });
-            return r.is_me && target && subject === 'team' ? (
+            return target ? (
               <Tap key={r.id} label={a11y} href={target} style={rowStyle}>
                 {body}
               </Tap>
@@ -335,7 +332,7 @@ function Boards() {
         </View>
       )}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap', paddingHorizontal: 4 }}>
-        <SourceChips meta={board.data?.meta} demo={!board.data} />
+        <SourceChips meta={board.data?.meta} />
         <Txt size={11.5} dim style={{ flex: 1, minWidth: 180 }}>
           {t('boardNote')}
         </Txt>
@@ -346,33 +343,30 @@ function Boards() {
 
 /* ───────────────────────────── Discover ───────────────────────────── */
 
-/** Public teams from the area team board that exist (seed or this device) and have free places. */
+/** Public teams with free places that I'm not in. */
 function Discover() {
   const t = useTranslations('community');
-  const board = useLeaderboard({ subject: 'team', scope: 'area', period: 'all' });
-  const ids = board.data?.rows.filter((r) => !r.is_me).map((r) => r.id) ?? [];
-  if (board.isPending || board.isError || !ids.length) return null;
+  const q = useDiscoverTeams();
+  const list = (q.data ?? []).filter((x) => !x.is_member).slice(0, 5);
+  if (q.isPending || q.isError || !list.length) return null;
   return (
     <View style={{ gap: 10 }}>
-      <SectionTitle title={t('discover')} />
+      <SectionTitle title={t('discover')} action={t('seeAll')} actionHref={href('teams')} />
       <Txt size={12} dim style={{ paddingHorizontal: 4, marginTop: -6 }}>
         {t('discoverSub')}
       </Txt>
       <Card pad={0} gap={0} style={{ paddingVertical: 4, paddingHorizontal: 16 }}>
-        {ids.map((id) => (
-          <DiscoverRow key={id} id={id} />
+        {list.map((tm) => (
+          <DiscoverRow key={tm.id} tm={tm} />
         ))}
       </Card>
     </View>
   );
 }
 
-function DiscoverRow({ id }: { id: string }) {
+function DiscoverRow({ tm }: { tm: Team }) {
   const t = useTranslations('community');
   const { c, f } = useCz();
-  const team = useTeam(id);
-  const tm = team.data;
-  if (!tm || !tm.is_public) return null;
   const free = freePlaces(tm);
   const av = avatarFor(tm.name);
   return (
@@ -400,60 +394,29 @@ function DiscoverRow({ id }: { id: string }) {
   );
 }
 
-/* ───────────────────────────── Rising ───────────────────────────── */
+/* ───────────────────────────── Links ───────────────────────────── */
 
-function Rising() {
+function Links() {
   const t = useTranslations('community');
-  const rising = useRisingTeams();
-  if (!rising.length) return null;
+  const { c } = useCz();
+  const session = useSession();
+  const isMod = session.role === 'moderator' || session.role === 'admin';
+  const items: [string, string][] = [
+    [t('linkTeams'), href('teams')],
+    [t('linkOrgs'), href('orgs')],
+    [t('linkEvents'), href('events')],
+    ...(isMod ? ([[t('linkModeration'), href('moderation')]] as [string, string][]) : []),
+  ];
   return (
-    <Card>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
-        <Label>{t('rising')}</Label>
-        <Txt size={11.5} dim>
-          {t('thisWeek')}
-        </Txt>
-      </View>
-      {rising.map((r) => (
-        <RisingRow key={r.team_id} row={r} />
+    <Card pad={0} gap={0} style={{ paddingVertical: 4, paddingHorizontal: 16 }}>
+      {items.map(([label, to], i) => (
+        <Tap key={to} label={label} href={to} style={{ minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderTopWidth: i ? 1 : 0, borderTopColor: c.line }}>
+          <Txt size={13.5} w={600}>
+            {label}
+          </Txt>
+          <Icon d={I.up} size={14} sw={2} style={{ transform: 'rotate(90deg)' }} />
+        </Tap>
       ))}
-      <SourceChips demo />
     </Card>
-  );
-}
-
-/** A rising team links to its page when it exists (seed or this device). */
-function RisingRow({ row: r }: { row: RisingTeam }) {
-  const t = useTranslations('community');
-  const { c, f } = useCz();
-  const team = useTeam(r.team_id);
-  const label = `${r.name}, ${t('up', { n: f.loc(r.up) })}, ${r.note}`;
-  const body = (
-    <>
-      <View style={{ height: 28, minWidth: 52, paddingHorizontal: 8, borderRadius: R.pill, backgroundColor: c.limeSoft, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 3 }}>
-        <Icon d={I.up} size={12} sw={3} />
-        <Txt size={12} w={700} num>
-          {f.loc(r.up)}
-        </Txt>
-      </View>
-      <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
-        <Txt size={13.5} w={600}>
-          {r.name}
-        </Txt>
-        <Txt size={11.5} dim>
-          {f.loc(r.note)}
-        </Txt>
-      </View>
-    </>
-  );
-  const style = { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 44, textAlign: 'start' } as const;
-  return team.data ? (
-    <Tap label={label} href={href('S17', { id: r.team_id })} style={style}>
-      {body}
-    </Tap>
-  ) : (
-    <View role="group" label={label} style={style}>
-      {body}
-    </View>
   );
 }

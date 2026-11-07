@@ -280,11 +280,23 @@
         "warning": "Peringatan panas di {place} · terasa seperti {feels}"
       },
       "team": {
-        "joined": "Anda bergabung dengan {team}"
+        "joined": "Anda bergabung dengan {team}",
+        "member_joined": "{who} bergabung dengan {team}",
+        "goal_reached": "{team} mencapai target di {zone}: +100 poin per orang"
       },
       "badge": "Lencana baru: {badge}",
       "farm": {
         "body": "{field} · mulai {date}"
+      },
+      "social": {
+        "like": "{who} menyukai postingan Anda",
+        "comment": "{who} mengomentari postingan Anda",
+        "quote": "“{text}”",
+        "mention": "{who} menyebut Anda",
+        "follow": "{who} mulai mengikuti Anda"
+      },
+      "event": {
+        "reminder": "Pengingat: {title} pada {date}"
       }
     },
     "reason": {
@@ -411,5 +423,20 @@
     "guestCta": "Buat akun gratis",
     "feature": "membantu menyiram pohon teman",
     "joining": "Bergabung…"
+  },
+  "avatar": {
+    "change": "Ganti foto profil",
+    "title": "Foto profil",
+    "sub": "Geser dan perbesar agar pas di lingkaran.",
+    "choose": "Pilih foto",
+    "another": "Pilih yang lain",
+    "save": "Simpan foto",
+    "saved": "Foto tersimpan. Orang lain melihatnya setelah disetujui.",
+    "failed": "Gagal mengunggah foto",
+    "unreadable": "File itu bukan foto yang bisa dibaca",
+    "preview": "Pratinjau foto",
+    "zoom": "Perbesar",
+    "hint": "Pilih foto dari kamera atau galeri.",
+    "moderation": "Foto diperiksa sebelum dilihat orang lain."
   }
 }

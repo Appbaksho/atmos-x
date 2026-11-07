@@ -13,6 +13,8 @@ SCHEDULE: list[dict] = [
     {"id": "daily_people", "fn": daily.enqueue_daily, "trigger": CronTrigger(hour=2, minute=0)},
     # Farm alerts for saved fields twice a day: 00:30 and 12:30 UTC = 06:30 and 18:30 Dhaka.
     {"id": "farm_alerts", "fn": farm.enqueue_farm, "trigger": CronTrigger(hour="0,12", minute=30)},
+    # Event reminders every hour for events starting within 24 h (once per event).
+    {"id": "event_reminders", "fn": daily.enqueue_events, "trigger": CronTrigger(minute=5)},
 ]
 
 BOOT: list = [heat.boot_regions]

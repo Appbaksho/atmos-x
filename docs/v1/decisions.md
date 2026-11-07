@@ -144,3 +144,15 @@ fewer without a keyword use the screen's topic, longer ones get the "what I can 
 stored as unanswered. Limits are counted on the server per day (Dhaka time). The V0 `/api/v0/ask`,
 `/verify-photo` and `/tree-check` routes and their OpenAI code were removed in this step because
 nothing calls them any more; the rest of `src/server` goes in Stage 7.
+
+**D26. Community details.** Team roles are `lead` and `member`; teams hold 2–5 people and a person is in
+at most 5 teams; when the last lead leaves, the longest-standing member becomes lead. Team and org
+stats come from the ledger rows behind each team's trees and actions. Leaderboard weeks start on
+Monday and months on the 1st (Dhaka time); "area" is 3 km around the requester's home or given point.
+Posts store area, city and a location rounded to 0.01°; their photos are public, so they wait for
+moderation. Mentions use `@[Name](user-id)` markup written by the client. New accounts (under 24 h)
+may post 5 times and comment 20 times a day. The demo community is a fixed, shared set of invented
+people, teams, one organization, posts and an event (ids from a UUID5 namespace); demo users join it
+and are purged after 7 days, while the shared community stays. Each demo session gets its own private
+"Asad Gate Crew" (Nadia plus two invented neighbours) so sessions never fill a shared team; private
+teams are left off the public team leaderboards.

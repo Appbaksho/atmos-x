@@ -277,11 +277,23 @@
         "warning": "Heat warning in {place} · feels like {feels}"
       },
       "team": {
-        "joined": "You joined {team}"
+        "joined": "You joined {team}",
+        "member_joined": "{who} joined {team}",
+        "goal_reached": "{team} reached its goal for {zone}: +100 points each"
       },
       "badge": "New badge: {badge}",
       "farm": {
         "body": "{field} · from {date}"
+      },
+      "social": {
+        "like": "{who} liked your post",
+        "comment": "{who} commented on your post",
+        "quote": "“{text}”",
+        "mention": "{who} mentioned you",
+        "follow": "{who} started following you"
+      },
+      "event": {
+        "reminder": "Reminder: {title} on {date}"
       }
     },
     "reason": {
@@ -408,5 +420,20 @@
     "guestCta": "Create a free account",
     "feature": "help water a friend’s tree",
     "joining": "Joining…"
+  },
+  "avatar": {
+    "change": "Change profile photo",
+    "title": "Profile photo",
+    "sub": "Drag and zoom to fit the circle.",
+    "choose": "Choose a photo",
+    "another": "Choose another",
+    "save": "Save photo",
+    "saved": "Photo saved. Others see it once it's approved.",
+    "failed": "Couldn't upload the photo",
+    "unreadable": "That file isn't a photo we can read",
+    "preview": "Photo preview",
+    "zoom": "Zoom",
+    "hint": "Pick a photo from your camera or gallery.",
+    "moderation": "Photos are checked before others can see them."
   }
 }

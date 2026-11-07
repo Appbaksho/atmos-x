@@ -37,8 +37,8 @@ test('a guest gets the account sheet and the draft is kept (E4, G5)', async ({ p
   await page.goto(`/en/app/goal/new?zone=${zoneId}`);
   await page.getByRole('button', { name: /Check feasibility/i }).click();
   await expect(page.getByText(/Create a free account/i).first()).toBeVisible();
-  const draft = await page.evaluate(async () => (await fetch('/api/v1/goal-drafts')).json());
-  expect(draft.payload.zone_id).toBe(zoneId);
+  // The draft is saved in the background when the account sheet opens.
+  await expect.poll(async () => (await page.evaluate(async () => (await fetch('/api/v1/goal-drafts')).json()))?.payload?.zone_id).toBe(zoneId);
 });
 
 test('parent routes work (P2, P5, P6, P7)', async ({ page }) => {

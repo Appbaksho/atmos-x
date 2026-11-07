@@ -1,14 +1,13 @@
 'use client';
-/** S17 · Team dashboard: goal ring + modeled cooling with evidence, stats, task board, members (2–5), activity, invite, join / leave. */
+/** S17 · Team dashboard: goal ring, stats from the ledger, members (2–5), chat, activity, invite, follow, join / leave. */
 import { useTranslations } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   Avatar,
   B,
   BottomSheet,
   Card,
-  Check,
   CzButton,
   EmptyState,
   ErrorState,
@@ -21,11 +20,10 @@ import {
   Ring,
   Screen,
   ScreenHeader,
-  Seg,
   SkeletonCard,
   SourceChips,
   StatTile,
-  Tag,
+  Tap,
   Txt,
   View,
   goReplace,
@@ -36,14 +34,12 @@ import {
 } from '@/components/cz';
 import { useCodeText } from '@/components/profile/codes';
 import { initials } from '@/lib/format';
-import { useGoals, useJoinByCode, useLeaveTeam, useMe, useSession, useTeam, useTeams } from '@/lib/data/hooks';
-import type { Team, TeamTask } from '@/lib/data/types';
+import { useFollow, useJoinTeam, useLeaveTeam, useMe, useSendMessage, useSession, useTeam, useTeamMessages } from '@/lib/data/hooks';
+import type { Team, TeamGoalSummary } from '@/lib/data/types';
 
 import { InviteCard } from './invite-card';
 import { avatarFor, coolingText, freePlaces, useTeamErrorText } from './shared';
 
-const WHITE_75 = 'rgba(255,255,255,0.75)';
-const COLS: TeamTask['status'][] = ['todo', 'doing', 'done'];
 
 export function TeamScreen({ id }: { id: string }) {
   const t = useTranslations('community');
@@ -83,22 +79,33 @@ function TeamBody({ team }: { team: Team }) {
   const { f } = useCz();
   const me = useMe();
   const session = useSession();
-  const myTeams = useTeams();
+  const follow = useFollow();
   const [inviteOpen, setInviteOpen] = useState(false);
-  const isMember = team.members.some((m) => m.user_id === me.id) || !!myTeams.data?.some((x) => x.id === team.id);
-  const goals = useGoals();
-  const goal = team.goal_id ? goals.data?.find((g) => g.id === team.goal_id) ?? null : null;
+  const [following, setFollowing] = useState(false);
+  const isMember = team.is_member;
+  const goal = team.goal ?? null;
   const n = team.members.length;
   const sub = goal
     ? t('teamSub', { zone: goal.zone_name, n: f.loc(n), max: f.loc(team.max_members) })
     : t('teamSubNoZone', { n: f.loc(n), max: f.loc(team.max_members) });
+
+  const toggleFollow = () => {
+    if (session.isGuest) return requireAccount(t('noTeam.feature'));
+    follow.mutate({ team_id: team.id, on: !following }, { onSuccess: (r) => setFollowing(r.following) });
+  };
 
   return (
     <Screen>
       <ScreenHeader
         title={team.name}
         sub={sub}
-        right={isMember ? <GhostButton label={t('invite')} height={40} onPress={() => setInviteOpen(true)} style={{ paddingHorizontal: 14 }} /> : null}
+        right={
+          isMember ? (
+            <GhostButton label={t('invite')} height={40} onPress={() => setInviteOpen(true)} style={{ paddingHorizontal: 14 }} />
+          ) : (
+            <GhostButton label={following ? t('following') : t('follow')} height={40} onPress={toggleFollow} style={{ paddingHorizontal: 14 }} />
+          )
+        }
       />
 
       {!isMember ? <JoinStrip team={team} guest={session.isGuest} /> : null}
@@ -111,19 +118,17 @@ function TeamBody({ team }: { team: Team }) {
         <StatTile label={t('stats.actions')} value={f.num(team.stats.actions)} style={{ flex: 1, minWidth: 0 }} />
       </View>
 
-      {team.tasks?.length ? <TaskBoard tasks={team.tasks} /> : null}
-
       <Members team={team} meId={me.id} />
+
+      {isMember ? <Chat team={team} /> : null}
 
       <Activity team={team} isMember={isMember} />
 
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-        <SourceChips demo={team.members.length > 1 || !!team.tasks?.length} sources={[{ id: 'device', name: 'This device' }]} />
-      </View>
+      <SourceChips demo={!!team.is_demo} sources={[{ id: 'atmos', name: 'Atmos X', kind: 'derived' }]} />
 
       {isMember ? <LeaveButton team={team} /> : null}
 
-      <BottomSheet open={inviteOpen} onClose={() => setInviteOpen(false)} title={t('inviteTitle', { name: team.name })} sub={t('deviceNote')}>
+      <BottomSheet open={inviteOpen} onClose={() => setInviteOpen(false)} title={t('inviteTitle', { name: team.name })}>
         <InviteCard team={team} />
       </BottomSheet>
     </Screen>
@@ -132,12 +137,10 @@ function TeamBody({ team }: { team: Team }) {
 
 /* ───────────────────────────── Hero ───────────────────────────── */
 
-function Hero({ team, goal }: { team: Team; goal: { progress_pct: number; modeled_c: number; target_c: number; by_date: string; zone_name: string } | null }) {
+function Hero({ team, goal }: { team: Team; goal: TeamGoalSummary | null }) {
   const t = useTranslations('community');
   const { f } = useCz();
   const pct = goal ? Math.round(goal.progress_pct) : null;
-  const evidence = team.evidence ?? [];
-
   return (
     <Card tone="navy" pad={18} gap={16} style={{ borderRadius: R.xxl }}>
       {goal && pct != null ? (
@@ -153,7 +156,7 @@ function Hero({ team, goal }: { team: Team; goal: { progress_pct: number; modele
           <View style={{ flex: 1, minWidth: 0, gap: 6 }}>
             <Label color={B.lime}>{t('headline')}</Label>
             <Txt size={24} w={600} num color={B.white} style={{ lineHeight: 28 }}>
-              {f.dC(-Math.abs(goal.modeled_c), 2)}
+              {coolingText(f.dC, team.stats.cooling_c)}
             </Txt>
             <Txt size={12} color="rgba(255,255,255,0.8)">
               {t('goalOf', { target: f.dC(goal.target_c), date: f.date(goal.by_date, { month: 'short', year: 'numeric' }) })}
@@ -171,77 +174,8 @@ function Hero({ team, goal }: { team: Team; goal: { progress_pct: number; modele
               {t('noGoal.sub')}
             </Txt>
           </View>
-          <CzButton label={t('noGoal.cta')} size="sm" href={href('S05')} />
+          {team.is_member ? <CzButton label={t('noGoal.cta')} size="sm" href={href('S05')} /> : null}
         </View>
-      )}
-
-      {evidence.length ? (
-        <View style={{ gap: 8 }}>
-          <Label color="rgba(255,255,255,0.7)">{t('evidence')}</Label>
-          {evidence.map((e) => (
-            <View
-              key={e.source}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10, paddingHorizontal: 12, borderRadius: R.md, backgroundColor: 'rgba(255,255,255,0.07)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.12)' }}>
-              <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
-                <Txt size={13} w={600} color={B.white}>
-                  {e.source}
-                </Txt>
-                <Txt size={11.5} color={WHITE_75}>
-                  {f.loc(e.what)}
-                </Txt>
-              </View>
-              <Tag label={e.agrees ? t('agrees') : t('noisy')} bg={e.agrees ? B.lime : 'rgba(255,255,255,0.16)'} fg={e.agrees ? B.limeInk : B.white} style={{ alignSelf: 'center' }} />
-            </View>
-          ))}
-        </View>
-      ) : null}
-    </Card>
-  );
-}
-
-/* ───────────────────────────── Tasks ───────────────────────────── */
-
-function TaskBoard({ tasks }: { tasks: TeamTask[] }) {
-  const t = useTranslations('community');
-  const { f } = useCz();
-  const [col, setCol] = useState<TeamTask['status']>('todo');
-  const list = tasks.filter((x) => x.status === col);
-  const done = col === 'done';
-  return (
-    <Card pad={14} gap={10}>
-      <Label style={{ paddingHorizontal: 4 }}>{t('tasks')}</Label>
-      <Seg
-        value={col}
-        onChange={setCol}
-        label={t('tasks')}
-        options={COLS.map((s) => ({ label: t('colCount', { label: t(`cols.${s}`), n: f.loc(tasks.filter((x) => x.status === s).length) }), value: s }))}
-      />
-      {list.length ? (
-        list.map((task) => {
-          const av = avatarFor(task.assignee);
-          return (
-            <View
-              key={task.id}
-              role="group"
-              label={t('taskA11y', { title: task.title, due: task.due, who: task.assignee })}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, paddingHorizontal: 4 }}>
-              <Check on={done} />
-              <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
-                <Txt size={13.5} w={500}>
-                  {task.title}
-                </Txt>
-                <Txt size={11.5} dim>
-                  {f.loc(task.due)}
-                </Txt>
-              </View>
-              <Avatar ini={task.assignee} bg={av[0]} fg={av[1]} size={30} />
-            </View>
-          );
-        })
-      ) : (
-        <Txt size={12.5} dim style={{ paddingHorizontal: 4, paddingVertical: 6 }}>
-          {t('tasksEmpty')}
-        </Txt>
       )}
     </Card>
   );
@@ -252,7 +186,7 @@ function TaskBoard({ tasks }: { tasks: TeamTask[] }) {
 function Members({ team, meId }: { team: Team; meId: string }) {
   const t = useTranslations('community');
   const { c, f } = useCz();
-  const members = [...team.members].sort((a, b) => (a.role === 'owner' ? -1 : b.role === 'owner' ? 1 : b.points - a.points));
+  const members = [...team.members].sort((a, b) => (a.role === 'lead' ? -1 : b.role === 'lead' ? 1 : b.points - a.points));
   const empty = freePlaces(team);
   return (
     <View style={{ gap: 8 }}>
@@ -267,8 +201,9 @@ function Members({ team, meId }: { team: Team; meId: string }) {
           const av = avatarFor(m.display_name);
           const role = t(`role.${m.role}`);
           return (
-            <ListRow key={m.user_id} last={i === members.length - 1 && empty === 0}>
-              <Avatar ini={initials(m.display_name)} bg={av[0]} fg={av[1]} size={38} />
+            <Tap key={m.user_id} label={m.display_name} href={href('user', { id: m.user_id })} style={{ textAlign: 'start' }}>
+            <ListRow last={i === members.length - 1 && empty === 0}>
+              <Avatar ini={initials(m.display_name)} bg={av[0]} fg={av[1]} size={38} src={m.avatar_url ?? undefined} />
               <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
                 <Txt size={13.5} w={600} lines={1}>
                   {m.display_name}
@@ -281,6 +216,7 @@ function Members({ team, meId }: { team: Team; meId: string }) {
                 {f.num(m.points)}
               </Txt>
             </ListRow>
+            </Tap>
           );
         })}
         {Array.from({ length: empty }).map((_, i) => (
@@ -357,17 +293,18 @@ const ACTION_EMOJI: Record<string, string> = {
 function JoinStrip({ team, guest }: { team: Team; guest: boolean }) {
   const t = useTranslations('community');
   const { f } = useCz();
-  const join = useJoinByCode();
+  const join = useJoinTeam();
   const errText = useTeamErrorText();
   const free = freePlaces(team);
   const onJoin = () => {
     if (guest) return requireAccount(t('noTeam.feature'));
-    join.mutate(team.code, {
+    join.mutate(team.id, {
       onSuccess: (tm) => toast(t('joined', { name: tm.name }), { tone: 'success' }),
       onError: (e) => toast(errText(e), { tone: 'warn' }),
     });
   };
   if (free <= 0) return <Note tone="warn" icon={I.info}>{t('teamFull', { max: f.loc(team.max_members) })}</Note>;
+  if (!team.is_public) return <Note tone="lime" icon={I.lock}>{t('inviteOnly')}</Note>;
   return (
     <Card tone="limeSoft" gap={10}>
       <Txt size={13} w={500}>
@@ -375,6 +312,76 @@ function JoinStrip({ team, guest }: { team: Team; guest: boolean }) {
       </Txt>
       <CzButton label={t('join')} icon="plus" size="md" onPress={onJoin} busy={join.isPending} />
     </Card>
+  );
+}
+
+/* ───────────────────────────── Chat ───────────────────────────── */
+
+/** C8: team chat over REST, refreshed every 7 s while open. */
+function Chat({ team }: { team: Team }) {
+  const t = useTranslations('community.chat');
+  const { c, f } = useCz();
+  const msgs = useTeamMessages(team.id);
+  const sendMsg = useSendMessage(team.id);
+  const errText = useTeamErrorText();
+  const [text, setText] = useState('');
+  const end = useRef<HTMLDivElement>(null);
+  const list = msgs.data ?? [];
+  useEffect(() => end.current?.scrollIntoView({ block: 'nearest' }), [list.length]);
+  const submit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    const body = text.trim();
+    if (!body) return;
+    sendMsg.mutate(body, { onSuccess: () => setText(''), onError: (er) => toast(errText(er), { tone: 'warn' }) });
+  };
+  return (
+    <View style={{ gap: 8 }}>
+      <Label style={{ paddingHorizontal: 4 }}>{t('title')}</Label>
+      <Card pad={12} gap={10}>
+        <div role="log" aria-live="polite" style={{ maxHeight: 280, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {msgs.isPending ? (
+            <SkeletonCard lines={2} height={80} />
+          ) : msgs.isError ? (
+            <ErrorState compact error={msgs.error} onRetry={() => void msgs.refetch()} />
+          ) : !list.length ? (
+            <Txt size={12.5} dim>
+              {t('empty')}
+            </Txt>
+          ) : (
+            list.map((m) => (
+              <View key={m.id} style={{ alignSelf: m.mine ? 'flex-end' : 'flex-start', maxWidth: '85%', gap: 2 }}>
+                {!m.mine ? (
+                  <Txt size={11} w={600} dim>
+                    {m.user?.display_name ?? ''}
+                  </Txt>
+                ) : null}
+                <View style={{ backgroundColor: m.mine ? B.lime : c.soft, borderRadius: 14, paddingVertical: 8, paddingHorizontal: 12 }}>
+                  <Txt size={13} color={m.mine ? B.limeInk : c.ink}>
+                    {m.body}
+                  </Txt>
+                </View>
+                <Txt size={10} dim style={{ textAlign: m.mine ? 'end' : 'start' }}>
+                  {f.rel(m.created_at)}
+                </Txt>
+              </View>
+            ))
+          )}
+          <div ref={end} />
+        </div>
+        <form onSubmit={submit} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <input
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            maxLength={1000}
+            placeholder={t('ph')}
+            aria-label={t('ph')}
+            className="cz-ask-input"
+            style={{ flex: 1, minWidth: 0, height: 42, borderRadius: 999, border: `1.5px solid ${c.line}`, backgroundColor: c.bg, color: c.ink, paddingInline: 14, fontSize: 16 }}
+          />
+          <CzButton label={t('send')} size="sm" variant="navy" type="submit" busy={sendMsg.isPending} disabled={!text.trim()} />
+        </form>
+      </Card>
+    </View>
   );
 }
 

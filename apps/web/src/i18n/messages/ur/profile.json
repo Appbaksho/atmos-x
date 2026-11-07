@@ -380,11 +380,23 @@
         "warning": "{place} میں گرمی کی تنبیہ · محسوس ہوتا ہے {feels}"
       },
       "team": {
-        "joined": "آپ {team} میں شامل ہو گئے ہیں"
+        "joined": "آپ {team} میں شامل ہو گئے ہیں",
+        "member_joined": "{who} {team} میں شامل ہوئے",
+        "goal_reached": "{team} نے {zone} کا ہدف پورا کیا: ہر رکن کو +100 پوائنٹ"
       },
       "badge": "نیا بیج: {badge}",
       "farm": {
         "body": "{field} · {date} سے"
+      },
+      "social": {
+        "like": "{who} کو آپ کی پوسٹ پسند آئی",
+        "comment": "{who} نے آپ کی پوسٹ پر تبصرہ کیا",
+        "quote": "”{text}“",
+        "mention": "{who} نے آپ کا ذکر کیا",
+        "follow": "{who} نے آپ کو فالو کرنا شروع کیا"
+      },
+      "event": {
+        "reminder": "یاددہانی: {title}، {date} کو"
       }
     },
     "reason": {
@@ -400,6 +412,19 @@
   "pendingA11y": "درخت کے 90 دن کے چیک اِن تک {pts} پوائنٹ زیرِ التوا",
   "_meta": {
     "machine_keys": [
+      "avatar.another",
+      "avatar.change",
+      "avatar.choose",
+      "avatar.failed",
+      "avatar.hint",
+      "avatar.moderation",
+      "avatar.preview",
+      "avatar.save",
+      "avatar.saved",
+      "avatar.sub",
+      "avatar.title",
+      "avatar.unreadable",
+      "avatar.zoom",
       "code.badge.first_seed",
       "code.badge.grove",
       "code.badge.guardian_1y",
@@ -409,7 +434,15 @@
       "code.badge.survivor_3m",
       "code.badge.team_player",
       "code.notif.badge",
+      "code.notif.event.reminder",
       "code.notif.farm.body",
+      "code.notif.social.comment",
+      "code.notif.social.follow",
+      "code.notif.social.like",
+      "code.notif.social.mention",
+      "code.notif.social.quote",
+      "code.notif.team.goal_reached",
+      "code.notif.team.member_joined",
       "code.notif.tree.at_risk",
       "code.notif.tree.d90",
       "code.notif.tree.d90_due",
@@ -511,5 +544,20 @@
     "guestCta": "مفت اکاؤنٹ بنائیں",
     "feature": "دوست کے درخت کو پانی دینے میں مدد",
     "joining": "شامل ہو رہے ہیں…"
+  },
+  "avatar": {
+    "change": "پروفائل تصویر بدلیں",
+    "title": "پروفائل تصویر",
+    "sub": "دائرے میں فٹ کرنے کے لیے کھینچیں اور زوم کریں۔",
+    "choose": "تصویر چنیں",
+    "another": "دوسری چنیں",
+    "save": "تصویر محفوظ کریں",
+    "saved": "تصویر محفوظ۔ منظوری کے بعد دوسرے دیکھیں گے۔",
+    "failed": "تصویر اپلوڈ نہیں ہو سکی",
+    "unreadable": "یہ فائل پڑھنے کے قابل تصویر نہیں",
+    "preview": "تصویر کا پیش منظر",
+    "zoom": "زوم",
+    "hint": "کیمرے یا گیلری سے تصویر چنیں۔",
+    "moderation": "دوسروں کو دکھنے سے پہلے تصاویر جانچی جاتی ہیں۔"
   }
 }

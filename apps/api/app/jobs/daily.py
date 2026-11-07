@@ -118,6 +118,28 @@ async def badges_daily(db: AsyncSession, job: Job) -> dict:
 async def enqueue_daily() -> None:
     day = datetime.now(UTC).date().isoformat()
     async with SessionLocal() as db:
-        for kind in ("points_unlock", "tree_reminders", "badges_daily"):
+        for kind in ("points_unlock", "tree_reminders", "badges_daily", "demo_purge"):
             await q.enqueue(db, kind, day, {}, priority=6, max_attempts=3)
         await db.commit()
+
+
+@handler("event_reminders")
+async def event_reminders(db: AsyncSession, job: Job) -> dict:
+    from ..services import events
+
+    return {"reminded": await events.remind(db)}
+
+
+async def enqueue_events() -> None:
+    async with SessionLocal() as db:
+        await q.enqueue(
+            db, "event_reminders", datetime.now(UTC).strftime("%Y-%m-%dT%H"), {}, priority=6, max_attempts=2
+        )
+        await db.commit()
+
+
+@handler("demo_purge")
+async def demo_purge(db: AsyncSession, job: Job) -> dict:
+    from ..services import demo_story
+
+    return {"deleted": await demo_story.purge_old(db)}

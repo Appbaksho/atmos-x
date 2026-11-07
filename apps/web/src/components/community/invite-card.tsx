@@ -4,10 +4,9 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
 import { B, CzButton, I, Icon, Label, R, Seg, Skeleton, Tap, Txt, View, toast, useCz } from '@/components/cz';
-import { useInvite, useMe } from '@/lib/data/hooks';
+import { useInvite } from '@/lib/data/hooks';
 import type { Team } from '@/lib/data/types';
 
-import { inviteUrl } from './invite-link';
 import { freePlaces } from './shared';
 
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
@@ -45,11 +44,10 @@ async function copyText(text: string): Promise<boolean> {
 export function InviteCard({ team, initial = 'qr' }: { team: Team; initial?: Mode }) {
   const t = useTranslations('community');
   const { c, f } = useCz();
-  const me = useMe();
   const invite = useInvite(team.id);
   const [mode, setMode] = useState<Mode>(initial);
   const [copied, setCopied] = useState(false);
-  const url = invite ? inviteUrl(invite.url, team, me.role === 'guest' ? null : me.display_name) : null;
+  const url = invite ? invite.url : null;
   const short = url ? url.replace(/^https?:\/\//, '').replace(/\?.*$/, '') : '';
   const qr = useQrDataUrl(mode === 'qr' ? url : null);
   const free = freePlaces(team);
@@ -63,7 +61,7 @@ export function InviteCard({ team, initial = 'qr' }: { team: Team; initial?: Mod
 
   const share = async () => {
     if (!url) return;
-    const data = { title: t('shareTitle', { name: team.name }), text: t('shareText', { name: team.name, code: team.code }), url };
+    const data = { title: t('shareTitle', { name: team.name }), text: t('shareText', { name: team.name, code: team.code ?? '' }), url };
     if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
       try {
         await navigator.share(data);
@@ -132,9 +130,9 @@ export function InviteCard({ team, initial = 'qr' }: { team: Team; initial?: Mod
       {mode === 'code' ? (
         <View
           role="img"
-          label={`${t('codeA11y')}: ${team.code.split('').join(' ')}`}
+          label={`${t('codeA11y')}: ${(team.code ?? '').split('').join(' ')}`}
           style={{ flexDirection: 'row', justifyContent: 'center', gap: 6, paddingVertical: 8, direction: 'ltr' }}>
-          {team.code.split('').map((ch, i) => (
+          {(team.code ?? '').split('').map((ch, i) => (
             <View key={i} style={{ flex: 1, maxWidth: 40, height: 54, borderRadius: R.sm, backgroundColor: ch === '-' ? 'transparent' : c.soft, alignItems: 'center', justifyContent: 'center' }}>
               <Txt size={22} w={600} style={{ fontFamily: MONO }}>
                 {ch}

@@ -552,16 +552,22 @@ export type TreeInvite = { token: string; path: string; expires_at: string };
 
 /* ───────────────────────────── Community ───────────────────────────── */
 
-export type TeamRole = 'owner' | 'admin' | 'member';
+export type TeamRole = 'lead' | 'member';
+
+/** A person as shown to others: the avatar only once moderation approved it. */
+export type PersonCard = { id: string; display_name: string; avatar_url: string | null };
 
 export type Member = { user_id: string; display_name: string; role: TeamRole; points: number; avatar_url?: string | null };
 
-export type TeamActivity = { id: string; user_name: string; action_type: ActionTypeId; quantity: number; points: number; created_at: string };
+export type TeamActivity = { id: string; user_id: string; user_name: string; action_type: ActionTypeId; quantity: number; points: number; created_at: string };
 
+export type TeamGoalSummary = { id: string; zone_name: string; target_c: number; by_date: string; progress_pct: number; kind: 'action' | 'cooling' };
+
+/** GET /teams/{id}. `code` only for members; stats come from the points ledger. */
 export type Team = {
   id: string;
   name: string;
-  code: string;
+  code: string | null;
   description?: string | null;
   org_id: string | null;
   org_name?: string | null;
@@ -574,21 +580,18 @@ export type Team = {
   members: Member[];
   stats: { points: number; trees: number; actions: number; cooling_c: number };
   goal_id?: string | null;
+  goal?: TeamGoalSummary | null;
   activity?: TeamActivity[];
-  emoji?: string;
-  /** v0 additive (V0-3): S17 task board and evidence rows */
-  tasks?: TeamTask[];
-  evidence?: TeamEvidence[];
+  emoji?: string | null;
+  is_member: boolean;
+  my_role: TeamRole | null;
+  full: boolean;
+  is_demo?: boolean;
 };
 
-/** v0 additive (V0-3) */
-export type TeamTask = { id: string; title: string; due: string; assignee: string; status: 'todo' | 'doing' | 'done' };
-/** v0 additive (V0-3) */
-export type TeamEvidence = { source: string; what: string; agrees: boolean };
-/** v0 additive (V0-3): the "Rising" board on S16 */
-export type RisingTeam = { team_id: string; name: string; up: number; note: string };
-
 export type Invite = { code: string; url: string };
+
+export type ChatMessage = { id: string; user: PersonCard | null; body: string; mine: boolean; created_at: string };
 
 export type OrgKind = 'school' | 'ngo' | 'city' | 'company' | 'other';
 
@@ -599,16 +602,15 @@ export type Org = {
   city?: string | null;
   country?: string | null;
   verified: boolean;
-  teams: Pick<Team, 'id' | 'name' | 'stats' | 'emoji'>[];
+  teams: { id: string; name: string; emoji?: string | null; stats: Team['stats'] }[];
   totals: { points: number; trees: number; members: number; cooling_c: number };
   description?: string | null;
-  logo_url?: string | null;
-  /** v0 additive (V0-3): S18 goals across zones */
   goals?: { zone_name: string; target_c: number; by_date: string; progress_pct: number }[];
-  logo_emoji?: string;
+  logo_emoji?: string | null;
+  my_role?: string | null;
+  is_demo?: boolean;
 };
 
-/** 'org' added in v0 (V0-3, additive) for the Orgs board on S16 */
 export type LeaderboardSubject = 'user' | 'team' | 'org';
 export type LeaderboardScope = 'area' | 'city' | 'country';
 export type Period = 'week' | 'month' | 'all';
@@ -622,10 +624,90 @@ export type LeaderboardRow = {
   cooling_c: number;
   is_me: boolean;
   avatar_url?: string | null;
-  emoji?: string;
+  emoji?: string | null;
+  /** E16: where a row links (a person's profile, a team, an org) */
+  href?: { screen: string; id: string };
 };
 
-export type Leaderboard = { rows: LeaderboardRow[]; me: LeaderboardRow | null; meta: Meta };
+/** `status`: 'no_place' when the scope needs a home, city or country the person hasn't set. */
+export type Leaderboard = { rows: LeaderboardRow[]; me: LeaderboardRow | null; status?: 'ready' | 'no_place'; since?: string | null; meta: Meta };
+
+export type Post = {
+  id: string;
+  author: PersonCard | null;
+  body: string;
+  photo_url: string | null;
+  /** The photo waits for moderation (only the author and moderators see it meanwhile) */
+  photo_pending: boolean;
+  action: { id: string; action_type: ActionTypeId; quantity: number; points: number; cooling_c: number } | null;
+  tree_id: string | null;
+  team: { id: string; name: string; emoji?: string | null } | null;
+  area: string | null;
+  city: string | null;
+  likes: number;
+  liked: boolean;
+  comments: number;
+  mine: boolean;
+  can_delete: boolean;
+  is_demo: boolean;
+  hidden: boolean;
+  created_at: string;
+};
+
+export type PostComment = { id: string; author: PersonCard | null; body: string; mine: boolean; can_delete: boolean; hidden: boolean; created_at: string };
+
+export type FeedFilter = 'area' | 'city' | 'following';
+export type FeedPage = { posts: Post[]; status: 'ready' | 'no_place' | 'no_follows'; next: string | null };
+
+export type PublicProfile = PersonCard & {
+  bio: string | null;
+  area: string | null;
+  city: string | null;
+  points: number;
+  level: Level;
+  badges: Badge[];
+  trees: number;
+  actions: number;
+  teams: { id: string; name: string; emoji?: string | null }[];
+  followers: number;
+  following: number;
+  is_following: boolean;
+  blocked: boolean;
+  is_me: boolean;
+  is_demo: boolean;
+  joined_at: string;
+};
+
+export type CommunityEvent = {
+  id: string;
+  title: string;
+  description: string | null;
+  starts_at: string;
+  ends_at: string | null;
+  place_name: string;
+  location: LatLng;
+  organizer: PersonCard | null;
+  team: { id: string; name: string } | null;
+  org: { id: string; name: string } | null;
+  sponsor_name: string | null;
+  capacity: number | null;
+  going: number;
+  checked_in: number;
+  my_rsvp: 'going' | 'maybe' | 'no' | null;
+  i_checked_in: boolean;
+  checkin_open: boolean;
+  group_photo_url: string | null;
+  mine: boolean;
+  is_demo: boolean;
+};
+
+export type ReportReason = 'spam' | 'abuse' | 'nudity' | 'violence' | 'fake' | 'dangerous' | 'other';
+export type ReportTarget = 'post' | 'comment' | 'photo' | 'user' | 'action' | 'tree';
+
+export type ModerationQueue = {
+  reports: { id: string; target_type: ReportTarget; target_id: string; reason: ReportReason; note: string | null; created_at: string }[];
+  photos: { id: string; purpose: string; owner: PersonCard | null; photo_url: string; created_at: string }[];
+};
 
 /* ───────────────────────────── Air ───────────────────────────── */
 
@@ -694,7 +776,21 @@ export type FarmAlertsResponse = {
 
 /* ───────────────────────────── Notifications ───────────────────────────── */
 
-export type NotificationKind = 'tree_due' | 'goal_progress' | 'team_invite' | 'heat_warning' | 'farm_alert' | 'verification';
+export type NotificationKind =
+  | 'tree_due'
+  | 'tree_milestone'
+  | 'tree_helper'
+  | 'goal_progress'
+  | 'team_invite'
+  | 'heat_warning'
+  | 'farm_alert'
+  | 'verification'
+  | 'badge'
+  | 'like'
+  | 'comment'
+  | 'mention'
+  | 'follow'
+  | 'event';
 
 export type AppNotification = {
   id: string;

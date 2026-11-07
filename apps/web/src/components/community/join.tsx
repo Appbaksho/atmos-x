@@ -26,10 +26,10 @@ import {
   toast,
   useCz,
 } from '@/components/cz';
-import { type RemoteInvite, useJoinByCode, useMe, useSession, useTeamByCode } from '@/lib/data/hooks';
+import { useJoinByCode, useSession, useTeamByCode } from '@/lib/data/hooks';
 import type { Team } from '@/lib/data/types';
 
-import { decodeInvite, formatCode, type InvitePayload } from './invite-link';
+import { formatCode } from './invite-link';
 import { avatarFor, freePlaces, teamInitials, useTeamErrorText } from './shared';
 
 const safeDecode = (s: string) => {
@@ -42,13 +42,11 @@ const safeDecode = (s: string) => {
 
 const MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
 
-export function JoinScreen({ code: rawCode, payload, autoJoin }: { code: string; payload?: string | null; autoJoin?: boolean }) {
+export function JoinScreen({ code: rawCode, autoJoin }: { code: string; payload?: string | null; autoJoin?: boolean }) {
   const t = useTranslations('community.joinPage');
   const code = formatCode(safeDecode(rawCode));
   const session = useSession();
-  const preview = decodeInvite(payload);
-  const invite = preview ? toRemoteInvite(preview) : null;
-  const team = useTeamByCode(code, invite);
+  const team = useTeamByCode(code);
 
   return (
     <Screen gap={16} style={{ paddingBottom: 40 }}>
@@ -72,9 +70,9 @@ export function JoinScreen({ code: rawCode, payload, autoJoin }: { code: string;
       {!session.ready || team.isPending ? (
         <SkeletonCard lines={3} height={200} />
       ) : team.data ? (
-        <Found team={team.data} autoJoin={!!autoJoin} invite={invite} payload={payload ?? null} />
+        <Found team={team.data} code={code} autoJoin={!!autoJoin} />
       ) : (
-        <NotFound code={code} preview={preview} />
+        <NotFound code={code} />
       )}
     </Screen>
   );
@@ -126,28 +124,22 @@ function TeamCard({ name, meta, org, by, code }: { name: string; meta: string; o
   );
 }
 
-/** Invite-link preview → the data layer's RemoteInvite (teams made on another device). */
-function toRemoteInvite(p: InvitePayload): RemoteInvite {
-  return { id: p.i, name: p.n, max_members: p.m, members: p.c, org_name: p.o ?? null, emoji: p.e, inviter: p.by ?? null };
-}
-
-function Found({ team, autoJoin, invite, payload }: { team: Team; autoJoin: boolean; invite: RemoteInvite | null; payload: string | null }) {
+function Found({ team, code, autoJoin }: { team: Team; code: string; autoJoin: boolean }) {
   const t = useTranslations('community.joinPage');
   const tc = useTranslations('community');
   const { f } = useCz();
   const session = useSession();
-  const me = useMe();
   const join = useJoinByCode();
   const errText = useTeamErrorText();
   const [error, setError] = useState<string | null>(null);
   const tried = useRef(false);
-  const member = team.members.some((m) => m.user_id === me.id);
+  const member = team.is_member;
   const full = freePlaces(team) <= 0;
-  const next = href('join', { code: team.code }, payload ? { join: 1, t: payload } : { join: 1 });
+  const next = href('join', { code }, { join: 1 });
 
   const doJoin = () => {
     setError(null);
-    join.mutate({ code: team.code, invite }, {
+    join.mutate(code, {
       onSuccess: (tm) => {
         toast(tc('joined', { name: tm.name }), { tone: 'success' });
         goReplace('S17', { id: tm.id });
@@ -166,7 +158,7 @@ function Found({ team, autoJoin, invite, payload }: { team: Team; autoJoin: bool
   const meta = t('teamOf', { n: f.loc(team.members.length), max: f.loc(team.max_members) });
   return (
     <View style={{ gap: 14 }}>
-      <TeamCard name={team.name} meta={meta} org={team.org_name} code={team.code} />
+      <TeamCard name={team.name} meta={meta} org={team.org_name} code={code} />
       {team.description ? (
         <Txt size={13} dim style={{ paddingHorizontal: 4 }}>
           {team.description}
@@ -201,20 +193,8 @@ function Found({ team, autoJoin, invite, payload }: { team: Team; autoJoin: bool
   );
 }
 
-function NotFound({ code, preview }: { code: string; preview: InvitePayload | null }) {
+function NotFound({ code }: { code: string }) {
   const t = useTranslations('community.joinPage');
-  const { f } = useCz();
-  if (preview) {
-    return (
-      <View style={{ gap: 14 }}>
-        <TeamCard name={preview.n} meta={t('teamOf', { n: f.loc(preview.c), max: f.loc(preview.m) })} org={preview.o} by={preview.by} code={code} />
-        <Note tone="warn" icon={I.info}>
-          {t('remote')}
-        </Note>
-        <CzButton label={t('openApp')} icon="arrow" href={href('S16')} />
-      </View>
-    );
-  }
   return (
     <View style={{ gap: 14 }}>
       <Note tone="warn" icon={I.warn}>

@@ -36,7 +36,9 @@ async def multipart(c, url: str, data: dict, photo: bytes | None = None, files: 
         fl = list(files or [])
         if photo is not None:
             fl.append(("photo", ("p.jpg", photo, "image/jpeg")))
-        return await c.post(url, data={k: str(v) for k, v in data.items() if v is not None}, files=fl or None)
+        # Browsers send FormData as multipart even without files; mimic that with an ignored part.
+        fl = fl or [("_", ("_.txt", b"", "text/plain"))]
+        return await c.post(url, data={k: str(v) for k, v in data.items() if v is not None}, files=fl)
     finally:
         if ct:
             c.headers["content-type"] = ct

@@ -380,11 +380,23 @@
         "warning": "{place} এলাকায় তাপ সতর্কতা · অনুভূত তাপমাত্রা {feels}"
       },
       "team": {
-        "joined": "আপনি {team} দলে যোগ দিয়েছেন"
+        "joined": "আপনি {team} দলে যোগ দিয়েছেন",
+        "member_joined": "{who} {team}-এ যোগ দিয়েছেন",
+        "goal_reached": "{team} {zone}-এর লক্ষ্য পূরণ করেছে: প্রত্যেকে +১০০ পয়েন্ট"
       },
       "badge": "নতুন ব্যাজ: {badge}",
       "farm": {
         "body": "{field} · {date} থেকে"
+      },
+      "social": {
+        "like": "{who} আপনার পোস্ট পছন্দ করেছেন",
+        "comment": "{who} আপনার পোস্টে মন্তব্য করেছেন",
+        "quote": "“{text}”",
+        "mention": "{who} আপনাকে উল্লেখ করেছেন",
+        "follow": "{who} আপনাকে ফলো করা শুরু করেছেন"
+      },
+      "event": {
+        "reminder": "মনে করিয়ে দিচ্ছি: {title}, {date}"
       }
     },
     "reason": {
@@ -400,6 +412,19 @@
   "pendingA11y": "গাছের ৯০ দিনের চেক-ইন পর্যন্ত {pts} পয়েন্ট অপেক্ষমাণ",
   "_meta": {
     "machine_keys": [
+      "avatar.another",
+      "avatar.change",
+      "avatar.choose",
+      "avatar.failed",
+      "avatar.hint",
+      "avatar.moderation",
+      "avatar.preview",
+      "avatar.save",
+      "avatar.saved",
+      "avatar.sub",
+      "avatar.title",
+      "avatar.unreadable",
+      "avatar.zoom",
       "code.badge.first_seed",
       "code.badge.grove",
       "code.badge.guardian_1y",
@@ -409,7 +434,15 @@
       "code.badge.survivor_3m",
       "code.badge.team_player",
       "code.notif.badge",
+      "code.notif.event.reminder",
       "code.notif.farm.body",
+      "code.notif.social.comment",
+      "code.notif.social.follow",
+      "code.notif.social.like",
+      "code.notif.social.mention",
+      "code.notif.social.quote",
+      "code.notif.team.goal_reached",
+      "code.notif.team.member_joined",
       "code.notif.tree.at_risk",
       "code.notif.tree.d90",
       "code.notif.tree.d90_due",
@@ -511,5 +544,20 @@
     "guestCta": "ফ্রি অ্যাকাউন্ট খুলুন",
     "feature": "বন্ধুর গাছে পানি দিতে সাহায্য",
     "joining": "যোগ দেওয়া হচ্ছে…"
+  },
+  "avatar": {
+    "change": "প্রোফাইল ছবি বদলান",
+    "title": "প্রোফাইল ছবি",
+    "sub": "বৃত্তে মানাতে টেনে ও জুম করে নিন।",
+    "choose": "ছবি বেছে নিন",
+    "another": "অন্য ছবি বেছে নিন",
+    "save": "ছবি সংরক্ষণ করুন",
+    "saved": "ছবি সংরক্ষিত। অনুমোদনের পর অন্যরা দেখবেন।",
+    "failed": "ছবি আপলোড করা যায়নি",
+    "unreadable": "এই ফাইলটি পড়ার মতো ছবি নয়",
+    "preview": "ছবির প্রিভিউ",
+    "zoom": "জুম",
+    "hint": "ক্যামেরা বা গ্যালারি থেকে ছবি বেছে নিন।",
+    "moderation": "অন্যরা দেখার আগে ছবি যাচাই করা হয়।"
   }
 }

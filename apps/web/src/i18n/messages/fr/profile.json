@@ -280,11 +280,23 @@
         "warning": "Alerte chaleur à {place} · température ressentie {feels}"
       },
       "team": {
-        "joined": "Vous avez rejoint {team}"
+        "joined": "Vous avez rejoint {team}",
+        "member_joined": "{who} a rejoint {team}",
+        "goal_reached": "{team} a atteint son objectif à {zone} : +100 points chacun"
       },
       "badge": "Nouveau badge : {badge}",
       "farm": {
         "body": "{field} · à partir du {date}"
+      },
+      "social": {
+        "like": "{who} a aimé votre publication",
+        "comment": "{who} a commenté votre publication",
+        "quote": "« {text} »",
+        "mention": "{who} vous a mentionné",
+        "follow": "{who} vous suit"
+      },
+      "event": {
+        "reminder": "Rappel : {title} le {date}"
       }
     },
     "reason": {
@@ -411,5 +423,20 @@
     "guestCta": "Créer un compte gratuit",
     "feature": "aider à arroser l’arbre d’un ami",
     "joining": "Connexion…"
+  },
+  "avatar": {
+    "change": "Changer la photo de profil",
+    "title": "Photo de profil",
+    "sub": "Faites glisser et zoomez pour remplir le cercle.",
+    "choose": "Choisir une photo",
+    "another": "En choisir une autre",
+    "save": "Enregistrer",
+    "saved": "Photo enregistrée. Visible par les autres après validation.",
+    "failed": "Impossible d’envoyer la photo",
+    "unreadable": "Ce fichier n’est pas une photo lisible",
+    "preview": "Aperçu",
+    "zoom": "Zoom",
+    "hint": "Choisissez une photo de l’appareil ou de la galerie.",
+    "moderation": "Les photos sont vérifiées avant d’être visibles."
   }
 }
