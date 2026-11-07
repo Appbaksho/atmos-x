@@ -1,0 +1,1520 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Atmos X API",
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/api/v1/health": {
+   "get": {
+    "tags": [
+     "meta"
+    ],
+    "summary": "Health",
+    "operationId": "health",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HealthOut"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/sources": {
+   "get": {
+    "tags": [
+     "meta"
+    ],
+    "summary": "Sources",
+    "operationId": "sources",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SourcesOut"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/register": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Register",
+    "operationId": "auth_register",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RegisterIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/login": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Login",
+    "operationId": "auth_login",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/LoginIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/logout": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Logout",
+    "operationId": "auth_logout",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Ok"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/guest": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Guest",
+    "operationId": "auth_guest",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GuestIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/upgrade": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Upgrade",
+    "operationId": "auth_upgrade",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RegisterIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/otp/start": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Otp Start",
+    "operationId": "auth_otp_start",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpStartIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OtpStartOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/otp/verify": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Otp Verify",
+    "operationId": "auth_otp_verify",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OtpVerifyIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/google/config": {
+   "get": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Google Config",
+    "operationId": "auth_google_config",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoogleConfigOut"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/google": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Google",
+    "operationId": "auth_google",
+    "parameters": [
+     {
+      "name": "x-requested-with",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "X-Requested-With"
+      }
+     },
+     {
+      "name": "origin",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Origin"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GoogleIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/google/link": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Google Link",
+    "operationId": "auth_google_link",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GoogleLinkIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/demo": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Demo",
+    "description": "Presentation mode: a fresh demo user. The previous session is kept so /auth/demo/exit can restore it.",
+    "operationId": "auth_demo",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GuestIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SessionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/demo/exit": {
+   "post": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Demo Exit",
+    "description": "Leave Presentation mode: back to the previous session, or signed out.",
+    "operationId": "auth_demo_exit",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "anyOf": [
+          {
+           "$ref": "#/components/schemas/SessionOut"
+          },
+          {
+           "type": "null"
+          }
+         ],
+         "title": "Response Auth Demo Exit"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/me": {
+   "get": {
+    "tags": [
+     "auth"
+    ],
+    "summary": "Me",
+    "operationId": "auth_me",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/UserOut"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/me/profile": {
+   "get": {
+    "tags": [
+     "me"
+    ],
+    "summary": "Get Profile",
+    "operationId": "me_profile",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProfileOut"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "me"
+    ],
+    "summary": "Patch Profile",
+    "operationId": "me_profile_patch",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfilePatch"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProfileOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "GoogleConfigOut": {
+    "properties": {
+     "enabled": {
+      "type": "boolean",
+      "title": "Enabled"
+     },
+     "client_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Client Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "enabled",
+     "client_id"
+    ],
+    "title": "GoogleConfigOut"
+   },
+   "GoogleIn": {
+    "properties": {
+     "code": {
+      "type": "string",
+      "maxLength": 2048,
+      "title": "Code"
+     },
+     "lang": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "en",
+         "bn",
+         "ur",
+         "hi",
+         "ar",
+         "es",
+         "fr",
+         "pt",
+         "id",
+         "zh"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lang"
+     }
+    },
+    "type": "object",
+    "required": [
+     "code"
+    ],
+    "title": "GoogleIn"
+   },
+   "GoogleLinkIn": {
+    "properties": {
+     "link_token": {
+      "type": "string",
+      "maxLength": 4096,
+      "title": "Link Token"
+     },
+     "password": {
+      "type": "string",
+      "maxLength": 200,
+      "title": "Password"
+     }
+    },
+    "type": "object",
+    "required": [
+     "link_token",
+     "password"
+    ],
+    "title": "GoogleLinkIn"
+   },
+   "GuestIn": {
+    "properties": {
+     "lang": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "en",
+         "bn",
+         "ur",
+         "hi",
+         "ar",
+         "es",
+         "fr",
+         "pt",
+         "id",
+         "zh"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lang"
+     }
+    },
+    "type": "object",
+    "title": "GuestIn"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "HealthOut": {
+    "properties": {
+     "db": {
+      "type": "string",
+      "title": "Db"
+     },
+     "data_mode": {
+      "type": "string",
+      "title": "Data Mode"
+     },
+     "providers": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Providers"
+     },
+     "worker_last_run": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Worker Last Run"
+     },
+     "pipeline_version": {
+      "type": "string",
+      "title": "Pipeline Version"
+     }
+    },
+    "type": "object",
+    "required": [
+     "db",
+     "data_mode",
+     "providers",
+     "worker_last_run",
+     "pipeline_version"
+    ],
+    "title": "HealthOut"
+   },
+   "LatLng": {
+    "properties": {
+     "lat": {
+      "type": "number",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Lat"
+     },
+     "lng": {
+      "type": "number",
+      "maximum": 180.0,
+      "minimum": -180.0,
+      "title": "Lng"
+     }
+    },
+    "type": "object",
+    "required": [
+     "lat",
+     "lng"
+    ],
+    "title": "LatLng"
+   },
+   "LoginIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "maxLength": 320,
+      "title": "Email"
+     },
+     "password": {
+      "type": "string",
+      "maxLength": 200,
+      "title": "Password"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email",
+     "password"
+    ],
+    "title": "LoginIn"
+   },
+   "Ok": {
+    "properties": {
+     "ok": {
+      "type": "boolean",
+      "title": "Ok",
+      "default": true
+     }
+    },
+    "type": "object",
+    "title": "Ok"
+   },
+   "OtpStartIn": {
+    "properties": {
+     "phone": {
+      "type": "string",
+      "maxLength": 32,
+      "title": "Phone"
+     }
+    },
+    "type": "object",
+    "required": [
+     "phone"
+    ],
+    "title": "OtpStartIn"
+   },
+   "OtpStartOut": {
+    "properties": {
+     "phone": {
+      "type": "string",
+      "title": "Phone"
+     },
+     "expires_in": {
+      "type": "integer",
+      "title": "Expires In"
+     },
+     "dev_console": {
+      "type": "boolean",
+      "title": "Dev Console",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "phone",
+     "expires_in"
+    ],
+    "title": "OtpStartOut"
+   },
+   "OtpVerifyIn": {
+    "properties": {
+     "phone": {
+      "type": "string",
+      "maxLength": 32,
+      "title": "Phone"
+     },
+     "code": {
+      "type": "string",
+      "maxLength": 10,
+      "title": "Code"
+     },
+     "lang": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "en",
+         "bn",
+         "ur",
+         "hi",
+         "ar",
+         "es",
+         "fr",
+         "pt",
+         "id",
+         "zh"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lang"
+     }
+    },
+    "type": "object",
+    "required": [
+     "phone",
+     "code"
+    ],
+    "title": "OtpVerifyIn"
+   },
+   "ProfileOut": {
+    "properties": {
+     "display_name": {
+      "type": "string",
+      "title": "Display Name"
+     },
+     "avatar_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Avatar Url"
+     },
+     "bio": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bio"
+     },
+     "area": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Area"
+     },
+     "home": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/LatLng"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "radius_m": {
+      "type": "integer",
+      "title": "Radius M"
+     },
+     "lang": {
+      "type": "string",
+      "enum": [
+       "en",
+       "bn",
+       "ur",
+       "hi",
+       "ar",
+       "es",
+       "fr",
+       "pt",
+       "id",
+       "zh"
+      ],
+      "title": "Lang"
+     },
+     "unit": {
+      "type": "string",
+      "enum": [
+       "C",
+       "F"
+      ],
+      "title": "Unit"
+     },
+     "area_unit": {
+      "type": "string",
+      "enum": [
+       "metric",
+       "imperial"
+      ],
+      "title": "Area Unit"
+     },
+     "theme": {
+      "type": "string",
+      "enum": [
+       "light",
+       "dark",
+       "system"
+      ],
+      "title": "Theme"
+     },
+     "farmer_mode": {
+      "type": "boolean",
+      "title": "Farmer Mode"
+     },
+     "ask_on": {
+      "type": "boolean",
+      "title": "Ask On"
+     },
+     "onboarded": {
+      "type": "boolean",
+      "title": "Onboarded"
+     },
+     "push_on": {
+      "type": "boolean",
+      "title": "Push On",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "display_name",
+     "radius_m",
+     "lang",
+     "unit",
+     "area_unit",
+     "theme",
+     "farmer_mode",
+     "ask_on",
+     "onboarded"
+    ],
+    "title": "ProfileOut"
+   },
+   "ProfilePatch": {
+    "properties": {
+     "display_name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 80
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Display Name"
+     },
+     "bio": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 280
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bio"
+     },
+     "area": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 120
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Area"
+     },
+     "home": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/LatLng"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "clear_home": {
+      "type": "boolean",
+      "title": "Clear Home",
+      "default": false
+     },
+     "radius_m": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "maximum": 1000.0,
+        "minimum": 100.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Radius M"
+     },
+     "lang": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "en",
+         "bn",
+         "ur",
+         "hi",
+         "ar",
+         "es",
+         "fr",
+         "pt",
+         "id",
+         "zh"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lang"
+     },
+     "unit": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "C",
+         "F"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Unit"
+     },
+     "area_unit": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "metric",
+         "imperial"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Area Unit"
+     },
+     "theme": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "light",
+         "dark",
+         "system"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Theme"
+     },
+     "farmer_mode": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Farmer Mode"
+     },
+     "ask_on": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ask On"
+     },
+     "onboarded": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Onboarded"
+     }
+    },
+    "type": "object",
+    "title": "ProfilePatch"
+   },
+   "RegisterIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "maxLength": 320,
+      "title": "Email"
+     },
+     "password": {
+      "type": "string",
+      "maxLength": 200,
+      "title": "Password"
+     },
+     "display_name": {
+      "type": "string",
+      "maxLength": 80,
+      "title": "Display Name",
+      "default": ""
+     },
+     "lang": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "en",
+         "bn",
+         "ur",
+         "hi",
+         "ar",
+         "es",
+         "fr",
+         "pt",
+         "id",
+         "zh"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lang"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email",
+     "password"
+    ],
+    "title": "RegisterIn"
+   },
+   "SessionOut": {
+    "properties": {
+     "user": {
+      "$ref": "#/components/schemas/UserOut"
+     },
+     "created": {
+      "type": "boolean",
+      "title": "Created",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "user"
+    ],
+    "title": "SessionOut"
+   },
+   "SourceStatus": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "url": {
+      "type": "string",
+      "title": "Url"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "licence": {
+      "type": "string",
+      "title": "Licence"
+     },
+     "credit": {
+      "type": "string",
+      "title": "Credit"
+     },
+     "used_for": {
+      "type": "string",
+      "title": "Used For"
+     },
+     "nasa": {
+      "type": "boolean",
+      "title": "Nasa"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "reason": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reason"
+     },
+     "latest_data": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Latest Data"
+     },
+     "resolution_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Resolution M"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name",
+     "url",
+     "kind",
+     "licence",
+     "credit",
+     "used_for",
+     "nasa",
+     "status"
+    ],
+    "title": "SourceStatus"
+   },
+   "SourcesOut": {
+    "properties": {
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/SourceStatus"
+      },
+      "type": "array",
+      "title": "Sources"
+     },
+     "active_nasa_count": {
+      "type": "integer",
+      "title": "Active Nasa Count"
+     },
+     "heat_score": {
+      "additionalProperties": true,
+      "type": "object",
+      "title": "Heat Score"
+     },
+     "driver_fit": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Driver Fit"
+     },
+     "pipeline_version": {
+      "type": "string",
+      "title": "Pipeline Version"
+     },
+     "generated_at": {
+      "type": "string",
+      "title": "Generated At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "sources",
+     "active_nasa_count",
+     "heat_score",
+     "driver_fit",
+     "pipeline_version",
+     "generated_at"
+    ],
+    "title": "SourcesOut"
+   },
+   "UserOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "role": {
+      "type": "string",
+      "enum": [
+       "guest",
+       "user",
+       "moderator",
+       "admin"
+      ],
+      "title": "Role"
+     },
+     "email": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Email"
+     },
+     "phone_verified": {
+      "type": "boolean",
+      "title": "Phone Verified",
+      "default": false
+     },
+     "display_name": {
+      "type": "string",
+      "title": "Display Name"
+     },
+     "avatar_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Avatar Url"
+     },
+     "is_demo": {
+      "type": "boolean",
+      "title": "Is Demo",
+      "default": false
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "role",
+     "email",
+     "display_name",
+     "created_at"
+    ],
+    "title": "UserOut"
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   }
+  }
+ }
+}

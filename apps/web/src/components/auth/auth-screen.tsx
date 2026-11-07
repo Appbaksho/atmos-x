@@ -1,16 +1,16 @@
 'use client';
 /**
- * /auth/login and /auth/register (outside the app shell). v0 accounts live on this device (§4.5):
- * PBKDF2-hashed password, login switches local profiles, guest prefs carry over on register.
- * "Continue with Google" works when the server has GOOGLE_OAUTH_CLIENT_ID + _SECRET; otherwise it
- * is shown disabled ("coming soon").
+ * /auth/login and /auth/register (outside the app shell). Accounts live on the Atmos X server
+ * (prompt-v1 §6.2): email + password, phone OTP and Google. Signing up from a guest session keeps
+ * everything the guest did. "Continue with Google" is disabled ("coming soon") when the server has
+ * no Google client; linking Google to an existing email account asks for that account's password.
  */
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 
-import { B, Card, CzButton, Field, GhostButton, I, Icon, Note, R, Screen, ScreenHeader, Seg, Spinner, Tap, Txt, View, goBack, toast, useCz } from '@/components/cz';
+import { Card, CzButton, Field, GhostButton, I, Icon, Note, R, Screen, ScreenHeader, Seg, Spinner, Tap, Txt, View, goBack, toast, useCz } from '@/components/cz';
 import { useRouter } from '@/i18n/navigation';
-import { DataError, useAccounts, useAuth, useGoogleSignIn, useSession } from '@/lib/data/hooks';
+import { DataError, useAuth, useGoogleSignIn, usePhoneSignIn, useSession } from '@/lib/data/hooks';
 import type { Locale } from '@/lib/data/types';
 import { href } from '@/lib/routes';
 
@@ -35,8 +35,13 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
   const router = useRouter();
   const session = useSession();
   const { register, upgrade, login, logout, continueAsGuest } = useAuth();
-  const accounts = useAccounts();
+  const phoneSignIn = usePhoneSignIn();
   const next = safeNext(rawNext);
+  const [byPhone, setByPhone] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [code, setCode] = useState('');
+  const [sent, setSent] = useState<{ phone: string; dev: boolean } | null>(null);
+  const [linkPw, setLinkPw] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,8 +50,17 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
   const up = mode === 'register';
 
   const errText = (e: unknown): Err => {
+    if (e instanceof DataError && e.status === 0) return { msg: t('err.auth.offline') };
+    if (e instanceof DataError && (e.status === 429 || e.code === 'rate_limited') && !t.has(`err.${e.code}`)) return { msg: t('err.auth.rate_limited') };
     if (e instanceof DataError && t.has(`err.${e.code}`)) {
-      const field = e.code === 'auth.email_taken' || e.code === 'auth.invalid_email' ? 'email' : e.code === 'auth.weak_password' ? 'password' : e.code === 'auth.name_required' ? 'name' : undefined;
+      const field =
+        e.code === 'auth.email_taken' || e.code === 'auth.invalid_email' || e.code === 'auth.email_invalid'
+          ? 'email'
+          : e.code === 'auth.weak_password' || e.code === 'auth.password_short'
+            ? 'password'
+            : e.code === 'auth.name_required'
+              ? 'name'
+              : undefined;
       return { field, msg: t(`err.${e.code}`) };
     }
     return { msg: t('err.generic') };
@@ -61,7 +75,31 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
     onSuccess: ({ user, created }) => done(t(created ? 'welcome' : 'welcomeBack', { name: user.display_name })),
     onError: (e) => setErr(errText(e)),
   });
-  const busy = register.isPending || upgrade.isPending || login.isPending || google.isPending;
+  const busy = register.isPending || upgrade.isPending || login.isPending || google.isPending || phoneSignIn.start.isPending || phoneSignIn.verify.isPending;
+
+  const sendCode = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    setErr(null);
+    if (phone.replace(/\D/g, '').length < 8) return setErr({ msg: t('err.auth.phone_invalid') });
+    phoneSignIn.start.mutate(phone.trim(), {
+      onSuccess: (r) => {
+        setSent({ phone: r.phone, dev: !!r.dev_console });
+        setCode('');
+      },
+      onError: (e2) => setErr(errText(e2)),
+    });
+  };
+
+  const verifyCode = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (!sent) return;
+    setErr(null);
+    if (!/^\d{6}$/.test(code.trim())) return setErr({ msg: t('err.auth.otp_wrong') });
+    phoneSignIn.verify.mutate(
+      { phone: sent.phone, code: code.trim(), lang: lang as Locale },
+      { onSuccess: ({ user, created }) => done(t(created ? 'welcome' : 'welcomeBack', { name: user.display_name })), onError: (e2) => setErr(errText(e2)) },
+    );
+  };
 
   const switchMode = (m: AuthMode) => {
     setErr(null);
@@ -110,8 +148,6 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
     );
   }
 
-  const others = (accounts.data ?? []).slice(0, 4);
-
   return (
     <Screen gap={16} style={{ paddingBottom: 40 }}>
       {header}
@@ -128,31 +164,65 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
         ]}
       />
 
-      {!up && others.length ? (
-        <View style={{ gap: 8 }}>
-          <Txt label style={{ paddingHorizontal: 4 }}>
-            {t('accounts')}
+      {google.linkToken ? (
+        <Card gap={12}>
+          <Txt w={700} size={15}>
+            {t('linkTitle')}
           </Txt>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-            {others.map((a) => (
-              <Tap
-                key={a.id}
-                label={t('useAccount', { email: a.email })}
-                onPress={() => {
-                  setEmail(a.email);
-                  setErr(null);
-                }}
-                style={{ minHeight: 40, paddingHorizontal: 14, borderRadius: R.pill, backgroundColor: email === a.email ? B.lime : c.card, justifyContent: 'center' }}>
-                <Txt size={12.5} w={600} color={email === a.email ? B.limeInk : c.ink} lines={1}>
-                  {a.display_name}
-                </Txt>
-              </Tap>
-            ))}
+          <Txt size={13} dim>
+            {t('linkBody')}
+          </Txt>
+          <Field label={t('password')} value={linkPw} onChangeText={setLinkPw} secureTextEntry autoComplete="current-password" />
+          <View style={{ flexDirection: 'row', gap: 8 }}>
+            <CzButton label={t('linkButton')} icon="check" busy={google.isPending} onPress={() => google.link(linkPw)} />
+            <GhostButton label={t('notNow')} height={46} onPress={google.cancelLink} />
           </View>
-        </View>
+        </Card>
       ) : null}
 
-      <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      {byPhone ? (
+        <form onSubmit={sent ? verifyCode : sendCode} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <Card gap={14}>
+            <Field
+              label={t('phone')}
+              value={phone}
+              onChangeText={(v) => {
+                setPhone(v);
+                setSent(null);
+              }}
+              placeholder={t('phonePh')}
+              type="tel"
+              keyboardType="phone-pad"
+              autoComplete="tel"
+            />
+            {sent ? (
+              <Field
+                label={t('code')}
+                value={code}
+                onChangeText={setCode}
+                placeholder={t('codePh')}
+                keyboardType="number-pad"
+                autoComplete="one-time-code"
+                inputMode="numeric"
+              />
+            ) : null}
+          </Card>
+          {sent ? (
+            <Txt size={12} dim center>
+              {t('codeSent', { phone: sent.phone })}
+              {sent.dev ? ` ${t('devCode')}` : ''}
+            </Txt>
+          ) : null}
+          {err ? (
+            <Note tone="danger" icon={I.warn}>
+              {err.msg}
+            </Note>
+          ) : null}
+          <CzButton label={busy ? t('submitting') : sent ? t('verify') : t('sendCode')} icon="check" type="submit" busy={busy} />
+          <GhostButton label={t('useEmail')} height={44} onPress={() => (setByPhone(false), setErr(null))} />
+        </form>
+      ) : (
+            <form onSubmit={submit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <Card gap={14}>
           {up ? (
             <Field
@@ -203,6 +273,7 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
         ) : null}
         <CzButton label={busy ? t('submitting') : up ? t('create') : t('signIn')} icon="check" type="submit" busy={busy} />
       </form>
+      )}
 
       <Txt size={11.5} dim center>
         {up ? `${t('deviceNote')} ${session.isGuest ? t('carryNote') : ''}` : t('deviceNote')}
@@ -243,6 +314,7 @@ export function AuthScreen({ mode, next: rawNext }: { mode: AuthMode; next?: str
         </Txt>
       ) : null}
 
+      {!byPhone ? <GhostButton label={t('usePhone')} height={46} onPress={() => (setByPhone(true), setErr(null))} /> : null}
       <GhostButton label={t('guest')} height={46} onPress={guest} disabled={continueAsGuest.isPending} />
       <Txt size={11.5} dim center>
         {t('locationNote')}

@@ -20,12 +20,15 @@ export function userCtx(over: Partial<DataContext> = {}): DataContext {
     presentation: false,
     lang: 'en',
     prefs: DEFAULT_PREFS,
+    role: 'user',
+    avatarUrl: null,
+    offline: false,
     ...over,
   };
 }
 
 export function guestCtx(): DataContext {
-  return userCtx({ ns: 'guest', kind: 'guest', userId: 'guest', displayName: '', email: null });
+  return userCtx({ ns: 'guest', kind: 'guest', userId: 'guest', displayName: '', email: null, role: 'guest' });
 }
 
 export function demoCtx(): DataContext {

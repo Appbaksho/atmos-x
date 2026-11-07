@@ -10,10 +10,24 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
  */
 process.env.ATMOS_BUILD_ID ||= new Date().toISOString().replace(/\D/g, '').slice(0, 14);
 
+/** FastAPI origin (prompt-v1 §8.2). Same-origin rewrites keep session cookies first-party. */
+const API_ORIGIN = (process.env.API_ORIGIN || 'http://localhost:8000').replace(/\/+$/, '');
+
 const nextConfig: NextConfig = {
   // Self-contained server for the Docker image (apps/web/Dockerfile).
   output: 'standalone',
   env: { NEXT_PUBLIC_BUILD_ID: process.env.ATMOS_BUILD_ID },
+  async rewrites() {
+    // beforeFiles: checked before pages, so the [locale]/[...rest] catch-all never shadows them.
+    return {
+      beforeFiles: [
+        { source: '/api/v1/:path*', destination: `${API_ORIGIN}/api/v1/:path*` },
+        { source: '/media/:path*', destination: `${API_ORIGIN}/media/:path*` },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
   async headers() {
     return [
       {

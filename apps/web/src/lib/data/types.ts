@@ -35,7 +35,7 @@ export type Money = { amount: number; currency: string };
 
 /* ───────────────────────────── Users & prefs ───────────────────────────── */
 
-export type Role = 'guest' | 'user' | 'admin';
+export type Role = 'guest' | 'user' | 'moderator' | 'admin';
 
 export type User = {
   id: string;
@@ -63,8 +63,11 @@ export type Profile = {
   farmer_mode: boolean;
   ask_on: boolean;
   onboarded: boolean;
-  /** v0 only: Presentation mode (demo story loaded, location pinned to Dhaka) */
+  /** Presentation mode: signed in as a server demo user (prompt-v1 §8.4) */
   presentation?: boolean;
+  bio?: string | null;
+  /** Public area label, e.g. "Mohammadpur, Dhaka" */
+  area_label?: string | null;
 };
 
 export type Level = { level: number; name_code: string; min: number; next: number | null };
