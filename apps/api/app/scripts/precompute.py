@@ -24,7 +24,17 @@ async def main() -> None:
         cells = hp.region_cells(reg.south, reg.west, reg.north, reg.east)
         print(f"{reg.name}: {len(cells)} hexes")
         tmax = await today_tmax(db, (reg.south + reg.north) / 2, (reg.west + reg.east) / 2)
-        r = await hp.compute_area(db, area_kind="region", area_key=reg.id, cells=cells, tmax_c=tmax)
+        from app.config import settings
+        from app.services import ecostress as eco
+
+        r = await hp.compute_area(
+            db,
+            area_kind="region",
+            area_key=reg.id,
+            cells=cells,
+            tmax_c=tmax,
+            ecostress=eco.layer if settings.earthdata_enabled else None,
+        )
         from datetime import UTC, datetime
 
         reg.last_run_at = datetime.now(UTC)

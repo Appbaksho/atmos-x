@@ -366,7 +366,7 @@ async def _build(db, center, k, radius_m, composite_key, status, rows, missing, 
             id=zone_id(scan.id, rank),
             scan_id=scan.id,
             rank=rank,
-            name=label_row,
+            name=label_row or {},
             score=cl.score,
             lst_c=cl.lst_c,
             label="satellite" if sat_share >= 0.5 else "estimate",
@@ -398,7 +398,7 @@ async def _build(db, center, k, radius_m, composite_key, status, rows, missing, 
 
 async def _stored_label(db: AsyncSession, lat: float, lng: float, lang: str) -> dict | None:
     """Zone name from the place-label cache only (the request path never waits for Nominatim)."""
-    key = h3.latlng_to_cell(lat, lng, 9)
+    key = "z:" + h3.latlng_to_cell(lat, lng, 9)
     rows = (
         await db.execute(text("SELECT lang, label FROM place_labels WHERE key = :k AND source = 'zone'"), {"k": key})
     ).all()

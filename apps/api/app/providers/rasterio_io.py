@@ -147,3 +147,23 @@ def cells_bbox(cells: list[str], pad_deg: float = 0.002) -> tuple[float, float, 
             lats.append(la)
             lngs.append(ln)
     return (min(lngs) - pad_deg, min(lats) - pad_deg, max(lngs) + pad_deg, max(lats) + pad_deg)
+
+
+def _read_point(url: str, lat: float, lng: float, band: int, headers: dict | None):
+    env = dict(GDAL_ENV)
+    if headers:
+        env["GDAL_HTTP_HEADERS"] = "\r\n".join(f"{k}: {v}" for k, v in headers.items())
+    with rasterio.Env(**env):
+        with rasterio.open(url) as src:
+            tr = Transformer.from_crs("EPSG:4326", src.crs, always_xy=True)
+            x, y = tr.transform(lng, lat)
+            row, col = src.index(x, y)
+            if not (0 <= row < src.height and 0 <= col < src.width):
+                return None
+            v = src.read(band, window=((row, row + 1), (col, col + 1)))[0, 0]
+            return v.item() if hasattr(v, "item") else v
+
+
+async def read_point(url: str, lat: float, lng: float, *, band: int = 1, headers: dict | None = None):
+    async with READ_SLOTS:
+        return await asyncio.to_thread(_read_point, url, lat, lng, band, headers)

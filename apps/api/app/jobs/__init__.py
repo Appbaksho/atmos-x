@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from apscheduler.triggers.cron import CronTrigger
 
-from . import heat
+from . import climate, heat, weather  # noqa: F401  (registers handlers)
 
 SCHEDULE: list[dict] = [
     # Dhaka (and any other enabled region) nightly at 21:30 UTC = 03:30 Dhaka.

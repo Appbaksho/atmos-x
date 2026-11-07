@@ -388,7 +388,7 @@ async def compute_area(
     eco_passes = 0
     if ecostress is not None:
         try:
-            eco_day, eco_night, eco_passes = await ecostress(grid, codes, n, start120, today)
+            eco_day, eco_night, eco_passes = await ecostress(grid, codes, n, start120, today, bbox)
             if eco_day is not None:
                 eco_anom = eco_day
             if eco_night is not None and np.isfinite(eco_night).any():
