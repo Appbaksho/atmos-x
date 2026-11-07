@@ -23,8 +23,7 @@
   "sensSub": "Criança, idoso ou pessoa com problema cardíaco ou pulmonar · salvo só neste celular",
   "lead": "Proteção em primeiro lugar. Siga a orientação do seu médico em dias de poluição alta.",
   "sensors": "Meus sensores",
-  "sensorsSub": "Comparado com a estimativa da área",
-  "simulated": "Dispositivo simulado (v0)",
+  "sensorsSub": "{count, plural, one {{n} dispositivo PM2.5 seu} other {{n} dispositivos PM2.5 seus}}",
   "noSensors": "Ainda sem sensores",
   "noSensorsSub": "Conecte um sensor de PM2.5 para comparar sua rua com a área.",
   "offline": "Sem conexão",
@@ -42,8 +41,7 @@
   },
   "remove": "Remover {name}",
   "removed": "Sensor removido",
-  "simNote": "v0 simula leituras de PM2.5 da área (±8 %), atualizadas a cada 5 minutos. Os envios do dispositivo real chegam na v1.",
-  "guestDevices": "Os sensores são salvos na sua conta neste dispositivo.",
+  "guestDevices": "Os sensores ficam salvos na sua conta Atmos X.",
   "addSensorFeature": "adicionar um sensor",
   "addTitle": "Adicionar sensor",
   "addSub": "As leituras ficam privadas por 7 dias",
@@ -88,5 +86,15 @@
       "parts": "Conecte pelo ID do sensor, somente leitura",
       "best": "Sem novo hardware"
     }
-  }
+  },
+  "realNote": "Seu sensor envia as próprias leituras de PM2.5 com um token privado. Leituras com mais de 6 horas mostram o aparelho offline.",
+  "tokenTitle": "Sensor adicionado",
+  "tokenSub": "Configure {name} para enviar leituras",
+  "tokenLabel": "Token de envio",
+  "tokenOnce": "Copie agora: aparece só uma vez. Quem tiver o token pode enviar leituras como este sensor.",
+  "curlLabel": "Teste de um computador",
+  "curlNote": "Envie no máximo uma leitura por minuto. PM2.5 em µg/m³ (0–1000); pm10, temp_c e rh são opcionais.",
+  "copy": "Copiar",
+  "copied": "Copiado",
+  "done": "Pronto"
 }

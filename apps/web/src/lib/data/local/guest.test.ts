@@ -58,7 +58,6 @@ describe('guest restrictions (§4.5)', () => {
     expect(readings[0].id).toBe(s.id);
     expect(readings[0].pm25).toBeGreaterThan(60 * 0.9);
     expect(readings[0].pm25).toBeLessThan(60 * 1.1);
-    expect(readings[0].simulated).toBe(true);
   });
 });
 

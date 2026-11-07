@@ -16,7 +16,7 @@ export function useFocusPoint(): LatLng | null {
 }
 
 export function clampRadius(r: number, guest: boolean): number {
-  const v = Math.max(100, Math.min(1000, Math.round(r || 500)));
+  const v = Math.max(100, Math.min(1000, Math.round(r || 200)));
   return guest ? Math.min(v, GUEST_MAX_RADIUS_M) : v;
 }
 

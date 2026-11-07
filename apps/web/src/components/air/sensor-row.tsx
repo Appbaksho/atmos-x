@@ -21,7 +21,7 @@ export function SensorRow({ sensor, areaPm, last }: { sensor: SensorSummary; are
           {sensor.name}
         </Txt>
         <Txt size={11.5} dim lines={1} num>
-          {[sensor.simulated ? t('simulated') : null, sensor.last_seen ? f.rel(sensor.last_seen) : t('never')]
+          {[sensor.last_seen ? f.rel(sensor.last_seen) : t('never')]
             .filter(Boolean)
             .join(' · ')}
         </Txt>

@@ -5,17 +5,17 @@
   "title": "热力图",
   "within": "范围",
   "withinR": "在 {r} 内",
-  "estimateShort": "OSM + 实时天气",
-  "estimateNote": "热量估算：OpenStreetMap 地表覆盖 + 实时天气。分数只比较本次扫描内的街区；不是卫星测量。",
+  "estimateShort": "土地覆盖估算",
+  "estimateNote": "Heat Score：每个 15,000 平方米六边形的 NASA/USGS Landsat 地表温度（有数据时用 ECOSTRESS 细化）、MODIS 夜间热量和 ESA WorldCover 土地覆盖。灰色六边形暂无数据。",
   "yourArea": "你的区域",
   "mapA11y": "{place} 的热力图",
   "layersLabel": "地图图层",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "地表 °C"
   },
   "legendA11y": "Heat Score 图例：{bands}",
-  "gibsNote": "NASA 地表温度 · 每月 · 约 1 km",
+  "gibsNote": "缩小：NASA MODIS 每日地表温度（约 1 公里）。放大：Landsat 六边形。",
   "ranked": "你范围内最热",
   "count": "{count, plural, one {{n} 个区域} other {{n} 个区域}}",
   "nearTie": "接近持平",
@@ -34,5 +34,12 @@
   },
   "attribution": {
     "osm": "© OpenStreetMap 贡献者"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} 个六边形 · {r}",
+  "landsatDates": "卫星影像 {from} – {to} · {n} 景",
+  "lstLegendA11y": "地表温度颜色：从冷蓝到热红",
+  "gibsNoteDated": "NASA MODIS 地表温度，{date}（约 1 公里）· 放大查看 Landsat 六边形",
+  "scanningSat": "正在扫描卫星数据…",
+  "scanningSatPct": "正在扫描卫星数据… {pct}%"
 }

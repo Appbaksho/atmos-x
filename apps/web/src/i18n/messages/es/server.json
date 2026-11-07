@@ -11,7 +11,11 @@
     "heatwave_severe": "Se espera una ola de calor severa: hasta {tmax} °C el {day}, hasta {until}. Basado en umbrales de BMD, no es una alerta oficial.",
     "heatwave_very_severe": "Se espera una ola de calor muy severa: hasta {tmax} °C el {day}, hasta {until}. Basado en umbrales de BMD, no es una alerta oficial.",
     "heat_danger": "Calor peligroso: sensación térmica de hasta {feels} °C el {day}. Evita el sol del mediodía y toma agua con frecuencia.",
-    "heat_extreme": "Calor extremo: sensación térmica de hasta {feels} °C el {day}. Quédate a la sombra y revisa a tus vecinos mayores."
+    "heat_extreme": "Calor extremo: sensación térmica de hasta {feels} °C el {day}. Quédate a la sombra y revisa a tus vecinos mayores.",
+    "coldwave_mild": "Ola de frío leve prevista: hasta {tmin} °C el {day}, hasta el {until}. Según los umbrales del BMD, no es un aviso oficial.",
+    "coldwave_moderate": "Ola de frío moderada prevista: hasta {tmin} °C el {day}, hasta el {until}. Según los umbrales del BMD, no es un aviso oficial.",
+    "coldwave_severe": "Ola de frío severa prevista: hasta {tmin} °C el {day}, hasta el {until}. Según los umbrales del BMD, no es un aviso oficial.",
+    "coldwave_very_severe": "Ola de frío muy severa prevista: hasta {tmin} °C el {day}, hasta el {until}. Según los umbrales del BMD, no es un aviso oficial."
   },
   "bmd": {
     "mild": "Ola de calor leve",
@@ -29,27 +33,37 @@
   },
   "cause": {
     "sealed_surface": "{pct}% de superficie sellada (techos, pavimento, calles) absorbe el sol: añade unos {adds_c} °C",
-    "wide_roads": "Las calles cubren {pct}% del suelo: añade unos {adds_c} °C",
-    "low_green": "Solo {pct}% de cobertura verde: unos {adds_c} °C menos de enfriamiento que un barrio más verde",
-    "dense_buildings": "Densidad de edificios ({per_ha} por hectárea) atrapa el calor y bloquea el viento: añade unos {adds_c} °C",
-    "dark_roofs": "Aproximadamente {pct}% de los techos son oscuros (supuesto): añade unos {adds_c} °C"
+    "wide_roads": "Las calles cubren el {pct}% del suelo",
+    "low_green": "Solo un {pct}% de vegetación: suma unos {adds_c} °C frente a la media de la zona",
+    "dense_buildings": "Los edificios cubren el {pct}% del suelo: retienen calor y frenan el viento",
+    "dark_surfaces": "El {pct}% de las superficies construidas se ve oscuro en las imágenes Landsat: suma unos {adds_c} °C",
+    "hot_nights": "Las noches son {delta_c} °C más cálidas que el entorno (lecturas nocturnas de satélites de la NASA)",
+    "dense_population": "Aquí vive mucha gente, así que el calor afecta a más personas"
   },
   "assumption": {
-    "trend": "Tendencia: {per_decade} °C por década en la temperatura máxima diaria del aire en la estación cálida ({from}–{to}, archivo de Open-Meteo), extendida a 2040.",
     "hot_season": "Temporada cálida usada para la tendencia: meses {months}.",
     "tree_ramp": "Los árboles enfrían al crecer: 20% del efecto total en el año 1, 50% en el año 3, 80% en el año 5, 100% desde el año 8.",
     "tree_cooling": "100 árboles maduros enfrían esta zona ({area_km2} km²) en unos {per_100_trees} °C.",
     "roof_cooling": "1,000 m² de techo frío enfrían esta zona en unos {per_1000_m2} °C.",
     "inputs": "Plan en esta proyección: {trees} árboles, {roof_m2} m² de techo frío, {shade} estructuras de sombra.",
-    "ranges": "Son rangos, no promesas: una estimación con la cobertura del suelo y coeficientes de enfriamiento publicados."
+    "ranges": "Rangos, no promesas: el enfriamiento usa coeficientes publicados y es una estimación.",
+    "surface": {
+      "modis_hot_season": "Punto de partida: la temperatura superficial media de la zona en la estación cálida de los últimos 3 años (NASA MODIS, 1 km).",
+      "landsat_zone": "Punto de partida: la temperatura superficial reciente de la zona según Landsat (su historial aún se está cargando)."
+    },
+    "warming": {
+      "cmip6": "Calentamiento: {per_decade} °C por década, la media de {models} modelos climáticos NASA NEX-GDDP-CMIP6 (SSP2-4.5) para la estación cálida.",
+      "modis_trend": "Calentamiento: {per_decade} °C por década, la tendencia observada en la temperatura superficial de la estación cálida según NASA MODIS.",
+      "none": "Calentamiento: aún no hay tendencia disponible, así que la línea es plana."
+    }
   },
   "feas": {
     "trees_vs_space": "{trees} árboles necesarios; el suelo abierto y los bordes de la calle caben aprox. {capacity}.",
     "roofs_vs_space": "{roof_m2} m² de techo frío necesarios; aprox. {capacity_m2} m² de techo parecen usables.",
-    "max_cooling": "Con el espacio disponible, unos {max_c} °C son realistas.",
+    "max_cooling": "Con el espacio disponible, unos {max_c} °C son realistas en {years} años.",
     "spots_unknown": "No pudimos cargar los sitios de plantación, así que no se revisó el espacio.",
-    "action_goal": "En menos de 6 meses, esto es una meta de acción: seguimos el trabajo, porque el enfriamiento tarda más en verse.",
-    "trees_take_years": "Los árboles necesitan años para dar sombra completa; la mayor parte del enfriamiento llega después de la fecha meta."
+    "action_goal": "Con menos de 3 años es una meta de acciones: seguimos la plantación y los techos, y mostramos el enfriamiento a largo plazo al lado.",
+    "trees_take_years": "Para la fecha de la meta, los árboles dan cerca del {ramp_pct}% de su enfriamiento total; el resto llega después."
   },
   "plan": {
     "why": {
@@ -213,6 +227,25 @@
       "farm": "Sí. Tu arroz Aman está en floración (detectado por satélite el 28 Sep) y el domingo alcanzará 36°. Sube el nivel del agua estancada a 5 cm esta tarde y añade más agua el domingo al amanecer.",
       "tree_due": "{name} necesita su foto de 15 días. Toma una nueva foto para que podamos revisar su salud; en olas de calor, riégalo a fondo por la tarde y mantén un anillo de mantillo alrededor de la base.",
       "tree": "Los árboles jóvenes necesitan riego profundo dos veces por semana en clima caliente y seco, un anillo de mantillo alrededor de la base y un protector. Añade una foto cada 15 días para que podamos revisar su salud."
+    }
+  },
+  "why": {
+    "hotter": "En las imágenes de satélite recientes, la superficie de esta zona está {delta_c} °C más caliente que su entorno.",
+    "cooler": "En las imágenes de satélite recientes, la superficie de esta zona está {delta_c} °C más fresca que su entorno.",
+    "typical": "Su temperatura superficial está cerca de la media de la zona.",
+    "one": {
+      "sealed": "La razón principal: el {pct}% del suelo está sellado (techos, pavimento, calles), lo que suma unos {adds_c} °C.",
+      "green": "La razón principal: solo el {pct}% es verde, lo que suma unos {adds_c} °C.",
+      "dark_surface": "La razón principal: el {pct}% de sus superficies construidas es oscuro, lo que suma unos {adds_c} °C."
+    },
+    "also": {
+      "sealed": "Las superficies selladas ({pct}%) suman unos {adds_c} °C más.",
+      "green": "La poca vegetación ({pct}%) suma unos {adds_c} °C más.",
+      "dark_surface": "Las superficies oscuras ({pct}% de lo construido) suman unos {adds_c} °C más."
+    },
+    "help": {
+      "green": "Añadir un {add_pct}% más de vegetación enfriaría la superficie unos {drop_c} °C.",
+      "roofs": "Con tanta superficie de techo, los techos fríos y las azoteas verdes ayudan más."
     }
   }
 }

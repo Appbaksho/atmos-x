@@ -5,17 +5,17 @@
   "title": "Carte de chaleur",
   "within": "Rayon",
   "withinR": "Dans un rayon de {r}",
-  "estimateShort": "OSM + météo en direct",
-  "estimateNote": "Estimation de chaleur : couverture du sol OpenStreetMap + météo en direct. Les scores comparent les blocs de cette analyse ; ce ne sont pas des mesures satellite.",
+  "estimateShort": "estimation par l’occupation du sol",
+  "estimateNote": "Heat Score : température de surface NASA/USGS Landsat (affinée par ECOSTRESS si disponible), chaleur nocturne MODIS et occupation du sol ESA WorldCover, par hexagone de 15 000 m². Les hexagones gris n’ont pas encore de données.",
   "yourArea": "votre zone",
   "mapA11y": "Carte de chaleur de {place}",
   "layersLabel": "Calque",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "Surface °C"
   },
   "legendA11y": "Légende Heat Score : {bands}",
-  "gibsNote": "Température de surface terrestre NASA · mensuelle · ~1 km",
+  "gibsNote": "Vue éloignée : température de surface quotidienne NASA MODIS (~1 km). Vue rapprochée : hexagones Landsat.",
   "ranked": "Les plus chaudes dans votre rayon",
   "count": "{count, plural, one {{n} zone} other {{n} zones}}",
   "nearTie": "Égalité proche",
@@ -34,5 +34,12 @@
   },
   "attribution": {
     "osm": "© contributeurs OpenStreetMap"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} hexagones · {r}",
+  "landsatDates": "Images satellite {from} – {to} · {n} scènes",
+  "lstLegendA11y": "Couleurs de température de surface, du bleu frais au rouge chaud",
+  "gibsNoteDated": "Température de surface NASA MODIS, {date} (~1 km) · zoomez pour les hexagones Landsat",
+  "scanningSat": "Analyse des données satellite…",
+  "scanningSatPct": "Analyse des données satellite… {pct} %"
 }

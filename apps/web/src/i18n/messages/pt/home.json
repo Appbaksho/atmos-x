@@ -24,7 +24,7 @@
   "why": "Por que está quente",
   "hottest": "Áreas mais quentes perto de você",
   "seeMap": "Ver mapa",
-  "lst": "Telhado e rua",
+  "lst": "Superfície",
   "hum": "Umidade",
   "wind": "Vento",
   "upd": "Atualizado",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "Superfícies seladas {pct}%",
     "low_green": "Área verde {pct}%",
-    "dense_buildings": "Edificações densas {per_ha}/ha",
+    "dense_buildings": "Prédios {pct}%",
     "wide_roads": "Ruas {pct}%",
-    "dark_roofs": "Telhados escuros {pct}%"
+    "dark_roofs": "Telhados escuros {pct}%",
+    "dark_surfaces": "Escuro {pct}%",
+    "hot_nights": "Noites quentes +{delta_c}°",
+    "dense_population": "Populoso"
   },
   "whatIf": "+ Verde",
   "whatIfA11y": "Cobertura verde adicionada",

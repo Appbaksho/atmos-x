@@ -10,7 +10,7 @@ import type { HexCell, LatLng, ZoneSummary } from '@/lib/data/types';
 type Position = [number, number];
 type Ring = Position[];
 
-export type HexProps = { h3: string; score: number; lst_c: number; color: string; order: number; zone: string };
+export type HexProps = { h3: string; score: number | null; lst_c: number | null; label: HexCell['label']; color: string; lstColor: string; order: number; zone: string };
 export type HexFeature = { type: 'Feature'; id: number; geometry: { type: 'Polygon'; coordinates: Ring[] }; properties: HexProps };
 export type ZoneFeature = {
   type: 'Feature';
@@ -21,14 +21,33 @@ export type FC<F> = { type: 'FeatureCollection'; features: F[] };
 
 const closeRing = (r: Ring): Ring => (r.length && (r[0][0] !== r[r.length - 1][0] || r[0][1] !== r[r.length - 1][1]) ? [...r, r[0]] : r);
 
+/** Surface temperature ramp for the LST layer: ≤ 26 °C blue → 34 yellow → ≥ 42 °C deep red. */
+export const LST_STOPS: [number, string][] = [
+  [26, '#2F6FD0'],
+  [30, '#4CAF50'],
+  [34, '#F2D04B'],
+  [38, '#F29A38'],
+  [42, '#A3242B'],
+];
+
+export function lstColor(c: number): string {
+  if (c <= LST_STOPS[0][0]) return LST_STOPS[0][1];
+  for (let i = 1; i < LST_STOPS.length; i++) if (c <= LST_STOPS[i][0]) return LST_STOPS[i][1];
+  return LST_STOPS[LST_STOPS.length - 1][1];
+}
+
+/** Colour for a hex with no satellite or land-cover value: a distinct "no data" grey, never a guess (H5). */
+export const NO_DATA_COLOR = '#9AA6B2';
+
 /**
  * Hex cells as GeoJSON polygons. `order` (0–1) sorts cells by score so the scan animation can fade
  * them in from coolest to hottest; `zone` is the id of the zone the cell belongs to ('' if none).
+ * No-data hexes stay in the ring with their own style (H5).
  */
 export function hexCollection(hexes: HexCell[], zones: ZoneSummary[]): FC<HexFeature> {
   const zoneOf = new Map<string, string>();
   for (const z of zones) for (const h of z.h3) zoneOf.set(h, z.id);
-  const sorted = [...hexes].sort((a, b) => a.score - b.score);
+  const sorted = [...hexes].sort((a, b) => (a.score ?? -1) - (b.score ?? -1));
   const rank = new Map(sorted.map((h, i) => [h.h3, sorted.length > 1 ? i / (sorted.length - 1) : 1]));
   return {
     type: 'FeatureCollection',
@@ -36,7 +55,16 @@ export function hexCollection(hexes: HexCell[], zones: ZoneSummary[]): FC<HexFea
       type: 'Feature',
       id: i,
       geometry: { type: 'Polygon', coordinates: [closeRing(cellToBoundary(h.h3, true) as Ring)] },
-      properties: { h3: h.h3, score: h.score, lst_c: h.lst_c, color: heatColor(h.score), order: rank.get(h.h3) ?? 1, zone: zoneOf.get(h.h3) ?? '' },
+      properties: {
+        h3: h.h3,
+        score: h.score,
+        lst_c: h.lst_c,
+        label: h.label,
+        color: h.score == null || h.label === 'no_data' ? NO_DATA_COLOR : heatColor(h.score),
+        lstColor: h.lst_c == null ? NO_DATA_COLOR : lstColor(h.lst_c),
+        order: rank.get(h.h3) ?? 1,
+        zone: zoneOf.get(h.h3) ?? '',
+      },
     })),
   };
 }
@@ -53,6 +81,12 @@ export function zoneCollection(zones: ZoneSummary[]): FC<ZoneFeature> {
         properties: { id: z.id, rank: z.rank, score: z.score, near_tie: z.near_tie },
       })),
   };
+}
+
+/** The scan area as the outline of the hex ring (H1), from the scan's `outline` ([lng, lat] rings). */
+export function ringOutline(outline: number[][][] | null | undefined): { type: 'Feature'; geometry: { type: 'Polygon'; coordinates: Ring[] }; properties: Record<string, never> } | null {
+  if (!outline?.length) return null;
+  return { type: 'Feature', geometry: { type: 'Polygon', coordinates: outline.map((r) => closeRing(r as Ring)) }, properties: {} };
 }
 
 /** Circle polygon (GeoJSON, [lng, lat]) around a point. */
@@ -111,19 +145,21 @@ export function cellsAreaM2(cells: string[]): number {
   return cells.reduce((a, h) => a + cellArea(h, 'm2'), 0);
 }
 
-/** H3 resolution the server uses for a scan radius (prompt-v0 §5.1). */
-export const resForRadius = (r: number) => (r <= 300 ? 11 : 10);
-/** Approximate number of H3 cells in a scan circle. */
-export function cellCount(radiusM: number): number {
-  const avg = resForRadius(radiusM) === 11 ? 2_150 : 15_047;
-  return Math.max(1, Math.round((Math.PI * radiusM * radiusM) / avg));
-}
+/** H3 resolution of every scan (prompt-v1 §3.4): res 10, about 15,000 m² per hex. */
+export const H3_RES = 10;
+/** Ring size k for a radius at res 10: ceil(r / 135 m) (H2). */
+export const ringK = (radiusM: number) => Math.max(1, Math.ceil(radiusM / 135));
+/** Hexes in a ring of size k: 200 m → 19, 500 m → 61, 1 km → 217. Shown before the scan answers. */
+export const ringCount = (radiusM: number) => {
+  const k = ringK(radiusM);
+  return 1 + 3 * k * (k + 1);
+};
 
 /**
  * Hex cells projected into an SVG box (for small zone thumbnails). Returns polygon point strings
  * in a `size`×`size` viewBox, padded.
  */
-export function cellsToSvg(cells: { h3: string; score: number }[], size = 100, pad = 8, minSpanDeg = 0.0045): { pts: string; score: number }[] {
+export function cellsToSvg(cells: { h3: string; score: number | null }[], size = 100, pad = 8, minSpanDeg = 0.0045): { pts: string; score: number | null }[] {
   const rings = cells.map((c) => ({ ring: cellToBoundary(c.h3, true) as Ring, score: c.score }));
   let w = Infinity;
   let s = Infinity;

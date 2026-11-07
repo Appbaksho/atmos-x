@@ -283,10 +283,300 @@ export interface paths {
         patch: operations["me_profile_patch"];
         trace?: never;
     };
+    "/api/v1/zones": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Zones */
+        get: operations["zones_scan"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/zones/{zone_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Zone */
+        get: operations["zone_detail"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/zones/{zone_id}/projection": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Zone Projection */
+        get: operations["zone_projection"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/zones/{zone_id}/planting-spots": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Zone Spots */
+        get: operations["zone_planting_spots"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/scan-jobs/{job_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Scan Job */
+        get: operations["scan_job"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/conditions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Conditions */
+        get: operations["conditions"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/air": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Air */
+        get: operations["air"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/geo/reverse": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Reverse */
+        get: operations["geo_reverse"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/geo/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search */
+        get: operations["geo_search"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/geo/ip": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Ip
+         * @description City from the caller's IP using the local DB-IP file (no IP goes to a third party).
+         */
+        get: operations["geo_ip"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/map/gibs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Gibs */
+        get: operations["map_gibs"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sensors/mine": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Mine */
+        get: operations["sensors_mine"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sensors": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add */
+        post: operations["sensors_add"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sensors/{sensor_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete */
+        delete: operations["sensors_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/sensors/ingest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Ingest */
+        post: operations["sensors_ingest"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** Acquired */
+        Acquired: {
+            /** Lst From */
+            lst_from: string | null;
+            /** Lst To */
+            lst_to: string | null;
+            /** Lst Scenes */
+            lst_scenes: number;
+            /** Ndvi Date */
+            ndvi_date: string | null;
+            /** Worldcover Year */
+            worldcover_year: number | null;
+            /** Ecostress Passes */
+            ecostress_passes: number;
+            /** Night Source */
+            night_source?: string | null;
+            /** Night To */
+            night_to?: string | null;
+            /** Window Days */
+            window_days?: number | null;
+        };
+        /** Contribution */
+        Contribution: {
+            /** Driver */
+            driver: string;
+            /** Value */
+            value: number;
+            /** Unit */
+            unit: string;
+            /** Adds C */
+            adds_c: number;
+        };
         /** GoogleConfigOut */
         GoogleConfigOut: {
             /** Enabled */
@@ -333,6 +623,49 @@ export interface components {
             /** Pipeline Version */
             pipeline_version: string;
         };
+        /** HexOut */
+        HexOut: {
+            /** H3 */
+            h3: string;
+            /** Score */
+            score: number | null;
+            /** Lst C */
+            lst_c: number | null;
+            /**
+             * Label
+             * @enum {string}
+             */
+            label: "satellite" | "estimate" | "no_data";
+        };
+        /** HistoryPoint */
+        HistoryPoint: {
+            /** Year */
+            year: number;
+            /** Day Lst C */
+            day_lst_c: number | null;
+            /** Night Lst C */
+            night_lst_c: number | null;
+        };
+        /** I18nText */
+        I18nText: {
+            /** Code */
+            code: string;
+            /** Params */
+            params?: {
+                [key: string]: string | number;
+            } | null;
+        };
+        /** JobOut */
+        JobOut: {
+            /** Status */
+            status: string;
+            /** Progress */
+            progress: number;
+            /** Done Cells */
+            done_cells: number;
+            /** Total Cells */
+            total_cells: number;
+        };
         /** LatLng */
         LatLng: {
             /** Lat */
@@ -346,6 +679,25 @@ export interface components {
             email: string;
             /** Password */
             password: string;
+        };
+        /** Meta */
+        Meta: {
+            /**
+             * Live
+             * @default true
+             */
+            live?: boolean;
+            /**
+             * Stale
+             * @default false
+             */
+            stale?: boolean;
+            /** Generated At */
+            generated_at?: string;
+            /** Sources */
+            sources?: components["schemas"]["Source"][];
+            /** Pipeline Version */
+            pipeline_version?: string | null;
         };
         /** Ok */
         Ok: {
@@ -457,6 +809,19 @@ export interface components {
             /** Onboarded */
             onboarded?: boolean | null;
         };
+        /** ReadingIn */
+        ReadingIn: {
+            /** Pm25 */
+            pm25: number;
+            /** Pm10 */
+            pm10?: number | null;
+            /** Temp C */
+            temp_c?: number | null;
+            /** Rh */
+            rh?: number | null;
+            /** Taken At */
+            taken_at?: string | null;
+        };
         /** RegisterIn */
         RegisterIn: {
             /** Email */
@@ -471,6 +836,52 @@ export interface components {
             /** Lang */
             lang?: ("en" | "bn" | "ur" | "hi" | "ar" | "es" | "fr" | "pt" | "id" | "zh") | null;
         };
+        /** ScanInfo */
+        ScanInfo: {
+            /** Id */
+            id: string;
+            center: components["schemas"]["LatLng"];
+            /** Center Cell */
+            center_cell: string;
+            /** Radius M */
+            radius_m: number;
+            /** K */
+            k: number;
+            /** H3 Res */
+            h3_res: number;
+            /** Cell Count */
+            cell_count: number;
+            /** Place */
+            place: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "complete" | "partial" | "unavailable";
+            /** Job Id */
+            job_id: string | null;
+            acquired: components["schemas"]["Acquired"];
+            /** Baseline Lst C */
+            baseline_lst_c: number | null;
+            /**
+             * Method
+             * @enum {string}
+             */
+            method: "landsat" | "modis" | "landcover";
+            /** Outline */
+            outline: number[][][];
+        };
+        /** SensorIn */
+        SensorIn: {
+            /** Name */
+            name: string;
+            /** Model */
+            model?: string | null;
+            /** Lat */
+            lat?: number | null;
+            /** Lng */
+            lng?: number | null;
+        };
         /** SessionOut */
         SessionOut: {
             user: components["schemas"]["UserOut"];
@@ -479,6 +890,21 @@ export interface components {
              * @default false
              */
             created?: boolean;
+        };
+        /** Source */
+        Source: {
+            /** Id */
+            id: string;
+            /** Name */
+            name: string;
+            /** Url */
+            url?: string | null;
+            /** As Of */
+            as_of?: string | null;
+            /** Kind */
+            kind?: ("observation" | "model" | "forecast" | "derived" | "estimate" | "reference" | "demo") | null;
+            /** Resolution M */
+            resolution_m?: number | null;
         };
         /** SourceStatus */
         SourceStatus: {
@@ -569,6 +995,156 @@ export interface components {
             input?: unknown;
             /** Context */
             ctx?: Record<string, never>;
+        };
+        /** WhatIf */
+        WhatIf: {
+            /** Add Green Pct */
+            add_green_pct: number;
+            /** Score After */
+            score_after: number | null;
+            /** Lst Drop C */
+            lst_drop_c: number;
+            /**
+             * Label
+             * @default estimate
+             */
+            label?: string;
+        };
+        /** ZoneDetailOut */
+        ZoneDetailOut: {
+            /** Id */
+            id: string;
+            /** Scan Id */
+            scan_id: string;
+            /** Name */
+            name: string;
+            name_text?: components["schemas"]["I18nText"] | null;
+            /** Score */
+            score: number;
+            /** Lst C */
+            lst_c: number | null;
+            /**
+             * Label
+             * @enum {string}
+             */
+            label: "satellite" | "estimate" | "no_data";
+            /** Dist M */
+            dist_m: number;
+            /** Rank */
+            rank: number;
+            /** Near Tie */
+            near_tie: boolean;
+            centroid: components["schemas"]["LatLng"];
+            /** H3 */
+            h3: string[];
+            /** Area Km2 */
+            area_km2: number;
+            drivers: components["schemas"]["ZoneDrivers"];
+            /** Air C */
+            air_c: number | null;
+            /** Feels C */
+            feels_c: number | null;
+            /** Causes */
+            causes: components["schemas"]["I18nText"][];
+            /** Why */
+            why: components["schemas"]["I18nText"][];
+            what_if_green: components["schemas"]["WhatIf"];
+            /** History */
+            history: components["schemas"]["HistoryPoint"][];
+            /**
+             * History Kind
+             * @default lst
+             * @constant
+             */
+            history_kind?: "lst";
+            /**
+             * History Status
+             * @default pending
+             * @enum {string}
+             */
+            history_status?: "ready" | "pending" | "unavailable";
+            /** Superseded By */
+            superseded_by: string | null;
+            /** Place */
+            place?: string | null;
+            meta: components["schemas"]["Meta"];
+        };
+        /** ZoneDrivers */
+        ZoneDrivers: {
+            /** Sealed Pct */
+            sealed_pct: number | null;
+            /** Green Pct */
+            green_pct: number | null;
+            /** Water Pct */
+            water_pct: number | null;
+            /** Ndvi */
+            ndvi: number | null;
+            /** Dark Roof Pct */
+            dark_roof_pct: number | null;
+            /** Pop Density Km2 */
+            pop_density_km2: number | null;
+            /** Night Lst C */
+            night_lst_c: number | null;
+            /** Estimated */
+            estimated: string[];
+            /** Contributions */
+            contributions: components["schemas"]["Contribution"][];
+            /** Other C */
+            other_c: number | null;
+            /** Anom Day C */
+            anom_day_c?: number | null;
+            /** Anom Night C */
+            anom_night_c?: number | null;
+            /** Fit */
+            fit?: {
+                [key: string]: unknown;
+            } | null;
+            /** As Of */
+            as_of: string | null;
+        };
+        /** ZoneSummary */
+        ZoneSummary: {
+            /** Id */
+            id: string;
+            /** Scan Id */
+            scan_id: string;
+            /** Name */
+            name: string;
+            name_text?: components["schemas"]["I18nText"] | null;
+            /** Score */
+            score: number;
+            /** Lst C */
+            lst_c: number | null;
+            /**
+             * Label
+             * @enum {string}
+             */
+            label: "satellite" | "estimate" | "no_data";
+            /** Dist M */
+            dist_m: number;
+            /** Rank */
+            rank: number;
+            /** Near Tie */
+            near_tie: boolean;
+            centroid: components["schemas"]["LatLng"];
+            /** H3 */
+            h3: string[];
+            /** Area Km2 */
+            area_km2: number;
+            drivers: components["schemas"]["ZoneDrivers"];
+        };
+        /** ZonesScanOut */
+        ZonesScanOut: {
+            scan: components["schemas"]["ScanInfo"];
+            /** Hexes */
+            hexes: components["schemas"]["HexOut"][];
+            /** Zones */
+            zones: components["schemas"]["ZoneSummary"][];
+            /** My Zone Id */
+            my_zone_id: string | null;
+            /** Satellite Cells */
+            satellite_cells: number;
+            meta: components["schemas"]["Meta"];
         };
     };
     responses: never;
@@ -1039,6 +1615,483 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProfileOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    zones_scan: {
+        parameters: {
+            query: {
+                lat: number;
+                lng: number;
+                radius_m?: number;
+                lang?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ZonesScanOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    zone_detail: {
+        parameters: {
+            query?: {
+                lang?: string;
+            };
+            header?: never;
+            path: {
+                zone_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ZoneDetailOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    zone_projection: {
+        parameters: {
+            query?: {
+                trees?: number;
+                roof_m2?: number;
+                shade?: number;
+            };
+            header?: never;
+            path: {
+                zone_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    zone_planting_spots: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                zone_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    scan_job: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                job_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    conditions: {
+        parameters: {
+            query: {
+                lat: number;
+                lng: number;
+                lang?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    air: {
+        parameters: {
+            query: {
+                lat: number;
+                lng: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    geo_reverse: {
+        parameters: {
+            query: {
+                lat: number;
+                lng: number;
+                lang?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    geo_search: {
+        parameters: {
+            query: {
+                q: string;
+                lang?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    geo_ip: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
+    map_gibs: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+        };
+    };
+    sensors_mine: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+        };
+    };
+    sensors_add: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SensorIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    sensors_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                sensor_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    sensors_ingest: {
+        parameters: {
+            query?: never;
+            header?: {
+                "x-sensor-token"?: string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReadingIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

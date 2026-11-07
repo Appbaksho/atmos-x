@@ -23,8 +23,7 @@
   "sensSub": "儿童、老人，或有心肺疾病 · 仅保存在这台手机上",
   "lead": "先做好防护。空气差时请遵医嘱。",
   "sensors": "我的传感器",
-  "sensorsSub": "与区域估算相比",
-  "simulated": "模拟设备（v0）",
+  "sensorsSub": "{count, plural, other {你的 {n} 个 PM2.5 设备}}",
   "noSensors": "还没有传感器",
   "noSensorsSub": "连接一个 PM2.5 传感器，把你街道的数据与区域数据对比。",
   "offline": "离线",
@@ -42,8 +41,7 @@
   },
   "remove": "移除 {name}",
   "removed": "传感器已移除",
-  "simNote": "v0 会模拟区域 PM2.5 读数（±8 %），每 5 分钟刷新一次。v1 将支持真实设备上传。",
-  "guestDevices": "传感器会保存在这台设备上的你的账户中。",
+  "guestDevices": "传感器保存在你的 Atmos X 账户中。",
   "addSensorFeature": "添加传感器",
   "addTitle": "添加传感器",
   "addSub": "读数会保密 7 天",
@@ -88,5 +86,15 @@
       "parts": "通过传感器 ID 连接，仅可读取",
       "best": "无需新硬件"
     }
-  }
+  },
+  "realNote": "你的传感器用私人令牌上传自己的 PM2.5 读数。超过 6 小时没有读数时显示为离线。",
+  "tokenTitle": "已添加传感器",
+  "tokenSub": "设置 {name} 上传读数",
+  "tokenLabel": "上传令牌",
+  "tokenOnce": "请立即复制：令牌只显示一次。持有它的人都能以此传感器的名义上传读数。",
+  "curlLabel": "在电脑上测试",
+  "curlNote": "每分钟最多上传一条读数。PM2.5 单位 µg/m³（0–1000）；pm10、temp_c 和 rh 可选。",
+  "copy": "复制",
+  "copied": "已复制",
+  "done": "完成"
 }

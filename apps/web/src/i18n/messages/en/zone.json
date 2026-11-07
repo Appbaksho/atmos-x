@@ -9,11 +9,9 @@
   "observed": "Heat level · now",
   "air": "Air",
   "feels": "Feels like",
-  "roof": "Roof & road",
-  "lstNote": "Roof & road is an estimate of surface temperature from OpenStreetMap land cover and the live air temperature. Surfaces get hotter than the air you feel.",
+  "roof": "Surface",
+  "lstNote": "Surface is the ground and roof temperature measured by Landsat (latest {date}, about 10:20 local time). It is hotter than the air you feel.",
   "whyTitle": "Why this block is hot",
-  "aiLabel": "AI explanation",
-  "aiNote": "Written by AI from the numbers above only. It can be wrong; the numbers come from our heat estimate.",
   "noWhy": "These causes add the most heat here:",
   "whatIfTitle": "What if we add green?",
   "years": {
@@ -29,15 +27,16 @@
     "vsAvg": "vs 20-yr avg",
     "trend": "Trend / decade",
     "perDecade": "{d} / decade",
-    "note": "Hot-season mean of daily {kind, select, max {maximum} other {minimum}} air temperature from the Open-Meteo archive (ERA5). This is air temperature for the area, not satellite surface temperature.",
+    "note": "Hot-season median of NASA MODIS {kind, select, max {daytime} other {night-time}} land surface temperature at about 1 km around this zone. Surface temperature, not air temperature.",
     "avg": "20-yr avg",
     "chartA11y": "{kind} from {from} to {to}. Average {avg}. Trend {trend} per decade.",
-    "empty": "No history available for this place yet."
+    "empty": "No history available for this place yet.",
+    "pending": "Loading 20 years of NASA satellite history…"
   },
   "drivers": {
     "label": "Drivers · causes",
     "title": "What makes this block hot",
-    "adds": "added by land cover (estimate)",
+    "adds": "added by land cover, fitted on satellite data",
     "addsLbl": "What each cause adds",
     "addsShort": "Adds {d}",
     "estimate": "estimate",
@@ -52,23 +51,32 @@
       "sealed": "Concrete and asphalt soak up sun all day and give the heat back at night, so the block never fully cools.",
       "green": "Trees cool by shade and by evaporating water. Less green cover means less of both.",
       "roofs": "Dark roofs get far hotter than light ones at noon and heat the rooms under them.",
-      "density": "Tightly packed buildings trap heat and block the wind, so nights stay warm."
+      "density": "Tightly packed buildings trap heat and block the wind, so nights stay warm.",
+      "dark_surface": "Dark roofs and asphalt reflect little sunlight, so they heat up more at midday.",
+      "water": "Ponds, canals and rivers cool the area around them by day."
     },
     "fix": {
       "sealed": "Swap some paving for grass pavers or tree pits",
       "green": "Plant street trees along the main roads",
       "roofs": "Cool-roof coating on the largest roofs",
-      "density": "Shade sails over the narrowest lanes"
+      "density": "Shade sails over the narrowest lanes",
+      "dark_surface": "Cool-roof coating on the largest roofs",
+      "water": "Keep ponds and canals clean and shaded"
     },
-    "source": "Heat estimate: OpenStreetMap land cover + live weather. Dark roofs are an assumed share for the country."
+    "other": "Other factors (materials, height, traffic): {d}",
+    "coolsShort": "Cools {d}",
+    "dark_surface": "Dark surfaces",
+    "water": "Water",
+    "sourceFit": "°C shares: Landsat surface temperature fitted on land cover across {n} hexes (R² {r2}), satellite images to {date}.",
+    "sourceEstimate": "°C shares use published coefficients (estimate): too few satellite hexes here for a local fit."
   },
   "setGoal": "Set a cooling goal",
   "seeProj": "See projection",
   "goalFeature": "set a cooling goal",
   "proj": {
     "title": "Projection",
-    "sub": "{zone} · mean air temperature, hot season",
-    "subNoZone": "Mean air temperature, hot season",
+    "sub": "{zone} · surface temperature, hot season",
+    "subNoZone": "Surface temperature, hot season",
     "horizon": "Horizon",
     "doNothing": "Do nothing",
     "withPlan": "With plan",
@@ -81,13 +89,17 @@
     "shade": "Shade structures",
     "updating": "Updating…",
     "assumptions": "Assumptions",
-    "rangesNote": "Ranges, not promises: trend from 20 years of archive data plus published cooling coefficients.",
+    "rangesNote": "Ranges, not promises: NASA satellite history and climate models plus published cooling coefficients.",
     "start": "Start the plan",
     "empty": "No projection available for this zone yet."
   },
   "notFound": {
     "title": "This zone isn't on the map any more",
-    "body": "Zone ids change when an area is scanned again. Open the map and pick the block again.",
+    "body": "This zone link is no longer stored. Open the map to see the current zones.",
     "action": "Open the map"
-  }
+  },
+  "lstNoteEstimate": "No clear satellite pixels here yet, so surface temperature is estimated from land cover and today's high.",
+  "whyNote": "Written by Atmos X from the measured numbers on this page, the same in every language.",
+  "newer": "Newer satellite data is available for this place.",
+  "newerAction": "Open the newer zone"
 }

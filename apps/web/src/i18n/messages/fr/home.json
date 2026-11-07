@@ -24,7 +24,7 @@
   "why": "Pourquoi il fait chaud",
   "hottest": "Zones les plus chaudes près de vous",
   "seeMap": "Voir la carte",
-  "lst": "Toits et routes",
+  "lst": "Surface",
   "hum": "Humidité",
   "wind": "Vent",
   "upd": "Mis à jour",
@@ -42,9 +42,12 @@
   "causes": {
     "sealed_surface": "Surface imperméable {pct}%",
     "low_green": "Végétation {pct}%",
-    "dense_buildings": "Bâtiments denses {per_ha}/ha",
+    "dense_buildings": "Bâti {pct} %",
     "wide_roads": "Routes {pct}%",
-    "dark_roofs": "Toits sombres {pct}%"
+    "dark_roofs": "Toits sombres {pct}%",
+    "dark_surfaces": "Sombre {pct} %",
+    "hot_nights": "Nuits chaudes +{delta_c}°",
+    "dense_population": "Densément peuplé"
   },
   "whatIf": "+ Vert",
   "whatIfA11y": "Couverture verte ajoutée",

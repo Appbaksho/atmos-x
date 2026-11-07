@@ -40,11 +40,11 @@ export function cannedAnswer(kind: Kind, lang: Locale, d: CannedData): string {
     if (z && c) {
       return serverT(lang, 'ask.canned.heat_zone', {
         zone: z.name,
-        sealed: z.drivers.sealed_pct,
-        green: z.drivers.green_pct,
+        sealed: z.drivers?.sealed_pct ?? 0,
+        green: z.drivers?.green_pct ?? 0,
         air: Math.round(c.air_c),
         feels: Math.round(c.feels_c),
-        surface: Math.round(z.lst_c),
+        surface: Math.round(z.lst_c ?? 0),
         tmax: Math.round(Math.max(...c.forecast.map((f) => f.tmax_c))),
       });
     }

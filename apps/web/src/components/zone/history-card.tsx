@@ -76,7 +76,7 @@ export function HistoryCard({ zone }: { zone: ZoneDetail }) {
           {t('title')}
         </Txt>
         <Txt size={13} dim>
-          {t('empty')}
+          {zone.history_status === 'pending' ? t('pending') : t('empty')}
         </Txt>
       </Card>
     );

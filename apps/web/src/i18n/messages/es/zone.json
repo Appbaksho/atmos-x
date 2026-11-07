@@ -6,18 +6,16 @@
   "heroA11y": "Mapa de {zone}",
   "sub": "{place} · a {d} de ti",
   "distOnly": "A {d} de ti",
-  "anom": "{d} frente al promedio de 20 años",
+  "anom": "{d} frente a la media de 20 años",
   "vhigh": "Muy alto",
   "high": "Alto",
   "observed": "Nivel de calor · ahora",
   "air": "Aire",
   "feels": "Sensación térmica",
-  "roof": "Techo y calle",
-  "lstNote": "Techo y calle es una estimación de la temperatura de la superficie con la cobertura del suelo de OpenStreetMap y la temperatura del aire en vivo. Las superficies se calientan más que el aire que sientes.",
+  "roof": "Superficie",
+  "lstNote": "La superficie es la temperatura del suelo y los techos medida por Landsat (última {date}, hacia las 10:20 hora local). Es más caliente que el aire que sientes.",
   "whyTitle": "Por qué este bloque es tan caliente",
-  "aiLabel": "Explicación de IA",
-  "aiNote": "Escrito por IA solo con los números de arriba. Puede estar mal; los números vienen de nuestra estimación de calor.",
-  "noWhy": "Estas causas aportan más calor aquí:",
+  "noWhy": "Estas causas suman más calor aquí:",
   "whatIfTitle": "¿Y si agregamos verde?",
   "years": {
     "title": "A lo largo de los años",
@@ -32,15 +30,16 @@
     "vsAvg": "vs promedio de 20 años",
     "trend": "Tendencia / década",
     "perDecade": "{d} / década",
-    "note": "Promedio de la temporada de calor de la temperatura diaria {kind, select, max {máxima} other {mínima}} del aire del archivo de Open-Meteo (ERA5). Es temperatura del aire del área, no temperatura de la superficie por satélite.",
+    "note": "Mediana de la estación cálida de la temperatura superficial {kind, select, max {diurna} other {nocturna}} de NASA MODIS a ~1 km alrededor de esta zona. Es temperatura de superficie, no del aire.",
     "avg": "Promedio de 20 años",
     "chartA11y": "{kind} de {from} a {to}. Promedio {avg}. Tendencia {trend} por década.",
-    "empty": "Todavía no hay historial disponible para este lugar."
+    "empty": "Todavía no hay historial disponible para este lugar.",
+    "pending": "Cargando 20 años de historial satelital de la NASA…"
   },
   "drivers": {
     "label": "Factores · causas",
     "title": "Qué calienta este bloque",
-    "adds": "añadido por la cobertura del suelo (estimación)",
+    "adds": "sumado por la cobertura del suelo, ajustado con datos de satélite",
     "addsLbl": "Lo que suma cada causa",
     "addsShort": "Suma {d}",
     "estimate": "estimación",
@@ -55,23 +54,32 @@
       "sealed": "El concreto y el asfalto absorben el sol todo el día y devuelven el calor por la noche, así que el bloque nunca se enfría del todo.",
       "green": "Los árboles enfrían con sombra y al evaporar agua. Menos cobertura verde significa menos de ambas.",
       "roofs": "Los techos oscuros se calientan mucho más que los claros al mediodía y calientan las habitaciones de debajo.",
-      "density": "Los edificios muy juntos atrapan el calor y bloquean el viento, así que las noches siguen cálidas."
+      "density": "Los edificios muy juntos atrapan el calor y bloquean el viento, así que las noches siguen cálidas.",
+      "dark_surface": "Los techos oscuros y el asfalto reflejan poca luz, así que se calientan más a mediodía.",
+      "water": "Estanques, canales y ríos refrescan su entorno de día."
     },
     "fix": {
       "sealed": "Cambiar parte del pavimento por adoquines con césped o alcorques",
       "green": "Plantar árboles de calle a lo largo de las vías principales",
       "roofs": "Recubrimiento de techo fresco en los techos más grandes",
-      "density": "Toldos de sombra sobre los callejones más estrechos"
+      "density": "Toldos de sombra sobre los callejones más estrechos",
+      "dark_surface": "Pintura de techo fresco en los techos más grandes",
+      "water": "Mantén estanques y canales limpios y con sombra"
     },
-    "source": "Estimación de calor: cobertura del suelo de OpenStreetMap + tiempo en vivo. Los techos oscuros son una proporción asumida para el país."
+    "other": "Otros factores (materiales, altura, tráfico): {d}",
+    "coolsShort": "Enfría {d}",
+    "dark_surface": "Superficies oscuras",
+    "water": "Agua",
+    "sourceFit": "Reparto en °C: temperatura superficial de Landsat ajustada a la cobertura del suelo en {n} hexágonos (R² {r2}), imágenes hasta {date}.",
+    "sourceEstimate": "Reparto en °C con coeficientes publicados (estimación): pocos hexágonos de satélite aquí para un ajuste local."
   },
   "setGoal": "Fijar meta de enfriamiento",
   "seeProj": "Ver proyección",
   "goalFeature": "establecer una meta de enfriamiento",
   "proj": {
     "title": "Proyección",
-    "sub": "{zone} · temperatura media del aire, temporada de calor",
-    "subNoZone": "Temperatura media del aire, temporada de calor",
+    "sub": "{zone} · temperatura superficial, estación cálida",
+    "subNoZone": "Temperatura superficial, estación cálida",
     "horizon": "Horizonte",
     "doNothing": "No hacer nada",
     "withPlan": "Con plan",
@@ -84,13 +92,17 @@
     "shade": "Estructuras de sombra",
     "updating": "Actualizando…",
     "assumptions": "Supuestos",
-    "rangesNote": "Rangos, no promesas: tendencia de 20 años de datos de archivo más coeficientes de enfriamiento publicados.",
+    "rangesNote": "Rangos, no promesas: historial satelital y modelos climáticos de la NASA más coeficientes de enfriamiento publicados.",
     "start": "Iniciar el plan",
     "empty": "Todavía no hay proyección disponible para esta zona."
   },
   "notFound": {
     "title": "Esta zona ya no está en el mapa",
-    "body": "Los ID de las zonas cambian cuando un área se escanea de nuevo. Abre el mapa y elige otra vez el bloque.",
+    "body": "Este enlace de zona ya no está guardado. Abre el mapa para ver las zonas actuales.",
     "action": "Abrir el mapa"
-  }
+  },
+  "lstNoteEstimate": "Aún no hay píxeles de satélite despejados aquí, así que la temperatura superficial se estima por la cobertura del suelo y la máxima de hoy.",
+  "whyNote": "Escrito por Atmos X con los números medidos de esta página, igual en todos los idiomas.",
+  "newer": "Hay datos de satélite más recientes para este lugar.",
+  "newerAction": "Abrir la zona más reciente"
 }

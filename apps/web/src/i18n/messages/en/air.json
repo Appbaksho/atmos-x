@@ -20,8 +20,7 @@
   "sensSub": "Child, older adult, heart or lung condition · stored only on this phone",
   "lead": "Protection first. Follow your doctor’s advice on high days.",
   "sensors": "My sensors",
-  "sensorsSub": "Compared with the area estimate",
-  "simulated": "Simulated device (v0)",
+  "sensorsSub": "{count, plural, one {{n} of your own PM2.5 devices} other {{n} of your own PM2.5 devices}}",
   "noSensors": "No sensors yet",
   "noSensorsSub": "Connect a PM2.5 sensor to compare your street with the area.",
   "offline": "Offline",
@@ -39,8 +38,7 @@
   },
   "remove": "Remove {name}",
   "removed": "Sensor removed",
-  "simNote": "v0 simulates readings from the area PM2.5 (±8 %), refreshed every 5 minutes. Real device uploads arrive in v1.",
-  "guestDevices": "Sensors are saved to your account on this device.",
+  "guestDevices": "Sensors are saved to your Atmos X account.",
   "addSensorFeature": "add a sensor",
   "addTitle": "Add sensor",
   "addSub": "Readings stay private for 7 days",
@@ -85,5 +83,15 @@
       "parts": "Link by sensor ID, read-only",
       "best": "No new hardware"
     }
-  }
+  },
+  "realNote": "Your sensor sends its own PM2.5 readings with a private token. Readings older than 6 hours show the device as offline.",
+  "tokenTitle": "Sensor added",
+  "tokenSub": "Set up {name} to send readings",
+  "tokenLabel": "Ingest token",
+  "tokenOnce": "Copy it now: it is shown only once. Anyone with it can send readings as this sensor.",
+  "curlLabel": "Test it from a computer",
+  "curlNote": "Send at most one reading per minute. PM2.5 in µg/m³ (0–1000); pm10, temp_c and rh are optional.",
+  "copy": "Copy",
+  "copied": "Copied",
+  "done": "Done"
 }

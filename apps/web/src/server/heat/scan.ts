@@ -255,6 +255,7 @@ export function scanSources(scan: Scan): Source[] {
 export function scanResponse(scan: Scan, lang: Locale): ZonesScan {
   const names = zoneNames(scan, lang);
   return {
+    // V0 shape, removed in V1 Stage 7 (the API serves /api/v1/zones).
     scan: {
       center: scan.center,
       radius_m: scan.radius_m,
@@ -262,8 +263,8 @@ export function scanResponse(scan: Scan, lang: Locale): ZonesScan {
       acquired: { lst_date: null, ndvi_date: null },
       baseline_lst_c: round(scan.median_est_c, 1),
       method: scan.method,
-    },
-    hexes: scan.cells.map((c) => ({ h3: c.h3, score: c.score, lst_c: round(c.est_c, 1) })),
+    } as unknown as ZonesScan['scan'],
+    hexes: scan.cells.map((c) => ({ h3: c.h3, score: c.score, lst_c: round(c.est_c, 1), label: 'estimate' as const })),
     zones: scan.zones.map((z) => ({
       id: z.id,
       name: names.get(z.id) ?? z.id,

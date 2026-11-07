@@ -68,7 +68,7 @@ export function DevicesScreen() {
       ) : (
         list.map((s) => <DeviceCard key={s.id} sensor={s} areaPm={air.data?.pm25 ?? null} />)
       )}
-      <Note icon={I.info}>{t('simNote')}</Note>
+      <Note icon={I.info}>{t('realNote')}</Note>
     </Screen>
   );
 }
@@ -93,7 +93,7 @@ function DeviceCard({ sensor, areaPm }: { sensor: Sensor; areaPm: number | null 
             {sensor.name}
           </Txt>
           <Txt size={11.5} dim lines={2}>
-            {[sensor.model, sensor.simulated ? t('simulated') : null].filter(Boolean).join(' · ')}
+            {[sensor.model].filter(Boolean).join(' · ')}
           </Txt>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 4, borderRadius: R.pill, backgroundColor: st.bg }}>

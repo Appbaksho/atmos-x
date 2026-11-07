@@ -603,10 +603,896 @@
      }
     }
    }
+  },
+  "/api/v1/zones": {
+   "get": {
+    "tags": [
+     "zones"
+    ],
+    "summary": "Zones",
+    "operationId": "zones_scan",
+    "parameters": [
+     {
+      "name": "lat",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 90,
+       "minimum": -90,
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 180,
+       "minimum": -180,
+       "title": "Lng"
+      }
+     },
+     {
+      "name": "radius_m",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 1000,
+       "minimum": 100,
+       "default": 200,
+       "title": "Radius M"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "en",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ZonesScanOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/zones/{zone_id}": {
+   "get": {
+    "tags": [
+     "zones"
+    ],
+    "summary": "Zone",
+    "operationId": "zone_detail",
+    "parameters": [
+     {
+      "name": "zone_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Zone Id"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "en",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ZoneDetailOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/zones/{zone_id}/projection": {
+   "get": {
+    "tags": [
+     "zones"
+    ],
+    "summary": "Zone Projection",
+    "operationId": "zone_projection",
+    "parameters": [
+     {
+      "name": "zone_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Zone Id"
+      }
+     },
+     {
+      "name": "trees",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 100000,
+       "minimum": 0,
+       "default": 0,
+       "title": "Trees"
+      }
+     },
+     {
+      "name": "roof_m2",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 10000000,
+       "minimum": 0,
+       "default": 0,
+       "title": "Roof M2"
+      }
+     },
+     {
+      "name": "shade",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 10000,
+       "minimum": 0,
+       "default": 0,
+       "title": "Shade"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Zone Projection"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/zones/{zone_id}/planting-spots": {
+   "get": {
+    "tags": [
+     "zones"
+    ],
+    "summary": "Zone Spots",
+    "operationId": "zone_planting_spots",
+    "parameters": [
+     {
+      "name": "zone_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Zone Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Zone Planting Spots"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/scan-jobs/{job_id}": {
+   "get": {
+    "tags": [
+     "zones"
+    ],
+    "summary": "Scan Job",
+    "operationId": "scan_job",
+    "parameters": [
+     {
+      "name": "job_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Job Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/JobOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/conditions": {
+   "get": {
+    "tags": [
+     "weather"
+    ],
+    "summary": "Conditions",
+    "operationId": "conditions",
+    "parameters": [
+     {
+      "name": "lat",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 90,
+       "minimum": -90,
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 180,
+       "minimum": -180,
+       "title": "Lng"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "en",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Conditions"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/air": {
+   "get": {
+    "tags": [
+     "weather"
+    ],
+    "summary": "Air",
+    "operationId": "air",
+    "parameters": [
+     {
+      "name": "lat",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 90,
+       "minimum": -90,
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 180,
+       "minimum": -180,
+       "title": "Lng"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Air"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/geo/reverse": {
+   "get": {
+    "tags": [
+     "weather"
+    ],
+    "summary": "Reverse",
+    "operationId": "geo_reverse",
+    "parameters": [
+     {
+      "name": "lat",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 90,
+       "minimum": -90,
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "number",
+       "maximum": 180,
+       "minimum": -180,
+       "title": "Lng"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "en",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Geo Reverse"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/geo/search": {
+   "get": {
+    "tags": [
+     "weather"
+    ],
+    "summary": "Search",
+    "operationId": "geo_search",
+    "parameters": [
+     {
+      "name": "q",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "minLength": 1,
+       "maxLength": 120,
+       "title": "Q"
+      }
+     },
+     {
+      "name": "lang",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "en",
+       "title": "Lang"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Geo Search"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/geo/ip": {
+   "get": {
+    "tags": [
+     "weather"
+    ],
+    "summary": "Ip",
+    "description": "City from the caller's IP using the local DB-IP file (no IP goes to a third party).",
+    "operationId": "geo_ip",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Geo Ip"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/map/gibs": {
+   "get": {
+    "tags": [
+     "weather"
+    ],
+    "summary": "Gibs",
+    "operationId": "map_gibs",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Map Gibs"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/sensors/mine": {
+   "get": {
+    "tags": [
+     "sensors"
+    ],
+    "summary": "Mine",
+    "operationId": "sensors_mine",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Sensors Mine"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/sensors": {
+   "post": {
+    "tags": [
+     "sensors"
+    ],
+    "summary": "Add",
+    "operationId": "sensors_add",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SensorIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Sensors Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/sensors/{sensor_id}": {
+   "delete": {
+    "tags": [
+     "sensors"
+    ],
+    "summary": "Delete",
+    "operationId": "sensors_delete",
+    "parameters": [
+     {
+      "name": "sensor_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Sensor Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Sensors Delete"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/sensors/ingest": {
+   "post": {
+    "tags": [
+     "sensors"
+    ],
+    "summary": "Ingest",
+    "operationId": "sensors_ingest",
+    "parameters": [
+     {
+      "name": "x-sensor-token",
+      "in": "header",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "",
+       "title": "X-Sensor-Token"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReadingIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Sensors Ingest"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
   "schemas": {
+   "Acquired": {
+    "properties": {
+     "lst_from": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lst From"
+     },
+     "lst_to": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lst To"
+     },
+     "lst_scenes": {
+      "type": "integer",
+      "title": "Lst Scenes"
+     },
+     "ndvi_date": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ndvi Date"
+     },
+     "worldcover_year": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Worldcover Year"
+     },
+     "ecostress_passes": {
+      "type": "integer",
+      "title": "Ecostress Passes"
+     },
+     "night_source": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Night Source"
+     },
+     "night_to": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Night To"
+     },
+     "window_days": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Window Days"
+     }
+    },
+    "type": "object",
+    "required": [
+     "lst_from",
+     "lst_to",
+     "lst_scenes",
+     "ndvi_date",
+     "worldcover_year",
+     "ecostress_passes"
+    ],
+    "title": "Acquired"
+   },
+   "Contribution": {
+    "properties": {
+     "driver": {
+      "type": "string",
+      "title": "Driver"
+     },
+     "value": {
+      "type": "number",
+      "title": "Value"
+     },
+     "unit": {
+      "type": "string",
+      "title": "Unit"
+     },
+     "adds_c": {
+      "type": "number",
+      "title": "Adds C"
+     }
+    },
+    "type": "object",
+    "required": [
+     "driver",
+     "value",
+     "unit",
+     "adds_c"
+    ],
+    "title": "Contribution"
+   },
    "GoogleConfigOut": {
     "properties": {
      "enabled": {
@@ -774,6 +1660,155 @@
     ],
     "title": "HealthOut"
    },
+   "HexOut": {
+    "properties": {
+     "h3": {
+      "type": "string",
+      "title": "H3"
+     },
+     "score": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Score"
+     },
+     "lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lst C"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "satellite",
+       "estimate",
+       "no_data"
+      ],
+      "title": "Label"
+     }
+    },
+    "type": "object",
+    "required": [
+     "h3",
+     "score",
+     "lst_c",
+     "label"
+    ],
+    "title": "HexOut"
+   },
+   "HistoryPoint": {
+    "properties": {
+     "year": {
+      "type": "integer",
+      "title": "Year"
+     },
+     "day_lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Day Lst C"
+     },
+     "night_lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Night Lst C"
+     }
+    },
+    "type": "object",
+    "required": [
+     "year",
+     "day_lst_c",
+     "night_lst_c"
+    ],
+    "title": "HistoryPoint"
+   },
+   "I18nText": {
+    "properties": {
+     "code": {
+      "type": "string",
+      "title": "Code"
+     },
+     "params": {
+      "anyOf": [
+       {
+        "additionalProperties": {
+         "anyOf": [
+          {
+           "type": "string"
+          },
+          {
+           "type": "integer"
+          },
+          {
+           "type": "number"
+          }
+         ]
+        },
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Params"
+     }
+    },
+    "type": "object",
+    "required": [
+     "code"
+    ],
+    "title": "I18nText"
+   },
+   "JobOut": {
+    "properties": {
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "progress": {
+      "type": "number",
+      "title": "Progress"
+     },
+     "done_cells": {
+      "type": "integer",
+      "title": "Done Cells"
+     },
+     "total_cells": {
+      "type": "integer",
+      "title": "Total Cells"
+     }
+    },
+    "type": "object",
+    "required": [
+     "status",
+     "progress",
+     "done_cells",
+     "total_cells"
+    ],
+    "title": "JobOut"
+   },
    "LatLng": {
     "properties": {
      "lat": {
@@ -815,6 +1850,44 @@
      "password"
     ],
     "title": "LoginIn"
+   },
+   "Meta": {
+    "properties": {
+     "live": {
+      "type": "boolean",
+      "title": "Live",
+      "default": true
+     },
+     "stale": {
+      "type": "boolean",
+      "title": "Stale",
+      "default": false
+     },
+     "generated_at": {
+      "type": "string",
+      "title": "Generated At"
+     },
+     "sources": {
+      "items": {
+       "$ref": "#/components/schemas/Source"
+      },
+      "type": "array",
+      "title": "Sources"
+     },
+     "pipeline_version": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pipeline Version"
+     }
+    },
+    "type": "object",
+    "title": "Meta"
    },
    "Ok": {
     "properties": {
@@ -1205,6 +2278,72 @@
     "type": "object",
     "title": "ProfilePatch"
    },
+   "ReadingIn": {
+    "properties": {
+     "pm25": {
+      "type": "number",
+      "maximum": 1000.0,
+      "minimum": 0.0,
+      "title": "Pm25"
+     },
+     "pm10": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 2000.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pm10"
+     },
+     "temp_c": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 70.0,
+        "minimum": -40.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Temp C"
+     },
+     "rh": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 100.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Rh"
+     },
+     "taken_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Taken At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "pm25"
+    ],
+    "title": "ReadingIn"
+   },
    "RegisterIn": {
     "properties": {
      "email": {
@@ -1254,6 +2393,175 @@
     ],
     "title": "RegisterIn"
    },
+   "ScanInfo": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "center": {
+      "$ref": "#/components/schemas/LatLng"
+     },
+     "center_cell": {
+      "type": "string",
+      "title": "Center Cell"
+     },
+     "radius_m": {
+      "type": "integer",
+      "title": "Radius M"
+     },
+     "k": {
+      "type": "integer",
+      "title": "K"
+     },
+     "h3_res": {
+      "type": "integer",
+      "title": "H3 Res"
+     },
+     "cell_count": {
+      "type": "integer",
+      "title": "Cell Count"
+     },
+     "place": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Place"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "complete",
+       "partial",
+       "unavailable"
+      ],
+      "title": "Status"
+     },
+     "job_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Job Id"
+     },
+     "acquired": {
+      "$ref": "#/components/schemas/Acquired"
+     },
+     "baseline_lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Baseline Lst C"
+     },
+     "method": {
+      "type": "string",
+      "enum": [
+       "landsat",
+       "modis",
+       "landcover"
+      ],
+      "title": "Method"
+     },
+     "outline": {
+      "items": {
+       "items": {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       "type": "array"
+      },
+      "type": "array",
+      "title": "Outline"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "center",
+     "center_cell",
+     "radius_m",
+     "k",
+     "h3_res",
+     "cell_count",
+     "place",
+     "status",
+     "job_id",
+     "acquired",
+     "baseline_lst_c",
+     "method",
+     "outline"
+    ],
+    "title": "ScanInfo"
+   },
+   "SensorIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "model": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 80
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Model"
+     },
+     "lat": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 90.0,
+        "minimum": -90.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lat"
+     },
+     "lng": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 180.0,
+        "minimum": -180.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lng"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "title": "SensorIn"
+   },
    "SessionOut": {
     "properties": {
      "user": {
@@ -1270,6 +2578,77 @@
      "user"
     ],
     "title": "SessionOut"
+   },
+   "Source": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Url"
+     },
+     "as_of": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "As Of"
+     },
+     "kind": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "observation",
+         "model",
+         "forecast",
+         "derived",
+         "estimate",
+         "reference",
+         "demo"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Kind"
+     },
+     "resolution_m": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Resolution M"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name"
+    ],
+    "title": "Source"
    },
    "SourceStatus": {
     "properties": {
@@ -1514,6 +2893,543 @@
      "type"
     ],
     "title": "ValidationError"
+   },
+   "WhatIf": {
+    "properties": {
+     "add_green_pct": {
+      "type": "integer",
+      "title": "Add Green Pct"
+     },
+     "score_after": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Score After"
+     },
+     "lst_drop_c": {
+      "type": "number",
+      "title": "Lst Drop C"
+     },
+     "label": {
+      "type": "string",
+      "title": "Label",
+      "default": "estimate"
+     }
+    },
+    "type": "object",
+    "required": [
+     "add_green_pct",
+     "score_after",
+     "lst_drop_c"
+    ],
+    "title": "WhatIf"
+   },
+   "ZoneDetailOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "scan_id": {
+      "type": "string",
+      "title": "Scan Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "name_text": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/I18nText"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "score": {
+      "type": "integer",
+      "title": "Score"
+     },
+     "lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lst C"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "satellite",
+       "estimate",
+       "no_data"
+      ],
+      "title": "Label"
+     },
+     "dist_m": {
+      "type": "integer",
+      "title": "Dist M"
+     },
+     "rank": {
+      "type": "integer",
+      "title": "Rank"
+     },
+     "near_tie": {
+      "type": "boolean",
+      "title": "Near Tie"
+     },
+     "centroid": {
+      "$ref": "#/components/schemas/LatLng"
+     },
+     "h3": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "H3"
+     },
+     "area_km2": {
+      "type": "number",
+      "title": "Area Km2"
+     },
+     "drivers": {
+      "$ref": "#/components/schemas/ZoneDrivers"
+     },
+     "air_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Air C"
+     },
+     "feels_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Feels C"
+     },
+     "causes": {
+      "items": {
+       "$ref": "#/components/schemas/I18nText"
+      },
+      "type": "array",
+      "title": "Causes"
+     },
+     "why": {
+      "items": {
+       "$ref": "#/components/schemas/I18nText"
+      },
+      "type": "array",
+      "title": "Why"
+     },
+     "what_if_green": {
+      "$ref": "#/components/schemas/WhatIf"
+     },
+     "history": {
+      "items": {
+       "$ref": "#/components/schemas/HistoryPoint"
+      },
+      "type": "array",
+      "title": "History"
+     },
+     "history_kind": {
+      "type": "string",
+      "const": "lst",
+      "title": "History Kind",
+      "default": "lst"
+     },
+     "history_status": {
+      "type": "string",
+      "enum": [
+       "ready",
+       "pending",
+       "unavailable"
+      ],
+      "title": "History Status",
+      "default": "pending"
+     },
+     "superseded_by": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Superseded By"
+     },
+     "place": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Place"
+     },
+     "meta": {
+      "$ref": "#/components/schemas/Meta"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "scan_id",
+     "name",
+     "score",
+     "lst_c",
+     "label",
+     "dist_m",
+     "rank",
+     "near_tie",
+     "centroid",
+     "h3",
+     "area_km2",
+     "drivers",
+     "air_c",
+     "feels_c",
+     "causes",
+     "why",
+     "what_if_green",
+     "history",
+     "superseded_by",
+     "meta"
+    ],
+    "title": "ZoneDetailOut"
+   },
+   "ZoneDrivers": {
+    "properties": {
+     "sealed_pct": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sealed Pct"
+     },
+     "green_pct": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Green Pct"
+     },
+     "water_pct": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Water Pct"
+     },
+     "ndvi": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ndvi"
+     },
+     "dark_roof_pct": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Dark Roof Pct"
+     },
+     "pop_density_km2": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pop Density Km2"
+     },
+     "night_lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Night Lst C"
+     },
+     "estimated": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Estimated"
+     },
+     "contributions": {
+      "items": {
+       "$ref": "#/components/schemas/Contribution"
+      },
+      "type": "array",
+      "title": "Contributions"
+     },
+     "other_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Other C"
+     },
+     "anom_day_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Anom Day C"
+     },
+     "anom_night_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Anom Night C"
+     },
+     "fit": {
+      "anyOf": [
+       {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Fit"
+     },
+     "as_of": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "As Of"
+     }
+    },
+    "type": "object",
+    "required": [
+     "sealed_pct",
+     "green_pct",
+     "water_pct",
+     "ndvi",
+     "dark_roof_pct",
+     "pop_density_km2",
+     "night_lst_c",
+     "estimated",
+     "contributions",
+     "other_c",
+     "as_of"
+    ],
+    "title": "ZoneDrivers"
+   },
+   "ZoneSummary": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "scan_id": {
+      "type": "string",
+      "title": "Scan Id"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "name_text": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/I18nText"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "score": {
+      "type": "integer",
+      "title": "Score"
+     },
+     "lst_c": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Lst C"
+     },
+     "label": {
+      "type": "string",
+      "enum": [
+       "satellite",
+       "estimate",
+       "no_data"
+      ],
+      "title": "Label"
+     },
+     "dist_m": {
+      "type": "integer",
+      "title": "Dist M"
+     },
+     "rank": {
+      "type": "integer",
+      "title": "Rank"
+     },
+     "near_tie": {
+      "type": "boolean",
+      "title": "Near Tie"
+     },
+     "centroid": {
+      "$ref": "#/components/schemas/LatLng"
+     },
+     "h3": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "H3"
+     },
+     "area_km2": {
+      "type": "number",
+      "title": "Area Km2"
+     },
+     "drivers": {
+      "$ref": "#/components/schemas/ZoneDrivers"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "scan_id",
+     "name",
+     "score",
+     "lst_c",
+     "label",
+     "dist_m",
+     "rank",
+     "near_tie",
+     "centroid",
+     "h3",
+     "area_km2",
+     "drivers"
+    ],
+    "title": "ZoneSummary"
+   },
+   "ZonesScanOut": {
+    "properties": {
+     "scan": {
+      "$ref": "#/components/schemas/ScanInfo"
+     },
+     "hexes": {
+      "items": {
+       "$ref": "#/components/schemas/HexOut"
+      },
+      "type": "array",
+      "title": "Hexes"
+     },
+     "zones": {
+      "items": {
+       "$ref": "#/components/schemas/ZoneSummary"
+      },
+      "type": "array",
+      "title": "Zones"
+     },
+     "my_zone_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "My Zone Id"
+     },
+     "satellite_cells": {
+      "type": "integer",
+      "title": "Satellite Cells"
+     },
+     "meta": {
+      "$ref": "#/components/schemas/Meta"
+     }
+    },
+    "type": "object",
+    "required": [
+     "scan",
+     "hexes",
+     "zones",
+     "my_zone_id",
+     "satellite_cells",
+     "meta"
+    ],
+    "title": "ZonesScanOut"
    }
   }
  }

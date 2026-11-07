@@ -23,8 +23,7 @@
   "sensSub": "Enfant, personne âgée, problème cardiaque ou pulmonaire · enregistré seulement sur ce téléphone",
   "lead": "La protection d’abord. Suivez l’avis de votre médecin les jours très élevés.",
   "sensors": "Mes capteurs",
-  "sensorsSub": "Comparés à l’estimation de la zone",
-  "simulated": "Appareil simulé (v0)",
+  "sensorsSub": "{count, plural, one {{n} appareil PM2.5 à vous} other {{n} appareils PM2.5 à vous}}",
   "noSensors": "Pas encore de capteur",
   "noSensorsSub": "Connectez un capteur PM2.5 pour comparer votre rue à la zone.",
   "offline": "Hors ligne",
@@ -42,8 +41,7 @@
   },
   "remove": "Retirer {name}",
   "removed": "Capteur retiré",
-  "simNote": "La v0 simule des mesures à partir du PM2.5 de la zone (±8 %), actualisées toutes les 5 minutes. Les envois du vrai appareil arriveront en v1.",
-  "guestDevices": "Les capteurs sont enregistrés sur votre compte sur cet appareil.",
+  "guestDevices": "Les capteurs sont enregistrés dans votre compte Atmos X.",
   "addSensorFeature": "ajouter un capteur",
   "addTitle": "Ajouter un capteur",
   "addSub": "Les mesures restent privées pendant 7 jours",
@@ -88,5 +86,15 @@
       "parts": "Lier par ID de capteur, lecture seule",
       "best": "Pas de nouveau matériel"
     }
-  }
+  },
+  "realNote": "Votre capteur envoie ses propres mesures PM2.5 avec un jeton privé. Au-delà de 6 heures sans mesure, il apparaît hors ligne.",
+  "tokenTitle": "Capteur ajouté",
+  "tokenSub": "Configurez {name} pour envoyer ses mesures",
+  "tokenLabel": "Jeton d’envoi",
+  "tokenOnce": "Copiez-le maintenant : il ne s’affiche qu’une fois. Quiconque l’a peut envoyer des mesures au nom de ce capteur.",
+  "curlLabel": "Testez depuis un ordinateur",
+  "curlNote": "Une mesure par minute au plus. PM2.5 en µg/m³ (0–1000) ; pm10, temp_c et rh sont facultatifs.",
+  "copy": "Copier",
+  "copied": "Copié",
+  "done": "Terminé"
 }

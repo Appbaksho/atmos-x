@@ -54,14 +54,50 @@
     "create": "मुफ़्त खाता बनाएं",
     "signIn": "मेरे पास पहले से खाता है",
     "notNow": "अभी नहीं",
-    "note": "आपका खाता इसी डिवाइस पर रहता है. आपकी गेस्ट सेटिंग्स साथ रहती हैं."
+    "note": "आपका खाता Atmos X सर्वर पर रहता है। मेहमान के रूप में किया सब कुछ साथ आएगा।"
   },
   "sources": {
     "label": "स्रोत",
     "cached": "कैश्ड",
     "live": "लाइव",
-    "ai": "AI अनुमान",
-    "demo": "डेमो समुदाय"
+    "demo": "डेमो समुदाय",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "BMD सीमाएँ",
+      "atmos": "Atmos X गणना",
+      "atmos_reference": "Atmos X तालिकाएँ",
+      "device": "यह डिवाइस"
+    },
+    "kind": {
+      "observation": "मापा गया",
+      "model": "मॉडल",
+      "forecast": "पूर्वानुमान",
+      "derived": "गणना",
+      "estimate": "अनुमान",
+      "reference": "संदर्भ",
+      "demo": "डेमो"
+    },
+    "stale": "आख़िरी अपडेट",
+    "staleTitle": "स्रोत ने जवाब नहीं दिया, इसलिए आख़िरी सही डेटा उसकी तारीख़ के साथ दिखाया जा रहा है।"
   },
   "risk": {
     "ok": "सामान्य",

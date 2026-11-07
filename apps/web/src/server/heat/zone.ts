@@ -80,9 +80,9 @@ export async function getZoneDetail(id: string, lang: Locale, opts: { explain?: 
       est_surface_c: zone.lst_c,
       scan_median_est_c: round(scan.median_est_c, 1),
       air_c: round(air, 1),
-      sealed_pct: drivers.sealed_pct,
+      sealed_pct: drivers.sealed_pct ?? 0,
       road_pct: Math.round(zone.cover.road * 100),
-      green_pct: drivers.green_pct,
+      green_pct: drivers.green_pct ?? 0,
       water_pct: Math.round(zone.cover.water * 100),
       buildings_per_ha: Math.round(zone.cover.density),
       dark_roofs_pct_assumed: drivers.dark_roof_pct,
@@ -95,7 +95,8 @@ export async function getZoneDetail(id: string, lang: Locale, opts: { explain?: 
   const sources = [...scanSources(scan)];
   if (ar) sources.push(src(SRC.archive, ar.data.end));
   if (why) sources.push(SRC.ai);
-  return {
+  // V0 shape; removed in V1 Stage 7 (the API serves /api/v1/zones/{id}).
+  return ({
     id,
     name,
     score: zone.score,
@@ -106,10 +107,10 @@ export async function getZoneDetail(id: string, lang: Locale, opts: { explain?: 
     h3: zone.h3,
     drivers,
     causes,
-    why_text: why,
+    ...({ why_text: why } as object),
     what_if_green,
     history: hist?.history ?? [],
-    history_kind: 'air_temp',
+    history_kind: 'air_temp' as unknown as 'lst',
     meta: makeMeta(scan.live && (fc?.live ?? false) && (ar?.live ?? true), sources),
-  };
+  } as unknown) as ZoneDetail;
 }

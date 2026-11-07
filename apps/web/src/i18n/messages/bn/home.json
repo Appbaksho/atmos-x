@@ -21,7 +21,7 @@
   "why": "কেন গরম",
   "hottest": "কাছের সবচেয়ে গরম জোন",
   "seeMap": "মানচিত্র",
-  "lst": "ছাদ ও রাস্তা",
+  "lst": "ভূপৃষ্ঠ",
   "hum": "আর্দ্রতা",
   "wind": "বাতাস",
   "upd": "হালনাগাদ",
@@ -63,9 +63,12 @@
   "causes": {
     "sealed_surface": "কঠিন পৃষ্ঠ {pct}%",
     "low_green": "সবুজ {pct}%",
-    "dense_buildings": "ঘন ভবন {per_ha}/ha",
+    "dense_buildings": "ভবন {pct}%",
     "wide_roads": "প্রশস্ত রাস্তা {pct}%",
-    "dark_roofs": "গাঢ় ছাদ {pct}%"
+    "dark_roofs": "গাঢ় ছাদ {pct}%",
+    "dark_surfaces": "গাঢ় {pct}%",
+    "hot_nights": "গরম রাত +{delta_c}°",
+    "dense_population": "ঘনবসতি"
   },
   "noZone": "আপনার আশেপাশে এখনো কোনো গরম এলাকা পাইনি। আরও বড় এলাকা স্ক্যান করতে মানচিত্র খুলুন।",
   "goalLine": "{date}র মধ্যে {d}",
@@ -77,5 +80,14 @@
     "cta": "লক্ষ্য ঠিক করুন"
   },
   "goalFeature": "শীতল করার লক্ষ্য ঠিক করুন",
-  "treesFeature": "আপনার গাছগুলোর নজর রাখুন"
+  "treesFeature": "আপনার গাছগুলোর নজর রাখুন",
+  "_meta": {
+    "machine_keys": [
+      "causes.dark_surfaces",
+      "causes.dense_buildings",
+      "causes.dense_population",
+      "causes.hot_nights",
+      "lst"
+    ]
+  }
 }

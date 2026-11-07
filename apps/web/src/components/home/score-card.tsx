@@ -29,6 +29,9 @@ const CAUSE_DOT: Record<string, string> = {
   'cause.dense_buildings': B.yellow,
   'cause.wide_roads': B.orange,
   'cause.dark_roofs': B.orange,
+  'cause.dark_surfaces': B.orange,
+  'cause.hot_nights': B.deepRed,
+  'cause.dense_population': B.yellow,
 };
 
 /** Short chip label for a cause code ("Sealed 78%"). */
@@ -86,7 +89,7 @@ export function WhatIf({ zone, guest }: { zone: ZoneDetail; guest?: boolean }) {
   const t = useTranslations('home');
   const [wi, setWi] = useState(0);
   const w = zone.what_if_green;
-  const per = w.add_green_pct > 0 ? (zone.score - w.score_after) / w.add_green_pct : 0;
+  const per = w.add_green_pct > 0 && w.score_after != null ? (zone.score - w.score_after) / w.add_green_pct : 0;
   const coolPer = w.add_green_pct > 0 ? w.lst_drop_c / w.add_green_pct : 0;
   const area = useMemo(() => cellsAreaM2(zone.h3), [zone.h3]);
   const score = Math.max(0, Math.round(zone.score - wi * per));

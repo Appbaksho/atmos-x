@@ -2,17 +2,17 @@
   "title": "Heat map",
   "within": "Within",
   "withinR": "Within {r}",
-  "estimateShort": "OSM + live weather",
-  "estimateNote": "Heat estimate: OpenStreetMap land cover + live weather. Scores compare blocks inside this scan; they are not satellite measurements.",
+  "estimateShort": "land-cover estimate",
+  "estimateNote": "Heat Score: NASA/USGS Landsat surface temperature (sharpened with ECOSTRESS where available), MODIS night heat and ESA WorldCover land cover, per 15,000 m² hex. Grey hexes have no data yet.",
   "yourArea": "your area",
   "mapA11y": "Heat map of {place}",
   "layersLabel": "Map layer",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "Surface °C"
   },
   "legendA11y": "Heat Score legend: {bands}",
-  "gibsNote": "NASA land surface temperature · monthly · ~1 km",
+  "gibsNote": "Zoomed out: NASA MODIS daily surface temperature (~1 km). Zoomed in: Landsat hexes.",
   "ranked": "Hottest in your radius",
   "count": "{count, plural, one {{n} zone} other {{n} zones}}",
   "nearTie": "Near-tie",
@@ -31,5 +31,12 @@
   },
   "attribution": {
     "osm": "© OpenStreetMap contributors"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} hexes · {r}",
+  "landsatDates": "Satellite images {from} – {to} · {n} scenes",
+  "lstLegendA11y": "Surface temperature colours from cool blue to hot red",
+  "gibsNoteDated": "NASA MODIS surface temperature, {date} (~1 km) · zoom in for Landsat hexes",
+  "scanningSat": "Scanning satellite data…",
+  "scanningSatPct": "Scanning satellite data… {pct}%"
 }

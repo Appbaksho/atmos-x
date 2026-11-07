@@ -7,15 +7,18 @@ import { B, SHADOW, heatColor, heatFg } from '@/components/cz/tokens';
 import type { ZoneSummary } from '@/lib/data/types';
 import { useCz } from '@/lib/prefs';
 import { href } from '@/lib/routes';
+import { useZoneName } from '@/lib/server-text';
 
 export function ZoneRow({ z, last }: { z: ZoneSummary; last?: boolean }) {
   const { c, f } = useCz();
   const t = useTranslations('map');
-  const meta = `${t('lstShort')} ${f.deg(z.lst_c, 1)} · ${f.dist(z.dist_m)}`;
+  const zn = useZoneName();
+  const name = zn(z);
+  const meta = `${z.lst_c != null ? `${t('lstShort')} ${f.deg(z.lst_c, 1)} · ` : ''}${f.dist(z.dist_m)}${z.label === 'estimate' ? ` · ${t('estimateShort')}` : ''}`;
   return (
     <Tap
       href={href('S06', { id: z.id })}
-      label={`${f.loc(z.rank)}. ${z.name}, ${t('scoreA11y', { score: f.loc(z.score) })}${z.near_tie ? ', ' + t('nearTie') : ''}. ${t('openZone')}`}
+      label={`${f.loc(z.rank)}. ${name}, ${t('scoreA11y', { score: f.loc(z.score) })}${z.near_tie ? ', ' + t('nearTie') : ''}. ${t('openZone')}`}
       style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, minHeight: 56, borderBottomWidth: last ? 0 : 1, borderBottomColor: c.line, textAlign: 'start' }}>
       <Txt size={12} dim num style={{ width: 18 }}>
         {f.loc(z.rank)}
@@ -23,7 +26,7 @@ export function ZoneRow({ z, last }: { z: ZoneSummary; last?: boolean }) {
       <HeatBadge score={z.score} />
       <View style={{ flex: 1, minWidth: 0, gap: 1 }}>
         <Txt size={14} w={600} lines={1}>
-          {z.name}
+          {name}
         </Txt>
         <Txt size={12} dim num lines={1}>
           {meta}
@@ -51,14 +54,15 @@ export function MapScore({ score, size = 28 }: { score: number; size?: number })
 export function ZoneMarker({ z, big }: { z: ZoneSummary; big?: boolean }) {
   const { f } = useCz();
   const t = useTranslations('map');
-  const label = `${z.name}, ${t('scoreA11y', { score: f.loc(z.score) })}${z.near_tie ? ', ' + t('nearTie') : ''}`;
+  const name = useZoneName()(z);
+  const label = `${name}, ${t('scoreA11y', { score: f.loc(z.score) })}${z.near_tie ? ', ' + t('nearTie') : ''}`;
   if (big)
     return (
       <Tap href={href('S06', { id: z.id })} label={label} style={{ filter: 'drop-shadow(0 4px 7px rgba(0,16,32,0.25))' }}>
         <GlassPill dark style={{ paddingStart: 6, paddingEnd: 12, minHeight: 40, gap: 8, maxWidth: 220 }}>
           <MapScore score={z.score} />
           <Txt size={12.5} w={600} color={B.white} lines={1}>
-            {z.name}
+            {name}
           </Txt>
           {z.near_tie ? (
             <Txt size={11} w={700} color={B.lime}>

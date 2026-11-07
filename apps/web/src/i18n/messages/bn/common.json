@@ -51,14 +51,50 @@
     "create": "বিনামূল্যে অ্যাকাউন্ট খুলুন",
     "signIn": "আমার অ্যাকাউন্ট আছে",
     "notNow": "এখন না",
-    "note": "আপনার অ্যাকাউন্ট এই ডিভাইসেই থাকে। অতিথি সেটিংস সঙ্গে যাবে।"
+    "note": "আপনার অ্যাকাউন্ট Atmos X সার্ভারে থাকে। অতিথি হিসেবে যা করেছেন সবই থেকে যাবে।"
   },
   "sources": {
     "label": "উৎস",
     "cached": "সংরক্ষিত",
     "live": "লাইভ",
-    "ai": "AI অনুমান",
-    "demo": "ডেমো কমিউনিটি"
+    "demo": "ডেমো কমিউনিটি",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "BMD সীমা",
+      "atmos": "Atmos X হিসাব",
+      "atmos_reference": "Atmos X সারণি",
+      "device": "এই ডিভাইস"
+    },
+    "kind": {
+      "observation": "পরিমাপ",
+      "model": "মডেল",
+      "forecast": "পূর্বাভাস",
+      "derived": "হিসাবকৃত",
+      "estimate": "আনুমানিক",
+      "reference": "রেফারেন্স",
+      "demo": "ডেমো"
+    },
+    "stale": "শেষ হালনাগাদ",
+    "staleTitle": "উৎস সাড়া দেয়নি, তাই শেষ ভালো ডেটা তারিখসহ দেখানো হচ্ছে।"
   },
   "risk": {
     "ok": "স্বাভাবিক",
@@ -93,5 +129,43 @@
     "pitch": "আপনার আশেপাশের সবচেয়ে গরম জায়গাগুলো খুঁজুন আর প্রতিবেশীদের সঙ্গে মিলে ঠান্ডা করুন: গাছ, ঠান্ডা ছাদ আর ছায়া।",
     "open": "অ্যাপ খুলুন",
     "install": "ইনস্টল"
+  },
+  "_meta": {
+    "machine_keys": [
+      "account.note",
+      "sources.kind.demo",
+      "sources.kind.derived",
+      "sources.kind.estimate",
+      "sources.kind.forecast",
+      "sources.kind.model",
+      "sources.kind.observation",
+      "sources.kind.reference",
+      "sources.name.atmos",
+      "sources.name.atmos_reference",
+      "sources.name.bmd_thresholds",
+      "sources.name.cmip6",
+      "sources.name.dbip",
+      "sources.name.device",
+      "sources.name.ecostress",
+      "sources.name.geos_cf",
+      "sources.name.geos_fp",
+      "sources.name.gibs",
+      "sources.name.gpw",
+      "sources.name.hls",
+      "sources.name.imerg",
+      "sources.name.landsat",
+      "sources.name.lisotd",
+      "sources.name.modis_lst",
+      "sources.name.nominatim",
+      "sources.name.open_meteo",
+      "sources.name.openaq",
+      "sources.name.ornl_modis",
+      "sources.name.osm",
+      "sources.name.power",
+      "sources.name.smap",
+      "sources.name.worldcover",
+      "sources.stale",
+      "sources.staleTitle"
+    ]
   }
 }

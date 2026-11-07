@@ -8,7 +8,11 @@
     "heatwave_severe": "Severe heat wave expected: up to {tmax} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
     "heatwave_very_severe": "Very severe heat wave expected: up to {tmax} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
     "heat_danger": "Dangerous heat: feels like up to {feels} °C on {day}. Avoid the midday sun and drink water often.",
-    "heat_extreme": "Extreme heat: feels like up to {feels} °C on {day}. Stay in the shade and check on older neighbours."
+    "heat_extreme": "Extreme heat: feels like up to {feels} °C on {day}. Stay in the shade and check on older neighbours.",
+    "coldwave_mild": "Mild cold wave expected: down to {tmin} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "coldwave_moderate": "Moderate cold wave expected: down to {tmin} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "coldwave_severe": "Severe cold wave expected: down to {tmin} °C on {day}, until {until}. Based on BMD thresholds, not an official warning.",
+    "coldwave_very_severe": "Very severe cold wave expected: down to {tmin} °C on {day}, until {until}. Based on BMD thresholds, not an official warning."
   },
   "bmd": {
     "mild": "Mild heat wave",
@@ -26,27 +30,37 @@
   },
   "cause": {
     "sealed_surface": "{pct}% sealed surface (roofs, paving, roads) soaks up sun: adds about {adds_c} °C",
-    "wide_roads": "Roads cover {pct}% of the ground: adds about {adds_c} °C",
-    "low_green": "Only {pct}% green cover: about {adds_c} °C less cooling than a greener block",
-    "dense_buildings": "Dense buildings ({per_ha} per hectare) trap heat and block wind: adds about {adds_c} °C",
-    "dark_roofs": "About {pct}% of roofs are dark (assumed): adds about {adds_c} °C"
+    "wide_roads": "Roads cover {pct}% of the ground",
+    "low_green": "Only {pct}% green cover: adds about {adds_c} °C compared with the area average",
+    "dense_buildings": "Buildings cover {pct}% of the ground: they trap heat and block wind",
+    "dark_surfaces": "{pct}% of built surfaces look dark in Landsat images: adds about {adds_c} °C",
+    "hot_nights": "Nights stay {delta_c} °C warmer than the area around it (NASA night satellite readings)",
+    "dense_population": "Many people live here, so the heat affects more of them"
   },
   "assumption": {
-    "trend": "Trend: {per_decade} °C per decade in hot-season daily maximum air temperature ({from}–{to}, Open-Meteo archive), extended to 2040.",
     "hot_season": "Hot season used for the trend: months {months}.",
     "tree_ramp": "Trees cool as they grow: 20% of full effect in year 1, 50% in year 3, 80% in year 5, 100% from year 8.",
     "tree_cooling": "100 mature trees cool this zone ({area_km2} km²) by about {per_100_trees} °C.",
     "roof_cooling": "1,000 m² of cool roof cools this zone by about {per_1000_m2} °C.",
     "inputs": "Plan in this projection: {trees} trees, {roof_m2} m² of cool roof, {shade} shade structures.",
-    "ranges": "Ranges, not promises: an estimate from land cover and published cooling coefficients."
+    "ranges": "Ranges, not promises: cooling uses published coefficients and is an estimate.",
+    "surface": {
+      "modis_hot_season": "Starting point: the zone's average hot-season surface temperature over the last 3 years (NASA MODIS, 1 km).",
+      "landsat_zone": "Starting point: the zone's recent Landsat surface temperature (its history is still loading)."
+    },
+    "warming": {
+      "cmip6": "Warming: {per_decade} °C per decade, the average of {models} NASA NEX-GDDP-CMIP6 climate models (SSP2-4.5) for the hot season.",
+      "modis_trend": "Warming: {per_decade} °C per decade, the observed trend in NASA MODIS hot-season surface temperature.",
+      "none": "Warming: no trend is available yet, so the line is flat."
+    }
   },
   "feas": {
     "trees_vs_space": "{trees} trees needed; the open ground and street edges fit about {capacity}.",
     "roofs_vs_space": "{roof_m2} m² of cool roof needed; about {capacity_m2} m² of roof looks usable.",
-    "max_cooling": "With the space available, about {max_c} °C is realistic.",
+    "max_cooling": "With the space available, about {max_c} °C is realistic within {years} years.",
     "spots_unknown": "We could not load planting spots, so space was not checked.",
-    "action_goal": "Under 6 months this is an action goal: we track the work itself, because cooling takes longer to show.",
-    "trees_take_years": "Trees need years to reach full shade; most cooling comes after the goal date."
+    "action_goal": "Under 3 years this is an action goal: we track the planting and roofs, and show the long-term cooling alongside.",
+    "trees_take_years": "By the goal date trees give about {ramp_pct}% of their full cooling; the rest comes later."
   },
   "plan": {
     "why": {
@@ -210,6 +224,25 @@
       "farm": "Yes. Your Aman rice is flowering (satellite-detected 28 Sep) and Sunday reaches 36°. Raise standing water to 5 cm this evening and top up Sunday at dawn.",
       "tree_due": "{name} is due for its 15-day photo. Take a new photo so we can check its health; in hot spells water it deeply in the evening and keep a mulch ring around the base.",
       "tree": "Young trees need deep watering twice a week in hot, dry weather, a mulch ring around the base and a guard. Add a photo every 15 days so we can check their health."
+    }
+  },
+  "why": {
+    "hotter": "In recent satellite images, this zone's surface is {delta_c} °C hotter than the area around it.",
+    "cooler": "In recent satellite images, this zone's surface is {delta_c} °C cooler than the area around it.",
+    "typical": "Its surface temperature is close to the area's average.",
+    "one": {
+      "sealed": "The main reason: {pct}% of the ground is sealed (roofs, paving, roads), adding about {adds_c} °C.",
+      "green": "The main reason: only {pct}% of it is green, adding about {adds_c} °C.",
+      "dark_surface": "The main reason: {pct}% of its built surfaces are dark, adding about {adds_c} °C."
+    },
+    "also": {
+      "sealed": "Sealed surfaces ({pct}%) add about {adds_c} °C more.",
+      "green": "Little green cover ({pct}%) adds about {adds_c} °C more.",
+      "dark_surface": "Dark surfaces ({pct}% of the built area) add about {adds_c} °C more."
+    },
+    "help": {
+      "green": "Adding {add_pct}% more green cover would cool the surface by about {drop_c} °C.",
+      "roofs": "With this much roof area, cool roofs and rooftop gardens help most."
     }
   }
 }

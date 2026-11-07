@@ -1,9 +1,9 @@
 'use client';
 /**
- * S06 · Zone detail (port of apps/mobile/src/screens/map/zone.tsx): map hero of the zone's hexes
- * with the Heat Score, the heat level now (air / feels-like / estimated surface), the AI "why it's
- * hot" with causes, the "+ green" what-if, 20 years of hot-season air temperature, the drivers and
- * the CTAs (goal, projection). Data: useZone(id).
+ * S06 · Zone detail (prompt-v1 §6.5, §7.3–§7.6): one stored zone row (same name, score and distance
+ * as the list). Map hero with the Heat Score, the heat now (air / feels-like from Open-Meteo, Landsat
+ * surface with its dates), the deterministic "why" with causes, the "+ green" what-if, 20 years of
+ * hot-season MODIS surface temperature, measured drivers and the CTAs. Data: useZone(id).
  */
 import { useTranslations } from 'next-intl';
 import { useMemo } from 'react';
@@ -13,13 +13,13 @@ import { SkeletonCard, SourceChips } from '@/components/cz/states';
 import { B, heatColor, heatFg } from '@/components/cz/tokens';
 import { Card, CzButton, GhostButton, IconBtn, Label, LightStatusBar, Screen, StatTile, Tag, Txt, View } from '@/components/cz/ui';
 import { CauseChips, WhatIf, scoreLevel } from '@/components/home/score-card';
-import { distM } from '@/components/map/geo';
 import { MapAttribution, MapView } from '@/components/map/map-view-lazy';
 import { usePrefetchZone, useSession, useZone } from '@/lib/data/hooks';
 import type { HexCell, ZoneDetail } from '@/lib/data/types';
 import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { goBack, href } from '@/lib/routes';
+import { useServerText, useZoneName } from '@/lib/server-text';
 
 import { DriversCard } from './drivers-card';
 import { HistoryCard } from './history-card';
@@ -29,9 +29,12 @@ function Hero({ zone }: { zone: ZoneDetail | undefined }) {
   const { f } = useCz();
   const t = useTranslations('zone');
   const th = useTranslations('home');
-  const { focus, placeName } = useLocation();
-  const hexes = useMemo<HexCell[]>(() => (zone ? zone.h3.map((h) => ({ h3: h, score: zone.score, lst_c: zone.lst_c })) : []), [zone]);
-  const d = zone ? distM(focus, zone.centroid) : null;
+  const { placeName } = useLocation();
+  const zn = useZoneName();
+  const hexes = useMemo<HexCell[]>(() => (zone ? zone.h3.map((h) => ({ h3: h, score: zone.score, lst_c: zone.lst_c, label: zone.label ?? 'satellite' })) : []), [zone]);
+  // The stored distance from the scan centre (§7.3): never recomputed on the client.
+  const d = zone ? zone.dist_m : null;
+  const place = zone?.place ?? placeName;
   const pts = (zone?.history ?? []).filter((h) => h.day_lst_c != null);
   const anom = pts.length > 2 ? pts[pts.length - 1].day_lst_c! - pts.reduce((a, h) => a + h.day_lst_c!, 0) / pts.length : null;
 
@@ -39,7 +42,7 @@ function Hero({ zone }: { zone: ZoneDetail | undefined }) {
     <View style={{ height: 340, backgroundColor: B.photoBg, overflow: 'hidden' }}>
       {zone ? (
         <MapView
-          label={t('heroA11y', { zone: zone.name })}
+          label={t('heroA11y', { zone: zn(zone) })}
           center={zone.centroid}
           radiusM={300}
           hexes={hexes}
@@ -60,10 +63,10 @@ function Hero({ zone }: { zone: ZoneDetail | undefined }) {
         <View style={{ position: 'absolute', start: 20, end: 20, bottom: 22, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, pointerEvents: 'none' }}>
           <View style={{ flexShrink: 1, minWidth: 0, gap: 6 }}>
             <Txt display size={20} color={B.white} as="h1">
-              {zone.name}
+              {zn(zone)}
             </Txt>
             <Txt size={13} color={B.white} style={{ opacity: 0.9 }}>
-              {d != null && d < 50_000 ? (placeName ? t('sub', { place: placeName, d: f.dist(d) }) : t('distOnly', { d: f.dist(d) })) : (placeName ?? '')}
+              {d != null && d < 50_000 ? (place ? t('sub', { place, d: f.dist(d) }) : t('distOnly', { d: f.dist(d) })) : (place ?? '')}
             </Txt>
             {anom != null ? <Tag label={t('anom', { d: f.dC(anom, 1) })} bg={anom > 0 ? B.red : B.blue} fg={B.white} size="md" style={{ height: 26 }} /> : null}
           </View>
@@ -91,6 +94,7 @@ export function ZoneScreen({ id }: { id: string }) {
   usePrefetchZone(q.data ? id : null, { spots: true });
   const session = useSession();
   const zone = q.data;
+  const tx = useServerText();
 
   return (
     <Screen bleed>
@@ -109,6 +113,14 @@ export function ZoneScreen({ id }: { id: string }) {
         )
       ) : (
         <>
+          {zone.superseded_by ? (
+            <Card style={{ marginHorizontal: 16 }} gap={8}>
+              <Txt size={13} w={600}>
+                {t('newer')}
+              </Txt>
+              <GhostButton label={t('newerAction')} height={40} href={href('S06', { id: zone.superseded_by })} />
+            </Card>
+          ) : null}
           <Card style={{ marginHorizontal: 16 }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
               <Label>{t('observed')}</Label>
@@ -117,12 +129,12 @@ export function ZoneScreen({ id }: { id: string }) {
               </Txt>
             </View>
             <View style={{ flexDirection: 'row', gap: 8 }}>
-              <StatTile big label={t('air')} value={f.deg(zone.air_c)} style={{ borderRadius: 16 }} />
-              <StatTile big label={t('feels')} value={f.deg(zone.feels_c)} style={{ borderRadius: 16 }} />
-              <StatTile big label={t('roof')} value={f.deg(zone.lst_c)} style={{ borderRadius: 16 }} />
+              <StatTile big label={t('air')} value={zone.air_c != null ? f.deg(zone.air_c) : '—'} style={{ borderRadius: 16 }} />
+              <StatTile big label={t('feels')} value={zone.feels_c != null ? f.deg(zone.feels_c) : '—'} style={{ borderRadius: 16 }} />
+              <StatTile big label={t('roof')} value={zone.lst_c != null ? f.deg(zone.lst_c) : '—'} style={{ borderRadius: 16 }} />
             </View>
             <Txt size={11.5} dim>
-              {t('lstNote')}
+              {zone.label === 'estimate' ? t('lstNoteEstimate') : t('lstNote', { date: zone.drivers?.as_of ? f.date(zone.drivers.as_of) : '—' })}
             </Txt>
           </Card>
 
@@ -131,22 +143,19 @@ export function ZoneScreen({ id }: { id: string }) {
               <Txt size={15} w={600} as="h2">
                 {t('whyTitle')}
               </Txt>
-              {zone.why_text ? <SourceChips ai /> : null}
             </View>
-            {zone.why_text ? (
-              <>
-                <Txt size={13.5} style={{ lineHeight: 21 }}>
-                  {zone.why_text}
-                </Txt>
-                <Txt size={11} dim>
-                  {t('aiNote')}
-                </Txt>
-              </>
+            {zone.why.length ? (
+              <Txt size={13.5} style={{ lineHeight: 21 }}>
+                {zone.why.map((w) => tx(w)).join(' ')}
+              </Txt>
             ) : (
               <Txt size={12.5} dim>
                 {t('noWhy')}
               </Txt>
             )}
+            <Txt size={11} dim>
+              {t('whyNote')}
+            </Txt>
             <CauseChips causes={zone.causes} bleed={16} />
           </Card>
 

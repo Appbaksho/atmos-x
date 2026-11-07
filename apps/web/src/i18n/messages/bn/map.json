@@ -6,17 +6,17 @@
   "nearTie": "প্রায় সমান",
   "tieNote": "±৩ এর মধ্যে স্কোরগুলো প্রায় সমান — সমান গরম ধরুন।",
   "openZone": "জোনের বিস্তারিত",
-  "estimateShort": "OSM + বর্তমান আবহাওয়া",
-  "estimateNote": "তাপের অনুমান: OpenStreetMap ভূমি-আবরণ + বর্তমান আবহাওয়া। এই স্ক্যানের ভেতরের ব্লকগুলোর তুলনা করে স্কোর তৈরি হয়; এগুলো স্যাটেলাইটের মাপ নয়।",
+  "estimateShort": "ভূমি-আবরণ ভিত্তিক আনুমান",
+  "estimateNote": "Heat Score: প্রতি ১৫,০০০ মি² হেক্সে NASA/USGS Landsat ভূপৃষ্ঠ তাপমাত্রা (যেখানে আছে ECOSTRESS দিয়ে সূক্ষ্ম), MODIS রাতের তাপ ও ESA WorldCover ভূমি-আবরণ। ধূসর হেক্সে এখনো ডেটা নেই।",
   "yourArea": "আপনার এলাকা",
   "mapA11y": "{place}-এর তাপ মানচিত্র",
   "layersLabel": "মানচিত্র স্তর",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "ভূপৃষ্ঠ °C"
   },
   "legendA11y": "Heat Score-এর ব্যাখ্যা: {bands}",
-  "gibsNote": "NASA ভূমি-পৃষ্ঠ তাপমাত্রা · মাসিক · ~ ১ কিমি",
+  "gibsNote": "দূর থেকে: NASA MODIS দৈনিক ভূপৃষ্ঠ তাপমাত্রা (~১ কিমি)। কাছ থেকে: Landsat হেক্স।",
   "count": "{count, plural, one {{n}টি জোন} other {{n}টি জোন}}",
   "lstShort": "পৃষ্ঠ",
   "scoreA11y": "Heat Score {score}",
@@ -31,5 +31,27 @@
   },
   "attribution": {
     "osm": "© OpenStreetMap অবদানকারীরা"
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n}টি হেক্স · {r}",
+  "landsatDates": "স্যাটেলাইট ছবি {from} – {to} · {n}টি দৃশ্য",
+  "lstLegendA11y": "ভূপৃষ্ঠ তাপমাত্রার রং: ঠান্ডা নীল থেকে গরম লাল",
+  "gibsNoteDated": "NASA MODIS ভূপৃষ্ঠ তাপমাত্রা, {date} (~১ কিমি) · Landsat হেক্স দেখতে কাছে আনুন",
+  "scanningSat": "স্যাটেলাইট ডেটা স্ক্যান হচ্ছে…",
+  "scanningSatPct": "স্যাটেলাইট ডেটা স্ক্যান হচ্ছে… {pct}%",
+  "_meta": {
+    "machine_keys": [
+      "estimateNote",
+      "estimateShort",
+      "gibsNote",
+      "gibsNoteDated",
+      "hexesR",
+      "landsatDates",
+      "layers.lst",
+      "lstLegendA11y",
+      "satelliteShort",
+      "scanningSat",
+      "scanningSatPct"
+    ]
   }
 }

@@ -5,17 +5,17 @@
   "title": "Mapa de calor",
   "within": "Dentro de",
   "withinR": "Dentro de {r}",
-  "estimateShort": "OSM + clima en vivo",
-  "estimateNote": "Estimación de calor: cobertura del suelo de OpenStreetMap + clima en vivo. Las puntuaciones comparan bloques dentro de este escaneo; no son mediciones de satélite.",
+  "estimateShort": "estimación por cobertura del suelo",
+  "estimateNote": "Heat Score: temperatura superficial NASA/USGS Landsat (afinada con ECOSTRESS donde hay datos), calor nocturno MODIS y cobertura ESA WorldCover, por hexágono de 15.000 m². Los hexágonos grises aún no tienen datos.",
   "yourArea": "tu zona",
   "mapA11y": "Mapa de calor de {place}",
   "layersLabel": "Capa del mapa",
   "layers": {
     "heat": "Heat Score",
-    "lst": "NASA LST"
+    "lst": "Superficie °C"
   },
   "legendA11y": "Leyenda de Heat Score: {bands}",
-  "gibsNote": "Temperatura de la superficie terrestre de NASA · mensual · ~1 km",
+  "gibsNote": "Alejado: temperatura superficial diaria NASA MODIS (~1 km). De cerca: hexágonos Landsat.",
   "ranked": "Lo más caliente en tu radio",
   "count": "{count, plural, one {{n} zona} other {{n} zonas}}",
   "nearTie": "Empate cercano",
@@ -34,5 +34,12 @@
   },
   "attribution": {
     "osm": "© Colaboradores de OpenStreetMap"
-  }
+  },
+  "satelliteShort": "NASA/USGS Landsat",
+  "hexesR": "{n} hexágonos · {r}",
+  "landsatDates": "Imágenes de satélite {from} – {to} · {n} escenas",
+  "lstLegendA11y": "Colores de temperatura superficial, del azul frío al rojo caliente",
+  "gibsNoteDated": "Temperatura superficial NASA MODIS, {date} (~1 km) · acerca para ver hexágonos Landsat",
+  "scanningSat": "Escaneando datos de satélite…",
+  "scanningSatPct": "Escaneando datos de satélite… {pct}%"
 }

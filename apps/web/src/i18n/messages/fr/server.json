@@ -11,7 +11,11 @@
     "heatwave_severe": "Vague de chaleur sévère attendue : jusqu’à {tmax} °C le {day}, jusqu’à {until}. Selon les seuils du BMD, pas une alerte officielle.",
     "heatwave_very_severe": "Vague de chaleur très sévère attendue : jusqu’à {tmax} °C le {day}, jusqu’à {until}. Selon les seuils du BMD, pas une alerte officielle.",
     "heat_danger": "Chaleur dangereuse : ressenti jusqu’à {feels} °C le {day}. Évitez le soleil de midi et buvez souvent de l’eau.",
-    "heat_extreme": "Chaleur extrême : ressenti jusqu’à {feels} °C le {day}. Restez à l’ombre et prenez des nouvelles des voisins âgés."
+    "heat_extreme": "Chaleur extrême : ressenti jusqu’à {feels} °C le {day}. Restez à l’ombre et prenez des nouvelles des voisins âgés.",
+    "coldwave_mild": "Vague de froid légère attendue : jusqu’à {tmin} °C le {day}, jusqu’au {until}. D’après les seuils du BMD, ce n’est pas une alerte officielle.",
+    "coldwave_moderate": "Vague de froid modérée attendue : jusqu’à {tmin} °C le {day}, jusqu’au {until}. D’après les seuils du BMD, ce n’est pas une alerte officielle.",
+    "coldwave_severe": "Vague de froid forte attendue : jusqu’à {tmin} °C le {day}, jusqu’au {until}. D’après les seuils du BMD, ce n’est pas une alerte officielle.",
+    "coldwave_very_severe": "Vague de froid très forte attendue : jusqu’à {tmin} °C le {day}, jusqu’au {until}. D’après les seuils du BMD, ce n’est pas une alerte officielle."
   },
   "bmd": {
     "mild": "Vague de chaleur légère",
@@ -29,27 +33,37 @@
   },
   "cause": {
     "sealed_surface": "{pct}% de surface imperméabilisée (toits, dallage, routes) absorbe le soleil : ajoute environ {adds_c} °C",
-    "wide_roads": "Les routes couvrent {pct}% du sol : ajoute environ {adds_c} °C",
-    "low_green": "Seulement {pct}% de verdure : environ {adds_c} °C de refroidissement en moins qu’un quartier plus vert",
-    "dense_buildings": "Des bâtiments denses ({per_ha} par hectare) retiennent la chaleur et coupent le vent : ajoutent environ {adds_c} °C",
-    "dark_roofs": "Environ {pct}% des toits sont sombres (hypothèse) : ajoute environ {adds_c} °C"
+    "wide_roads": "Les routes couvrent {pct} % du sol",
+    "low_green": "Seulement {pct} % de végétation : environ +{adds_c} °C par rapport à la moyenne du secteur",
+    "dense_buildings": "Les bâtiments couvrent {pct} % du sol : ils retiennent la chaleur et bloquent le vent",
+    "dark_surfaces": "{pct} % des surfaces bâties paraissent sombres sur les images Landsat : environ +{adds_c} °C",
+    "hot_nights": "Les nuits restent {delta_c} °C plus chaudes qu’alentour (mesures satellite de nuit de la NASA)",
+    "dense_population": "Beaucoup de gens vivent ici : la chaleur touche plus de monde"
   },
   "assumption": {
-    "trend": "Tendance : {per_decade} °C par décennie de hausse de la température maximale quotidienne en saison chaude ({from}–{to}, archive Open-Meteo), prolongée jusqu’en 2040.",
     "hot_season": "Saison chaude utilisée pour la tendance : mois {months}.",
     "tree_ramp": "Les arbres rafraîchissent en grandissant : 20% de l’effet maximal la 1re année, 50% la 3e, 80% la 5e, 100% à partir de la 8e.",
     "tree_cooling": "100 arbres matures rafraîchissent cette zone ({area_km2} km²) d’environ {per_100_trees} °C.",
     "roof_cooling": "1 000 m² de toit frais rafraîchissent cette zone d’environ {per_1000_m2} °C.",
     "inputs": "Plan dans cette projection : {trees} arbres, {roof_m2} m² de toit frais, {shade} structures d’ombre.",
-    "ranges": "Des fourchettes, pas des promesses : une estimation à partir de la couverture du sol et de coefficients de rafraîchissement publiés."
+    "ranges": "Des ordres de grandeur, pas des promesses : le refroidissement repose sur des coefficients publiés, c’est une estimation.",
+    "surface": {
+      "modis_hot_season": "Point de départ : la température de surface moyenne de la zone en saison chaude sur les 3 dernières années (NASA MODIS, 1 km).",
+      "landsat_zone": "Point de départ : la température de surface récente de la zone d’après Landsat (l’historique se charge encore)."
+    },
+    "warming": {
+      "cmip6": "Réchauffement : {per_decade} °C par décennie, moyenne de {models} modèles climatiques NASA NEX-GDDP-CMIP6 (SSP2-4.5) pour la saison chaude.",
+      "modis_trend": "Réchauffement : {per_decade} °C par décennie, tendance observée de la température de surface en saison chaude (NASA MODIS).",
+      "none": "Réchauffement : aucune tendance disponible pour l’instant, la ligne est donc plate."
+    }
   },
   "feas": {
     "trees_vs_space": "{trees} arbres nécessaires ; le sol libre et les bords de rue peuvent en accueillir environ {capacity}.",
     "roofs_vs_space": "{roof_m2} m² de toit frais nécessaires ; environ {capacity_m2} m² de toit semblent utilisables.",
-    "max_cooling": "Avec l’espace disponible, environ {max_c} °C est réaliste.",
+    "max_cooling": "Avec la place disponible, environ {max_c} °C est réaliste en {years} ans.",
     "spots_unknown": "Impossible de charger les emplacements de plantation, donc l’espace n’a pas été vérifié.",
-    "action_goal": "En moins de 6 mois, c’est un objectif d’action : nous suivons le travail lui-même, car le rafraîchissement prend plus de temps à apparaître.",
-    "trees_take_years": "Les arbres ont besoin d’années pour donner leur ombre complète ; la majeure partie du rafraîchissement arrive après la date cible."
+    "action_goal": "Sous 3 ans, c’est un objectif d’actions : on suit les plantations et les toits, et on montre le refroidissement à long terme à côté.",
+    "trees_take_years": "À la date de l’objectif, les arbres donnent environ {ramp_pct} % de leur plein effet ; le reste vient plus tard."
   },
   "plan": {
     "why": {
@@ -213,6 +227,25 @@
       "farm": "Oui. Votre riz Aman est en floraison (détecté par satellite le 28 sept.) et dimanche atteindra 36°. Relevez l’eau stagnante à 5 cm ce soir et complétez dimanche à l’aube.",
       "tree_due": "{name} est dû pour sa photo à 15 jours. Prenez une nouvelle photo pour vérifier sa santé ; en période de forte chaleur, arrosez-le en profondeur le soir et gardez un anneau de paillis au pied.",
       "tree": "Les jeunes arbres ont besoin d’un arrosage en profondeur deux fois par semaine par temps chaud et sec, d’un anneau de paillis au pied et d’un protecteur. Ajoutez une photo tous les 15 jours pour que nous puissions vérifier leur santé."
+    }
+  },
+  "why": {
+    "hotter": "Sur les images satellite récentes, la surface de cette zone est {delta_c} °C plus chaude qu’alentour.",
+    "cooler": "Sur les images satellite récentes, la surface de cette zone est {delta_c} °C plus fraîche qu’alentour.",
+    "typical": "Sa température de surface est proche de la moyenne du secteur.",
+    "one": {
+      "sealed": "Raison principale : {pct} % du sol est imperméabilisé (toits, pavés, routes), soit environ +{adds_c} °C.",
+      "green": "Raison principale : seulement {pct} % de végétation, soit environ +{adds_c} °C.",
+      "dark_surface": "Raison principale : {pct} % des surfaces bâties sont sombres, soit environ +{adds_c} °C."
+    },
+    "also": {
+      "sealed": "Les surfaces imperméables ({pct} %) ajoutent environ {adds_c} °C.",
+      "green": "Le peu de végétation ({pct} %) ajoute environ {adds_c} °C.",
+      "dark_surface": "Les surfaces sombres ({pct} % du bâti) ajoutent environ {adds_c} °C."
+    },
+    "help": {
+      "green": "Ajouter {add_pct} % de végétation refroidirait la surface d’environ {drop_c} °C.",
+      "roofs": "Avec autant de toits, les toits frais et les toits végétalisés aident le plus."
     }
   }
 }

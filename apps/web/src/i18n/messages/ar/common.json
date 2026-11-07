@@ -54,14 +54,50 @@
     "create": "أنشئ حسابًا مجانيًا",
     "signIn": "لديّ حساب بالفعل",
     "notNow": "ليس الآن",
-    "note": "حسابك موجود على هذا الجهاز. وتنتقل إعدادات الضيف معك."
+    "note": "يُحفظ حسابك على خوادم Atmos X. كل ما فعلته كضيف ينتقل معك."
   },
   "sources": {
     "label": "المصادر",
     "cached": "مخزّن",
     "live": "مباشر",
-    "ai": "تقدير AI",
-    "demo": "مجتمع تجريبي"
+    "demo": "مجتمع تجريبي",
+    "name": {
+      "landsat": "Landsat 8/9",
+      "hls": "HLS (Landsat/Sentinel-2)",
+      "modis_lst": "MODIS LST",
+      "worldcover": "ESA WorldCover",
+      "ecostress": "ECOSTRESS",
+      "power": "NASA POWER",
+      "geos_fp": "NASA GEOS-FP",
+      "geos_cf": "NASA GEOS-CF",
+      "imerg": "GPM IMERG",
+      "smap": "SMAP",
+      "lisotd": "LIS/OTD",
+      "cmip6": "NEX-GDDP-CMIP6",
+      "ornl_modis": "ORNL MODIS",
+      "gibs": "NASA GIBS",
+      "gpw": "GPWv4",
+      "open_meteo": "Open-Meteo",
+      "openaq": "OpenAQ",
+      "nominatim": "Nominatim",
+      "osm": "OpenStreetMap",
+      "dbip": "DB-IP",
+      "bmd_thresholds": "حدود BMD",
+      "atmos": "حساب Atmos X",
+      "atmos_reference": "جداول Atmos X",
+      "device": "هذا الجهاز"
+    },
+    "kind": {
+      "observation": "مَقيس",
+      "model": "نموذج",
+      "forecast": "توقّع",
+      "derived": "محسوب",
+      "estimate": "تقدير",
+      "reference": "مرجع",
+      "demo": "تجريبي"
+    },
+    "stale": "آخر تحديث",
+    "staleTitle": "لم يستجب المصدر، لذا تُعرض آخر بيانات سليمة مع تاريخها."
   },
   "risk": {
     "ok": "عادي",

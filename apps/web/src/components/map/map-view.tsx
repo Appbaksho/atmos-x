@@ -17,12 +17,17 @@ import { configureMaplibre } from '@/lib/maplibre';
 import { useCz } from '@/lib/prefs';
 import type { HexCell, LatLng, ZoneSummary } from '@/lib/data/types';
 
-import { cellsBounds, circleBounds, circlePolygon, hexCollection, zoneCollection } from './geo';
+import { cellsBounds, circleBounds, circlePolygon, hexCollection, ringOutline, zoneCollection } from './geo';
 import { loadStyle } from './map-style';
 
-/** NASA GIBS MODIS Terra monthly daytime LST (from apps/mobile/src/lib/nasa.ts). */
-const GIBS_LST_TILE_URL =
-  'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_L3_Land_Surface_Temp_Monthly_Day/default/default/GoogleMapsCompatible_Level6/{z}/{y}/{x}.png';
+/**
+ * NASA GIBS daily MODIS Terra daytime LST (E11). The dated URL comes from GET /map/gibs; 'default'
+ * is GIBS's latest day. Level 7 (≈ 1 km) is the finest, so it shows only below zoom 9, where our
+ * Landsat hexes take over.
+ */
+const GIBS_DEFAULT_URL =
+  'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_Land_Surface_Temp_Day/default/default/GoogleMapsCompatible_Level7/{z}/{y}/{x}.png';
+const GIBS_MAX_VIEW_ZOOM = 9;
 
 const HEX_OPACITY = 0.55;
 const EMPTY = { type: 'FeatureCollection' as const, features: [] };
@@ -46,8 +51,14 @@ export type MapViewProps = {
   outlineZoneId?: string | null;
   me?: LatLng | null;
   showCircle?: boolean;
-  /** NASA GIBS monthly LST overlay */
+  /** Outline of the hex ring (H1), from the scan; replaces the radius circle when present */
+  outline?: number[][][] | null;
+  /** NASA GIBS daily LST overlay (below zoom 9) */
   gibs?: boolean;
+  /** Dated GIBS tile URL from GET /map/gibs */
+  gibsUrl?: string | null;
+  /** Colour hexes by Heat Score (default) or by Landsat surface temperature */
+  hexColor?: 'score' | 'lst';
   /** Changing this replays the hex fade-in (scan animation) */
   animateKey?: string | number | null;
   /** Pulse the scan circle while a scan runs */
@@ -63,7 +74,10 @@ export type MapViewProps = {
   onFail?: () => void;
 };
 
-type Snapshot = Pick<MapViewProps, 'center' | 'radiusM' | 'hexes' | 'zones' | 'me' | 'showCircle' | 'gibs' | 'outlineZoneId'> & { dark: boolean };
+type Snapshot = Pick<MapViewProps, 'center' | 'radiusM' | 'hexes' | 'zones' | 'me' | 'showCircle' | 'gibs' | 'outlineZoneId' | 'outline' | 'gibsUrl' | 'hexColor'> & { dark: boolean };
+
+const areaShape = (s: Pick<Snapshot, 'outline' | 'center' | 'radiusM'>) => ringOutline(s.outline) ?? circlePolygon(s.center, s.radiusM);
+const HEX_FILL = (mode: MapViewProps['hexColor']) => ['get', mode === 'lst' ? 'lstColor' : 'color'] as maplibregl.ExpressionSpecification;
 
 function reducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -91,14 +105,14 @@ function addOverlays(map: MlMap, s: Snapshot) {
   const add = (layer: LayerSpecification, below = before) => map.addLayer(layer, below);
   const lineColor = s.dark ? 'rgba(234,241,248,0.55)' : 'rgba(255,255,255,0.85)';
 
-  map.addSource('cz-gibs', { type: 'raster', tiles: [GIBS_LST_TILE_URL], tileSize: 256, maxzoom: 6, attribution: 'NASA GIBS (MODIS LST)' });
-  add({ id: 'cz-gibs', type: 'raster', source: 'cz-gibs', layout: { visibility: s.gibs ? 'visible' : 'none' }, paint: { 'raster-opacity': 0.7 } });
+  map.addSource('cz-gibs', { type: 'raster', tiles: [s.gibsUrl || GIBS_DEFAULT_URL], tileSize: 256, maxzoom: 7, attribution: 'NASA GIBS (MODIS LST)' });
+  add({ id: 'cz-gibs', type: 'raster', source: 'cz-gibs', maxzoom: GIBS_MAX_VIEW_ZOOM, layout: { visibility: s.gibs ? 'visible' : 'none' }, paint: { 'raster-opacity': 0.7 } });
 
-  map.addSource('cz-circle', { type: 'geojson', data: circlePolygon(s.center, s.radiusM) });
+  map.addSource('cz-circle', { type: 'geojson', data: areaShape(s) });
   add({ id: 'cz-circle-fill', type: 'fill', source: 'cz-circle', layout: { visibility: s.showCircle === false ? 'none' : 'visible' }, paint: { 'fill-color': B.lime, 'fill-opacity': 0.08 } });
 
   map.addSource('cz-hex', { type: 'geojson', data: s.hexes?.length ? hexCollection(s.hexes, s.zones ?? []) : EMPTY });
-  add({ id: 'cz-hex-fill', type: 'fill', source: 'cz-hex', paint: { 'fill-color': ['get', 'color'], 'fill-opacity': HEX_OPACITY } });
+  add({ id: 'cz-hex-fill', type: 'fill', source: 'cz-hex', paint: { 'fill-color': HEX_FILL(s.hexColor), 'fill-opacity': ['case', ['==', ['get', 'label'], 'no_data'], 0.3, HEX_OPACITY] } });
   add({ id: 'cz-hex-line', type: 'line', source: 'cz-hex', paint: { 'line-color': lineColor, 'line-width': 1, 'line-opacity': 1 } });
 
   map.addSource('cz-zones', { type: 'geojson', data: s.zones?.length ? zoneCollection(s.zones) : EMPTY });
@@ -111,7 +125,8 @@ function addOverlays(map: MlMap, s: Snapshot) {
     type: 'line',
     source: 'cz-circle',
     layout: { visibility: s.showCircle === false ? 'none' : 'visible' },
-    paint: { 'line-color': B.lime, 'line-width': 2, 'line-dasharray': [3, 3] },
+    // Solid outline of the hex ring (H1); dashed only for the plain radius circle.
+    paint: s.outline?.length ? { 'line-color': B.lime, 'line-width': 2.5 } : { 'line-color': B.lime, 'line-width': 2, 'line-dasharray': [3, 3] },
   });
 
   map.addSource('cz-me', { type: 'geojson', data: s.me ? { type: 'Point', coordinates: [s.me.lng, s.me.lat] } : EMPTY });
@@ -120,18 +135,18 @@ function addOverlays(map: MlMap, s: Snapshot) {
 }
 
 export default function MapView(props: MapViewProps) {
-  const { center, radiusM, hexes, zones, focusCells, outlineZoneId, me, showCircle = true, gibs = false, animateKey, scanning, interactive = true, padding, onHex, markers, label, style, className, onFail } = props;
+  const { center, radiusM, hexes, zones, focusCells, outlineZoneId, me, showCircle = true, outline = null, gibs = false, gibsUrl = null, hexColor = 'score', animateKey, scanning, interactive = true, padding, onHex, markers, label, style, className, onFail } = props;
   const { dark } = useCz();
   const box = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MlMap | null>(null);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
-  const snap = useRef<Snapshot>({ center, radiusM, hexes, zones, me, showCircle, gibs, outlineZoneId, dark });
+  const snap = useRef<Snapshot>({ center, radiusM, hexes, zones, me, showCircle, gibs, outlineZoneId, outline, gibsUrl, hexColor, dark });
   const onHexRef = useRef(onHex);
   const padRef = useRef(padding);
   // Latest props for map event handlers (style swaps re-add overlays from this snapshot).
   useEffect(() => {
-    snap.current = { center, radiusM, hexes, zones, me, showCircle, gibs, outlineZoneId, dark };
+    snap.current = { center, radiusM, hexes, zones, me, showCircle, gibs, outlineZoneId, outline, gibsUrl, hexColor, dark };
     onHexRef.current = onHex;
     padRef.current = padding;
   });
@@ -231,11 +246,25 @@ export default function MapView(props: MapViewProps) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !ready || !map.getSource('cz-circle')) return;
-    setSource(map, 'cz-circle', circlePolygon(center, radiusM));
+    setSource(map, 'cz-circle', areaShape({ outline, center, radiusM }));
     const vis = showCircle ? 'visible' : 'none';
     map.setLayoutProperty('cz-circle-fill', 'visibility', vis);
     map.setLayoutProperty('cz-circle-line', 'visibility', vis);
-  }, [center, radiusM, showCircle, ready]);
+    if (outline?.length) map.setPaintProperty('cz-circle-line', 'line-dasharray', [1, 0]);
+  }, [center, radiusM, showCircle, outline, ready]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready || !map.getLayer('cz-hex-fill')) return;
+    map.setPaintProperty('cz-hex-fill', 'fill-color', HEX_FILL(hexColor));
+  }, [hexColor, ready]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    const src = map?.getSource('cz-gibs') as maplibregl.RasterTileSource | undefined;
+    if (!map || !ready || !src || !gibsUrl) return;
+    src.setTiles([gibsUrl]);
+  }, [gibsUrl, ready]);
 
   useEffect(() => {
     const map = mapRef.current;
