@@ -156,3 +156,29 @@ people, teams, one organization, posts and an event (ids from a UUID5 namespace)
 and are purged after 7 days, while the shared community stays. Each demo session gets its own private
 "Asad Gate Crew" (Nadia plus two invented neighbours) so sessions never fill a shared team; private
 teams are left off the public team leaderboards.
+
+**D27. Store and marketplace details.** Prices are proposals in config (§14): VAT 15 %; a listing's
+points price must be within ±25 % of declared value × 2 points per taka (M22); a person may redeem 4
+items a month and a device 6 (S15); vouchers last 14 days; a tree impact package is ৳1,500 per tree
+(planting and 3 years of care); a store listing ৳25,000 a year; certified credits ৳2,500 a tonne; bank
+transfer is offered for orders of ৳200,000 or more. Redeeming locks the person's row and the product's
+row in one transaction. Tree money is recorded as held in a pool and moved to "released" for the
+planter only when a verified tree is allocated to the order; nothing is paid out automatically.
+Credit lots sell whole, move Verified → Sold → Retired in one step on payment, and the database refuses
+any resale. CO₂ for tree packages is printed as "estimate, not an offset" on the package, invoice and
+report. The SSLCommerz sandbox accepted a real session request and its validation API answered; a full
+browser checkout in the sandbox was not run. The IPN needs a public URL, so locally the success
+callback carries validation. Demo users see an invented pilot partner and nursery; real users see
+empty states until a real partner signs.
+
+**D28. Store screens.** The app asks `GET /partner/me` (always 200, `partner: null` for everyone else) to decide whether to show
+the partner portal link, so ordinary people never trigger a 403. Partner listings include the declared
+value, the active flag and the server's price band; the portal shows the band as a hint while the
+server stays the only judge (M22). Outlets scan the voucher QR with the browser's `BarcodeDetector`
+where Chromium offers it, and type the code everywhere else; the QR holds only the voucher code.
+Package prices, the VAT rate and the bank-transfer minimum come from `GET /company/packages`; the
+client only multiplies them for the preview. Payment results come back as `?payment=` on
+`/app/store?tab=saplings` and `/app/company` and are shown as a note; the order state itself always
+comes from the server. Carbon credits stay disabled in the UI unless the server reports certified
+tonnes. The admin screen is shown only to the admin role, and every admin call is checked again on
+the server.

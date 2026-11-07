@@ -8,7 +8,12 @@
     "notifs": "اطلاعات",
     "settings": "ترتیبات",
     "about": "ڈیٹا اور سائنس",
-    "title": "مزید"
+    "title": "مزید",
+    "store": "اسٹور",
+    "orders": "میرے آرڈر",
+    "partner": "پارٹنر پورٹل",
+    "company": "کمپنی اکاؤنٹ",
+    "admin": "ایڈمن"
   },
   "trees": {
     "title": "میرے درخت",
@@ -397,6 +402,11 @@
       },
       "event": {
         "reminder": "یاددہانی: {title}، {date} کو"
+      },
+      "store": {
+        "redeemed": "{product}: {points} پوائنٹس میں لیا",
+        "collected": "{product} وصول ہو گیا",
+        "sapling_paid": "ادائیگی موصول: {qty} × {name}"
       }
     },
     "reason": {
@@ -441,6 +451,9 @@
       "code.notif.social.like",
       "code.notif.social.mention",
       "code.notif.social.quote",
+      "code.notif.store.collected",
+      "code.notif.store.redeemed",
+      "code.notif.store.sapling_paid",
       "code.notif.team.goal_reached",
       "code.notif.team.member_joined",
       "code.notif.tree.at_risk",
@@ -461,6 +474,11 @@
       "join.joining",
       "join.mine",
       "join.title",
+      "links.admin",
+      "links.company",
+      "links.orders",
+      "links.partner",
+      "links.store",
       "pending",
       "pendingA11y",
       "pendingUntil",

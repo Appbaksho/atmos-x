@@ -2502,7 +2502,7 @@
      "content": {
       "application/json": {
        "schema": {
-        "$ref": "#/components/schemas/ReviewIn"
+        "$ref": "#/components/schemas/app__routers__act__ReviewIn"
        }
       }
      }
@@ -3584,6 +3584,3486 @@
      }
     }
    }
+  },
+  "/api/v1/teams": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Teams",
+    "description": "`mine=true`: teams I'm in. Otherwise public teams to discover (search by name).",
+    "operationId": "teams_list",
+    "parameters": [
+     {
+      "name": "mine",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Mine"
+      }
+     },
+     {
+      "name": "q",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 80
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Teams List"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Create Team",
+    "operationId": "teams_create",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TeamIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams Create"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/by-code/{code}": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Team By Code",
+    "description": "Invite preview (guests too): name, size, org. Joining needs an account.",
+    "operationId": "teams_by_code",
+    "parameters": [
+     {
+      "name": "code",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Code"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams By Code"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/join-by-code": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Join By Code",
+    "operationId": "teams_join_by_code",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CodeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Teams Join By Code"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/{team_id}": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Get Team",
+    "operationId": "teams_get",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Patch Team",
+    "operationId": "teams_patch",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TeamPatch"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams Patch"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/{team_id}/join": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Join Team",
+    "operationId": "teams_join",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams Join"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/{team_id}/members/me": {
+   "delete": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Leave Team",
+    "operationId": "teams_leave",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/{team_id}/invite": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Invite",
+    "operationId": "teams_invite",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams Invite"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/teams/{team_id}/messages": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Messages",
+    "operationId": "teams_messages",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     },
+     {
+      "name": "since",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Since"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Teams Messages"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Post Message",
+    "operationId": "teams_message_post",
+    "parameters": [
+     {
+      "name": "team_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Team Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/MessageIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Teams Message Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/orgs": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Orgs",
+    "operationId": "orgs_list",
+    "parameters": [
+     {
+      "name": "q",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "maxLength": 80
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Q"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Orgs List"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Create Org",
+    "operationId": "orgs_create",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OrgIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Orgs Create"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/orgs/{org_id}": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Get Org",
+    "operationId": "orgs_get",
+    "parameters": [
+     {
+      "name": "org_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Org Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Orgs Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/leaderboard": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Leaderboard",
+    "operationId": "leaderboard",
+    "parameters": [
+     {
+      "name": "subject",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(user|team|org)$",
+       "default": "user",
+       "title": "Subject"
+      }
+     },
+     {
+      "name": "scope",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(area|city|country)$",
+       "default": "area",
+       "title": "Scope"
+      }
+     },
+     {
+      "name": "period",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(week|month|all)$",
+       "default": "month",
+       "title": "Period"
+      }
+     },
+     {
+      "name": "lat",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 90,
+         "minimum": -90
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 180,
+         "minimum": -180
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lng"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Leaderboard"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/users/{user_id}": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "User Profile",
+    "operationId": "users_get",
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Users Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/follows": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Follow",
+    "operationId": "follows_add",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/FollowIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Follows Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Unfollow",
+    "operationId": "follows_remove",
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "User Id"
+      }
+     },
+     {
+      "name": "team_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Team Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Follows Remove"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/blocks": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Block",
+    "operationId": "blocks_add",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/BlockIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Blocks Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/blocks/{user_id}": {
+   "delete": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Unblock",
+    "operationId": "blocks_remove",
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Blocks Remove"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/reports": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Report",
+    "operationId": "reports_add",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReportIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Reports Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/feed": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Feed",
+    "operationId": "feed",
+    "parameters": [
+     {
+      "name": "filter",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(area|city|following)$",
+       "default": "area",
+       "title": "Filter"
+      }
+     },
+     {
+      "name": "lat",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 90,
+         "minimum": -90
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 180,
+         "minimum": -180
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lng"
+      }
+     },
+     {
+      "name": "before",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Before"
+      }
+     },
+     {
+      "name": "user_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "User Id"
+      }
+     },
+     {
+      "name": "team_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Team Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Feed"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/posts": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Create Post",
+    "operationId": "posts_create",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_posts_create"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Posts Create"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/posts/{post_id}": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Get Post",
+    "operationId": "posts_get",
+    "parameters": [
+     {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Post Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Posts Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Delete Post",
+    "operationId": "posts_delete",
+    "parameters": [
+     {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Post Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/posts/{post_id}/like": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Like",
+    "operationId": "posts_like",
+    "parameters": [
+     {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Post Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Posts Like"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Unlike",
+    "operationId": "posts_unlike",
+    "parameters": [
+     {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Post Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Posts Unlike"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/posts/{post_id}/comments": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Comments",
+    "operationId": "posts_comments",
+    "parameters": [
+     {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Post Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Posts Comments"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Add Comment",
+    "operationId": "posts_comment_add",
+    "parameters": [
+     {
+      "name": "post_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Post Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CommentIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Posts Comment Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/comments/{comment_id}": {
+   "delete": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Delete Comment",
+    "operationId": "comments_delete",
+    "parameters": [
+     {
+      "name": "comment_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Comment Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/moderation/queue": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Mod Queue",
+    "operationId": "moderation_queue",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Moderation Queue"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/moderation/{report_id}": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Mod Act",
+    "description": "`report_id` is a report's id, or `-` to act on a target directly (e.g. a pending photo).",
+    "operationId": "moderation_act",
+    "parameters": [
+     {
+      "name": "report_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Report Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ModerateIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Moderation Act"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Notifications",
+    "operationId": "notifications_list",
+    "parameters": [
+     {
+      "name": "before",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Before"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Notifications List"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications/read": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Notifications Read",
+    "operationId": "notifications_read",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ReadIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Notifications Read"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/events": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Events",
+    "operationId": "events_list",
+    "parameters": [
+     {
+      "name": "lat",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 90,
+         "minimum": -90
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 180,
+         "minimum": -180
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lng"
+      }
+     },
+     {
+      "name": "past",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Past"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Events List"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Create Event",
+    "operationId": "events_create",
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EventIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Events Create"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/events/{event_id}": {
+   "get": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Get Event",
+    "operationId": "events_get",
+    "parameters": [
+     {
+      "name": "event_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Event Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Events Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/events/{event_id}/rsvp": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Rsvp",
+    "operationId": "events_rsvp",
+    "parameters": [
+     {
+      "name": "event_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Event Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RsvpIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Events Rsvp"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/events/{event_id}/checkin": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Checkin",
+    "operationId": "events_checkin",
+    "parameters": [
+     {
+      "name": "event_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Event Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CheckinIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Events Checkin"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/events/{event_id}/photo": {
+   "post": {
+    "tags": [
+     "community"
+    ],
+    "summary": "Event Photo",
+    "operationId": "events_photo",
+    "parameters": [
+     {
+      "name": "event_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Event Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_events_photo"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Events Photo"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/store/partners": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partners",
+    "operationId": "store_partners",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Store Partners"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/store/products": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Products",
+    "operationId": "store_products",
+    "parameters": [
+     {
+      "name": "filter",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "pattern": "^(can_afford|food|home|garden|vouchers)$"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Filter"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Store Products"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/store/products/{product_id}": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Product",
+    "operationId": "store_product",
+    "parameters": [
+     {
+      "name": "product_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Product Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Store Product"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/store/products/{product_id}/redeem": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Redeem",
+    "operationId": "store_redeem",
+    "parameters": [
+     {
+      "name": "product_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Product Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RedeemIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Store Redeem"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/orders/mine": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Orders Mine",
+    "operationId": "orders_mine",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Orders Mine"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/saplings/products": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Sapling Products",
+    "operationId": "saplings_products",
+    "parameters": [
+     {
+      "name": "lat",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 90,
+         "minimum": -90
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lat"
+      }
+     },
+     {
+      "name": "lng",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number",
+         "maximum": 180,
+         "minimum": -180
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Lng"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Saplings Products"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/saplings/orders": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Sapling Order",
+    "operationId": "saplings_order",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SaplingOrderIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Saplings Order"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/saplings/orders/{order_id}/invoice.pdf": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Sapling Invoice",
+    "operationId": "saplings_invoice",
+    "parameters": [
+     {
+      "name": "order_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Order Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/me": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Me",
+    "description": "The store partner this person works for, or null (no 403, so the app can decide what to show).",
+    "operationId": "partner_me",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Partner Me"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/products": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Products",
+    "operationId": "partner_products",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Partner Products"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Product Add",
+    "operationId": "partner_product_add",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProductIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Partner Product Add"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/products/{product_id}": {
+   "patch": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Product Patch",
+    "operationId": "partner_product_patch",
+    "parameters": [
+     {
+      "name": "product_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Product Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProductPatch"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Partner Product Patch"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/redemptions": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Redemptions",
+    "operationId": "partner_redemptions",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Partner Redemptions"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/vouchers/{code}/collect": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Collect",
+    "operationId": "partner_collect",
+    "parameters": [
+     {
+      "name": "code",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Code"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CollectIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Partner Collect"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/redemptions/{redemption_id}/delivered": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Delivered",
+    "operationId": "partner_delivered",
+    "parameters": [
+     {
+      "name": "redemption_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Redemption Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Partner Delivered"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/partner/report": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Partner Report",
+    "operationId": "partner_report",
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     }
+    }
+   }
+  },
+  "/api/v1/company/register": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Register",
+    "operationId": "company_register",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_company_register"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Company Register"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/me": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Me",
+    "operationId": "company_me",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Company Me"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Patch",
+    "operationId": "company_patch",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CompanyPatch"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Company Patch"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/emissions": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Emissions",
+    "operationId": "company_emissions",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Company Emissions"
+        }
+       }
+      }
+     }
+    }
+   },
+   "patch": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Emissions Set",
+    "operationId": "company_emissions_set",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EmissionsIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Company Emissions Set"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/packages": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Packages",
+    "operationId": "company_packages",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Company Packages"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/overview": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Overview",
+    "operationId": "company_overview",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Company Overview"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/orders": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Order",
+    "operationId": "company_order",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OrderIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Company Order"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/invoices": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Invoices",
+    "operationId": "company_invoices",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Company Invoices"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/invoices/{invoice_id}.pdf": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Invoice Pdf",
+    "operationId": "company_invoice_pdf",
+    "parameters": [
+     {
+      "name": "invoice_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Invoice Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/report.pdf": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Report",
+    "operationId": "company_report",
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     }
+    }
+   }
+  },
+  "/api/v1/company/certificates": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Certificates",
+    "operationId": "company_certificates",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Company Certificates"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/company/certificates/{retirement_id}.pdf": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Company Certificate Pdf",
+    "operationId": "company_certificate_pdf",
+    "parameters": [
+     {
+      "name": "retirement_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Retirement Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/companies": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Companies",
+    "operationId": "admin_companies",
+    "parameters": [
+     {
+      "name": "status",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(pending|approved|rejected)$",
+       "default": "pending",
+       "title": "Status"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Admin Companies"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/companies/{company_id}/documents/{doc_id}": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Company Doc",
+    "operationId": "admin_company_doc",
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "doc_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Doc Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/companies/{company_id}/approve": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Company Approve",
+    "operationId": "admin_company_approve",
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/app__routers__market__ReviewIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Admin Company Approve"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/credit-lots": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Lots",
+    "operationId": "admin_lots",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "additionalProperties": true,
+          "type": "object"
+         },
+         "type": "array",
+         "title": "Response Admin Lots"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Lot Create",
+    "operationId": "admin_lot_create",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/LotIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Admin Lot Create"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/credit-lots/{lot_id}/certify": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Lot Certify",
+    "operationId": "admin_lot_certify",
+    "parameters": [
+     {
+      "name": "lot_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Lot Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CertifyIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Admin Lot Certify"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/orders": {
+   "get": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Orders",
+    "operationId": "admin_orders",
+    "parameters": [
+     {
+      "name": "status",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "awaiting_transfer",
+       "title": "Status"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "additionalProperties": true
+         },
+         "title": "Response Admin Orders"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/orders/{order_id}/confirm-transfer": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Confirm Transfer",
+    "operationId": "admin_confirm_transfer",
+    "parameters": [
+     {
+      "name": "order_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Order Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "additionalProperties": true,
+         "title": "Response Admin Confirm Transfer"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/allocate": {
+   "post": {
+    "tags": [
+     "market"
+    ],
+    "summary": "Admin Allocate",
+    "operationId": "admin_allocate",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "additionalProperties": true,
+         "type": "object",
+         "title": "Response Admin Allocate"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
@@ -3855,6 +7335,20 @@
     "type": "object",
     "title": "AskIn"
    },
+   "BlockIn": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "User Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id"
+    ],
+    "title": "BlockIn"
+   },
    "Body_actions_log": {
     "properties": {
      "action_type": {
@@ -4028,6 +7522,118 @@
     ],
     "title": "Body_actions_log"
    },
+   "Body_company_register": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 160,
+      "minLength": 2,
+      "title": "Name"
+     },
+     "trade_licence": {
+      "type": "string",
+      "maxLength": 80,
+      "minLength": 2,
+      "title": "Trade Licence"
+     },
+     "tin_bin": {
+      "type": "string",
+      "maxLength": 40,
+      "minLength": 2,
+      "title": "Tin Bin"
+     },
+     "contact_name": {
+      "type": "string",
+      "maxLength": 120,
+      "minLength": 2,
+      "title": "Contact Name"
+     },
+     "contact_email": {
+      "type": "string",
+      "maxLength": 320,
+      "minLength": 3,
+      "title": "Contact Email"
+     },
+     "industry": {
+      "type": "string",
+      "maxLength": 60,
+      "minLength": 2,
+      "title": "Industry"
+     },
+     "contact_phone": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 24
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Contact Phone"
+     },
+     "trade_licence_doc": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trade Licence Doc"
+     },
+     "tin_bin_doc": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tin Bin Doc"
+     },
+     "other_doc": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Other Doc"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "trade_licence",
+     "tin_bin",
+     "contact_name",
+     "contact_email",
+     "industry"
+    ],
+    "title": "Body_company_register"
+   },
+   "Body_events_photo": {
+    "properties": {
+     "photo": {
+      "type": "string",
+      "contentMediaType": "application/octet-stream",
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "photo"
+    ],
+    "title": "Body_events_photo"
+   },
    "Body_me_avatar": {
     "properties": {
      "photo": {
@@ -4061,6 +7667,71 @@
      "payload"
     ],
     "title": "Body_me_import"
+   },
+   "Body_posts_create": {
+    "properties": {
+     "body": {
+      "type": "string",
+      "maxLength": 2000,
+      "title": "Body",
+      "default": ""
+     },
+     "team_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Team Id"
+     },
+     "action_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Action Id"
+     },
+     "tree_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tree Id"
+     },
+     "share_photo": {
+      "type": "boolean",
+      "title": "Share Photo",
+      "default": true
+     },
+     "photo": {
+      "anyOf": [
+       {
+        "type": "string",
+        "contentMediaType": "application/octet-stream"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "title": "Body_posts_create"
    },
    "Body_trees_add": {
     "properties": {
@@ -4221,6 +7892,208 @@
     ],
     "title": "Body_trees_check_in"
    },
+   "CertifyIn": {
+    "properties": {
+     "standard": {
+      "type": "string",
+      "maxLength": 40,
+      "minLength": 2,
+      "title": "Standard"
+     },
+     "registry_project_id": {
+      "type": "string",
+      "maxLength": 80,
+      "minLength": 2,
+      "title": "Registry Project Id"
+     },
+     "auditor": {
+      "type": "string",
+      "maxLength": 120,
+      "minLength": 2,
+      "title": "Auditor"
+     }
+    },
+    "type": "object",
+    "required": [
+     "standard",
+     "registry_project_id",
+     "auditor"
+    ],
+    "title": "CertifyIn"
+   },
+   "CheckinIn": {
+    "properties": {
+     "lat": {
+      "type": "number",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Lat"
+     },
+     "lng": {
+      "type": "number",
+      "maximum": 180.0,
+      "minimum": -180.0,
+      "title": "Lng"
+     },
+     "accuracy_m": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Accuracy M"
+     }
+    },
+    "type": "object",
+    "required": [
+     "lat",
+     "lng"
+    ],
+    "title": "CheckinIn"
+   },
+   "CodeIn": {
+    "properties": {
+     "code": {
+      "type": "string",
+      "maxLength": 12,
+      "minLength": 4,
+      "title": "Code"
+     }
+    },
+    "type": "object",
+    "required": [
+     "code"
+    ],
+    "title": "CodeIn"
+   },
+   "CollectIn": {
+    "properties": {
+     "outlet_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Outlet Id"
+     }
+    },
+    "type": "object",
+    "title": "CollectIn"
+   },
+   "CommentIn": {
+    "properties": {
+     "body": {
+      "type": "string",
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Body"
+     }
+    },
+    "type": "object",
+    "required": [
+     "body"
+    ],
+    "title": "CommentIn"
+   },
+   "CompanyPatch": {
+    "properties": {
+     "name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 160,
+        "minLength": 2
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "trade_licence": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 80
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Trade Licence"
+     },
+     "tin_bin": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 40
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Tin Bin"
+     },
+     "contact_name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 120
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Contact Name"
+     },
+     "contact_email": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 320
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Contact Email"
+     },
+     "contact_phone": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 24
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Contact Phone"
+     },
+     "industry": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 60
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Industry"
+     }
+    },
+    "type": "object",
+    "title": "CompanyPatch"
+   },
    "Contribution": {
     "properties": {
      "driver": {
@@ -4280,6 +8153,168 @@
      "payload"
     ],
     "title": "DraftIn"
+   },
+   "EmissionsIn": {
+    "properties": {
+     "year": {
+      "type": "integer",
+      "maximum": 2100.0,
+      "minimum": 2000.0,
+      "title": "Year"
+     },
+     "tonnes_co2e": {
+      "type": "number",
+      "maximum": 1000000000.0,
+      "minimum": 0.0,
+      "title": "Tonnes Co2E"
+     },
+     "offset_target_t": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 1000000000.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Offset Target T"
+     },
+     "source_note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 300
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source Note"
+     }
+    },
+    "type": "object",
+    "required": [
+     "year",
+     "tonnes_co2e"
+    ],
+    "title": "EmissionsIn"
+   },
+   "EventIn": {
+    "properties": {
+     "title": {
+      "type": "string",
+      "maxLength": 120,
+      "minLength": 3,
+      "title": "Title"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 2000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "starts_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Starts At"
+     },
+     "ends_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ends At"
+     },
+     "place_name": {
+      "type": "string",
+      "maxLength": 200,
+      "minLength": 2,
+      "title": "Place Name"
+     },
+     "lat": {
+      "type": "number",
+      "maximum": 90.0,
+      "minimum": -90.0,
+      "title": "Lat"
+     },
+     "lng": {
+      "type": "number",
+      "maximum": 180.0,
+      "minimum": -180.0,
+      "title": "Lng"
+     },
+     "team_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Team Id"
+     },
+     "org_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Org Id"
+     },
+     "sponsor_name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 120
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Sponsor Name"
+     },
+     "capacity": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "maximum": 5000.0,
+        "minimum": 2.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Capacity"
+     }
+    },
+    "type": "object",
+    "required": [
+     "title",
+     "starts_at",
+     "place_name",
+     "lat",
+     "lng"
+    ],
+    "title": "EventIn"
    },
    "FeedbackIn": {
     "properties": {
@@ -4415,6 +8450,36 @@
     },
     "type": "object",
     "title": "FieldPatch"
+   },
+   "FollowIn": {
+    "properties": {
+     "user_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "User Id"
+     },
+     "team_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Team Id"
+     }
+    },
+    "type": "object",
+    "title": "FollowIn"
    },
    "GoalIn": {
     "properties": {
@@ -4885,6 +8950,59 @@
     ],
     "title": "LoginIn"
    },
+   "LotIn": {
+    "properties": {
+     "tree_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 10000,
+      "minItems": 1,
+      "title": "Tree Ids"
+     },
+     "tonnes": {
+      "type": "number",
+      "maximum": 1000000.0,
+      "exclusiveMinimum": 0.0,
+      "title": "Tonnes"
+     },
+     "project_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 80
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Project Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "tree_ids",
+     "tonnes"
+    ],
+    "title": "LotIn"
+   },
+   "MessageIn": {
+    "properties": {
+     "body": {
+      "type": "string",
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Body"
+     }
+    },
+    "type": "object",
+    "required": [
+     "body"
+    ],
+    "title": "MessageIn"
+   },
    "Meta": {
     "properties": {
      "live": {
@@ -4923,6 +9041,44 @@
     "type": "object",
     "title": "Meta"
    },
+   "ModerateIn": {
+    "properties": {
+     "target_type": {
+      "type": "string",
+      "maxLength": 12,
+      "title": "Target Type"
+     },
+     "target_id": {
+      "type": "string",
+      "maxLength": 64,
+      "title": "Target Id"
+     },
+     "action": {
+      "type": "string",
+      "maxLength": 12,
+      "title": "Action"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     }
+    },
+    "type": "object",
+    "required": [
+     "target_type",
+     "target_id",
+     "action"
+    ],
+    "title": "ModerateIn"
+   },
    "Ok": {
     "properties": {
      "ok": {
@@ -4933,6 +9089,102 @@
     },
     "type": "object",
     "title": "Ok"
+   },
+   "OrderIn": {
+    "properties": {
+     "package": {
+      "type": "string",
+      "pattern": "^(tree_impact|store_listing|carbon_credits)$",
+      "title": "Package"
+     },
+     "qty": {
+      "type": "integer",
+      "maximum": 100000.0,
+      "minimum": 1.0,
+      "title": "Qty"
+     },
+     "payment_method": {
+      "type": "string",
+      "pattern": "^(sslcommerz|bank_transfer)$",
+      "title": "Payment Method",
+      "default": "sslcommerz"
+     }
+    },
+    "type": "object",
+    "required": [
+     "package",
+     "qty"
+    ],
+    "title": "OrderIn"
+   },
+   "OrgIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 120,
+      "minLength": 2,
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "maxLength": 12,
+      "title": "Kind"
+     },
+     "city": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 120
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "City"
+     },
+     "country": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 2
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Country"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "logo_emoji": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 8
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Logo Emoji"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "kind"
+    ],
+    "title": "OrgIn"
    },
    "OtpStartIn": {
     "properties": {
@@ -5013,6 +9265,214 @@
      "code"
     ],
     "title": "OtpVerifyIn"
+   },
+   "ProductIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 120,
+      "minLength": 2,
+      "title": "Name"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 1000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "category": {
+      "type": "string",
+      "maxLength": 10,
+      "title": "Category"
+     },
+     "emoji": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 8
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Emoji"
+     },
+     "photo_url": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo Url"
+     },
+     "points_price": {
+      "type": "integer",
+      "maximum": 1000000.0,
+      "exclusiveMinimum": 0.0,
+      "title": "Points Price"
+     },
+     "declared_value_bdt": {
+      "type": "number",
+      "maximum": 10000000.0,
+      "exclusiveMinimum": 0.0,
+      "title": "Declared Value Bdt"
+     },
+     "stock": {
+      "type": "integer",
+      "maximum": 1000000.0,
+      "minimum": 0.0,
+      "title": "Stock"
+     },
+     "fulfilment": {
+      "type": "string",
+      "pattern": "^(pickup|delivery)$",
+      "title": "Fulfilment"
+     },
+     "delivery_area": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 200
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Delivery Area"
+     },
+     "terms": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 1000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Terms"
+     },
+     "monthly_limit": {
+      "type": "integer",
+      "maximum": 20.0,
+      "minimum": 1.0,
+      "title": "Monthly Limit",
+      "default": 2
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "category",
+     "points_price",
+     "declared_value_bdt",
+     "stock",
+     "fulfilment"
+    ],
+    "title": "ProductIn"
+   },
+   "ProductPatch": {
+    "properties": {
+     "name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 120,
+        "minLength": 2
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 1000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "points_price": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "maximum": 1000000.0,
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Points Price"
+     },
+     "declared_value_bdt": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 10000000.0,
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Declared Value Bdt"
+     },
+     "stock": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "maximum": 1000000.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Stock"
+     },
+     "active": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Active"
+     },
+     "terms": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 1000
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Terms"
+     }
+    },
+    "type": "object",
+    "title": "ProductPatch"
    },
    "ProfileOut": {
     "properties": {
@@ -5324,6 +9784,28 @@
     "type": "object",
     "title": "ProfilePatch"
    },
+   "ReadIn": {
+    "properties": {
+     "ids": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string",
+         "format": "uuid"
+        },
+        "type": "array",
+        "maxItems": 200
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Ids"
+     }
+    },
+    "type": "object",
+    "title": "ReadIn"
+   },
    "ReadingIn": {
     "properties": {
      "pm25": {
@@ -5390,6 +9872,24 @@
     ],
     "title": "ReadingIn"
    },
+   "RedeemIn": {
+    "properties": {
+     "delivery_address": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Delivery Address"
+     }
+    },
+    "type": "object",
+    "title": "RedeemIn"
+   },
    "RegisterIn": {
     "properties": {
      "email": {
@@ -5439,17 +9939,28 @@
     ],
     "title": "RegisterIn"
    },
-   "ReviewIn": {
+   "ReportIn": {
     "properties": {
-     "approve": {
-      "type": "boolean",
-      "title": "Approve"
+     "target_type": {
+      "type": "string",
+      "maxLength": 12,
+      "title": "Target Type"
+     },
+     "target_id": {
+      "type": "string",
+      "maxLength": 64,
+      "title": "Target Id"
+     },
+     "reason": {
+      "type": "string",
+      "maxLength": 24,
+      "title": "Reason"
      },
      "note": {
       "anyOf": [
        {
         "type": "string",
-        "maxLength": 280
+        "maxLength": 500
        },
        {
         "type": "null"
@@ -5460,9 +9971,58 @@
     },
     "type": "object",
     "required": [
-     "approve"
+     "target_type",
+     "target_id",
+     "reason"
     ],
-    "title": "ReviewIn"
+    "title": "ReportIn"
+   },
+   "RsvpIn": {
+    "properties": {
+     "status": {
+      "type": "string",
+      "pattern": "^(going|maybe|no)$",
+      "title": "Status"
+     }
+    },
+    "type": "object",
+    "required": [
+     "status"
+    ],
+    "title": "RsvpIn"
+   },
+   "SaplingOrderIn": {
+    "properties": {
+     "product_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Product Id"
+     },
+     "qty": {
+      "type": "integer",
+      "maximum": 200.0,
+      "minimum": 1.0,
+      "title": "Qty"
+     },
+     "delivery_address": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Delivery Address"
+     }
+    },
+    "type": "object",
+    "required": [
+     "product_id",
+     "qty"
+    ],
+    "title": "SaplingOrderIn"
    },
    "ScanInfo": {
     "properties": {
@@ -5960,6 +10520,147 @@
     },
     "type": "object",
     "title": "TaskPatch"
+   },
+   "TeamIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 80,
+      "minLength": 2,
+      "title": "Name"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "is_public": {
+      "type": "boolean",
+      "title": "Is Public",
+      "default": true
+     },
+     "emoji": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 8
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Emoji"
+     },
+     "org_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Org Id"
+     },
+     "max_members": {
+      "type": "integer",
+      "maximum": 5.0,
+      "minimum": 2.0,
+      "title": "Max Members",
+      "default": 5
+     }
+    },
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "title": "TeamIn"
+   },
+   "TeamPatch": {
+    "properties": {
+     "name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 80,
+        "minLength": 2
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "description": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Description"
+     },
+     "is_public": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Is Public"
+     },
+     "emoji": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 8
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Emoji"
+     },
+     "org_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Org Id"
+     },
+     "goal_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Goal Id"
+     }
+    },
+    "type": "object",
+    "title": "TeamPatch"
    },
    "TreePatch": {
     "properties": {
@@ -6646,6 +11347,54 @@
      "meta"
     ],
     "title": "ZonesScanOut"
+   },
+   "app__routers__act__ReviewIn": {
+    "properties": {
+     "approve": {
+      "type": "boolean",
+      "title": "Approve"
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 280
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     }
+    },
+    "type": "object",
+    "required": [
+     "approve"
+    ],
+    "title": "ReviewIn"
+   },
+   "app__routers__market__ReviewIn": {
+    "properties": {
+     "approve": {
+      "type": "boolean",
+      "title": "Approve",
+      "default": true
+     },
+     "note": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 500
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Note"
+     }
+    },
+    "type": "object",
+    "title": "ReviewIn"
    }
   }
  }

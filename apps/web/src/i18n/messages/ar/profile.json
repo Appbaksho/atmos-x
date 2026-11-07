@@ -42,7 +42,12 @@
     "title": "المزيد",
     "about": "البيانات والعلم",
     "settings": "الإعدادات",
-    "notifs": "الإشعارات"
+    "notifs": "الإشعارات",
+    "store": "المتجر",
+    "orders": "طلباتي",
+    "partner": "بوابة الشركاء",
+    "company": "حساب الشركة",
+    "admin": "الإدارة"
   },
   "trees": {
     "title": "أشجاري",
@@ -297,6 +302,11 @@
       },
       "event": {
         "reminder": "تذكير: {title} في {date}"
+      },
+      "store": {
+        "redeemed": "{product}: استُبدل مقابل {points} نقطة",
+        "collected": "تم استلام {product}",
+        "sapling_paid": "تم استلام الدفعة: {qty} × {name}"
       }
     },
     "reason": {

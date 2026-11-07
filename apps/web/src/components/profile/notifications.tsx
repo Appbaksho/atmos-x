@@ -67,6 +67,7 @@ function target(n: AppNotification): { to: string; label: 'takePhoto' | 'seeDeta
     case 'event':
       return p.event_id ? { to: href('event', { id: p.event_id }), label: 'open' } : { to: href('events'), label: 'open' };
     case 'verification':
+      if (p.redemption_id || p.order_id) return { to: href('store', undefined, { tab: 'orders' }), label: 'open' };
       return p.id ? { to: href('S15', { id: p.id }), label: 'seeDetails' } : null;
     case 'goal_progress':
       return { to: href('S10'), label: 'openPlan' };

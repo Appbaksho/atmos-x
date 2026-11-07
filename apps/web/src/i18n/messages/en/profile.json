@@ -39,7 +39,12 @@
     "title": "More",
     "about": "Data & science",
     "settings": "Settings",
-    "notifs": "Notifications"
+    "notifs": "Notifications",
+    "store": "Store",
+    "orders": "My orders",
+    "partner": "Partner portal",
+    "company": "Company account",
+    "admin": "Admin"
   },
   "trees": {
     "title": "My trees",
@@ -294,6 +299,11 @@
       },
       "event": {
         "reminder": "Reminder: {title} on {date}"
+      },
+      "store": {
+        "redeemed": "{product}: redeemed for {points} pts",
+        "collected": "{product} collected",
+        "sapling_paid": "Payment received: {qty} × {name}"
       }
     },
     "reason": {

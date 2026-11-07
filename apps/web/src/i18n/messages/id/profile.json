@@ -42,7 +42,12 @@
     "title": "Lainnya",
     "about": "Data & sains",
     "settings": "Pengaturan",
-    "notifs": "Notifikasi"
+    "notifs": "Notifikasi",
+    "store": "Toko",
+    "orders": "Pesanan saya",
+    "partner": "Portal mitra",
+    "company": "Akun perusahaan",
+    "admin": "Admin"
   },
   "trees": {
     "title": "Pohon saya",
@@ -297,6 +302,11 @@
       },
       "event": {
         "reminder": "Pengingat: {title} pada {date}"
+      },
+      "store": {
+        "redeemed": "{product}: ditukar dengan {points} poin",
+        "collected": "{product} sudah diambil",
+        "sapling_paid": "Pembayaran diterima: {qty} × {name}"
       }
     },
     "reason": {

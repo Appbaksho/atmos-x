@@ -42,7 +42,12 @@
     "title": "Mais",
     "about": "Dados e ciência",
     "settings": "Configurações",
-    "notifs": "Notificações"
+    "notifs": "Notificações",
+    "store": "Loja",
+    "orders": "Meus pedidos",
+    "partner": "Portal do parceiro",
+    "company": "Conta da empresa",
+    "admin": "Administração"
   },
   "trees": {
     "title": "Minhas árvores",
@@ -297,6 +302,11 @@
       },
       "event": {
         "reminder": "Lembrete: {title} em {date}"
+      },
+      "store": {
+        "redeemed": "{product}: resgatado por {points} pts",
+        "collected": "{product} retirado",
+        "sapling_paid": "Pagamento recebido: {qty} × {name}"
       }
     },
     "reason": {

@@ -231,7 +231,94 @@ async def ensure_community(db: AsyncSession) -> dict:
         for uid in people_ids[:4]:
             db.add(EventRsvp(event_id=e.id, user_id=uid, status="going"))
     await db.flush()
+    await _demo_market(db, lat, lng)
     return {"org_id": org.id, "team_id": _id("team:0")}
+
+
+async def _demo_market(db: AsyncSession, lat: float, lng: float) -> None:
+    """An invented pilot store partner and nursery, visible to demo users only (§6.9: no real company)."""
+    from ..models import NurseryPartner, NurseryProduct, Partner, PartnerOutlet, Product
+
+    if await db.get(Partner, _id("partner")) is None:
+        db.add(
+            Partner(
+                id=_id("partner"),
+                name="Green Basket (demo pilot)",
+                logo_emoji="🧺",
+                csr_line="Green Basket rewards Mohammadpur's tree planters (demo)",
+                city="Dhaka",
+                status="active",
+                is_pilot=True,
+                is_demo=True,
+            )
+        )
+        await db.flush()
+        db.add(
+            PartnerOutlet(
+                partner_id=_id("partner"),
+                name="Asad Gate outlet (demo)",
+                address="Asad Gate, Mohammadpur",
+                lat=lat + 0.002,
+                lng=lng + 0.001,
+            )
+        )
+        for i, (name, cat, emoji, value, stock, ful) in enumerate(
+            [
+                ("Seedling starter kit", "garden", "🌱", 300, 25, "pickup"),
+                ("Grocery voucher ৳200", "vouchers", "🎟️", 200, 40, "pickup"),
+                ("Steel water bottle", "home", "🍶", 250, 15, "delivery"),
+                ("Mango juice, 6 pack", "food", "🥭", 90, 60, "pickup"),
+            ]
+        ):
+            db.add(
+                Product(
+                    id=_id(f"product:{i}"),
+                    partner_id=_id("partner"),
+                    name=name,
+                    category=cat,
+                    emoji=emoji,
+                    points_price=int(value * 2),
+                    declared_value_bdt=value,
+                    stock=stock,
+                    fulfilment=ful,
+                    delivery_area="Dhaka" if ful == "delivery" else None,
+                    terms="Demo listing: nothing is shipped.",
+                    is_demo=True,
+                )
+            )
+    if await db.get(NurseryPartner, _id("nursery")) is None:
+        db.add(
+            NurseryPartner(
+                id=_id("nursery"),
+                name="Mohammadpur Green Nursery (demo)",
+                address="Ring Road, Mohammadpur",
+                lat=lat - 0.004,
+                lng=lng + 0.003,
+                commission_pct=10.0,
+                status="active",
+                is_demo=True,
+            )
+        )
+        await db.flush()
+        for i, (name, sp, kind, price) in enumerate(
+            [
+                ("Neem sapling, 3 ft", "neem", "sapling", 80),
+                ("Krishnachura sapling, 4 ft", "krish", "sapling", 120),
+                ("Planting kit: guard, compost, stake", None, "kit", 450),
+            ]
+        ):
+            db.add(
+                NurseryProduct(
+                    id=_id(f"nproduct:{i}"),
+                    nursery_id=_id("nursery"),
+                    species_id=sp,
+                    name=name,
+                    kind=kind,
+                    price_bdt=price,
+                    stock=50,
+                )
+            )
+    await db.flush()
 
 
 async def seed_nadia(db: AsyncSession, user: User) -> None:
