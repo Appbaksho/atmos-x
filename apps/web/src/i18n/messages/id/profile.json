@@ -361,7 +361,27 @@
     "more": "Lainnya",
     "data": "Data & sains",
     "about": "Tentang Atmos X",
-    "footer": "Atmos X v0 · Estimasi panas dari tutupan lahan OpenStreetMap + cuaca Open-Meteo · © kontributor OpenStreetMap"
+    "footer": "Atmos X v0 · Estimasi panas dari tutupan lahan OpenStreetMap + cuaca Open-Meteo · © kontributor OpenStreetMap",
+    "push": {
+      "title": "Notifikasi push",
+      "on": "Aktif di perangkat ini",
+      "off": "Nonaktif",
+      "quiet": "Pemeriksaan pohon, peringatan, dan balasan. Tidak ada antara {from} dan {to} waktu Anda, dan tanpa nama atau tempat di layar kunci.",
+      "disabled": "Push belum diaktifkan di server ini. Semua tetap terlihat di Notifikasi.",
+      "unsupported": "Browser ini tidak bisa menerima push. Di iPhone, tambahkan Atmos X ke Layar Utama dulu.",
+      "denied": "Notifikasi diblokir untuk situs ini. Izinkan di pengaturan browser, lalu coba lagi.",
+      "feature": "Notifikasi push",
+      "turnedOn": "Notifikasi push aktif",
+      "turnedOff": "Notifikasi push nonaktif",
+      "err": {
+        "push": {
+          "denied": "Notifikasi diblokir. Izinkan di pengaturan browser.",
+          "no_worker": "Pasang aplikasi atau muat ulang halaman, lalu coba lagi.",
+          "unavailable": "Push belum diaktifkan di server ini."
+        },
+        "generic": "Gagal mengubah notifikasi push. Coba lagi."
+      }
+    }
   },
   "about": {
     "title": "Data & sains",

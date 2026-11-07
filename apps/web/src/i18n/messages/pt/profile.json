@@ -361,7 +361,27 @@
     "more": "Mais",
     "data": "Dados e ciência",
     "about": "Sobre Atmos X",
-    "footer": "Atmos X v0 · estimativa de calor a partir da cobertura do solo do OpenStreetMap + clima do Open-Meteo · © colaboradores do OpenStreetMap"
+    "footer": "Atmos X v0 · estimativa de calor a partir da cobertura do solo do OpenStreetMap + clima do Open-Meteo · © colaboradores do OpenStreetMap",
+    "push": {
+      "title": "Notificações push",
+      "on": "Ativadas neste dispositivo",
+      "off": "Desativadas",
+      "quiet": "Acompanhamento de árvores, alertas e respostas. Nada entre {from} e {to} no seu horário, e sem nomes ou lugares na tela bloqueada.",
+      "disabled": "As notificações push ainda não estão ativas neste servidor. Você verá tudo em Notificações.",
+      "unsupported": "Este navegador não recebe push. No iPhone, adicione o Atmos X à Tela de Início primeiro.",
+      "denied": "As notificações estão bloqueadas para este site. Permita nas configurações do navegador e tente de novo.",
+      "feature": "Notificações push",
+      "turnedOn": "Notificações push ativadas",
+      "turnedOff": "Notificações push desativadas",
+      "err": {
+        "push": {
+          "denied": "As notificações estão bloqueadas. Permita no navegador.",
+          "no_worker": "Instale o app ou recarregue a página e tente de novo.",
+          "unavailable": "As notificações push ainda não estão ativas neste servidor."
+        },
+        "generic": "Não foi possível alterar as notificações push. Tente de novo."
+      }
+    }
   },
   "about": {
     "title": "Dados e ciência",
