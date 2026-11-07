@@ -28,6 +28,7 @@ STATIONS_TTL = timedelta(hours=1)
 SENSOR_FRESH = timedelta(hours=1)
 SENSOR_OFFLINE = timedelta(hours=6)
 STATION_NEAR_M = 2000
+STATION_MAX_AGE = timedelta(days=7)
 
 
 def cf_key(lat: float, lng: float) -> str:
@@ -102,7 +103,11 @@ async def air(db: AsyncSession, lat: float, lng: float, user=None) -> dict:
     if stations_hit:
         for st in stations_hit.value.get("stations", []):
             d = haversine_m(lat, lng, st["lat"], st["lng"])
-            if st.get("pm25") is not None:
+            # A station silent for over a week is not shown as current.
+            fresh = (
+                st.get("as_of") and now - datetime.fromisoformat(st["as_of"].replace("Z", "+00:00")) <= STATION_MAX_AGE
+            )
+            if st.get("pm25") is not None and fresh:
                 stations.append({"name": st["name"], "dist_m": round(d), "pm25": st["pm25"], "as_of": st["as_of"]})
         stations.sort(key=lambda s: s["dist_m"])
         stations = stations[:5]
