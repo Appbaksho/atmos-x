@@ -23,7 +23,7 @@ seed:           ## reference data: action types, species, costs, badges, points,
 	$(PY) python -m app.scripts.seed
 
 api:            ## FastAPI on :8000 with reload
-	$(PY) uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir app
+	$(PY) uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload --reload-dir app --timeout-keep-alive 75
 
 worker:         ## job runner + schedule
 	$(PY) python -m app.worker
