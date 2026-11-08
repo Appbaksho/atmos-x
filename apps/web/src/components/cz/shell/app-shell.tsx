@@ -7,6 +7,7 @@
 import React, { useEffect } from 'react';
 
 import { usePathname } from '@/i18n/navigation';
+import { useDataContext } from '@/lib/data/hooks';
 import { useLocation } from '@/lib/location';
 import { useCz } from '@/lib/prefs';
 import { goReplace } from '@/lib/routes';
@@ -26,6 +27,7 @@ const demoParam = () => new URLSearchParams(window.location.search).get('demo') 
 
 function useOnboardingGate() {
   const { prefs, ready, setPrefs } = useCz();
+  const ctx = useDataContext();
   const path = usePathname();
 
   // `?demo=1` = Presentation mode with Nadia's story, so onboarding is skipped too (like "Try the
@@ -34,9 +36,13 @@ function useOnboardingGate() {
     if (demoParam()) setPrefs({ presentation: true, onboarded: true });
   }, [setPrefs]);
 
+  // Wait for the data context too: it is ready only after the session and the server profile have
+  // synced, so a signed-in person on a new device (or after iOS cleared site storage) is not sent
+  // through onboarding again before their onboarded profile arrives. Both must say "not onboarded":
+  // device prefs flip at once when onboarding finishes, the context a moment later.
   useEffect(() => {
-    if (ready && !prefs.onboarded && path === '/app' && !demoParam()) goReplace('S01');
-  }, [ready, prefs.onboarded, path]);
+    if (ready && ctx.ready && !prefs.onboarded && !ctx.prefs.onboarded && path === '/app' && !demoParam()) goReplace('S01');
+  }, [ready, ctx.ready, prefs.onboarded, ctx.prefs.onboarded, path]);
 }
 
 export function AppShell({ children }: { children: React.ReactNode }) {
