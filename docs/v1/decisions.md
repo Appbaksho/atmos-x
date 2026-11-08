@@ -107,7 +107,7 @@ through presigned URLs (GDAL must not forward the bearer header to S3).
 **D20. Earthdata application approvals.** LP DAAC (ECOSTRESS), NSIDC (SMAP) and GHRC (LIS/OTD) accept
 the owner's token. GES DISC (IMERG) answers "EULA Acceptance Failure": the account has not approved the
 NASA GESDISC DATA ARCHIVE application. Until a person approves it, rain falls back to NASA POWER,
-labelled. This is a human task.
+labelled. This is a human task. **Update 8 Nov:** the owner approved it; IMERG downloads (HTTP 206) and `rain_7d` now reports source `imerg`.
 
 **D21. Tree milestones are awarded at the check-in, not by a timer.** PT3 (90 days) and PT4 (1 year)
 mean "alive", which only a check-in shows, so they are awarded when an on-schedule check-in passes
