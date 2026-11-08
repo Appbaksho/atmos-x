@@ -42,7 +42,7 @@
 
 ### 2.2 NASA Earthdata (IMERG rain, SMAP soil, LIS/OTD lightning, ECOSTRESS, GPW)
 Status: username, password and token are set. The token works for downloads; `urs.earthdata.nasa.gov` itself was unreachable from the build machine.
-- [ ] At urs.earthdata.nasa.gov → *Applications → Authorized Apps*, approve **NASA GESDISC DATA ARCHIVE** (accept its EULA), **LP DAAC** and **NSIDC**. Until GES DISC is approved, IMERG stays "standing by".
+- [x] Approve **NASA GESDISC DATA ARCHIVE** and accept its EULA (done 8 Nov 2026; if downloads ever answer "EULA Acceptance Failure" again, open the `resolution_url` in that error while signed in as `EARTHDATA_USERNAME`). LP DAAC, NSIDC and GHRC need no approval: they accept the token.
 - [ ] The token expires after about 60 days. Write the expiry here: `__________`. Renew it in *Profile → Generate Token* and update `EARTHDATA_TOKEN`.
 - [ ] GPWv4 (population density) needs a SEDAC download that wasn't available to the build; the Heat Score runs without the population term until then.
 - [ ] LIS/OTD and GPW static files: run `make static-data` once the approvals are in.

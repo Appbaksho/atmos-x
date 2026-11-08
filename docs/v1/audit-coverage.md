@@ -10,7 +10,7 @@ Date: 2026-11-08 · Branch: `main` after PRs #12–#20 · Stage 9 final audit (r
 - **Built, not verified live**: the item is done in code and tests (upstream mocked), but the live service could not be exercised in this run (missing credentials or approvals). These count as done and are listed at the end.
 - Paths: pytest files are `apps/api/tests/…`, Playwright specs are `apps/web/e2e/…` (Chromium), API code is under `apps/api/app/`, web code under `apps/web/src/`. `Dn` refers to `docs/v1/decisions.md`.
 
-**Totals:** 162 done (8 of them built, not verified live) · 7 blocked.
+**Totals:** 162 done (7 of them built, not verified live) · 7 blocked.
 
 ## E · Errors found in flows (§6.1)
 
@@ -101,7 +101,7 @@ Date: 2026-11-08 · Branch: `main` after PRs #12–#20 · Stage 9 final audit (r
 | ID | Requirement (short) | Status | Evidence |
 | --- | --- | --- | --- |
 | Z1 | One zone object end to end | done | `test_zones.py::test_e2_list_and_detail_are_identical`; `e2e/heat.spec.ts`; `e2e/demo.spec.ts` |
-| Z2 | Satellite heat first (Landsat, ECOSTRESS, WorldCover base, OSM detail); label satellite or estimate | blocked | Partial. Works: Landsat LST hexes sharpened with ECOSTRESS where a pass exists, WorldCover as the base, labels `satellite`/`estimate` (`test_hot_zone_ranks_first_and_drivers`, `e2e/heat.spec.ts`, clean-database run in PR #17). Missing: OSM building and road detail on heat cells; Overpass answered 0/3 mirrors during the final check (`docs/v1/source-check.md`) |
+| Z2 | Satellite heat first (Landsat, ECOSTRESS, WorldCover base, OSM detail); label satellite or estimate | blocked | Partial. Works: Landsat LST hexes sharpened with ECOSTRESS where a pass exists, WorldCover as the base, labels `satellite`/`estimate` (`test_hot_zone_ranks_first_and_drivers`, `e2e/heat.spec.ts`, clean-database run in PR #17). Missing: OSM building and road detail on heat cells (Overpass answers again: 1/3 mirrors on 8 Nov) |
 | Z3 | Precompute Dhaka nightly; scan is a database read | done | `jobs/__init__.py` (`heat_regions` at 21:30 UTC, `boot_regions`); `scripts/precompute.py`; `test_zones.py::test_job_progress_updates` |
 | Z4 | Each driver shows value and °C share | done | `test_engines.py::test_driver_fit_recovers_coefficients`, `::test_contributions_causes_why_whatif`; `test_zones.py::test_hot_zone_ranks_first_and_drivers` (D16) |
 
@@ -121,7 +121,7 @@ Date: 2026-11-08 · Branch: `main` after PRs #12–#20 · Stage 9 final audit (r
 | --- | --- | --- | --- |
 | T1 | Top strip: planted, alive, points, cooling | done | `components/profile/my-trees.tsx`; `e2e/trees.spec.ts` |
 | T2 | Grid: photo, nickname, species, age, state badge | done | `components/profile/my-trees.tsx`; `e2e/trees.spec.ts` (tile "Corner neem 1, Verifying") |
-| T3 | Server-derived states, unit-tested; thresholds in config | done | `test_act_engines.py::test_tree_states_first_match_wins`; `engines/trees.py` (`CFG`, `state`). Built, not verified live: IMERG needs the GES DISC EULA approval (D20), so "needs water" uses NASA POWER rain, labelled |
+| T3 | Server-derived states, unit-tested; thresholds in config | done | IMERG rain verified live on 8 Nov after the GES DISC approval (`trees.rain_7d` returns source `imerg`). `test_act_engines.py::test_tree_states_first_match_wins`; `engines/trees.py` (`CFG`, `state`). Built, not verified live: IMERG needs the GES DISC EULA approval (D20), so "needs water" uses NASA POWER rain, labelled |
 | T4 | Map view of my tree pins | done | `components/profile/my-trees.tsx TreesMap`. No automated test |
 | T5 | Tree detail: photo timeline, height and health, tips, next date, cooling, share as post, invite to water | done | `components/profile/tree.tsx`: photo timeline, height and health, tips, next date, the cooling estimate (labelled) and "Share as a post"; invite to water (`e2e/gaps.spec.ts`, `e2e/trees.spec.ts`) |
 | T6 | Check-in: photo, health, optional height; deterministic checks and tips | done | `e2e/trees.spec.ts` "log a planting, see it in My trees and check in"; `test_act.py::test_ninety_day_check_in_unlocks_tree_points`; `test_act_engines.py::test_on_time_window_and_tips` |
@@ -271,7 +271,7 @@ Date: 2026-11-08 · Branch: `main` after PRs #12–#20 · Stage 9 final audit (r
 | ID | Reason |
 | --- | --- |
 | E3 | Partial: one bounded forecast call remains in the request for a never-seen place; all timing targets met |
-| Z2 | Partial: OSM building and road detail on heat cells not written; Overpass was down (0/3 mirrors) |
+| Z2 | Partial: OSM building and road detail on heat cells not written |
 | M9 | Decision D31: one package per checkout, no cart |
 | M20 | Human task: lawyer review before selling credits |
 | R6 | Deferred by the plan (§6.11) |
@@ -287,6 +287,5 @@ These are done in code and tests (upstream mocked) and degrade honestly, but the
 - **W2** Web push: no VAPID keys set; the Settings switch says "not set up" (`python -m app.scripts.make_vapid` prints a pair).
 - **M14** SSLCommerz: the sandbox accepted a session and the validation API answered, but no full browser checkout was run, and the IPN needs a public URL.
 - **M4**, **S5**, **R1**: package and sapling payments go through M14, so they share its gap.
-- **T3** "Needs water": IMERG needs the GES DISC EULA approval (D20); rain falls back to NASA POWER, labelled.
 
 Other source notes: Earthdata URS was unreachable from the build machine, so the token path is used (D14); ECOSTRESS reads sometimes fail and the heat pipeline continues on Landsat (Z2); GPWv4 is not loaded (`make static-data`, `docs/v1/source-check.md`).
