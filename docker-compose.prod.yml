@@ -1,4 +1,4 @@
-# Production stack (prompt-v1 Stage 7, deployment files only; nothing here is deployed by this run).
+# Production stack: https://atmosx.baksho.app (see docs/deploy.md).
 #   docker compose -f docker-compose.prod.yml up -d --build
 # Reads .env next to this file for build args and runtime secrets; that file is never committed.
 # The host nginx (deploy/atmosx.baksho.app.nginx) terminates TLS and proxies to the web service.
@@ -18,7 +18,8 @@ services:
       interval: 5s
       timeout: 3s
       retries: 30
-    mem_limit: 1g
+    mem_limit: ${DB_MEM:-1g}
+    cpus: ${DB_CPUS:-1.0}
 
   api:
     build: ./apps/api
@@ -36,7 +37,9 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    mem_limit: 2g
+    # The VPS has 2 cores and hosts other sites: every service is capped (tune in .env).
+    mem_limit: ${API_MEM:-1g}
+    cpus: ${API_CPUS:-1.0}
     logging: &logs
       driver: json-file
       options:
@@ -62,7 +65,8 @@ services:
         condition: service_healthy
     healthcheck:
       disable: true
-    mem_limit: 3g
+    mem_limit: ${WORKER_MEM:-2g}
+    cpus: ${WORKER_CPUS:-1.0}
     logging: *logs
 
   web:
@@ -77,6 +81,7 @@ services:
         NEXT_PUBLIC_DEMO_LAT: ${NEXT_PUBLIC_DEMO_LAT:-}
         NEXT_PUBLIC_DEMO_LNG: ${NEXT_PUBLIC_DEMO_LNG:-}
         NEXT_PUBLIC_TIME_ZONE: ${NEXT_PUBLIC_TIME_ZONE:-}
+        NEXT_PUBLIC_MAPLIBRE_WORKER_URL: ${NEXT_PUBLIC_MAPLIBRE_WORKER_URL:-}
     restart: unless-stopped
     # Only API_ORIGIN at run time: the Next server never holds a backend secret (§8.5).
     environment:
@@ -86,7 +91,8 @@ services:
     depends_on:
       api:
         condition: service_healthy
-    mem_limit: 1g
+    mem_limit: ${WEB_MEM:-1g}
+    cpus: ${WEB_CPUS:-1.0}
     logging: *logs
 
 volumes:
