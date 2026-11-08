@@ -76,14 +76,14 @@ Status: off (no VAPID keys).
 - [ ] **Sign a pilot partner** for the points store and a **pilot nursery** for saplings. Until then, real users see empty states; only the invented demo partner and nursery appear in demo mode.
 - [ ] Review the proposed prices and limits in `.env.example` (VAT, points per taka and tolerance, monthly limits, package prices) and the cost tables in the seed.
 - [ ] **A lawyer checks Bangladesh's rules before any carbon credit sale.** Registering trees under Verra or Gold Standard is a business decision; credits stay disabled until an admin records a certified lot.
-- [ ] Decide on deployment (§5). **Lemon/Milk** (the display font) needs a donation or a replacement before commercial use.
+- [x] Deployment: V1 runs at https://atmosx.baksho.app on the shared VPS since 8 Nov 2026 (`docs/deploy.md`). **Lemon/Milk** (the display font) needs a donation or a replacement before commercial use.
 - [ ] Assumptions to confirm before anything irreversible: the non-tree points unlock rule (90 days), team size 2–5, tree state thresholds and verification thresholds.
 
 ---
 
 ## 4. Presentation
 
-- [ ] Use a public HTTPS URL so phones allow camera, location, install and push (a Cloudflare quick tunnel to :3000 is enough for a rehearsal).
+- [x] Use a public HTTPS URL so phones allow camera, location, install and push: https://atmosx.baksho.app.
 - [ ] Run the demo script (prompt-v1 §13.3) once on the presentation phone: install the PWA, onboard in বাংলা, Home live, 200 m then 500 m scan, zone detail, a goal with a plan, planting spots and projection, log a tree with the camera, My trees, Community, Store (pending vs spendable), Air quality, Farmer mode.
 - [ ] Have a native **Bangla** and **Urdu** speaker review the strings marked in `_meta.machine_keys` of `apps/web/src/i18n/messages/{bn,ur}/*.json`.
 - [ ] Phone: charged, Do Not Disturb, brightness up; location granted; Presentation mode (Settings) or `?demo=1`.
@@ -91,10 +91,12 @@ Status: off (no VAPID keys).
 
 ---
 
-## 5. Going live (later)
+## 5. Going live
 
-- [ ] Server with Docker. Copy `.env` (with `APP_ENV=production`, a strong `JWT_SECRET`, `POSTGRES_PASSWORD`, `PUBLIC_WEB_ORIGIN`, `NEXT_PUBLIC_APP_URL`) next to `docker-compose.prod.yml`, then `docker compose -f docker-compose.prod.yml up -d --build`.
-- [ ] Install `deploy/atmosx.baksho.app.nginx` (edit the domain), run certbot, point DNS at the server.
+- [x] Server with Docker: done 8 Nov 2026 on the shared VPS; `.env` from `deploy/make-prod-env.py` (`docs/deploy.md`).
+- [x] nginx site, certbot certificate and DNS (kept from V0).
+- [ ] Google sign-in: add `https://atmosx.baksho.app` to the OAuth client's **Authorized JavaScript origins** in Google Cloud Console (and rotate the client secret, which is public in git history).
+- [ ] SSLCommerz sandbox: run one full checkout on https://atmosx.baksho.app; the IPN URL is now public (`/api/v1/payments/sslcommerz/ipn`).
 - [ ] Backups: a nightly `pg_dump` of the `atmos-pg` volume's database and a copy of the `atmos-data` volume (photos, documents, caches).
 - [ ] Object storage for photos once uploads outgrow the disk.
 - [ ] Credits and licences: keep the attributions on the landing page and About (they come from `/sources`).
