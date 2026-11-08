@@ -12,6 +12,7 @@ from __future__ import annotations
 import logging
 import re
 import uuid
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 
@@ -19,9 +20,10 @@ import h3
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from ..engines import heat as H
 from ..errors import AppError
 from ..http import UpstreamError
-from ..models import FarmField, Goal, Profile, ScanZone, Tree, User
+from ..models import FarmField, Goal, Profile, Scan, ScanZone, Tree, User
 from ..sources import SRC
 from . import air as AIR
 from . import conditions as COND
@@ -878,11 +880,34 @@ class Ctx:
 
 async def _zone_at(db: AsyncSession, lat: float, lng: float) -> ScanZone | None:
     cell = h3.latlng_to_cell(lat, lng, 10)
-    return (
+    inside = (
         await db.execute(
             select(ScanZone).where(ScanZone.h3.contains([cell])).order_by(ScanZone.created_at.desc()).limit(1)
         )
     ).scalar_one_or_none()
+    if inside is not None:
+        return inside
+    # Zones are only the hottest clusters, so a person's own hex is usually in none of them. Answer
+    # for the newest scan that covers the hex instead (its centre is at most a 1 km ring away), with
+    # the zone nearest the person: the same zone Home shows as "Your zone" when they are at the centre.
+    ring = h3.grid_disk(cell, H.k_for_radius(1000))
+    scan = (
+        await db.execute(
+            select(Scan)
+            .where(Scan.center_cell.in_(ring), Scan.hexes.contains([{"h3": cell}]))
+            .order_by(Scan.created_at.desc())
+            .limit(1)
+        )
+    ).scalar_one_or_none()
+    if scan is None:
+        return None
+    zones = (await db.execute(select(ScanZone).where(ScanZone.scan_id == scan.id))).scalars().all()
+    return nearest_zone(zones, lat, lng)
+
+
+def nearest_zone(zones: Sequence[ScanZone], lat: float, lng: float) -> ScanZone | None:
+    """The zone whose centroid is closest to the point (None when the scan found no zones)."""
+    return min(zones, key=lambda z: H.haversine_m(lat, lng, z.centroid_lat, z.centroid_lng), default=None)
 
 
 def _need_place(a: Answer) -> Answer:

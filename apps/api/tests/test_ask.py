@@ -2,6 +2,7 @@
 
 import json
 
+import h3
 import httpx
 import pytest
 import respx
@@ -121,6 +122,29 @@ async def test_why_hot_streams_real_numbers_with_sources_and_actions(client, db)
     assert done["intent"] == "why_hot" and done["remaining_today"] == 4 and done["suggestions"]
     acts = [e["action"] for e in ev if e["type"] == "action"]
     assert acts[0]["screen"] == "S06" and acts[0]["params"]["id"]
+
+
+@respx.mock
+async def test_why_hot_answers_for_a_scanned_hex_outside_every_zone(client, db):
+    """A person's own hex is rarely in a hot cluster; Ask used to say it "hasn't been scanned yet"."""
+    mock_world()
+    ring = await seed_cells(db)
+    await client.post("/api/v1/auth/guest", json={})
+    scan = (await client.get("/api/v1/zones", params={"lat": DHAKA[0], "lng": DHAKA[1], "radius_m": 500})).json()
+    in_zones = {c for z in scan["zones"] for c in z["h3"]}
+    outside = next(c for c in ring if c not in in_zones and any(h["h3"] == c for h in scan["hexes"]))
+    lat, lng = h3.cell_to_latlng(outside)
+    r = await client.post(
+        "/api/v1/ask",
+        json={"intent": "why_hot", "screen": "S04", "lang": "en", "context": {"lat": lat, "lng": lng}},
+    )
+    toks = [e["text"] for e in events(r.text) if e["type"] == "token"]
+    codes = [t["code"] for t in toks]
+    assert "ask.answer.why_hot_no_zone" not in codes
+    assert codes[0] in ("ask.answer.why_hot_zone", "ask.answer.why_hot_zone_n")
+    zone_ids = {z["id"] for z in scan["zones"]}
+    acts = [e["action"] for e in events(r.text) if e["type"] == "action"]
+    assert any((a.get("params") or {}).get("id") in zone_ids for a in acts)
 
 
 @respx.mock

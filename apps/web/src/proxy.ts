@@ -12,6 +12,7 @@ import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 
 import { routing } from './i18n/routing';
+import { isStaticFilePath } from './lib/static-path';
 
 const intl = createMiddleware(routing);
 
@@ -39,7 +40,7 @@ function skipsI18n(pathname: string): boolean {
     pathname.startsWith('/manifest') ||
     pathname.startsWith('/icons/') ||
     pathname.startsWith('/brand/') ||
-    /\.[a-zA-Z0-9]+$/.test(pathname)
+    isStaticFilePath(pathname)
   );
 }
 
