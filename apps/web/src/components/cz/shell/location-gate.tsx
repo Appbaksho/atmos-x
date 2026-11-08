@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 
 import { SearchBox } from '@/components/onboarding/location';
 import { useLocation } from '@/lib/location';
+import { useCz } from '@/lib/prefs';
 import { href } from '@/lib/routes';
 
 import { I } from '../icons';
@@ -24,6 +25,7 @@ export function needsPlaceGate(path: string): boolean {
 export function LocationGate() {
   const t = useTranslations('common.location');
   const loc = useLocation();
+  const { setPrefs } = useCz();
   return (
     <main id="main" className="cz-view" style={{ minHeight: '100dvh', backgroundColor: B.navy, padding: 24, alignItems: 'center', justifyContent: 'center' }}>
       <View style={{ width: '100%', maxWidth: 440, gap: 16 }}>
@@ -40,7 +42,14 @@ export function LocationGate() {
         <View style={{ flexDirection: 'row', minHeight: 48 }}>
           <SearchBox />
         </View>
-        <Tap role="link" label={t('tryDemo')} href={href('S04', undefined, { demo: 1 })} style={{ minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start', borderRadius: R.pill }}>
+        {/* The shell reads `?demo=1` only when it mounts, and this link is a client-side navigation
+            inside the mounted shell, so turn Presentation mode on here too. */}
+        <Tap
+          role="link"
+          label={t('tryDemo')}
+          href={href('S04', undefined, { demo: 1 })}
+          onPress={() => void setPrefs({ presentation: true, onboarded: true })}
+          style={{ minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start', borderRadius: R.pill }}>
           <Txt size={14} w={600} color={B.lime} style={{ textDecoration: 'underline', textUnderlineOffset: 4 }}>
             {t('tryDemo')}
           </Txt>

@@ -118,6 +118,11 @@ export function LocationScreen() {
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
+  // L11: only a real place can be scanned. Until the device, a search, the IP city or the demo gives
+  // one, `loc.focus` is a placeholder; scanning it used to send people to Home's location gate.
+  const hasPlace = loc.pinned || loc.resolved;
+  const asking = !hasPlace && loc.needsPlace;
+
   // Hex count from the scan once it answers (H4); the ring formula until then.
   const n = scan.data?.scan.cell_count ?? ringCount(radius);
   const res = H3_RES;
@@ -146,6 +151,7 @@ export function LocationScreen() {
   }, [step, scan.data, scan.error]);
 
   const start = () => {
+    if (!hasPlace) return;
     setPref('radius_m', radius);
     setStep(0);
     [700, 1400, 2100].forEach((ms, i) => timers.current.push(setTimeout(() => setStep(i + 1), ms)));
@@ -167,7 +173,8 @@ export function LocationScreen() {
           label={t('mapA11y', { place })}
           center={loc.focus}
           radiusM={radius}
-          me={loc.focus}
+          me={hasPlace ? loc.focus : null}
+          showCircle={hasPlace}
           scanning={step >= 0}
           hexes={step >= 3 ? scan.data?.hexes : null}
           zones={step >= 3 ? scan.data?.zones : null}
@@ -180,13 +187,15 @@ export function LocationScreen() {
           <IconBtn d={f.backPath} label={t('back')} onPress={goBack} tone="glassDark" size={48} />
           <SearchBox />
         </View>
-        <View style={{ position: 'absolute', top: 'calc(env(safe-area-inset-top, 0px) + 72px)', start: 0, end: 0, alignItems: 'center', pointerEvents: 'none' }}>
-          <View style={{ backgroundColor: B.lime, paddingHorizontal: 10, paddingVertical: 4, borderRadius: R.pill }}>
-            <Txt size={12} w={600} color={B.navy} num>
-              {rl(radius)}
-            </Txt>
+        {hasPlace ? (
+          <View style={{ position: 'absolute', top: 'calc(env(safe-area-inset-top, 0px) + 72px)', start: 0, end: 0, alignItems: 'center', pointerEvents: 'none' }}>
+            <View style={{ backgroundColor: B.lime, paddingHorizontal: 10, paddingVertical: 4, borderRadius: R.pill }}>
+              <Txt size={12} w={600} color={B.navy} num>
+                {rl(radius)}
+              </Txt>
+            </View>
           </View>
-        </View>
+        ) : null}
         <MapAttribution style={{ position: 'absolute', bottom: 40, start: 10 }} />
       </View>
 
@@ -195,29 +204,35 @@ export function LocationScreen() {
           <>
             <View style={{ gap: 4 }}>
               <Txt display size={18} as="h1">
-                {t('title')}
+                {asking ? tc('location.gateTitle') : t('title')}
               </Txt>
               <Txt size={13.5} dim>
-                {place} · {coords}
+                {asking ? tc('location.gateWhy') : hasPlace ? `${place} · ${coords}` : tc('location.finding')}
               </Txt>
             </View>
-            <Note icon={I.checkSm}>
-              <Txt size={13} style={{ lineHeight: 18 }}>
-                {loc.error ? tc(`location.${loc.error === 'denied' ? 'denied' : 'unavailable'}`) : note}
-              </Txt>
-            </Note>
-            <RadiusControl value={radius} onChange={setR} guest={session.isGuest} sub={t('cells', { n: f.num(n), r: rl(radius) })} />
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 2 }}>
-              {!loc.pinned ? (
-                <Tap label={t('useLoc')} onPress={() => void loc.refresh().then((p) => p && loc.setFocus(p))} disabled={loc.loading} style={{ height: 54, paddingHorizontal: 18, borderRadius: R.pill, borderWidth: 1, borderColor: c.line, backgroundColor: c.card, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  {loc.loading ? <Spinner size="small" color={c.ink} /> : <Icon d={I.target} size={18} />}
-                  <Txt size={14} w={600}>
-                    {t('useLoc')}
-                  </Txt>
-                </Tap>
-              ) : null}
-              <CzButton label={t('scan', { r: rl(radius) })} icon="compass" onPress={start} style={{ flexGrow: 1, minWidth: 150, height: 54 }} />
-            </View>
+            {loc.error || hasPlace ? (
+              <Note icon={I.checkSm}>
+                <Txt size={13} style={{ lineHeight: 18 }}>
+                  {loc.error ? tc(`location.${loc.error === 'denied' ? 'denied' : 'unavailable'}`) : note}
+                </Txt>
+              </Note>
+            ) : null}
+            {hasPlace ? <RadiusControl value={radius} onChange={setR} guest={session.isGuest} sub={t('cells', { n: f.num(n), r: rl(radius) })} /> : null}
+            {asking ? (
+              <CzButton label={tc('location.useMine')} icon="compass" busy={loc.loading} disabled={loc.loading} onPress={() => void loc.refresh().then((p) => p && loc.setFocus(p))} style={{ height: 54 }} />
+            ) : (
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 2 }}>
+                {!loc.pinned ? (
+                  <Tap label={t('useLoc')} onPress={() => void loc.refresh().then((p) => p && loc.setFocus(p))} disabled={loc.loading} style={{ height: 54, paddingHorizontal: 18, borderRadius: R.pill, borderWidth: 1, borderColor: c.line, backgroundColor: c.card, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                    {loc.loading ? <Spinner size="small" color={c.ink} /> : <Icon d={I.target} size={18} />}
+                    <Txt size={14} w={600}>
+                      {t('useLoc')}
+                    </Txt>
+                  </Tap>
+                ) : null}
+                <CzButton label={t('scan', { r: rl(radius) })} icon="compass" onPress={start} disabled={!hasPlace} busy={!hasPlace} style={{ flexGrow: 1, minWidth: 150, height: 54 }} />
+              </View>
+            )}
             <Txt size={11.5} dim center style={{ lineHeight: 17 }}>
               {t('privacy')}
             </Txt>
